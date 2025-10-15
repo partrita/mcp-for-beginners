@@ -1,54 +1,54 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ac67652abc453e2a7e2c75cd7a8897ae",
-  "translation_date": "2025-07-13T18:07:54+00:00",
+  "original_hash": "6ebbb78b04c9b1f6c2367c713524fc95",
+  "translation_date": "2025-09-03T16:20:36+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/typescript/README.md",
   "language_code": "my"
 }
 -->
-# ဒီနမူနာကို chạy လုပ်ခြင်း
+# ဒီနမူနာကို အလုပ်လုပ်စေခြင်း
 
-`uv` ကို 설치 လုပ်ဖို့ အကြံပြုထားပေမယ့် မလိုအပ်ပါ၊ [ညွှန်ကြားချက်များ](https://docs.astral.sh/uv/#highlights) ကို ကြည့်ပါ။
+`uv` ကို install လုပ်ဖို့ အကြံပြုထားပေမယ့် မဖြစ်မဖြစ်လိုအပ်တာမဟုတ်ပါဘူး၊ [ညွှန်ကြားချက်များ](https://docs.astral.sh/uv/#highlights) ကိုကြည့်ပါ။
 
-## -1- လိုအပ်သော dependency များ 설치 လုပ်ခြင်း
+## -1- လိုအပ်သော dependencies များကို install လုပ်ပါ
 
 ```bash
 npm install
 ```
 
-## -3- နမူနာကို chạy လုပ်ခြင်း
+## -3- နမူနာကို run လုပ်ပါ
 
 ```bash
 npm run build
 ```
 
-## -4- နမူနာကို စမ်းသပ်ခြင်း
+## -4- နမူနာကို စမ်းသပ်ပါ
 
-တစ်ခုသော terminal မှာ server ကို chạy လုပ်ထားပြီးနောက်၊ အခြား terminal တစ်ခု ဖွင့်ပြီး အောက်ပါ command ကို chạy ပါ။
+Server ကို terminal တစ်ခုမှာ run လုပ်ထားပြီးနောက်၊ အခြား terminal တစ်ခုကိုဖွင့်ပြီး အောက်ပါ command ကို run လုပ်ပါ:
 
 ```bash
 npm run inspector
 ```
 
-ဒါက web server တစ်ခုကို visual interface နဲ့ စတင်ပေးမှာဖြစ်ပြီး နမူနာကို စမ်းသပ်နိုင်ပါလိမ့်မယ်။
+ဒါက visual interface ပါဝင်တဲ့ web server ကိုစတင်ပေးပြီး နမူနာကို စမ်းသပ်နိုင်ပါမယ်။
 
-server ချိတ်ဆက်ပြီးနောက် -
+Server ကိုချိတ်ဆက်ပြီးနောက်:
 
-- tools များကို စာရင်းပြပြီး `add` ကို args 2 နဲ့ 4 ဖြင့် chạy လုပ်ကြည့်ပါ၊ ရလဒ်မှာ 6 ကို မြင်ရပါမယ်။
-- resources နဲ့ resource template ကို သွားပြီး "greeting" ကို ခေါ်ပါ၊ နာမည်တစ်ခု ရိုက်ထည့်ပြီး သင့်ရဲ့ နာမည်နဲ့ အကြိုဆိုစာကို မြင်ရပါလိမ့်မယ်။
+- tools များကို list လုပ်ပြီး `add` ကို run လုပ်ပါ၊ arguments အနေနဲ့ 2 နဲ့ 4 ကိုထည့်ပါ၊ ရလဒ်မှာ 6 ကိုတွေ့ရပါမယ်။
+- resources နဲ့ resource template ကိုသွားပြီး "greeting" ကိုခေါ်ပါ၊ နာမည်တစ်ခုကိုရိုက်ထည့်ပြီး သင့်ရိုက်ထည့်ထားတဲ့နာမည်နဲ့ greeting ကိုတွေ့ရပါမယ်။
 
 ### CLI mode မှာ စမ်းသပ်ခြင်း
 
-သင် chạy လုပ်ထားတဲ့ inspector က Node.js app တစ်ခုဖြစ်ပြီး `mcp dev` က အဲဒီ app ကို wrapper လုပ်ထားတာပါ။
+သင့်ရဲ့ inspector က အမှန်တကယ် Node.js app ဖြစ်ပြီး `mcp dev` က wrapper တစ်ခုဖြစ်ပါတယ်။
 
-အောက်ပါ command ကို chạy လုပ်ခြင်းဖြင့် CLI mode မှာ တိုက်ရိုက် စတင်နိုင်ပါတယ်။
+CLI mode မှာတိုက်ရိုက် run လုပ်နိုင်ဖို့ အောက်ပါ command ကို run လုပ်ပါ:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli node ./build/index.js --method tools/list
 ```
 
-ဒါက server မှာ ရနိုင်တဲ့ tools အားလုံးကို စာရင်းပြပါလိမ့်မယ်။ အောက်ပါ output ကို မြင်ရပါမယ်။
+ဒါက server မှာရရှိနိုင်တဲ့ tools များကို list လုပ်ပေးပါမယ်။ အောက်ပါ output ကိုတွေ့ရပါမယ်:
 
 ```text
 {
@@ -79,13 +79,13 @@ npx @modelcontextprotocol/inspector --cli node ./build/index.js --method tools/l
 }
 ```
 
-tool တစ်ခုကို ခေါ်ရန် type လုပ်ပါ -
+Tool တစ်ခုကို invoke လုပ်ဖို့အတွက်:
 
 ```bash
 nnpx @modelcontextprotocol/inspector --cli node ./build/index.js --method tools/call --tool-name add --tool-arg a=1 --tool-arg b=2
 ```
 
-အောက်ပါ output ကို မြင်ရပါလိမ့်မယ်။
+အောက်ပါ output ကိုတွေ့ရပါမယ်:
 
 ```text
 {
@@ -99,9 +99,11 @@ nnpx @modelcontextprotocol/inspector --cli node ./build/index.js --method tools/
 }
 ```
 
-> ![!TIP]
-> inspector ကို browser မှာ chạy လုပ်တာထက် CLI mode မှာ chạy လုပ်တာ ပိုမြန်တယ်။
-> inspector အကြောင်း ပိုမိုသိရှိရန် [ဒီမှာ](https://github.com/modelcontextprotocol/inspector) ဖတ်ပါ။
+> [!TIP]
+> CLI mode မှာ inspector ကို run လုပ်တာ browser မှာ run လုပ်တာထက် အများကြီးလျင်မြန်ပါတယ်။
+> Inspector အကြောင်းပိုမိုဖတ်ရှုရန် [ဒီမှာ](https://github.com/modelcontextprotocol/inspector) ကိုကြည့်ပါ။
 
-**အကြောင်းကြားချက်**  
-ဤစာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ဖြင့် ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှန်ကန်မှုအတွက် ကြိုးစားသော်လည်း၊ အလိုအလျောက် ဘာသာပြန်ခြင်းတွင် အမှားများ သို့မဟုတ် မှားယွင်းချက်များ ပါဝင်နိုင်ကြောင်း သတိပြုပါရန် မေတ္တာရပ်ခံအပ်ပါသည်။ မူရင်းစာတမ်းကို မူလဘာသာဖြင့်သာ တရားဝင်အချက်အလက်အဖြစ် ယူဆသင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူ့ဘာသာပြန်ပညာရှင်မှ ဘာသာပြန်ခြင်းကို အကြံပြုပါသည်။ ဤဘာသာပြန်ချက်ကို အသုံးပြုရာမှ ဖြစ်ပေါ်လာနိုင်သည့် နားလည်မှုမှားယွင်းမှုများအတွက် ကျွန်ုပ်တို့သည် တာဝန်မယူပါ။
+---
+
+**အကြောင်းကြားချက်**:  
+ဤစာရွက်စာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ကို အသုံးပြု၍ ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှုအတွက် ကြိုးစားနေသော်လည်း၊ အလိုအလျောက် ဘာသာပြန်မှုများတွင် အမှားများ သို့မဟုတ် မမှန်ကန်မှုများ ပါဝင်နိုင်သည်ကို သတိပြုပါ။ မူရင်းစာရွက်စာတမ်းကို ၎င်း၏ မူရင်းဘာသာစကားဖြင့် အာဏာတရ အရင်းအမြစ်အဖြစ် ရှုလေ့လာသင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူ့ဘာသာပြန်ပညာရှင်များမှ ပရော်ဖက်ရှင်နယ် ဘာသာပြန်မှုကို အကြံပြုပါသည်။ ဤဘာသာပြန်မှုကို အသုံးပြုခြင်းမှ ဖြစ်ပေါ်လာသော အလွဲအလွဲအမှားအမှားများ သို့မဟုတ် အနားလွဲမှုများအတွက် ကျွန်ုပ်တို့သည် တာဝန်မယူပါ။

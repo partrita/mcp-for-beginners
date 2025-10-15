@@ -1,13 +1,13 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a05fb941810e539147fec53aaadbb6fd",
-  "translation_date": "2025-07-14T06:40:05+00:00",
+  "original_hash": "6ef6015d29b95f1cab97fb88a045a991",
+  "translation_date": "2025-09-05T10:55:57+00:00",
   "source_file": "09-CaseStudy/docs-mcp/solution/python/README.md",
   "language_code": "pl"
 }
 -->
-# Generator planu nauki z Chainlit i Microsoft Learn Docs MCP
+# Generator Planów Nauki z Chainlit i Microsoft Learn Docs MCP
 
 ## Wymagania wstępne
 
@@ -24,29 +24,29 @@ CO_OP_TRANSLATOR_METADATA:
    pip install -r requirements.txt
    ```
 
-## Użytkowanie
+## Użycie
 
-### Scenariusz 1: Proste zapytanie do Docs MCP  
+### Scenariusz 1: Proste zapytanie do Docs MCP
 Klient wiersza poleceń, który łączy się z serwerem Docs MCP, wysyła zapytanie i wyświetla wynik.
 
-1. Uruchom skrypt:  
+1. Uruchom skrypt:
    ```bash
    python scenario1.py
-   ```  
-2. Wprowadź swoje pytanie dotyczące dokumentacji w wyświetlonym wierszu poleceń.
+   ```
+2. Wprowadź swoje pytanie dotyczące dokumentacji w wierszu poleceń.
 
-### Scenariusz 2: Generator planu nauki (aplikacja webowa Chainlit)  
-Interfejs webowy (oparty na Chainlit), który pozwala użytkownikom wygenerować spersonalizowany, tygodniowy plan nauki dla dowolnego tematu technicznego.
+### Scenariusz 2: Generator Planów Nauki (Aplikacja Webowa Chainlit)
+Interfejs webowy (oparty na Chainlit), który pozwala użytkownikom generować spersonalizowany, tygodniowy plan nauki dla dowolnego tematu technicznego.
 
-1. Uruchom aplikację Chainlit:  
+1. Uruchom aplikację Chainlit:
    ```bash
    chainlit run scenario2.py
-   ```  
-2. Otwórz lokalny adres URL podany w terminalu (np. http://localhost:8000) w przeglądarce.  
-3. W oknie czatu wpisz temat nauki oraz liczbę tygodni, przez które chcesz się uczyć (np. „certyfikacja AI-900, 8 tygodni”).  
+   ```
+2. Otwórz lokalny adres URL podany w terminalu (np. http://localhost:8000) w przeglądarce.
+3. W oknie czatu wprowadź temat nauki oraz liczbę tygodni, przez które chcesz się uczyć (np. „Certyfikacja AI-900, 8 tygodni”).
 4. Aplikacja odpowie tygodniowym planem nauki, zawierającym linki do odpowiedniej dokumentacji Microsoft Learn.
 
-**Wymagane zmienne środowiskowe:**  
+**Wymagane zmienne środowiskowe:**
 
 Aby korzystać ze Scenariusza 2 (aplikacji webowej Chainlit z Azure OpenAI), musisz ustawić następujące zmienne środowiskowe w pliku `.env` w katalogu `python`:
 
@@ -57,52 +57,55 @@ AZURE_OPENAI_ENDPOINT=
 AZURE_OPENAI_API_VERSION=
 ```
 
-Wypełnij te wartości danymi swojego zasobu Azure OpenAI przed uruchomieniem aplikacji.
+Uzupełnij te wartości szczegółami swojego zasobu Azure OpenAI przed uruchomieniem aplikacji.
 
-> **Tip:** Możesz łatwo wdrożyć własne modele korzystając z [Azure AI Foundry](https://ai.azure.com/).
+> [!TIP]
+> Możesz łatwo wdrożyć własne modele, korzystając z [Azure AI Foundry](https://ai.azure.com/).
 
-### Scenariusz 3: Dokumentacja w edytorze z serwerem MCP w VS Code
+### Scenariusz 3: Dokumentacja w Edytorze z MCP Server w VS Code
 
-Zamiast przełączać się między kartami przeglądarki, aby szukać dokumentacji, możesz mieć Microsoft Learn Docs bezpośrednio w VS Code dzięki serwerowi MCP. Pozwala to na:  
-- Wyszukiwanie i czytanie dokumentacji w VS Code bez opuszczania środowiska kodowania.  
-- Odwoływanie się do dokumentacji i wstawianie linków bezpośrednio do plików README lub materiałów kursu.  
-- Korzystanie z GitHub Copilot i MCP razem, tworząc płynny, wspierany AI workflow dokumentacyjny.
+Zamiast przełączać się między kartami przeglądarki w poszukiwaniu dokumentacji, możesz przynieść Microsoft Learn Docs bezpośrednio do swojego edytora VS Code, korzystając z serwera MCP. Dzięki temu możesz:
+- Wyszukiwać i przeglądać dokumentację w VS Code bez opuszczania środowiska programistycznego.
+- Wstawiać linki do dokumentacji bezpośrednio do plików README lub materiałów kursowych.
+- Korzystać z GitHub Copilot i MCP razem, aby uzyskać płynny, wspomagany przez AI przepływ pracy z dokumentacją.
 
-**Przykładowe zastosowania:**  
-- Szybkie dodawanie linków referencyjnych do README podczas pisania dokumentacji kursu lub projektu.  
-- Używanie Copilota do generowania kodu i MCP do natychmiastowego znajdowania i cytowania odpowiednich dokumentów.  
+**Przykładowe zastosowania:**
+- Szybkie dodawanie linków referencyjnych do README podczas pisania dokumentacji kursu lub projektu.
+- Generowanie kodu za pomocą Copilot i natychmiastowe znajdowanie oraz cytowanie odpowiednich dokumentów za pomocą MCP.
 - Skupienie się na pracy w edytorze i zwiększenie produktywności.
 
-> [!IMPORTANT]  
-> Upewnij się, że masz poprawną konfigurację [`mcp.json`](../../../../../../09-CaseStudy/docs-mcp/solution/scenario3/mcp.json) w swoim workspace (lokalizacja to `.vscode/mcp.json`).
+> [!IMPORTANT]
+> Upewnij się, że masz poprawną konfigurację [`mcp.json`](../../../../../../09-CaseStudy/docs-mcp/solution/scenario3/mcp.json) w swoim środowisku roboczym (lokalizacja: `.vscode/mcp.json`).
 
-## Dlaczego Chainlit dla Scenariusza 2?
+## Dlaczego Chainlit w Scenariuszu 2?
 
-Chainlit to nowoczesny, open-source’owy framework do tworzenia konwersacyjnych aplikacji webowych. Umożliwia łatwe tworzenie interfejsów czatu, które łączą się z usługami backendowymi, takimi jak Microsoft Learn Docs MCP. Ten projekt wykorzystuje Chainlit, aby zapewnić prosty, interaktywny sposób generowania spersonalizowanych planów nauki w czasie rzeczywistym. Dzięki Chainlit możesz szybko budować i wdrażać narzędzia czatowe, które zwiększają produktywność i efektywność nauki.
+Chainlit to nowoczesny, otwartoźródłowy framework do budowy konwersacyjnych aplikacji webowych. Ułatwia tworzenie interfejsów czatowych, które łączą się z usługami backendowymi, takimi jak serwer Microsoft Learn Docs MCP. Ten projekt wykorzystuje Chainlit, aby zapewnić prosty, interaktywny sposób generowania spersonalizowanych planów nauki w czasie rzeczywistym. Dzięki Chainlit możesz szybko budować i wdrażać narzędzia czatowe, które zwiększają produktywność i wspierają naukę.
 
-## Co to robi
+## Co robi ta aplikacja?
 
-Ta aplikacja pozwala użytkownikom stworzyć spersonalizowany plan nauki, wystarczy wpisać temat i czas trwania. Aplikacja analizuje Twoje dane wejściowe, wysyła zapytanie do serwera Microsoft Learn Docs MCP o odpowiednie materiały i organizuje wyniki w przejrzysty, tygodniowy plan. Zalecenia na każdy tydzień są wyświetlane w czacie, co ułatwia śledzenie postępów. Integracja gwarantuje, że zawsze otrzymujesz najnowsze i najbardziej adekwatne materiały do nauki.
+Aplikacja pozwala użytkownikom tworzyć spersonalizowany plan nauki, po prostu wprowadzając temat i czas trwania. Aplikacja analizuje dane wejściowe, wysyła zapytanie do serwera Microsoft Learn Docs MCP w poszukiwaniu odpowiednich treści i organizuje wyniki w uporządkowany, tygodniowy plan. Rekomendacje na każdy tydzień są wyświetlane w oknie czatu, co ułatwia ich śledzenie i realizację. Integracja zapewnia dostęp do najnowszych i najbardziej odpowiednich zasobów edukacyjnych.
 
 ## Przykładowe zapytania
 
 Wypróbuj te zapytania w oknie czatu, aby zobaczyć, jak aplikacja odpowiada:
 
-- `certyfikacja AI-900, 8 tygodni`  
-- `Nauka Azure Functions, 4 tygodnie`  
-- `Azure DevOps, 6 tygodni`  
-- `Inżynieria danych na Azure, 10 tygodni`  
-- `Podstawy bezpieczeństwa Microsoft, 5 tygodni`  
-- `Power Platform, 7 tygodni`  
-- `Usługi Azure AI, 12 tygodni`  
-- `Architektura chmury, 9 tygodni`
+- `Certyfikacja AI-900, 8 tygodni`
+- `Nauka Azure Functions, 4 tygodnie`
+- `Azure DevOps, 6 tygodni`
+- `Inżynieria danych na Azure, 10 tygodni`
+- `Podstawy bezpieczeństwa Microsoft, 5 tygodni`
+- `Power Platform, 7 tygodni`
+- `Usługi Azure AI, 12 tygodni`
+- `Architektura chmurowa, 9 tygodni`
 
-Te przykłady pokazują elastyczność aplikacji dla różnych celów i ram czasowych nauki.
+Te przykłady pokazują elastyczność aplikacji w dostosowywaniu się do różnych celów edukacyjnych i ram czasowych.
 
 ## Źródła
 
-- [Chainlit Documentation](https://docs.chainlit.io/)  
-- [MCP Documentation](https://github.com/MicrosoftDocs/mcp)
+- [Dokumentacja Chainlit](https://docs.chainlit.io/)
+- [Dokumentacja MCP](https://github.com/MicrosoftDocs/mcp)
+
+---
 
 **Zastrzeżenie**:  
-Niniejszy dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mimo że dążymy do jak największej dokładności, prosimy mieć na uwadze, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w języku źródłowym powinien być uznawany za źródło autorytatywne. W przypadku informacji o kluczowym znaczeniu zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczeniowej AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za wiarygodne źródło. W przypadku informacji krytycznych zaleca się skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.

@@ -1,30 +1,30 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4c4da5949611d91b06d8a5d450aae8d6",
-  "translation_date": "2025-07-13T21:21:06+00:00",
+  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
+  "translation_date": "2025-08-18T17:23:35+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
   "language_code": "vi"
 }
 -->
-# Chạy ví dụ này
+# Chạy mẫu này
 
-Dưới đây là cách chạy server và client streaming HTTP cổ điển, cũng như server và client streaming MCP sử dụng Python.
+Dưới đây là cách chạy máy chủ và máy khách HTTP streaming cổ điển, cũng như máy chủ và máy khách MCP streaming sử dụng Python.
 
 ### Tổng quan
 
-- Bạn sẽ thiết lập một server MCP phát các thông báo tiến trình đến client trong quá trình xử lý các mục.
-- Client sẽ hiển thị từng thông báo theo thời gian thực.
-- Hướng dẫn này bao gồm các yêu cầu trước, cài đặt, chạy và khắc phục sự cố.
+- Bạn sẽ thiết lập một máy chủ MCP để truyền thông báo tiến trình đến máy khách khi xử lý các mục.
+- Máy khách sẽ hiển thị từng thông báo theo thời gian thực.
+- Hướng dẫn này bao gồm các yêu cầu, thiết lập, cách chạy và xử lý sự cố.
 
-### Yêu cầu trước
+### Yêu cầu
 
-- Python 3.9 trở lên
+- Python 3.9 hoặc mới hơn
 - Gói Python `mcp` (cài đặt bằng `pip install mcp`)
 
 ### Cài đặt & Thiết lập
 
-1. Clone repository hoặc tải các file giải pháp về.
+1. Clone kho lưu trữ hoặc tải xuống các tệp giải pháp.
 
    ```pwsh
    git clone https://github.com/microsoft/mcp-for-beginners
@@ -42,15 +42,15 @@ Dưới đây là cách chạy server và client streaming HTTP cổ điển, c�
 1. **Cài đặt các phụ thuộc cần thiết:**
 
    ```pwsh
-   pip install "mcp[cli]"
+   pip install "mcp[cli]" fastapi requests
    ```
 
-### Các file
+### Tệp
 
-- **Server:** [server.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/server.py)
-- **Client:** [client.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/client.py)
+- **Máy chủ:** [server.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/server.py)
+- **Máy khách:** [client.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/client.py)
 
-### Chạy Classic HTTP Streaming Server
+### Chạy máy chủ HTTP Streaming cổ điển
 
 1. Điều hướng đến thư mục giải pháp:
 
@@ -58,20 +58,20 @@ Dưới đây là cách chạy server và client streaming HTTP cổ điển, c�
    cd 03-GettingStarted/06-http-streaming/solution
    ```
 
-2. Khởi động server streaming HTTP cổ điển:
+2. Khởi động máy chủ HTTP streaming cổ điển:
 
    ```pwsh
    python server.py
    ```
 
-3. Server sẽ khởi động và hiển thị:
+3. Máy chủ sẽ khởi động và hiển thị:
 
    ```
    Starting FastAPI server for classic HTTP streaming...
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### Chạy Classic HTTP Streaming Client
+### Chạy máy khách HTTP Streaming cổ điển
 
 1. Mở một terminal mới (kích hoạt cùng môi trường ảo và thư mục):
 
@@ -80,7 +80,7 @@ Dưới đây là cách chạy server và client streaming HTTP cổ điển, c�
    python client.py
    ```
 
-2. Bạn sẽ thấy các thông điệp được phát liên tiếp:
+2. Bạn sẽ thấy các thông điệp được truyền tuần tự:
 
    ```text
    Running classic HTTP streaming client...
@@ -93,30 +93,30 @@ Dưới đây là cách chạy server và client streaming HTTP cổ điển, c�
    --- Stream Ended ---
    ```
 
-### Chạy MCP Streaming Server
+### Chạy máy chủ MCP Streaming
 
 1. Điều hướng đến thư mục giải pháp:
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    ```
-2. Khởi động server MCP với transport streamable-http:
+2. Khởi động máy chủ MCP với giao thức streamable-http:
    ```pwsh
    python server.py mcp
    ```
-3. Server sẽ khởi động và hiển thị:
+3. Máy chủ sẽ khởi động và hiển thị:
    ```
    Starting MCP server with streamable-http transport...
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### Chạy MCP Streaming Client
+### Chạy máy khách MCP Streaming
 
 1. Mở một terminal mới (kích hoạt cùng môi trường ảo và thư mục):
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py mcp
    ```
-2. Bạn sẽ thấy các thông báo được in ra theo thời gian thực khi server xử lý từng mục:
+2. Bạn sẽ thấy các thông báo được hiển thị theo thời gian thực khi máy chủ xử lý từng mục:
    ```
    Running MCP client...
    Starting client...
@@ -131,21 +131,21 @@ Dưới đây là cách chạy server và client streaming HTTP cổ điển, c�
 
 ### Các bước triển khai chính
 
-1. **Tạo server MCP sử dụng FastMCP.**
+1. **Tạo máy chủ MCP sử dụng FastMCP.**
 2. **Định nghĩa một công cụ xử lý danh sách và gửi thông báo bằng `ctx.info()` hoặc `ctx.log()`.**
-3. **Chạy server với `transport="streamable-http"`.**
-4. **Triển khai client với bộ xử lý tin nhắn để hiển thị thông báo khi chúng đến.**
+3. **Chạy máy chủ với `transport="streamable-http"`.**
+4. **Triển khai máy khách với trình xử lý thông điệp để hiển thị thông báo khi chúng đến.**
 
-### Giải thích mã nguồn
-- Server sử dụng các hàm async và context MCP để gửi cập nhật tiến trình.
-- Client triển khai bộ xử lý tin nhắn async để in thông báo và kết quả cuối cùng.
+### Giải thích mã
+- Máy chủ sử dụng các hàm async và ngữ cảnh MCP để gửi cập nhật tiến trình.
+- Máy khách triển khai một trình xử lý thông điệp async để in thông báo và kết quả cuối cùng.
 
-### Mẹo & Khắc phục sự cố
+### Mẹo & Xử lý sự cố
 
-- Sử dụng `async/await` để tránh chặn quá trình.
-- Luôn xử lý ngoại lệ ở cả server và client để tăng độ ổn định.
-- Thử với nhiều client để quan sát cập nhật theo thời gian thực.
-- Nếu gặp lỗi, kiểm tra phiên bản Python và đảm bảo đã cài đủ các phụ thuộc.
+- Sử dụng `async/await` cho các hoạt động không chặn.
+- Luôn xử lý ngoại lệ trong cả máy chủ và máy khách để đảm bảo độ tin cậy.
+- Kiểm tra với nhiều máy khách để quan sát các cập nhật theo thời gian thực.
+- Nếu gặp lỗi, kiểm tra phiên bản Python của bạn và đảm bảo tất cả các phụ thuộc đã được cài đặt.
 
-**Tuyên bố từ chối trách nhiệm**:  
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ gốc của nó nên được coi là nguồn chính xác và đáng tin cậy. Đối với các thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp do con người thực hiện. Chúng tôi không chịu trách nhiệm về bất kỳ sự hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
+**Tuyên bố miễn trừ trách nhiệm**:  
+Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ bản địa nên được coi là nguồn tham khảo chính thức. Đối với các thông tin quan trọng, chúng tôi khuyến nghị sử dụng dịch vụ dịch thuật chuyên nghiệp từ con người. Chúng tôi không chịu trách nhiệm cho bất kỳ sự hiểu lầm hoặc diễn giải sai nào phát sinh từ việc sử dụng bản dịch này.

@@ -1,36 +1,36 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "73240f845b99df9401fffd21c09a5f7b",
-  "translation_date": "2025-07-17T06:54:59+00:00",
+  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
+  "translation_date": "2025-08-18T16:06:32+00:00",
   "source_file": "05-AdvancedTopics/mcp-integration/README.md",
   "language_code": "fi"
 }
 -->
-# Yritysten integrointi
+# Yritysintegrointi
 
-Rakentaessasi MCP-palvelimia yritysympäristössä, sinun täytyy usein integroida olemassa oleviin tekoälyalustoihin ja -palveluihin. Tässä osiossa käsitellään, miten MCP integroidaan yritysjärjestelmiin kuten Azure OpenAI ja Microsoft AI Foundry, mikä mahdollistaa kehittyneet tekoälyominaisuudet ja työkalujen orkestroinnin.
+Kun rakennat MCP-palvelimia yrityskontekstissa, sinun on usein integroitava olemassa oleviin tekoälyalustoihin ja -palveluihin. Tässä osiossa käsitellään, kuinka MCP integroidaan yritysjärjestelmiin, kuten Azure OpenAI:hin ja Microsoft AI Foundryyn, mahdollistaen kehittyneet tekoälyominaisuudet ja työkalujen orkestroinnin.
 
 ## Johdanto
 
-Tässä oppitunnissa opit, miten Model Context Protocol (MCP) integroidaan yritysten tekoälyjärjestelmiin, keskittyen Azure OpenAI:hin ja Microsoft AI Foundryyn. Nämä integraatiot antavat mahdollisuuden hyödyntää tehokkaita tekoälymalleja ja työkaluja samalla kun MCP:n joustavuus ja laajennettavuus säilyvät.
+Tässä oppitunnissa opit, kuinka Model Context Protocol (MCP) integroidaan yritysten tekoälyjärjestelmiin, keskittyen erityisesti Azure OpenAI:hin ja Microsoft AI Foundryyn. Näiden integraatioiden avulla voit hyödyntää tehokkaita tekoälymalleja ja -työkaluja samalla säilyttäen MCP:n joustavuuden ja laajennettavuuden.
 
 ## Oppimistavoitteet
 
-Oppitunnin lopussa osaat:
+Tämän oppitunnin lopussa osaat:
 
 - Integroida MCP:n Azure OpenAI:hin hyödyntääksesi sen tekoälyominaisuuksia.
 - Toteuttaa MCP-työkalujen orkestroinnin Azure OpenAI:n kanssa.
-- Yhdistää MCP:n Microsoft AI Foundryyn kehittyneiden tekoälyagenttien mahdollistamiseksi.
-- Hyödyntää Azure Machine Learningiä (ML) ML-putkien suorittamiseen ja mallien rekisteröintiin MCP-työkaluina.
+- Yhdistää MCP:n Microsoft AI Foundryyn kehittyneiden tekoälyagenttien ominaisuuksien hyödyntämiseksi.
+- Hyödyntää Azure Machine Learningia (ML) ML-putkistojen suorittamiseen ja mallien rekisteröimiseen MCP-työkaluina.
 
 ## Azure OpenAI -integraatio
 
-Azure OpenAI tarjoaa pääsyn tehokkaisiin tekoälymalleihin, kuten GPT-4:ään ja muihin. MCP:n integroiminen Azure OpenAI:hin mahdollistaa näiden mallien hyödyntämisen säilyttäen MCP:n työkalujen orkestroinnin joustavuuden.
+Azure OpenAI tarjoaa pääsyn tehokkaisiin tekoälymalleihin, kuten GPT-4:ään ja muihin. MCP:n integrointi Azure OpenAI:hin mahdollistaa näiden mallien hyödyntämisen samalla säilyttäen MCP:n työkalujen orkestroinnin joustavuuden.
 
 ### C#-toteutus
 
-Tässä koodiesimerkissä näytämme, miten MCP integroidaan Azure OpenAI:hin Azure OpenAI SDK:n avulla.
+Tässä koodiesimerkissä näytetään, kuinka MCP integroidaan Azure OpenAI:hin käyttämällä Azure OpenAI SDK:ta.
 
 ```csharp
 // .NET Azure OpenAI Integration
@@ -94,19 +94,19 @@ namespace EnterpriseIntegration
 }
 ```
 
-Edellisessä koodissa olemme:
+Edellä olevassa koodissa olemme:
 
-- Määrittäneet Azure OpenAI -asiakkaan päätepisteen, käyttöönoton nimen ja API-avaimen.
-- Luoneet metodin `GetCompletionWithToolsAsync` saadaksemme vastauksia työkalutuen kanssa.
-- Käsitelleet työkalukutsuja vastauksessa.
+- Konfiguroineet Azure OpenAI -asiakkaan käyttämällä päätepistettä, käyttöönoton nimeä ja API-avainta.
+- Luoneet metodin `GetCompletionWithToolsAsync` hakemaan vastauksia työkalutuen kanssa.
+- Käsitelleet työkalukutsut vastauksessa.
 
-Sinua kannustetaan toteuttamaan varsinaisen työkalukäsittelyn logiikka oman MCP-palvelimesi tarpeiden mukaan.
+Sinua kannustetaan toteuttamaan varsinainen työkalujen käsittelylogiikka oman MCP-palvelimesi asetusten perusteella.
 
 ## Microsoft AI Foundry -integraatio
 
-Azure AI Foundry tarjoaa alustan tekoälyagenttien rakentamiseen ja käyttöönottoon. MCP:n integrointi AI Foundryyn mahdollistaa sen ominaisuuksien hyödyntämisen säilyttäen MCP:n joustavuuden.
+Azure AI Foundry tarjoaa alustan tekoälyagenttien rakentamiseen ja käyttöönottoon. MCP:n integrointi AI Foundryyn mahdollistaa sen ominaisuuksien hyödyntämisen samalla säilyttäen MCP:n joustavuuden.
 
-Alla olevassa koodissa kehitämme agentin integraation, joka käsittelee pyyntöjä ja hoitaa työkalukutsut MCP:n avulla.
+Alla olevassa koodissa kehitetään agentti-integraatio, joka käsittelee pyyntöjä ja työkalukutsuja MCP:n avulla.
 
 ### Java-toteutus
 
@@ -166,15 +166,15 @@ public class AIFoundryMcpBridge {
 }
 ```
 
-Edellisessä koodissa olemme:
+Edellä olevassa koodissa olemme:
 
 - Luoneet `AIFoundryMcpBridge`-luokan, joka integroituu sekä AI Foundryyn että MCP:hen.
 - Toteuttaneet metodin `processAgentRequest`, joka käsittelee AI Foundryn agenttipyynnön.
 - Käsitelleet työkalukutsut suorittamalla ne MCP-asiakkaan kautta ja palauttamalla tulokset AI Foundryn agentille.
 
-## MCP:n integrointi Azure ML:n kanssa
+## MCP:n integrointi Azure ML:ään
 
-MCP:n integrointi Azure Machine Learningiin (ML) mahdollistaa Azuren tehokkaiden ML-ominaisuuksien hyödyntämisen säilyttäen MCP:n joustavuuden. Tätä integraatiota voidaan käyttää ML-putkien suorittamiseen, mallien rekisteröintiin työkaluina sekä laskentaresurssien hallintaan.
+MCP:n integrointi Azure Machine Learningin (ML) kanssa mahdollistaa Azuren tehokkaiden ML-ominaisuuksien hyödyntämisen samalla säilyttäen MCP:n joustavuuden. Tätä integraatiota voidaan käyttää ML-putkistojen suorittamiseen, mallien rekisteröimiseen työkaluina ja laskentaresurssien hallintaan.
 
 ### Python-toteutus
 
@@ -300,17 +300,17 @@ class EnterpriseAiIntegration:
         return mapping.get(ml_type, "string")
 ```
 
-Edellisessä koodissa olemme:
+Edellä olevassa koodissa olemme:
 
-- Luoneet `EnterpriseAiIntegration`-luokan, joka integroi MCP:n Azure ML:n kanssa.
-- Toteuttaneet `execute_ml_pipeline`-metodin, joka käsittelee syötteen MCP-työkalujen avulla ja lähettää ML-putken Azure ML:lle.
-- Toteuttaneet `register_ml_model_as_tool`-metodin, joka rekisteröi Azure ML -mallin MCP-työkaluna, mukaan lukien tarvittavan käyttöönottoympäristön ja laskentaresurssit.
-- Kartoitamme Azure ML:n tietotyypit JSON-skeematyyppeihin työkalujen rekisteröintiä varten.
-- Käytämme asynkronista ohjelmointia käsittelemään mahdollisesti pitkään kestäviä operaatioita, kuten ML-putkien suorittamista ja mallien rekisteröintiä.
+- Luoneet `EnterpriseAiIntegration`-luokan, joka integroi MCP:n Azure ML:ään.
+- Toteuttaneet `execute_ml_pipeline`-metodin, joka käsittelee syötteitä MCP-työkalujen avulla ja lähettää ML-putkiston Azure ML:ään.
+- Toteuttaneet `register_ml_model_as_tool`-metodin, joka rekisteröi Azure ML -mallin MCP-työkaluksi, mukaan lukien tarvittavan käyttöympäristön ja laskentaresurssien luomisen.
+- Mappanneet Azure ML:n tietotyypit JSON-skeematyyppeihin työkalujen rekisteröintiä varten.
+- Käyttäneet asynkronista ohjelmointia käsittelemään mahdollisesti pitkäkestoisia operaatioita, kuten ML-putkistojen suorittamista ja mallien rekisteröintiä.
 
 ## Mitä seuraavaksi
 
 - [5.2 Multi modality](../mcp-multi-modality/README.md)
 
 **Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.

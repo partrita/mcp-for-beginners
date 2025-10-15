@@ -1,49 +1,49 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "5762e8e74dd99d8b7dbb31e69a82561e",
-  "translation_date": "2025-07-17T13:15:55+00:00",
+  "original_hash": "fd169ca3071b81b5ee282e194bc823df",
+  "translation_date": "2025-09-15T21:01:50+00:00",
   "source_file": "05-AdvancedTopics/mcp-contextengineering/README.md",
   "language_code": "cs"
 }
 -->
-# Context Engineering: Nový koncept v ekosystému MCP
+# Kontextové inženýrství: Nově vznikající koncept v ekosystému MCP
 
 ## Přehled
 
-Context engineering je nový koncept v oblasti umělé inteligence, který zkoumá, jak je informace strukturována, předávána a udržována během interakcí mezi klienty a AI službami. S vývojem ekosystému Model Context Protocol (MCP) je stále důležitější pochopit, jak efektivně spravovat kontext. Tento modul představuje pojem context engineering a zkoumá jeho možné využití v implementacích MCP.
+Kontextové inženýrství je nově vznikající koncept v oblasti AI, který zkoumá, jak je informace strukturována, doručována a udržována během interakcí mezi klienty a AI službami. Jak se ekosystém Model Context Protocol (MCP) vyvíjí, porozumění efektivnímu řízení kontextu se stává stále důležitějším. Tento modul představuje koncept kontextového inženýrství a zkoumá jeho potenciální aplikace v implementacích MCP.
 
 ## Cíle učení
 
 Na konci tohoto modulu budete schopni:
 
-- Pochopit nový koncept context engineering a jeho potenciální roli v aplikacích MCP
-- Identifikovat klíčové výzvy v řízení kontextu, které řeší návrh protokolu MCP
-- Prozkoumat techniky pro zlepšení výkonu modelu díky lepší správě kontextu
+- Porozumět nově vznikajícímu konceptu kontextového inženýrství a jeho potenciální roli v aplikacích MCP
+- Identifikovat klíčové výzvy v řízení kontextu, které návrh MCP protokolu řeší
+- Prozkoumat techniky pro zlepšení výkonu modelu prostřednictvím lepšího nakládání s kontextem
 - Zvážit přístupy k měření a hodnocení efektivity kontextu
-- Aplikovat tyto nové koncepty ke zlepšení AI zážitků v rámci MCP
+- Aplikovat tyto nové koncepty ke zlepšení AI zkušeností prostřednictvím rámce MCP
 
-## Úvod do Context Engineering
+## Úvod do kontextového inženýrství
 
-Context engineering je nový koncept zaměřený na cílený návrh a správu toku informací mezi uživateli, aplikacemi a AI modely. Na rozdíl od zavedených oblastí, jako je prompt engineering, je context engineering stále definován praktikujícími, kteří řeší jedinečné výzvy spojené s poskytováním správných informací AI modelům ve správný čas.
+Kontextové inženýrství je nově vznikající koncept zaměřený na záměrný návrh a řízení toku informací mezi uživateli, aplikacemi a AI modely. Na rozdíl od zavedených oborů, jako je návrh promptů, je kontextové inženýrství stále definováno odborníky, kteří se snaží řešit jedinečné výzvy spojené s poskytováním správných informací AI modelům ve správný čas.
 
-S vývojem velkých jazykových modelů (LLM) se význam kontextu stále více ukazuje. Kvalita, relevance a struktura kontextu, který poskytujeme, přímo ovlivňuje výstupy modelu. Context engineering zkoumá tento vztah a snaží se vyvinout principy pro efektivní správu kontextu.
+Jak se velké jazykové modely (LLMs) vyvíjely, důležitost kontextu se stala stále zřetelnější. Kvalita, relevance a struktura kontextu, který poskytujeme, přímo ovlivňuje výstupy modelu. Kontextové inženýrství zkoumá tento vztah a snaží se vyvinout principy pro efektivní řízení kontextu.
 
-> „V roce 2025 jsou modely extrémně inteligentní. Ale ani ten nejchytřejší člověk nebude schopen efektivně pracovat bez kontextu toho, co má dělat... ‚Context engineering‘ je další úroveň prompt engineeringu. Jde o to dělat to automaticky v dynamickém systému.“ — Walden Yan, Cognition AI
+> „V roce 2025 budou modely extrémně inteligentní. Ale ani ten nejchytřejší člověk nebude schopen efektivně vykonávat svou práci bez kontextu toho, co se od něj požaduje... 'Kontextové inženýrství' je další úroveň návrhu promptů. Jde o to, jak to dělat automaticky v dynamickém systému." — Walden Yan, Cognition AI
 
-Context engineering může zahrnovat:
+Kontextové inženýrství může zahrnovat:
 
-1. **Výběr kontextu**: Určení, jaké informace jsou pro daný úkol relevantní
-2. **Strukturování kontextu**: Organizace informací pro maximální porozumění modelem
-3. **Předávání kontextu**: Optimalizace způsobu a času, kdy jsou informace posílány modelům
-4. **Údržba kontextu**: Správa stavu a vývoje kontextu v čase
+1. **Výběr kontextu**: Určení, které informace jsou relevantní pro daný úkol
+2. **Strukturování kontextu**: Organizace informací pro maximální pochopení modelu
+3. **Doručování kontextu**: Optimalizace způsobu a času, kdy jsou informace posílány modelům
+4. **Údržba kontextu**: Řízení stavu a vývoje kontextu v průběhu času
 5. **Hodnocení kontextu**: Měření a zlepšování efektivity kontextu
 
-Tyto oblasti jsou zvláště důležité pro ekosystém MCP, který poskytuje standardizovaný způsob, jak aplikace předávají kontext LLM.
+Tyto oblasti zaměření jsou obzvláště relevantní pro ekosystém MCP, který poskytuje standardizovaný způsob, jak aplikace poskytují kontext LLMs.
 
 ## Perspektiva cesty kontextu
 
-Jedním ze způsobů, jak si představit context engineering, je sledovat cestu, kterou informace prochází systémem MCP:
+Jedním ze způsobů, jak si představit kontextové inženýrství, je sledovat cestu, kterou informace prochází systémem MCP:
 
 ```mermaid
 graph LR
@@ -62,21 +62,21 @@ graph LR
 
 ### Klíčové fáze cesty kontextu:
 
-1. **Uživatelský vstup**: Surové informace od uživatele (text, obrázky, dokumenty)
-2. **Sestavení kontextu**: Kombinace uživatelského vstupu se systémovým kontextem, historií konverzace a dalšími získanými informacemi
+1. **Vstup uživatele**: Surové informace od uživatele (text, obrázky, dokumenty)
+2. **Sestavení kontextu**: Kombinace vstupu uživatele se systémovým kontextem, historií konverzace a dalšími získanými informacemi
 3. **Zpracování modelem**: AI model zpracovává sestavený kontext
 4. **Generování odpovědi**: Model vytváří výstupy na základě poskytnutého kontextu
-5. **Správa stavu**: Systém aktualizuje svůj interní stav na základě interakce
+5. **Řízení stavu**: Systém aktualizuje svůj interní stav na základě interakce
 
-Tento pohled zdůrazňuje dynamickou povahu kontextu v AI systémech a klade důležité otázky, jak nejlépe spravovat informace v každé fázi.
+Tato perspektiva zdůrazňuje dynamickou povahu kontextu v AI systémech a klade důležité otázky o tom, jak nejlépe řídit informace v každé fázi.
 
-## Vznikající principy context engineering
+## Nově vznikající principy v kontextovém inženýrství
 
-Jak se oblast context engineering formuje, začínají se objevovat první principy od praktikujících. Tyto principy mohou pomoci při rozhodování o implementaci MCP:
+Jak se obor kontextového inženýrství formuje, začínají se objevovat některé rané principy od odborníků. Tyto principy mohou pomoci informovat volby při implementaci MCP:
 
 ### Princip 1: Sdílejte kontext kompletně
 
-Kontext by měl být sdílen kompletně mezi všemi komponentami systému, nikoli rozdělen mezi více agentů nebo procesů. Když je kontext rozptýlen, rozhodnutí učiněná v jedné části systému mohou být v rozporu s rozhodnutími jinde.
+Kontext by měl být sdílen kompletně mezi všemi komponentami systému, spíše než fragmentován mezi více agenty nebo procesy. Když je kontext rozdělen, rozhodnutí učiněná v jedné části systému mohou být v rozporu s těmi učiněnými jinde.
 
 ```mermaid
 graph TD
@@ -100,74 +100,74 @@ graph TD
     style D1 fill:#D7BDE2,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-V aplikacích MCP to naznačuje návrh systémů, kde kontext plynule prochází celým procesem, místo aby byl rozdělen do oddělených částí.
+V aplikacích MCP to naznačuje návrh systémů, kde kontext plynule proudí celým potrubím, spíše než aby byl rozdělen.
 
 ### Princip 2: Uvědomte si, že akce nesou implicitní rozhodnutí
 
-Každá akce modelu obsahuje implicitní rozhodnutí o tom, jak interpretovat kontext. Když různé komponenty pracují s různými kontexty, mohou tato implicitní rozhodnutí kolidovat a vést k nekonzistentním výsledkům.
+Každá akce, kterou model provede, obsahuje implicitní rozhodnutí o tom, jak interpretovat kontext. Když více komponent jedná na různých kontextech, tato implicitní rozhodnutí mohou být v rozporu, což vede k nekonzistentním výsledkům.
 
 Tento princip má důležité důsledky pro aplikace MCP:
-- Upřednostňujte lineární zpracování složitých úkolů před paralelním prováděním s rozděleným kontextem
+- Preferujte lineární zpracování složitých úkolů před paralelním prováděním s fragmentovaným kontextem
 - Zajistěte, aby všechny rozhodovací body měly přístup ke stejným kontextovým informacím
-- Navrhujte systémy tak, aby pozdější kroky viděly celý kontext předchozích rozhodnutí
+- Navrhujte systémy, kde pozdější kroky mohou vidět celý kontext předchozích rozhodnutí
 
-### Princip 3: Vyvažujte hloubku kontextu s omezeními okna
+### Princip 3: Vyvažte hloubku kontextu s omezeními okna
 
-Jak konverzace a procesy rostou, kontextová okna se nakonec zaplní. Efektivní context engineering zkoumá přístupy, jak zvládat napětí mezi komplexním kontextem a technickými omezeními.
+Jak se konverzace a procesy prodlužují, kontextová okna nakonec přetečou. Efektivní kontextové inženýrství zkoumá přístupy k řízení tohoto napětí mezi komplexním kontextem a technickými omezeními.
 
-Možné přístupy zahrnují:
-- Kompresi kontextu, která zachovává podstatné informace a zároveň snižuje počet tokenů
-- Postupné načítání kontextu podle relevance k aktuálním potřebám
+Potenciální přístupy, které se zkoumají, zahrnují:
+- Komprese kontextu, která zachovává podstatné informace při snižování využití tokenů
+- Progresivní načítání kontextu na základě relevance k aktuálním potřebám
 - Shrnutí předchozích interakcí při zachování klíčových rozhodnutí a faktů
 
-## Výzvy kontextu a návrh protokolu MCP
+## Výzvy kontextu a návrh MCP protokolu
 
-Model Context Protocol (MCP) byl navržen s ohledem na jedinečné výzvy správy kontextu. Pochopení těchto výzev pomáhá vysvětlit klíčové aspekty návrhu protokolu MCP:
+Model Context Protocol (MCP) byl navržen s vědomím jedinečných výzev řízení kontextu. Porozumění těmto výzvám pomáhá vysvětlit klíčové aspekty návrhu MCP protokolu:
 
-### Výzva 1: Omezení velikosti kontextového okna
-Většina AI modelů má pevně danou velikost kontextového okna, což omezuje množství informací, které mohou zpracovat najednou.
+### Výzva 1: Omezení kontextového okna
+Většina AI modelů má pevné velikosti kontextových oken, což omezuje množství informací, které mohou zpracovat najednou.
 
-**Odpověď návrhu MCP:**  
-- Protokol podporuje strukturovaný, zdrojově založený kontext, který lze efektivně odkazovat  
-- Zdroje mohou být stránkovány a načítány postupně
+**Odpověď návrhu MCP:** 
+- Protokol podporuje strukturovaný, zdrojově založený kontext, který může být efektivně odkazován
+- Zdroje mohou být stránkovány a načítány progresivně
 
 ### Výzva 2: Určení relevance
-Určit, které informace jsou nejrelevantnější pro zahrnutí do kontextu, je obtížné.
+Určení, které informace jsou nejrelevantnější k zahrnutí do kontextu, je obtížné.
 
-**Odpověď návrhu MCP:**  
-- Flexibilní nástroje umožňují dynamické získávání informací podle potřeby  
-- Strukturované promptování umožňuje konzistentní organizaci kontextu
+**Odpověď návrhu MCP:**
+- Flexibilní nástroje umožňují dynamické získávání informací na základě potřeby
+- Strukturované prompty umožňují konzistentní organizaci kontextu
 
-### Výzva 3: Přetrvávání kontextu
-Správa stavu napříč interakcemi vyžaduje pečlivé sledování kontextu.
+### Výzva 3: Trvalost kontextu
+Řízení stavu napříč interakcemi vyžaduje pečlivé sledování kontextu.
 
-**Odpověď návrhu MCP:**  
-- Standardizovaná správa relací  
+**Odpověď návrhu MCP:**
+- Standardizované řízení relací
 - Jasně definované vzory interakcí pro vývoj kontextu
 
 ### Výzva 4: Multimodální kontext
-Různé typy dat (text, obrázky, strukturovaná data) vyžadují odlišné zacházení.
+Různé typy dat (text, obrázky, strukturovaná data) vyžadují odlišné zpracování.
 
-**Odpověď návrhu MCP:**  
-- Návrh protokolu podporuje různé typy obsahu  
+**Odpověď návrhu MCP:**
+- Návrh protokolu zohledňuje různé typy obsahu
 - Standardizovaná reprezentace multimodálních informací
 
 ### Výzva 5: Bezpečnost a soukromí
-Kontext často obsahuje citlivé informace, které je třeba chránit.
+Kontext často obsahuje citlivé informace, které musí být chráněny.
 
-**Odpověď návrhu MCP:**  
-- Jasné hranice mezi odpovědnostmi klienta a serveru  
+**Odpověď návrhu MCP:**
+- Jasné hranice mezi odpovědnostmi klienta a serveru
 - Možnosti lokálního zpracování pro minimalizaci expozice dat
 
-Pochopení těchto výzev a způsobů, jak je MCP řeší, poskytuje základ pro zkoumání pokročilejších technik context engineering.
+Porozumění těmto výzvám a tomu, jak je MCP řeší, poskytuje základ pro zkoumání pokročilejších technik kontextového inženýrství.
 
-## Vznikající přístupy v context engineering
+## Nově vznikající přístupy ke kontextovému inženýrství
 
-Jak se oblast context engineering rozvíjí, objevují se slibné přístupy. Tyto představují současné myšlení, nikoli zavedené postupy, a pravděpodobně se budou vyvíjet s rostoucími zkušenostmi s implementacemi MCP.
+Jak se obor kontextového inženýrství vyvíjí, objevuje se několik slibných přístupů. Ty představují současné myšlení spíše než zavedené nejlepší praktiky a pravděpodobně se budou vyvíjet, jak získáme více zkušeností s implementacemi MCP.
 
-### 1. Jednovláknové lineární zpracování
+### 1. Lineární zpracování v jednom vlákně
 
-Na rozdíl od multi-agentních architektur, které rozdělují kontext, někteří praktikující zjišťují, že jednovláknové lineární zpracování přináší konzistentnější výsledky. To odpovídá principu udržování jednotného kontextu.
+Na rozdíl od architektur s více agenty, které rozdělují kontext, někteří odborníci zjišťují, že lineární zpracování v jednom vlákně přináší konzistentnější výsledky. To odpovídá principu udržování jednotného kontextu.
 
 ```mermaid
 graph TD
@@ -183,11 +183,11 @@ graph TD
     style E fill:#D2B4DE,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-Ačkoliv se tento přístup může zdát méně efektivní než paralelní zpracování, často přináší soudržnější a spolehlivější výsledky, protože každý krok staví na úplném pochopení předchozích rozhodnutí.
+I když se tento přístup může zdát méně efektivní než paralelní zpracování, často přináší koherentnější a spolehlivější výsledky, protože každý krok staví na úplném pochopení předchozích rozhodnutí.
 
-### 2. Rozdělení a priorizace kontextu
+### 2. Dělení kontextu a prioritizace
 
-Rozdělení velkého kontextu na zvládnutelné části a upřednostnění toho nejdůležitějšího.
+Rozdělení velkých kontextů na zvládnutelné části a prioritizace toho, co je nejdůležitější.
 
 ```python
 # Conceptual Example: Context Chunking and Prioritization
@@ -208,11 +208,11 @@ def process_with_chunked_context(documents, query):
     return generate_response(context, query)
 ```
 
-Výše uvedený koncept ukazuje, jak můžeme rozdělit velké dokumenty na menší části a vybrat jen nejrelevantnější části pro kontext. Tento přístup pomáhá pracovat v rámci omezení velikosti kontextového okna a zároveň využívat rozsáhlé znalostní báze.
+Výše uvedený koncept ilustruje, jak bychom mohli rozdělit velké dokumenty na zvládnutelné části a vybrat pouze nejrelevantnější části pro kontext. Tento přístup může pomoci pracovat v rámci omezení kontextového okna a zároveň využívat rozsáhlé znalostní báze.
 
-### 3. Postupné načítání kontextu
+### 3. Progresivní načítání kontextu
 
-Načítání kontextu postupně podle potřeby, nikoli najednou.
+Načítání kontextu postupně podle potřeby, spíše než vše najednou.
 
 ```mermaid
 sequenceDiagram
@@ -237,7 +237,7 @@ sequenceDiagram
     App->>User: Answer
 ```
 
-Postupné načítání začíná s minimálním kontextem a rozšiřuje ho pouze v případě potřeby. To může výrazně snížit spotřebu tokenů u jednoduchých dotazů a zároveň umožnit zpracování složitých otázek.
+Progresivní načítání kontextu začíná s minimálním kontextem a rozšiřuje se pouze tehdy, když je to nutné. To může výrazně snížit využití tokenů pro jednoduché dotazy a zároveň zachovat schopnost řešit složité otázky.
 
 ### 4. Komprese a shrnutí kontextu
 
@@ -257,110 +257,99 @@ graph TD
     style E fill:#F9E79F,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-Kompresní přístup se zaměřuje na:  
-- Odstranění redundantních informací  
-- Shrnutí rozsáhlého obsahu  
-- Extrakci klíčových faktů a detailů  
-- Zachování kritických prvků kontextu  
-- Optimalizaci pro efektivní využití tokenů
+Komprese kontextu se zaměřuje na:
+- Odstranění redundantních informací
+- Shrnutí rozsáhlého obsahu
+- Extrakci klíčových faktů a detailů
+- Zachování kritických prvků kontextu
+- Optimalizaci pro efektivitu tokenů
 
-Tento přístup je zvláště cenný pro udržení dlouhých konverzací v rámci kontextových oken nebo pro efektivní zpracování velkých dokumentů. Někteří praktikující používají specializované modely přímo pro kompresi a shrnutí historie konverzace.
+Tento přístup může být obzvláště cenný pro udržení dlouhých konverzací v rámci kontextových oken nebo pro efektivní zpracování rozsáhlých dokumentů. Někteří odborníci používají specializované modely specificky pro kompresi kontextu a shrnutí historie konverzace.
 
-## Zvažování v rámci explorace context engineering
+## Průzkumné úvahy o kontextovém inženýrství
 
-Při zkoumání nového pole context engineering je užitečné mít na paměti několik aspektů při práci s implementacemi MCP. Nejde o předepsané postupy, ale o oblasti, které mohou přinést zlepšení ve vašem konkrétním případě.
+Při zkoumání nově vznikajícího oboru kontextového inženýrství stojí za to mít na paměti několik úvah při práci s implementacemi MCP. Nejedná se o předepsané nejlepší praktiky, ale spíše o oblasti průzkumu, které mohou přinést zlepšení ve vašem konkrétním případě použití.
 
 ### Zvažte své cíle kontextu
 
-Před zavedením složitých řešení správy kontextu jasně definujte, čeho chcete dosáhnout:  
-- Jaké konkrétní informace model potřebuje k úspěchu?  
-- Které informace jsou nezbytné a které doplňkové?  
-- Jaká jsou vaše omezení výkonu (latence, limity tokenů, náklady)?
+Před implementací složitých řešení řízení kontextu jasně definujte, čeho se snažíte dosáhnout:
+- Jaké konkrétní informace model potřebuje k úspěchu?
+- Které informace jsou nezbytné a které doplňkové?
+- Jaké jsou vaše výkonnostní omezení (latence, limity tokenů, náklady)?
 
 ### Prozkoumejte vrstvené přístupy ke kontextu
 
-Někteří praktikující dosahují úspěchu s kontextem uspořádaným do konceptuálních vrstev:  
-- **Jádrová vrstva**: Nezbytné informace, které model vždy potřebuje  
-- **Situační vrstva**: Kontext specifický pro aktuální interakci  
-- **Podpůrná vrstva**: Další informace, které mohou být užitečné  
+Někteří odborníci nacházejí úspěch s kontextem uspořádaným do konceptuálních vrstev:
+- **Základní vrstva**: Nezbytné informace, které model vždy potřebuje
+- **Situační vrstva**: Kontext specifický pro aktuální interakci
+- **Podpůrná vrstva**: Další informace, které mohou být užitečné
 - **Záložní vrstva**: Informace přístupné pouze v případě potřeby
 
 ### Zkoumejte strategie získávání informací
 
-Efektivita kontextu často závisí na způsobu získávání informací:  
-- Sémantické vyhledávání a embeddingy pro nalezení konceptuálně relevantních informací  
-- Vyhledávání podle klíčových slov pro specifické faktické detaily  
-- Hybridní přístupy kombinující více metod získávání  
-- Filtrování metadaty pro zúžení rozsahu podle kategorií, dat nebo zdrojů
+Efektivita vašeho kontextu často závisí na tom, jak získáváte informace:
+- Semantické vyhledávání a vkládání pro nalezení konceptuálně relevantních informací
+- Vyhledávání na základě klíčových slov pro konkrétní faktické detaily
+- Hybridní přístupy, které kombinují více metod získávání
+- Filtrování metadat pro zúžení rozsahu na základě kategorií, dat nebo zdrojů
 
 ### Experimentujte s koherencí kontextu
 
-Struktura a tok kontextu mohou ovlivnit porozumění modelem:  
-- Sdružování souvisejících informací  
-- Používání konzistentního formátování a organizace  
-- Udržování logického nebo chronologického pořadí tam, kde je to vhodné  
+Struktura a tok vašeho kontextu mohou ovlivnit pochopení modelu:
+- Seskupování souvisejících informací dohromady
+- Používání konzistentního formátování a organizace
+- Udržování logického nebo chronologického pořadí, kde je to vhodné
 - Vyhýbání se protichůdným informacím
 
-### Zvažte kompromisy multi-agentních architektur
+### Zvažte kompromisy architektur s více agenty
 
-I když jsou multi-agentní architektury populární v mnoha AI rámcích, přinášejí významné výzvy pro správu kontextu:  
-- Fragmentace kontextu může vést k nekonzistentním rozhodnutím mezi agenty  
-- Paralelní zpracování může způsobit konflikty, které je těžké vyřešit  
-- Komunikační režie mezi agenty může vyvážit výkonové zisky  
-- Složitá správa stavu je nutná pro udržení koherence
+I když jsou architektury s více agenty populární v mnoha AI rámcích, přinášejí významné výzvy pro řízení kontextu:
+- Fragmentace kontextu může vést k nekonzistentním rozhodnutím mezi agenty
+- Paralelní zpracování může zavést konflikty, které je obtížné vyřešit
+- Komunikační režie mezi agenty může vyvážit zisky z výkonu
+- Komplexní řízení stavu je nutné k udržení koherence
 
-V mnoha případech může jediné agentní řešení s komplexní správou kontextu přinést spolehlivější výsledky než více specializovaných agentů s rozděleným kontextem.
+V mnoha případech může přístup s jedním agentem a komplexním řízením kontextu přinést spolehlivější výsledky než více specializovaných agentů s fragmentovaným kontextem.
 
 ### Vyvíjejte metody hodnocení
 
-Pro zlepšení context engineering v čase zvažte, jak budete měřit úspěch:  
-- A/B testování různých struktur kontextu  
-- Monitorování spotřeby tokenů a doby odezvy  
-- Sledování spokojenosti uživatelů a míry dokončení úkolů  
-- Analýza případů, kdy strategie kontextu selhávají
+Pro zlepšení kontextového inženýrství v průběhu času zvažte, jak budete měřit úspěch:
+- A/B testování různých struktur kontextu
+- Monitorování využití tokenů a doby odezvy
+- Sledování spokojenosti uživatelů a míry dokončení úkolů
+- Analýza, kdy a proč strategie kontextu selhávají
 
-Tyto aspekty představují aktivní oblasti zkoumání v oblasti context engineering. Jak se pole vyvíjí, pravděpodobně se objeví jasnější vzory a postupy.
+Tyto úvahy představují aktivní oblasti průzkumu v prostoru kontextového inženýrství. Jak se obor vyvíjí, pravděpodobně se objeví více definitivních vzorců a praktik.
 
 ## Měření efektivity kontextu: Vyvíjející se rámec
 
-S nástupem context engineering začínají praktikující zkoumat, jak měřit jeho efektivitu. Zatím neexistuje zavedený rámec, ale zvažují se různé metriky, které by mohly vést budoucí práci.
+Jak kontextové inženýrství vzniká jako koncept, odborníci začínají zkoumat, jak bychom mohli měřit jeho efektivitu. Zatím neexistuje zavedený rámec, ale zvažují se různé metriky, které by mohly pomoci vést budoucí práci.
 
-### Potenciální dimenze měření
+### Potenciální rozměry měření
 
 #### 1. Úvahy o efektivitě vstupu
 
-- **Poměr kontextu k odpovědi**: Kolik kontextu je potřeba vzhledem k velikosti odpovědi?  
-- **Využití tokenů**: Jaké procento tokenů z poskytnutého kontextu ovlivňuje odpověď?  
+- **Poměr kontextu k odpovědi**: Kolik kontextu je potřeba vzhledem k velikosti odpovědi?
+- **Využití tokenů**: Jaké procento poskytnutých tokenů kontextu ovlivňuje odpověď?
 - **Redukce kontextu**: Jak efektivně můžeme komprimovat surové informace?
 
-#### 2. Výkonnostní úvahy
+#### 2. Úvahy o výkonu
 
-- **Dopad na latenci**: Jak správa kontextu ovlivňuje dobu odezvy?  
-- **Tokenová ekonomika**: Optimalizujeme efektivně využití tokenů?  
-- **Přesnost získávání**: Jak relevantní jsou získané informace?  
-- **Využití zdrojů**: Jaké výpočetní zdroje jsou potřeba?
+- **Dopad na latenci**: Jak řízení kontextu ovlivňuje dobu odezvy?
+- **Ekonomika tokenů**: Optimalizujeme efektivně využití tokenů?
+- **Přesnost získávání**: Jak relevantní jsou získané informace?
+- **Využití zdrojů**: Jaké výpočetní zdroje jsou vyžadovány?
 
-#### 3. Kvalitativní úvahy
+#### 3. Úvahy o kvalitě
 
-- **Relevance odpovědi**: Jak dobře odpověď odpovídá dotazu?  
-- **Faktická přesnost**: Zlepšuje správa kontextu faktickou správnost?  
-- **Konzistence**: Jsou odpovědi konzistentní u podobných dotazů?  
+- **Relevance odpovědi**: Jak dobře odpověď řeší dotaz?
+- **Faktická přesnost**: Zlepšuje řízení kontextu faktickou správnost?
+- **Konzistence**: Jsou odpovědi konzistentní napříč podobnými dotazy?
 - **Míra halucinací**: Snižuje lepší kontext halucinace modelu?
 
-#### 4. Uživatelská zkušenost
+#### 4. Úvahy o uživatelské zkušenosti
 
-- **Míra následných dotazů**: Jak často uživatelé potřebují upřesnění?  
-- **Dokončení úkolu**: Dokážou uživatelé úspěšně splnit své cíle?  
-- **Ukazatele spokojenosti**: Jak uživatelé hodnotí svůj zážitek?
-
-### Explorativní přístupy k měření
-
-Při experimentování s context engineering v implementacích MCP zvažte tyto přístupy:
-
-1. **Porovnání s výchozím stavem**: Nejprve stanovte základní úroveň s jednoduchými přístupy ke kontextu, než vyzkoušíte složitější metody  
-2. **Postupné změny**: Měňte jednu část správy kontextu najednou, abyste izolovali její efekt  
-3. **Hodnocení zaměřené na uživatele**: Kombinujte kvantitativní metriky s kvalitativní zpětnou vazbou uživatelů  
-4. **Analýza selhání**: Zkoumejte případy, kdy strategie kontextu selhávají, abyste pochopili možné z
+- **Míra následných dotazů
 - [Model Context Protocol Website](https://modelcontextprotocol.io/)
 - [Model Context Protocol Specification](https://github.com/modelcontextprotocol/modelcontextprotocol)
 - [MCP Documentation](https://modelcontextprotocol.io/docs)
@@ -369,17 +358,17 @@ Při experimentování s context engineering v implementacích MCP zvažte tyto 
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
 - [MCP Inspector](https://github.com/modelcontextprotocol/inspector) - Nástroj pro vizuální testování MCP serverů
 
-### Články o Context Engineering
-- [Nezřizujte Multi-Agenty: Principy Context Engineering](https://cognition.ai/blog/dont-build-multi-agents) - Postřehy Waldena Yana o principech context engineering
-- [Praktický průvodce tvorbou agentů](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) - OpenAI průvodce efektivním návrhem agentů
-- [Tvorba efektivních agentů](https://www.anthropic.com/engineering/building-effective-agents) - Přístup Anthropic k vývoji agentů
+### Články o inženýrství kontextu
+- [Nevyvíjejte multi-agenty: Principy inženýrství kontextu](https://cognition.ai/blog/dont-build-multi-agents) - Postřehy Waldena Yana o principech inženýrství kontextu
+- [Praktický průvodce tvorbou agentů](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) - Průvodce OpenAI pro efektivní návrh agentů
+- [Tvorba efektivních agentů](https://www.anthropic.com/engineering/building-effective-agents) - Přístup společnosti Anthropic k vývoji agentů
 
 ### Související výzkum
 - [Dynamické rozšíření vyhledávání pro velké jazykové modely](https://arxiv.org/abs/2310.01487) - Výzkum dynamických přístupů k vyhledávání
-- [Ztraceni uprostřed: Jak jazykové modely využívají dlouhé kontexty](https://arxiv.org/abs/2307.03172) - Důležitý výzkum vzorců zpracování kontextu
-- [Hierarchická generace obrázků podmíněná textem s CLIP latentními proměnnými](https://arxiv.org/abs/2204.06125) - Článek o DALL-E 2 s poznatky o strukturování kontextu
-- [Zkoumání role kontextu v architekturách velkých jazykových modelů](https://aclanthology.org/2023.findings-emnlp.124/) - Nejnovější výzkum o zpracování kontextu
-- [Spolupráce více agentů: Přehled](https://arxiv.org/abs/2304.03442) - Výzkum multi-agentních systémů a jejich výzev
+- [Ztraceni uprostřed: Jak jazykové modely využívají dlouhé kontexty](https://arxiv.org/abs/2307.03172) - Důležitý výzkum o vzorcích zpracování kontextu
+- [Hierarchická generace obrazů podmíněná textem pomocí CLIP latentních proměnných](https://arxiv.org/abs/2204.06125) - Studie DALL-E 2 s poznatky o strukturování kontextu
+- [Zkoumání role kontextu v architekturách velkých jazykových modelů](https://aclanthology.org/2023.findings-emnlp.124/) - Nedávný výzkum o zpracování kontextu
+- [Spolupráce multi-agentů: Přehled](https://arxiv.org/abs/2304.03442) - Výzkum o systémech multi-agentů a jejich výzvách
 
 ### Další zdroje
 - [Techniky optimalizace kontextového okna](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/context-window)
@@ -388,7 +377,10 @@ Při experimentování s context engineering v implementacích MCP zvažte tyto 
 - [AI Toolkit pro správu kontextu](https://github.com/microsoft/aitoolkit)
 
 ## Co dál
-- [6. Příspěvky komunity](../../06-CommunityContributions/README.md)
 
-**Prohlášení o vyloučení odpovědnosti**:  
-Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). I když usilujeme o přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro důležité informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoliv nedorozumění nebo nesprávné výklady vyplývající z použití tohoto překladu.
+- [5.15 MCP Custom Transport](../mcp-transport/README.md)
+
+---
+
+**Prohlášení**:  
+Tento dokument byl přeložen pomocí služby pro automatický překlad [Co-op Translator](https://github.com/Azure/co-op-translator). I když se snažíme o přesnost, mějte prosím na paměti, že automatické překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v jeho původním jazyce by měl být považován za autoritativní zdroj. Pro důležité informace doporučujeme profesionální lidský překlad. Neodpovídáme za žádné nedorozumění nebo nesprávné interpretace vyplývající z použití tohoto překladu.

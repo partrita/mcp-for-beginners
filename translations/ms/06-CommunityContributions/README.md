@@ -1,35 +1,40 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "7b4b9bfacd2926725e6f1cda82bc8ff5",
-  "translation_date": "2025-07-17T07:59:57+00:00",
+  "original_hash": "fcf1e12b62102bf7d16b78deb2b163b7",
+  "translation_date": "2025-08-18T18:06:50+00:00",
   "source_file": "06-CommunityContributions/README.md",
   "language_code": "ms"
 }
 -->
 # Komuniti dan Sumbangan
 
+[![Cara Menyumbang kepada MCP: Alat, Dokumentasi, Kod dan Lain-lain](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.ms.png)](https://youtu.be/v1pvCYAWpRE)
+
+_(Klik imej di atas untuk menonton video pelajaran ini)_
+
 ## Gambaran Keseluruhan
 
-Pelajaran ini memfokuskan kepada cara untuk berinteraksi dengan komuniti MCP, menyumbang kepada ekosistem MCP, dan mengikuti amalan terbaik untuk pembangunan secara kolaboratif. Memahami cara untuk mengambil bahagian dalam projek sumber terbuka MCP adalah penting bagi mereka yang ingin membentuk masa depan teknologi ini.
+Pelajaran ini memberi tumpuan kepada cara melibatkan diri dengan komuniti MCP, menyumbang kepada ekosistem MCP, dan mengikuti amalan terbaik untuk pembangunan kolaboratif. Memahami cara untuk mengambil bahagian dalam projek MCP sumber terbuka adalah penting bagi mereka yang ingin membentuk masa depan teknologi ini.
 
 ## Objektif Pembelajaran
 
 Menjelang akhir pelajaran ini, anda akan dapat:
+
 - Memahami struktur komuniti dan ekosistem MCP
-- Mengambil bahagian dengan berkesan dalam forum dan perbincangan komuniti MCP
+- Mengambil bahagian secara berkesan dalam forum dan perbincangan komuniti MCP
 - Menyumbang kepada repositori sumber terbuka MCP
 - Mencipta dan berkongsi alat dan pelayan MCP tersuai
-- Mengikuti amalan terbaik untuk pembangunan dan kerjasama MCP
-- Menemui sumber dan rangka kerja komuniti untuk pembangunan MCP
+- Mengikuti amalan terbaik untuk pembangunan dan kolaborasi MCP
+- Meneroka sumber dan rangka kerja komuniti untuk pembangunan MCP
 
 ## Ekosistem Komuniti MCP
 
-Ekosistem MCP terdiri daripada pelbagai komponen dan peserta yang bekerjasama untuk memajukan protokol.
+Ekosistem MCP terdiri daripada pelbagai komponen dan peserta yang bekerjasama untuk memajukan protokol ini.
 
 ### Komponen Utama Komuniti
 
-1. **Penjaga Protokol Teras**: [Organisasi GitHub Model Context Protocol rasmi](https://github.com/modelcontextprotocol) menyelenggara spesifikasi teras MCP dan pelaksanaan rujukan
+1. **Penyelenggara Protokol Teras**: [Organisasi GitHub Model Context Protocol](https://github.com/modelcontextprotocol) rasmi menyelenggara spesifikasi MCP teras dan implementasi rujukan
 2. **Pembangun Alat**: Individu dan pasukan yang mencipta alat dan pelayan MCP
 3. **Penyedia Integrasi**: Syarikat yang mengintegrasikan MCP ke dalam produk dan perkhidmatan mereka
 4. **Pengguna Akhir**: Pembangun dan organisasi yang menggunakan MCP dalam aplikasi mereka
@@ -45,30 +50,30 @@ Ekosistem MCP terdiri daripada pelbagai komponen dan peserta yang bekerjasama un
 - [Perbincangan GitHub](https://github.com/orgs/modelcontextprotocol/discussions)
 - [Repositori Contoh & Pelayan MCP](https://github.com/modelcontextprotocol/servers)
 
-#### Sumber Dipacu Komuniti
+#### Sumber Didorong Komuniti
 
 - [Klien MCP](https://modelcontextprotocol.io/clients) - Senarai klien yang menyokong integrasi MCP
-- [Pelayan MCP Komuniti](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - Senarai pelayan MCP yang dibangunkan oleh komuniti yang semakin berkembang
+- [Pelayan MCP Komuniti](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - Senarai pelayan MCP yang dibangunkan komuniti
 - [Awesome MCP Servers](https://github.com/wong2/awesome-mcp-servers) - Senarai pelayan MCP yang dikurasi
-- [PulseMCP](https://www.pulsemcp.com/) - Pusat komuniti & surat berita untuk menemui sumber MCP
+- [PulseMCP](https://www.pulsemcp.com/) - Hab komuniti & surat berita untuk meneroka sumber MCP
 - [Pelayan Discord](https://discord.gg/jHEGxQu2a5) - Berhubung dengan pembangun MCP
-- Pelaksanaan SDK mengikut bahasa
+- Implementasi SDK khusus bahasa
 - Catatan blog dan tutorial
 
 ## Menyumbang kepada MCP
 
 ### Jenis Sumbangan
 
-Ekosistem MCP menerima pelbagai jenis sumbangan:
+Ekosistem MCP mengalu-alukan pelbagai jenis sumbangan:
 
 1. **Sumbangan Kod**:
    - Penambahbaikan protokol teras
    - Pembetulan pepijat
-   - Pelaksanaan alat dan pelayan
+   - Implementasi alat dan pelayan
    - Perpustakaan klien/pelayan dalam pelbagai bahasa
 
 2. **Dokumentasi**:
-   - Memperbaiki dokumentasi sedia ada
+   - Menambah baik dokumentasi sedia ada
    - Mencipta tutorial dan panduan
    - Menterjemah dokumentasi
    - Mencipta contoh dan aplikasi sampel
@@ -81,16 +86,16 @@ Ekosistem MCP menerima pelbagai jenis sumbangan:
 
 ### Proses Sumbangan: Protokol Teras
 
-Untuk menyumbang kepada protokol teras MCP atau pelaksanaan rasmi, ikut prinsip dari [garis panduan menyumbang rasmi](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
+Untuk menyumbang kepada protokol MCP teras atau implementasi rasmi, ikuti prinsip ini daripada [garis panduan sumbangan rasmi](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
 
-1. **Kesederhanaan dan Minimalisme**: Spesifikasi MCP mengekalkan piawaian tinggi untuk menambah konsep baru. Lebih mudah untuk menambah sesuatu ke spesifikasi daripada mengeluarkannya.
+1. **Kesederhanaan dan Minimalisme**: Spesifikasi MCP mengekalkan standard tinggi untuk menambah konsep baru. Lebih mudah untuk menambah sesuatu kepada spesifikasi daripada mengeluarkannya.
 
-2. **Pendekatan Konkret**: Perubahan spesifikasi harus berdasarkan cabaran pelaksanaan yang spesifik, bukan idea spekulatif.
+2. **Pendekatan Konkret**: Perubahan spesifikasi harus berdasarkan cabaran implementasi tertentu, bukan idea spekulatif.
 
 3. **Tahap Cadangan**:
-   - Definisi: Terokai ruang masalah, sahkan bahawa pengguna MCP lain menghadapi isu yang sama
-   - Prototaip: Bina penyelesaian contoh dan tunjukkan aplikasi praktikalnya
-   - Penulisan: Berdasarkan prototaip, tulis cadangan spesifikasi
+   - Definisi: Terokai ruang masalah, sahkan bahawa pengguna MCP lain menghadapi isu serupa
+   - Prototip: Bina penyelesaian contoh dan tunjukkan aplikasi praktikalnya
+   - Penulisan: Berdasarkan prototip, tulis cadangan spesifikasi
 
 ### Persediaan Persekitaran Pembangunan
 
@@ -146,7 +151,7 @@ export function validateResource(resource: unknown): resource is MCPResource {
 }
 ```
 
-### Contoh: Menyumbang Alat Baru ke Perpustakaan Standard
+### Contoh: Menyumbang Alat Baru kepada Perpustakaan Standard
 
 ```python
 # Example contribution: A CSV data processing tool for the MCP standard library
@@ -310,14 +315,14 @@ class CsvProcessingTool(Tool):
 
 Untuk membuat sumbangan yang berjaya kepada projek MCP:
 
-1. **Mulakan dengan Kecil**: Mulakan dengan dokumentasi, pembetulan pepijat, atau penambahbaikan kecil
-2. **Ikuti Panduan Gaya**: Patuhi gaya pengekodan dan konvensyen projek
+1. **Mulakan Kecil**: Bermula dengan dokumentasi, pembetulan pepijat, atau penambahbaikan kecil
+2. **Ikuti Panduan Gaya**: Patuhi gaya pengekodan dan konvensi projek
 3. **Tulis Ujian**: Sertakan ujian unit untuk sumbangan kod anda
-4. **Dokumentasikan Kerja Anda**: Tambah dokumentasi jelas untuk ciri baru atau perubahan
-5. **Hantar PR yang Fokus**: Pastikan permintaan tarik tertumpu pada satu isu atau ciri sahaja
-6. **Libatkan Diri dengan Maklum Balas**: Responsif terhadap maklum balas pada sumbangan anda
+4. **Dokumentasikan Kerja Anda**: Tambahkan dokumentasi yang jelas untuk ciri atau perubahan baru
+5. **Hantar PR yang Disasarkan**: Kekalkan permintaan tarik (PR) yang fokus pada satu isu atau ciri
+6. **Terlibat dengan Maklum Balas**: Responsif terhadap maklum balas pada sumbangan anda
 
-### Contoh Aliran Kerja Sumbangan
+### Aliran Kerja Sumbangan Contoh
 
 ```bash
 # Clone the repository
@@ -345,11 +350,11 @@ git push origin feature/my-contribution
 
 ## Mencipta dan Berkongsi Pelayan MCP
 
-Salah satu cara paling berharga untuk menyumbang kepada ekosistem MCP adalah dengan mencipta dan berkongsi pelayan MCP tersuai. Komuniti telah membangunkan ratusan pelayan untuk pelbagai perkhidmatan dan kes penggunaan.
+Salah satu cara paling bernilai untuk menyumbang kepada ekosistem MCP adalah dengan mencipta dan berkongsi pelayan MCP tersuai. Komuniti telah membangunkan ratusan pelayan untuk pelbagai perkhidmatan dan kegunaan.
 
 ### Rangka Kerja Pembangunan Pelayan MCP
 
-Beberapa rangka kerja tersedia untuk memudahkan pembangunan pelayan MCP:
+Beberapa rangka kerja tersedia untuk mempermudah pembangunan pelayan MCP:
 
 1. **SDK Rasmi**:
    - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
@@ -360,10 +365,10 @@ Beberapa rangka kerja tersedia untuk memudahkan pembangunan pelayan MCP:
    - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk)
 
 2. **Rangka Kerja Komuniti**:
-   - [MCP-Framework](https://mcp-framework.com/) - Bina pelayan MCP dengan elegan dan pantas menggunakan TypeScript
+   - [MCP-Framework](https://mcp-framework.com/) - Bina pelayan MCP dengan elegan dan pantas dalam TypeScript
    - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - Pelayan MCP berasaskan anotasi dengan Java
    - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - Rangka kerja Java untuk pelayan MCP
-   - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - Projek permulaan Next.js untuk pelayan MCP
+   - [Templat Pelayan MCP Next.js](https://github.com/vercel-labs/mcp-for-next.js) - Projek permulaan Next.js untuk pelayan MCP
 
 ### Membangunkan Alat yang Boleh Dikongsi
 
@@ -679,38 +684,38 @@ class SentimentAnalysisTool(Tool):
 # python -m twine upload dist/*
 ```
 
-### Berkongsi Amalan Terbaik
+### Amalan Terbaik untuk Berkongsi
 
 Apabila berkongsi alat MCP dengan komuniti:
 
 1. **Dokumentasi Lengkap**:
-   - Dokumentasikan tujuan, cara penggunaan, dan contoh
-   - Terangkan parameter dan nilai pulangan
+   - Dokumentasikan tujuan, penggunaan, dan contoh
+   - Terangkan parameter dan nilai pemulangan
    - Dokumentasikan sebarang kebergantungan luaran
 
 2. **Pengendalian Ralat**:
    - Laksanakan pengendalian ralat yang kukuh
-   - Berikan mesej ralat yang berguna
+   - Sediakan mesej ralat yang berguna
    - Tangani kes tepi dengan baik
 
 3. **Pertimbangan Prestasi**:
    - Optimumkan untuk kelajuan dan penggunaan sumber
-   - Laksanakan caching bila sesuai
-   - Pertimbangkan kebolehsuaian
+   - Laksanakan caching apabila sesuai
+   - Pertimbangkan skalabiliti
 
 4. **Keselamatan**:
    - Gunakan kunci API dan pengesahan yang selamat
-   - Sahkan dan bersihkan input
+   - Sahkan dan sanitasi input
    - Laksanakan had kadar untuk panggilan API luaran
 
 5. **Ujian**:
-   - Sertakan liputan ujian yang menyeluruh
+   - Sertakan liputan ujian yang komprehensif
    - Uji dengan pelbagai jenis input dan kes tepi
    - Dokumentasikan prosedur ujian
 
-## Kerjasama Komuniti dan Amalan Terbaik
+## Kolaborasi Komuniti dan Amalan Terbaik
 
-Kerjasama yang berkesan adalah kunci kepada ekosistem MCP yang berkembang maju.
+Kolaborasi yang berkesan adalah kunci kepada ekosistem MCP yang berkembang maju.
 
 ### Saluran Komunikasi
 
@@ -724,10 +729,10 @@ Kerjasama yang berkesan adalah kunci kepada ekosistem MCP yang berkembang maju.
 Apabila menyemak sumbangan MCP:
 
 1. **Kejelasan**: Adakah kod jelas dan didokumentasikan dengan baik?
-2. **Ketepatan**: Adakah ia berfungsi seperti yang dijangka?
-3. **Konsistensi**: Adakah ia mengikuti konvensyen projek?
+2. **Ketepatan**: Adakah ia berfungsi seperti yang diharapkan?
+3. **Konsistensi**: Adakah ia mengikuti konvensi projek?
 4. **Kelengkapan**: Adakah ujian dan dokumentasi disertakan?
-5. **Keselamatan**: Adakah terdapat sebarang kebimbangan keselamatan?
+5. **Keselamatan**: Adakah terdapat kebimbangan keselamatan?
 
 ### Keserasian Versi
 
@@ -735,12 +740,12 @@ Apabila membangunkan untuk MCP:
 
 1. **Versi Protokol**: Patuhi versi protokol MCP yang disokong oleh alat anda
 2. **Keserasian Klien**: Pertimbangkan keserasian ke belakang
-3. **Keserasian Pelayan**: Ikuti garis panduan pelaksanaan pelayan
+3. **Keserasian Pelayan**: Ikuti garis panduan implementasi pelayan
 4. **Perubahan Besar**: Dokumentasikan dengan jelas sebarang perubahan besar
 
-## Contoh Projek Komuniti: Daftar Alat MCP
+## Projek Komuniti Contoh: Daftar Alat MCP
 
-Sumbangan komuniti yang penting boleh berupa pembangunan daftar awam untuk alat MCP.
+Sumbangan komuniti yang penting boleh menjadi pembangunan daftar awam untuk alat MCP.
 
 ```python
 # Example schema for a community tool registry API
@@ -819,19 +824,19 @@ async def delete_tool(tool_name: str):
     return {"message": f"Tool '{tool_name}' deleted"}
 ```
 
-## Perkara Penting
+## Poin Penting
 
-- Komuniti MCP adalah pelbagai dan menerima pelbagai jenis sumbangan
-- Menyumbang kepada MCP boleh merangkumi penambahbaikan protokol teras hingga alat tersuai
+- Komuniti MCP adalah pelbagai dan mengalu-alukan pelbagai jenis sumbangan
+- Sumbangan kepada MCP boleh merangkumi penambahbaikan protokol teras hingga alat tersuai
 - Mengikuti garis panduan sumbangan meningkatkan peluang PR anda diterima
-- Mencipta dan berkongsi alat MCP adalah cara berharga untuk memperkaya ekosistem
-- Kerjasama komuniti penting untuk pertumbuhan dan penambahbaikan MCP
+- Mencipta dan berkongsi alat MCP adalah cara yang bernilai untuk meningkatkan ekosistem
+- Kolaborasi komuniti adalah penting untuk pertumbuhan dan penambahbaikan MCP
 
 ## Latihan
 
-1. Kenal pasti satu bidang dalam ekosistem MCP di mana anda boleh membuat sumbangan berdasarkan kemahiran dan minat anda
+1. Kenal pasti kawasan dalam ekosistem MCP di mana anda boleh membuat sumbangan berdasarkan kemahiran dan minat anda
 2. Fork repositori MCP dan sediakan persekitaran pembangunan tempatan
-3. Cipta penambahbaikan kecil, pembetulan pepijat, atau alat yang memberi manfaat kepada komuniti
+3. Cipta penambahbaikan kecil, pembetulan pepijat, atau alat yang akan memberi manfaat kepada komuniti
 4. Dokumentasikan sumbangan anda dengan ujian dan dokumentasi yang sesuai
 5. Hantar permintaan tarik ke repositori yang sesuai
 
@@ -839,10 +844,9 @@ async def delete_tool(tool_name: str):
 
 - [Projek Komuniti MCP](https://github.com/topics/model-context-protocol)
 
-
 ---
 
-Seterusnya: [Pelajaran dari Penggunaan Awal](../07-LessonsfromEarlyAdoption/README.md)
+Seterusnya: [Pelajaran daripada Penggunaan Awal](../07-LessonsfromEarlyAdoption/README.md)
 
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat penting, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

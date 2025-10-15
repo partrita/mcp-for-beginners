@@ -1,108 +1,111 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a05fb941810e539147fec53aaadbb6fd",
-  "translation_date": "2025-07-14T06:42:14+00:00",
+  "original_hash": "6ef6015d29b95f1cab97fb88a045a991",
+  "translation_date": "2025-09-05T11:16:50+00:00",
   "source_file": "09-CaseStudy/docs-mcp/solution/python/README.md",
   "language_code": "vi"
 }
 -->
-# Trình tạo kế hoạch học tập với Chainlit & Microsoft Learn Docs MCP
+# Trình Tạo Kế Hoạch Học Tập với Chainlit & Microsoft Learn Docs MCP
 
 ## Yêu cầu trước
 
-- Python 3.8 trở lên  
-- pip (trình quản lý gói Python)  
-- Kết nối Internet để truy cập máy chủ Microsoft Learn Docs MCP  
+- Python 3.8 hoặc cao hơn
+- pip (trình quản lý gói Python)
+- Kết nối Internet để truy cập máy chủ Microsoft Learn Docs MCP
 
 ## Cài đặt
 
-1. Sao chép kho lưu trữ này hoặc tải xuống các tệp dự án.  
-2. Cài đặt các thư viện cần thiết:  
+1. Clone kho lưu trữ này hoặc tải xuống các tệp dự án.
+2. Cài đặt các thư viện cần thiết:
 
    ```bash
    pip install -r requirements.txt
-   ```  
+   ```
 
-## Cách sử dụng
+## Sử dụng
 
-### Tình huống 1: Truy vấn đơn giản tới Docs MCP  
-Một ứng dụng dòng lệnh kết nối với máy chủ Docs MCP, gửi truy vấn và in kết quả ra màn hình.  
+### Kịch bản 1: Truy vấn đơn giản tới Docs MCP
+Một ứng dụng dòng lệnh kết nối với máy chủ Docs MCP, gửi truy vấn và hiển thị kết quả.
 
-1. Chạy script:  
+1. Chạy script:
    ```bash
    python scenario1.py
-   ```  
-2. Nhập câu hỏi về tài liệu của bạn tại dấu nhắc.  
+   ```
+2. Nhập câu hỏi về tài liệu của bạn vào dòng lệnh.
 
-### Tình huống 2: Trình tạo kế hoạch học tập (ứng dụng web Chainlit)  
-Giao diện web (sử dụng Chainlit) cho phép người dùng tạo kế hoạch học tập cá nhân theo tuần cho bất kỳ chủ đề kỹ thuật nào.  
+### Kịch bản 2: Trình Tạo Kế Hoạch Học Tập (Ứng dụng Web Chainlit)
+Một giao diện web (sử dụng Chainlit) cho phép người dùng tạo kế hoạch học tập cá nhân hóa theo tuần cho bất kỳ chủ đề kỹ thuật nào.
 
-1. Khởi động ứng dụng Chainlit:  
+1. Khởi động ứng dụng Chainlit:
    ```bash
    chainlit run scenario2.py
-   ```  
-2. Mở URL địa phương được cung cấp trong terminal (ví dụ: http://localhost:8000) trên trình duyệt của bạn.  
-3. Trong cửa sổ chat, nhập chủ đề học và số tuần bạn muốn học (ví dụ: "Chứng chỉ AI-900, 8 tuần").  
-4. Ứng dụng sẽ trả về kế hoạch học tập theo tuần, kèm theo các liên kết đến tài liệu Microsoft Learn phù hợp.  
+   ```
+2. Mở URL cục bộ được cung cấp trong terminal của bạn (ví dụ: http://localhost:8000) trên trình duyệt.
+3. Trong cửa sổ chat, nhập chủ đề học tập và số tuần bạn muốn học (ví dụ: "Chứng chỉ AI-900, 8 tuần").
+4. Ứng dụng sẽ phản hồi với kế hoạch học tập theo tuần, bao gồm các liên kết đến tài liệu Microsoft Learn liên quan.
 
-**Biến môi trường cần thiết:**  
+**Các biến môi trường cần thiết:**
 
-Để sử dụng Tình huống 2 (ứng dụng web Chainlit với Azure OpenAI), bạn phải thiết lập các biến môi trường sau trong tệp `.env` trong thư mục `python`:  
+Để sử dụng Kịch bản 2 (ứng dụng web Chainlit với Azure OpenAI), bạn cần thiết lập các biến môi trường sau trong tệp `.env` trong thư mục `python`:
 
 ```
 AZURE_OPENAI_CHAT_DEPLOYMENT_NAME=
 AZURE_OPENAI_API_KEY=
 AZURE_OPENAI_ENDPOINT=
 AZURE_OPENAI_API_VERSION=
-```  
+```
 
-Điền các giá trị này với thông tin tài nguyên Azure OpenAI của bạn trước khi chạy ứng dụng.  
+Điền các giá trị này với thông tin chi tiết về tài nguyên Azure OpenAI của bạn trước khi chạy ứng dụng.
 
-> **Mẹo:** Bạn có thể dễ dàng triển khai mô hình của riêng mình bằng cách sử dụng [Azure AI Foundry](https://ai.azure.com/).  
+> [!TIP]
+> Bạn có thể dễ dàng triển khai các mô hình của riêng mình bằng [Azure AI Foundry](https://ai.azure.com/).
 
-### Tình huống 3: Tài liệu trong trình soạn thảo với MCP Server trong VS Code  
+### Kịch bản 3: Tích hợp Docs MCP trong VS Code
 
-Thay vì chuyển tab trình duyệt để tìm kiếm tài liệu, bạn có thể đưa Microsoft Learn Docs trực tiếp vào VS Code bằng MCP server. Điều này cho phép bạn:  
-- Tìm kiếm và đọc tài liệu ngay trong VS Code mà không phải rời khỏi môi trường lập trình.  
-- Tham khảo tài liệu và chèn liên kết trực tiếp vào README hoặc các tệp khóa học.  
-- Sử dụng GitHub Copilot và MCP cùng nhau để có quy trình làm việc tài liệu được hỗ trợ bởi AI liền mạch.  
+Thay vì chuyển đổi giữa các tab trình duyệt để tìm kiếm tài liệu, bạn có thể mang Microsoft Learn Docs trực tiếp vào VS Code bằng máy chủ MCP. Điều này cho phép bạn:
+- Tìm kiếm và đọc tài liệu ngay trong VS Code mà không cần rời khỏi môi trường lập trình.
+- Tham khảo tài liệu và chèn liên kết trực tiếp vào README hoặc các tệp khóa học.
+- Sử dụng GitHub Copilot và MCP cùng nhau để có một quy trình làm việc tài liệu được hỗ trợ bởi AI liền mạch.
 
-**Ví dụ sử dụng:**  
-- Nhanh chóng thêm liên kết tham khảo vào README khi viết tài liệu khóa học hoặc dự án.  
-- Dùng Copilot để tạo mã và MCP để tìm và trích dẫn tài liệu liên quan ngay lập tức.  
-- Giữ tập trung trong trình soạn thảo và tăng năng suất làm việc.  
+**Ví dụ về trường hợp sử dụng:**
+- Nhanh chóng thêm liên kết tham khảo vào README khi viết tài liệu khóa học hoặc dự án.
+- Sử dụng Copilot để tạo mã và MCP để tìm và trích dẫn tài liệu liên quan ngay lập tức.
+- Tập trung trong trình soạn thảo và tăng năng suất.
 
-> [!IMPORTANT]  
-> Đảm bảo bạn có cấu hình [`mcp.json`](../../../../../../09-CaseStudy/docs-mcp/solution/scenario3/mcp.json) hợp lệ trong workspace của mình (vị trí là `.vscode/mcp.json`).  
+> [!IMPORTANT]
+> Đảm bảo bạn có một tệp cấu hình [`mcp.json`](../../../../../../09-CaseStudy/docs-mcp/solution/scenario3/mcp.json) hợp lệ trong không gian làm việc của mình (vị trí là `.vscode/mcp.json`).
 
-## Tại sao chọn Chainlit cho Tình huống 2?  
+## Tại sao sử dụng Chainlit cho Kịch bản 2?
 
-Chainlit là một framework mã nguồn mở hiện đại để xây dựng các ứng dụng web hội thoại. Nó giúp bạn dễ dàng tạo giao diện chat kết nối với các dịch vụ backend như Microsoft Learn Docs MCP server. Dự án này sử dụng Chainlit để cung cấp cách đơn giản, tương tác nhằm tạo kế hoạch học tập cá nhân theo thời gian thực. Nhờ Chainlit, bạn có thể nhanh chóng xây dựng và triển khai các công cụ chat giúp nâng cao hiệu quả học tập và làm việc.  
+Chainlit là một framework mã nguồn mở hiện đại để xây dựng các ứng dụng web hội thoại. Nó giúp dễ dàng tạo giao diện người dùng dựa trên chat kết nối với các dịch vụ backend như máy chủ Microsoft Learn Docs MCP. Dự án này sử dụng Chainlit để cung cấp một cách đơn giản và tương tác nhằm tạo kế hoạch học tập cá nhân hóa theo thời gian thực. Bằng cách tận dụng Chainlit, bạn có thể nhanh chóng xây dựng và triển khai các công cụ dựa trên chat giúp tăng cường năng suất và học tập.
 
-## Ứng dụng này làm gì  
+## Ứng dụng này làm gì?
 
-Ứng dụng cho phép người dùng tạo kế hoạch học tập cá nhân chỉ bằng cách nhập chủ đề và thời gian học. Ứng dụng sẽ phân tích đầu vào, truy vấn Microsoft Learn Docs MCP server để lấy nội dung liên quan, rồi tổ chức kết quả thành kế hoạch theo tuần. Mỗi tuần sẽ có các đề xuất hiển thị trong cửa sổ chat, giúp bạn dễ dàng theo dõi và tiến độ học tập. Việc tích hợp đảm bảo bạn luôn nhận được tài nguyên học tập mới nhất và phù hợp nhất.  
+Ứng dụng này cho phép người dùng tạo kế hoạch học tập cá nhân hóa chỉ bằng cách nhập chủ đề và thời gian học. Ứng dụng sẽ phân tích đầu vào của bạn, truy vấn máy chủ Microsoft Learn Docs MCP để lấy nội dung liên quan, và tổ chức kết quả thành một kế hoạch học tập theo tuần. Các gợi ý cho từng tuần sẽ được hiển thị trong cửa sổ chat, giúp bạn dễ dàng theo dõi và thực hiện. Tích hợp này đảm bảo bạn luôn nhận được các tài nguyên học tập mới nhất và phù hợp nhất.
 
-## Ví dụ truy vấn  
+## Các truy vấn mẫu
 
-Thử các truy vấn sau trong cửa sổ chat để xem ứng dụng phản hồi như thế nào:  
+Hãy thử các truy vấn sau trong cửa sổ chat để xem cách ứng dụng phản hồi:
 
-- `Chứng chỉ AI-900, 8 tuần`  
-- `Học Azure Functions, 4 tuần`  
-- `Azure DevOps, 6 tuần`  
-- `Kỹ thuật dữ liệu trên Azure, 10 tuần`  
-- `Kiến thức cơ bản về bảo mật Microsoft, 5 tuần`  
-- `Power Platform, 7 tuần`  
-- `Dịch vụ AI Azure, 12 tuần`  
-- `Kiến trúc đám mây, 9 tuần`  
+- `Chứng chỉ AI-900, 8 tuần`
+- `Học Azure Functions, 4 tuần`
+- `Azure DevOps, 6 tuần`
+- `Kỹ thuật dữ liệu trên Azure, 10 tuần`
+- `Kiến thức cơ bản về bảo mật của Microsoft, 5 tuần`
+- `Power Platform, 7 tuần`
+- `Dịch vụ AI của Azure, 12 tuần`
+- `Kiến trúc đám mây, 9 tuần`
 
-Những ví dụ này thể hiện sự linh hoạt của ứng dụng cho các mục tiêu học tập và khung thời gian khác nhau.  
+Những ví dụ này minh họa tính linh hoạt của ứng dụng đối với các mục tiêu và khung thời gian học tập khác nhau.
 
-## Tài liệu tham khảo  
+## Tham khảo
 
-- [Chainlit Documentation](https://docs.chainlit.io/)  
-- [MCP Documentation](https://github.com/MicrosoftDocs/mcp)
+- [Tài liệu Chainlit](https://docs.chainlit.io/)
+- [Tài liệu MCP](https://github.com/MicrosoftDocs/mcp)
 
-**Tuyên bố từ chối trách nhiệm**:  
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ gốc của nó nên được coi là nguồn chính xác và đáng tin cậy. Đối với các thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp do con người thực hiện. Chúng tôi không chịu trách nhiệm về bất kỳ sự hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
+---
+
+**Tuyên bố miễn trừ trách nhiệm**:  
+Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc sự không chính xác. Tài liệu gốc bằng ngôn ngữ bản địa nên được coi là nguồn tham khảo chính thức. Đối với các thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp từ con người. Chúng tôi không chịu trách nhiệm cho bất kỳ sự hiểu lầm hoặc diễn giải sai nào phát sinh từ việc sử dụng bản dịch này.

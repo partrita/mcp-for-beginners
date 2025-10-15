@@ -60,7 +60,7 @@ Model Context Protocol — це стандартизований спосіб п
 
 ## Python Implementation
 
-***Note*** Ви можете запустити цей [ноутбук](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb)
+***Note*** Ви можете запустити цей [ноутбук](mcp_support_python.ipynb)
 
 ### 1. Встановлення необхідних пакетів
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET Implementation
 
-***Note*** Ви можете запустити цей [ноутбук](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb)
+***Note*** Ви можете запустити цей [ноутбук](mcp_support_dotnet.ipynb)
 
 ### 1. Встановлення необхідних пакетів
 

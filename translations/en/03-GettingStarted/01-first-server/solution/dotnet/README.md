@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "07863f50601f395c3bdfce30f555f11a",
-  "translation_date": "2025-07-13T17:46:36+00:00",
+  "original_hash": "92af35e8c34923031f3d228dffad9ebb",
+  "translation_date": "2025-09-03T15:54:20+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
   "language_code": "en"
 }
@@ -29,22 +29,22 @@ With the server running in one terminal, open another terminal and run the follo
 npx @modelcontextprotocol/inspector dotnet run
 ```
 
-This should start a web server with a visual interface that lets you test the sample.
+This will start a web server with a visual interface that lets you test the sample.
 
 Once the server is connected:
 
-- try listing tools and run `add` with arguments 2 and 4; you should see 6 as the result.
-- go to resources and resource template, call "greeting," enter a name, and you should see a greeting with the name you provided.
+- Try listing tools and run `add` with arguments 2 and 4. You should see 6 as the result.
+- Go to resources and resource template, call "greeting," type in a name, and you should see a greeting with the name you entered.
 
 ### Testing in CLI mode
 
-You can launch it directly in CLI mode by running the following command:
+You can also launch it directly in CLI mode by running the following command:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/list
 ```
 
-This will list all the tools available on the server. You should see the following output:
+This will display all the tools available on the server. You should see the following output:
 
 ```text
 {
@@ -74,7 +74,7 @@ This will list all the tools available on the server. You should see the followi
 }
 ```
 
-To invoke a tool, type:
+To use a tool, type:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/call --tool-name Add --tool-arg a=1 --tool-arg b=2
@@ -94,9 +94,11 @@ You should see the following output:
 }
 ```
 
-> ![!TIP]
+> [!TIP]
 > Running the inspector in CLI mode is usually much faster than using the browser.
-> Read more about the inspector [here](https://github.com/modelcontextprotocol/inspector).
+> Learn more about the inspector [here](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Disclaimer**:  
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we aim for accuracy, please note that automated translations may include errors or inaccuracies. The original document in its native language should be regarded as the authoritative source. For critical information, professional human translation is advised. We are not responsible for any misunderstandings or misinterpretations resulting from the use of this translation.

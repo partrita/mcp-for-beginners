@@ -1,13 +1,13 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4eb6a48c54555c64b33c763fba3f2842",
-  "translation_date": "2025-07-13T21:02:02+00:00",
+  "original_hash": "dde4e32e4b55ef4962c411b39d2340a7",
+  "translation_date": "2025-09-03T15:54:26+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/dotnet/README.md",
   "language_code": "fr"
 }
 -->
-# Exécution de cet exemple
+# Exécuter cet exemple
 
 ## -1- Installer les dépendances
 
@@ -23,9 +23,9 @@ dotnet run
 
 ## -3- Tester l'exemple
 
-Ouvrez un terminal séparé avant d'exécuter la commande ci-dessous (assurez-vous que le serveur est toujours en fonctionnement).
+Lancez un terminal séparé avant d'exécuter la commande ci-dessous (assurez-vous que le serveur est toujours en cours d'exécution).
 
-Avec le serveur lancé dans un terminal, ouvrez un autre terminal et exécutez la commande suivante :
+Avec le serveur actif dans un terminal, ouvrez un autre terminal et exécutez la commande suivante :
 
 ```bash
 npx @modelcontextprotocol/inspector http://localhost:3001
@@ -33,14 +33,14 @@ npx @modelcontextprotocol/inspector http://localhost:3001
 
 Cela devrait démarrer un serveur web avec une interface visuelle vous permettant de tester l'exemple.
 
-> Assurez-vous que **Streamable HTTP** est sélectionné comme type de transport, et que l'URL est `http://localhost:3001/mcp`.
+> Assurez-vous que le **HTTP Streamable** est sélectionné comme type de transport, et que l'URL est `http://localhost:3001/mcp`.
 
 Une fois le serveur connecté :
 
-- essayez de lister les outils et exécutez `add` avec les arguments 2 et 4, vous devriez voir 6 dans le résultat.
-- allez dans resources et resource template, appelez "greeting", saisissez un nom et vous devriez voir un message de salutation avec le nom que vous avez fourni.
+- essayez de lister les outils et exécutez `add`, avec les arguments 2 et 4, vous devriez voir 6 dans le résultat.
+- allez dans ressources et modèle de ressource, et appelez "greeting", entrez un nom et vous devriez voir un message de bienvenue avec le nom que vous avez fourni.
 
-### Test en mode CLI
+### Tester en mode CLI
 
 Vous pouvez le lancer directement en mode CLI en exécutant la commande suivante :
 
@@ -48,7 +48,7 @@ Vous pouvez le lancer directement en mode CLI en exécutant la commande suivante
 npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/list
 ```
 
-Cela affichera la liste de tous les outils disponibles sur le serveur. Vous devriez voir la sortie suivante :
+Cela listera tous les outils disponibles sur le serveur. Vous devriez voir la sortie suivante :
 
 ```text
 {
@@ -100,9 +100,11 @@ Vous devriez voir la sortie suivante :
 }
 ```
 
-> ![!TIP]
-> Il est généralement beaucoup plus rapide d’exécuter l’inspector en mode CLI que dans le navigateur.
-> Pour en savoir plus sur l’inspector, consultez [ici](https://github.com/modelcontextprotocol/inspector).
+> [!TIP]
+> Il est généralement beaucoup plus rapide d'exécuter l'inspecteur en mode CLI que dans le navigateur.
+> En savoir plus sur l'inspecteur [ici](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Avertissement** :  
-Ce document a été traduit à l’aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d’assurer l’exactitude, veuillez noter que les traductions automatiques peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d’origine doit être considéré comme la source faisant foi. Pour les informations critiques, une traduction professionnelle réalisée par un humain est recommandée. Nous déclinons toute responsabilité en cas de malentendus ou de mauvaises interprétations résultant de l’utilisation de cette traduction.
+Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de recourir à une traduction professionnelle réalisée par un humain. Nous déclinons toute responsabilité en cas de malentendus ou d'interprétations erronées résultant de l'utilisation de cette traduction.

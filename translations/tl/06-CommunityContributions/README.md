@@ -1,98 +1,103 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "7b4b9bfacd2926725e6f1cda82bc8ff5",
-  "translation_date": "2025-07-17T08:13:00+00:00",
+  "original_hash": "fcf1e12b62102bf7d16b78deb2b163b7",
+  "translation_date": "2025-08-18T18:32:19+00:00",
   "source_file": "06-CommunityContributions/README.md",
   "language_code": "tl"
 }
 -->
-# Community at Mga Ambag
+# Komunidad at Kontribusyon
+
+[![Paano Mag-ambag sa MCP: Mga Tool, Dokumentasyon, Code, at Iba Pa](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.tl.png)](https://youtu.be/v1pvCYAWpRE)
+
+_(I-click ang larawan sa itaas upang panoorin ang video ng araling ito)_
 
 ## Pangkalahatang-ideya
 
-Tinututukan ng araling ito kung paano makilahok sa MCP community, mag-ambag sa MCP ecosystem, at sundin ang mga pinakamahusay na kasanayan para sa kolaboratibong pag-unlad. Mahalaga ang pag-unawa kung paano makibahagi sa mga open-source na proyekto ng MCP para sa mga nais hubugin ang hinaharap ng teknolohiyang ito.
+Ang araling ito ay nakatuon sa kung paano makilahok sa komunidad ng MCP, mag-ambag sa ecosystem ng MCP, at sundin ang mga pinakamahusay na kasanayan para sa kolaboratibong pag-develop. Ang pag-unawa kung paano makibahagi sa mga open-source na proyekto ng MCP ay mahalaga para sa mga nais maghubog ng kinabukasan ng teknolohiyang ito.
 
 ## Mga Layunin sa Pagkatuto
 
-Sa pagtatapos ng araling ito, magagawa mong:
-- Maunawaan ang estruktura ng MCP community at ecosystem
-- Epektibong makilahok sa mga forum at talakayan ng MCP community
-- Mag-ambag sa mga open-source na repositoryo ng MCP
-- Gumawa at magbahagi ng mga custom na MCP tools at servers
-- Sundin ang mga pinakamahusay na kasanayan sa pag-develop at kolaborasyon sa MCP
+Sa pagtatapos ng araling ito, magagawa mo ang sumusunod:
+
+- Maunawaan ang istruktura ng komunidad at ecosystem ng MCP
+- Makilahok nang epektibo sa mga forum at talakayan ng komunidad ng MCP
+- Mag-ambag sa mga open-source na repository ng MCP
+- Lumikha at magbahagi ng mga custom na tool at server ng MCP
+- Sundin ang mga pinakamahusay na kasanayan para sa pag-develop at kolaborasyon sa MCP
 - Tuklasin ang mga mapagkukunan at framework ng komunidad para sa pag-develop ng MCP
 
-## Ang MCP Community Ecosystem
+## Ang Ecosystem ng Komunidad ng MCP
 
-Binubuo ang MCP ecosystem ng iba't ibang bahagi at kalahok na nagtutulungan upang paunlarin ang protocol.
+Ang ecosystem ng MCP ay binubuo ng iba't ibang bahagi at kalahok na nagtutulungan upang paunlarin ang protocol.
 
-### Pangunahing Bahagi ng Komunidad
+### Mga Pangunahing Bahagi ng Komunidad
 
-1. **Core Protocol Maintainers**: Ang opisyal na [Model Context Protocol GitHub organization](https://github.com/modelcontextprotocol) ang nangangalaga sa mga pangunahing MCP specifications at reference implementations
-2. **Tool Developers**: Mga indibidwal at koponan na lumilikha ng MCP tools at servers
-3. **Integration Providers**: Mga kumpanya na nag-iintegrate ng MCP sa kanilang mga produkto at serbisyo
-4. **End Users**: Mga developer at organisasyon na gumagamit ng MCP sa kanilang mga aplikasyon
-5. **Contributors**: Mga miyembro ng komunidad na nag-aambag ng code, dokumentasyon, o iba pang mga mapagkukunan
+1. **Mga Tagapangalaga ng Core Protocol**: Ang opisyal na [Model Context Protocol GitHub organization](https://github.com/modelcontextprotocol) ang nangangalaga sa mga pangunahing detalye ng MCP at mga reference implementation.
+2. **Mga Developer ng Tool**: Mga indibidwal at koponan na lumilikha ng mga tool at server ng MCP.
+3. **Mga Tagapagbigay ng Integrasyon**: Mga kumpanyang nag-iintegrate ng MCP sa kanilang mga produkto at serbisyo.
+4. **Mga End User**: Mga developer at organisasyon na gumagamit ng MCP sa kanilang mga aplikasyon.
+5. **Mga Kontribyutor**: Mga miyembro ng komunidad na nag-aambag ng code, dokumentasyon, o iba pang mapagkukunan.
 
 ### Mga Mapagkukunan ng Komunidad
 
 #### Opisyal na Mga Channel
 
 - [MCP GitHub Organization](https://github.com/modelcontextprotocol)
-- [MCP Documentation](https://modelcontextprotocol.io/)
-- [MCP Specification](https://modelcontextprotocol.io/docs/specification)
-- [GitHub Discussions](https://github.com/orgs/modelcontextprotocol/discussions)
-- [MCP Examples & Servers Repository](https://github.com/modelcontextprotocol/servers)
+- [Dokumentasyon ng MCP](https://modelcontextprotocol.io/)
+- [Detalye ng MCP](https://modelcontextprotocol.io/docs/specification)
+- [Mga Talakayan sa GitHub](https://github.com/orgs/modelcontextprotocol/discussions)
+- [Repository ng Mga Halimbawa at Server ng MCP](https://github.com/modelcontextprotocol/servers)
 
-#### Mga Mapagkukunang Pinapatakbo ng Komunidad
+#### Mga Mapagkukunan na Pinamamahalaan ng Komunidad
 
-- [MCP Clients](https://modelcontextprotocol.io/clients) - Listahan ng mga client na sumusuporta sa MCP integrations
-- [Community MCP Servers](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - Lumalawak na listahan ng mga MCP server na ginawa ng komunidad
-- [Awesome MCP Servers](https://github.com/wong2/awesome-mcp-servers) - Piniling listahan ng mga MCP server
-- [PulseMCP](https://www.pulsemcp.com/) - Sentro ng komunidad at newsletter para sa pagtuklas ng mga MCP resources
-- [Discord Server](https://discord.gg/jHEGxQu2a5) - Makipag-ugnayan sa mga MCP developer
-- Mga language-specific SDK implementations
-- Mga blog post at tutorial
+- [Mga Kliyente ng MCP](https://modelcontextprotocol.io/clients) - Listahan ng mga kliyente na sumusuporta sa mga integrasyon ng MCP.
+- [Mga Community MCP Server](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - Lumalaking listahan ng mga server ng MCP na binuo ng komunidad.
+- [Awesome MCP Servers](https://github.com/wong2/awesome-mcp-servers) - Curated na listahan ng mga server ng MCP.
+- [PulseMCP](https://www.pulsemcp.com/) - Hub ng komunidad at newsletter para sa pagtuklas ng mga mapagkukunan ng MCP.
+- [Discord Server](https://discord.gg/jHEGxQu2a5) - Makipag-ugnayan sa mga developer ng MCP.
+- Mga SDK implementation na nakatuon sa wika.
+- Mga blog post at tutorial.
 
 ## Pag-aambag sa MCP
 
-### Mga Uri ng Ambag
+### Mga Uri ng Kontribusyon
 
-Tinatanggap ng MCP ecosystem ang iba't ibang uri ng ambag:
+Tinatanggap ng ecosystem ng MCP ang iba't ibang uri ng kontribusyon:
 
-1. **Code Contributions**:
+1. **Mga Kontribusyon sa Code**:
    - Mga pagpapahusay sa core protocol
    - Pag-aayos ng mga bug
-   - Implementasyon ng mga tool at server
-   - Mga client/server libraries sa iba't ibang wika
+   - Mga implementasyon ng tool at server
+   - Mga library ng kliyente/server sa iba't ibang wika
 
 2. **Dokumentasyon**:
-   - Pagpapabuti ng kasalukuyang dokumentasyon
-   - Paggawa ng mga tutorial at gabay
+   - Pagpapabuti ng umiiral na dokumentasyon
+   - Paglikha ng mga tutorial at gabay
    - Pagsasalin ng dokumentasyon
-   - Paggawa ng mga halimbawa at sample na aplikasyon
+   - Paglikha ng mga halimbawa at sample na aplikasyon
 
 3. **Suporta sa Komunidad**:
    - Pagsagot sa mga tanong sa mga forum at talakayan
-   - Pagsubok at pag-uulat ng mga isyu
-   - Pag-oorganisa ng mga kaganapan ng komunidad
-   - Pagtuturo sa mga bagong contributor
+   - Pagsusuri at pag-uulat ng mga isyu
+   - Pag-oorganisa ng mga kaganapan sa komunidad
+   - Pagtuturo sa mga bagong kontribyutor
 
-### Proseso ng Pag-aambag: Core Protocol
+### Proseso ng Kontribusyon: Core Protocol
 
-Para mag-ambag sa core MCP protocol o opisyal na implementasyon, sundin ang mga prinsipyo mula sa [opisyal na contributing guidelines](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
+Upang mag-ambag sa core MCP protocol o opisyal na mga implementasyon, sundin ang mga prinsipyo mula sa [opisyal na gabay sa kontribusyon](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
 
-1. **Simplicity and Minimalism**: Mataas ang pamantayan ng MCP specification sa pagdagdag ng mga bagong konsepto. Mas madali ang magdagdag kaysa mag-alis.
+1. **Kalinawan at Pagiging Simple**: Ang detalye ng MCP ay may mataas na pamantayan para sa pagdaragdag ng mga bagong konsepto. Mas madaling magdagdag ng mga bagay sa isang detalye kaysa alisin ang mga ito.
 
-2. **Concrete Approach**: Ang mga pagbabago sa specification ay dapat nakabase sa mga tiyak na hamon sa implementasyon, hindi sa mga haka-haka.
+2. **Konkretong Diskarte**: Ang mga pagbabago sa detalye ay dapat nakabatay sa mga partikular na hamon sa implementasyon, hindi sa mga haka-hakang ideya.
 
-3. **Mga Yugto ng Proposal**:
-   - Define: Suriin ang problema, tiyakin na may kaparehong isyu ang ibang MCP user
-   - Prototype: Gumawa ng halimbawa ng solusyon at ipakita ang praktikal na aplikasyon nito
-   - Write: Batay sa prototype, isulat ang proposal para sa specification
+3. **Mga Yugto ng Panukala**:
+   - Tukuyin: Suriin ang problema, tiyakin na ang iba pang mga gumagamit ng MCP ay nakakaranas ng parehong isyu.
+   - Prototype: Bumuo ng isang halimbawa ng solusyon at ipakita ang praktikal na aplikasyon nito.
+   - Isulat: Batay sa prototype, isulat ang panukala para sa detalye.
 
-### Setup ng Development Environment
+### Pagsasaayos ng Kapaligiran sa Pag-develop
 
 ```bash
 # Fork the repository
@@ -114,7 +119,7 @@ npm run format
 npm run serve:docs
 ```
 
-### Halimbawa: Pag-aambag ng Bug Fix
+### Halimbawa: Pag-aambag ng Pag-aayos ng Bug
 
 ```javascript
 // Original code with bug in the typescript-sdk
@@ -306,18 +311,18 @@ class CsvProcessingTool(Tool):
             raise ToolExecutionException(f"Unsupported output format: {format}")
 ```
 
-### Mga Patnubay sa Pag-aambag
+### Mga Alituntunin sa Kontribusyon
 
-Para maging matagumpay ang iyong ambag sa mga proyekto ng MCP:
+Upang magtagumpay sa pag-aambag sa mga proyekto ng MCP:
 
-1. **Magsimula sa Maliit**: Simulan sa dokumentasyon, pag-aayos ng bug, o maliliit na pagpapahusay
-2. **Sundin ang Style Guide**: Sumunod sa coding style at mga convention ng proyekto
-3. **Sumulat ng Tests**: Isama ang unit tests para sa iyong mga code contribution
-4. **Idokumento ang Iyong Gawain**: Magdagdag ng malinaw na dokumentasyon para sa mga bagong tampok o pagbabago
-5. **Mag-submit ng Targeted PRs**: Panatilihing nakatuon ang pull requests sa isang isyu o tampok lamang
-6. **Makipag-ugnayan sa Feedback**: Maging bukas at tumugon sa mga puna sa iyong mga ambag
+1. **Magsimula sa Maliit**: Magsimula sa dokumentasyon, pag-aayos ng bug, o maliliit na pagpapahusay.
+2. **Sundin ang Gabay sa Estilo**: Sumunod sa coding style at mga kombensyon ng proyekto.
+3. **Sumulat ng Mga Pagsusuri**: Isama ang mga unit test para sa iyong mga kontribusyon sa code.
+4. **Idokumento ang Iyong Gawain**: Magdagdag ng malinaw na dokumentasyon para sa mga bagong tampok o pagbabago.
+5. **Magpasa ng Targeted na PRs**: Panatilihing nakatuon ang mga pull request sa isang isyu o tampok.
+6. **Makipag-ugnayan sa Feedback**: Maging bukas sa mga puna sa iyong mga kontribusyon.
 
-### Halimbawa ng Workflow sa Pag-aambag
+### Halimbawa ng Workflow ng Kontribusyon
 
 ```bash
 # Clone the repository
@@ -343,13 +348,13 @@ git push origin feature/my-contribution
 # Then engage with feedback and iterate on your PR as needed
 ```
 
-## Paggawa at Pagbabahagi ng MCP Servers
+## Paglikha at Pagbabahagi ng Mga MCP Server
 
-Isa sa pinakamahalagang paraan ng pag-ambag sa MCP ecosystem ay ang paggawa at pagbabahagi ng mga custom MCP servers. Marami nang MCP server ang nagawa ng komunidad para sa iba't ibang serbisyo at gamit.
+Isa sa mga pinakamahalagang paraan upang mag-ambag sa ecosystem ng MCP ay ang paglikha at pagbabahagi ng mga custom na MCP server. Ang komunidad ay nakabuo na ng daan-daang server para sa iba't ibang serbisyo at gamit.
 
 ### Mga Framework para sa Pag-develop ng MCP Server
 
-May ilang framework na makakatulong upang mapadali ang pag-develop ng MCP server:
+Mayroong ilang mga framework na magpapadali sa pag-develop ng MCP server:
 
 1. **Opisyal na SDKs**:
    - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
@@ -360,14 +365,14 @@ May ilang framework na makakatulong upang mapadali ang pag-develop ng MCP server
    - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk)
 
 2. **Mga Framework ng Komunidad**:
-   - [MCP-Framework](https://mcp-framework.com/) - Gumawa ng MCP servers nang mabilis at elegante gamit ang TypeScript
-   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - Annotation-driven MCP servers gamit ang Java
-   - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - Java framework para sa MCP servers
-   - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - Starter Next.js project para sa MCP servers
+   - [MCP-Framework](https://mcp-framework.com/) - Bumuo ng MCP server nang mabilis gamit ang TypeScript.
+   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - Annotation-driven na MCP server gamit ang Java.
+   - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - Java framework para sa MCP server.
+   - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - Starter project para sa MCP server gamit ang Next.js.
 
-### Pag-develop ng Mga Tool na Maibabahagi
+### Pag-develop ng Mga Shareable Tool
 
-#### Halimbawa sa .NET: Paggawa ng Shareable Tool Package
+#### Halimbawa sa .NET: Paglikha ng Shareable Tool Package
 
 ```csharp
 // Create a new .NET library project
@@ -473,7 +478,7 @@ namespace McpFinanceTools
 // dotnet nuget push bin/Release/McpFinanceTools.1.0.0.nupkg -s https://api.nuget.org/v3/index.json -k YOUR_API_KEY
 ```
 
-#### Halimbawa sa Java: Paggawa ng Maven Package para sa Mga Tool
+#### Halimbawa sa Java: Paglikha ng Maven Package para sa Mga Tool
 
 ```java
 // pom.xml configuration for a shareable MCP tool package
@@ -681,66 +686,66 @@ class SentimentAnalysisTool(Tool):
 
 ### Mga Pinakamahusay na Kasanayan sa Pagbabahagi
 
-Kapag nagbabahagi ng MCP tools sa komunidad:
+Kapag nagbabahagi ng mga tool ng MCP sa komunidad:
 
 1. **Kumpletong Dokumentasyon**:
-   - Idokumento ang layunin, paggamit, at mga halimbawa
-   - Ipaliwanag ang mga parameter at mga return value
-   - Idokumento ang anumang external dependencies
+   - Idokumento ang layunin, paggamit, at mga halimbawa.
+   - Ipaliwanag ang mga parameter at return values.
+   - Idokumento ang anumang panlabas na dependencies.
 
 2. **Pag-handle ng Error**:
-   - Magpatupad ng matibay na error handling
-   - Magbigay ng kapaki-pakinabang na mga mensahe ng error
-   - Maayos na hawakan ang mga edge case
+   - Mag-implement ng maayos na pag-handle ng error.
+   - Magbigay ng kapaki-pakinabang na mga mensahe ng error.
+   - Maingat na i-handle ang mga edge case.
 
-3. **Mga Pagsasaalang-alang sa Performance**:
-   - I-optimize para sa bilis at paggamit ng resources
-   - Gumamit ng caching kung angkop
-   - Isaalang-alang ang scalability
+3. **Pagganap**:
+   - I-optimize para sa bilis at paggamit ng resources.
+   - Mag-implement ng caching kung kinakailangan.
+   - Isaalang-alang ang scalability.
 
 4. **Seguridad**:
-   - Gumamit ng secure na API keys at authentication
-   - I-validate at i-sanitize ang mga input
-   - Magpatupad ng rate limiting para sa mga external API calls
+   - Gumamit ng secure na API keys at authentication.
+   - I-validate at i-sanitize ang mga input.
+   - Mag-implement ng rate limiting para sa mga panlabas na API call.
 
 5. **Pagsusuri**:
-   - Isama ang komprehensibong test coverage
-   - Subukan gamit ang iba't ibang uri ng input at edge cases
-   - Idokumento ang mga pamamaraan ng pagsusuri
+   - Isama ang komprehensibong test coverage.
+   - Subukan gamit ang iba't ibang uri ng input at edge case.
+   - Idokumento ang mga pamamaraan ng pagsusuri.
 
 ## Kolaborasyon ng Komunidad at Mga Pinakamahusay na Kasanayan
 
-Mahalaga ang epektibong kolaborasyon para sa isang masiglang MCP ecosystem.
+Ang epektibong kolaborasyon ay susi sa isang masiglang ecosystem ng MCP.
 
 ### Mga Channel ng Komunikasyon
 
-- GitHub Issues at Discussions
+- Mga Isyu at Talakayan sa GitHub
 - Microsoft Tech Community
-- Discord at Slack channels
+- Mga Discord at Slack channel
 - Stack Overflow (tag: `model-context-protocol` o `mcp`)
 
-### Pagsusuri ng Code
+### Mga Review ng Code
 
-Kapag nire-review ang mga ambag sa MCP:
+Kapag nire-review ang mga kontribusyon sa MCP:
 
-1. **Kalinawan**: Malinaw at maayos ba ang dokumentasyon ng code?
-2. **Katatagan**: Gumagana ba ito ayon sa inaasahan?
-3. **Pagkakapare-pareho**: Sumusunod ba ito sa mga convention ng proyekto?
-4. **Kumpletong Saklaw**: Kasama ba ang mga tests at dokumentasyon?
-5. **Seguridad**: Mayroon bang mga isyu sa seguridad?
+1. **Kalinawan**: Malinaw ba at maayos ang dokumentasyon ng code?
+2. **Tama**: Gumagana ba ito ayon sa inaasahan?
+3. **Pagkakapare-pareho**: Sinusunod ba nito ang mga kombensyon ng proyekto?
+4. **Kumpleto**: May kasama bang pagsusuri at dokumentasyon?
+5. **Seguridad**: Mayroon bang mga alalahanin sa seguridad?
 
 ### Compatibility ng Bersyon
 
 Kapag nagde-develop para sa MCP:
 
-1. **Protocol Versioning**: Sundin ang bersyon ng MCP protocol na sinusuportahan ng iyong tool
-2. **Client Compatibility**: Isaalang-alang ang backward compatibility
-3. **Server Compatibility**: Sundin ang mga patnubay sa implementasyon ng server
-4. **Breaking Changes**: Idokumento nang malinaw ang anumang breaking changes
+1. **Pag-version ng Protocol**: Sumunod sa bersyon ng MCP protocol na sinusuportahan ng iyong tool.
+2. **Compatibility ng Kliyente**: Isaalang-alang ang backward compatibility.
+3. **Compatibility ng Server**: Sundin ang mga alituntunin sa implementasyon ng server.
+4. **Mga Pagbabagong Nakakasira**: Malinaw na idokumento ang anumang pagbabago na nakakasira.
 
-## Halimbawa ng Proyektong Pangkomunidad: MCP Tool Registry
+## Halimbawa ng Proyekto ng Komunidad: MCP Tool Registry
 
-Isang mahalagang ambag sa komunidad ay ang paggawa ng pampublikong registry para sa mga MCP tool.
+Isang mahalagang kontribusyon ng komunidad ay ang pag-develop ng pampublikong registry para sa mga tool ng MCP.
 
 ```python
 # Example schema for a community tool registry API
@@ -819,30 +824,29 @@ async def delete_tool(tool_name: str):
     return {"message": f"Tool '{tool_name}' deleted"}
 ```
 
-## Mga Pangunahing Punto
+## Mahahalagang Puntos
 
-- Iba-iba ang MCP community at tinatanggap ang iba't ibang uri ng ambag
-- Ang pag-aambag sa MCP ay maaaring mula sa pagpapahusay ng core protocol hanggang sa paggawa ng custom tools
-- Ang pagsunod sa mga patnubay sa pag-aambag ay nagpapataas ng tsansa na tanggapin ang iyong PR
-- Ang paggawa at pagbabahagi ng MCP tools ay mahalagang paraan upang paunlarin ang ecosystem
-- Mahalaga ang kolaborasyon ng komunidad para sa paglago at pagbuti ng MCP
+- Ang komunidad ng MCP ay iba-iba at tumatanggap ng iba't ibang uri ng kontribusyon.
+- Ang pag-aambag sa MCP ay maaaring mula sa mga pagpapahusay sa core protocol hanggang sa mga custom na tool.
+- Ang pagsunod sa mga alituntunin sa kontribusyon ay nagpapataas ng tsansa na tanggapin ang iyong PR.
+- Ang paglikha at pagbabahagi ng mga tool ng MCP ay isang mahalagang paraan upang mapahusay ang ecosystem.
+- Ang kolaborasyon ng komunidad ay mahalaga para sa paglago at pagpapabuti ng MCP.
 
 ## Ehersisyo
 
-1. Tukuyin ang isang bahagi ng MCP ecosystem kung saan maaari kang mag-ambag base sa iyong kakayahan at interes
-2. I-fork ang MCP repository at i-setup ang lokal na development environment
-3. Gumawa ng maliit na pagpapahusay, pag-aayos ng bug, o tool na makakatulong sa komunidad
-4. Idokumento ang iyong ambag kasama ang mga angkop na tests at dokumentasyon
-5. Mag-submit ng pull request sa tamang repositoryo
+1. Tukuyin ang isang bahagi sa ecosystem ng MCP kung saan maaari kang mag-ambag batay sa iyong mga kasanayan at interes.
+2. I-fork ang repository ng MCP at i-setup ang lokal na kapaligiran sa pag-develop.
+3. Lumikha ng maliit na pagpapahusay, pag-aayos ng bug, o tool na makikinabang sa komunidad.
+4. Idokumento ang iyong kontribusyon nang may tamang pagsusuri at dokumentasyon.
+5. Magpasa ng pull request sa tamang repository.
 
-## Karagdagang Mga Mapagkukunan
+## Karagdagang Mapagkukunan
 
-- [MCP Community Projects](https://github.com/topics/model-context-protocol)
-
+- [Mga Proyekto ng Komunidad ng MCP](https://github.com/topics/model-context-protocol)
 
 ---
 
-Susunod: [Lessons from Early Adoption](../07-LessonsfromEarlyAdoption/README.md)
+Susunod: [Mga Aral mula sa Maagang Pag-aampon](../07-LessonsfromEarlyAdoption/README.md)
 
-**Paalala**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagamat nagsusumikap kami para sa katumpakan, pakatandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o di-tumpak na impormasyon. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.
+**Paunawa**:  
+Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, pakitandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang orihinal na wika ang dapat ituring na opisyal na sanggunian. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.

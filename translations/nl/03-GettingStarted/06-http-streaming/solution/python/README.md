@@ -1,30 +1,30 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4c4da5949611d91b06d8a5d450aae8d6",
-  "translation_date": "2025-07-13T21:20:49+00:00",
+  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
+  "translation_date": "2025-08-18T16:37:31+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
   "language_code": "nl"
 }
 -->
 # Dit voorbeeld uitvoeren
 
-Hier lees je hoe je de klassieke HTTP streaming server en client, evenals de MCP streaming server en client, kunt draaien met Python.
+Hier lees je hoe je de klassieke HTTP-streamingserver en -client, evenals de MCP-streamingserver en -client met Python kunt uitvoeren.
 
 ### Overzicht
 
-- Je zet een MCP-server op die voortgangsnotificaties naar de client streamt terwijl deze items verwerkt.
+- Je zet een MCP-server op die voortgangsnotificaties naar de client streamt terwijl het items verwerkt.
 - De client toont elke notificatie in realtime.
-- Deze gids behandelt de vereisten, installatie, uitvoering en probleemoplossing.
+- Deze handleiding behandelt vereisten, installatie, uitvoering en probleemoplossing.
 
 ### Vereisten
 
 - Python 3.9 of nieuwer
-- Het `mcp` Python-pakket (te installeren met `pip install mcp`)
+- Het `mcp` Python-pakket (installeren met `pip install mcp`)
 
 ### Installatie & Setup
 
-1. Clone de repository of download de oplossingbestanden.
+1. Clone de repository of download de oplossingsbestanden.
 
    ```pwsh
    git clone https://github.com/microsoft/mcp-for-beginners
@@ -39,10 +39,10 @@ Hier lees je hoe je de klassieke HTTP streaming server en client, evenals de MCP
    source venv/bin/activate      # On Linux/macOS
    ```
 
-1. **Installeer de benodigde dependencies:**
+1. **Installeer de benodigde afhankelijkheden:**
 
    ```pwsh
-   pip install "mcp[cli]"
+   pip install "mcp[cli]" fastapi requests
    ```
 
 ### Bestanden
@@ -50,28 +50,28 @@ Hier lees je hoe je de klassieke HTTP streaming server en client, evenals de MCP
 - **Server:** [server.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/server.py)
 - **Client:** [client.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/client.py)
 
-### De klassieke HTTP streaming server draaien
+### De klassieke HTTP-streamingserver uitvoeren
 
-1. Navigeer naar de map met de oplossing:
+1. Navigeer naar de oplossingsmap:
 
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    ```
 
-2. Start de klassieke HTTP streaming server:
+2. Start de klassieke HTTP-streamingserver:
 
    ```pwsh
    python server.py
    ```
 
-3. De server start en toont:
+3. De server zal starten en het volgende weergeven:
 
    ```
    Starting FastAPI server for classic HTTP streaming...
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### De klassieke HTTP streaming client draaien
+### De klassieke HTTP-streamingclient uitvoeren
 
 1. Open een nieuwe terminal (activeer dezelfde virtuele omgeving en map):
 
@@ -80,7 +80,7 @@ Hier lees je hoe je de klassieke HTTP streaming server en client, evenals de MCP
    python client.py
    ```
 
-2. Je ziet de gestreamde berichten achter elkaar verschijnen:
+2. Je zou gestreamde berichten moeten zien die opeenvolgend worden afgedrukt:
 
    ```text
    Running classic HTTP streaming client...
@@ -93,9 +93,9 @@ Hier lees je hoe je de klassieke HTTP streaming server en client, evenals de MCP
    --- Stream Ended ---
    ```
 
-### De MCP streaming server draaien
+### De MCP-streamingserver uitvoeren
 
-1. Navigeer naar de map met de oplossing:
+1. Navigeer naar de oplossingsmap:
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    ```
@@ -103,20 +103,20 @@ Hier lees je hoe je de klassieke HTTP streaming server en client, evenals de MCP
    ```pwsh
    python server.py mcp
    ```
-3. De server start en toont:
+3. De server zal starten en het volgende weergeven:
    ```
    Starting MCP server with streamable-http transport...
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### De MCP streaming client draaien
+### De MCP-streamingclient uitvoeren
 
 1. Open een nieuwe terminal (activeer dezelfde virtuele omgeving en map):
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py mcp
    ```
-2. Je ziet notificaties in realtime verschijnen terwijl de server elk item verwerkt:
+2. Je zou notificaties in realtime moeten zien terwijl de server elk item verwerkt:
    ```
    Running MCP client...
    Starting client...
@@ -129,23 +129,23 @@ Hier lees je hoe je de klassieke HTTP streaming server en client, evenals de MCP
    Tool result: meta=None content=[TextContent(type='text', text='Processed files: file_1.txt, file_2.txt, file_3.txt | Message: hello from client')]
    ```
 
-### Belangrijkste implementatiestappen
+### Belangrijke implementatiestappen
 
-1. **Maak de MCP-server aan met FastMCP.**
-2. **Definieer een tool die een lijst verwerkt en notificaties verstuurt met `ctx.info()` of `ctx.log()`.**
-3. **Draai de server met `transport="streamable-http"`.**
-4. **Implementeer een client met een message handler die notificaties toont zodra ze binnenkomen.**
+1. **Maak de MCP-server met FastMCP.**
+2. **Definieer een tool die een lijst verwerkt en notificaties verzendt met `ctx.info()` of `ctx.log()`.**
+3. **Voer de server uit met `transport="streamable-http"`.**
+4. **Implementeer een client met een berichtverwerker om notificaties weer te geven zodra ze binnenkomen.**
 
 ### Code-uitleg
-- De server gebruikt async functies en de MCP context om voortgangsupdates te versturen.
-- De client implementeert een async message handler om notificaties en het eindresultaat te printen.
+- De server gebruikt asynchrone functies en de MCP-context om voortgangsupdates te verzenden.
+- De client implementeert een asynchrone berichtverwerker om notificaties en het eindresultaat af te drukken.
 
-### Tips & probleemoplossing
+### Tips & Probleemoplossing
 
 - Gebruik `async/await` voor niet-blokkerende operaties.
-- Zorg dat je altijd exceptions afvangt in zowel server als client voor stabiliteit.
-- Test met meerdere clients om realtime updates te zien.
-- Kom je fouten tegen? Controleer je Python-versie en of alle dependencies geïnstalleerd zijn.
+- Zorg ervoor dat je uitzonderingen afhandelt in zowel de server als de client voor robuustheid.
+- Test met meerdere clients om realtime updates te observeren.
+- Als je fouten tegenkomt, controleer je Python-versie en zorg ervoor dat alle afhankelijkheden zijn geïnstalleerd.
 
 **Disclaimer**:  
-Dit document is vertaald met behulp van de AI-vertalingsdienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u er rekening mee te houden dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet als de gezaghebbende bron worden beschouwd. Voor cruciale informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+Dit document is vertaald met behulp van de AI-vertalingsservice [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we ons best doen voor nauwkeurigheid, dient u zich ervan bewust te zijn dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor cruciale informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.

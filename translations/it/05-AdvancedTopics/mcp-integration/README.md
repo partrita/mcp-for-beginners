@@ -1,36 +1,36 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "73240f845b99df9401fffd21c09a5f7b",
-  "translation_date": "2025-07-17T01:16:21+00:00",
+  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
+  "translation_date": "2025-08-18T17:27:40+00:00",
   "source_file": "05-AdvancedTopics/mcp-integration/README.md",
   "language_code": "it"
 }
 -->
-# Integrazione Enterprise
+# Integrazione Aziendale
 
-Quando si costruiscono MCP Server in un contesto aziendale, spesso è necessario integrare con piattaforme e servizi AI esistenti. Questa sezione spiega come integrare MCP con sistemi enterprise come Azure OpenAI e Microsoft AI Foundry, abilitando funzionalità AI avanzate e l'orchestrazione degli strumenti.
+Quando si costruiscono server MCP in un contesto aziendale, spesso è necessario integrarli con piattaforme e servizi di intelligenza artificiale esistenti. Questa sezione spiega come integrare MCP con sistemi aziendali come Azure OpenAI e Microsoft AI Foundry, abilitando funzionalità avanzate di intelligenza artificiale e orchestrazione degli strumenti.
 
 ## Introduzione
 
-In questa lezione imparerai come integrare il Model Context Protocol (MCP) con sistemi AI enterprise, concentrandoti su Azure OpenAI e Microsoft AI Foundry. Queste integrazioni ti permettono di sfruttare potenti modelli e strumenti AI mantenendo la flessibilità e l’estensibilità di MCP.
+In questa lezione, imparerai come integrare il Model Context Protocol (MCP) con sistemi di intelligenza artificiale aziendali, concentrandoti su Azure OpenAI e Microsoft AI Foundry. Queste integrazioni ti permettono di sfruttare potenti modelli e strumenti di intelligenza artificiale mantenendo la flessibilità e l'estensibilità di MCP.
 
 ## Obiettivi di apprendimento
 
 Al termine di questa lezione, sarai in grado di:
 
-- Integrare MCP con Azure OpenAI per utilizzare le sue capacità AI.
-- Implementare l’orchestrazione degli strumenti MCP con Azure OpenAI.
-- Combinare MCP con Microsoft AI Foundry per funzionalità avanzate di agenti AI.
-- Sfruttare Azure Machine Learning (ML) per eseguire pipeline ML e registrare modelli come strumenti MCP.
+- Integrare MCP con Azure OpenAI per sfruttare le sue capacità di intelligenza artificiale.
+- Implementare l'orchestrazione degli strumenti MCP con Azure OpenAI.
+- Combinare MCP con Microsoft AI Foundry per funzionalità avanzate di agenti di intelligenza artificiale.
+- Utilizzare Azure Machine Learning (ML) per eseguire pipeline di ML e registrare modelli come strumenti MCP.
 
 ## Integrazione con Azure OpenAI
 
-Azure OpenAI offre accesso a potenti modelli AI come GPT-4 e altri. Integrare MCP con Azure OpenAI ti consente di utilizzare questi modelli mantenendo la flessibilità dell’orchestrazione degli strumenti di MCP.
+Azure OpenAI fornisce accesso a potenti modelli di intelligenza artificiale come GPT-4 e altri. Integrare MCP con Azure OpenAI ti consente di utilizzare questi modelli mantenendo la flessibilità dell'orchestrazione degli strumenti di MCP.
 
 ### Implementazione in C#
 
-In questo frammento di codice mostriamo come integrare MCP con Azure OpenAI utilizzando l’Azure OpenAI SDK.
+In questo esempio di codice, mostriamo come integrare MCP con Azure OpenAI utilizzando l'SDK di Azure OpenAI.
 
 ```csharp
 // .NET Azure OpenAI Integration
@@ -96,17 +96,17 @@ namespace EnterpriseIntegration
 
 Nel codice precedente abbiamo:
 
-- Configurato il client Azure OpenAI con endpoint, nome del deployment e chiave API.
-- Creato un metodo `GetCompletionWithToolsAsync` per ottenere completamenti con supporto agli strumenti.
+- Configurato il client Azure OpenAI con l'endpoint, il nome della distribuzione e la chiave API.
+- Creato un metodo `GetCompletionWithToolsAsync` per ottenere completamenti con supporto per gli strumenti.
 - Gestito le chiamate agli strumenti nella risposta.
 
 Ti invitiamo a implementare la logica effettiva di gestione degli strumenti in base alla configurazione specifica del tuo server MCP.
 
 ## Integrazione con Microsoft AI Foundry
 
-Azure AI Foundry fornisce una piattaforma per costruire e distribuire agenti AI. Integrare MCP con AI Foundry ti permette di sfruttare le sue capacità mantenendo la flessibilità di MCP.
+Azure AI Foundry offre una piattaforma per costruire e distribuire agenti di intelligenza artificiale. Integrare MCP con AI Foundry ti consente di sfruttare le sue capacità mantenendo la flessibilità di MCP.
 
-Nel codice seguente sviluppiamo un’integrazione Agent che elabora richieste e gestisce chiamate agli strumenti usando MCP.
+Nel codice seguente, sviluppiamo un'integrazione con un agente che elabora richieste e gestisce chiamate agli strumenti utilizzando MCP.
 
 ### Implementazione in Java
 
@@ -168,13 +168,13 @@ public class AIFoundryMcpBridge {
 
 Nel codice precedente abbiamo:
 
-- Creato una classe `AIFoundryMcpBridge` che integra sia AI Foundry che MCP.
+- Creato una classe `AIFoundryMcpBridge` che si integra sia con AI Foundry che con MCP.
 - Implementato un metodo `processAgentRequest` che elabora una richiesta di un agente AI Foundry.
-- Gestito le chiamate agli strumenti eseguendole tramite il client MCP e inviando i risultati all’agente AI Foundry.
+- Gestito le chiamate agli strumenti eseguendole tramite il client MCP e inviando i risultati all'agente AI Foundry.
 
 ## Integrazione di MCP con Azure ML
 
-Integrare MCP con Azure Machine Learning (ML) ti consente di sfruttare le potenti capacità ML di Azure mantenendo la flessibilità di MCP. Questa integrazione può essere usata per eseguire pipeline ML, registrare modelli come strumenti e gestire risorse di calcolo.
+Integrare MCP con Azure Machine Learning (ML) ti consente di sfruttare le potenti capacità di ML di Azure mantenendo la flessibilità di MCP. Questa integrazione può essere utilizzata per eseguire pipeline di ML, registrare modelli come strumenti e gestire risorse di calcolo.
 
 ### Implementazione in Python
 
@@ -303,14 +303,14 @@ class EnterpriseAiIntegration:
 Nel codice precedente abbiamo:
 
 - Creato una classe `EnterpriseAiIntegration` che integra MCP con Azure ML.
-- Implementato un metodo `execute_ml_pipeline` che elabora dati di input usando strumenti MCP e invia una pipeline ML ad Azure ML.
-- Implementato un metodo `register_ml_model_as_tool` che registra un modello Azure ML come strumento MCP, inclusa la creazione dell’ambiente di deployment e delle risorse di calcolo necessarie.
-- Mappato i tipi di dati Azure ML ai tipi di schema JSON per la registrazione degli strumenti.
-- Utilizzato la programmazione asincrona per gestire operazioni potenzialmente lunghe come l’esecuzione di pipeline ML e la registrazione dei modelli.
+- Implementato un metodo `execute_ml_pipeline` che elabora i dati di input utilizzando strumenti MCP e invia una pipeline di ML ad Azure ML.
+- Implementato un metodo `register_ml_model_as_tool` che registra un modello di Azure ML come strumento MCP, inclusa la creazione dell'ambiente di distribuzione e delle risorse di calcolo necessarie.
+- Mappato i tipi di dati di Azure ML ai tipi di schema JSON per la registrazione degli strumenti.
+- Utilizzato la programmazione asincrona per gestire operazioni potenzialmente lunghe come l'esecuzione di pipeline di ML e la registrazione dei modelli.
 
-## Cosa c’è dopo
+## Cosa fare dopo
 
-- [5.2 Multi modality](../mcp-multi-modality/README.md)
+- [5.2 Multi modalità](../mcp-multi-modality/README.md)
 
 **Disclaimer**:  
-Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Pur impegnandoci per garantire l’accuratezza, si prega di notare che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa deve essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale effettuata da un umano. Non ci assumiamo alcuna responsabilità per eventuali malintesi o interpretazioni errate derivanti dall’uso di questa traduzione.
+Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Sebbene ci impegniamo per garantire l'accuratezza, si prega di notare che le traduzioni automatiche potrebbero contenere errori o imprecisioni. Il documento originale nella sua lingua nativa dovrebbe essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale eseguita da un traduttore umano. Non siamo responsabili per eventuali fraintendimenti o interpretazioni errate derivanti dall'uso di questa traduzione.

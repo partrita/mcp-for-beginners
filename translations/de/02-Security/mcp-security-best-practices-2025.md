@@ -1,92 +1,207 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c3f4ea5732d64bf965e8aa2907759709",
-  "translation_date": "2025-07-16T23:11:47+00:00",
+  "original_hash": "057dd5cc6bea6434fdb788e6c93f3f3d",
+  "translation_date": "2025-08-18T11:48:06+00:00",
   "source_file": "02-Security/mcp-security-best-practices-2025.md",
   "language_code": "de"
 }
 -->
-# MCP Sicherheits-Best Practices – Juli 2025 Update
+# MCP Sicherheitsbest Practices - Update August 2025
 
-## Umfassende Sicherheits-Best Practices für MCP-Implementierungen
+> **Wichtig**: Dieses Dokument spiegelt die neuesten Sicherheitsanforderungen der [MCP-Spezifikation 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) und die offiziellen [MCP Sicherheitsbest Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) wider. Konsultieren Sie stets die aktuelle Spezifikation, um die neuesten Richtlinien zu erhalten.
 
-Wenn Sie mit MCP-Servern arbeiten, befolgen Sie diese Sicherheits-Best Practices, um Ihre Daten, Infrastruktur und Nutzer zu schützen:
+## Wesentliche Sicherheitspraktiken für MCP-Implementierungen
 
-1. **Eingabevalidierung**: Validieren und bereinigen Sie Eingaben stets, um Injection-Angriffe und Confused-Deputy-Probleme zu vermeiden.
-   - Implementieren Sie strenge Validierung für alle Tool-Parameter
-   - Verwenden Sie Schema-Validierung, um sicherzustellen, dass Anfragen den erwarteten Formaten entsprechen
-   - Filtern Sie potenziell schädliche Inhalte vor der Verarbeitung
+Das Model Context Protocol bringt einzigartige Sicherheitsherausforderungen mit sich, die über die traditionelle Softwaresicherheit hinausgehen. Diese Praktiken adressieren sowohl grundlegende Sicherheitsanforderungen als auch MCP-spezifische Bedrohungen wie Prompt Injection, Tool Poisoning, Session Hijacking, Confused Deputy-Probleme und Token-Passthrough-Schwachstellen.
 
-2. **Zugriffskontrolle**: Implementieren Sie eine ordnungsgemäße Authentifizierung und Autorisierung für Ihren MCP-Server mit fein abgestuften Berechtigungen.
-   - Nutzen Sie OAuth 2.0 mit etablierten Identitätsanbietern wie Microsoft Entra ID
-   - Implementieren Sie rollenbasierte Zugriffskontrolle (RBAC) für MCP-Tools
-   - Vermeiden Sie eigene Authentifizierungslösungen, wenn etablierte vorhanden sind
+### **VERPFLICHTENDE Sicherheitsanforderungen**
 
-3. **Sichere Kommunikation**: Verwenden Sie HTTPS/TLS für alle Kommunikationen mit Ihrem MCP-Server und erwägen Sie zusätzliche Verschlüsselung für sensible Daten.
-   - Konfigurieren Sie TLS 1.3, wo möglich
-   - Implementieren Sie Certificate Pinning für kritische Verbindungen
-   - Rotieren Sie Zertifikate regelmäßig und überprüfen Sie deren Gültigkeit
+**Kritische Anforderungen aus der MCP-Spezifikation:**
 
-4. **Rate Limiting**: Implementieren Sie Rate Limiting, um Missbrauch, DoS-Angriffe und Ressourcenüberlastung zu verhindern.
-   - Legen Sie angemessene Anfragelimits basierend auf erwarteten Nutzungsmustern fest
-   - Implementieren Sie abgestufte Reaktionen auf übermäßige Anfragen
-   - Berücksichtigen Sie benutzerspezifische Limits basierend auf dem Authentifizierungsstatus
+> **MUSS NICHT**: MCP-Server **DÜRFEN KEINE** Tokens akzeptieren, die nicht explizit für den MCP-Server ausgestellt wurden  
+> 
+> **MUSS**: MCP-Server, die Autorisierung implementieren, **MÜSSEN** ALLE eingehenden Anfragen überprüfen  
+>  
+> **MUSS NICHT**: MCP-Server **DÜRFEN KEINE** Sitzungen für die Authentifizierung verwenden  
+>
+> **MUSS**: MCP-Proxy-Server, die statische Client-IDs verwenden, **MÜSSEN** die Zustimmung des Benutzers für jeden dynamisch registrierten Client einholen  
 
-5. **Protokollierung und Überwachung**: Überwachen Sie Ihren MCP-Server auf verdächtige Aktivitäten und implementieren Sie umfassende Audit-Trails.
-   - Protokollieren Sie alle Authentifizierungsversuche und Tool-Aufrufe
-   - Implementieren Sie Echtzeit-Benachrichtigungen bei verdächtigen Mustern
-   - Stellen Sie sicher, dass Protokolle sicher gespeichert und nicht manipulierbar sind
+---
 
-6. **Sichere Speicherung**: Schützen Sie sensible Daten und Zugangsdaten mit geeigneter Verschlüsselung im Ruhezustand.
-   - Verwenden Sie Key Vaults oder sichere Credential Stores für alle Geheimnisse
-   - Implementieren Sie feldbasierte Verschlüsselung für sensible Daten
-   - Rotieren Sie Verschlüsselungsschlüssel und Zugangsdaten regelmäßig
+## 1. **Token-Sicherheit & Authentifizierung**
 
-7. **Token-Management**: Verhindern Sie Token-Passthrough-Schwachstellen durch Validierung und Bereinigung aller Modell-Ein- und Ausgaben.
-   - Validieren Sie Tokens basierend auf Audience-Claims
-   - Akzeptieren Sie niemals Tokens, die nicht explizit für Ihren MCP-Server ausgestellt wurden
-   - Implementieren Sie ein angemessenes Token-Lebenszyklus-Management und Rotation
+**Kontrollen für Authentifizierung & Autorisierung:**
+   - **Strenge Autorisierungsprüfung**: Führen Sie umfassende Audits der Autorisierungslogik des MCP-Servers durch, um sicherzustellen, dass nur beabsichtigte Benutzer und Clients auf Ressourcen zugreifen können  
+   - **Integration externer Identitätsanbieter**: Verwenden Sie etablierte Identitätsanbieter wie Microsoft Entra ID, anstatt eine eigene Authentifizierung zu implementieren  
+   - **Validierung der Token-Zielgruppe**: Überprüfen Sie stets, dass Tokens explizit für Ihren MCP-Server ausgestellt wurden – akzeptieren Sie niemals Upstream-Tokens  
+   - **Richtige Token-Lebenszyklen**: Implementieren Sie sichere Token-Rotation, Ablaufrichtlinien und verhindern Sie Token-Replay-Angriffe  
 
-8. **Sitzungsmanagement**: Implementieren Sie sicheres Sitzungsmanagement, um Session Hijacking und Fixation zu verhindern.
-   - Verwenden Sie sichere, nicht vorhersagbare Session-IDs
-   - Binden Sie Sessions an benutzerspezifische Informationen
-   - Sorgen Sie für angemessene Sitzungsablaufzeiten und Rotation
+**Geschützte Token-Speicherung:**
+   - Verwenden Sie Azure Key Vault oder ähnliche sichere Anmeldedaten-Speicher für alle Geheimnisse  
+   - Implementieren Sie Verschlüsselung für Tokens sowohl im Ruhezustand als auch während der Übertragung  
+   - Regelmäßige Rotation von Anmeldedaten und Überwachung auf unbefugten Zugriff  
 
-9. **Sandboxing der Tool-Ausführung**: Führen Sie Tool-Ausführungen in isolierten Umgebungen aus, um laterale Bewegungen bei Kompromittierung zu verhindern.
-   - Implementieren Sie Container-Isolation für die Tool-Ausführung
-   - Setzen Sie Ressourcenlimits, um Ressourcenerschöpfungsangriffe zu verhindern
-   - Verwenden Sie separate Ausführungskontexte für unterschiedliche Sicherheitsdomänen
+## 2. **Sitzungsmanagement & Transportsicherheit**
 
-10. **Regelmäßige Sicherheitsüberprüfungen**: Führen Sie regelmäßige Sicherheitsreviews Ihrer MCP-Implementierungen und Abhängigkeiten durch.
-    - Planen Sie regelmäßige Penetrationstests
-    - Nutzen Sie automatisierte Scanning-Tools zur Erkennung von Schwachstellen
-    - Halten Sie Abhängigkeiten aktuell, um bekannte Sicherheitsprobleme zu beheben
+**Sichere Sitzungspraktiken:**
+   - **Kryptografisch sichere Sitzungs-IDs**: Verwenden Sie sichere, nicht-deterministische Sitzungs-IDs, die mit sicheren Zufallszahlengeneratoren erstellt werden  
+   - **Benutzerspezifische Bindung**: Binden Sie Sitzungs-IDs an Benutzeridentitäten mit Formaten wie `<user_id>:<session_id>`, um Missbrauch zwischen Benutzern zu verhindern  
+   - **Sitzungslebenszyklus-Management**: Implementieren Sie ordnungsgemäßen Ablauf, Rotation und Ungültigmachung, um Schwachstellenfenster zu begrenzen  
+   - **Erzwingung von HTTPS/TLS**: HTTPS ist für alle Kommunikation obligatorisch, um die Abfangung von Sitzungs-IDs zu verhindern  
 
-11. **Content Safety Filtering**: Implementieren Sie Content-Sicherheitsfilter für Eingaben und Ausgaben.
-    - Verwenden Sie Azure Content Safety oder ähnliche Dienste zur Erkennung schädlicher Inhalte
-    - Setzen Sie Prompt-Shield-Techniken ein, um Prompt Injection zu verhindern
-    - Scannen Sie generierte Inhalte auf potenzielle sensible Datenlecks
+**Transportsicherheit:**
+   - Konfigurieren Sie TLS 1.3, wo möglich, mit ordnungsgemäßem Zertifikatsmanagement  
+   - Implementieren Sie Zertifikat-Pinning für kritische Verbindungen  
+   - Regelmäßige Rotation und Überprüfung der Gültigkeit von Zertifikaten  
 
-12. **Supply Chain Security**: Überprüfen Sie die Integrität und Authentizität aller Komponenten in Ihrer KI-Lieferkette.
-    - Verwenden Sie signierte Pakete und überprüfen Sie Signaturen
-    - Implementieren Sie Software Bill of Materials (SBOM)-Analysen
-    - Überwachen Sie auf bösartige Updates von Abhängigkeiten
+## 3. **Schutz vor KI-spezifischen Bedrohungen** 🤖
 
-13. **Schutz der Tool-Definitionen**: Verhindern Sie Tool-Poisoning durch Absicherung von Tool-Definitionen und Metadaten.
-    - Validieren Sie Tool-Definitionen vor der Nutzung
-    - Überwachen Sie unerwartete Änderungen an Tool-Metadaten
-    - Implementieren Sie Integritätsprüfungen für Tool-Definitionen
+**Verteidigung gegen Prompt Injection:**
+   - **Microsoft Prompt Shields**: Setzen Sie AI Prompt Shields ein, um fortschrittliche Erkennung und Filterung bösartiger Anweisungen zu gewährleisten  
+   - **Eingabesanitierung**: Validieren und bereinigen Sie alle Eingaben, um Injection-Angriffe und Confused Deputy-Probleme zu verhindern  
+   - **Inhaltsgrenzen**: Verwenden Sie Trennzeichen- und Datenmarkierungssysteme, um vertrauenswürdige Anweisungen von externen Inhalten zu unterscheiden  
 
-14. **Dynamische Ausführungsüberwachung**: Überwachen Sie das Laufzeitverhalten von MCP-Servern und Tools.
-    - Implementieren Sie Verhaltensanalysen zur Erkennung von Anomalien
-    - Richten Sie Benachrichtigungen für unerwartete Ausführungsmuster ein
-    - Nutzen Sie Runtime Application Self-Protection (RASP)-Techniken
+**Prävention von Tool Poisoning:**
+   - **Validierung von Tool-Metadaten**: Implementieren Sie Integritätsprüfungen für Tool-Definitionen und überwachen Sie unerwartete Änderungen  
+   - **Dynamische Tool-Überwachung**: Überwachen Sie das Laufzeitverhalten und richten Sie Alarme für unerwartete Ausführungsmuster ein  
+   - **Genehmigungs-Workflows**: Fordern Sie eine explizite Benutzerzustimmung für Tool-Änderungen und Kapazitätsanpassungen  
 
-15. **Prinzip der minimalen Rechte**: Stellen Sie sicher, dass MCP-Server und Tools nur mit den minimal erforderlichen Berechtigungen arbeiten.
-    - Gewähren Sie nur die spezifischen Berechtigungen, die für jede Operation nötig sind
-    - Überprüfen und auditieren Sie Berechtigungen regelmäßig
-    - Implementieren Sie Just-in-Time-Zugriff für administrative Funktionen
+## 4. **Zugriffskontrolle & Berechtigungen**
+
+**Prinzip der minimalen Rechtevergabe:**
+   - Gewähren Sie MCP-Servern nur die minimal erforderlichen Berechtigungen für die beabsichtigte Funktionalität  
+   - Implementieren Sie rollenbasierte Zugriffskontrolle (RBAC) mit fein abgestuften Berechtigungen  
+   - Regelmäßige Überprüfung der Berechtigungen und kontinuierliche Überwachung auf Privilegieneskalation  
+
+**Laufzeitberechtigungskontrollen:**
+   - Wenden Sie Ressourcenbeschränkungen an, um Angriffe zur Ressourcenerschöpfung zu verhindern  
+   - Verwenden Sie Container-Isolation für Tool-Ausführungsumgebungen  
+   - Implementieren Sie Just-in-Time-Zugriff für administrative Funktionen  
+
+## 5. **Inhaltssicherheit & Überwachung**
+
+**Implementierung von Inhaltssicherheit:**
+   - **Azure Content Safety Integration**: Nutzen Sie Azure Content Safety, um schädliche Inhalte, Jailbreak-Versuche und Richtlinienverstöße zu erkennen  
+   - **Verhaltensanalyse**: Implementieren Sie Laufzeitüberwachung, um Anomalien in der MCP-Server- und Tool-Ausführung zu erkennen  
+   - **Umfassendes Logging**: Protokollieren Sie alle Authentifizierungsversuche, Tool-Aufrufe und Sicherheitsereignisse in einer sicheren, manipulationssicheren Speicherung  
+
+**Kontinuierliche Überwachung:**
+   - Echtzeitwarnungen für verdächtige Muster und unbefugte Zugriffsversuche  
+   - Integration mit SIEM-Systemen für zentralisiertes Sicherheitsereignismanagement  
+   - Regelmäßige Sicherheitsaudits und Penetrationstests von MCP-Implementierungen  
+
+## 6. **Lieferkettensicherheit**
+
+**Komponentenüberprüfung:**
+   - **Abhängigkeitsscans**: Verwenden Sie automatisierte Schwachstellenscans für alle Softwareabhängigkeiten und KI-Komponenten  
+   - **Herkunftsvalidierung**: Überprüfen Sie die Herkunft, Lizenzierung und Integrität von Modellen, Datenquellen und externen Diensten  
+   - **Signierte Pakete**: Verwenden Sie kryptografisch signierte Pakete und überprüfen Sie Signaturen vor der Bereitstellung  
+
+**Sichere Entwicklungspipeline:**
+   - **GitHub Advanced Security**: Implementieren Sie Geheimnisscans, Abhängigkeitsanalysen und CodeQL-Analysen  
+   - **CI/CD-Sicherheit**: Integrieren Sie Sicherheitsvalidierungen in automatisierte Bereitstellungspipelines  
+   - **Artefaktintegrität**: Implementieren Sie kryptografische Überprüfungen für bereitgestellte Artefakte und Konfigurationen  
+
+## 7. **OAuth-Sicherheit & Vermeidung von Confused Deputy**
+
+**OAuth 2.1-Implementierung:**
+   - **PKCE-Implementierung**: Verwenden Sie Proof Key for Code Exchange (PKCE) für alle Autorisierungsanfragen  
+   - **Explizite Zustimmung**: Holen Sie die Zustimmung des Benutzers für jeden dynamisch registrierten Client ein, um Confused Deputy-Angriffe zu verhindern  
+   - **Validierung der Redirect-URI**: Implementieren Sie strikte Validierung von Redirect-URIs und Client-Identifikatoren  
+
+**Proxy-Sicherheit:**
+   - Verhindern Sie Autorisierungsumgehungen durch statische Client-ID-Ausnutzung  
+   - Implementieren Sie ordnungsgemäße Zustimmungs-Workflows für den Zugriff auf Drittanbieter-APIs  
+   - Überwachen Sie den Diebstahl von Autorisierungscodes und unbefugten API-Zugriff  
+
+## 8. **Vorfallreaktion & Wiederherstellung**
+
+**Schnelle Reaktionsfähigkeit:**
+   - **Automatisierte Reaktion**: Implementieren Sie automatisierte Systeme für Anmeldedatenrotation und Bedrohungseindämmung  
+   - **Rollback-Verfahren**: Fähigkeit, schnell auf bekannte, gute Konfigurationen und Komponenten zurückzusetzen  
+   - **Forensische Fähigkeiten**: Detaillierte Prüfpfade und Protokollierung für Vorfalluntersuchungen  
+
+**Kommunikation & Koordination:**
+   - Klare Eskalationsverfahren für Sicherheitsvorfälle  
+   - Integration mit organisatorischen Vorfallreaktionsteams  
+   - Regelmäßige Sicherheitsvorfall-Simulationen und Planspiele  
+
+## 9. **Compliance & Governance**
+
+**Regulatorische Compliance:**
+   - Stellen Sie sicher, dass MCP-Implementierungen branchenspezifische Anforderungen erfüllen (GDPR, HIPAA, SOC 2)  
+   - Implementieren Sie Datenklassifizierungs- und Datenschutzkontrollen für KI-Datenverarbeitung  
+   - Führen Sie umfassende Dokumentationen für Compliance-Audits  
+
+**Änderungsmanagement:**
+   - Formale Sicherheitsüberprüfungsprozesse für alle Änderungen am MCP-System  
+   - Versionskontrolle und Genehmigungs-Workflows für Konfigurationsänderungen  
+   - Regelmäßige Compliance-Bewertungen und Lückenanalysen  
+
+## 10. **Erweiterte Sicherheitskontrollen**
+
+**Zero Trust Architektur:**
+   - **Niemals vertrauen, immer überprüfen**: Kontinuierliche Überprüfung von Benutzern, Geräten und Verbindungen  
+   - **Mikrosegmentierung**: Granulare Netzwerksteuerungen zur Isolierung einzelner MCP-Komponenten  
+   - **Bedingter Zugriff**: Risikobasierte Zugriffskontrollen, die sich an den aktuellen Kontext und das Verhalten anpassen  
+
+**Laufzeitanwendungsschutz:**
+   - **Runtime Application Self-Protection (RASP)**: Setzen Sie RASP-Techniken für Echtzeit-Bedrohungserkennung ein  
+   - **Anwendungsleistungsüberwachung**: Überwachen Sie Leistungsanomalien, die auf Angriffe hinweisen könnten  
+   - **Dynamische Sicherheitsrichtlinien**: Implementieren Sie Sicherheitsrichtlinien, die sich an die aktuelle Bedrohungslage anpassen  
+
+## 11. **Integration des Microsoft-Sicherheitsökosystems**
+
+**Umfassende Microsoft-Sicherheit:**
+   - **Microsoft Defender for Cloud**: Sicherheitsmanagement für MCP-Workloads in der Cloud  
+   - **Azure Sentinel**: Cloud-natives SIEM und SOAR für fortschrittliche Bedrohungserkennung  
+   - **Microsoft Purview**: Datenverwaltung und Compliance für KI-Workflows und Datenquellen  
+
+**Identitäts- & Zugriffsmanagement:**
+   - **Microsoft Entra ID**: Unternehmensidentitätsmanagement mit Richtlinien für bedingten Zugriff  
+   - **Privileged Identity Management (PIM)**: Just-in-Time-Zugriff und Genehmigungs-Workflows für administrative Funktionen  
+   - **Identity Protection**: Risikobasierter bedingter Zugriff und automatisierte Bedrohungsreaktion  
+
+## 12. **Kontinuierliche Sicherheitsevolution**
+
+**Aktuell bleiben:**
+   - **Spezifikationsüberwachung**: Regelmäßige Überprüfung von MCP-Spezifikationsupdates und Änderungen der Sicherheitsrichtlinien  
+   - **Bedrohungsaufklärung**: Integration von KI-spezifischen Bedrohungsfeeds und Indikatoren für Kompromittierungen  
+   - **Engagement in der Sicherheitsgemeinschaft**: Aktive Teilnahme an der MCP-Sicherheitsgemeinschaft und Programmen zur Offenlegung von Schwachstellen  
+
+**Adaptive Sicherheit:**
+   - **Maschinelles Lernen für Sicherheit**: Verwenden Sie ML-basierte Anomalieerkennung zur Identifizierung neuartiger Angriffsmuster  
+   - **Prädiktive Sicherheitsanalysen**: Implementieren Sie prädiktive Modelle zur proaktiven Bedrohungserkennung  
+   - **Sicherheitsautomatisierung**: Automatisierte Sicherheitsrichtlinien-Updates basierend auf Bedrohungsaufklärung und Spezifikationsänderungen  
+
+---
+
+## **Kritische Sicherheitsressourcen**
+
+### **Offizielle MCP-Dokumentation**
+- [MCP-Spezifikation (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)  
+- [MCP Sicherheitsbest Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)  
+- [MCP Autorisierungsspezifikation](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)  
+
+### **Microsoft Sicherheitslösungen**
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)  
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)  
+- [Microsoft Entra ID Sicherheit](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)  
+- [GitHub Advanced Security](https://github.com/security/advanced-security)  
+
+### **Sicherheitsstandards**
+- [OAuth 2.0 Sicherheitsbest Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
+- [OWASP Top 10 für Large Language Models](https://genai.owasp.org/)  
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)  
+
+### **Implementierungsleitfäden**
+- [Azure API Management MCP Authentifizierungs-Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)  
+- [Microsoft Entra ID mit MCP-Servern](https://den.dev/blog/mcp-server-auth-entra-id-session/)  
+
+---
+
+> **Sicherheitshinweis**: MCP-Sicherheitspraktiken entwickeln sich schnell weiter. Überprüfen Sie stets die aktuelle [MCP-Spezifikation](https://spec.modelcontextprotocol.io/) und die [offizielle Sicherheitsdokumentation](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) vor der Implementierung.  
 
 **Haftungsausschluss**:  
-Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner Ursprungssprache ist als maßgebliche Quelle zu betrachten. Für wichtige Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Nutzung dieser Übersetzung entstehen.
+Dieses Dokument wurde mithilfe des KI-Übersetzungsdienstes [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, weisen wir darauf hin, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir haften nicht für Missverständnisse oder Fehlinterpretationen, die aus der Nutzung dieser Übersetzung entstehen.

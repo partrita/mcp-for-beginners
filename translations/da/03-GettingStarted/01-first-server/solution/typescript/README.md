@@ -1,42 +1,42 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ac67652abc453e2a7e2c75cd7a8897ae",
-  "translation_date": "2025-07-13T18:05:55+00:00",
+  "original_hash": "6ebbb78b04c9b1f6c2367c713524fc95",
+  "translation_date": "2025-09-03T16:10:11+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/typescript/README.md",
   "language_code": "da"
 }
 -->
-# Kør dette eksempel
+# Kør denne prøve
 
-Det anbefales at installere `uv`, men det er ikke et krav, se [instructions](https://docs.astral.sh/uv/#highlights)
+Det anbefales at installere `uv`, men det er ikke et krav, se [instruktioner](https://docs.astral.sh/uv/#highlights)
 
-## -1- Installer afhængighederne
+## -1- Installer afhængigheder
 
 ```bash
 npm install
 ```
 
-## -3- Kør eksemplet
+## -3- Kør prøven
 
 ```bash
 npm run build
 ```
 
-## -4- Test eksemplet
+## -4- Test prøven
 
-Med serveren kørende i et terminalvindue, åbn et andet terminalvindue og kør følgende kommando:
+Med serveren kørende i én terminal, åbnes en anden terminal, og følgende kommando køres:
 
 ```bash
 npm run inspector
 ```
 
-Dette skulle starte en webserver med en visuel grænseflade, der giver dig mulighed for at teste eksemplet.
+Dette bør starte en webserver med en visuel grænseflade, der giver dig mulighed for at teste prøven.
 
-Når serveren er tilsluttet:
+Når serveren er forbundet:
 
-- prøv at liste værktøjer og kør `add` med argumenterne 2 og 4, du skulle se 6 som resultat.
-- gå til resources og resource template og kald "greeting", indtast et navn, og du skulle se en hilsen med det navn, du har angivet.
+- prøv at liste værktøjer og kør `add` med argumenterne 2 og 4, du bør se 6 som resultat.
+- gå til ressourcer og ressource-skabelon og kald "greeting", indtast et navn, og du bør se en hilsen med det navn, du har angivet.
 
 ### Test i CLI-tilstand
 
@@ -48,7 +48,7 @@ Du kan starte den direkte i CLI-tilstand ved at køre følgende kommando:
 npx @modelcontextprotocol/inspector --cli node ./build/index.js --method tools/list
 ```
 
-Dette vil liste alle tilgængelige værktøjer på serveren. Du skulle se følgende output:
+Dette vil liste alle de værktøjer, der er tilgængelige på serveren. Du bør se følgende output:
 
 ```text
 {
@@ -79,13 +79,13 @@ Dette vil liste alle tilgængelige værktøjer på serveren. Du skulle se følge
 }
 ```
 
-For at kalde et værktøj, skriv:
+For at kalde et værktøj skal du skrive:
 
 ```bash
 nnpx @modelcontextprotocol/inspector --cli node ./build/index.js --method tools/call --tool-name add --tool-arg a=1 --tool-arg b=2
 ```
 
-Du skulle se følgende output:
+Du bør se følgende output:
 
 ```text
 {
@@ -99,9 +99,11 @@ Du skulle se følgende output:
 }
 ```
 
-> ![!TIP]
-> Det er som regel meget hurtigere at køre inspektøren i CLI-tilstand end i browseren.
+> [!TIP]
+> Det er normalt meget hurtigere at køre inspektøren i CLI-tilstand end i browseren.
 > Læs mere om inspektøren [her](https://github.com/modelcontextprotocol/inspector).
 
+---
+
 **Ansvarsfraskrivelse**:  
-Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, bedes du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det oprindelige dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os intet ansvar for misforståelser eller fejltolkninger, der opstår som følge af brugen af denne oversættelse.
+Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, skal du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det originale dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi er ikke ansvarlige for eventuelle misforståelser eller fejltolkninger, der opstår som følge af brugen af denne oversættelse.

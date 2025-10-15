@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4c4da5949611d91b06d8a5d450aae8d6",
-  "translation_date": "2025-07-13T21:19:33+00:00",
+  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
+  "translation_date": "2025-08-18T12:59:05+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
   "language_code": "pl"
 }
@@ -13,14 +13,14 @@ Oto jak uruchomić klasyczny serwer i klient HTTP streaming, a także serwer i k
 
 ### Przegląd
 
-- Skonfigurujesz serwer MCP, który będzie przesyłał powiadomienia o postępie do klienta podczas przetwarzania elementów.
-- Klient będzie wyświetlał każde powiadomienie na bieżąco.
-- Ten przewodnik obejmuje wymagania wstępne, konfigurację, uruchomienie i rozwiązywanie problemów.
+- Skonfigurujesz serwer MCP, który przesyła powiadomienia o postępie do klienta podczas przetwarzania elementów.
+- Klient będzie wyświetlał każde powiadomienie w czasie rzeczywistym.
+- Ten przewodnik obejmuje wymagania wstępne, konfigurację, uruchamianie i rozwiązywanie problemów.
 
 ### Wymagania wstępne
 
 - Python 3.9 lub nowszy
-- Pakiet `mcp` dla Pythona (zainstaluj za pomocą `pip install mcp`)
+- Pakiet Python `mcp` (zainstaluj za pomocą `pip install mcp`)
 
 ### Instalacja i konfiguracja
 
@@ -30,7 +30,7 @@ Oto jak uruchomić klasyczny serwer i klient HTTP streaming, a także serwer i k
    git clone https://github.com/microsoft/mcp-for-beginners
    ```
 
-1. **Utwórz i aktywuj środowisko wirtualne (zalecane):**
+1. **Utwórz i aktywuj wirtualne środowisko (zalecane):**
 
    ```pwsh
    python -m venv venv
@@ -42,7 +42,7 @@ Oto jak uruchomić klasyczny serwer i klient HTTP streaming, a także serwer i k
 1. **Zainstaluj wymagane zależności:**
 
    ```pwsh
-   pip install "mcp[cli]"
+   pip install "mcp[cli]" fastapi requests
    ```
 
 ### Pliki
@@ -73,14 +73,14 @@ Oto jak uruchomić klasyczny serwer i klient HTTP streaming, a także serwer i k
 
 ### Uruchamianie klasycznego klienta HTTP streaming
 
-1. Otwórz nowe okno terminala (aktywuj to samo środowisko wirtualne i katalog):
+1. Otwórz nowe okno terminala (aktywuj to samo wirtualne środowisko i katalog):
 
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py
    ```
 
-2. Powinieneś zobaczyć kolejno wyświetlane przesyłane wiadomości:
+2. Powinieneś zobaczyć strumieniowo wyświetlane wiadomości w kolejności:
 
    ```text
    Running classic HTTP streaming client...
@@ -95,15 +95,15 @@ Oto jak uruchomić klasyczny serwer i klient HTTP streaming, a także serwer i k
 
 ### Uruchamianie serwera MCP streaming
 
-1. Przejdź do katalogu z rozwiązaniem:  
+1. Przejdź do katalogu z rozwiązaniem:
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    ```
-2. Uruchom serwer MCP z transportem streamable-http:  
+2. Uruchom serwer MCP z transportem streamable-http:
    ```pwsh
    python server.py mcp
    ```
-3. Serwer uruchomi się i wyświetli:  
+3. Serwer uruchomi się i wyświetli:
    ```
    Starting MCP server with streamable-http transport...
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
@@ -111,12 +111,12 @@ Oto jak uruchomić klasyczny serwer i klient HTTP streaming, a także serwer i k
 
 ### Uruchamianie klienta MCP streaming
 
-1. Otwórz nowe okno terminala (aktywuj to samo środowisko wirtualne i katalog):  
+1. Otwórz nowe okno terminala (aktywuj to samo wirtualne środowisko i katalog):
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py mcp
    ```
-2. Powinieneś zobaczyć powiadomienia wyświetlane na bieżąco, gdy serwer przetwarza kolejne elementy:  
+2. Powinieneś zobaczyć powiadomienia wyświetlane w czasie rzeczywistym, gdy serwer przetwarza każdy element:
    ```
    Running MCP client...
    Starting client...
@@ -131,21 +131,21 @@ Oto jak uruchomić klasyczny serwer i klient HTTP streaming, a także serwer i k
 
 ### Kluczowe kroki implementacji
 
-1. **Utwórz serwer MCP używając FastMCP.**  
-2. **Zdefiniuj narzędzie, które przetwarza listę i wysyła powiadomienia za pomocą `ctx.info()` lub `ctx.log()`.**  
-3. **Uruchom serwer z `transport="streamable-http"`.**  
-4. **Zaimplementuj klienta z obsługą wiadomości, aby wyświetlać powiadomienia w miarę ich pojawiania się.**
+1. **Utwórz serwer MCP za pomocą FastMCP.**
+2. **Zdefiniuj narzędzie, które przetwarza listę i wysyła powiadomienia za pomocą `ctx.info()` lub `ctx.log()`.**
+3. **Uruchom serwer z `transport="streamable-http"`.**
+4. **Zaimplementuj klienta z obsługą wiadomości, aby wyświetlać powiadomienia w miarę ich przychodzenia.**
 
-### Omówienie kodu
-- Serwer korzysta z funkcji asynchronicznych i kontekstu MCP do wysyłania aktualizacji postępu.
-- Klient implementuje asynchroniczny handler wiadomości, który drukuje powiadomienia oraz ostateczny wynik.
+### Przegląd kodu
+- Serwer używa funkcji asynchronicznych i kontekstu MCP do wysyłania aktualizacji postępu.
+- Klient implementuje asynchroniczną obsługę wiadomości, aby drukować powiadomienia i wynik końcowy.
 
 ### Wskazówki i rozwiązywanie problemów
 
-- Używaj `async/await` dla operacji nieblokujących.  
-- Zawsze obsługuj wyjątki zarówno po stronie serwera, jak i klienta, aby zapewnić stabilność.  
-- Testuj z wieloma klientami, aby zobaczyć aktualizacje w czasie rzeczywistym.  
+- Używaj `async/await` do operacji nieblokujących.
+- Zawsze obsługuj wyjątki zarówno po stronie serwera, jak i klienta, aby zapewnić niezawodność.
+- Testuj z wieloma klientami, aby zaobserwować aktualizacje w czasie rzeczywistym.
 - Jeśli napotkasz błędy, sprawdź wersję Pythona i upewnij się, że wszystkie zależności są zainstalowane.
 
 **Zastrzeżenie**:  
-Niniejszy dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mimo że dążymy do jak największej dokładności, prosimy mieć na uwadze, że tłumaczenia automatyczne mogą zawierać błędy lub nieścisłości. Oryginalny dokument w języku źródłowym powinien być uznawany za źródło autorytatywne. W przypadku informacji o kluczowym znaczeniu zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczeniowej AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby zapewnić dokładność, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za wiarygodne źródło. W przypadku informacji krytycznych zaleca się skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.

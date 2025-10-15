@@ -1,108 +1,166 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "90bfc6f3be00e34f6124e2a24bf94167",
-  "translation_date": "2025-07-17T01:52:56+00:00",
+  "original_hash": "b2b9e15e78b9d9a2b3ff3e8fd7d1f434",
+  "translation_date": "2025-08-18T16:09:48+00:00",
   "source_file": "02-Security/mcp-best-practices.md",
   "language_code": "ne"
 }
 -->
-# MCP सुरक्षा उत्तम अभ्यासहरू
+# एमसीपी सुरक्षा उत्कृष्ट अभ्यास २०२५
 
-MCP सर्भरहरूसँग काम गर्दा, तपाईंको डेटा, पूर्वाधार, र प्रयोगकर्ताहरूलाई सुरक्षित राख्न यी सुरक्षा उत्तम अभ्यासहरू पालना गर्नुहोस्:
+यो विस्तृत मार्गदर्शनले **एमसीपी स्पेसिफिकेसन २०२५-०६-१८** र हालको उद्योग मापदण्डहरूमा आधारित मोडेल कन्टेक्स्ट प्रोटोकल (एमसीपी) प्रणालीहरू कार्यान्वयन गर्नका लागि आवश्यक सुरक्षा उत्कृष्ट अभ्यासहरूलाई स्पष्ट पार्छ। यी अभ्यासहरूले परम्परागत सुरक्षा चिन्ताहरू र एमसीपी कार्यान्वयनसँग सम्बन्धित एआई-विशिष्ट खतराहरूलाई सम्बोधन गर्छ।
 
-1. **इनपुट मान्यकरण**: इन्जेक्शन आक्रमण र भ्रमित डिप्युटी समस्याहरूबाट बच्न सधैं इनपुटहरू मान्य र सफा गर्नुहोस्।
-2. **पहुँच नियन्त्रण**: तपाईंको MCP सर्भरका लागि उपयुक्त प्रमाणीकरण र प्राधिकरण लागू गर्नुहोस्, जसमा सूक्ष्म अनुमति व्यवस्थापन समावेश होस्।
-3. **सुरक्षित सञ्चार**: तपाईंको MCP सर्भरसँग सबै सञ्चारका लागि HTTPS/TLS प्रयोग गर्नुहोस् र संवेदनशील डेटाका लागि थप इन्क्रिप्शन थप्न विचार गर्नुहोस्।
-4. **दर सीमांकन**: दुरुपयोग, DoS आक्रमणहरू रोक्न र स्रोतको उपभोग व्यवस्थापन गर्न दर सीमांकन लागू गर्नुहोस्।
-5. **लगिङ र अनुगमन**: तपाईंको MCP सर्भरमा शंकास्पद गतिविधिहरू अनुगमन गर्नुहोस् र व्यापक अडिट ट्रेलहरू लागू गर्नुहोस्।
-6. **सुरक्षित भण्डारण**: संवेदनशील डेटा र प्रमाणपत्रहरूलाई उचित इन्क्रिप्शनका साथ सुरक्षित राख्नुहोस्।
-7. **टोकन व्यवस्थापन**: सबै मोडेल इनपुट र आउटपुटहरूलाई मान्य र सफा गरेर टोकन पासथ्रू कमजोरीहरू रोक्नुहोस्।
-8. **सेसन व्यवस्थापन**: सेसन हाइज्याकिङ र फिक्सेसन आक्रमणहरू रोक्न सुरक्षित सेसन ह्यान्डलिङ लागू गर्नुहोस्।
-9. **टुल कार्यान्वयन स्यान्डबक्सिङ**: यदि कम्प्रोमाइज भएमा पार्श्वगत आन्दोलन रोक्न टुल कार्यान्वयनहरू अलग्गै वातावरणमा चलाउनुहोस्।
-10. **नियमित सुरक्षा अडिटहरू**: तपाईंको MCP कार्यान्वयन र निर्भरताहरूको आवधिक सुरक्षा समीक्षा गर्नुहोस्।
-11. **प्रम्प्ट मान्यकरण**: प्रम्प्ट इन्जेक्शन आक्रमणहरू रोक्न इनपुट र आउटपुट दुवै प्रम्प्टहरू स्क्यान र फिल्टर गर्नुहोस्।
-12. **प्रमाणीकरण प्रतिनिधित्व**: कस्टम प्रमाणीकरण लागू गर्नुको सट्टा स्थापित पहिचान प्रदायकहरू प्रयोग गर्नुहोस्।
-13. **अनुमति स्कोपिङ**: न्यूनतम विशेषाधिकार सिद्धान्त अनुसार प्रत्येक टुल र स्रोतका लागि सूक्ष्म अनुमति लागू गर्नुहोस्।
-14. **डेटा न्यूनिकरण**: जोखिम सतह घटाउन प्रत्येक अपरेशनका लागि आवश्यक न्यूनतम डेटा मात्र उपलब्ध गराउनुहोस्।
-15. **स्वचालित कमजोरी स्क्यानिङ**: तपाईंका MCP सर्भरहरू र निर्भरताहरूलाई नियमित रूपमा ज्ञात कमजोरीहरूको लागि स्क्यान गर्नुहोस्।
+## महत्वपूर्ण सुरक्षा आवश्यकताहरू
 
-## MCP सुरक्षा उत्तम अभ्यासहरूका लागि सहयोगी स्रोतहरू
+### अनिवार्य सुरक्षा नियन्त्रणहरू (MUST आवश्यकताहरू)
 
-### इनपुट मान्यकरण
-- [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)
-- [Preventing Prompt Injection in MCP](https://modelcontextprotocol.io/docs/guides/security)
-- [Azure Content Safety Implementation](./azure-content-safety-implementation.md)
+1. **टोकन प्रमाणीकरण**: एमसीपी सर्भरहरूले **MUST NOT** कुनै पनि टोकन स्वीकार गर्नु हुँदैन जुन स्पष्ट रूपमा एमसीपी सर्भरका लागि जारी गरिएको छैन।  
+2. **अधिकार प्रमाणीकरण**: अधिकार कार्यान्वयन गर्ने एमसीपी सर्भरहरूले **MUST** सबै इनबाउन्ड अनुरोधहरू प्रमाणीकरण गर्नुपर्छ र **MUST NOT** सत्रहरूलाई प्रमाणीकरणको लागि प्रयोग गर्नु हुँदैन।  
+3. **प्रयोगकर्ताको सहमति**: स्थिर क्लाइन्ट आईडी प्रयोग गर्ने एमसीपी प्रोक्सी सर्भरहरूले प्रत्येक गतिशील रूपमा दर्ता गरिएको क्लाइन्टको लागि स्पष्ट प्रयोगकर्ता सहमति प्राप्त गर्नुपर्छ।  
+4. **सुरक्षित सत्र आईडीहरू**: एमसीपी सर्भरहरूले क्रिप्टोग्राफिक रूपमा सुरक्षित, गैर-निर्धारित सत्र आईडीहरू प्रयोग गर्नुपर्छ जुन सुरक्षित र्यान्डम नम्बर जेनेरेटरहरूसँग उत्पन्न गरिन्छ।  
 
-### पहुँच नियन्त्रण
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [Using Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/)
-- [Azure API Management as Auth Gateway for MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+## मुख्य सुरक्षा अभ्यासहरू
 
-### सुरक्षित सञ्चार
-- [Transport Layer Security (TLS) Best Practices](https://learn.microsoft.com/security/engineering/solving-tls)
-- [MCP Transport Security Guidelines](https://modelcontextprotocol.io/docs/concepts/transports)
-- [End-to-End Encryption for AI Workloads](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption)
+### १. इनपुट प्रमाणीकरण र सफाई
+- **व्यापक इनपुट प्रमाणीकरण**: इन्जेक्सन आक्रमण, भ्रमित डेप्युटी समस्या, र प्रम्प्ट इन्जेक्सन कमजोरिबाट बच्न सबै इनपुटहरू प्रमाणीकरण र सफा गर्नुहोस्।  
+- **प्यारामिटर स्कीमा प्रवर्तन**: सबै उपकरण प्यारामिटरहरू र एपीआई इनपुटहरूको लागि कडा JSON स्कीमा प्रमाणीकरण लागू गर्नुहोस्।  
+- **सामग्री फिल्टरिङ**: प्रम्प्ट र प्रतिक्रियाहरूमा दुर्भावनापूर्ण सामग्री फिल्टर गर्न माइक्रोसफ्ट प्रम्प्ट शिल्ड्स र एजर कन्टेन्ट सेफ्टी प्रयोग गर्नुहोस्।  
+- **आउटपुट सफाई**: प्रयोगकर्ताहरू वा डाउनस्ट्रीम प्रणालीहरूलाई प्रस्तुत गर्नु अघि सबै मोडेल आउटपुटहरू प्रमाणीकरण र सफा गर्नुहोस्।  
 
-### दर सीमांकन
-- [API Rate Limiting Patterns](https://learn.microsoft.com/azure/architecture/patterns/rate-limiting-pattern)
-- [Implementing Token Bucket Rate Limiting](https://konghq.com/blog/engineering/how-to-design-a-scalable-rate-limiting-algorithm)
-- [Rate Limiting in Azure API Management](https://learn.microsoft.com/azure/api-management/rate-limit-policy)
+### २. प्रमाणीकरण र अधिकारको उत्कृष्टता  
+- **बाह्य पहिचान प्रदायकहरू**: कस्टम प्रमाणीकरण कार्यान्वयन गर्नुको सट्टा स्थापित पहिचान प्रदायकहरू (माइक्रोसफ्ट एन्ट्रा आईडी, OAuth 2.1 प्रदायकहरू) मा प्रमाणीकरण प्रतिनिधि गर्नुहोस्।  
+- **सूक्ष्म अनुमति**: न्यूनतम विशेषाधिकारको सिद्धान्त पालना गर्दै उपकरण-विशिष्ट अनुमति लागू गर्नुहोस्।  
+- **टोकन जीवनचक्र व्यवस्थापन**: सुरक्षित रोटेशन र उचित दर्शक प्रमाणीकरणको साथ छोटो समयसम्म चल्ने पहुँच टोकनहरू प्रयोग गर्नुहोस्।  
+- **बहु-कारक प्रमाणीकरण**: सबै प्रशासनिक पहुँच र संवेदनशील कार्यहरूको लागि MFA आवश्यक छ।  
 
-### लगिङ र अनुगमन
-- [Centralized Logging for AI Systems](https://learn.microsoft.com/azure/architecture/example-scenario/logging/centralized-logging)
-- [Audit Logging Best Practices](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
-- [Azure Monitor for AI Workloads](https://learn.microsoft.com/azure/azure-monitor/overview)
+### ३. सुरक्षित सञ्चार प्रोटोकलहरू
+- **ट्रान्सपोर्ट लेयर सुरक्षा**: सबै एमसीपी सञ्चारका लागि HTTPS/TLS 1.3 प्रयोग गर्नुहोस् र प्रमाणपत्र प्रमाणीकरण सुनिश्चित गर्नुहोस्।  
+- **एन्ड-टु-एन्ड इन्क्रिप्सन**: अत्यन्त संवेदनशील डाटाको लागि ट्रान्जिट र रेस्टमा थप इन्क्रिप्सन तहहरू लागू गर्नुहोस्।  
+- **प्रमाणपत्र व्यवस्थापन**: स्वचालित नवीकरण प्रक्रियाहरूको साथ उचित प्रमाणपत्र जीवनचक्र व्यवस्थापन कायम गर्नुहोस्।  
+- **प्रोटोकल संस्करण प्रवर्तन**: उचित संस्करण वार्तालापको साथ हालको एमसीपी प्रोटोकल संस्करण (२०२५-०६-१८) प्रयोग गर्नुहोस्।  
 
-### सुरक्षित भण्डारण
-- [Azure Key Vault for Credential Storage](https://learn.microsoft.com/azure/key-vault/general/basic-concepts)
-- [Encrypting Sensitive Data at Rest](https://learn.microsoft.com/security/engineering/data-encryption-at-rest)
-- [Use Secure Token Storage and Encrypt Tokens](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
+### ४. उन्नत दर सीमितता र स्रोत संरक्षण
+- **बहु-स्तरीय दर सीमितता**: दुरुपयोग रोक्न प्रयोगकर्ता, सत्र, उपकरण, र स्रोत स्तरहरूमा दर सीमितता लागू गर्नुहोस्।  
+- **अनुकूली दर सीमितता**: प्रयोगका ढाँचाहरू र खतरा संकेतकहरूमा अनुकूल हुने मेसिन लर्निङ-आधारित दर सीमितता प्रयोग गर्नुहोस्।  
+- **स्रोत कोटा व्यवस्थापन**: कम्प्युटेशनल स्रोतहरू, मेमोरी प्रयोग, र कार्यान्वयन समयको लागि उपयुक्त सीमा सेट गर्नुहोस्।  
+- **DDoS सुरक्षा**: व्यापक DDoS सुरक्षा र ट्राफिक विश्लेषण प्रणालीहरू तैनाथ गर्नुहोस्।  
 
-### टोकन व्यवस्थापन
-- [JWT Best Practices (RFC 8725)](https://datatracker.ietf.org/doc/html/rfc8725)
-- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
-- [Best Practices for Token Validation and Lifetime](https://learn.microsoft.com/entra/identity-platform/access-tokens)
+### ५. व्यापक लगिङ र अनुगमन
+- **संरचित अडिट लगिङ**: सबै एमसीपी अपरेसनहरू, उपकरण कार्यान्वयनहरू, र सुरक्षा घटनाहरूको लागि विस्तृत, खोजयोग्य लगहरू लागू गर्नुहोस्।  
+- **रियल-टाइम सुरक्षा अनुगमन**: एमसीपी कार्यभारहरूको लागि एआई-संचालित असामान्यता पत्ता लगाउने SIEM प्रणालीहरू तैनाथ गर्नुहोस्।  
+- **गोपनीयता-अनुकूल लगिङ**: डाटा गोपनीयता आवश्यकताहरू र नियमहरूको सम्मान गर्दै सुरक्षा घटनाहरू लग गर्नुहोस्।  
+- **घटना प्रतिक्रिया एकीकरण**: स्वचालित घटना प्रतिक्रिया कार्यप्रवाहहरूसँग लगिङ प्रणालीहरू जडान गर्नुहोस्।  
 
-### सेसन व्यवस्थापन
-- [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
-- [MCP Session Handling Guidelines](https://modelcontextprotocol.io/docs/guides/security)
-- [Secure Session Design Patterns](https://learn.microsoft.com/security/engineering/session-security)
+### ६. उन्नत सुरक्षित भण्डारण अभ्यासहरू
+- **हार्डवेयर सुरक्षा मोड्युलहरू**: महत्वपूर्ण क्रिप्टोग्राफिक अपरेसनहरूको लागि HSM-समर्थित कुञ्जी भण्डारण (Azure Key Vault, AWS CloudHSM) प्रयोग गर्नुहोस्।  
+- **इन्क्रिप्सन कुञ्जी व्यवस्थापन**: इन्क्रिप्सन कुञ्जीहरूको लागि उचित कुञ्जी रोटेशन, पृथकीकरण, र पहुँच नियन्त्रण लागू गर्नुहोस्।  
+- **गोप्य व्यवस्थापन**: सबै एपीआई कुञ्जीहरू, टोकनहरू, र प्रमाणहरू समर्पित गोप्य व्यवस्थापन प्रणालीहरूमा भण्डारण गर्नुहोस्।  
+- **डाटा वर्गीकरण**: संवेदनशीलता स्तरहरूको आधारमा डाटालाई वर्गीकृत गर्नुहोस् र उपयुक्त सुरक्षा उपायहरू लागू गर्नुहोस्।  
 
-### टुल कार्यान्वयन स्यान्डबक्सिङ
-- [Container Security Best Practices](https://learn.microsoft.com/azure/container-instances/container-instances-image-security)
-- [Implementing Process Isolation](https://learn.microsoft.com/windows/security/threat-protection/security-policy-settings/user-rights-assignment)
-- [Resource Limits for Containerized Applications](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+### ७. उन्नत टोकन व्यवस्थापन
+- **टोकन पासथ्रु रोकथाम**: सुरक्षा नियन्त्रणहरू बाइपास गर्ने टोकन पासथ्रु ढाँचाहरू स्पष्ट रूपमा निषेध गर्नुहोस्।  
+- **दर्शक प्रमाणीकरण**: टोकन दर्शक दाबीहरू एमसीपी सर्भर पहिचानसँग मेल खाने सुनिश्चित गर्नुहोस्।  
+- **दाबी-आधारित अधिकार**: टोकन दाबीहरू र प्रयोगकर्ता विशेषताहरूको आधारमा सूक्ष्म अधिकार लागू गर्नुहोस्।  
+- **टोकन बाइन्डिङ**: उपयुक्त ठाउँमा टोकनहरू विशिष्ट सत्रहरू, प्रयोगकर्ताहरू, वा उपकरणहरूसँग बाँध्नुहोस्।  
 
-### नियमित सुरक्षा अडिटहरू
-- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl)
-- [OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/)
-- [Security Code Review Guidelines](https://owasp.org/www-pdf-archive/OWASP_Code_Review_Guide_v2.pdf)
+### ८. सुरक्षित सत्र व्यवस्थापन
+- **क्रिप्टोग्राफिक सत्र आईडीहरू**: क्रिप्टोग्राफिक रूपमा सुरक्षित र्यान्डम नम्बर जेनेरेटरहरू प्रयोग गरेर सत्र आईडीहरू उत्पन्न गर्नुहोस्।  
+- **प्रयोगकर्ता-विशिष्ट बाइन्डिङ**: `<user_id>:<session_id>` जस्ता सुरक्षित ढाँचाहरू प्रयोग गरेर सत्र आईडीहरू प्रयोगकर्ता-विशिष्ट जानकारीसँग बाँध्नुहोस्।  
+- **सत्र जीवनचक्र नियन्त्रणहरू**: उचित सत्र समाप्ति, रोटेशन, र अमान्यकरण संयन्त्रहरू लागू गर्नुहोस्।  
+- **सत्र सुरक्षा हेडरहरू**: सत्र सुरक्षाको लागि उपयुक्त HTTP सुरक्षा हेडरहरू प्रयोग गर्नुहोस्।  
 
-### प्रम्प्ट मान्यकरण
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
-- [Azure Content Safety for AI](https://learn.microsoft.com/azure/ai-services/content-safety/)
-- [Preventing Prompt Injection](https://github.com/microsoft/prompt-shield-js)
+### ९. एआई-विशिष्ट सुरक्षा नियन्त्रणहरू
+- **प्रम्प्ट इन्जेक्सन रक्षा**: माइक्रोसफ्ट प्रम्प्ट शिल्ड्सलाई स्पटलाइटिङ, डेलिमिटरहरू, र डाटामार्किङ प्रविधिहरूसँग तैनाथ गर्नुहोस्।  
+- **उपकरण विषाक्तता रोकथाम**: उपकरण मेटाडाटा प्रमाणीकरण गर्नुहोस्, गतिशील परिवर्तनहरूको अनुगमन गर्नुहोस्, र उपकरण अखण्डता प्रमाणीकरण गर्नुहोस्।  
+- **मोडेल आउटपुट प्रमाणीकरण**: सम्भावित डाटा चुहावट, हानिकारक सामग्री, वा सुरक्षा नीति उल्लङ्घनहरूको लागि मोडेल आउटपुट स्क्यान गर्नुहोस्।  
+- **सन्दर्भ विन्डो सुरक्षा**: सन्दर्भ विन्डो विषाक्तता र हेरफेर आक्रमणहरू रोक्न नियन्त्रणहरू लागू गर्नुहोस्।  
 
-### प्रमाणीकरण प्रतिनिधित्व
-- [Microsoft Entra ID Integration](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow)
-- [OAuth 2.0 for MCP Services](https://learn.microsoft.com/security/engineering/solving-oauth)
-- [MCP Security Controls 2025](./mcp-security-controls-2025.md)
+### १०. उपकरण कार्यान्वयन सुरक्षा
+- **कार्यान्वयन स्यान्डबक्सिङ**: उपकरण कार्यान्वयनहरूलाई कन्टेनराइज्ड, अलग वातावरणहरूमा स्रोत सीमाहरूको साथ चलाउनुहोस्।  
+- **विशेषाधिकार पृथकीकरण**: न्यूनतम आवश्यक विशेषाधिकारहरूसँग उपकरणहरू कार्यान्वयन गर्नुहोस् र सेवा खाता अलग गर्नुहोस्।  
+- **नेटवर्क अलगाव**: उपकरण कार्यान्वयन वातावरणहरूको लागि नेटवर्क खण्डीकरण लागू गर्नुहोस्।  
+- **कार्यान्वयन अनुगमन**: उपकरण कार्यान्वयनको असामान्य व्यवहार, स्रोत प्रयोग, र सुरक्षा उल्लङ्घनहरूको लागि अनुगमन गर्नुहोस्।  
 
-### अनुमति स्कोपिङ
-- [Secure Least-Privileged Access](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
-- [Role-Based Access Control (RBAC) Design](https://learn.microsoft.com/azure/role-based-access-control/overview)
-- [Tool-specific Authorization in MCP](https://modelcontextprotocol.io/docs/guides/best-practices)
+### ११. निरन्तर सुरक्षा प्रमाणीकरण
+- **स्वचालित सुरक्षा परीक्षण**: GitHub Advanced Security जस्ता उपकरणहरूसँग CI/CD पाइपलाइनहरूमा सुरक्षा परीक्षण एकीकृत गर्नुहोस्।  
+- **कमजोरी व्यवस्थापन**: सबै निर्भरताहरू, एआई मोडेलहरू, र बाह्य सेवाहरू नियमित रूपमा स्क्यान गर्नुहोस्।  
+- **पेनिट्रेसन परीक्षण**: विशेष रूपमा एमसीपी कार्यान्वयनहरूलाई लक्षित गर्दै नियमित सुरक्षा मूल्याङ्कनहरू सञ्चालन गर्नुहोस्।  
+- **सुरक्षा कोड समीक्षा**: सबै एमसीपी-सँग सम्बन्धित कोड परिवर्तनहरूको लागि अनिवार्य सुरक्षा समीक्षाहरू लागू गर्नुहोस्।  
 
-### डेटा न्यूनिकरण
-- [Data Protection by Design](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments)
-- [AI Data Privacy Best Practices](https://learn.microsoft.com/legal/cognitive-services/openai/data-privacy)
-- [Implementing Privacy-enhancing Technologies](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/)
+### १२. एआईको लागि आपूर्ति श्रृंखला सुरक्षा
+- **घटक प्रमाणीकरण**: सबै एआई घटकहरूको (मोडेल, एम्बेडिङ, एपीआई) उत्पत्ति, अखण्डता, र सुरक्षाको प्रमाणीकरण गर्नुहोस्।  
+- **निर्भरताहरूको व्यवस्थापन**: सबै सफ्टवेयर र एआई निर्भरताहरूको वर्तमान सूचीहरू कमजोरिबाट ट्र्याकिङको साथ कायम गर्नुहोस्।  
+- **विश्वसनीय भण्डारहरू**: सबै एआई मोडेल, पुस्तकालयहरू, र उपकरणहरूको लागि प्रमाणित, विश्वसनीय स्रोतहरू प्रयोग गर्नुहोस्।  
+- **आपूर्ति श्रृंखला अनुगमन**: एआई सेवा प्रदायकहरू र मोडेल भण्डारहरूमा सम्झौताहरूको लागि निरन्तर अनुगमन गर्नुहोस्।  
 
-### स्वचालित कमजोरी स्क्यानिङ
-- [GitHub Advanced Security](https://github.com/security/advanced-security)
-- [DevSecOps Pipeline Implementation](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline)
-- [Continuous Security Validation](https://www.microsoft.com/security/blog/2022/04/05/step-by-step-building-a-more-efficient-devsecops-environment/)
+## उन्नत सुरक्षा ढाँचाहरू
+
+### एमसीपीका लागि शून्य विश्वास आर्किटेक्चर
+- **कहिल्यै विश्वास नगर्नुहोस्, सधैं प्रमाणीकरण गर्नुहोस्**: सबै एमसीपी सहभागीहरूको लागि निरन्तर प्रमाणीकरण लागू गर्नुहोस्।  
+- **सूक्ष्म खण्डीकरण**: एमसीपी घटकहरूलाई सूक्ष्म नेटवर्क र पहिचान नियन्त्रणहरूसँग अलग गर्नुहोस्।  
+- **सशर्त पहुँच**: सन्दर्भ र व्यवहारमा अनुकूल हुने जोखिम-आधारित पहुँच नियन्त्रणहरू लागू गर्नुहोस्।  
+- **निरन्तर जोखिम मूल्याङ्कन**: वर्तमान खतरा संकेतकहरूको आधारमा सुरक्षा स्थितिको गतिशील रूपमा मूल्याङ्कन गर्नुहोस्।  
+
+### गोपनीयता-संरक्षण एआई कार्यान्वयन
+- **डाटा न्यूनतमकरण**: प्रत्येक एमसीपी अपरेसनका लागि न्यूनतम आवश्यक डाटा मात्र उजागर गर्नुहोस्।  
+- **डिफरेन्सियल गोपनीयता**: संवेदनशील डाटा प्रशोधनका लागि गोपनीयता-संरक्षण प्रविधिहरू लागू गर्नुहोस्।  
+- **होमोमोरफिक इन्क्रिप्सन**: इन्क्रिप्टेड डाटामा सुरक्षित गणनाका लागि उन्नत इन्क्रिप्सन प्रविधिहरू प्रयोग गर्नुहोस्।  
+- **फेडरेटेड लर्निङ**: डाटा स्थानीयता र गोपनीयता कायम राख्ने वितरित लर्निङ दृष्टिकोणहरू लागू गर्नुहोस्।  
+
+### एआई प्रणालीहरूको लागि घटना प्रतिक्रिया
+- **एआई-विशिष्ट घटना प्रक्रियाहरू**: एआई र एमसीपी-विशिष्ट खतराहरूलाई लक्षित गर्ने घटना प्रतिक्रिया प्रक्रियाहरू विकास गर्नुहोस्।  
+- **स्वचालित प्रतिक्रिया**: सामान्य एआई सुरक्षा घटनाहरूको लागि स्वचालित नियन्त्रण र सुधार लागू गर्नुहोस्।  
+- **फोरेन्सिक क्षमताहरू**: एआई प्रणाली सम्झौता र डाटा उल्लङ्घनहरूको लागि फोरेन्सिक तयारी कायम गर्नुहोस्।  
+- **पुन: प्राप्ति प्रक्रियाहरू**: एआई मोडेल विषाक्तता, प्रम्प्ट इन्जेक्सन आक्रमणहरू, र सेवा सम्झौताहरूबाट पुन: प्राप्तिका लागि प्रक्रियाहरू स्थापना गर्नुहोस्।  
+
+## कार्यान्वयन स्रोतहरू र मापदण्डहरू
+
+### आधिकारिक एमसीपी दस्तावेजहरू
+- [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) - हालको एमसीपी प्रोटोकल स्पेसिफिकेसन  
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) - आधिकारिक सुरक्षा मार्गदर्शन  
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization) - प्रमाणीकरण र अधिकार ढाँचाहरू  
+- [MCP Transport Security](https://modelcontextprotocol.io/specification/2025-06-18/transports/) - ट्रान्सपोर्ट लेयर सुरक्षा आवश्यकताहरू  
+
+### माइक्रोसफ्ट सुरक्षा समाधानहरू
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - उन्नत प्रम्प्ट इन्जेक्सन सुरक्षा  
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/) - व्यापक एआई सामग्री फिल्टरिङ  
+- [Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow) - उद्यम पहिचान र पहुँच व्यवस्थापन  
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts) - सुरक्षित गोप्य र प्रमाण व्यवस्थापन  
+- [GitHub Advanced Security](https://github.com/security/advanced-security) - आपूर्ति श्रृंखला र कोड सुरक्षा स्क्यानिङ  
+
+### सुरक्षा मापदण्डहरू र फ्रेमवर्कहरू
+- [OAuth 2.1 Security Best Practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics) - हालको OAuth सुरक्षा मार्गदर्शन  
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - वेब अनुप्रयोग सुरक्षा जोखिमहरू  
+- [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559) - एआई-विशिष्ट सुरक्षा जोखिमहरू  
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) - व्यापक एआई जोखिम व्यवस्थापन  
+- [ISO 27001:2022](https://www.iso.org/standard/27001) - सूचना सुरक्षा व्यवस्थापन प्रणालीहरू  
+
+### कार्यान्वयन मार्गदर्शनहरू र ट्युटोरियलहरू
+- [Azure API Management as MCP Auth Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) - उद्यम प्रमाणीकरण ढाँचाहरू  
+- [Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/) - पहिचान प्रदायक एकीकरण  
+- [Secure Token Storage Implementation](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2) - टोकन व्यवस्थापन उत्कृष्ट अभ्यासहरू  
+- [End-to-End Encryption for AI](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption) - उन्नत इन्क्रिप्सन ढाँचाहरू  
+
+### उन्नत सुरक्षा स्रोतहरू
+- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl) - सुरक्षित विकास अभ्यासहरू  
+- [AI Red Team Guidance](https://learn.microsoft.com/security/ai-red-team/) - एआई-विशिष्ट सुरक्षा परीक्षण  
+- [Threat Modeling for AI Systems](https://learn.microsoft.com/security/adoption/approach/threats-ai) - एआई खतरा मोडलिङ कार्यप्रणाली  
+- [Privacy Engineering for AI](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/) - गोपनीयता-संरक्षण एआई प्रविधिहरू  
+
+### अनुपालन र शासन
+- [GDPR Compliance for AI](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments) - एआई प्रणालीहरूमा गोपनीयता अनुपालन  
+- [AI Governance Framework](https://learn.microsoft.com/azure/architecture/guide/responsible-ai/responsible-ai-overview) - जिम्मेवार एआई कार्यान्वयन  
+- [SOC 2 for AI Services](https://learn.microsoft.com/compliance/regulatory/offering-soc) - एआई सेवा प्रदायकहरूको लागि सुरक्षा नियन्त्रणहरू  
+- [HIPAA Compliance for AI](https://learn.microsoft.com/compliance/regulatory/offering-hipaa-hitech) - स्वास्थ्य सेवा एआई अनुपालन आवश्यकताहरू  
+
+### DevSecOps र स्वचालन
+- [DevSecOps Pipeline for AI](https://
+- **टुल विकास**: MCP इकोसिस्टमका लागि सुरक्षा उपकरणहरू र पुस्तकालयहरू विकास गर्नुहोस् र साझा गर्नुहोस्
+
+---
+
+*यो दस्तावेज़ MCP सुरक्षा उत्कृष्ट अभ्यासहरूलाई १८ अगस्ट २०२५ को रूपमा प्रतिबिम्बित गर्दछ, जुन MCP विशिष्टता २०२५-०६-१८ मा आधारित छ। सुरक्षा अभ्यासहरू प्रोटोकल र खतरा परिदृश्यको विकाससँगै नियमित रूपमा समीक्षा र अद्यावधिक गरिनुपर्छ।*
 
 **अस्वीकरण**:  
-यो दस्तावेज AI अनुवाद सेवा [Co-op Translator](https://github.com/Azure/co-op-translator) प्रयोग गरी अनुवाद गरिएको हो। हामी शुद्धताका लागि प्रयासरत छौं, तर कृपया ध्यान दिनुहोस् कि स्वचालित अनुवादमा त्रुटि वा अशुद्धता हुनसक्छ। मूल दस्तावेज यसको मूल भाषामा नै अधिकारिक स्रोत मानिनुपर्छ। महत्वपूर्ण जानकारीका लागि व्यावसायिक मानव अनुवाद सिफारिस गरिन्छ। यस अनुवादको प्रयोगबाट उत्पन्न कुनै पनि गलतफहमी वा गलत व्याख्याका लागि हामी जिम्मेवार छैनौं।
+यो दस्तावेज़ AI अनुवाद सेवा [Co-op Translator](https://github.com/Azure/co-op-translator) प्रयोग गरेर अनुवाद गरिएको छ। हामी शुद्धताको लागि प्रयास गर्छौं, तर कृपया ध्यान दिनुहोस् कि स्वचालित अनुवादहरूमा त्रुटिहरू वा अशुद्धताहरू हुन सक्छ। यसको मूल भाषा मा रहेको मूल दस्तावेज़लाई आधिकारिक स्रोत मानिनुपर्छ। महत्वपूर्ण जानकारीको लागि, व्यावसायिक मानव अनुवाद सिफारिस गरिन्छ। यस अनुवादको प्रयोगबाट उत्पन्न हुने कुनै पनि गलतफहमी वा गलत व्याख्याको लागि हामी जिम्मेवार हुने छैनौं।

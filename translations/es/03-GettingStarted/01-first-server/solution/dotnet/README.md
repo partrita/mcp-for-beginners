@@ -1,13 +1,13 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "07863f50601f395c3bdfce30f555f11a",
-  "translation_date": "2025-07-13T17:46:47+00:00",
+  "original_hash": "92af35e8c34923031f3d228dffad9ebb",
+  "translation_date": "2025-09-03T15:55:17+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
   "language_code": "es"
 }
 -->
-# Ejecutando este ejemplo
+# Ejecutar este ejemplo
 
 ## -1- Instalar las dependencias
 
@@ -23,7 +23,7 @@ dotnet run
 
 ## -4- Probar el ejemplo
 
-Con el servidor en ejecución en una terminal, abre otra terminal y ejecuta el siguiente comando:
+Con el servidor ejecutándose en un terminal, abre otro terminal y ejecuta el siguiente comando:
 
 ```bash
 npx @modelcontextprotocol/inspector dotnet run
@@ -33,12 +33,12 @@ Esto debería iniciar un servidor web con una interfaz visual que te permitirá 
 
 Una vez que el servidor esté conectado:
 
-- intenta listar las herramientas y ejecutar `add`, con los argumentos 2 y 4, deberías ver 6 como resultado.
-- ve a resources y resource template y llama a "greeting", escribe un nombre y deberías ver un saludo con el nombre que proporcionaste.
+- Intenta listar las herramientas y ejecuta `add`, con los argumentos 2 y 4, deberías ver 6 en el resultado.
+- Ve a recursos y plantilla de recursos y llama a "greeting", escribe un nombre y deberías ver un saludo con el nombre que proporcionaste.
 
 ### Pruebas en modo CLI
 
-Puedes iniciarlo directamente en modo CLI ejecutando el siguiente comando:
+Puedes lanzarlo directamente en modo CLI ejecutando el siguiente comando:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/list
@@ -94,9 +94,11 @@ Deberías ver la siguiente salida:
 }
 ```
 
-> ![!TIP]
+> [!TIP]
 > Generalmente es mucho más rápido ejecutar el inspector en modo CLI que en el navegador.
 > Lee más sobre el inspector [aquí](https://github.com/modelcontextprotocol/inspector).
 
-**Aviso legal**:  
-Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Aunque nos esforzamos por la precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o inexactitudes. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda la traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas derivadas del uso de esta traducción.
+---
+
+**Descargo de responsabilidad**:  
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por garantizar la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.

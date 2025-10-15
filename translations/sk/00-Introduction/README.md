@@ -1,42 +1,48 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "105c2ddbb77bc38f7e9df009e1b06e45",
-  "translation_date": "2025-07-13T15:38:34+00:00",
+  "original_hash": "9678e0c6945b8e0c23586869b0e26783",
+  "translation_date": "2025-10-06T11:09:45+00:00",
   "source_file": "00-Introduction/README.md",
   "language_code": "sk"
 }
 -->
 # Úvod do Model Context Protocol (MCP): Prečo je dôležitý pre škálovateľné AI aplikácie
 
-Generatívne AI aplikácie predstavujú veľký krok vpred, pretože často umožňujú používateľovi komunikovať s aplikáciou pomocou prirodzených jazykových príkazov. Avšak, keď do takýchto aplikácií investujete viac času a zdrojov, chcete mať istotu, že funkcie a zdroje môžete jednoducho integrovať tak, aby bolo jednoduché ich rozširovať, aby vaša aplikácia zvládala používanie viacerých modelov a dokázala riešiť rôzne špecifiká modelov. Stručne povedané, budovanie generatívnych AI aplikácií je na začiatku jednoduché, no s rastom a zložitosťou je potrebné definovať architektúru a pravdepodobne sa spoľahnúť na štandard, ktorý zabezpečí konzistentnú výstavbu aplikácií. Práve tu prichádza MCP, ktorý veci organizuje a poskytuje štandard.
+[![Úvod do Model Context Protocol](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.sk.png)](https://youtu.be/agBbdiOPLQA)
+
+_(Kliknite na obrázok vyššie pre zobrazenie videa k tejto lekcii)_
+
+Generatívne AI aplikácie predstavujú veľký krok vpred, pretože často umožňujú používateľom interakciu s aplikáciou pomocou prirodzených jazykových príkazov. Avšak, keď sa do takýchto aplikácií investuje viac času a zdrojov, je dôležité zabezpečiť jednoduchú integráciu funkcií a zdrojov tak, aby bolo možné aplikáciu ľahko rozšíriť, podporovať viacero modelov a zvládnuť rôzne špecifiká modelov. Jednoducho povedané, vytváranie generatívnych AI aplikácií je na začiatku jednoduché, ale ako rastú a stávajú sa komplexnejšími, je potrebné začať definovať architektúru a pravdepodobne sa spoliehať na štandard, ktorý zabezpečí konzistentnú výstavbu aplikácií. Tu prichádza MCP, aby veci zorganizoval a poskytol štandard.
 
 ---
 
 ## **🔍 Čo je Model Context Protocol (MCP)?**
 
-**Model Context Protocol (MCP)** je **otvorený, štandardizovaný rozhranie**, ktoré umožňuje veľkým jazykovým modelom (LLM) bezproblémovo komunikovať s externými nástrojmi, API a zdrojmi dát. Poskytuje konzistentnú architektúru na rozšírenie funkčnosti AI modelov nad rámec ich tréningových dát, čím umožňuje inteligentnejšie, škálovateľnejšie a citlivejšie AI systémy.
+**Model Context Protocol (MCP)** je **otvorené, štandardizované rozhranie**, ktoré umožňuje veľkým jazykovým modelom (LLM) bezproblémovo komunikovať s externými nástrojmi, API a zdrojmi dát. Poskytuje konzistentnú architektúru na rozšírenie funkčnosti AI modelov nad rámec ich tréningových dát, čím umožňuje inteligentnejšie, škálovateľné a citlivejšie AI systémy.
 
 ---
 
 ## **🎯 Prečo je štandardizácia v AI dôležitá**
 
-S rastúcou zložitosťou generatívnych AI aplikácií je nevyhnutné prijať štandardy, ktoré zabezpečia **škálovateľnosť, rozšíriteľnosť** a **udržateľnosť**. MCP rieši tieto potreby tým, že:
+Ako sa generatívne AI aplikácie stávajú komplexnejšími, je nevyhnutné prijať štandardy, ktoré zabezpečia **škálovateľnosť, rozšíriteľnosť, udržateľnosť** a **vyhnutie sa závislosti na jednom dodávateľovi**. MCP rieši tieto potreby tým, že:
 
 - Zjednocuje integrácie modelov s nástrojmi
-- Znižuje krehké, jednorazové riešenia na mieru
-- Umožňuje koexistenciu viacerých modelov v jednom ekosystéme
+- Znižuje krehké, jednorazové vlastné riešenia
+- Umožňuje koexistenciu viacerých modelov od rôznych dodávateľov v jednom ekosystéme
+
+**Poznámka:** Hoci sa MCP prezentuje ako otvorený štandard, neplánuje sa jeho štandardizácia prostredníctvom existujúcich štandardizačných orgánov, ako sú IEEE, IETF, W3C, ISO alebo iné.
 
 ---
 
 ## **📚 Ciele učenia**
 
-Na konci tohto článku budete vedieť:
+Na konci tohto článku budete schopní:
 
-- Definovať **Model Context Protocol (MCP)** a jeho použitia
-- Pochopiť, ako MCP štandardizuje komunikáciu medzi modelom a nástrojmi
-- Identifikovať základné komponenty architektúry MCP
-- Preskúmať reálne použitia MCP v podnikových a vývojárskych kontextoch
+- Definovať **Model Context Protocol (MCP)** a jeho použitie
+- Pochopiť, ako MCP štandardizuje komunikáciu medzi modelmi a nástrojmi
+- Identifikovať hlavné komponenty architektúry MCP
+- Preskúmať reálne aplikácie MCP v podnikových a vývojových kontextoch
 
 ---
 
@@ -44,21 +50,21 @@ Na konci tohto článku budete vedieť:
 
 ### **🔗 MCP rieši fragmentáciu v AI interakciách**
 
-Pred MCP vyžadovala integrácia modelov s nástrojmi:
+Pred MCP integrácia modelov s nástrojmi vyžadovala:
 
 - Vlastný kód pre každý pár nástroj-model
-- Nestandardné API pre každého dodávateľa
-- Časté prerušenia kvôli aktualizáciám
-- Slabú škálovateľnosť pri väčšom počte nástrojov
+- Neštandardné API pre každého dodávateľa
+- Časté problémy spôsobené aktualizáciami
+- Slabú škálovateľnosť s rastúcim počtom nástrojov
 
 ### **✅ Výhody štandardizácie MCP**
 
-| **Výhoda**               | **Popis**                                                                     |
-|--------------------------|-------------------------------------------------------------------------------|
-| Interoperabilita         | LLM pracujú bezproblémovo s nástrojmi od rôznych dodávateľov                  |
-| Konzistentnosť           | Jednotné správanie naprieč platformami a nástrojmi                            |
-| Opätovné použitie       | Nástroje vytvorené raz možno použiť v rôznych projektoch a systémoch          |
-| Urýchlený vývoj          | Skrátenie času vývoja vďaka štandardizovaným, plug-and-play rozhraniam        |
+| **Výhoda**              | **Popis**                                                                |
+|--------------------------|-------------------------------------------------------------------------|
+| Interoperabilita         | LLM bezproblémovo fungujú s nástrojmi od rôznych dodávateľov            |
+| Konzistentnosť           | Jednotné správanie naprieč platformami a nástrojmi                     |
+| Znovupoužiteľnosť        | Nástroje vytvorené raz môžu byť použité v rôznych projektoch a systémoch|
+| Zrýchlený vývoj          | Skrátenie času vývoja vďaka štandardizovaným rozhraniam                |
 
 ---
 
@@ -66,16 +72,16 @@ Pred MCP vyžadovala integrácia modelov s nástrojmi:
 
 MCP nasleduje **klient-server model**, kde:
 
-- **MCP Hosts** prevádzkujú AI modely
-- **MCP Clients** iniciujú požiadavky
-- **MCP Servers** poskytujú kontext, nástroje a schopnosti
+- **MCP Hostitelia** prevádzkujú AI modely
+- **MCP Klienti** iniciujú požiadavky
+- **MCP Servery** poskytujú kontext, nástroje a schopnosti
 
 ### **Kľúčové komponenty:**
 
-- **Resources** – statické alebo dynamické dáta pre modely  
-- **Prompts** – preddefinované pracovné postupy pre riadenú generáciu  
-- **Tools** – vykonateľné funkcie ako vyhľadávanie, výpočty  
-- **Sampling** – agentné správanie cez rekurzívne interakcie
+- **Zdroje** – Statické alebo dynamické dáta pre modely  
+- **Príkazy** – Preddefinované pracovné postupy pre riadenú generáciu  
+- **Nástroje** – Vykonateľné funkcie ako vyhľadávanie, výpočty  
+- **Sampling** – Agentické správanie prostredníctvom rekurzívnych interakcií
 
 ---
 
@@ -83,103 +89,105 @@ MCP nasleduje **klient-server model**, kde:
 
 MCP servery fungujú nasledovne:
 
-- **Priebeh požiadavky**:  
-    1. MCP klient odošle požiadavku AI modelu bežiacemu v MCP Hostovi.  
-    2. AI model rozpozná, kedy potrebuje externé nástroje alebo dáta.  
-    3. Model komunikuje s MCP serverom pomocou štandardizovaného protokolu.
-
-- **Funkcie MCP servera**:  
-    - Registr nástrojov: Udržiava katalóg dostupných nástrojov a ich schopností.  
-    - Autentifikácia: Overuje oprávnenia na prístup k nástrojom.  
-    - Spracovanie požiadaviek: Rieši prichádzajúce požiadavky na nástroje od modelu.  
-    - Formátovanie odpovedí: Štruktúruje výstupy nástrojov do formátu, ktorý model rozumie.
-
-- **Vykonávanie nástrojov**:  
-    - Server smeruje požiadavky na príslušné externé nástroje  
-    - Nástroje vykonávajú svoje špecializované funkcie (vyhľadávanie, výpočty, dotazy do databázy atď.)  
-    - Výsledky sa vracajú modelu v konzistentnom formáte.
-
-- **Dokončenie odpovede**:  
-    - AI model začleňuje výstupy nástrojov do svojej odpovede.  
-    - Konečná odpoveď sa odosiela späť klientskej aplikácii.
+- **Tok požiadaviek**:
+    1. Požiadavka je iniciovaná koncovým používateľom alebo softvérom, ktorý koná v jeho mene.
+    2. **MCP Klient** pošle požiadavku **MCP Hostiteľovi**, ktorý spravuje runtime AI modelu.
+    3. **AI Model** prijme používateľský príkaz a môže požiadať o prístup k externým nástrojom alebo dátam prostredníctvom jedného alebo viacerých volaní nástrojov.
+    4. **MCP Hostiteľ**, nie model priamo, komunikuje s príslušným **MCP Serverom** pomocou štandardizovaného protokolu.
+- **Funkcionalita MCP Hostiteľa**:
+    - **Registrácia nástrojov**: Udržiava katalóg dostupných nástrojov a ich schopností.
+    - **Autentifikácia**: Overuje povolenia na prístup k nástrojom.
+    - **Spracovanie požiadaviek**: Spracováva prichádzajúce požiadavky nástrojov od modelu.
+    - **Formátovanie odpovedí**: Štruktúruje výstupy nástrojov do formátu, ktorý model dokáže pochopiť.
+- **Vykonanie MCP Servera**:
+    - **MCP Hostiteľ** smeruje volania nástrojov na jeden alebo viac **MCP Serverov**, z ktorých každý poskytuje špecializované funkcie (napr. vyhľadávanie, výpočty, dotazy na databázu).
+    - **MCP Servery** vykonávajú svoje operácie a vracajú výsledky **MCP Hostiteľovi** v konzistentnom formáte.
+    - **MCP Hostiteľ** formátuje a odosiela tieto výsledky **AI Modelu**.
+- **Dokončenie odpovede**:
+    - **AI Model** začlení výstupy nástrojov do konečnej odpovede.
+    - **MCP Hostiteľ** pošle túto odpoveď späť **MCP Klientovi**, ktorý ju doručí koncovému používateľovi alebo volajúcemu softvéru.
 
 ```mermaid
 ---
-title: MCP Server Architecture and Component Interactions
-description: A diagram showing how AI models interact with MCP servers and various tools, depicting the request flow and server components including Tool Registry, Authentication, Request Handler, and Response Formatter
+title: MCP Architecture and Component Interactions
+description: A diagram showing the flows of the components in MCP.
 ---
 graph TD
-    A[AI Model in MCP Host] <-->|MCP Protocol| B[MCP Server]
-    B <-->|Tool Interface| C[Tool 1: Web Search]
-    B <-->|Tool Interface| D[Tool 2: Calculator]
-    B <-->|Tool Interface| E[Tool 3: Database Access]
-    B <-->|Tool Interface| F[Tool 4: File System]
-    
-    Client[MCP Client/Application] -->|Sends Request| A
-    A -->|Returns Response| Client
-    
-    subgraph "MCP Server Components"
-        B
+    Client[MCP Client/Application] -->|Sends Request| H[MCP Host]
+    H -->|Invokes| A[AI Model]
+    A -->|Tool Call Request| H
+    H -->|MCP Protocol| T1[MCP Server Tool 01: Web Search]
+    H -->|MCP Protocol| T2[MCP Server Tool 02: Calculator tool]
+    H -->|MCP Protocol| T3[MCP Server Tool 03: Database Access tool]
+    H -->|MCP Protocol| T4[MCP Server Tool 04: File System tool]
+    H -->|Sends Response| Client
+
+    subgraph "MCP Host Components"
+        H
         G[Tool Registry]
-        H[Authentication]
-        I[Request Handler]
-        J[Response Formatter]
+        I[Authentication]
+        J[Request Handler]
+        K[Response Formatter]
     end
-    
-    B <--> G
-    B <--> H
-    B <--> I
-    B <--> J
-    
+
+    H <--> G
+    H <--> I
+    H <--> J
+    H <--> K
+
     style A fill:#f9d5e5,stroke:#333,stroke-width:2px
-    style B fill:#eeeeee,stroke:#333,stroke-width:2px
+    style H fill:#eeeeee,stroke:#333,stroke-width:2px
     style Client fill:#d5e8f9,stroke:#333,stroke-width:2px
-    style C fill:#c2f0c2,stroke:#333,stroke-width:1px
-    style D fill:#c2f0c2,stroke:#333,stroke-width:1px
-    style E fill:#c2f0c2,stroke:#333,stroke-width:1px
-    style F fill:#c2f0c2,stroke:#333,stroke-width:1px    
+    style G fill:#fffbe6,stroke:#333,stroke-width:1px
+    style I fill:#fffbe6,stroke:#333,stroke-width:1px
+    style J fill:#fffbe6,stroke:#333,stroke-width:1px
+    style K fill:#fffbe6,stroke:#333,stroke-width:1px
+    style T1 fill:#c2f0c2,stroke:#333,stroke-width:1px
+    style T2 fill:#c2f0c2,stroke:#333,stroke-width:1px
+    style T3 fill:#c2f0c2,stroke:#333,stroke-width:1px
+    style T4 fill:#c2f0c2,stroke:#333,stroke-width:1px
 ```
 
 ## 👨‍💻 Ako vytvoriť MCP server (s príkladmi)
 
-MCP servery vám umožňujú rozšíriť schopnosti LLM tým, že poskytujú dáta a funkcie.
+MCP servery umožňujú rozšíriť schopnosti LLM poskytovaním dát a funkcií.
 
-Chcete to vyskúšať? Tu sú príklady vytvorenia jednoduchého MCP servera v rôznych jazykoch:
+Pripravení vyskúšať? Tu sú SDK špecifické pre jazyk alebo stack s príkladmi vytvorenia jednoduchých MCP serverov v rôznych jazykoch/stackoch:
 
-- **Python príklad**: https://github.com/modelcontextprotocol/python-sdk
+- **Python SDK**: https://github.com/modelcontextprotocol/python-sdk
 
-- **TypeScript príklad**: https://github.com/modelcontextprotocol/typescript-sdk
+- **TypeScript SDK**: https://github.com/modelcontextprotocol/typescript-sdk
 
-- **Java príklad**: https://github.com/modelcontextprotocol/java-sdk
+- **Java SDK**: https://github.com/modelcontextprotocol/java-sdk
 
-- **C#/.NET príklad**: https://github.com/modelcontextprotocol/csharp-sdk
+- **C#/.NET SDK**: https://github.com/modelcontextprotocol/csharp-sdk
 
 ## 🌍 Reálne použitia MCP
 
-MCP umožňuje širokú škálu aplikácií rozširujúcich schopnosti AI:
+MCP umožňuje širokú škálu aplikácií rozšírením schopností AI:
 
-| **Aplikácia**              | **Popis**                                                                    |
-|----------------------------|------------------------------------------------------------------------------|
-| Integrácia podnikových dát | Prepojenie LLM s databázami, CRM alebo internými nástrojmi                   |
-| Agentné AI systémy         | Umožnenie autonómnych agentov s prístupom k nástrojom a rozhodovacími procesmi |
-| Multimodálne aplikácie     | Kombinácia textových, obrazových a zvukových nástrojov v jednej AI aplikácii |
-| Integrácia dát v reálnom čase | Zahrnutie živých dát do AI interakcií pre presnejšie a aktuálne výstupy     |
+| **Aplikácia**              | **Popis**                                                                |
+|----------------------------|-------------------------------------------------------------------------|
+| Integrácia podnikových dát | Prepojenie LLM s databázami, CRM alebo internými nástrojmi              |
+| Agentické AI systémy       | Umožnenie autonómnych agentov s prístupom k nástrojom a pracovným postupom|
+| Multimodálne aplikácie     | Kombinácia textových, obrazových a zvukových nástrojov v jednej AI aplikácii|
+| Integrácia reálnych dát    | Prinesenie živých dát do AI interakcií pre presnejšie a aktuálne výstupy |
 
 ### 🧠 MCP = Univerzálny štandard pre AI interakcie
 
-Model Context Protocol (MCP) funguje ako univerzálny štandard pre AI interakcie, podobne ako USB-C štandardizoval fyzické pripojenia zariadení. V AI svete MCP poskytuje konzistentné rozhranie, ktoré umožňuje modelom (klientom) bezproblémovo sa integrovať s externými nástrojmi a poskytovateľmi dát (servermi). Tým sa eliminuje potreba rôznych, vlastných protokolov pre každé API alebo zdroj dát.
+Model Context Protocol (MCP) funguje ako univerzálny štandard pre AI interakcie, podobne ako USB-C štandardizoval fyzické pripojenia pre zariadenia. Vo svete AI poskytuje MCP konzistentné rozhranie, ktoré umožňuje modelom (klientom) bezproblémovo integrovať externé nástroje a poskytovateľov dát (servery). Tým eliminuje potrebu rôznych vlastných protokolov pre každé API alebo zdroj dát.
 
-Pod MCP je MCP-kompatibilný nástroj (nazývaný MCP server) založený na jednotnom štandarde. Tieto servery môžu uvádzať nástroje alebo akcie, ktoré ponúkajú, a vykonávať ich na požiadanie AI agenta. Platformy AI agentov podporujúce MCP dokážu objavovať dostupné nástroje zo serverov a vyvolávať ich cez tento štandardný protokol.
+Pod MCP, nástroj kompatibilný s MCP (nazývaný MCP server) nasleduje jednotný štandard. Tieto servery môžu uvádzať zoznam nástrojov alebo akcií, ktoré ponúkajú, a vykonávať tieto akcie na požiadanie AI agenta. Platformy AI agentov, ktoré podporujú MCP, sú schopné objaviť dostupné nástroje zo serverov a vyvolať ich prostredníctvom tohto štandardného protokolu.
 
-### 💡 Uľahčuje prístup k poznatkom
+### 💡 Uľahčuje prístup k znalostiam
 
-Okrem poskytovania nástrojov MCP tiež uľahčuje prístup k poznatkom. Umožňuje aplikáciám poskytovať kontext veľkým jazykovým modelom (LLM) prepojením na rôzne zdroje dát. Napríklad MCP server môže predstavovať firemnú dokumentačnú databázu, ktorá agentom umožňuje na požiadanie získať relevantné informácie. Iný server môže spravovať špecifické akcie, ako je odosielanie e-mailov alebo aktualizácia záznamov. Z pohľadu agenta sú to jednoducho nástroje, ktoré môže používať – niektoré vracajú dáta (poznatkový kontext), iné vykonávajú akcie. MCP efektívne spravuje oboje.
+Okrem ponúkania nástrojov MCP tiež uľahčuje prístup k znalostiam. Umožňuje aplikáciám poskytovať kontext veľkým jazykovým modelom (LLM) tým, že ich prepojí s rôznymi zdrojmi dát. Napríklad MCP server môže reprezentovať dokumentové úložisko spoločnosti, čo umožňuje agentom na požiadanie získavať relevantné informácie. Iný server môže spracovávať špecifické akcie, ako je odosielanie e-mailov alebo aktualizácia záznamov. Z pohľadu agenta sú to jednoducho nástroje, ktoré môže použiť—niektoré nástroje vracajú dáta (kontext znalostí), zatiaľ čo iné vykonávajú akcie. MCP efektívne spravuje oboje.
 
-Agent, ktorý sa pripája k MCP serveru, automaticky získa informácie o dostupných schopnostiach a prístupných dátach cez štandardný formát. Táto štandardizácia umožňuje dynamickú dostupnosť nástrojov. Napríklad pridaním nového MCP servera do systému agenta sa jeho funkcie okamžite stanú použiteľné bez potreby ďalšej úpravy inštrukcií agenta.
+Agent, ktorý sa pripája k MCP serveru, automaticky zistí dostupné schopnosti servera a prístupné dáta prostredníctvom štandardného formátu. Táto štandardizácia umožňuje dynamickú dostupnosť nástrojov. Napríklad pridanie nového MCP servera do systému agenta okamžite sprístupní jeho funkcie bez potreby ďalšej úpravy inštrukcií agenta.
 
-Táto zjednodušená integrácia korešponduje s tokom znázorneným v diagrame mermaid, kde servery poskytujú nástroje aj poznatky, čím zabezpečujú bezproblémovú spoluprácu medzi systémami.
+Táto zjednodušená integrácia je v súlade s tokmi zobrazenými na nasledujúcom diagrame, kde servery poskytujú nástroje aj znalosti, čím zabezpečujú bezproblémovú spoluprácu naprieč systémami.
 
-### 👉 Príklad: škálovateľné riešenie agenta
+### 👉 Príklad: Škálovateľné riešenie pre agentov
 
 ```mermaid
 ---
@@ -207,10 +215,13 @@ graph TD
         ToolsB[Tools]
     end
 ```
+Univerzálny konektor umožňuje MCP serverom komunikovať a zdieľať schopnosti medzi sebou, čo umožňuje ServerA delegovať úlohy na ServerB alebo pristupovať k jeho nástrojom a znalostiam. Tým sa federujú nástroje a dáta naprieč servermi, podporujúc škálovateľné a modulárne architektúry agentov. Pretože MCP štandardizuje expozíciu nástrojov, agenti môžu dynamicky objavovať a smerovať požiadavky medzi servermi bez pevne zakódovaných integrácií.
+
+Federácia nástrojov a znalostí: Nástroje a dáta môžu byť prístupné naprieč servermi, čo umožňuje škálovateľnejšie a modulárnejšie agentické architektúry.
 
 ### 🔄 Pokročilé scenáre MCP s integráciou LLM na strane klienta
 
-Okrem základnej architektúry MCP existujú pokročilé scenáre, kde klient aj server obsahujú LLM, čo umožňuje sofistikovanejšie interakcie:
+Okrem základnej architektúry MCP existujú pokročilé scenáre, kde klient aj server obsahujú LLM, čo umožňuje sofistikovanejšie interakcie. Na nasledujúcom diagrame môže byť **Klientská aplikácia** IDE s množstvom MCP nástrojov dostupných pre používateľa prostredníctvom LLM:
 
 ```mermaid
 ---
@@ -278,28 +289,28 @@ sequenceDiagram
 
 Tu sú praktické výhody používania MCP:
 
-- **Aktuálnosť**: Modely majú prístup k najnovším informáciám nad rámec tréningových dát  
-- **Rozšírenie schopností**: Modely môžu využiť špecializované nástroje na úlohy, na ktoré neboli trénované  
-- **Zníženie halucinácií**: Externé zdroje dát poskytujú faktické základy  
-- **Súkromie**: Citlivé dáta môžu zostať v bezpečnom prostredí namiesto vloženia do promptov
+- **Aktualizovanosť**: Modely môžu pristupovať k aktuálnym informáciám nad rámec ich tréningových dát
+- **Rozšírenie schopností**: Modely môžu využívať špecializované nástroje na úlohy, na ktoré neboli trénované
+- **Zníženie halucinácií**: Externé zdroje dát poskytujú faktické základy
+- **Ochrana súkromia**: Citlivé dáta môžu zostať v bezpečnom prostredí namiesto ich vloženia do príkazov
 
-## 📌 Kľúčové zhrnutie
+## 📌 Kľúčové poznatky
 
-Nasledujúce body sú kľúčové pre používanie MCP:
+Nasledujú kľúčové poznatky o používaní MCP:
 
-- **MCP** štandardizuje spôsob, akým AI modely komunikujú s nástrojmi a dátami  
-- Podporuje **rozšíriteľnosť, konzistentnosť a interoperabilitu**  
-- MCP pomáha **skrátiť čas vývoja, zlepšiť spoľahlivosť a rozšíriť schopnosti modelov**  
-- Klient-server architektúra **umožňuje flexibilné, rozšíriteľné AI aplikácie**
+- **MCP** štandardizuje, ako AI modely interagujú s nástrojmi a dátami
+- Podporuje **rozšíriteľnosť, konzistentnosť a interoperabilitu**
+- MCP pomáha **skrátiť čas vývoja, zlepšiť spoľahlivosť a rozšíriť schopnosti modelov**
+- Architektúra klient-server **umožňuje flexibilné, rozšíriteľné AI aplikácie**
 
 ## 🧠 Cvičenie
 
-Premyslite si AI aplikáciu, ktorú by ste chceli vytvoriť.
+Premýšľajte o AI aplikácii, ktorú by ste chceli vytvoriť.
 
-- Aké **externé nástroje alebo dáta** by mohli zlepšiť jej schopnosti?  
-- Ako by MCP mohol uľahčiť integráciu a spraviť ju spoľahlivejšou?
+- Ktoré **externé nástroje alebo dáta** by mohli zlepšiť jej schopnosti?
+- Ako by MCP mohol urobiť integráciu **jednoduchšou a spoľahlivejšou?**
 
-## Dodatočné zdroje
+## Ďalšie zdroje
 
 - [MCP GitHub Repository](https://github.com/modelcontextprotocol)
 
@@ -307,5 +318,7 @@ Premyslite si AI aplikáciu, ktorú by ste chceli vytvoriť.
 
 Ďalej: [Kapitola 1: Základné koncepty](../01-CoreConcepts/README.md)
 
-**Vyhlásenie o zodpovednosti**:  
-Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Aj keď sa snažíme o presnosť, prosím, majte na pamäti, že automatizované preklady môžu obsahovať chyby alebo nepresnosti. Originálny dokument v jeho pôvodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nie sme zodpovední za akékoľvek nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.
+---
+
+**Upozornenie**:  
+Tento dokument bol preložený pomocou služby AI prekladu [Co-op Translator](https://github.com/Azure/co-op-translator). Hoci sa snažíme o presnosť, upozorňujeme, že automatizované preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho rodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nenesieme zodpovednosť za akékoľvek nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.

@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "07863f50601f395c3bdfce30f555f11a",
-  "translation_date": "2025-07-13T17:48:58+00:00",
+  "original_hash": "92af35e8c34923031f3d228dffad9ebb",
+  "translation_date": "2025-09-03T16:07:57+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
   "language_code": "tr"
 }
@@ -29,12 +29,12 @@ Sunucu bir terminalde çalışırken, başka bir terminal açın ve aşağıdaki
 npx @modelcontextprotocol/inspector dotnet run
 ```
 
-Bu, örneği test etmenizi sağlayan görsel bir arayüze sahip bir web sunucusunu başlatmalıdır.
+Bu, örneği test etmenize olanak tanıyan görsel bir arayüze sahip bir web sunucusunu başlatmalıdır.
 
 Sunucu bağlandıktan sonra:
 
-- araçları listelemeyi deneyin ve `add` komutunu, argümanlar olarak 2 ve 4 ile çalıştırın, sonuçta 6 görmelisiniz.
-- resources ve resource template bölümüne gidin, "greeting" çağırın, bir isim yazın ve verdiğiniz isimle bir selamlama görmelisiniz.
+- Araçları listelemeyi deneyin ve `add` komutunu 2 ve 4 argümanlarıyla çalıştırın, sonuçta 6 görmelisiniz.
+- Kaynaklara ve kaynak şablonuna gidin, "greeting" çağırın, bir isim yazın ve verdiğiniz isimle bir selamlama görmelisiniz.
 
 ### CLI modunda test etme
 
@@ -44,7 +44,7 @@ Aşağıdaki komutu çalıştırarak doğrudan CLI modunda başlatabilirsiniz:
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/list
 ```
 
-Bu, sunucuda mevcut olan tüm araçları listeleyecektir. Aşağıdaki çıktıyı görmelisiniz:
+Bu, sunucuda mevcut olan tüm araçları listeleyecektir. Şu çıktıyı görmelisiniz:
 
 ```text
 {
@@ -80,7 +80,7 @@ Bir aracı çağırmak için şunu yazın:
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/call --tool-name Add --tool-arg a=1 --tool-arg b=2
 ```
 
-Aşağıdaki çıktıyı görmelisiniz:
+Şu çıktıyı görmelisiniz:
 
 ```text
 {
@@ -94,9 +94,11 @@ Aşağıdaki çıktıyı görmelisiniz:
 }
 ```
 
-> ![!TIP]
-> Inspector'ı tarayıcıda çalıştırmaktansa CLI modunda çalıştırmak genellikle çok daha hızlıdır.
-> Inspector hakkında daha fazla bilgi için [buraya](https://github.com/modelcontextprotocol/inspector) bakabilirsiniz.
+> [!TIP]
+> Genellikle denetleyiciyi tarayıcıda çalıştırmaktansa CLI modunda çalıştırmak çok daha hızlıdır.
+> Denetleyici hakkında daha fazla bilgi edinin [buradan](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Feragatname**:  
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalar veya yorum hatalarından sorumlu değiliz.
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalar için sorumluluk kabul etmiyoruz.

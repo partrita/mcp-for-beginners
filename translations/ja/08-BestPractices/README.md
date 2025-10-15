@@ -1,26 +1,30 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0728873f4271f8c19105619921e830d9",
-  "translation_date": "2025-07-22T07:44:37+00:00",
+  "original_hash": "b62150e27d4b7b5797ee41146d176e6b",
+  "translation_date": "2025-08-11T12:41:54+00:00",
   "source_file": "08-BestPractices/README.md",
   "language_code": "ja"
 }
 -->
 # MCP開発のベストプラクティス
 
+[![MCP開発のベストプラクティス](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.ja.png)](https://youtu.be/W56H9W7x-ao)
+
+_(上の画像をクリックすると、このレッスンの動画が視聴できます)_
+
 ## 概要
 
-このレッスンでは、MCPサーバーや機能を本番環境で開発、テスト、デプロイする際の高度なベストプラクティスに焦点を当てます。MCPエコシステムが複雑化し重要性が増す中、確立されたパターンに従うことで信頼性、保守性、相互運用性を確保できます。このレッスンでは、実際のMCP実装から得られた実践的な知識を統合し、効率的で堅牢なサーバーを作成するためのリソース、プロンプト、ツールを提供します。
+このレッスンでは、MCPサーバーや機能を本番環境で開発、テスト、デプロイする際の高度なベストプラクティスに焦点を当てます。MCPエコシステムが複雑化し重要性が増すにつれ、確立されたパターンに従うことで信頼性、保守性、相互運用性を確保できます。このレッスンでは、実際のMCP実装から得られた実践的な知識を統合し、効率的で堅牢なサーバーを作成するためのリソース、プロンプト、ツールを提供します。
 
 ## 学習目標
 
-このレッスンを終えるまでに、以下ができるようになります：
+このレッスンを終える頃には、以下ができるようになります：
 
 - MCPサーバーと機能設計における業界のベストプラクティスを適用する
 - MCPサーバーの包括的なテスト戦略を作成する
 - 複雑なMCPアプリケーション向けの効率的で再利用可能なワークフローパターンを設計する
-- MCPサーバーにおける適切なエラーハンドリング、ログ記録、観測性を実装する
+- MCPサーバーで適切なエラーハンドリング、ログ記録、可観測性を実装する
 - パフォーマンス、セキュリティ、保守性を最適化したMCP実装を行う
 
 ## MCPの基本原則
@@ -31,11 +35,11 @@ CO_OP_TRANSLATOR_METADATA:
 
 2. **ユーザー中心の設計**: MCP実装では常にユーザーの同意、コントロール、透明性を優先してください。
 
-3. **セキュリティ第一**: 認証、認可、検証、レート制限を含む強力なセキュリティ対策を実施してください。
+3. **セキュリティ第一**: 認証、認可、検証、レート制限を含む堅牢なセキュリティ対策を実施してください。
 
 4. **モジュール型アーキテクチャ**: 各ツールやリソースが明確で焦点を絞った目的を持つように、モジュール型のアプローチでMCPサーバーを設計してください。
 
-5. **ステートフルな接続**: MCPの複数リクエスト間で状態を維持する能力を活用し、より一貫性のあるコンテキスト対応のインタラクションを実現してください。
+5. **ステートフルな接続**: MCPの機能を活用して複数のリクエスト間で状態を維持し、より一貫性のあるコンテキスト対応のインタラクションを実現してください。
 
 ## MCP公式ベストプラクティス
 
@@ -43,17 +47,17 @@ CO_OP_TRANSLATOR_METADATA:
 
 ### セキュリティのベストプラクティス
 
-1. **ユーザーの同意とコントロール**: データへのアクセスや操作を行う前に、必ず明示的なユーザーの同意を求めてください。共有されるデータや許可される操作について明確なコントロールを提供してください。
+1. **ユーザーの同意とコントロール**: データにアクセスしたり操作を実行する前に、必ず明示的なユーザーの同意を求めてください。共有されるデータや許可されるアクションについて明確なコントロールを提供してください。
 
-2. **データプライバシー**: 明示的な同意がある場合のみユーザーデータを公開し、適切なアクセス制御で保護してください。不正なデータ送信を防ぐ措置を講じてください。
+2. **データプライバシー**: 明示的な同意なしにユーザーデータを公開せず、適切なアクセス制御で保護してください。不正なデータ送信を防ぐ措置を講じてください。
 
-3. **ツールの安全性**: ツールを呼び出す前に必ず明示的なユーザーの同意を求めてください。各ツールの機能をユーザーが理解できるようにし、強力なセキュリティ境界を確保してください。
+3. **ツールの安全性**: どのツールを呼び出す場合でも、必ず明示的なユーザーの同意を求めてください。各ツールの機能をユーザーが理解できるようにし、堅牢なセキュリティ境界を確保してください。
 
-4. **ツールの権限管理**: セッション中にモデルが使用できるツールを設定し、明示的に許可されたツールのみがアクセス可能であることを保証してください。
+4. **ツールの許可制御**: セッション中にモデルが使用できるツールを設定し、明示的に許可されたツールのみがアクセス可能であることを確認してください。
 
-5. **認証**: APIキー、OAuthトークン、その他の安全な認証方法を使用して、ツール、リソース、機密操作へのアクセスを許可する前に適切な認証を要求してください。
+5. **認証**: APIキー、OAuthトークン、その他の安全な認証方法を使用して、ツール、リソース、または機密操作へのアクセスを許可する前に適切な認証を要求してください。
 
-6. **パラメータ検証**: ツールの呼び出しに対して検証を徹底し、不正な入力や悪意のある入力がツールの実装に到達するのを防いでください。
+6. **パラメータ検証**: ツールの呼び出しに対して検証を強制し、不正な入力や悪意のある入力がツールの実装に到達するのを防いでください。
 
 7. **レート制限**: サーバーリソースの乱用を防ぎ、公平な使用を確保するためにレート制限を実施してください。
 
@@ -61,15 +65,15 @@ CO_OP_TRANSLATOR_METADATA:
 
 1. **機能交渉**: 接続設定時に、サポートされている機能、プロトコルバージョン、利用可能なツールやリソースに関する情報を交換してください。
 
-2. **ツール設計**: 複数の関心事を扱うモノリシックなツールではなく、特定のタスクに特化したツールを作成してください。
+2. **ツール設計**: 複数の懸念事項を扱うモノリシックなツールではなく、特定のタスクに特化したツールを作成してください。
 
-3. **エラーハンドリング**: 問題の診断を助け、失敗を優雅に処理し、実用的なフィードバックを提供するために、標準化されたエラーメッセージとコードを実装してください。
+3. **エラーハンドリング**: 問題を診断し、失敗を優雅に処理し、実行可能なフィードバックを提供するために、標準化されたエラーメッセージとコードを実装してください。
 
-4. **ログ記録**: プロトコルのインタラクションを監査、デバッグ、監視するために構造化されたログを設定してください。
+4. **ログ記録**: プロトコルインタラクションの監査、デバッグ、モニタリングのために構造化されたログを設定してください。
 
 5. **進捗追跡**: 長時間実行される操作については、進捗状況を報告し、応答性の高いユーザーインターフェースを可能にしてください。
 
-6. **リクエストのキャンセル**: 必要なくなったり、時間がかかりすぎたりするリクエストをクライアントがキャンセルできるようにしてください。
+6. **リクエストのキャンセル**: 必要なくなったり時間がかかりすぎたりするリクエストをクライアントがキャンセルできるようにしてください。
 
 ## 追加の参考資料
 
@@ -86,7 +90,7 @@ MCPのベストプラクティスに関する最新情報については、以�
 
 #### 1. 単一責任の原則
 
-各MCPツールは明確で焦点を絞った目的を持つべきです。複数の関心事を扱おうとするモノリシックなツールを作成するのではなく、特定のタスクに優れた専門的なツールを開発してください。
+各MCPツールは明確で焦点を絞った目的を持つべきです。複数の懸念事項を扱おうとするモノリシックなツールを作成するのではなく、特定のタスクに特化したツールを開発してください。
 
 ```csharp
 // A focused tool that does one thing well
@@ -537,7 +541,7 @@ async def test_mcp_server_integration():
 
 ### 1. キャッシュ戦略
 
-適切なキャッシュを実装して、レイテンシーとリソース使用量を削減してください：
+遅延とリソース使用量を削減するために適切なキャッシュを実装してください：
 
 ```csharp
 // C# example with caching
@@ -604,19 +608,20 @@ public class CachedWeatherTool : ITool
         };
     }
 }
+```
 
-#### 2. Dependency Injection and Testability
+#### 2. 依存性注入とテスト可能性
 
-Design tools to receive their dependencies through constructor injection, making them testable and configurable:
+ツールがコンストラクタ注入を通じて依存関係を受け取るように設計し、テスト可能で構成可能にしてください：
 
 ```java
-// Javaの依存性注入を使用した例
+// Java example with dependency injection
 public class CurrencyConversionTool implements Tool {
     private final ExchangeRateService exchangeService;
     private final CacheService cacheService;
     private final Logger logger;
     
-    // コンストラクタを通じて依存性を注入
+    // Dependencies injected through constructor
     public CurrencyConversionTool(
             ExchangeRateService exchangeService,
             CacheService cacheService,
@@ -626,51 +631,51 @@ public class CurrencyConversionTool implements Tool {
         this.logger = logger;
     }
     
-    // ツールの実装
+    // Tool implementation
     // ...
 }
 ```
 
-#### 3. Composable Tools
+#### 3. 合成可能なツール
 
-Design tools that can be composed together to create more complex workflows:
+より複雑なワークフローを作成するためにツールを組み合わせて設計してください：
 
 ```python
-# Pythonの例：構成可能なツール
+# Python example showing composable tools
 class DataFetchTool(Tool):
     def get_name(self):
         return "dataFetch"
     
-    # 実装...
+    # Implementation...
 
 class DataAnalysisTool(Tool):
     def get_name(self):
         return "dataAnalysis"
     
-    # このツールはdataFetchツールの結果を使用可能
+    # This tool can use results from the dataFetch tool
     async def execute_async(self, request):
-        # 実装...
+        # Implementation...
         pass
 
 class DataVisualizationTool(Tool):
     def get_name(self):
         return "dataVisualize"
     
-    # このツールはdataAnalysisツールの結果を使用可能
+    # This tool can use results from the dataAnalysis tool
     async def execute_async(self, request):
-        # 実装...
+        # Implementation...
         pass
 
-# これらのツールは独立して、またはワークフローの一部として使用可能
+# These tools can be used independently or as part of a workflow
 ```
 
-### Schema Design Best Practices
+### スキーマ設計のベストプラクティス
 
-The schema is the contract between the model and your tool. Well-designed schemas lead to better tool usability.
+スキーマはモデルとツール間の契約です。よく設計されたスキーマはツールの使いやすさを向上させます。
 
-#### 1. Clear Parameter Descriptions
+#### 1. 明確なパラメータ説明
 
-Always include descriptive information for each parameter:
+各パラメータに説明情報を必ず含めてください：
 
 ```csharp
 public object GetSchema()
@@ -680,25 +685,25 @@ public object GetSchema()
         properties = new {
             query = new { 
                 type = "string", 
-                description = "検索クエリテキスト。より正確なキーワードを使用してください。" 
+                description = "Search query text. Use precise keywords for better results." 
             },
             filters = new {
                 type = "object",
-                description = "検索結果を絞り込むためのオプションフィルター",
+                description = "Optional filters to narrow down search results",
                 properties = new {
                     dateRange = new { 
                         type = "string", 
-                        description = "日付範囲（形式：YYYY-MM-DD:YYYY-MM-DD）" 
+                        description = "Date range in format YYYY-MM-DD:YYYY-MM-DD" 
                     },
                     category = new { 
                         type = "string", 
-                        description = "フィルター対象のカテゴリ名" 
+                        description = "Category name to filter by" 
                     }
                 }
             },
             limit = new { 
                 type = "integer", 
-                description = "返される結果の最大数（1-50）",
+                description = "Maximum number of results to return (1-50)",
                 default = 10
             }
         },
@@ -707,9 +712,9 @@ public object GetSchema()
 }
 ```
 
-#### 2. Validation Constraints
+#### 2. 検証制約
 
-Include validation constraints to prevent invalid inputs:
+無効な入力を防ぐために検証制約を含めてください：
 
 ```java
 Map<String, Object> getSchema() {
@@ -718,25 +723,25 @@ Map<String, Object> getSchema() {
     
     Map<String, Object> properties = new HashMap<>();
     
-    // Emailプロパティ（フォーマット検証付き）
+    // Email property with format validation
     Map<String, Object> email = new HashMap<>();
     email.put("type", "string");
     email.put("format", "email");
-    email.put("description", "ユーザーのメールアドレス");
+    email.put("description", "User email address");
     
-    // Ageプロパティ（数値制約付き）
+    // Age property with numeric constraints
     Map<String, Object> age = new HashMap<>();
     age.put("type", "integer");
     age.put("minimum", 13);
     age.put("maximum", 120);
-    age.put("description", "ユーザーの年齢（年単位）");
+    age.put("description", "User age in years");
     
-    // 列挙型プロパティ
+    // Enumerated property
     Map<String, Object> subscription = new HashMap<>();
     subscription.put("type", "string");
     subscription.put("enum", Arrays.asList("free", "basic", "premium"));
     subscription.put("default", "free");
-    subscription.put("description", "サブスクリプションの階層");
+    subscription.put("description", "Subscription tier");
     
     properties.put("email", email);
     properties.put("age", age);
@@ -749,17 +754,17 @@ Map<String, Object> getSchema() {
 }
 ```
 
-#### 3. Consistent Return Structures
+#### 3. 一貫した返却構造
 
-Maintain consistency in your response structures to make it easier for models to interpret results:
+モデルが結果を解釈しやすくするために、レスポンス構造の一貫性を維持してください：
 
 ```python
 async def execute_async(self, request):
     try:
-        # リクエストを処理
+        # Process request
         results = await self._search_database(request.parameters["query"])
         
-        # 常に一貫した構造を返す
+        # Always return a consistent structure
         return ToolResponse(
             result={
                 "matches": [self._format_item(item) for item in results],
@@ -780,7 +785,7 @@ async def execute_async(self, request):
         )
     
 def _format_item(self, item):
-    """各アイテムが一貫した構造を持つことを保証"""
+    """Ensures each item has a consistent structure"""
     return {
         "id": item.id,
         "title": item.title,
@@ -790,13 +795,13 @@ def _format_item(self, item):
     }
 ```
 
-### Error Handling
+### エラーハンドリング
 
-Robust error handling is crucial for MCP tools to maintain reliability.
+MCPツールの信頼性を維持するためには、堅牢なエラーハンドリングが不可欠です。
 
-#### 1. Graceful Error Handling
+#### 1. 優雅なエラーハンドリング
 
-Handle errors at appropriate levels and provide informative messages:
+適切なレベルでエラーを処理し、情報豊富なメッセージを提供してください：
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -814,39 +819,39 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
         }
         catch (FileNotFoundException)
         {
-            throw new ToolExecutionException($"ファイルが見つかりません: {fileId}");
+            throw new ToolExecutionException($"File not found: {fileId}");
         }
         catch (UnauthorizedAccessException)
         {
-            throw new ToolExecutionException("このファイルにアクセスする権限がありません");
+            throw new ToolExecutionException("You don't have permission to access this file");
         }
         catch (Exception ex) when (ex is IOException || ex is TimeoutException)
         {
-            _logger.LogError(ex, "ファイルへのアクセス中にエラーが発生しました {FileId}", fileId);
-            throw new ToolExecutionException("ファイルへのアクセス中にエラーが発生しました：サービスが一時的に利用できません");
+            _logger.LogError(ex, "Error accessing file {FileId}", fileId);
+            throw new ToolExecutionException("Error accessing file: The service is temporarily unavailable");
         }
     }
     catch (JsonException)
     {
-        throw new ToolExecutionException("無効なファイルID形式");
+        throw new ToolExecutionException("Invalid file ID format");
     }
     catch (Exception ex)
     {
-        _logger.LogError(ex, "FileAccessToolで予期しないエラーが発生しました");
-        throw new ToolExecutionException("予期しないエラーが発生しました");
+        _logger.LogError(ex, "Unexpected error in FileAccessTool");
+        throw new ToolExecutionException("An unexpected error occurred");
     }
 }
 ```
 
-#### 2. Structured Error Responses
+#### 2. 構造化されたエラーレスポンス
 
-Return structured error information when possible:
+可能であれば構造化されたエラー情報を返してください：
 
 ```java
 @Override
 public ToolResponse execute(ToolRequest request) {
     try {
-        // 実装
+        // Implementation
     } catch (Exception ex) {
         Map<String, Object> errorResult = new HashMap<>();
         
@@ -864,45 +869,45 @@ public ToolResponse execute(ToolRequest request) {
                 .build();
         }
         
-        // 他の例外をToolExecutionExceptionとして再スロー
-        throw new ToolExecutionException("ツールの実行に失敗しました: " + ex.getMessage(), ex);
+        // Re-throw other exceptions as ToolExecutionException
+        throw new ToolExecutionException("Tool execution failed: " + ex.getMessage(), ex);
     }
 }
 ```
 
-#### 3. Retry Logic
+#### 3. リトライロジック
 
-Implement appropriate retry logic for transient failures:
+一時的な失敗に対して適切なリトライロジックを実装してください：
 
 ```python
 async def execute_async(self, request):
     max_retries = 3
     retry_count = 0
-    base_delay = 1  # 秒
+    base_delay = 1  # seconds
     
     while retry_count < max_retries:
         try:
-            # 外部APIを呼び出し
+            # Call external API
             return await self._call_api(request.parameters)
         except TransientError as e:
             retry_count += 1
             if retry_count >= max_retries:
-                raise ToolExecutionException(f"{max_retries}回の試行後に操作が失敗しました: {str(e)}")
+                raise ToolExecutionException(f"Operation failed after {max_retries} attempts: {str(e)}")
                 
-            # 指数バックオフ
+            # Exponential backoff
             delay = base_delay * (2 ** (retry_count - 1))
-            logging.warning(f"一時的なエラー、{delay}秒後に再試行します: {str(e)}")
+            logging.warning(f"Transient error, retrying in {delay}s: {str(e)}")
             await asyncio.sleep(delay)
         except Exception as e:
-            # 非一時的なエラー、再試行しない
-            raise ToolExecutionException(f"操作が失敗しました: {str(e)}")
+            # Non-transient error, don't retry
+            raise ToolExecutionException(f"Operation failed: {str(e)}")
 ```
 
-### Performance Optimization
+### パフォーマンス最適化
 
-#### 1. Caching
+#### 1. キャッシュ
 
-Implement caching for expensive operations:
+高コストな操作に対してキャッシュを実装してください：
 
 ```csharp
 public class CachedDataTool : IMcpTool
@@ -916,43 +921,41 @@ public class CachedDataTool : IMcpTool
         _cache = cache;
     }
     
-    public async Task
-
-ExecuteAsync(ToolRequest request)
-{
-    var query = request.Parameters.GetProperty("query").GetString();
-    
-    // パラメータに基づいてキャッシュキーを作成
-    var cacheKey = $"data_query_{ComputeHash(query)}";
-    
-    // まずキャッシュから取得を試みる
-    if (_cache.TryGetValue(cacheKey, out var cachedResult))
+    public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
     {
-        return new ToolResponse { Result = cachedResult };
+        var query = request.Parameters.GetProperty("query").GetString();
+        
+        // Create cache key based on parameters
+        var cacheKey = $"data_query_{ComputeHash(query)}";
+        
+        // Try to get from cache first
+        if (_cache.TryGetValue(cacheKey, out var cachedResult))
+        {
+            return new ToolResponse { Result = cachedResult };
+        }
+        
+        // Cache miss - perform actual query
+        var result = await _database.QueryAsync(query);
+        
+        // Store in cache with expiration
+        var cacheOptions = new MemoryCacheEntryOptions()
+            .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
+            
+        _cache.Set(cacheKey, JsonSerializer.SerializeToElement(result), cacheOptions);
+        
+        return new ToolResponse { Result = JsonSerializer.SerializeToElement(result) };
     }
     
-    // キャッシュミス - 実際のクエリを実行
-    var result = await _database.QueryAsync(query);
-    
-    // キャッシュに保存（有効期限付き）
-    var cacheOptions = new MemoryCacheEntryOptions()
-        .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
-        
-    _cache.Set(cacheKey, JsonSerializer.SerializeToElement(result), cacheOptions);
-    
-    return new ToolResponse { Result = JsonSerializer.SerializeToElement(result) };
-}
-
-private string ComputeHash(string input)
-{
-    // キャッシュキー用の安定したハッシュを生成する実装
-}
+    private string ComputeHash(string input)
+    {
+        // Implementation to generate stable hash for cache key
+    }
 }
 ```
 
-#### 2. Asynchronous Processing
+#### 2. 非同期処理
 
-Use asynchronous programming patterns for I/O-bound operations:
+I/Oバウンド操作に対して非同期プログラミングパターンを使用してください：
 
 ```java
 public class AsyncDocumentProcessingTool implements Tool {
@@ -963,23 +966,23 @@ public class AsyncDocumentProcessingTool implements Tool {
     public ToolResponse execute(ToolRequest request) {
         String documentId = request.getParameters().get("documentId").asText();
         
-        // 長時間実行される操作の場合、処理IDを即座に返す
+        // For long-running operations, return a processing ID immediately
         String processId = UUID.randomUUID().toString();
         
-        // 非同期処理を開始
+        // Start async processing
         CompletableFuture.runAsync(() -> {
             try {
-                // 長時間実行される操作を実行
+                // Perform long-running operation
                 documentService.processDocument(documentId);
                 
-                // ステータスを更新（通常はデータベースに保存される）
+                // Update status (would typically be stored in a database)
                 processStatusRepository.updateStatus(processId, "completed");
             } catch (Exception ex) {
                 processStatusRepository.updateStatus(processId, "failed", ex.getMessage());
             }
         }, executorService);
         
-        // 処理IDを含む即時応答を返す
+        // Return immediate response with process ID
         Map<String, Object> result = new HashMap<>();
         result.put("processId", processId);
         result.put("status", "processing");
@@ -988,7 +991,7 @@ public class AsyncDocumentProcessingTool implements Tool {
         return new ToolResponse.Builder().setResult(result).build();
     }
     
-    // ステータス確認用の補助ツール
+    // Companion status check tool
     public class ProcessStatusTool implements Tool {
         @Override
         public ToolResponse execute(ToolRequest request) {
@@ -1001,35 +1004,35 @@ public class AsyncDocumentProcessingTool implements Tool {
 }
 ```
 
-#### 3. Resource Throttling
+#### 3. リソーススロットリング
 
-Implement resource throttling to prevent overload:
+過負荷を防ぐためにリソーススロットリングを実装してください：
 
 ```python
 class ThrottledApiTool(Tool):
     def __init__(self):
         self.rate_limiter = TokenBucketRateLimiter(
-            tokens_per_second=5,  # 1秒あたり5リクエストを許可
-            bucket_size=10        # 最大10リクエストのバーストを許可
+            tokens_per_second=5,  # Allow 5 requests per second
+            bucket_size=10        # Allow bursts up to 10 requests
         )
     
     async def execute_async(self, request):
-        # 実行可能か、待機が必要かを確認
+        # Check if we can proceed or need to wait
         delay = self.rate_limiter.get_delay_time()
         
         if delay > 0:
-            if delay > 2.0:  # 待機時間が長すぎる場合
+            if delay > 2.0:  # If wait is too long
                 raise ToolExecutionException(
-                    f"レート制限を超えました。{delay:.1f}秒後に再試行してください。"
+                    f"Rate limit exceeded. Please try again in {delay:.1f} seconds."
                 )
             else:
-                # 適切な待機時間を待つ
+                # Wait for the appropriate delay time
                 await asyncio.sleep(delay)
         
-        # トークンを消費してリクエストを続行
+        # Consume a token and proceed with the request
         self.rate_limiter.consume()
         
-        # APIを呼び出す
+        # Call API
         result = await self._call_api(request.parameters)
         return ToolResponse(result=result)
 
@@ -1047,7 +1050,7 @@ class TokenBucketRateLimiter:
             if self.tokens >= 1:
                 return 0
             
-            # 次のトークンが利用可能になるまでの時間を計算
+            # Calculate time until next token available
             return (1 - self.tokens) / self.tokens_per_second
     
     async def consume(self):
@@ -1059,86 +1062,86 @@ class TokenBucketRateLimiter:
         now = time.time()
         elapsed = now - self.last_refill
         
-        # 経過時間に基づいて新しいトークンを追加
+        # Add new tokens based on elapsed time
         new_tokens = elapsed * self.tokens_per_second
         self.tokens = min(self.bucket_size, self.tokens + new_tokens)
         self.last_refill = now
 ```
 
-### Security Best Practices
+### セキュリティのベストプラクティス
 
-#### 1. Input Validation
+#### 1. 入力検証
 
-Always validate input parameters thoroughly:
+常に入力パラメータを徹底的に検証してください：
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 {
-    // パラメータが存在するか検証
+    // Validate parameters exist
     if (!request.Parameters.TryGetProperty("query", out var queryProp))
     {
-        throw new ToolExecutionException("必須パラメータが不足しています: query");
+        throw new ToolExecutionException("Missing required parameter: query");
     }
     
-    // 正しい型かどうかを検証
+    // Validate correct type
     if (queryProp.ValueKind != JsonValueKind.String)
     {
-        throw new ToolExecutionException("Queryパラメータは文字列である必要があります");
+        throw new ToolExecutionException("Query parameter must be a string");
     }
     
     var query = queryProp.GetString();
     
-    // 文字列の内容を検証
+    // Validate string content
     if (string.IsNullOrWhiteSpace(query))
     {
-        throw new ToolExecutionException("Queryパラメータは空であってはなりません");
+        throw new ToolExecutionException("Query parameter cannot be empty");
     }
     
     if (query.Length > 500)
     {
-        throw new ToolExecutionException("Queryパラメータは最大500文字を超えることはできません");
+        throw new ToolExecutionException("Query parameter exceeds maximum length of 500 characters");
     }
     
-    // 必要に応じてSQLインジェクション攻撃をチェック
+    // Check for SQL injection attacks if applicable
     if (ContainsSqlInjection(query))
     {
-        throw new ToolExecutionException("無効なクエリ: 潜在的に安全でないSQLが含まれています");
+        throw new ToolExecutionException("Invalid query: contains potentially unsafe SQL");
     }
     
-    // 実行を続行
+    // Proceed with execution
     // ...
 }
 ```
 
-#### 2. Authorization Checks
+#### 2. 認可チェック
 
-Implement proper authorization checks:
+適切な認可チェックを実装してください：
 
 ```java
 @Override
 public ToolResponse execute(ToolRequest request) {
-    // リクエストからユーザーコンテキストを取得
+    // Get user context from request
     UserContext user = request.getContext().getUserContext();
     
-    // ユーザーが必要な権限を持っているか確認
+    // Check if user has required permissions
     if (!authorizationService.hasPermission(user, "documents:read")) {
-        throw new ToolExecutionException("ユーザーにドキュメントへのアクセス権限がありません");
+        throw new ToolExecutionException("User does not have permission to access documents");
     }
     
-    // 特定のリソースに対して、そのリソースへのアクセスを確認
+    // For specific resources, check access to that resource
     String documentId = request.getParameters().get("documentId").asText();
     if (!documentService.canUserAccess(user.getId(), documentId)) {
-        throw new ToolExecutionException("要求されたドキュメントへのアクセスが拒否されました");
+        throw new ToolExecutionException("Access denied to the requested document");
     }
     
-    // ツールの実行を続行
+    // Proceed with tool execution
     // ...
 }
 ```
 
-#### 3. Sensitive Data Handling
+#### 3. 機密データの取り扱い
 
-Handle sensitive data carefully:
+機密データを慎重に取り扱ってください：
 
 ```python
 class SecureDataTool(Tool):
@@ -1156,56 +1159,56 @@ class SecureDataTool(Tool):
         user_id = request.parameters["userId"]
         include_sensitive = request.parameters.get("includeSensitiveData", False)
         
-        # ユーザーデータを取得
+        # Get user data
         user_data = await self.user_service.get_user_data(user_id)
         
-        # 明示的に要求され、かつ認可されていない限り、機密フィールドをフィルタリング
+        # Filter sensitive fields unless explicitly requested AND authorized
         if not include_sensitive or not self._is_authorized_for_sensitive_data(request):
             user_data = self._redact_sensitive_fields(user_data)
         
         return ToolResponse(result=user_data)
     
     def _is_authorized_for_sensitive_data(self, request):
-        # リクエストコンテキスト内の認可レベルを確認
+        # Check authorization level in request context
         auth_level = request.context.get("authorizationLevel")
         return auth_level == "admin"
     
     def _redact_sensitive_fields(self, user_data):
-        # 元のデータを変更しないようコピーを作成
+        # Create a copy to avoid modifying the original
         redacted = user_data.copy()
         
-        # 特定の機密フィールドをマスク
+        # Redact specific sensitive fields
         sensitive_fields = ["ssn", "creditCardNumber", "password"]
         for field in sensitive_fields:
             if field in redacted:
                 redacted[field] = "REDACTED"
         
-        # ネストされた機密データをマスク
+        # Redact nested sensitive data
         if "financialInfo" in redacted:
             redacted["financialInfo"] = {"available": True, "accessRestricted": True}
         
         return redacted
 ```
 
-## Testing Best Practices for MCP Tools
+## MCPツールのテストのベストプラクティス
 
-Comprehensive testing ensures that MCP tools function correctly, handle edge cases, and integrate properly with the rest of the system.
+包括的なテストは、MCPツールが正しく機能し、エッジケースを処理し、システム全体と適切に統合されることを保証します。
 
-### Unit Testing
+### 単体テスト
 
-#### 1. Test Each Tool in Isolation
+#### 1. 各ツールを単独でテスト
 
-Create focused tests for each tool's functionality:
+各ツールの機能に焦点を当てたテストを作成してください：
 
 ```csharp
 [Fact]
 public async Task WeatherTool_ValidLocation_ReturnsCorrectForecast()
 {
-    // 準備
+    // Arrange
     var mockWeatherService = new Mock<IWeatherService>();
     mockWeatherService
         .Setup(s => s.GetForecastAsync("Seattle", 3))
-        .ReturnsAsync(new WeatherForecast(/* テストデータ */));
+        .ReturnsAsync(new WeatherForecast(/* test data */));
     
     var tool = new WeatherForecastTool(mockWeatherService.Object);
     
@@ -1217,10 +1220,10 @@ public async Task WeatherTool_ValidLocation_ReturnsCorrectForecast()
         })
     );
     
-    // 実行
+    // Act
     var response = await tool.ExecuteAsync(request);
     
-    // 検証
+    // Assert
     Assert.NotNull(response);
     var result = JsonSerializer.Deserialize<WeatherForecast>(response.Result);
     Assert.Equal("Seattle", result.Location);
@@ -1230,7 +1233,7 @@ public async Task WeatherTool_ValidLocation_ReturnsCorrectForecast()
 [Fact]
 public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
 {
-    // 準備
+    // Arrange
     var mockWeatherService = new Mock<IWeatherService>();
     mockWeatherService
         .Setup(s => s.GetForecastAsync("InvalidLocation", It.IsAny<int>()))
@@ -1246,7 +1249,7 @@ public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
         })
     );
     
-    // 実行と検証
+    // Act & Assert
     var exception = await Assert.ThrowsAsync<ToolExecutionException>(
         () => tool.ExecuteAsync(request)
     );
@@ -1255,27 +1258,27 @@ public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
 }
 ```
 
-#### 2. Schema Validation Testing
+#### 2. スキーマ検証テスト
 
-Test that schemas are valid and properly enforce constraints:
+スキーマが有効であり、適切に制約を強制することをテストしてください：
 
 ```java
 @Test
 public void testSchemaValidation() {
-    // ツールインスタンスを作成
+    // Create tool instance
     SearchTool searchTool = new SearchTool();
     
-    // スキーマを取得
+    // Get schema
     Object schema = searchTool.getSchema();
     
-    // スキーマをJSONに変換して検証
+    // Convert schema to JSON for validation
     String schemaJson = objectMapper.writeValueAsString(schema);
     
-    // スキーマが有効なJSONSchemaであることを確認
+    // Validate schema is valid JSONSchema
     JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
     JsonSchema jsonSchema = factory.getJsonSchema(schemaJson);
     
-    // 有効なパラメータをテスト
+    // Test valid parameters
     JsonNode validParams = objectMapper.createObjectNode()
         .put("query", "test query")
         .put("limit", 5);
@@ -1283,14 +1286,14 @@ public void testSchemaValidation() {
     ProcessingReport validReport = jsonSchema.validate(validParams);
     assertTrue(validReport.isSuccess());
     
-    // 必須パラメータが欠落している場合をテスト
+    // Test missing required parameter
     JsonNode missingRequired = objectMapper.createObjectNode()
         .put("limit", 5);
         
     ProcessingReport missingReport = jsonSchema.validate(missingRequired);
     assertFalse(missingReport.isSuccess());
     
-    // 無効なパラメータ型をテスト
+    // Test invalid parameter type
     JsonNode invalidType = objectMapper.createObjectNode()
         .put("query", "test")
         .put("limit", "not-a-number");
@@ -1300,21 +1303,21 @@ public void testSchemaValidation() {
 }
 ```
 
-#### 3. Error Handling Tests
+#### 3. エラーハンドリングテスト
 
-Create specific tests for error conditions:
+エラー条件に対する特定のテストを作成してください：
 
 ```python
 @pytest.mark.asyncio
 async def test_api_tool_handles_timeout():
-    # 準備
-    tool = ApiTool(timeout=0.1)  # 非常に短いタイムアウト
+    # Arrange
+    tool = ApiTool(timeout=0.1)  # Very short timeout
     
-    # タイムアウトするリクエストをモック
+    # Mock a request that will time out
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
-            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # タイムアウトより長い
+            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # Longer than timeout
         )
         
         request = ToolRequest(
@@ -1322,19 +1325,19 @@ async def test_api_tool_handles_timeout():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # 実行と検証
+        # Act & Assert
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # 例外メッセージを確認
+        # Verify exception message
         assert "timed out" in str(exc_info.value).lower()
 
 @pytest.mark.asyncio
 async def test_api_tool_handles_rate_limiting():
-    # 準備
+    # Arrange
     tool = ApiTool()
     
-    # レート制限されたレスポンスをモック
+    # Mock a rate-limited response
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
@@ -1348,27 +1351,27 @@ async def test_api_tool_handles_rate_limiting():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # 実行と検証
+        # Act & Assert
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # 例外にレート制限情報が含まれていることを確認
+        # Verify exception contains rate limit information
         error_msg = str(exc_info.value).lower()
         assert "rate limit" in error_msg
         assert "try again" in error_msg
 ```
 
-### Integration Testing
+### 統合テスト
 
-#### 1. Tool Chain Testing
+#### 1. ツールチェーンテスト
 
-Test tools working together in expected combinations:
+期待される組み合わせで動作するツールをテストしてください：
 
 ```csharp
 [Fact]
 public async Task DataProcessingWorkflow_CompletesSuccessfully()
 {
-    // 準備
+    // Arrange
     var dataFetchTool = new DataFetchTool(mockDataService.Object);
     var analysisTools = new DataAnalysisTool(mockAnalysisService.Object);
     var visualizationTool = new DataVisualizationTool(mockVisualizationService.Object);
@@ -1380,32 +1383,30 @@ public async Task DataProcessingWorkflow_CompletesSuccessfully()
     
     var workflowExecutor = new WorkflowExecutor(toolRegistry);
     
-    // 実行
-```markdown
-var result = await workflowExecutor.ExecuteWorkflowAsync(new[] {
-    new ToolCall("dataFetch", new { source = "sales2023" }),
-    new ToolCall("dataAnalysis", ctx =
-> new { 
-        data = ctx.GetResult("dataFetch"),
-        analysis = "trend" 
-    }),
-    new ToolCall("dataVisualize", ctx => new {
-        analysisResult = ctx.GetResult("dataAnalysis"),
-        type = "line-chart"
-    })
-});
-
-// 確認
-Assert.NotNull(result);
-Assert.True(result.Success);
-Assert.NotNull(result.GetResult("dataVisualize"));
-Assert.Contains("chartUrl", result.GetResult("dataVisualize").ToString());
+    // Act
+    var result = await workflowExecutor.ExecuteWorkflowAsync(new[] {
+        new ToolCall("dataFetch", new { source = "sales2023" }),
+        new ToolCall("dataAnalysis", ctx => new { 
+            data = ctx.GetResult("dataFetch"),
+            analysis = "trend" 
+        }),
+        new ToolCall("dataVisualize", ctx => new {
+            analysisResult = ctx.GetResult("dataAnalysis"),
+            type = "line-chart"
+        })
+    });
+    
+    // Assert
+    Assert.NotNull(result);
+    Assert.True(result.Success);
+    Assert.NotNull(result.GetResult("dataVisualize"));
+    Assert.Contains("chartUrl", result.GetResult("dataVisualize").ToString());
 }
 ```
 
-#### 2. MCP Server Testing
+#### 2. MCPサーバーテスト
 
-Test the MCP server with full tool registration and execution:
+ツールの登録と実行を含む完全なMCPサーバーをテストしてください：
 
 ```java
 @SpringBootTest
@@ -1420,7 +1421,7 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolDiscovery() throws Exception {
-        // エンドポイントの検出をテスト
+        // Test the discovery endpoint
         mockMvc.perform(get("/mcp/tools"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.tools").isArray())
@@ -1431,7 +1432,7 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolExecution() throws Exception {
-        // ツールリクエストを作成
+        // Create tool request
         Map<String, Object> request = new HashMap<>();
         request.put("toolName", "calculator");
         
@@ -1441,7 +1442,7 @@ public class McpServerIntegrationTest {
         parameters.put("b", 7);
         request.put("parameters", parameters);
         
-        // リクエストを送信し、レスポンスを確認
+        // Send request and verify response
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1451,17 +1452,17 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolValidation() throws Exception {
-        // 無効なツールリクエストを作成
+        // Create invalid tool request
         Map<String, Object> request = new HashMap<>();
         request.put("toolName", "calculator");
         
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("operation", "divide");
         parameters.put("a", 10);
-        // パラメータ "b" が欠落
+        // Missing parameter "b"
         request.put("parameters", parameters);
         
-        // リクエストを送信し、エラーレスポンスを確認
+        // Send request and verify error response
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1471,32 +1472,32 @@ public class McpServerIntegrationTest {
 }
 ```
 
-#### 3. End-to-End Testing
+#### 3. エンドツーエンドテスト
 
-Test complete workflows from model prompt to tool execution:
+モデルプロンプトからツール実行までの完全なワークフローをテストしてください：
 
 ```python
 @pytest.mark.asyncio
 async def test_model_interaction_with_tool():
-    # 準備 - MCPクライアントとモックモデルを設定
+    # Arrange - Set up MCP client and mock model
     mcp_client = McpClient(server_url="http://localhost:5000")
     
-    # モックモデルのレスポンス
+    # Mock model responses
     mock_model = MockLanguageModel([
         MockResponse(
-            "シアトルの天気はどうですか？",
+            "What's the weather in Seattle?",
             tool_calls=[{
                 "tool_name": "weatherForecast",
                 "parameters": {"location": "Seattle", "days": 3}
             }]
         ),
         MockResponse(
-            "シアトルの天気予報はこちらです：\n- 今日: 65°F, 曇り時々晴れ\n- 明日: 68°F, 晴れ\n- 明後日: 62°F, 雨",
+            "Here's the weather forecast for Seattle:\n- Today: 65°F, Partly Cloudy\n- Tomorrow: 68°F, Sunny\n- Day after: 62°F, Rain",
             tool_calls=[]
         )
     ])
     
-    # モック天気ツールのレスポンス
+    # Mock weather tool response
     with aioresponses() as mocked:
         mocked.post(
             "http://localhost:5000/mcp/execute",
@@ -1504,41 +1505,41 @@ async def test_model_interaction_with_tool():
                 "result": {
                     "location": "Seattle",
                     "forecast": [
-                        {"date": "2023-06-01", "temperature": 65, "conditions": "曇り時々晴れ"},
-                        {"date": "2023-06-02", "temperature": 68, "conditions": "晴れ"},
-                        {"date": "2023-06-03", "temperature": 62, "conditions": "雨"}
+                        {"date": "2023-06-01", "temperature": 65, "conditions": "Partly Cloudy"},
+                        {"date": "2023-06-02", "temperature": 68, "conditions": "Sunny"},
+                        {"date": "2023-06-03", "temperature": 62, "conditions": "Rain"}
                     ]
                 }
             }
         )
         
-        # 実行
+        # Act
         response = await mcp_client.send_prompt(
-            "シアトルの天気はどうですか？",
+            "What's the weather in Seattle?",
             model=mock_model,
             allowed_tools=["weatherForecast"]
         )
         
-        # 確認
+        # Assert
         assert "Seattle" in response.generated_text
         assert "65" in response.generated_text
-        assert "晴れ" in response.generated_text
-        assert "雨" in response.generated_text
+        assert "Sunny" in response.generated_text
+        assert "Rain" in response.generated_text
         assert len(response.tool_calls) == 1
         assert response.tool_calls[0].tool_name == "weatherForecast"
 ```
 
-### Performance Testing
+### パフォーマンステスト
 
-#### 1. Load Testing
+#### 1. 負荷テスト
 
-Test how many concurrent requests your MCP server can handle:
+MCPサーバーが処理できる同時リクエスト数をテストしてください：
 
 ```csharp
 [Fact]
 public async Task McpServer_HandlesHighConcurrency()
 {
-    // 準備
+    // Arrange
     var server = new McpServer(
         name: "TestServer",
         version: "1.0",
@@ -1550,7 +1551,7 @@ public async Task McpServer_HandlesHighConcurrency()
     
     var client = new McpClient("http://localhost:5000");
     
-    // 実行
+    // Act
     var tasks = new List<Task<McpResponse>>();
     for (int i = 0; i < 1000; i++)
     {
@@ -1559,15 +1560,15 @@ public async Task McpServer_HandlesHighConcurrency()
     
     var results = await Task.WhenAll(tasks);
     
-    // 確認
+    // Assert
     Assert.Equal(1000, results.Length);
     Assert.All(results, r => Assert.NotNull(r));
 }
 ```
 
-#### 2. Stress Testing
+#### 2. ストレステスト
 
-Test the system under extreme load:
+極端な負荷下でシステムをテストしてください：
 
 ```java
 @Test
@@ -1576,14 +1577,14 @@ public void testServerUnderStress() {
     int rampUpTimeSeconds = 60;
     int testDurationSeconds = 300;
     
-    // JMeterを使用したストレステストの設定
+    // Set up JMeter for stress testing
     StandardJMeterEngine jmeter = new StandardJMeterEngine();
     
-    // JMeterテストプランの構成
+    // Configure JMeter test plan
     HashTree testPlanTree = new HashTree();
     
-    // テストプラン、スレッドグループ、サンプラーなどを作成
-    TestPlan testPlan = new TestPlan("MCPサーバーストレステスト");
+    // Create test plan, thread group, samplers, etc.
+    TestPlan testPlan = new TestPlan("MCP Server Stress Test");
     testPlanTree.add(testPlan);
     
     ThreadGroup threadGroup = new ThreadGroup();
@@ -1594,7 +1595,7 @@ public void testServerUnderStress() {
     
     testPlanTree.add(threadGroup);
     
-    // ツール実行用のHTTPサンプラーを追加
+    // Add HTTP sampler for tool execution
     HTTPSampler toolExecutionSampler = new HTTPSampler();
     toolExecutionSampler.setDomain("localhost");
     toolExecutionSampler.setPort(5000);
@@ -1605,58 +1606,58 @@ public void testServerUnderStress() {
     
     threadGroup.add(toolExecutionSampler);
     
-    // リスナーを追加
+    // Add listeners
     SummaryReport summaryReport = new SummaryReport();
     threadGroup.add(summaryReport);
     
-    // テストを実行
+    // Run test
     jmeter.configure(testPlanTree);
     jmeter.run();
     
-    // 結果を検証
+    // Validate results
     assertEquals(0, summaryReport.getErrorCount());
-    assertTrue(summaryReport.getAverage() < 200); // 平均応答時間 < 200ms
-    assertTrue(summaryReport.getPercentile(90.0) < 500); // 90パーセンタイル < 500ms
+    assertTrue(summaryReport.getAverage() < 200); // Average response time < 200ms
+    assertTrue(summaryReport.getPercentile(90.0) < 500); // 90th percentile < 500ms
 }
 ```
 
-#### 3. Monitoring and Profiling
+#### 3. モニタリングとプロファイリング
 
-Set up monitoring for long-term performance analysis:
+長期的なパフォーマンス分析のためにモニタリングを設定してください：
 
 ```python
-# MCPサーバーのモニタリングを設定
+# Configure monitoring for an MCP server
 def configure_monitoring(server):
-    # Prometheusメトリクスを設定
+    # Set up Prometheus metrics
     prometheus_metrics = {
-        "request_count": Counter("mcp_requests_total", "MCPリクエストの総数"),
+        "request_count": Counter("mcp_requests_total", "Total MCP requests"),
         "request_latency": Histogram(
             "mcp_request_duration_seconds", 
-            "リクエストの処理時間（秒）",
+            "Request duration in seconds",
             buckets=[0.01, 0.05, 0.1, 0.5, 1.0, 2.5, 5.0, 10.0]
         ),
         "tool_execution_count": Counter(
             "mcp_tool_executions_total", 
-            "ツール実行回数",
+            "Tool execution count",
             labelnames=["tool_name"]
         ),
         "tool_execution_latency": Histogram(
             "mcp_tool_duration_seconds", 
-            "ツール実行時間（秒）",
+            "Tool execution duration in seconds",
             labelnames=["tool_name"],
             buckets=[0.01, 0.05, 0.1, 0.5, 1.0, 2.5, 5.0, 10.0]
         ),
         "tool_errors": Counter(
             "mcp_tool_errors_total",
-            "ツール実行エラー",
+            "Tool execution errors",
             labelnames=["tool_name", "error_type"]
         )
     }
     
-    # タイミングとメトリクス記録用のミドルウェアを追加
+    # Add middleware for timing and recording metrics
     server.add_middleware(PrometheusMiddleware(prometheus_metrics))
     
-    # メトリクスエンドポイントを公開
+    # Expose metrics endpoint
     @server.router.get("/metrics")
     async def metrics():
         return generate_latest()
@@ -1664,29 +1665,29 @@ def configure_monitoring(server):
     return server
 ```
 
-## MCP Workflow Design Patterns
+## MCPワークフロー設計パターン
 
-Well-designed MCP workflows improve efficiency, reliability, and maintainability. Here are key patterns to follow:
+よく設計されたMCPワークフローは効率性、信頼性、保守性を向上させます。以下は従うべき主要なパターンです：
 
-### 1. Chain of Tools Pattern
+### 1. ツールチェーンパターン
 
-Connect multiple tools in a sequence where each tool's output becomes the input for the next:
+複数のツールを連続して接続し、各ツールの出力を次のツールの入力として使用します：
 
 ```python
-# Python ツールチェーンの実装
+# Python Chain of Tools implementation
 class ChainWorkflow:
     def __init__(self, tools_chain):
-        self.tools_chain = tools_chain  # 順番に実行するツール名のリスト
+        self.tools_chain = tools_chain  # List of tool names to execute in sequence
     
     async def execute(self, mcp_client, initial_input):
         current_result = initial_input
         all_results = {"input": initial_input}
         
         for tool_name in self.tools_chain:
-            # チェーン内の各ツールを実行し、前の結果を渡す
+            # Execute each tool in the chain, passing previous result
             response = await mcp_client.execute_tool(tool_name, current_result)
             
-            # 結果を保存し、次のツールの入力として使用
+            # Store result and use as input for next tool
             all_results[tool_name] = response.result
             current_result = response.result
         
@@ -1695,7 +1696,7 @@ class ChainWorkflow:
             "all_results": all_results
         }
 
-# 使用例
+# Example usage
 data_processing_chain = ChainWorkflow([
     "dataFetch",
     "dataCleaner",
@@ -1709,9 +1710,9 @@ result = await data_processing_chain.execute(
 )
 ```
 
-### 2. Dispatcher Pattern
+### 2. ディスパッチャーパターン
 
-Use a central tool that dispatches to specialized tools based on input:
+入力に基づいて専門ツールにディスパッチする中央ツールを使用します：
 
 ```csharp
 public class ContentDispatcherTool : IMcpTool
@@ -1724,7 +1725,7 @@ public class ContentDispatcherTool : IMcpTool
     }
     
     public string Name => "contentProcessor";
-    public string Description => "さまざまなタイプのコンテンツを処理します";
+    public string Description => "Processes content of various types";
     
     public object GetSchema()
     {
@@ -1751,10 +1752,10 @@ public class ContentDispatcherTool : IMcpTool
         var contentType = request.Parameters.GetProperty("contentType").GetString();
         var operation = request.Parameters.GetProperty("operation").GetString();
         
-        // 使用する専門ツールを決定
+        // Determine which specialized tool to use
         string targetTool = DetermineTargetTool(contentType, operation);
         
-        // 専門ツールに転送
+        // Forward to the specialized tool
         var specializedResponse = await _mcpClient.ExecuteToolAsync(
             targetTool,
             new { content, options = GetOptionsForTool(targetTool, operation) }
@@ -1771,31 +1772,29 @@ public class ContentDispatcherTool : IMcpTool
             ("text", "analyze") => "textAnalyzer",
             ("html", _) => "htmlProcessor",
             ("markdown", _) => "markdownProcessor",
-            ("csv", _) =>
-```
-"csvProcessor"
-("code", _) => "codeAnalyzer",
-            _ => throw new ToolExecutionException($"指定された {contentType}/{operation} に対応するツールがありません")
+            ("csv", _) => "csvProcessor",
+            ("code", _) => "codeAnalyzer",
+            _ => throw new ToolExecutionException($"No tool available for {contentType}/{operation}")
         };
     }
     
     private object GetOptionsForTool(string toolName, string operation)
     {
-        // 各専門ツールに適したオプションを返す
+        // Return appropriate options for each specialized tool
         return toolName switch
         {
             "textSummarizer" => new { length = "medium" },
             "htmlProcessor" => new { cleanUp = true, operation },
-            // 他のツールのオプション...
+            // Options for other tools...
             _ => new { }
         };
     }
 }
 ```
 
-### 3. Parallel Processing Pattern
+### 3. 並列処理パターン
 
-Execute multiple tools simultaneously for efficiency:
+効率性のために複数のツールを同時に実行します：
 
 ```java
 public class ParallelDataProcessingWorkflow {
@@ -1806,11 +1805,11 @@ public class ParallelDataProcessingWorkflow {
     }
     
     public WorkflowResult execute(String datasetId) {
-        // ステップ1: データセットのメタデータを取得 (同期処理)
+        // Step 1: Fetch dataset metadata (synchronous)
         ToolResponse metadataResponse = mcpClient.executeTool("datasetMetadata", 
             Map.of("datasetId", datasetId));
         
-        // ステップ2: 複数の分析を並行して実行
+        // Step 2: Launch multiple analyses in parallel
         CompletableFuture<ToolResponse> statisticalAnalysis = CompletableFuture.supplyAsync(() ->
             mcpClient.executeTool("statisticalAnalysis", Map.of(
                 "datasetId", datasetId,
@@ -1832,25 +1831,25 @@ public class ParallelDataProcessingWorkflow {
             ))
         );
         
-        // 全ての並行タスクが完了するのを待つ
+        // Wait for all parallel tasks to complete
         CompletableFuture<Void> allAnalyses = CompletableFuture.allOf(
             statisticalAnalysis, correlationAnalysis, outlierDetection
         );
         
-        allAnalyses.join();  // 完了を待機
+        allAnalyses.join();  // Wait for completion
         
-        // ステップ3: 結果を統合
+        // Step 3: Combine results
         Map<String, Object> combinedResults = new HashMap<>();
         combinedResults.put("metadata", metadataResponse.getResult());
         combinedResults.put("statistics", statisticalAnalysis.join().getResult());
         combinedResults.put("correlations", correlationAnalysis.join().getResult());
         combinedResults.put("outliers", outlierDetection.join().getResult());
         
-        // ステップ4: サマリーレポートを生成
+        // Step 4: Generate summary report
         ToolResponse summaryResponse = mcpClient.executeTool("reportGenerator", 
             Map.of("analysisResults", combinedResults));
         
-        // 完全なワークフロー結果を返す
+        // Return complete workflow result
         WorkflowResult result = new WorkflowResult();
         result.setDatasetId(datasetId);
         result.setAnalysisResults(combinedResults);
@@ -1861,9 +1860,9 @@ public class ParallelDataProcessingWorkflow {
 }
 ```
 
-### 4. Error Recovery Pattern
+### 4. エラー回復パターン
 
-Implement graceful fallbacks for tool failures:
+ツールの失敗に対する優雅なフォールバックを実装します：
 
 ```python
 class ResilientWorkflow:
@@ -1872,7 +1871,7 @@ class ResilientWorkflow:
     
     async def execute_with_fallback(self, primary_tool, fallback_tool, parameters):
         try:
-            # まずはプライマリツールを試す
+            # Try primary tool first
             response = await self.client.execute_tool(primary_tool, parameters)
             return {
                 "result": response.result,
@@ -1880,12 +1879,12 @@ class ResilientWorkflow:
                 "tool": primary_tool
             }
         except ToolExecutionException as e:
-            # 失敗をログに記録
-            logging.warning(f"プライマリツール '{primary_tool}' が失敗しました: {str(e)}")
+            # Log the failure
+            logging.warning(f"Primary tool '{primary_tool}' failed: {str(e)}")
             
-            # セカンダリツールにフォールバック
+            # Fall back to secondary tool
             try:
-                # フォールバックツール用にパラメータを変換する必要があるかもしれません
+                # Might need to transform parameters for fallback tool
                 fallback_params = self._adapt_parameters(parameters, primary_tool, fallback_tool)
                 
                 response = await self.client.execute_tool(fallback_tool, fallback_params)
@@ -1896,30 +1895,30 @@ class ResilientWorkflow:
                     "primaryError": str(e)
                 }
             except ToolExecutionException as fallback_error:
-                # 両方のツールが失敗
-                logging.error(f"プライマリとフォールバックツールの両方が失敗しました。フォールバックエラー: {str(fallback_error)}")
+                # Both tools failed
+                logging.error(f"Both primary and fallback tools failed. Fallback error: {str(fallback_error)}")
                 raise WorkflowExecutionException(
-                    f"ワークフローが失敗しました: プライマリエラー: {str(e)}; フォールバックエラー: {str(fallback_error)}"
+                    f"Workflow failed: primary error: {str(e)}; fallback error: {str(fallback_error)}"
                 )
     
     def _adapt_parameters(self, params, from_tool, to_tool):
-        """異なるツール間でパラメータを適応させる"""
-        # この実装は特定のツールに依存します
-        # この例では元のパラメータをそのまま返します
+        """Adapt parameters between different tools if needed"""
+        # This implementation would depend on the specific tools
+        # For this example, we'll just return the original parameters
         return params
 
-# 使用例
+# Example usage
 async def get_weather(workflow, location):
     return await workflow.execute_with_fallback(
-        "premiumWeatherService",  # プライマリ (有料) 天気API
-        "basicWeatherService",    # フォールバック (無料) 天気API
+        "premiumWeatherService",  # Primary (paid) weather API
+        "basicWeatherService",    # Fallback (free) weather API
         {"location": location}
     )
 ```
 
-### 5. Workflow Composition Pattern
+### 5. ワークフロー構成パターン
 
-Build complex workflows by composing simpler ones:
+単純なワークフローを構成して複雑なワークフローを構築します：
 
 ```csharp
 public class CompositeWorkflow : IWorkflow
@@ -1939,10 +1938,10 @@ public class CompositeWorkflow : IWorkflow
         {
             var workflowResult = await workflow.ExecuteAsync(context);
             
-            // 各ワークフローの結果を保存
+            // Store each workflow's result
             results[workflow.Name] = workflowResult;
             
-            // 次のワークフローのために結果でコンテキストを更新
+            // Update context with the result for the next workflow
             context = context.WithResult(workflow.Name, workflowResult);
         }
         
@@ -1950,10 +1949,10 @@ public class CompositeWorkflow : IWorkflow
     }
     
     public string Name => "CompositeWorkflow";
-    public string Description => "複数のワークフローを順番に実行します";
+    public string Description => "Executes multiple workflows in sequence";
 }
 
-// 使用例
+// Example usage
 var documentWorkflow = new CompositeWorkflow(new IWorkflow[] {
     new DocumentFetchWorkflow(),
     new DocumentProcessingWorkflow(),
@@ -1966,44 +1965,44 @@ var result = await documentWorkflow.ExecuteAsync(new WorkflowContext {
 });
 ```
 
-# Testing MCP Servers: Best Practices and Top Tips
+# MCPサーバーのテスト：ベストプラクティスとトップヒント
 
-## Overview
+## 概要
 
-Testing is a critical aspect of developing reliable, high-quality MCP servers. This guide provides comprehensive best practices and tips for testing your MCP servers throughout the development lifecycle, from unit tests to integration tests and end-to-end validation.
+テストは、信頼性が高く高品質なMCPサーバーを開発するための重要な側面です。このガイドでは、単体テストから統合テスト、エンドツーエンドの検証まで、開発ライフサイクル全体を通じてMCPサーバーをテストするための包括的なベストプラクティスとヒントを提供します。
 
-## Why Testing Matters for MCP Servers
+## MCPサーバーのテストが重要な理由
 
-MCP servers serve as crucial middleware between AI models and client applications. Thorough testing ensures:
+MCPサーバーは、AIモデルとクライアントアプリケーションの間の重要なミドルウェアとして機能します。徹底的なテストにより以下を保証します：
 
-- Reliability in production environments
-- Accurate handling of requests and responses
-- Proper implementation of MCP specifications
-- Resilience against failures and edge cases
-- Consistent performance under various loads
+- 本番環境での信頼性
+- リクエストとレスポンスの正確な処理
+- MCP仕様の適切な実装
+- 失敗やエッジケースに対する耐性
+- 様々な負荷下での一貫したパフォーマンス
 
-## Unit Testing for MCP Servers
+## MCPサーバーの単体テスト
 
-### Unit Testing (Foundation)
+### 単体テスト（基礎）
 
-Unit tests verify individual components of your MCP server in isolation.
+単体テストは、MCPサーバーの個々のコンポーネントを単独で検証します。
 
-#### What to Test
+#### テストすべき項目
 
-1. **Resource Handlers**: Test each resource handler's logic independently
-2. **Tool Implementations**: Verify tool behavior with various inputs
-3. **Prompt Templates**: Ensure prompt templates render correctly
-4. **Schema Validation**: Test parameter validation logic
-5. **Error Handling**: Verify error responses for invalid inputs
+1. **リソースハンドラー**: 各リソースハンドラーのロジックを独立してテスト
+2. **ツール実装**: 様々な入力でツールの動作を検証
+3. **プロンプトテンプレート**: プロンプトテンプレートが正しくレンダリングされることを確認
+4. **スキーマ検証**: パラメータ検証ロジックをテスト
+5. **エラーハンドリング**: 無効な入力に対するエラーレスポンスを検証
 
-#### Best Practices for Unit Testing
+#### 単体テストのベストプラクティス
 
 ```csharp
-// C#での計算ツールの単体テスト例
+// Example unit test for a calculator tool in C#
 [Fact]
 public async Task CalculatorTool_Add_ReturnsCorrectSum()
 {
-    // 準備
+    // Arrange
     var calculator = new CalculatorTool();
     var parameters = new Dictionary<string, object>
     {
@@ -2012,19 +2011,19 @@ public async Task CalculatorTool_Add_ReturnsCorrectSum()
         ["b"] = 7
     };
     
-    // 実行
+    // Act
     var response = await calculator.ExecuteAsync(parameters);
     var result = JsonSerializer.Deserialize<CalculationResult>(response.Content[0].ToString());
     
-    // 検証
+    // Assert
     Assert.Equal(12, result.Value);
 }
 ```
 
 ```python
-# Pythonでの計算ツールの単体テスト例
+# Example unit test for a calculator tool in Python
 def test_calculator_tool_add():
-    # 準備
+    # Arrange
     calculator = CalculatorTool()
     parameters = {
         "operation": "add",
@@ -2032,34 +2031,34 @@ def test_calculator_tool_add():
         "b": 7
     }
     
-    # 実行
+    # Act
     response = calculator.execute(parameters)
     result = json.loads(response.content[0].text)
     
-    # 検証
+    # Assert
     assert result["value"] == 12
 ```
 
-### Integration Testing (Middle Layer)
+### 統合テスト（中間層）
 
-Integration tests verify interactions between components of your MCP server.
+統合テストは、MCPサーバーのコンポーネント間の相互作用を検証します。
 
-#### What to Test
+#### テストすべき項目
 
-1. **Server Initialization**: Test server startup with various configurations
-2. **Route Registration**: Verify all endpoints are correctly registered
-3. **Request Processing**: Test the full request-response cycle
-4. **Error Propagation**: Ensure errors are properly handled across components
-5. **Authentication & Authorization**: Test security mechanisms
+1. **サーバー初期化**: 様々な構成でサーバーの起動をテスト
+2. **ルート登録**: すべてのエンドポイントが正しく登録されていることを確認
+3. **リクエスト処理**: リクエストとレスポンスの完全なサイクルをテスト
+4. **エラー伝播**: コンポーネント間でエラーが適切に処理されることを確認
+5. **認証と認可**: セキュリティメカニズムをテスト
 
-#### Best Practices for Integration Testing
+#### 統合テストのベストプラクティス
 
 ```csharp
-// C#でのMCPサーバーの統合テスト例
+// Example integration test for MCP server in C#
 [Fact]
 public async Task Server_ProcessToolRequest_ReturnsValidResponse()
 {
-    // 準備
+    // Arrange
     var server = new McpServer();
     server.RegisterTool(new CalculatorTool());
     await server.StartAsync();
@@ -2075,177 +2074,30 @@ public async Task Server_ProcessToolRequest_ReturnsValidResponse()
         }
     };
     
-    // 実行
+    // Act
     var response = await server.ProcessRequestAsync(request);
     
-    // 検証
+    // Assert
     Assert.NotNull(response);
     Assert.Equal(McpStatusCodes.Success, response.StatusCode);
-    // レスポンス内容の追加検証
+    // Additional assertions for response content
     
-    // クリーンアップ
+    // Cleanup
     await server.StopAsync();
 }
 ```
 
-### End-to-End Testing (Top Layer)
+### エンドツーエンドテスト（最上層）
 
-End-to-end tests verify the complete system behavior from client to server.
+エンドツーエンドテストは、クライアントからサーバーまでの完全なシステム動作を検証します。
 
-#### What to Test
+#### テストすべき項目
 
-1. **Client-Server Communication**: Test complete request-response cycles
-2. **Real Client SDKs**: Test with actual client implementations
-3. **Performance Under Load**: Verify behavior with multiple concurrent requests
-4. **Error Recovery**: Test system recovery from failures
-5. **Long-Running Operations**: Verify handling of streaming and long operations
+1. **クライアント-サーバー通信**: 完全なリクエスト-レスポンスサ
+3. **パフォーマンスの基準**: パフォーマンスのベンチマークを維持し、リグレッションを検出する  
+4. **セキュリティスキャン**: パイプラインの一部としてセキュリティテストを自動化する  
 
-#### Best Practices for E2E Testing
-
-```typescript
-// TypeScriptでのクライアントを使ったE2Eテスト例
-describe('MCP Server E2E Tests', () => {
-  let client: McpClient;
-  
-  beforeAll(async () => {
-    // テスト環境でサーバーを起動
-    await startTestServer();
-    client = new McpClient('http://localhost:5000');
-  });
-  
-  afterAll(async () => {
-    await stopTestServer();
-  });
-  
-  test('クライアントが計算ツールを呼び出し、正しい結果を取得できる', async () => {
-    // 実行
-    const response = await client.invokeToolAsync('calculator', {
-      operation: 'divide',
-      a: 20,
-      b: 4
-    });
-    
-    // 検証
-    expect(response.statusCode).toBe(200);
-    expect(response.content[0].text).toContain('5');
-  });
-});
-```
-
-## Mocking Strategies for MCP Testing
-
-Mocking is essential for isolating components during testing.
-
-### Components to Mock
-
-1. **External AI Models**: Mock model responses for predictable testing
-2. **External Services**: Mock API dependencies (databases, third-party services)
-3. **Authentication Services**: Mock identity providers
-4. **Resource Providers**: Mock expensive resource handlers
-
-### Example: Mocking an AI Model Response
-
-```csharp
-// C#でのMoqを使った例
-var mockModel = new Mock<ILanguageModel>();
-mockModel
-    .Setup(m => m.GenerateResponseAsync(
-        It.IsAny<string>(),
-        It.IsAny<McpRequestContext>()))
-    .ReturnsAsync(new ModelResponse { 
-        Text = "モックされたモデルのレスポンス",
-        FinishReason = FinishReason.Completed
-    });
-
-var server = new McpServer(modelClient: mockModel.Object);
-```
-
-```python
-# Pythonでのunittest.mockを使った例
-@patch('mcp_server.models.OpenAIModel')
-def test_with_mock_model(mock_model):
-    # モックの設定
-    mock_model.return_value.generate_response.return_value = {
-        "text": "モックされたモデルのレスポンス",
-        "finish_reason": "completed"
-    }
-    
-    # テストでモックを使用
-    server = McpServer(model_client=mock_model)
-    # テストを続行
-```
-
-## Performance Testing
-
-Performance testing is crucial for production MCP servers.
-
-### What to Measure
-
-1. **Latency**: Response time for requests
-2. **Throughput**: Requests handled per second
-3. **Resource Utilization**: CPU, memory, network usage
-4. **Concurrency Handling**: Behavior under parallel requests
-5. **Scaling Characteristics**: Performance as load increases
-
-### Tools for Performance Testing
-
-- **k6**: Open-source load testing tool
-- **JMeter**: Comprehensive performance testing
-- **Locust**: Python-based load testing
-- **Azure Load Testing**: Cloud-based performance testing
-
-### Example: Basic Load Test with k6
-
-```javascript
-// MCPサーバーの負荷テスト用k6スクリプト
-import http from 'k6/http';
-import { check, sleep } from 'k6';
-
-export const options = {
-  vus: 10,  // 10仮想ユーザー
-  duration: '30s',
-};
-
-export default function () {
-  const payload = JSON.stringify({
-    tool: 'calculator',
-    parameters: {
-      operation: 'add',
-      a: Math.floor(Math.random() * 100),
-      b: Math.floor(Math.random() * 100)
-    }
-  });
-
-  const params = {
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer test-token'
-    },
-  };
-
-  const res = http.post('http://localhost:5000/api/tools/invoke', payload, params);
-  
-  check(res, {
-    'status is 200': (r) => r.status === 200,
-    'response time < 500ms': (r) => r.timings.duration < 500,
-  });
-  
-  sleep(1);
-}
-```
-
-## Test Automation for MCP Servers
-
-Automating your tests ensures consistent quality and faster feedback loops.
-
-### CI/CD Integration
-
-1. **Run Unit Tests on Pull Requests**: Ensure code changes don't break existing functionality
-2. **Integration Tests in Staging**: Run integration tests in pre-production environments
-3. **Performance Baselines**: Maintain performance benchmarks to catch regressions
-4. **Security Scans**: Automate security testing as part of the pipeline
-
-### Example CI Pipeline (GitHub Actions)
+### CIパイプラインの例 (GitHub Actions)
 
 ```yaml
 name: MCP Server Tests
@@ -2263,110 +2115,122 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: ランタイムのセットアップ
+    - name: Set up Runtime
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '8.0.x'
     
-    - name: 依存関係の復元
+    - name: Restore dependencies
       run: dotnet restore
     
-    - name: ビルド
+    - name: Build
       run: dotnet build --no-restore
     
-    - name: 単体テスト
+    - name: Unit Tests
       run: dotnet test --no-build --filter Category=Unit
     
-    - name: 統合テスト
+    - name: Integration Tests
       run: dotnet test --no-build --filter Category=Integration
       
-    - name: パフォーマンステスト
+    - name: Performance Tests
       run: dotnet run --project tests/PerformanceTests/PerformanceTests.csproj
 ```
 
-## Testing for Compliance with MCP Specification
+## MCP仕様への準拠テスト
 
-Verify your server correctly implements the MCP specification.
+サーバーがMCP仕様を正しく実装しているか確認します。
 
-### Key Compliance Areas
+### 主な準拠エリア
 
-1. **API Endpoints**: Test required endpoints (/resources, /tools, etc.)
-2. **Request/Response Format**: Validate schema compliance
-3. **Error Codes**: Verify correct status codes for various scenarios
-4. **Content Types**: Test handling of different content types
-5. **Authentication Flow**: Verify spec-compliant auth mechanisms
+1. **APIエンドポイント**: 必須エンドポイント (/resources, /tools など) をテストする  
+2. **リクエスト/レスポンス形式**: スキーマ準拠を検証する  
+3. **エラーコード**: 各種シナリオにおける正しいステータスコードを確認する  
+4. **コンテンツタイプ**: 異なるコンテンツタイプの処理をテストする  
+5. **認証フロー**: 仕様に準拠した認証メカニズムを確認する  
 
-### Compliance Test Suite
+### 準拠テストスイート
 
 ```csharp
 [Fact]
 public async Task Server_ResourceEndpoint_ReturnsCorrectSchema()
 {
-    // 準備
+    // Arrange
     var client = new HttpClient();
     client.DefaultRequestHeaders.Add("Authorization", "Bearer test-token");
     
-    // 実行
+    // Act
     var response = await client.GetAsync("http://localhost:5000/api/resources");
     var content = await response.Content.ReadAsStringAsync();
-    var resources = JsonSerializer.Deserialize
+    var resources = JsonSerializer.Deserialize<ResourceList>(content);
+    
+    // Assert
+    Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    Assert.NotNull(resources);
+    Assert.All(resources.Resources, resource => 
+    {
+        Assert.NotNull(resource.Id);
+        Assert.NotNull(resource.Type);
+        // Additional schema validation
+    });
+}
+```
 
-## MCPサーバーテストを効果的に行うためのトップ10のヒント
+## 効果的なMCPサーバーテストのためのトップ10のヒント
 
-1. **ツール定義を個別にテストする**: ツールのロジックとは別にスキーマ定義を検証する  
+1. **ツール定義を個別にテストする**: スキーマ定義をツールロジックとは独立して検証する  
 2. **パラメータ化されたテストを使用する**: 様々な入力（エッジケースを含む）でツールをテストする  
 3. **エラーレスポンスを確認する**: すべての可能なエラー条件に対して適切なエラーハンドリングを検証する  
-4. **認可ロジックをテストする**: 異なるユーザーロールに対して適切なアクセス制御を確認する  
+4. **認可ロジックをテストする**: 異なるユーザーロールに対する適切なアクセス制御を確認する  
 5. **テストカバレッジを監視する**: 重要なコードパスの高いカバレッジを目指す  
 6. **ストリーミングレスポンスをテストする**: ストリーミングコンテンツの適切な処理を確認する  
 7. **ネットワーク問題をシミュレートする**: ネットワークが不安定な状況での挙動をテストする  
-8. **リソース制限をテストする**: クォータやレート制限に達した場合の挙動を検証する  
-9. **回帰テストを自動化する**: コード変更ごとに実行されるスイートを構築する  
+8. **リソース制限をテストする**: クォータやレート制限に達した場合の挙動を確認する  
+9. **リグレッションテストを自動化する**: コード変更ごとに実行されるスイートを構築する  
 10. **テストケースを文書化する**: テストシナリオの明確なドキュメントを維持する  
 
-## テストにおける一般的な落とし穴
+## よくあるテストの落とし穴
 
-- **ハッピーパステストへの過度な依存**: エラーケースを徹底的にテストすることを忘れない  
+- **ハッピーパステストへの過度の依存**: エラーケースを徹底的にテストすることを忘れない  
 - **パフォーマンステストの無視**: 本番環境に影響を与える前にボトルネックを特定する  
-- **孤立したテストのみを行う**: ユニットテスト、統合テスト、E2Eテストを組み合わせる  
+- **孤立したテストのみを実施**: ユニットテスト、統合テスト、E2Eテストを組み合わせる  
 - **APIカバレッジの不完全さ**: すべてのエンドポイントと機能をテストする  
 - **一貫性のないテスト環境**: コンテナを使用して一貫したテスト環境を確保する  
 
 ## 結論
 
-包括的なテスト戦略は、信頼性が高く高品質なMCPサーバーを開発するために不可欠です。このガイドで紹介したベストプラクティスやヒントを実践することで、MCPの実装が最高水準の品質、信頼性、パフォーマンスを満たすことを保証できます。
+包括的なテスト戦略は、信頼性が高く高品質なMCPサーバーを開発するために不可欠です。このガイドで紹介したベストプラクティスやヒントを実践することで、MCP実装が最高水準の品質、信頼性、パフォーマンスを満たすことを保証できます。
 
-## 重要なポイント
+## 主なポイント
 
 1. **ツール設計**: 単一責任の原則に従い、依存性注入を使用し、再利用可能な設計を目指す  
-2. **スキーマ設計**: 明確で適切なバリデーション制約を持つスキーマを作成し、文書化する  
+2. **スキーマ設計**: 明確で適切に文書化されたスキーマを作成し、適切なバリデーション制約を設ける  
 3. **エラーハンドリング**: 優雅なエラーハンドリング、構造化されたエラーレスポンス、リトライロジックを実装する  
 4. **パフォーマンス**: キャッシング、非同期処理、リソーススロットリングを活用する  
-5. **セキュリティ**: 入力バリデーション、認可チェック、機密データの適切な取り扱いを徹底する  
+5. **セキュリティ**: 徹底的な入力バリデーション、認可チェック、機密データの適切な取り扱いを行う  
 6. **テスト**: 包括的なユニットテスト、統合テスト、エンドツーエンドテストを作成する  
 7. **ワークフローパターン**: チェーン、ディスパッチャー、並列処理などの確立されたパターンを適用する  
 
 ## 演習
 
-以下の要件を満たす文書処理システムのためのMCPツールとワークフローを設計してください：
+以下のシナリオに適したMCPツールとワークフローを設計してください:
 
-1. 複数の形式（PDF、DOCX、TXT）の文書を受け入れる  
-2. 文書からテキストと主要な情報を抽出する  
-3. 文書を種類や内容に基づいて分類する  
-4. 各文書の要約を生成する  
+1. 複数の形式のドキュメント (PDF, DOCX, TXT) を受け入れる  
+2. ドキュメントからテキストと主要な情報を抽出する  
+3. ドキュメントを種類や内容で分類する  
+4. 各ドキュメントの要約を生成する  
 
-このシナリオに最適なツールスキーマ、エラーハンドリング、ワークフローパターンを実装してください。また、この実装をどのようにテストするかを検討してください。
+このシナリオに最適なツールスキーマ、エラーハンドリング、ワークフローパターンを実装してください。また、この実装をどのようにテストするかを考慮してください。
 
 ## リソース
 
-1. 最新情報を得るために[Azure AI Foundry Discord Community](https://aka.ms/foundrydevs)でMCPコミュニティに参加する  
-2. オープンソースの[MCPプロジェクト](https://github.com/modelcontextprotocol)に貢献する  
+1. 最新情報を得るために [Azure AI Foundry Discord Community](https://aka.ms/foundrydevs) のMCPコミュニティに参加する  
+2. オープンソースの [MCPプロジェクト](https://github.com/modelcontextprotocol) に貢献する  
 3. 自身の組織のAIイニシアチブにMCPの原則を適用する  
-4. 業界向けの専門的なMCP実装を探求する  
+4. 業界向けに特化したMCP実装を探求する  
 5. マルチモーダル統合やエンタープライズアプリケーション統合など、特定のMCPトピックに関する高度なコースを受講する  
-6. [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)を通じて学んだ原則を使い、自分自身のMCPツールやワークフローを構築してみる  
+6. [ハンズオンラボ](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) を通じて学んだ原則を使い、自分自身のMCPツールやワークフローを構築してみる  
 
-次へ: ベストプラクティス[ケーススタディ](../09-CaseStudy/README.md)  
+次: ベストプラクティス [ケーススタディ](../09-CaseStudy/README.md)  
 
 **免責事項**:  
-この文書は、AI翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を追求しておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。元の言語で記載された原文が正式な情報源と見なされるべきです。重要な情報については、専門の人間による翻訳を推奨します。この翻訳の利用に起因する誤解や誤認について、当方は一切の責任を負いません。
+この文書はAI翻訳サービス[Co-op Translator](https://github.com/Azure/co-op-translator)を使用して翻訳されています。正確性を追求しておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。元の言語で記載された文書が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。この翻訳の使用に起因する誤解や誤解について、当社は責任を負いません。

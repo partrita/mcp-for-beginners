@@ -60,7 +60,7 @@ Vyberte si preferované vývojové prostředí:
 
 ## Python Implementation
 
-***Note*** Tento [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb) můžete spustit
+***Note*** Tento [notebook](mcp_support_python.ipynb) můžete spustit
 
 ### 1. Instalace požadovaných balíčků
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET Implementation
 
-***Note*** Tento [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb) můžete spustit
+***Note*** Tento [notebook](mcp_support_dotnet.ipynb) můžete spustit
 
 ### 1. Instalace požadovaných balíčků
 

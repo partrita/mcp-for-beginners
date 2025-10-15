@@ -38,6 +38,9 @@ Great, now that we understand the flow, let's configure an AI agent to leverage 
 
 ## Exercise: Consuming a server
 
+> [!WARNING]
+> Note for macOS Users. We're currently investigating an issue affecting dependency installation on macOS. As a result, macOS users won’t be able to complete this tutorial at this time. We’ll update the instructions as soon as a fix is available. Thank you for your patience and understanding!
+
 In this exercise, you will build, run, and enhance an AI agent with tools from a MCP server inside Visual Studio Code using the AI Toolkit.
 
 ### -0- Prestep, add the OpenAI GPT-4o model to My Models
@@ -95,7 +98,7 @@ AI Toolkit is equipped with templates for ease of creating your own MCP server. 
 1. Using the terminal (**Terminal** > **New Terminal**), create a virtual environment: `python -m venv .venv`
 1. Using the terminal, activate the virtual environment:
     1. Windows - `.venv\Scripts\activate`
-    1. macOS/Linux - `source venv/bin/activate`
+    1. macOS/Linux - `source .venv/bin/activate`
 1. Using the terminal, install the dependencies: `pip install -e .[dev]`
 1. In the **Explorer** view of the **Activity Bar**, expand the **src** directory and select **server.py** to open the file in the editor.
 1. Replace the code in the **server.py** file with the following and save:

@@ -60,7 +60,7 @@ Valitse haluamasi kehitysympäristö:
 
 ## Python-toteutus
 
-***Note*** Voit suorittaa tämän [notebookin](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb)
+***Note*** Voit suorittaa tämän [notebookin](mcp_support_python.ipynb)
 
 ### 1. Asenna tarvittavat paketit
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET-toteutus
 
-***Note*** Voit suorittaa tämän [notebookin](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb)
+***Note*** Voit suorittaa tämän [notebookin](mcp_support_dotnet.ipynb)
 
 ### 1. Asenna tarvittavat paketit
 

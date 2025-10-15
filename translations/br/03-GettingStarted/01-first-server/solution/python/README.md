@@ -1,15 +1,15 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "d0f0d7012325b286e4a717791b23ae7e",
-  "translation_date": "2025-07-13T17:59:45+00:00",
+  "original_hash": "d4c162484df410632550a4a357d40341",
+  "translation_date": "2025-09-03T16:05:57+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/python/README.md",
   "language_code": "br"
 }
 -->
 # Executando este exemplo
 
-É recomendado instalar o `uv`, mas não é obrigatório, veja as [instruções](https://docs.astral.sh/uv/#highlights)
+Recomenda-se instalar `uv`, mas não é obrigatório. Veja [instruções](https://docs.astral.sh/uv/#highlights)
 
 ## -0- Crie um ambiente virtual
 
@@ -20,7 +20,7 @@ python -m venv venv
 ## -1- Ative o ambiente virtual
 
 ```bash
-venv\Scrips\activate
+venv\Scripts\activate
 ```
 
 ## -2- Instale as dependências
@@ -47,13 +47,13 @@ Isso deve iniciar um servidor web com uma interface visual que permite testar o 
 
 Uma vez que o servidor esteja conectado:
 
-- tente listar as ferramentas e execute `add`, com os argumentos 2 e 4, você deve ver 6 no resultado.
+- tente listar as ferramentas e executar `add`, com os argumentos 2 e 4. Você deve ver 6 como resultado.
 
-- vá para resources e resource template e chame get_greeting, digite um nome e você verá uma saudação com o nome que forneceu.
+- vá para recursos e modelo de recurso e chame `get_greeting`, digite um nome e você deve ver uma saudação com o nome que forneceu.
 
 ### Testando no modo CLI
 
-O inspector que você executou é na verdade um app Node.js e `mcp dev` é um wrapper em torno dele.
+O inspetor que você executou é, na verdade, um aplicativo Node.js, e `mcp dev` é um wrapper em torno dele.
 
 Você pode iniciá-lo diretamente no modo CLI executando o seguinte comando:
 
@@ -112,9 +112,11 @@ Você deve ver a seguinte saída:
 }
 ```
 
-> ![!TIP]
-> Geralmente é muito mais rápido rodar o inspector no modo CLI do que no navegador.
-> Leia mais sobre o inspector [aqui](https://github.com/modelcontextprotocol/inspector).
+> [!TIP]
+> Geralmente é muito mais rápido executar o inspetor no modo CLI do que no navegador.
+> Leia mais sobre o inspetor [aqui](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações equivocadas decorrentes do uso desta tradução.

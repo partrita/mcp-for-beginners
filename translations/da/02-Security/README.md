@@ -1,264 +1,342 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "382fddb4ee4d9c1bdc806e2ee99b70c8",
-  "translation_date": "2025-07-17T06:32:46+00:00",
+  "original_hash": "1c767a35642f753127dc08545c25a290",
+  "translation_date": "2025-08-18T15:15:18+00:00",
   "source_file": "02-Security/README.md",
   "language_code": "da"
 }
 -->
-# Sikkerhedsbedste praksis
+# MCP Sikkerhed: Omfattende Beskyttelse af AI-Systemer
 
-Implementering af Model Context Protocol (MCP) giver kraftfulde nye muligheder for AI-drevne applikationer, men medfører også unikke sikkerhedsudfordringer, der går ud over traditionelle software-risici. Ud over velkendte bekymringer som sikker kodning, mindst privilegium og forsyningskædesikkerhed, står MCP og AI-arbejdsbelastninger over for nye trusler som prompt injection, tool poisoning, dynamisk værktøjsmodifikation, session hijacking, confused deputy-angreb og token passthrough-sårbarheder. Disse risici kan føre til dataudtræk, brud på privatlivets fred og utilsigtet systemadfærd, hvis de ikke håndteres korrekt.
+[![MCP Sikkerhedsbedste Praksis](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.da.png)](https://youtu.be/88No8pw706o)
 
-Denne lektion gennemgår de mest relevante sikkerhedsrisici forbundet med MCP—herunder autentificering, autorisation, overdrevne tilladelser, indirekte prompt injection, sessionssikkerhed, confused deputy-problemer, token passthrough-sårbarheder og forsyningskædesårbarheder—og giver handlingsorienterede kontroller og bedste praksis til at afbøde dem. Du vil også lære, hvordan du kan udnytte Microsoft-løsninger som Prompt Shields, Azure Content Safety og GitHub Advanced Security til at styrke din MCP-implementering. Ved at forstå og anvende disse kontroller kan du markant reducere sandsynligheden for et sikkerhedsbrud og sikre, at dine AI-systemer forbliver robuste og pålidelige.
+_(Klik på billedet ovenfor for at se videoen til denne lektion)_
 
-# Læringsmål
+Sikkerhed er grundlæggende for designet af AI-systemer, og derfor prioriterer vi det som vores anden sektion. Dette er i tråd med Microsofts **Secure by Design**-princip fra [Secure Future Initiative](https://www.microsoft.com/security/blog/2025/04/17/microsofts-secure-by-design-journey-one-year-of-success/).
 
-Når du har gennemført denne lektion, vil du kunne:
+Model Context Protocol (MCP) bringer kraftfulde nye muligheder til AI-drevne applikationer, men introducerer også unikke sikkerhedsudfordringer, der går ud over traditionelle softwaretrusler. MCP-systemer står over for både etablerede sikkerhedsproblemer (sikker kodning, mindst privilegium, forsyningskædesikkerhed) og nye AI-specifikke trusler som prompt injection, værktøjsforgiftning, session hijacking, confused deputy-angreb, token passthrough-sårbarheder og dynamisk kapabilitetsmodifikation.
 
-- Identificere og forklare de unikke sikkerhedsrisici, som Model Context Protocol (MCP) medfører, herunder prompt injection, tool poisoning, overdrevne tilladelser, session hijacking, confused deputy-problemer, token passthrough-sårbarheder og forsyningskædesårbarheder.
-- Beskrive og anvende effektive afbødende kontroller for MCP-sikkerhedsrisici, såsom robust autentificering, mindst privilegium, sikker tokenhåndtering, sessionssikkerhedskontroller og verifikation af forsyningskæden.
-- Forstå og udnytte Microsoft-løsninger som Prompt Shields, Azure Content Safety og GitHub Advanced Security til at beskytte MCP og AI-arbejdsbelastninger.
-- Genkende vigtigheden af at validere værktøjsmetadata, overvåge dynamiske ændringer, forsvare mod indirekte prompt injection-angreb og forhindre session hijacking.
-- Integrere etablerede sikkerhedsbedste praksisser—såsom sikker kodning, serverhærde og zero trust-arkitektur—i din MCP-implementering for at reducere sandsynligheden og konsekvenserne af sikkerhedsbrud.
+Denne lektion udforsker de mest kritiske sikkerhedsrisici i MCP-implementeringer—herunder autentifikation, autorisation, overdrevne tilladelser, indirekte prompt injection, sessionssikkerhed, confused deputy-problemer, tokenhåndtering og forsyningskædesårbarheder. Du vil lære handlingsrettede kontroller og bedste praksis for at afbøde disse risici, samtidig med at du udnytter Microsoft-løsninger som Prompt Shields, Azure Content Safety og GitHub Advanced Security til at styrke din MCP-implementering.
 
-# MCP sikkerhedskontroller
+## Læringsmål
 
-Enhver system, der har adgang til vigtige ressourcer, har implicitte sikkerhedsudfordringer. Sikkerhedsudfordringer kan generelt håndteres gennem korrekt anvendelse af grundlæggende sikkerhedskontroller og koncepter. Da MCP kun er nyligt defineret, ændrer specifikationen sig meget hurtigt, efterhånden som protokollen udvikler sig. Med tiden vil sikkerhedskontrollerne i MCP modne, hvilket muliggør bedre integration med virksomheders og etablerede sikkerhedsarkitekturer og bedste praksisser.
+Ved afslutningen af denne lektion vil du være i stand til at:
 
-Forskning offentliggjort i [Microsoft Digital Defense Report](https://aka.ms/mddr) viser, at 98 % af rapporterede brud kunne være forhindret ved robust sikkerhedshygiejne, og den bedste beskyttelse mod enhver form for brud er at få styr på din grundlæggende sikkerhedshygiejne, sikre kodningspraksisser og forsyningskædesikkerhed — de velafprøvede metoder, vi allerede kender til, har stadig størst effekt på at reducere sikkerhedsrisikoen.
+- **Identificere MCP-Specifikke Trusler**: Genkende unikke sikkerhedsrisici i MCP-systemer, herunder prompt injection, værktøjsforgiftning, overdrevne tilladelser, session hijacking, confused deputy-problemer, token passthrough-sårbarheder og forsyningskæderisici
+- **Anvende Sikkerhedskontroller**: Implementere effektive afbødninger, herunder robust autentifikation, mindst privilegium adgang, sikker tokenhåndtering, sessionssikkerhedskontroller og forsyningskædeverifikation
+- **Udnytte Microsoft Sikkerhedsløsninger**: Forstå og implementere Microsoft Prompt Shields, Azure Content Safety og GitHub Advanced Security til MCP-arbejdsbelastningsbeskyttelse
+- **Validere Værktøjssikkerhed**: Indse vigtigheden af validering af værktøjsmetadata, overvågning af dynamiske ændringer og forsvar mod indirekte prompt injection-angreb
+- **Integrere Bedste Praksis**: Kombinere etablerede sikkerhedsfundamenter (sikker kodning, serverhærdning, zero trust) med MCP-specifikke kontroller for omfattende beskyttelse
 
-Lad os se på nogle af de måder, du kan begynde at håndtere sikkerhedsrisici ved implementering af MCP.
+# MCP Sikkerhedsarkitektur & Kontroller
 
-> **Note:** Følgende information er korrekt pr. **29. maj 2025**. MCP-protokollen udvikler sig løbende, og fremtidige implementeringer kan introducere nye autentificeringsmønstre og kontroller. For de seneste opdateringer og vejledning, henvis altid til [MCP Specification](https://spec.modelcontextprotocol.io/) samt den officielle [MCP GitHub repository](https://github.com/modelcontextprotocol) og [security best practice page](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices).
+Moderne MCP-implementeringer kræver lagdelte sikkerhedstilgange, der adresserer både traditionelle softwaresikkerhedstrusler og AI-specifikke trusler. Den hurtigt udviklende MCP-specifikation fortsætter med at modne sine sikkerhedskontroller, hvilket muliggør bedre integration med virksomhedssikkerhedsarkitekturer og etablerede bedste praksis.
 
-### Problemstilling  
-Den oprindelige MCP-specifikation antog, at udviklere selv ville skrive deres egen autentificeringsserver. Dette krævede kendskab til OAuth og relaterede sikkerhedsbegrænsninger. MCP-servere fungerede som OAuth 2.0 Authorization Servers og håndterede den nødvendige brugerautentificering direkte i stedet for at delegere den til en ekstern tjeneste som Microsoft Entra ID. Fra og med **26. april 2025** tillader en opdatering af MCP-specifikationen, at MCP-servere kan delegere brugerautentificering til en ekstern tjeneste.
+Forskning fra [Microsoft Digital Defense Report](https://aka.ms/mddr) viser, at **98 % af rapporterede brud kunne forhindres med robust sikkerhedshygiejne**. Den mest effektive beskyttelsesstrategi kombinerer grundlæggende sikkerhedspraksis med MCP-specifikke kontroller—beviste baseline sikkerhedsforanstaltninger forbliver de mest effektive til at reducere den samlede sikkerhedsrisiko.
 
-### Risici
-- Forkert konfigureret autorisationslogik i MCP-serveren kan føre til eksponering af følsomme data og forkert anvendte adgangskontroller.
-- Tyveri af OAuth-token på den lokale MCP-server. Hvis tokenet bliver stjålet, kan det bruges til at udgive sig for MCP-serveren og få adgang til ressourcer og data fra den tjeneste, som OAuth-tokenet gælder for.
+## Aktuelt Sikkerhedslandskab
 
-#### Token Passthrough
-Token passthrough er udtrykkeligt forbudt i autorisationsspecifikationen, da det medfører en række sikkerhedsrisici, herunder:
+> **Note:** Disse oplysninger afspejler MCP-sikkerhedsstandarder pr. **18. august 2025**. MCP-protokollen udvikler sig hurtigt, og fremtidige implementeringer kan introducere nye autentifikationsmønstre og forbedrede kontroller. Henvis altid til den aktuelle [MCP-specifikation](https://spec.modelcontextprotocol.io/), [MCP GitHub-repository](https://github.com/modelcontextprotocol) og [sikkerhedsbedste praksis-dokumentation](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) for den nyeste vejledning.
 
-#### Omgåelse af sikkerhedskontroller
-MCP-serveren eller downstream-API’er kan implementere vigtige sikkerhedskontroller som rate limiting, anmodningsvalidering eller trafikovervågning, der afhænger af tokenets audience eller andre legitimationsbegrænsninger. Hvis klienter kan opnå og bruge tokens direkte med downstream-API’erne uden, at MCP-serveren validerer dem korrekt eller sikrer, at tokens er udstedt til den rette tjeneste, omgår de disse kontroller.
+### Udvikling af MCP Autentifikation
 
-#### Ansvarlighed og revisionsspor-problemer
-MCP-serveren vil ikke kunne identificere eller skelne mellem MCP-klienter, når klienter kalder med et upstream-udstedt adgangstoken, som kan være uigennemsigtigt for MCP-serveren.  
-Downstream Resource Serverens logs kan vise anmodninger, der ser ud til at komme fra en anden kilde med en anden identitet end den MCP-server, der faktisk videresender tokens.  
-Begge faktorer gør hændelsesundersøgelser, kontroller og revision vanskeligere.  
-Hvis MCP-serveren videresender tokens uden at validere deres claims (f.eks. roller, privilegier eller audience) eller anden metadata, kan en ondsindet aktør i besiddelse af et stjålet token bruge serveren som proxy til dataudtræk.
+MCP-specifikationen har udviklet sig betydeligt i sin tilgang til autentifikation og autorisation:
 
-#### Tillidsgrænse-problemer
-Downstream Resource Server giver tillid til specifikke enheder. Denne tillid kan inkludere antagelser om oprindelse eller klientadfærdsmønstre. At bryde denne tillidsgrænse kan føre til uventede problemer.  
-Hvis tokenet accepteres af flere tjenester uden korrekt validering, kan en angriber, der kompromitterer én tjeneste, bruge tokenet til at få adgang til andre tilknyttede tjenester.
+- **Oprindelig Tilgang**: Tidlige specifikationer krævede, at udviklere implementerede brugerdefinerede autentifikationsservere, hvor MCP-servere fungerede som OAuth 2.0 Autorisationsservere, der håndterede brugerautentifikation direkte
+- **Nuværende Standard (2025-06-18)**: Opdateret specifikation tillader MCP-servere at delegere autentifikation til eksterne identitetsudbydere (såsom Microsoft Entra ID), hvilket forbedrer sikkerhedsniveauet og reducerer implementeringskompleksiteten
+- **Transportlagssikkerhed**: Forbedret understøttelse af sikre transportmekanismer med korrekte autentifikationsmønstre for både lokale (STDIO) og eksterne (Streamable HTTP) forbindelser
 
-#### Risiko for fremtidig kompatibilitet
-Selv hvis en MCP-server i dag starter som en "ren proxy", kan det blive nødvendigt at tilføje sikkerhedskontroller senere. At starte med korrekt adskillelse af token audience gør det lettere at udvikle sikkerhedsmodellen.
+## Autentifikations- & Autorisationssikkerhed
 
-### Afbødende kontroller
+### Aktuelle Sikkerhedsudfordringer
 
-**MCP-servere MÅ IKKE acceptere tokens, der ikke eksplicit er udstedt til MCP-serveren**
+Moderne MCP-implementeringer står over for flere autentifikations- og autorisationsudfordringer:
 
-- **Gennemgå og styrk autorisationslogikken:** Revider omhyggeligt din MCP-servers autorisationsimplementering for at sikre, at kun tilsigtede brugere og klienter kan få adgang til følsomme ressourcer. For praktisk vejledning, se [Azure API Management Your Auth Gateway For MCP Servers | Microsoft Community Hub](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) og [Using Microsoft Entra ID To Authenticate With MCP Servers Via Sessions - Den Delimarsky](https://den.dev/blog/mcp-server-auth-entra-id-session/).
-- **Håndhæv sikre token-praksisser:** Følg [Microsofts bedste praksis for tokenvalidering og levetid](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens) for at forhindre misbrug af adgangstokens og reducere risikoen for token replay eller tyveri.
-- **Beskyt tokenlagring:** Opbevar altid tokens sikkert og brug kryptering for at beskytte dem i hvile og under overførsel. For implementeringstips, se [Use secure token storage and encrypt tokens](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2).
+### Risici & Trusselsvektorer
 
-# Overdrevne tilladelser for MCP-servere
+- **Fejlagtig Autorisationslogik**: Fejlbehæftet autorisationsimplementering i MCP-servere kan eksponere følsomme data og anvende adgangskontroller forkert
+- **OAuth Token Kompromittering**: Tyveri af lokale MCP-servertokens gør det muligt for angribere at udgive sig for servere og få adgang til downstream-tjenester
+- **Token Passthrough Sårbarheder**: Forkert tokenhåndtering skaber omgåelse af sikkerhedskontroller og ansvarlighedshuller
+- **Overdrevne Tilladelser**: Overprivilegerede MCP-servere overtræder mindst privilegium-principper og udvider angrebsflader
 
-### Problemstilling  
-MCP-servere kan have fået tildelt overdrevne tilladelser til den tjeneste/ressource, de tilgår. For eksempel bør en MCP-server, der er en del af en AI-salgsapplikation, som forbinder til en virksomhedsdatastore, kun have adgang til salgsdata og ikke til alle filer i lageret. Med henvisning til princippet om mindst privilegium (et af de ældste sikkerhedsprincipper) bør ingen ressource have tilladelser ud over, hvad der er nødvendigt for at udføre de opgaver, den er tiltænkt. AI udgør en øget udfordring her, fordi det kan være svært at definere præcist, hvilke tilladelser der er nødvendige for at gøre den fleksibel.
+#### Token Passthrough: Et Kritisk Anti-Mønster
 
-### Risici  
-- At give overdrevne tilladelser kan muliggøre udtræk eller ændring af data, som MCP-serveren ikke burde have adgang til. Dette kan også være et privatlivsproblem, hvis dataene indeholder personligt identificerbare oplysninger (PII).
+**Token passthrough er eksplicit forbudt** i den nuværende MCP-autorisationsspecifikation på grund af alvorlige sikkerhedsmæssige konsekvenser:
 
-### Afbødende kontroller  
-- **Anvend princippet om mindst privilegium:** Giv MCP-serveren kun de minimale tilladelser, der er nødvendige for at udføre de krævede opgaver. Gennemgå og opdater disse tilladelser regelmæssigt for at sikre, at de ikke overstiger det nødvendige. For detaljeret vejledning, se [Secure least-privileged access](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access).
-- **Brug rollebaseret adgangskontrol (RBAC):** Tildel roller til MCP-serveren, der er snævert afgrænsede til specifikke ressourcer og handlinger, og undgå brede eller unødvendige tilladelser.
-- **Overvåg og revider tilladelser:** Overvåg løbende brugen af tilladelser og revider adgangslogs for hurtigt at opdage og afhjælpe overdrevne eller ubrugte privilegier.
+##### Omgåelse af Sikkerhedskontroller
+- MCP-servere og downstream-API'er implementerer kritiske sikkerhedskontroller (ratebegrænsning, anmodningsvalidering, trafikovervågning), der afhænger af korrekt tokenvalidering
+- Direkte brug af klient-til-API-tokens omgår disse essentielle beskyttelser og underminerer sikkerhedsarkitekturen
 
-# Indirekte prompt injection-angreb
+##### Ansvarligheds- & Revisionsudfordringer  
+- MCP-servere kan ikke skelne mellem klienter, der bruger upstream-udstedte tokens, hvilket bryder revisionsspor
+- Downstream-ressourceserverlogfiler viser vildledende anmodningsoprindelser i stedet for de faktiske MCP-servermellemled
+- Hændelsesundersøgelser og overholdelsesrevisioner bliver betydeligt vanskeligere
 
-### Problemstilling
+##### Risiko for Dataudtræk
+- Uvaliderede tokenkrav gør det muligt for ondsindede aktører med stjålne tokens at bruge MCP-servere som proxyer til dataudtræk
+- Overtrædelse af tillidsgrænser tillader uautoriserede adgangsmønstre, der omgår tilsigtede sikkerhedskontroller
 
-Ondsindede eller kompromitterede MCP-servere kan udgøre betydelige risici ved at eksponere kundedata eller muliggøre utilsigtede handlinger. Disse risici er særligt relevante i AI- og MCP-baserede arbejdsbelastninger, hvor:
+##### Angrebsvektorer på Tværs af Tjenester
+- Kompromitterede tokens, der accepteres af flere tjenester, muliggør lateral bevægelse på tværs af forbundne systemer
+- Tillidsantagelser mellem tjenester kan blive overtrådt, når tokenoprindelser ikke kan verificeres
 
-- **Prompt Injection-angreb:** Angribere indlejrer ondsindede instruktioner i prompts eller eksternt indhold, hvilket får AI-systemet til at udføre utilsigtede handlinger eller lække følsomme data. Læs mere: [Prompt Injection](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)
-- **Tool Poisoning:** Angribere manipulerer værktøjsmetadata (såsom beskrivelser eller parametre) for at påvirke AI’ens adfærd, potentielt forbigå sikkerhedskontroller eller udtrække data. Detaljer: [Tool Poisoning](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
-- **Cross-Domain Prompt Injection:** Ondsindede instruktioner indlejres i dokumenter, websider eller e-mails, som derefter behandles af AI’en, hvilket fører til datalækage eller manipulation.
-- **Dynamisk værktøjsmodifikation (Rug Pulls):** Værktøjsdefinitioner kan ændres efter brugerens godkendelse, hvilket introducerer nye ondsindede handlinger uden brugerens viden.
+### Sikkerhedskontroller & Afbødninger
 
-Disse sårbarheder understreger behovet for robust validering, overvågning og sikkerhedskontroller, når MCP-servere og værktøjer integreres i dit miljø. For en dybere gennemgang, se de linkede referencer ovenfor.
+**Kritiske Sikkerhedskrav:**
 
-![prompt-injection-lg-2048x1034](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.da.png)
+> **OBLIGATORISK**: MCP-servere **MÅ IKKE** acceptere tokens, der ikke eksplicit er udstedt til MCP-serveren
 
-**Indirekte Prompt Injection** (også kendt som cross-domain prompt injection eller XPIA) er en kritisk sårbarhed i generative AI-systemer, herunder dem, der bruger Model Context Protocol (MCP). I dette angreb skjules ondsindede instruktioner i eksternt indhold—såsom dokumenter, websider eller e-mails. Når AI-systemet behandler dette indhold, kan det fortolke de indlejrede instruktioner som legitime brugerkommandoer, hvilket resulterer i utilsigtede handlinger som datalækage, generering af skadeligt indhold eller manipulation af brugerinteraktioner. For en detaljeret forklaring og eksempler fra virkeligheden, se [Prompt Injection](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
+#### Autentifikations- & Autorisationskontroller
 
-En særlig farlig form for dette angreb er **Tool Poisoning**. Her injicerer angribere ondsindede instruktioner i metadata for MCP-værktøjer (såsom værktøjsbeskrivelser eller parametre). Da store sprogmodeller (LLMs) baserer deres beslutning om, hvilke værktøjer der skal kaldes, på denne metadata, kan kompromitterede beskrivelser narre modellen til at udføre uautoriserede værktøjskald eller omgå sikkerhedskontroller. Disse manipulationer er ofte usynlige for slutbrugere, men kan fortolkes og udføres af AI-systemet. Denne risiko forstærkes i hostede MCP-servermiljøer, hvor værktøjsdefinitioner kan opdateres efter brugerens godkendelse—et scenarie, der nogle gange kaldes en "[rug pull](https://www.wiz.io/blog/mcp-security-research-briefing#remote-servers-22)". I sådanne tilfælde kan et tidligere sikkert værktøj senere blive ændret til at udføre ondsindede handlinger, såsom dataudtræk eller ændring af systemadfærd, uden brugerens viden. For mere om denne angrebsvektor, se [Tool Poisoning](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
+- **Grundig Autorisationsgennemgang**: Udfør omfattende revisioner af MCP-serverens autorisationslogik for at sikre, at kun tilsigtede brugere og klienter kan få adgang til følsomme ressourcer
+  - **Implementeringsvejledning**: [Azure API Management som Autentifikationsgateway for MCP-servere](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+  - **Identitetsintegration**: [Brug af Microsoft Entra ID til MCP-serverautentifikation](https://den.dev/blog/mcp-server-auth-entra-id-session/)
 
-![tool-injection-lg-2048x1239 (1)](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.da.png)
+- **Sikker Tokenhåndtering**: Implementer [Microsofts bedste praksis for tokenvalidering og livscyklus](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens)
+  - Valider, at token audience-krav matcher MCP-serverens identitet
+  - Implementer korrekt tokenrotation og udløbspolitikker
+  - Forebyg token replay-angreb og uautoriseret brug
 
-## Risici  
-Utilsigtede AI-handlinger udgør en række sikkerhedsrisici, herunder dataudtræk og brud på privatlivets fred.
+- **Beskyttet Tokenlagring**: Sikre tokenlagring med kryptering både i hvile og under overførsel
+  - **Bedste Praksis**: [Retningslinjer for Sikker Tokenlagring og Kryptering](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
 
-### Afbødende kontroller  
-### Brug af prompt shields til beskyttelse mod indirekte prompt injection-angreb
------------------------------------------------------------------------------
+#### Implementering af Adgangskontrol
 
-**AI Prompt Shields** er en løsning udviklet af Microsoft til at forsvare mod både direkte og indirekte prompt injection-angreb. De hjælper ved:
+- **Princippet om Mindst Privilegium**: Giv MCP-servere kun de minimumstilladelser, der kræves for den tilsigtede funktionalitet
+  - Regelmæssige tilladelsesgennemgange og opdateringer for at forhindre privilegieophobning
+  - **Microsoft Dokumentation**: [Sikker Mindst-Privilegeret Adgang](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
 
-1.  **Detektion og filtrering:** Prompt Shields bruger avancerede maskinlæringsalgoritmer og naturlig sprogbehandling til at opdage og filtrere ondsindede instruktioner indlejret i eksternt indhold, såsom dokumenter, websider eller e-mails.
-    
-2.  **Spotlighting:** Denne teknik hjælper AI-systemet med at skelne mellem gyldige systeminstruktioner og potentielt utroværdige eksterne input. Ved at transformere inputteksten på en måde, der gør den mere relevant for modellen, sikrer Spotlighting, at AI’en bedre kan identificere og ignorere ondsindede instruktioner.
-    
-3.  **Afgrænsere og datamarkering:** Inkludering af afgrænsere i systembeskeden angiver eksplicit placeringen af inputteksten, hvilket hjælper AI-systemet med at genkende og adskille brugerinput fra potentielt skadeligt eksternt indhold. Datamarkering udvider dette koncept ved at bruge særlige markører til at fremhæve grænserne mellem betroede og ikke-betroede data.
-    
-4.  **Kontinuerlig overvågning og opdateringer:** Microsoft overvåger og opdaterer løbende Prompt Shields for at imødegå nye og udviklende trusler. Denne proaktive tilgang sikrer, at forsvaret forbliver effektivt mod de nyeste angrebsteknikker.
-    
-5. **Integration med Azure Content Safety:** Prompt Shields er en del af den bredere Azure AI Content Safety-suite, som tilbyder yderligere værktøjer til at opdage jailbreak-forsøg, skadeligt indhold og andre sikkerhedsrisici i AI-applikationer.
+- **Rollebaseret Adgangskontrol (RBAC)**: Implementer fintmaskede rolleopgaver
+  - Begræns roller stramt til specifikke ressourcer og handlinger
+  - Undgå brede eller unødvendige tilladelser, der udvider angrebsflader
 
-Du kan læse mere om AI prompt shields i [Prompt Shields dokumentationen](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection).
+- **Kontinuerlig Tilladelsesovervågning**: Implementer løbende adgangsrevision og overvågning
+  - Overvåg tilladelsesbrugsmønstre for unormale aktiviteter
+  - Afhjælp straks overdrevne eller ubrugte privilegier
 
-![prompt-shield-lg-2048x1328](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.da.png)
+## AI-Specifikke Sikkerhedstrusler
 
-# Confused Deputy Problem
+### Prompt Injection & Manipulation af Værktøjer
 
-### Problemstilling
-Problemet med den forvirrede stedfortræder er en sikkerhedssårbarhed, der opstår, når en MCP-server fungerer som en proxy mellem MCP-klienter og tredjeparts-API'er. Denne sårbarhed kan udnyttes, når MCP-serveren bruger et statisk klient-ID til at autentificere sig over for en tredjeparts autorisationsserver, som ikke understøtter dynamisk klientregistrering.
+Moderne MCP-implementeringer står over for sofistikerede AI-specifikke angrebsvektorer, som traditionelle sikkerhedsforanstaltninger ikke fuldt ud kan adressere:
 
-### Risici
+#### **Indirekte Prompt Injection (Cross-Domain Prompt Injection)**
 
-- **Omgåelse af cookie-baseret samtykke**: Hvis en bruger tidligere har autentificeret sig via MCP-proxyserveren, kan en tredjeparts autorisationsserver sætte en samtykkecookie i brugerens browser. En angriber kan senere udnytte dette ved at sende brugeren et ondsindet link med en manipuleret autorisationsanmodning, der indeholder en ondsindet redirect URI.
-- **Tyveri af autorisationskode**: Når brugeren klikker på det ondsindede link, kan tredjeparts autorisationsserveren springe samtykkeskærmen over på grund af den eksisterende cookie, og autorisationskoden kan blive omdirigeret til angriberens server.
-- **Uautoriseret API-adgang**: Angriberen kan bytte den stjålne autorisationskode til adgangstokens og udgive sig for at være brugeren for at få adgang til tredjeparts-API'en uden eksplicit godkendelse.
+**Indirekte Prompt Injection** repræsenterer en af de mest kritiske sårbarheder i MCP-aktiverede AI-systemer. Angribere indlejrer ondsindede instruktioner i eksternt indhold—dokumenter, websider, e-mails eller datakilder—som AI-systemer efterfølgende behandler som legitime kommandoer.
 
-### Afhjælpende foranstaltninger
+**Angrebsscenarier:**
+- **Dokumentbaseret Injection**: Ondsindede instruktioner skjult i behandlede dokumenter, der udløser utilsigtede AI-handlinger
+- **Udnyttelse af Webindhold**: Kompromitterede websider med indlejrede prompts, der manipulerer AI-adfærd, når de skrabes
+- **E-mailbaserede Angreb**: Ondsindede prompts i e-mails, der får AI-assistenter til at lække information eller udføre uautoriserede handlinger
+- **Forurening af Datakilder**: Kompromitterede databaser eller API'er, der leverer forurenet indhold til AI-systemer
 
-- **Krav om eksplicit samtykke**: MCP-proxyservere, der bruger statiske klient-ID'er, **SKAL** indhente brugerens samtykke for hver dynamisk registreret klient, før de videresender til tredjeparts autorisationsservere.
-- **Korrekt OAuth-implementering**: Følg OAuth 2.1 sikkerhedspraksis, herunder brug af kodeudfordringer (PKCE) til autorisationsanmodninger for at forhindre aflytning.
-- **Klientvalidering**: Implementer streng validering af redirect URIs og klientidentifikatorer for at forhindre udnyttelse af ondsindede aktører.
+**Reel Indvirkning**: Disse angreb kan resultere i dataudtræk, brud på privatlivets fred, generering af skadeligt indhold og manipulation af brugerinteraktioner. For detaljeret analyse, se [Prompt Injection i MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
+![Prompt Injection Angrebsdiagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.da.png)
 
-# Token Passthrough-sårbarheder
+#### **Værktøjsforgiftning**
 
-### Problemstilling
+**Værktøjsforgiftning** retter sig mod metadata, der definerer MCP-værktøjer, og udnytter, hvordan LLM'er fortolker værktøjsbeskrivelser og parametre til at træffe beslutninger om udførelse.
 
-"Token passthrough" er et anti-mønster, hvor en MCP-server accepterer tokens fra en MCP-klient uden at validere, at tokens er korrekt udstedt til MCP-serveren selv, og derefter "videresender" dem til downstream-API'er. Denne praksis overtræder eksplicit MCP-autorisationens specifikation og introducerer alvorlige sikkerhedsrisici.
+**Angrebsmekanismer:**
+- **Manipulation af Metadata**: Angribere indsprøjter ondsindede instruktioner i værktøjsbeskrivelser, parameterdefinitioner eller brugseksempler
+- **Usynlige Instruktioner**: Skjulte prompts i værktøjsmetadata, der behandles af AI-modeller, men er usynlige for menneskelige brugere
+- **Dynamisk Værktøjsmodifikation ("Rug Pulls")**: Værktøjer, der er godkendt af brugere, ændres senere til at udføre ondsindede handlinger uden brugerens viden
+- **Parameter Injection**: Ondsindet indhold indlejret i værktøjsparameter-skemaer, der påvirker modeladfærd
 
-### Risici
+**Risici ved Hostede Servere**: Fjern-MCP-servere præsenterer forhøjede risici, da værktøjsdefinitioner kan opdateres efter den oprindelige brugeraccept, hvilket skaber scenarier, hvor tidligere sikre værktøjer bliver ondsindede. For omfattende analyse, se [Værktøjsforgiftningsangreb (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-- **Omgåelse af sikkerhedskontroller**: Klienter kan omgå vigtige sikkerhedskontroller som ratebegrænsning, anmodningsvalidering eller trafikovervågning, hvis de kan bruge tokens direkte med downstream-API'er uden korrekt validering.
-- **Ansvarlighed og revisionsproblemer**: MCP-serveren vil ikke kunne identificere eller skelne mellem MCP-klienter, når klienter bruger upstream-udstedte adgangstokens, hvilket gør hændelsesundersøgelser og revision vanskeligere.
-- **Dataudtrækning**: Hvis tokens videresendes uden korrekt validering af claims, kan en ondsindet aktør med et stjålet token bruge serveren som proxy til dataudtrækning.
-- **Brud på tillidsgrænser**: Downstream-ressourceservere kan give tillid til specifikke enheder baseret på antagelser om oprindelse eller adfærdsmønstre. At bryde denne tillidsgrænse kan føre til uventede sikkerhedsproblemer.
-- **Misbrug af tokens på tværs af tjenester**: Hvis tokens accepteres af flere tjenester uden korrekt validering, kan en angriber, der kompromitterer én tjeneste, bruge tokenet til at få adgang til andre tilknyttede tjenester.
+![Værktøjs Injection Angrebsdiagram](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.da.png)
 
-### Afhjælpende foranstaltninger
+#### **Yderligere AI Angrebsvektorer**
 
-- **Tokenvalidering**: MCP-servere **MÅ IKKE** acceptere tokens, der ikke eksplicit er udstedt til MCP-serveren selv.
-- **Audience-verifikation**: Valider altid, at tokens har det korrekte audience-claim, der matcher MCP-serverens identitet.
-- **Korrekt tokenlivscyklusstyring**: Implementer kortlivede adgangstokens og korrekt tokenrotation for at reducere risikoen for token-tyveri og misbrug.
+- **Cross-Domain Prompt Injection (XPIA)**: Sofistikerede angreb, der udnytter indhold fra flere domæner til at omgå sikkerhedskontroller
+- **Dynamisk Kapabilitetsmodifikation**: Ændringer i værktøjskapabiliteter i realtid, der undslipper den oprindelige sikkerhedsvurdering
+- **Forurening af Kontekstvindue**: Angreb, der manipulerer store kontekstvinduer for at skjule ondsindede instruktioner
+- **Model Forvirringsangreb**: Udnyttelse af modellens begrænsninger til at skabe uforudsigelig eller usikker adfærd
 
+### AI Sikkerhedsrisiko Indvirkning
 
-# Session Hijacking
+**Højindvirkningskonsekvenser:**
+- **Dataudtræk**: Uautoriseret adgang og tyveri af følsomme virksomheds- eller persondata
+- **Brud på Privatlivets Fred**: Eksponering af personligt identificerbare oplysninger (PII) og fortrolige forretningsdata  
+- **Systemmanipulation**: Utilsigtede ændringer i kritiske systemer og arbejdsgange
+- **Tyveri af Legitimation**: Kompromittering af autentifikationstokens og servicelegitimationer
+- **Lateral Bevægelse**: Brug af kompromitterede AI-systemer som springbræt til bredere netværksangreb
 
-### Problemstilling
+### Microsoft AI Sikkerhedsløsninger
 
-Session hijacking er en angrebsvektor, hvor en klient får tildelt en session-ID af serveren, og en uautoriseret part opnår og bruger den samme session-ID til at udgive sig for at være den oprindelige klient og udføre uautoriserede handlinger på deres vegne. Dette er særligt bekymrende i stateful HTTP-servere, der håndterer MCP-anmodninger.
+#### **AI Prompt Shields: Avanceret Beskyttelse mod Injection Angreb**
 
-### Risici
+Microsoft **AI Prompt Shields** giver omfattende forsvar mod både direkte og indirekte prompt injection-angreb gennem flere sikkerhedslag:
 
-- **Session Hijack Prompt Injection**: En angriber, der opnår en session-ID, kan sende ondsindede hændelser til en server, der deler sessionstilstand med den server, klienten er forbundet til, hvilket potentielt kan udløse skadelige handlinger eller få adgang til følsomme data.
-- **Session Hijack Udpegning**: En angriber med en stjålet session-ID kan foretage opkald direkte til MCP-serveren, omgå autentificering og blive behandlet som den legitime bruger.
-- **Kompromitterede genoptagelige streams**: Når en server understøtter genlevering/genoptagelige streams, kan en angriber afbryde en anmodning for tidligt, hvilket fører til, at den genoptages senere af den oprindelige klient med potentielt ondsindet indhold.
+##### **Kernebeskyttelsesmekanismer:**
 
-### Afhjælpende foranstaltninger
+1. **Avanceret Detektion & Filtrering**
+   - Maskinlæringsalgoritmer og NLP-teknikker opdager ondsindede instruktioner i eksternt indhold
+   - Realtidsanalyse af dokumenter, websider, e-mails og datakilder for indlejrede trusler
+   - Kontekstuel forståelse af legitime vs. ondsindede promptmønstre
 
-- **Autorisation verifikation**: MCP-servere, der implementerer autorisation, **SKAL** verificere alle indgående anmodninger og **MÅ IKKE** bruge sessioner til autentificering.
-- **Sikre session-ID'er**: MCP-servere **SKAL** bruge sikre, ikke-deterministiske session-ID'er genereret med sikre tilfældige talgeneratorer. Undgå forudsigelige eller sekventielle identifikatorer.
-- **Brugerspecifik sessionsbinding**: MCP-servere **BØR** binde session-ID'er til brugerspecifik information ved at kombinere session-ID'et med information unik for den autoriserede bruger (som deres interne bruger-ID) i et format som `
-<user_id>:<session_id>`.
-- **Sessionsudløb**: Implementer korrekt sessionsudløb og rotation for at begrænse sårbarhedsvinduet, hvis en session-ID kompromitteres.
-- **Transport-sikkerhed**: Brug altid HTTPS til al kommunikation for at forhindre opsnapning af session-ID'er.
+2. **Spotlighting Teknikker**  
+   - Skelner mellem betroede systeminstruktioner og potentielt kompromitterede eksterne input
+   - Teksttransformationsteknikker, der forbedrer modelrelevans, samtidig med at ondsindet indhold isoleres
+   - Hjælper AI-systemer med at opretholde korrekt instruktionshierarki og ignorere injicerede kommandoer
 
+3. **Afgrænsnings- & Datamarkeringssystemer**
+   - Eksplicit grænsedefinition mellem betroede systemmeddelelser og eksterne inputtekster
+   - Specielle markører fremhæver grænser mellem betroede og ikke-betroede datakilder
+   - Klar adskillelse forhindrer instruktionsforvirring og uautoriseret kommandoeksekvering
 
-# Supply chain-sikkerhed
+4. **Kontinuerlig Trusselsintelligens**
+   - Microsoft overvåger løbende fremvoksende angrebsmønstre og opdaterer forsvar
+   - Proaktiv trusselsjagt efter nye injektionsteknikker og angrebsvektorer
+   - Regelmæssige sikkerhedsmodelopdateringer for at opretholde effektivitet mod udviklende trusler
 
-Supply chain-sikkerhed forbliver grundlæggende i AI-æraen, men omfanget af, hvad der udgør din supply chain, er udvidet. Ud over traditionelle kodepakker skal du nu grundigt verificere og overvåge alle AI-relaterede komponenter, herunder foundation-modeller, embeddings-tjenester, kontekstudbydere og tredjeparts-API'er. Hver af disse kan introducere sårbarheder eller risici, hvis de ikke håndteres korrekt.
+5. **Azure Content Safety Integration**
+   - En del af den omfattende Azure AI Content Safety-suite
+   - Yderligere detektion af jailbreak
+- **Sikker generering af sessioner**: Brug kryptografisk sikre, ikke-deterministiske session-ID'er genereret med sikre tilfældige talgeneratorer  
+- **Bruger-specifik binding**: Bind session-ID'er til bruger-specifik information ved hjælp af formater som `<user_id>:<session_id>` for at forhindre misbrug af sessioner på tværs af brugere  
+- **Håndtering af sessionslivscyklus**: Implementer korrekt udløb, rotation og ugyldiggørelse for at begrænse sårbarhedsvinduer  
+- **Transport-sikkerhed**: Obligatorisk HTTPS for al kommunikation for at forhindre aflytning af session-ID'er  
 
-**Nøglepraksis for supply chain-sikkerhed for AI og MCP:**
-- **Verificer alle komponenter før integration:** Dette inkluderer ikke kun open source-biblioteker, men også AI-modeller, datakilder og eksterne API'er. Tjek altid oprindelse, licensering og kendte sårbarheder.
-- **Vedligehold sikre deployments-pipelines:** Brug automatiserede CI/CD-pipelines med integreret sikkerhedsscanning for at opdage problemer tidligt. Sørg for, at kun betroede artefakter deployeres til produktion.
-- **Kontinuerlig overvågning og revision:** Implementer løbende overvågning af alle afhængigheder, inklusive modeller og datatjenester, for at opdage nye sårbarheder eller supply chain-angreb.
-- **Anvend mindst privilegium og adgangskontrol:** Begræns adgangen til modeller, data og tjenester til kun det, der er nødvendigt for, at din MCP-server kan fungere.
-- **Reager hurtigt på trusler:** Hav en proces på plads for at patche eller udskifte kompromitterede komponenter og for at rotere hemmeligheder eller legitimationsoplysninger, hvis et brud opdages.
+### Problemet med forvirrede mellemled
 
-[GitHub Advanced Security](https://github.com/security/advanced-security) tilbyder funktioner som hemmelighedsscanning, afhængighedsscanning og CodeQL-analyse. Disse værktøjer integreres med [Azure DevOps](https://azure.microsoft.com/en-us/products/devops) og [Azure Repos](https://azure.microsoft.com/en-us/products/devops/repos/) for at hjælpe teams med at identificere og afbøde sårbarheder på tværs af både kode og AI supply chain-komponenter.
+**Problemet med forvirrede mellemled** opstår, når MCP-servere fungerer som autentifikationsproxyer mellem klienter og tredjepartstjenester, hvilket skaber muligheder for at omgå autorisation gennem udnyttelse af statiske klient-ID'er.
 
-Microsoft implementerer også omfattende supply chain-sikkerhedspraksis internt for alle produkter. Læs mere i [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/).
+#### **Angrebsmekanismer og risici**
 
+- **Omgåelse af cookie-baseret samtykke**: Tidligere brugerautentifikation skaber samtykkecookies, som angribere udnytter gennem ondsindede autorisationsanmodninger med manipulerede redirect-URI'er  
+- **Tyveri af autorisationskoder**: Eksisterende samtykkecookies kan få autorisationsservere til at springe samtykkeskærme over og omdirigere koder til angriberkontrollerede endepunkter  
+- **Uautoriseret API-adgang**: Stjålne autorisationskoder muliggør tokenudveksling og brugerimitation uden eksplicit godkendelse  
 
-# Etablerede sikkerhedspraksisser, der vil styrke sikkerheden i din MCP-implementering
+#### **Afværgningsstrategier**
 
-Enhver MCP-implementering arver den eksisterende sikkerhedsholdning i din organisations miljø, som den er bygget på, så når du overvejer sikkerheden i MCP som en komponent i dine samlede AI-systemer, anbefales det at styrke din overordnede eksisterende sikkerhedsholdning. Følgende etablerede sikkerhedskontroller er særligt relevante:
+**Obligatoriske kontroller:**
+- **Krav om eksplicit samtykke**: MCP-proxyservere, der bruger statiske klient-ID'er, **SKAL** indhente brugerens samtykke for hver dynamisk registreret klient  
+- **Implementering af OAuth 2.1-sikkerhed**: Følg de nyeste OAuth-sikkerhedspraksisser, herunder PKCE (Proof Key for Code Exchange) for alle autorisationsanmodninger  
+- **Streng klientvalidering**: Implementer grundig validering af redirect-URI'er og klientidentifikatorer for at forhindre udnyttelse  
 
--   Sikker kodning i din AI-applikation – beskyt mod [OWASP Top 10](https://owasp.org/www-project-top-ten/), [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559), brug sikre vaults til hemmeligheder og tokens, implementer end-to-end sikre kommunikationskanaler mellem alle applikationskomponenter osv.
--   Serverhærde – brug MFA hvor muligt, hold patching opdateret, integrer serveren med en tredjeparts identitetsudbyder til adgang osv.
--   Hold enheder, infrastruktur og applikationer opdaterede med patches
--   Sikkerhedsovervågning – implementer logning og overvågning af en AI-applikation (inklusive MCP-klient/servere) og send disse logs til et centralt SIEM for at opdage unormale aktiviteter
--   Zero trust-arkitektur – isoler komponenter via netværks- og identitetskontroller på en logisk måde for at minimere lateral bevægelse, hvis en AI-applikation kompromitteres.
+### Sårbarheder ved token-videresendelse  
 
-# Vigtige pointer
+**Token-videresendelse** repræsenterer et eksplicit anti-mønster, hvor MCP-servere accepterer klienttokens uden korrekt validering og videresender dem til downstream-API'er, hvilket overtræder MCP-autorisationsspecifikationer.
 
-- Grundlæggende sikkerhedsprincipper er stadig afgørende: Sikker kodning, mindst privilegium, supply chain-verifikation og kontinuerlig overvågning er essentielle for MCP og AI-arbejdsbelastninger.
-- MCP introducerer nye risici – såsom prompt injection, tool poisoning, session hijacking, confused deputy-problemer, token passthrough-sårbarheder og overdrevne tilladelser – som kræver både traditionelle og AI-specifikke kontroller.
-- Brug robuste autentificerings-, autorisations- og tokenhåndteringspraksisser, og udnyt eksterne identitetsudbydere som Microsoft Entra ID, hvor det er muligt.
-- Beskyt mod indirekte prompt injection og tool poisoning ved at validere tool-metadata, overvåge dynamiske ændringer og bruge løsninger som Microsoft Prompt Shields.
-- Implementer sikker sessionhåndtering ved at bruge ikke-deterministiske session-ID'er, binde sessioner til brugeridentiteter og aldrig bruge sessioner til autentificering.
-- Forebyg confused deputy-angreb ved at kræve eksplicit bruger-samtykke for hver dynamisk registreret klient og implementere korrekte OAuth-sikkerhedspraksisser.
-- Undgå token passthrough-sårbarheder ved at sikre, at MCP-servere kun accepterer tokens, der eksplicit er udstedt til dem, og validerer token-claims korrekt.
-- Behandl alle komponenter i din AI supply chain – inklusive modeller, embeddings og kontekstudbydere – med samme omhu som kodeafhængigheder.
-- Hold dig opdateret med udviklingen i MCP-specifikationerne og bidrag til fællesskabet for at hjælpe med at forme sikre standarder.
+#### **Sikkerhedsmæssige konsekvenser**
 
-# Yderligere ressourcer
+- **Omgåelse af kontroller**: Direkte brug af klient-til-API-tokens omgår kritiske kontroller som hastighedsbegrænsning, validering og overvågning  
+- **Korruption af revisionsspor**: Tokens udstedt upstream gør det umuligt at identificere klienter, hvilket forhindrer undersøgelse af hændelser  
+- **Proxy-baseret dataudtrækning**: Uvaliderede tokens gør det muligt for ondsindede aktører at bruge servere som proxyer til uautoriseret dataadgang  
+- **Overtrædelse af tillidsgrænser**: Downstream-tjenesters tillidsantagelser kan blive brudt, når tokenoprindelse ikke kan verificeres  
+- **Udvidelse af angreb på tværs af tjenester**: Kompromitterede tokens accepteret på tværs af flere tjenester muliggør lateral bevægelse  
 
-## Eksterne ressourcer
-- [Microsoft Digital Defense Report](https://aka.ms/mddr)
-- [MCP Specification](https://spec.modelcontextprotocol.io/)
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
-- [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)
-- [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
-- [Rug Pulls in MCP (Wiz Security)](https://www.wiz.io/blog/mcp-security-research-briefing#remote-servers-22)
-- [Prompt Shields Documentation (Microsoft)](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
-- [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559)
+#### **Påkrævede sikkerhedskontroller**
+
+**Ufravigelige krav:**
+- **Tokenvalidering**: MCP-servere **MÅ IKKE** acceptere tokens, der ikke eksplicit er udstedt til MCP-serveren  
+- **Audience-verifikation**: Valider altid, at tokenets audience-krav matcher MCP-serverens identitet  
+- **Korrekt tokenlivscyklus**: Implementer kortlivede adgangstokens med sikre rotationspraksisser  
+
+## Forsyningskædesikkerhed for AI-systemer
+
+Forsyningskædesikkerhed har udviklet sig ud over traditionelle softwareafhængigheder til at omfatte hele AI-økosystemet. Moderne MCP-implementeringer skal nøje verificere og overvåge alle AI-relaterede komponenter, da hver enkelt introducerer potentielle sårbarheder, der kan kompromittere systemets integritet.
+
+### Udvidede AI-forsyningskædekomponenter
+
+**Traditionelle softwareafhængigheder:**
+- Open source-biblioteker og rammeværk  
+- Containerbilleder og basissystemer  
+- Udviklingsværktøjer og build-pipelines  
+- Infrastrukturkomponenter og tjenester  
+
+**AI-specifikke forsyningskædeelementer:**
+- **Grundmodeller**: Fortrænede modeller fra forskellige udbydere, der kræver oprindelsesverifikation  
+- **Indlejringsservices**: Eksterne vektoriseringer og semantiske søgetjenester  
+- **Kontekstudbydere**: Datakilder, vidensbaser og dokumentarkiver  
+- **Tredjeparts-API'er**: Eksterne AI-tjenester, ML-pipelines og databehandlingsendepunkter  
+- **Modellartefakter**: Vægte, konfigurationer og finjusterede modelvarianter  
+- **Træningsdatakilder**: Datasæt brugt til modellering og finjustering  
+
+### Omfattende forsyningskædesikkerhedsstrategi
+
+#### **Komponentverifikation og tillid**
+- **Oprindelsesvalidering**: Verificer oprindelse, licens og integritet af alle AI-komponenter før integration  
+- **Sikkerhedsvurdering**: Udfør sårbarhedsscanninger og sikkerhedsgennemgange for modeller, datakilder og AI-tjenester  
+- **Rygteanalyse**: Evaluer sikkerhedshistorik og praksis hos AI-tjenesteudbydere  
+- **Overholdelsesverifikation**: Sikr, at alle komponenter opfylder organisatoriske sikkerheds- og lovgivningsmæssige krav  
+
+#### **Sikre implementeringspipelines**  
+- **Automatiseret CI/CD-sikkerhed**: Integrer sikkerhedsscanning i automatiserede implementeringspipelines  
+- **Artefaktintegritet**: Implementer kryptografisk verifikation for alle implementerede artefakter (kode, modeller, konfigurationer)  
+- **Faset implementering**: Brug progressiv implementeringsstrategi med sikkerhedsvalidering på hvert trin  
+- **Betroede artefaktlagre**: Implementer kun fra verificerede, sikre artefaktregistre og lagre  
+
+#### **Kontinuerlig overvågning og respons**
+- **Afhængighedsscanning**: Løbende sårbarhedsovervågning for alle software- og AI-komponentafhængigheder  
+- **Modelovervågning**: Kontinuerlig vurdering af modeladfærd, præstationsdrift og sikkerhedsanomalier  
+- **Serviceovervågning**: Overvåg eksterne AI-tjenester for tilgængelighed, sikkerhedshændelser og politikændringer  
+- **Trusselsintelligensintegration**: Inkorporer trusselsfeeds specifikt for AI- og ML-sikkerhedsrisici  
+
+#### **Adgangskontrol og mindst privilegium**
+- **Komponentniveau-tilladelser**: Begræns adgang til modeller, data og tjenester baseret på forretningsbehov  
+- **Servicekontoadministration**: Implementer dedikerede servicekonti med minimale nødvendige tilladelser  
+- **Netværkssegmentering**: Isoler AI-komponenter og begræns netværksadgang mellem tjenester  
+- **API-gatewaykontroller**: Brug centraliserede API-gateways til at kontrollere og overvåge adgang til eksterne AI-tjenester  
+
+#### **Hændelsesrespons og genopretning**
+- **Hurtige responsprocedurer**: Etablerede processer til at rette eller udskifte kompromitterede AI-komponenter  
+- **Nøgle- og adgangsrotation**: Automatiserede systemer til at rotere hemmeligheder, API-nøgler og serviceoplysninger  
+- **Tilbageføringsmuligheder**: Evne til hurtigt at vende tilbage til tidligere kendte gode versioner af AI-komponenter  
+- **Genopretning efter forsyningskædebrud**: Specifikke procedurer til at reagere på kompromitterede upstream AI-tjenester  
+
+### Microsofts sikkerhedsværktøjer og integration
+
+**GitHub Advanced Security** tilbyder omfattende forsyningskædebeskyttelse, herunder:
+- **Hemmelighedsscanning**: Automatisk detektion af legitimationsoplysninger, API-nøgler og tokens i repositories  
+- **Afhængighedsscanning**: Sårbarhedsvurdering for open source-afhængigheder og biblioteker  
+- **CodeQL-analyse**: Statisk kodeanalyse for sikkerhedssårbarheder og kodningsproblemer  
+- **Forsyningskædeindsigt**: Synlighed i afhængigheders sundhed og sikkerhedsstatus  
+
+**Azure DevOps og Azure Repos-integration:**
+- Problemfri sikkerhedsscanningsintegration på tværs af Microsofts udviklingsplatforme  
+- Automatiserede sikkerhedstjek i Azure Pipelines for AI-arbejdsbelastninger  
+- Politikhåndhævelse for sikker implementering af AI-komponenter  
+
+**Microsofts interne praksis:**
+Microsoft implementerer omfattende forsyningskædesikkerhedspraksis på tværs af alle produkter. Læs om dokumenterede tilgange i [Rejsen mod at sikre softwareforsyningskæden hos Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/).  
+
+
+### **Microsoft Sikkerhedsløsninger**
+- [Microsoft Prompt Shields Dokumentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Azure Content Safety Service](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [Microsoft Entra ID Sikkerhed](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
+- [Azure Token Management Bedste Praksis](https://learn.microsoft.com/entra/identity-platform/access-tokens)
 - [GitHub Advanced Security](https://github.com/security/advanced-security)
-- [Azure DevOps](https://azure.microsoft.com/products/devops)
-- [Azure Repos](https://azure.microsoft.com/products/devops/repos/)
-- [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/)
-- [Secure Least-Privileged Access (Microsoft)](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
-- [Best Practices for Token Validation and Lifetime](https://learn.microsoft.com/entra/identity-platform/access-tokens)
-- [Use Secure Token Storage and Encrypt Tokens (YouTube)](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
-- [Azure API Management as Auth Gateway for MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
-- [Using Microsoft Entra ID to Authenticate with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/)
 
-## Yderligere sikkerhedsdokumenter
+### **Implementeringsvejledninger & Tutorials**
+- [Azure API Management som MCP Authentication Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+- [Microsoft Entra ID Autentifikation med MCP Servere](https://den.dev/blog/mcp-server-auth-entra-id-session/)
+- [Sikker Token Opbevaring og Kryptering (Video)](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
 
-For mere detaljeret sikkerhedsguidance, se venligst disse dokumenter:
+### **DevOps & Forsyningskædesikkerhed**
+- [Azure DevOps Sikkerhed](https://azure.microsoft.com/products/devops)
+- [Azure Repos Sikkerhed](https://azure.microsoft.com/products/devops/repos/)
+- [Microsoft Forsyningskædesikkerhedsrejse](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/)
 
-- [MCP Security Best Practices 2025](./mcp-security-best-practices-2025.md) - Omfattende liste over sikkerhedspraksisser for MCP-implementeringer
-- [Azure Content Safety Implementation](./azure-content-safety-implementation.md) - Implementeringseksempler for integration af Azure Content Safety med MCP-servere
-- [MCP Security Controls 2025](./mcp-security-controls-2025.md) - Seneste sikkerhedskontroller og teknikker til sikring af MCP-implementeringer
-- [MCP Best Practices](./mcp-best-practices.md) - Hurtig referenceguide til MCP-sikkerhed
+## **Yderligere Sikkerhedsdokumentation**
 
-### Næste
+For omfattende sikkerhedsvejledning, henvises til disse specialiserede dokumenter i denne sektion:
+
+- **[MCP Sikkerhedsbedste Praksis 2025](./mcp-security-best-practices-2025.md)** - Komplette bedste praksis for MCP-implementeringer
+- **[Azure Content Safety Implementering](./azure-content-safety-implementation.md)** - Praktiske implementeringseksempler for Azure Content Safety-integration  
+- **[MCP Sikkerhedskontroller 2025](./mcp-security-controls-2025.md)** - Nyeste sikkerhedskontroller og teknikker til MCP-udrulninger
+- **[MCP Bedste Praksis Hurtig Reference](./mcp-best-practices.md)** - Hurtig referenceguide til essentielle MCP-sikkerhedspraksisser
+
+---
+
+## Hvad er det næste
 
 Næste: [Kapitel 3: Kom godt i gang](../03-GettingStarted/README.md)
 
 **Ansvarsfraskrivelse**:  
-Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, bedes du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det oprindelige dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os intet ansvar for misforståelser eller fejltolkninger, der opstår som følge af brugen af denne oversættelse.
+Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, skal det bemærkes, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det originale dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os ikke ansvar for eventuelle misforståelser eller fejltolkninger, der måtte opstå som følge af brugen af denne oversættelse.

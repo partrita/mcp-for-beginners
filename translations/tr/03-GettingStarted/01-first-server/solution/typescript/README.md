@@ -1,15 +1,15 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ac67652abc453e2a7e2c75cd7a8897ae",
-  "translation_date": "2025-07-13T18:05:27+00:00",
+  "original_hash": "6ebbb78b04c9b1f6c2367c713524fc95",
+  "translation_date": "2025-09-03T16:07:49+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/typescript/README.md",
   "language_code": "tr"
 }
 -->
 # Bu örneği çalıştırma
 
-`uv` kurmanız önerilir ancak zorunlu değildir, detaylar için [talimatlara](https://docs.astral.sh/uv/#highlights) bakabilirsiniz.
+`uv` yüklemeniz önerilir, ancak bu bir zorunluluk değildir, [talimatlara](https://docs.astral.sh/uv/#highlights) bakabilirsiniz.
 
 ## -1- Bağımlılıkları yükleyin
 
@@ -31,16 +31,16 @@ Sunucu bir terminalde çalışırken, başka bir terminal açın ve aşağıdaki
 npm run inspector
 ```
 
-Bu, örneği test etmenize olanak sağlayan görsel arayüze sahip bir web sunucusunu başlatmalıdır.
+Bu, örneği test etmenizi sağlayan görsel bir arayüze sahip bir web sunucusunu başlatacaktır.
 
-Sunucu bağlandıktan sonra:
+Sunucu bağlandıktan sonra: 
 
-- araçları listelemeyi deneyin ve `add` komutunu, argüman olarak 2 ve 4 ile çalıştırın, sonuçta 6 görmelisiniz.
-- resources ve resource template kısmına gidin, "greeting" çağırın, bir isim yazın ve verdiğiniz isimle bir selamlama görmelisiniz.
+- Araçları listelemeyi deneyin ve `add` çalıştırın, argümanlar olarak 2 ve 4 girin, sonuçta 6 görmelisiniz.
+- Kaynaklara ve kaynak şablonuna gidin, "greeting" çağrısını yapın, bir isim yazın ve verdiğiniz isimle bir selamlama görmelisiniz.
 
 ### CLI modunda test etme
 
-Çalıştırdığınız inspector aslında bir Node.js uygulamasıdır ve `mcp dev` bunun etrafında bir sarmalayıcıdır.
+Çalıştırdığınız denetleyici aslında bir Node.js uygulamasıdır ve `mcp dev` bunun etrafında bir sarmalayıcıdır.
 
 Aşağıdaki komutu çalıştırarak doğrudan CLI modunda başlatabilirsiniz:
 
@@ -99,9 +99,11 @@ Aşağıdaki çıktıyı görmelisiniz:
 }
 ```
 
-> ![!TIP]
-> Inspector'ı tarayıcıda çalıştırmaktansa CLI modunda çalıştırmak genellikle çok daha hızlıdır.
-> Inspector hakkında daha fazla bilgi için [buraya](https://github.com/modelcontextprotocol/inspector) bakabilirsiniz.
+> [!TIP]
+> Denetleyiciyi CLI modunda çalıştırmak genellikle tarayıcıda çalıştırmaktan çok daha hızlıdır.
+> Denetleyici hakkında daha fazla bilgi için [buraya](https://github.com/modelcontextprotocol/inspector) göz atın.
+
+---
 
 **Feragatname**:  
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu oluşabilecek yanlış anlamalar veya yorum hatalarından sorumlu değiliz.
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalardan sorumlu değiliz.

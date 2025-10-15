@@ -1,76 +1,76 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "36de9fae488d6de554d969fe8e0801a8",
-  "translation_date": "2025-07-14T05:33:30+00:00",
+  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
+  "translation_date": "2025-08-18T15:56:43+00:00",
   "source_file": "09-CaseStudy/apimsample.md",
   "language_code": "fi"
 }
 -->
-# Case Study: Paljasta REST API API Managementissa MCP-palvelimena
+# Tapaustutkimus: REST-rajapinnan julkaiseminen API Managementissa MCP-palvelimena
 
-Azure API Management on palvelu, joka tarjoaa portin API-päätepisteidesi päälle. Se toimii niin, että Azure API Management toimii välityspalvelimena API:esi edessä ja voi päättää, mitä saapuville pyynnöille tehdään.
+Azure API Management on palvelu, joka tarjoaa yhdyskäytävän API-päätepisteidesi päälle. Se toimii siten, että Azure API Management toimii välityspalvelimena API:esi edessä ja voi päättää, mitä saapuville pyynnöille tehdään.
 
-Sen avulla saat käyttöösi monia ominaisuuksia, kuten:
+Sen avulla voit lisätä monia ominaisuuksia, kuten:
 
-- **Turvallisuus**, voit käyttää kaikkea API-avaimista JWT:hen ja hallittuun identiteettiin.
-- **Kutsujen rajoitus**, erinomainen ominaisuus, jonka avulla voit päättää, kuinka monta kutsua pääsee läpi tietyn aikayksikön aikana. Tämä auttaa varmistamaan, että kaikilla käyttäjillä on hyvä käyttökokemus ja että palvelusi ei kuormitu liikaa.
-- **Skaalaus ja kuormantasapaino**. Voit määrittää useita päätepisteitä kuorman tasaamiseksi ja päättää, miten "kuormantasapaino" toteutetaan.
-- **AI-ominaisuudet kuten semanttinen välimuisti**, token-rajoitukset ja token-valvonta sekä paljon muuta. Nämä ovat erinomaisia ominaisuuksia, jotka parantavat reagointikykyä ja auttavat hallitsemaan token-kulutusta. [Lue lisää tästä](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities).
+- **Turvallisuus**, voit käyttää kaikkea API-avaimista ja JWT:stä hallittuun identiteettiin.
+- **Nopeusrajoitukset**, erinomainen ominaisuus on mahdollisuus päättää, kuinka monta kutsua sallitaan tietyn aikayksikön aikana. Tämä auttaa varmistamaan, että kaikilla käyttäjillä on hyvä kokemus ja että palvelusi ei ylikuormitu pyynnöistä.
+- **Skaalautuvuus ja kuormantasapainotus**. Voit määrittää useita päätepisteitä tasapainottamaan kuormaa ja päättää, miten "kuormaa tasapainotetaan".
+- **Tekoälyominaisuudet, kuten semanttinen välimuisti**, token-rajoitukset ja token-seuranta sekä paljon muuta. Nämä ovat erinomaisia ominaisuuksia, jotka parantavat reagointikykyä ja auttavat hallitsemaan token-kulutusta. [Lue lisää täältä](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities).
 
 ## Miksi MCP + Azure API Management?
 
-Model Context Protocol on nopeasti muodostumassa standardiksi agenttipohjaisille AI-sovelluksille ja työkalujen sekä datan yhdenmukaiselle esittämiselle. Azure API Management on luonnollinen valinta, kun tarvitset API:en "hallintaa". MCP-palvelimet integroituvat usein muihin API:hin ratkaistakseen pyyntöjä esimerkiksi työkaluille. Siksi Azure API Managementin ja MCP:n yhdistäminen on järkevää.
+Model Context Protocol (MCP) on nopeasti nousemassa standardiksi agenttipohjaisille tekoälysovelluksille ja työkalujen sekä datan yhdenmukaiselle esittämiselle. Azure API Management on luonnollinen valinta, kun tarvitset API:iden "hallintaa". MCP-palvelimet integroituvat usein muihin API:ihin ratkaistakseen esimerkiksi työkalupyyntöjä. Siksi Azure API Managementin ja MCP:n yhdistäminen on järkevää.
 
 ## Yleiskatsaus
 
-Tässä erityistapauksessa opimme paljastamaan API-päätepisteet MCP-palvelimena. Näin voimme helposti tehdä näistä päätepisteistä osan agenttipohjaista sovellusta hyödyntäen samalla Azure API Managementin ominaisuuksia.
+Tässä erityisessä käyttötapauksessa opimme julkaisemaan API-päätepisteitä MCP-palvelimena. Näin voimme helposti tehdä näistä päätepisteistä osan agenttipohjaista sovellusta samalla hyödyntäen Azure API Managementin ominaisuuksia.
 
 ## Keskeiset ominaisuudet
 
-- Valitset ne päätepistemetodit, jotka haluat paljastaa työkaluina.
-- Lisäominaisuudet riippuvat siitä, mitä määrittelet API:n politiikkaosiossa. Tässä näytämme, miten voit lisätä kutsujen rajoituksen.
+- Voit valita, mitkä päätepisteiden metodit haluat julkaista työkaluina.
+- Lisäominaisuudet riippuvat siitä, mitä määrität API:si käytäntöosiossa. Tässä näytämme, kuinka voit lisätä nopeusrajoituksia.
 
 ## Esivaihe: API:n tuonti
 
-Jos sinulla on jo API Azure API Managementissa, hienoa, voit ohittaa tämän vaiheen. Muussa tapauksessa tutustu tähän linkkiin, [API:n tuonti Azure API Managementiin](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
+Jos sinulla on jo API Azure API Managementissa, voit ohittaa tämän vaiheen. Jos ei, tutustu tähän linkkiin: [API:n tuominen Azure API Managementiin](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
 
-## Paljasta API MCP-palvelimena
+## API:n julkaiseminen MCP-palvelimena
 
-API-päätepisteiden paljastamiseksi seuraa näitä ohjeita:
+Julkaistaksesi API-päätepisteet, seuraa näitä vaiheita:
 
 1. Siirry Azure-portaaliin osoitteessa <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp>  
-Siirry API Management -instanssiisi.
+   Siirry API Management -instanssiisi.
 
-1. Valitse vasemman valikon kautta APIs > MCP Servers > + Create new MCP Server.
+1. Vasemmasta valikosta valitse **APIs > MCP Servers > + Create new MCP Server**.
 
-1. Valitse API-kohdasta REST API, jonka haluat paljastaa MCP-palvelimena.
+1. Valitse API:sta REST API, jonka haluat julkaista MCP-palvelimena.
 
-1. Valitse yksi tai useampi API-toiminto, jotka haluat paljastaa työkaluina. Voit valita kaikki toiminnot tai vain tietyt.
+1. Valitse yksi tai useampi API-toiminto, jotka haluat julkaista työkaluina. Voit valita kaikki toiminnot tai vain tietyt toiminnot.
 
-    ![Valitse paljastettavat metodit](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
+    ![Valitse julkaistavat metodit](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
 
 1. Valitse **Create**.
 
-1. Siirry valikosta kohtaan **APIs** ja **MCP Servers**, sinun pitäisi nähdä seuraavaa:
+1. Siirry valikossa kohtaan **APIs** ja **MCP Servers**, ja sinun pitäisi nähdä seuraava näkymä:
 
-    ![Näet MCP-palvelimen pääikkunassa](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
+    ![Näe MCP-palvelin pääikkunassa](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
 
-    MCP-palvelin on luotu ja API-toiminnot on paljastettu työkaluina. MCP-palvelin näkyy MCP Servers -paneelissa. URL-sarake näyttää MCP-palvelimen päätepisteen, jota voit kutsua testaukseen tai asiakassovelluksessa.
+    MCP-palvelin on luotu, ja API-toiminnot on julkaistu työkaluina. MCP-palvelin näkyy MCP Servers -paneelissa. URL-sarake näyttää MCP-palvelimen päätepisteen, jota voit kutsua testaukseen tai asiakassovelluksessa.
 
-## Valinnainen: Politiikkojen määrittäminen
+## Valinnainen: Käytäntöjen määrittäminen
 
-Azure API Managementin keskeinen käsite on politiikat, joissa määritellään erilaisia sääntöjä päätepisteille, kuten kutsujen rajoitus tai semanttinen välimuisti. Nämä politiikat kirjoitetaan XML-muodossa.
+Azure API Managementin ydinajatus on käytännöt, joissa voit määrittää erilaisia sääntöjä päätepisteillesi, kuten nopeusrajoituksia tai semanttista välimuistia. Nämä käytännöt kirjoitetaan XML-muodossa.
 
-Näin voit määrittää politiikan MCP-palvelimesi kutsujen rajoittamiseksi:
+Näin voit määrittää käytännön rajoittamaan MCP-palvelimen kutsuja:
 
-1. Portaalissa, APIs-kohdassa, valitse **MCP Servers**.
+1. Portaalissa, kohdassa **APIs**, valitse **MCP Servers**.
 
 1. Valitse luomasi MCP-palvelin.
 
-1. Vasemmasta valikosta MCP:n alta valitse **Policies**.
+1. Vasemmasta valikosta, kohdasta **MCP**, valitse **Policies**.
 
-1. Politiikkamuokkaimessa lisää tai muokkaa politiikkoja, jotka haluat soveltaa MCP-palvelimen työkaluihin. Politiikat määritellään XML-muodossa. Esimerkiksi voit lisätä politiikan, joka rajoittaa kutsuja MCP-palvelimen työkaluihin (tässä esimerkissä 5 kutsua 30 sekunnissa per asiakas-IP-osoite). Tässä on XML, joka toteuttaa kutsujen rajoituksen:
+1. Käytäntöeditorissa lisää tai muokkaa käytäntöjä, joita haluat soveltaa MCP-palvelimen työkaluihin. Käytännöt määritellään XML-muodossa. Esimerkiksi voit lisätä käytännön, joka rajoittaa kutsut MCP-palvelimen työkaluihin (tässä esimerkissä 5 kutsua 30 sekunnin aikana per asiakas-IP-osoite). Tässä on XML, joka asettaa nopeusrajoituksen:
 
     ```xml
      <rate-limit-by-key calls="5" 
@@ -80,29 +80,29 @@ Näin voit määrittää politiikan MCP-palvelimesi kutsujen rajoittamiseksi:
     />
     ```
 
-    Tässä kuva politiikkamuokkaimesta:
+    Tässä on kuva käytäntöeditorista:
 
-    ![Politiikkamuokkain](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
- 
+    ![Käytäntöeditori](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
+
 ## Kokeile
 
 Varmistetaan, että MCP-palvelimemme toimii odotetusti.
 
-Tätä varten käytämme Visual Studio Codea ja GitHub Copilotia sen Agent-tilassa. Lisäämme MCP-palvelimen *mcp.json*-tiedostoon. Näin Visual Studio Code toimii agenttikykyisenä asiakkaana, ja loppukäyttäjät voivat kirjoittaa kehotteen ja olla vuorovaikutuksessa palvelimen kanssa.
+Tätä varten käytämme Visual Studio Codea ja GitHub Copilotin Agent-tilaa. Lisäämme MCP-palvelimen *mcp.json*-tiedostoon. Näin Visual Studio Code toimii asiakkaana agenttikapasiteetilla, ja loppukäyttäjät voivat kirjoittaa kehotteita ja olla vuorovaikutuksessa palvelimen kanssa.
 
 Näin lisäät MCP-palvelimen Visual Studio Codeen:
 
-1. Käytä komentopalettia ja valitse MCP: **Add Server** -komento.
+1. Käytä komentopalettia ja valitse **MCP: Add Server** -komento.
 
-1. Kun sinulta kysytään, valitse palvelintyyppi: **HTTP (HTTP tai Server Sent Events)**.
+1. Kun sinulta kysytään, valitse palvelimen tyyppi: **HTTP (HTTP tai Server Sent Events)**.
 
-1. Syötä MCP-palvelimen URL API Managementissa. Esimerkki: **https://<apim-service-name>.azure-api.net/<api-name>-mcp/sse** (SSE-päätepiste) tai **https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp** (MCP-päätepiste), huomaa kuljetustavan ero `/sse` tai `/mcp`.
+1. Syötä MCP-palvelimen URL API Managementissa. Esimerkki: **https://<apim-service-name>.azure-api.net/<api-name>-mcp/sse** (SSE-päätepisteelle) tai **https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp** (MCP-päätepisteelle). Huomaa ero kuljetusmuotojen välillä: `/sse` tai `/mcp`.
 
-1. Syötä haluamasi palvelimen tunniste. Tämä ei ole kriittinen arvo, mutta auttaa muistamaan, mikä palvelininstanssi on kyseessä.
+1. Syötä palvelimen tunnus (ID) valintasi mukaan. Tämä arvo ei ole tärkeä, mutta auttaa muistamaan, mikä palvelininstanssi on kyseessä.
 
-1. Valitse, tallennetaanko konfiguraatio työtilan asetuksiin vai käyttäjäasetuksiin.
+1. Valitse, tallennetaanko kokoonpano työtilan asetuksiin vai käyttäjäasetuksiin.
 
-  - **Työtilan asetukset** – Palvelinasetukset tallennetaan .vscode/mcp.json -tiedostoon, joka on käytettävissä vain nykyisessä työtilassa.
+  - **Työtilan asetukset** - Palvelimen kokoonpano tallennetaan .vscode/mcp.json-tiedostoon, joka on käytettävissä vain nykyisessä työtilassa.
 
     *mcp.json*
 
@@ -115,7 +115,7 @@ Näin lisäät MCP-palvelimen Visual Studio Codeen:
     }
     ```
 
-    tai jos valitset streaming HTTP:n kuljetustavaksi, se näyttää hieman erilaiselta:
+    tai jos valitset suoratoiston HTTP:n kuljetusmuodoksi, se olisi hieman erilainen:
 
     ```json
     "servers": {
@@ -126,15 +126,15 @@ Näin lisäät MCP-palvelimen Visual Studio Codeen:
     }
     ```
 
-  - **Käyttäjäasetukset** – Palvelinasetukset lisätään globaaliin *settings.json* -tiedostoon ja ovat käytettävissä kaikissa työtiloissa. Konfiguraatio näyttää suunnilleen tältä:
+  - **Käyttäjäasetukset** - Palvelimen kokoonpano lisätään globaaliin *settings.json*-tiedostoon ja on käytettävissä kaikissa työtiloissa. Kokoonpano näyttää seuraavalta:
 
     ![Käyttäjäasetukset](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
 
-1. Sinun täytyy myös lisätä konfiguraatioon otsikko varmistaaksesi, että autentikointi Azure API Managementia kohtaan toimii oikein. Käytössä on otsikko nimeltä **Ocp-Apim-Subscription-Key**.
+1. Sinun on myös lisättävä kokoonpanoon otsikko, joka varmistaa autentikoinnin Azure API Managementia vastaan. Se käyttää otsikkoa nimeltä **Ocp-Apim-Subscription-Key**.
 
     - Näin lisäät sen asetuksiin:
 
-    ![Otsikon lisääminen autentikointiin](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), tämä aiheuttaa kehotteen, jossa kysytään API-avaimen arvoa, jonka löydät Azure-portaalista Azure API Management -instanssiltasi.
+    ![Autentikointiotteen lisääminen](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png). Tämä aiheuttaa kehotteen, jossa sinulta kysytään API-avaimen arvoa, jonka löydät Azure-portaalista Azure API Management -instanssillesi.
 
    - Jos haluat lisätä sen *mcp.json*-tiedostoon, voit tehdä sen näin:
 
@@ -160,42 +160,42 @@ Näin lisäät MCP-palvelimen Visual Studio Codeen:
 
 ### Käytä Agent-tilaa
 
-Nyt kun olemme valmiita joko asetuksissa tai *.vscode/mcp.json*-tiedostossa, kokeillaan.
+Nyt olemme valmiita joko asetuksissa tai *.vscode/mcp.json*-tiedostossa. Kokeillaan sitä.
 
-Työkalukuvakkeen pitäisi näkyä näin, ja palvelimesi paljastamat työkalut listautuvat siihen:
+Työkalukuvake pitäisi näkyä, ja siinä listataan palvelimeltasi julkaistut työkalut:
 
 ![Palvelimen työkalut](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
 
-1. Klikkaa työkalukuvaketta, ja näet työkalulistan:
+1. Klikkaa työkalukuvaketta, ja sinun pitäisi nähdä lista työkaluista, kuten tässä:
 
     ![Työkalut](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/select-tools-visual-studio-code.png)
 
-1. Kirjoita keskusteluun kehotus työkalun kutsumiseksi. Esimerkiksi, jos valitsit työkalun tilaustiedon hakemiseen, voit kysyä agentilta tilauksesta. Tässä esimerkki kehotteesta:
+1. Kirjoita kehotus chattiin kutsuaksesi työkalua. Esimerkiksi, jos valitsit työkalun tilaustietojen hakemiseen, voit kysyä agentilta tilauksesta. Tässä esimerkki kehotuksesta:
 
     ```text
     get information from order 2
     ```
 
-    Näet nyt työkalukuvakkeen, joka pyytää jatkamaan työkalun kutsumista. Valitse jatkaaksesi työkalun suorittamista, ja näet tuloksen seuraavasti:
+    Näet nyt työkalukuvakkeen, joka pyytää sinua jatkamaan työkalun kutsumista. Valitse jatkaaksesi työkalun suorittamista, ja sinun pitäisi nähdä tulos, kuten tässä:
 
     ![Kehotteen tulos](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
 
-    **näkemäsi tulos riippuu valitsemistasi työkaluista, mutta idea on, että saat tekstimuotoisen vastauksen kuten yllä**
+    **Yllä näkyvä riippuu siitä, mitä työkaluja olet määrittänyt, mutta idea on, että saat tekstimuotoisen vastauksen, kuten yllä.**
 
 ## Viitteet
 
-Näin voit oppia lisää:
+Tässä lisää oppimateriaalia:
 
 - [Opas Azure API Managementista ja MCP:stä](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server)
 - [Python-esimerkki: Suojaa etä-MCP-palvelimet Azure API Managementilla (kokeellinen)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
 
-- [MCP-asiakasvaltuutuslaboratorio](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
+- [MCP-asiakkaan valtuutuslaboratorio](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
 
-- [Käytä Azure API Management -laajennusta VS Codessa API:en tuontiin ja hallintaan](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
+- [Käytä Azure API Management -laajennusta VS Codessa API:iden tuontiin ja hallintaan](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
 
-- [Rekisteröi ja löydä etä-MCP-palvelimia Azure API Centerissä](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
-- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Erinomainen repositorio, joka esittelee monia AI-ominaisuuksia Azure API Managementin kanssa
-- [AI Gateway -työpajat](https://azure-samples.github.io/AI-Gateway/) Sisältää työpajoja Azure-portaalin käytöstä, erinomainen tapa aloittaa AI-ominaisuuksien arviointi.
+- [Rekisteröi ja löydä etä-MCP-palvelimet Azure API Centerissä](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
+- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Erinomainen repo, joka esittelee monia tekoälyominaisuuksia Azure API Managementilla
+- [AI Gateway -työpajat](https://azure-samples.github.io/AI-Gateway/) Sisältää työpajoja Azure-portaalin avulla, mikä on loistava tapa aloittaa tekoälyominaisuuksien arviointi.
 
 **Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Pyrimme tarkkuuteen, mutta huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäisellä kielellä tulee pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskääntämistä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.

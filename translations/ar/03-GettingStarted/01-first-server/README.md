@@ -1,141 +1,182 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "fa635ae747c9b4d5c2f61c6c46cb695f",
-  "translation_date": "2025-07-17T17:33:52+00:00",
+  "original_hash": "ec11ee93f31fdadd94facd3e3d22f9e6",
+  "translation_date": "2025-09-09T21:23:54+00:00",
   "source_file": "03-GettingStarted/01-first-server/README.md",
   "language_code": "ar"
 }
 -->
 # البدء مع MCP
 
-مرحبًا بك في خطواتك الأولى مع بروتوكول سياق النموذج (MCP)! سواء كنت جديدًا على MCP أو ترغب في تعميق فهمك، سيرشدك هذا الدليل خلال إعداد وتطوير الحلول الأساسية. ستتعرف على كيفية تمكين MCP للتكامل السلس بين نماذج الذكاء الاصطناعي والتطبيقات، وتتعلم كيفية تجهيز بيئتك بسرعة لبناء واختبار الحلول المدعومة بـ MCP.
+مرحبًا بك في خطواتك الأولى مع بروتوكول سياق النموذج (MCP)! سواء كنت جديدًا على MCP أو تسعى لتعميق فهمك، سيرشدك هذا الدليل خلال عملية الإعداد والتطوير الأساسية. ستكتشف كيف يتيح MCP التكامل السلس بين نماذج الذكاء الاصطناعي والتطبيقات، وستتعلم كيفية تجهيز بيئتك بسرعة لبناء واختبار الحلول المدعومة بـ MCP.
 
-> ملخص؛ إذا كنت تبني تطبيقات ذكاء اصطناعي، فأنت تعلم أنه يمكنك إضافة أدوات وموارد أخرى إلى نموذج اللغة الكبير (LLM) لجعله أكثر معرفة. ولكن إذا وضعت تلك الأدوات والموارد على خادم، يمكن لأي عميل استخدام قدرات التطبيق والخادم سواء كان لديه LLM أم لا.
+> ملخص سريع: إذا كنت تبني تطبيقات ذكاء اصطناعي، فأنت تعلم أنه يمكنك إضافة أدوات وموارد أخرى إلى النموذج اللغوي الكبير (LLM) لجعله أكثر معرفة. ولكن إذا وضعت هذه الأدوات والموارد على خادم، يمكن استخدام قدرات التطبيق والخادم من قبل أي عميل مع أو بدون LLM.
 
 ## نظرة عامة
 
-تقدم هذه الدرس إرشادات عملية حول إعداد بيئات MCP وبناء تطبيقات MCP الأولى الخاصة بك. ستتعلم كيفية إعداد الأدوات والأُطُر اللازمة، وبناء خوادم MCP الأساسية، وإنشاء تطبيقات مضيفة، واختبار تطبيقاتك.
+تقدم هذه الدرس إرشادات عملية حول إعداد بيئات MCP وبناء تطبيقات MCP الأولى. ستتعلم كيفية إعداد الأدوات والأطر اللازمة، بناء خوادم MCP الأساسية، إنشاء تطبيقات مضيفة، واختبار تنفيذاتك.
 
-بروتوكول سياق النموذج (MCP) هو بروتوكول مفتوح يحدد طريقة موحدة لتوفير السياق لنماذج اللغة الكبيرة. فكر في MCP كمنفذ USB-C لتطبيقات الذكاء الاصطناعي - حيث يوفر طريقة موحدة لربط نماذج الذكاء الاصطناعي بمصادر البيانات والأدوات المختلفة.
+بروتوكول سياق النموذج (MCP) هو بروتوكول مفتوح يحدد كيفية توفير التطبيقات للسياق للنماذج اللغوية الكبيرة (LLMs). فكر في MCP كأنه منفذ USB-C لتطبيقات الذكاء الاصطناعي - يوفر طريقة موحدة لتوصيل نماذج الذكاء الاصطناعي بمصادر البيانات والأدوات المختلفة.
 
 ## أهداف التعلم
 
 بنهاية هذا الدرس، ستكون قادرًا على:
 
-- إعداد بيئات تطوير MCP باستخدام C#، Java، Python، TypeScript، وJavaScript
-- بناء ونشر خوادم MCP أساسية مع ميزات مخصصة (الموارد، المطالبات، والأدوات)
+- إعداد بيئات التطوير لـ MCP باستخدام C#، Java، Python، TypeScript، وRust
+- بناء ونشر خوادم MCP الأساسية بميزات مخصصة (الموارد، المطالبات، والأدوات)
 - إنشاء تطبيقات مضيفة تتصل بخوادم MCP
-- اختبار وتصحيح تطبيقات MCP
+- اختبار وتصحيح تنفيذات MCP
 
 ## إعداد بيئة MCP الخاصة بك
 
-قبل أن تبدأ العمل مع MCP، من المهم تجهيز بيئة التطوير وفهم سير العمل الأساسي. سيرشدك هذا القسم خلال خطوات الإعداد الأولية لضمان بداية سلسة مع MCP.
+قبل البدء في العمل مع MCP، من المهم تجهيز بيئة التطوير وفهم سير العمل الأساسي. ستوجهك هذه القسم خلال خطوات الإعداد الأولية لضمان بداية سلسة مع MCP.
 
 ### المتطلبات الأساسية
 
 قبل الغوص في تطوير MCP، تأكد من توفر:
 
-- **بيئة تطوير**: للغة التي اخترتها (C#، Java، Python، TypeScript، أو JavaScript)
-- **IDE/محرر**: Visual Studio، Visual Studio Code، IntelliJ، Eclipse، PyCharm، أو أي محرر كود حديث
-- **مديرو الحزم**: NuGet، Maven/Gradle، pip، أو npm/yarn
+- **بيئة تطوير**: للغة التي اخترتها (C#، Java، Python، TypeScript، أو Rust)
+- **IDE/محرر**: Visual Studio، Visual Studio Code، IntelliJ، Eclipse، PyCharm، أو أي محرر حديث
+- **مديري الحزم**: NuGet، Maven/Gradle، pip، npm/yarn، أو Cargo
 - **مفاتيح API**: لأي خدمات ذكاء اصطناعي تخطط لاستخدامها في تطبيقاتك المضيفة
 
-## الهيكل الأساسي لخادم MCP
+## هيكل خادم MCP الأساسي
 
 عادةً ما يتضمن خادم MCP:
 
-- **تكوين الخادم**: إعداد المنفذ، المصادقة، والإعدادات الأخرى
-- **الموارد**: البيانات والسياق المتاحة لنماذج اللغة الكبيرة
+- **إعدادات الخادم**: إعداد المنفذ، المصادقة، والإعدادات الأخرى
+- **الموارد**: البيانات والسياق المتاح للنماذج اللغوية الكبيرة
 - **الأدوات**: الوظائف التي يمكن للنماذج استدعاؤها
-- **المطالبات**: قوالب لتوليد أو هيكلة النصوص
+- **المطالبات**: قوالب لإنشاء النصوص أو هيكلتها
 
-إليك مثال مبسط في TypeScript:
+إليك مثال مبسط بلغة TypeScript:
 
 ```typescript
-import { Server, Tool, Resource } from "@modelcontextprotocol/typescript-server-sdk";
+import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
 
-// Create a new MCP server
-const server = new Server({
-  port: 3000,
-  name: "Example MCP Server",
+// Create an MCP server
+const server = new McpServer({
+  name: "Demo",
   version: "1.0.0"
 });
 
-// Register a tool
-server.registerTool({
-  name: "calculator",
-  description: "Performs basic calculations",
-  parameters: {
-    expression: {
-      type: "string",
-      description: "The math expression to evaluate"
-    }
-  },
-  handler: async (params) => {
-    const result = eval(params.expression);
-    return { result };
-  }
-});
+// Add an addition tool
+server.tool("add",
+  { a: z.number(), b: z.number() },
+  async ({ a, b }) => ({
+    content: [{ type: "text", text: String(a + b) }]
+  })
+);
 
-// Start the server
-server.start();
+// Add a dynamic greeting resource
+server.resource(
+  "file",
+  // The 'list' parameter controls how the resource lists available files. Setting it to undefined disables listing for this resource.
+  new ResourceTemplate("file://{path}", { list: undefined }),
+  async (uri, { path }) => ({
+    contents: [{
+      uri: uri.href,
+      text: `File, ${path}!`
+    }]
+  })
+);
+
+// Add a file resource that reads the file contents
+server.resource(
+  "file",
+  new ResourceTemplate("file://{path}", { list: undefined }),
+  async (uri, { path }) => {
+    let text;
+    try {
+      text = await fs.readFile(path, "utf8");
+    } catch (err) {
+      text = `Error reading file: ${err.message}`;
+    }
+    return {
+      contents: [{
+        uri: uri.href,
+        text
+      }]
+    };
+  }
+);
+
+server.prompt(
+  "review-code",
+  { code: z.string() },
+  ({ code }) => ({
+    messages: [{
+      role: "user",
+      content: {
+        type: "text",
+        text: `Please review this code:\n\n${code}`
+      }
+    }]
+  })
+);
+
+// Start receiving messages on stdin and sending messages on stdout
+const transport = new StdioServerTransport();
+await server.connect(transport);
 ```
 
 في الكود السابق قمنا بـ:
 
-- استيراد الفئات اللازمة من MCP TypeScript SDK.
-- إنشاء وتكوين نسخة جديدة من خادم MCP.
-- تسجيل أداة مخصصة (`calculator`) مع دالة معالجة.
-- بدء الخادم للاستماع لطلبات MCP الواردة.
+- استيراد الفئات اللازمة من SDK الخاص بـ MCP بلغة TypeScript.
+- إنشاء وتكوين مثيل جديد لخادم MCP.
+- تسجيل أداة مخصصة (`calculator`) مع وظيفة معالجة.
+- بدء تشغيل الخادم للاستماع إلى طلبات MCP الواردة.
 
 ## الاختبار وتصحيح الأخطاء
 
-قبل أن تبدأ في اختبار خادم MCP الخاص بك، من المهم فهم الأدوات المتاحة وأفضل الممارسات لتصحيح الأخطاء. يضمن الاختبار الفعال أن يعمل الخادم كما هو متوقع ويساعدك على تحديد المشكلات وحلها بسرعة. يوضح القسم التالي الطرق الموصى بها للتحقق من تطبيق MCP الخاص بك.
+قبل البدء في اختبار خادم MCP الخاص بك، من المهم فهم الأدوات المتاحة وأفضل الممارسات لتصحيح الأخطاء. يضمن الاختبار الفعال أن يتصرف الخادم كما هو متوقع ويساعدك على تحديد المشكلات وحلها بسرعة. يوضح القسم التالي النهج الموصى بها للتحقق من تنفيذ MCP الخاص بك.
 
-يوفر MCP أدوات لمساعدتك في اختبار وتصحيح خوادمك:
+يوفر MCP أدوات لمساعدتك في اختبار وتصحيح أخطاء خوادمك:
 
-- **أداة Inspector**، هذه الواجهة الرسومية تتيح لك الاتصال بالخادم واختبار الأدوات، المطالبات، والموارد.
-- **curl**، يمكنك أيضًا الاتصال بالخادم باستخدام أداة سطر الأوامر مثل curl أو عملاء آخرين يمكنهم إنشاء وتنفيذ أوامر HTTP.
+- **أداة المفتش**، واجهة رسومية تسمح لك بالاتصال بالخادم واختبار الأدوات، المطالبات، والموارد.
+- **curl**، يمكنك أيضًا الاتصال بالخادم باستخدام أداة سطر الأوامر مثل curl أو عملاء آخرين يمكنهم إنشاء وتشغيل أوامر HTTP.
 
 ### استخدام MCP Inspector
 
-[مفتش MCP](https://github.com/modelcontextprotocol/inspector) هو أداة اختبار بصرية تساعدك على:
+[مفتش MCP](https://github.com/modelcontextprotocol/inspector) هو أداة اختبار مرئية تساعدك على:
 
 1. **اكتشاف قدرات الخادم**: الكشف التلقائي عن الموارد، الأدوات، والمطالبات المتاحة
-2. **اختبار تنفيذ الأدوات**: تجربة معلمات مختلفة ورؤية الردود في الوقت الحقيقي
-3. **عرض بيانات الخادم الوصفية**: فحص معلومات الخادم، المخططات، والتكوينات
+2. **اختبار تنفيذ الأدوات**: تجربة معلمات مختلفة ورؤية الردود في الوقت الفعلي
+3. **عرض بيانات الخادم الوصفية**: فحص معلومات الخادم، المخططات، والإعدادات
 
 ```bash
 # ex TypeScript, installing and running MCP Inspector
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-عند تشغيل الأوامر أعلاه، سيطلق MCP Inspector واجهة ويب محلية في متصفحك. يمكنك توقع رؤية لوحة تحكم تعرض خوادم MCP المسجلة، الأدوات، الموارد، والمطالبات المتاحة. تتيح الواجهة اختبار تنفيذ الأدوات بشكل تفاعلي، فحص بيانات الخادم الوصفية، وعرض الردود في الوقت الحقيقي، مما يسهل التحقق وتصحيح تطبيقات خادم MCP الخاصة بك.
+عند تشغيل الأوامر أعلاه، سيطلق مفتش MCP واجهة ويب محلية في متصفحك. يمكنك توقع رؤية لوحة عرض تعرض خوادم MCP المسجلة، الأدوات، الموارد، والمطالبات المتاحة. تتيح لك الواجهة اختبار تنفيذ الأدوات بشكل تفاعلي، فحص بيانات الخادم الوصفية، وعرض الردود في الوقت الفعلي، مما يسهل التحقق وتصحيح أخطاء تنفيذات خادم MCP الخاصة بك.
 
-إليك لقطة شاشة لما قد تبدو عليه:
+إليك لقطة شاشة لما يمكن أن يبدو عليه:
 
-![](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ar.png)
+![اتصال مفتش MCP بالخادم](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ar.png)
 
-## المشكلات الشائعة في الإعداد والحلول
+## مشكلات الإعداد الشائعة وحلولها
 
 | المشكلة | الحل المحتمل |
-|-------|-------------------|
-| رفض الاتصال | تحقق من تشغيل الخادم وصحة المنفذ |
-| أخطاء تنفيذ الأدوات | راجع التحقق من المعلمات والتعامل مع الأخطاء |
-| فشل المصادقة | تحقق من مفاتيح API والصلاحيات |
+|---------|--------------|
+| رفض الاتصال | تحقق مما إذا كان الخادم يعمل والمنفذ صحيح |
+| أخطاء تنفيذ الأدوات | راجع التحقق من صحة المعلمات ومعالجة الأخطاء |
+| فشل المصادقة | تحقق من صحة مفاتيح API والأذونات |
 | أخطاء التحقق من المخطط | تأكد من تطابق المعلمات مع المخطط المحدد |
-| عدم بدء الخادم | تحقق من تعارضات المنفذ أو الاعتمادات المفقودة |
-| أخطاء CORS | قم بتكوين رؤوس CORS المناسبة لطلبات المصادر المتعددة |
-| مشاكل المصادقة | تحقق من صلاحية الرموز والصلاحيات |
+| عدم بدء تشغيل الخادم | تحقق من تعارض المنافذ أو التبعيات المفقودة |
+| أخطاء CORS | قم بتكوين رؤوس CORS المناسبة لطلبات الأصل المتقاطع |
+| مشكلات المصادقة | تحقق من صلاحية الرموز والأذونات |
 
 ## التطوير المحلي
 
 للتطوير والاختبار المحلي، يمكنك تشغيل خوادم MCP مباشرة على جهازك:
 
-1. **ابدأ عملية الخادم**: شغّل تطبيق خادم MCP الخاص بك
-2. **تكوين الشبكة**: تأكد من أن الخادم متاح على المنفذ المتوقع
-3. **اتصال العملاء**: استخدم عناوين الاتصال المحلية مثل `http://localhost:3000`
+1. **بدء عملية الخادم**: قم بتشغيل تطبيق خادم MCP الخاص بك
+2. **تكوين الشبكات**: تأكد من أن الخادم يمكن الوصول إليه على المنفذ المتوقع
+3. **اتصال العملاء**: استخدم عناوين URL للاتصال المحلي مثل `http://localhost:3000`
 
 ```bash
 # Example: Running a TypeScript MCP server locally
@@ -143,48 +184,45 @@ npm run start
 # Server running at http://localhost:3000
 ```
 
-## بناء خادم MCP الأول الخاص بك
+## بناء أول خادم MCP الخاص بك
 
-لقد غطينا [المفاهيم الأساسية](/01-CoreConcepts/README.md) في درس سابق، والآن حان الوقت لتطبيق تلك المعرفة.
+لقد غطينا [المفاهيم الأساسية](/01-CoreConcepts/README.md) في درس سابق، والآن حان الوقت لتطبيق تلك المعرفة عمليًا.
 
-### ما الذي يمكن أن يفعله الخادم
+### ما يمكن أن يفعله الخادم
 
-قبل أن نبدأ بكتابة الكود، دعونا نذكر ما يمكن أن يفعله الخادم:
+قبل أن نبدأ في كتابة الكود، دعونا نذكر أنفسنا بما يمكن أن يفعله الخادم:
 
 يمكن لخادم MCP على سبيل المثال:
 
 - الوصول إلى الملفات وقواعد البيانات المحلية
-- الاتصال بواجهات برمجة التطبيقات البعيدة
-- إجراء الحسابات
-- التكامل مع أدوات وخدمات أخرى
+- الاتصال بـ APIs عن بعد
+- إجراء العمليات الحسابية
+- التكامل مع الأدوات والخدمات الأخرى
 - توفير واجهة مستخدم للتفاعل
 
-رائع، الآن بعد أن عرفنا ما يمكننا فعله، لنبدأ بالبرمجة.
+رائع، الآن بعد أن عرفنا ما يمكننا القيام به، دعونا نبدأ في كتابة الكود.
 
 ## تمرين: إنشاء خادم
 
 لإنشاء خادم، تحتاج إلى اتباع الخطوات التالية:
 
-- تثبيت MCP SDK.
+- تثبيت SDK الخاص بـ MCP.
 - إنشاء مشروع وإعداد هيكل المشروع.
 - كتابة كود الخادم.
 - اختبار الخادم.
 
-### -1- تثبيت SDK
+### -1- إنشاء المشروع
 
-يختلف هذا قليلاً حسب بيئة التشغيل التي تختارها، لذا اختر واحدة من بيئات التشغيل أدناه:
-
-> [!NOTE]
-> بالنسبة لـ Python، سنقوم أولاً بإنشاء هيكل المشروع ثم تثبيت التبعيات.
-
-### TypeScript
+#### TypeScript
 
 ```sh
-npm install @modelcontextprotocol/sdk zod
-npm install -D @types/node typescript
+# Create project directory and initialize npm project
+mkdir calculator-server
+cd calculator-server
+npm init -y
 ```
 
-### Python
+#### Python
 
 ```sh
 # Create project dir
@@ -194,16 +232,16 @@ cd calculator-server
 code .
 ```
 
-### .NET
+#### .NET
 
 ```sh
 dotnet new console -n McpCalculatorServer
 cd McpCalculatorServer
 ```
 
-### Java
+#### Java
 
-بالنسبة لـ Java، أنشئ مشروع Spring Boot:
+لـ Java، قم بإنشاء مشروع Spring Boot:
 
 ```bash
 curl https://start.spring.io/starter.zip \
@@ -217,7 +255,7 @@ curl https://start.spring.io/starter.zip \
   -o calculator-server.zip
 ```
 
-فك ضغط ملف zip:
+استخراج ملف zip:
 
 ```bash
 unzip calculator-server.zip -d calculator-server
@@ -326,18 +364,30 @@ rm -rf src/test/java
 </project>
 ```
 
-### -2- إنشاء المشروع
-
-الآن بعد أن ثبت SDK، دعنا ننشئ مشروعًا:
-
-### TypeScript
+#### Rust
 
 ```sh
-mkdir src
-npm install -y
+mkdir calculator-server
+cd calculator-server
+cargo init
 ```
 
-### Python
+### -2- إضافة التبعيات
+
+الآن بعد أن قمت بإنشاء مشروعك، دعنا نضيف التبعيات:
+
+#### TypeScript
+
+```sh
+# If not already installed, install TypeScript globally
+npm install typescript -g
+
+# Install the MCP SDK and Zod for schema validation
+npm install @modelcontextprotocol/sdk zod
+npm install -D @types/node typescript
+```
+
+#### Python
 
 ```sh
 # Create a virtual env and install dependencies
@@ -346,34 +396,53 @@ venv\Scripts\activate
 pip install "mcp[cli]"
 ```
 
-### Java
+#### Java
 
 ```bash
 cd calculator-server
 ./mvnw clean install -DskipTests
 ```
 
-### -3- إنشاء ملفات المشروع  
-### TypeScript
+#### Rust
 
-أنشئ ملف *package.json* بالمحتوى التالي:
+```sh
+cargo add rmcp --features server,transport-io
+cargo add serde
+cargo add tokio --features rt-multi-thread
+```
+
+### -3- إنشاء ملفات المشروع
+
+#### TypeScript
+
+افتح ملف *package.json* واستبدل المحتوى بما يلي لضمان إمكانية بناء وتشغيل الخادم:
 
 ```json
 {
-   "type": "module",
-   "bin": {
-     "weather": "./build/index.js"
-   },
-   "scripts": {
-     "build": "tsc && node build/index.js"
-   },
-   "files": [
-     "build"
-   ]
+  "name": "calculator-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "tsc && node ./build/index.js",
+    "build": "tsc && node ./build/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "A simple calculator server using Model Context Protocol",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.16.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.14",
+    "typescript": "^5.8.3"
+  }
 }
 ```
 
-أنشئ ملف *tsconfig.json* بالمحتوى التالي:
+قم بإنشاء ملف *tsconfig.json* بالمحتوى التالي:
 
 ```json
 {
@@ -393,32 +462,43 @@ cd calculator-server
 }
 ```
 
-### Python
+قم بإنشاء دليل لكود المصدر الخاص بك:
 
-أنشئ ملف *server.py*
+```sh
+mkdir src
+touch src/index.ts
+```
+
+#### Python
+
+قم بإنشاء ملف *server.py*
 
 ```sh
 touch server.py
 ```
 
-### .NET
+#### .NET
 
-ثبت حزم NuGet المطلوبة:
+قم بتثبيت حزم NuGet المطلوبة:
 
 ```sh
 dotnet add package ModelContextProtocol --prerelease
 dotnet add package Microsoft.Extensions.Hosting
 ```
 
-### Java
+#### Java
 
 بالنسبة لمشاريع Java Spring Boot، يتم إنشاء هيكل المشروع تلقائيًا.
 
+#### Rust
+
+بالنسبة لـ Rust، يتم إنشاء ملف *src/main.rs* افتراضيًا عند تشغيل `cargo init`. افتح الملف واحذف الكود الافتراضي.
+
 ### -4- كتابة كود الخادم
 
-### TypeScript
+#### TypeScript
 
-أنشئ ملف *index.ts* وأضف الكود التالي:
+قم بإنشاء ملف *index.ts* وأضف الكود التالي:
 
 ```typescript
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -427,14 +507,14 @@ import { z } from "zod";
  
 // Create an MCP server
 const server = new McpServer({
-  name: "Demo",
+  name: "Calculator MCP Server",
   version: "1.0.0"
 });
 ```
 
 الآن لديك خادم، لكنه لا يفعل الكثير، دعنا نصلح ذلك.
 
-### Python
+#### Python
 
 ```python
 # server.py
@@ -444,7 +524,7 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP("Demo")
 ```
 
-### .NET
+#### .NET
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -469,9 +549,9 @@ await builder.Build().RunAsync();
 // add features
 ```
 
-### Java
+#### Java
 
-بالنسبة لـ Java، أنشئ مكونات الخادم الأساسية. أولاً، عدل فئة التطبيق الرئيسية:
+بالنسبة لـ Java، قم بإنشاء مكونات الخادم الأساسية. أولاً، قم بتعديل فئة التطبيق الرئيسية:
 
 *src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*:
 
@@ -499,7 +579,7 @@ public class McpServerApplication {
 }
 ```
 
-أنشئ خدمة الآلة الحاسبة *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
+قم بإنشاء خدمة الحاسبة *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.service;
@@ -647,7 +727,7 @@ public class CalculatorService {
 
 **مكونات اختيارية لخدمة جاهزة للإنتاج:**
 
-أنشئ تكوين بدء التشغيل *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
+قم بإنشاء تكوين بدء التشغيل *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.config;
@@ -672,7 +752,7 @@ public class StartupConfig {
 }
 ```
 
-أنشئ وحدة تحكم الصحة *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
+قم بإنشاء وحدة تحكم الصحة *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.controller;
@@ -698,7 +778,7 @@ public class HealthController {
 }
 ```
 
-أنشئ معالج الاستثناءات *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
+قم بإنشاء معالج استثناءات *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.exception;
@@ -735,7 +815,7 @@ public class GlobalExceptionHandler {
 }
 ```
 
-أنشئ لافتة مخصصة *src/main/resources/banner.txt*:
+قم بإنشاء شعار مخصص *src/main/resources/banner.txt*:
 
 ```text
 _____      _            _       _             
@@ -749,16 +829,86 @@ Calculator MCP Server v1.0
 Spring Boot MCP Application
 ```
 
-</details>
+#### Rust
+
+أضف الكود التالي إلى أعلى ملف *src/main.rs*. هذا يستورد المكتبات والوحدات اللازمة لخادم MCP الخاص بك.
+
+```rust
+use rmcp::{
+    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    model::{ServerCapabilities, ServerInfo},
+    schemars, tool, tool_handler, tool_router,
+    transport::stdio,
+    ServerHandler, ServiceExt,
+};
+use std::error::Error;
+```
+
+سيكون خادم الحاسبة بسيطًا يمكنه جمع رقمين معًا. دعنا ننشئ هيكلًا لتمثيل طلب الحاسبة.
+
+```rust
+#[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
+pub struct CalculatorRequest {
+    pub a: f64,
+    pub b: f64,
+}
+```
+
+بعد ذلك، قم بإنشاء هيكل لتمثيل خادم الحاسبة. هذا الهيكل سيحتوي على أداة التوجيه، التي تُستخدم لتسجيل الأدوات.
+
+```rust
+#[derive(Debug, Clone)]
+pub struct Calculator {
+    tool_router: ToolRouter<Self>,
+}
+```
+
+الآن، يمكننا تنفيذ هيكل `Calculator` لإنشاء مثيل جديد للخادم وتنفيذ معالج الخادم لتوفير معلومات الخادم.
+
+```rust
+#[tool_router]
+impl Calculator {
+    pub fn new() -> Self {
+        Self {
+            tool_router: Self::tool_router(),
+        }
+    }
+}
+
+#[tool_handler]
+impl ServerHandler for Calculator {
+    fn get_info(&self) -> ServerInfo {
+        ServerInfo {
+            instructions: Some("A simple calculator tool".into()),
+            capabilities: ServerCapabilities::builder().enable_tools().build(),
+            ..Default::default()
+        }
+    }
+}
+```
+
+أخيرًا، نحتاج إلى تنفيذ الوظيفة الرئيسية لبدء تشغيل الخادم. هذه الوظيفة ستقوم بإنشاء مثيل لهيكل `Calculator` وتشغيله عبر الإدخال/الإخراج القياسي.
+
+```rust
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let service = Calculator::new().serve(stdio()).await?;
+    service.waiting().await?;
+    Ok(())
+}
+```
+
+الخادم الآن معد لتوفير معلومات أساسية عن نفسه. بعد ذلك، سنضيف أداة لإجراء الجمع.
 
 ### -5- إضافة أداة وموارد
 
 أضف أداة وموارد بإضافة الكود التالي:
 
-### TypeScript
+#### TypeScript
 
 ```typescript
-  server.tool("add",
+server.tool(
+  "add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
     content: [{ type: "text", text: String(a + b) }]
@@ -777,7 +927,7 @@ server.resource(
 );
 ```
 
-تأخذ أداتك المعاملات `a` و `b` وتنفذ دالة تنتج استجابة بالشكل:
+تأخذ أداتك معلمات `a` و`b` وتنفذ وظيفة تنتج استجابة بالشكل:
 
 ```typescript
 {
@@ -787,7 +937,7 @@ server.resource(
 }
 ```
 
-يتم الوصول إلى المورد الخاص بك من خلال السلسلة "greeting" ويأخذ معامل `name` وينتج استجابة مشابهة للأداة:
+يتم الوصول إلى المورد الخاص بك من خلال سلسلة "greeting" ويأخذ معلمة `name` وينتج استجابة مشابهة للأداة:
 
 ```typescript
 {
@@ -796,7 +946,7 @@ server.resource(
 }
 ```
 
-### Python
+#### Python
 
 ```python
 # Add an addition tool
@@ -815,10 +965,10 @@ def get_greeting(name: str) -> str:
 
 في الكود السابق قمنا بـ:
 
-- تعريف أداة `add` التي تأخذ المعاملات `a` و `p`، كلاهما أعداد صحيحة.
-- إنشاء مورد يسمى `greeting` يأخذ المعامل `name`.
+- تعريف أداة `add` التي تأخذ معلمات `a` و`p`، كلاهما أعداد صحيحة.
+- إنشاء مورد يسمى `greeting` يأخذ معلمة `name`.
 
-### .NET
+#### .NET
 
 أضف هذا إلى ملف Program.cs الخاص بك:
 
@@ -831,15 +981,29 @@ public static class CalculatorTool
 }
 ```
 
-### Java
+#### Java
 
 تم إنشاء الأدوات بالفعل في الخطوة السابقة.
 
+#### Rust
+
+أضف أداة جديدة داخل كتلة `impl Calculator`:
+
+```rust
+#[tool(description = "Adds a and b")]
+async fn add(
+    &self,
+    Parameters(CalculatorRequest { a, b }): Parameters<CalculatorRequest>,
+) -> String {
+    (a + b).to_string()
+}
+```
+
 ### -6- الكود النهائي
 
-دعنا نضيف الكود الأخير الذي نحتاجه ليتمكن الخادم من البدء:
+دعنا نضيف الكود الأخير الذي نحتاجه حتى يتمكن الخادم من البدء:
 
-### TypeScript
+#### TypeScript
 
 ```typescript
 // Start receiving messages on stdin and sending messages on stdout
@@ -857,12 +1021,13 @@ import { z } from "zod";
 
 // Create an MCP server
 const server = new McpServer({
-  name: "Demo",
+  name: "Calculator MCP Server",
   version: "1.0.0"
 });
 
 // Add an addition tool
-server.tool("add",
+server.tool(
+  "add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
     content: [{ type: "text", text: String(a + b) }]
@@ -883,10 +1048,10 @@ server.resource(
 
 // Start receiving messages on stdin and sending messages on stdout
 const transport = new StdioServerTransport();
-await server.connect(transport);
+server.connect(transport);
 ```
 
-### Python
+#### Python
 
 ```python
 # server.py
@@ -914,9 +1079,9 @@ if __name__ == "__main__":
     mcp.run()
 ```
 
-### .NET
+#### .NET
 
-أنشئ ملف Program.cs بالمحتوى التالي:
+قم بإنشاء ملف Program.cs بالمحتوى التالي:
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -946,7 +1111,7 @@ public static class CalculatorTool
 }
 ```
 
-### Java
+#### Java
 
 يجب أن تبدو فئة التطبيق الرئيسية الكاملة كما يلي:
 
@@ -975,95 +1140,164 @@ public class McpServerApplication {
 }
 ```
 
+#### Rust
+
+يجب أن يبدو الكود النهائي لخادم Rust كما يلي:
+
+```rust
+use rmcp::{
+    ServerHandler, ServiceExt,
+    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    model::{ServerCapabilities, ServerInfo},
+    schemars, tool, tool_handler, tool_router,
+    transport::stdio,
+};
+use std::error::Error;
+
+#[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
+pub struct CalculatorRequest {
+    pub a: f64,
+    pub b: f64,
+}
+
+#[derive(Debug, Clone)]
+pub struct Calculator {
+    tool_router: ToolRouter<Self>,
+}
+
+#[tool_router]
+impl Calculator {
+    pub fn new() -> Self {
+        Self {
+            tool_router: Self::tool_router(),
+        }
+    }
+    
+    #[tool(description = "Adds a and b")]
+    async fn add(
+        &self,
+        Parameters(CalculatorRequest { a, b }): Parameters<CalculatorRequest>,
+    ) -> String {
+        (a + b).to_string()
+    }
+}
+
+#[tool_handler]
+impl ServerHandler for Calculator {
+    fn get_info(&self) -> ServerInfo {
+        ServerInfo {
+            instructions: Some("A simple calculator tool".into()),
+            capabilities: ServerCapabilities::builder().enable_tools().build(),
+            ..Default::default()
+        }
+    }
+}
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let service = Calculator::new().serve(stdio()).await?;
+    service.waiting().await?;
+    Ok(())
+}
+```
+
 ### -7- اختبار الخادم
 
-ابدأ الخادم بالأمر التالي:
+ابدأ تشغيل الخادم باستخدام الأمر التالي:
 
-### TypeScript
+#### TypeScript
 
 ```sh
 npm run build
 ```
 
-### Python
+#### Python
 
 ```sh
 mcp run server.py
 ```
 
-> لاستخدام MCP Inspector، استخدم `mcp dev server.py` الذي يطلق Inspector تلقائيًا ويوفر رمز الجلسة المطلوبة. إذا استخدمت `mcp run server.py`، ستحتاج إلى بدء Inspector يدويًا وتكوين الاتصال.
+> لاستخدام MCP Inspector، استخدم `mcp dev server.py` الذي يطلق المفتش تلقائيًا ويوفر رمز جلسة الوكيل المطلوب. إذا كنت تستخدم `mcp run server.py`، ستحتاج إلى بدء المفتش يدويًا وتكوين الاتصال.
 
-### .NET
+#### .NET
 
-تأكد من أنك في دليل المشروع الخاص بك:
+تأكد من أنك في دليل مشروعك:
 
 ```sh
 cd McpCalculatorServer
 dotnet run
 ```
 
-### Java
+#### Java
 
 ```bash
 ./mvnw clean install -DskipTests
 java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 ```
 
-### -8- التشغيل باستخدام Inspector
+#### Rust
 
-الـ Inspector أداة رائعة يمكنها تشغيل خادمك وتتيح لك التفاعل معه لاختبار عمله. لنبدأ تشغيله:
+قم بتشغيل الأوامر التالية لتنسيق وتشغيل الخادم:
+
+```sh
+cargo fmt
+cargo run
+```
+
+### -8- التشغيل باستخدام المفتش
+
+المفتش هو أداة رائعة يمكنها تشغيل خادمك وتتيح لك التفاعل معه حتى تتمكن من اختبار أنه يعمل. دعنا نبدأ تشغيله:
 
 > [!NOTE]
-> قد يبدو مختلفًا في حقل "الأمر" لأنه يحتوي على الأمر لتشغيل الخادم باستخدام بيئة التشغيل الخاصة بك.
+> قد يبدو مختلفًا في حقل "الأمر" حيث يحتوي على الأمر لتشغيل خادم باستخدام وقت التشغيل الخاص بك.
 
-### TypeScript
+#### TypeScript
 
 ```sh
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-أو أضفه إلى *package.json* هكذا: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` ثم شغّل `npm run inspect`
+أو أضفه إلى ملف *package.json* الخاص بك مثل: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` ثم قم بتشغيل `npm run inspector`
 
-Python يستخدم أداة Node.js تسمى inspector. من الممكن استدعاء هذه الأداة هكذا:
+Python يلتف حول أداة Node.js تسمى المفتش. من الممكن استدعاء هذه الأداة كما يلي:
 
 ```sh
 mcp dev server.py
 ```
 
-لكنها لا تنفذ كل الطرق المتاحة في الأداة لذلك يُنصح بتشغيل أداة Node.js مباشرة كما يلي:
+ومع ذلك، لا تنفذ جميع الطرق المتاحة على الأداة لذا يُوصى بتشغيل أداة Node.js مباشرة كما يلي:
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-إذا كنت تستخدم أداة أو IDE يسمح لك بتكوين الأوامر والمعاملات لتشغيل السكريبتات،  
-تأكد من تعيين `python` في حقل `Command` و`server.py` كـ `Arguments`. هذا يضمن تشغيل السكريبت بشكل صحيح.
+إذا كنت تستخدم أداة أو IDE يسمح لك بتكوين الأوامر والمعلمات لتشغيل البرامج النصية، 
+تأكد من تعيين `python` في حقل `Command` و`server.py` كـ `Arguments`. هذا يضمن تشغيل البرنامج النصي بشكل صحيح.
 
-### .NET
+#### .NET
 
-تأكد من أنك في دليل المشروع الخاص بك:
+تأكد من أنك في دليل مشروعك:
 
 ```sh
 cd McpCalculatorServer
 npx @modelcontextprotocol/inspector dotnet run
 ```
 
-### Java
+#### Java
 
-تأكد من تشغيل خادم الآلة الحاسبة  
-ثم شغّل Inspector:
+تأكد من تشغيل خادم الحاسبة
+ثم قم بتشغيل المفتش:
 
 ```cmd
 npx @modelcontextprotocol/inspector
 ```
 
-في واجهة الويب الخاصة بـ Inspector:
+في واجهة الويب الخاصة بالمفتش:
 
 1. اختر "SSE" كنوع النقل
-2. اضبط العنوان إلى: `http://localhost:8080/sse`
-3. اضغط "Connect"
-
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.ar.png)
+2. قم بتعيين عنوان URL إلى: `http://localhost:8080/sse`
+3. انقر على "Connect"
+![اتصال](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.ar.png)
 
 **أنت الآن متصل بالخادم**  
 **تم الانتهاء من قسم اختبار خادم Java الآن**
@@ -1072,69 +1306,80 @@ npx @modelcontextprotocol/inspector
 
 يجب أن ترى واجهة المستخدم التالية:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ar.png)
+![اتصال](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ar.png)
 
-1. اتصل بالخادم عن طريق اختيار زر Connect  
-   بمجرد الاتصال بالخادم، يجب أن ترى التالي:
+1. قم بالاتصال بالخادم عن طريق اختيار زر "اتصال".  
+   بمجرد الاتصال بالخادم، يجب أن ترى الآن ما يلي:
 
-   ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ar.png)
+   ![متصل](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ar.png)
 
-2. اختر "Tools" ثم "listTools"، يجب أن ترى "Add" تظهر، اختر "Add" واملأ قيم المعاملات.
+1. اختر "الأدوات" و"listTools"، يجب أن ترى "إضافة" تظهر، اختر "إضافة" واملأ قيم المعلمات.
 
-   سترى الاستجابة التالية، أي نتيجة من أداة "add":
+   يجب أن ترى الاستجابة التالية، أي نتيجة أداة "إضافة":
 
-   ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.ar.png)
+   ![نتيجة تشغيل الإضافة](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.ar.png)
 
-تهانينا، لقد تمكنت من إنشاء وتشغيل خادمك الأول!
+تهانينا، لقد تمكنت من إنشاء وتشغيل أول خادم لك!
+
+#### Rust
+
+لتشغيل خادم Rust باستخدام MCP Inspector CLI، استخدم الأمر التالي:
+
+```sh
+npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-name add --tool-arg a=1 b=2
+```
 
 ### SDKs الرسمية
 
-يوفر MCP SDKs رسمية لعدة لغات:
+توفر MCP SDKs رسمية للغات متعددة:
 
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - تتم صيانته بالتعاون مع Microsoft  
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - تتم صيانته بالتعاون مع Spring AI  
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - يتم صيانته بالتعاون مع Microsoft  
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - يتم صيانته بالتعاون مع Spring AI  
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - التنفيذ الرسمي لـ TypeScript  
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - التنفيذ الرسمي لـ Python
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - التنفيذ الرسمي لـ Python  
 - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - التنفيذ الرسمي لـ Kotlin  
 - [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - يتم صيانته بالتعاون مع Loopwork AI  
 - [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - التنفيذ الرسمي لـ Rust  
 
 ## النقاط الرئيسية
 
-- إعداد بيئة تطوير MCP سهل باستخدام SDKs الخاصة بكل لغة  
+- إعداد بيئة تطوير MCP سهل باستخدام SDKs الخاصة باللغات  
 - بناء خوادم MCP يتطلب إنشاء وتسجيل أدوات مع مخططات واضحة  
-- الاختبار وتصحيح الأخطاء ضروريان لضمان تنفيذ MCP بشكل موثوق  
+- الاختبار وتصحيح الأخطاء ضروريان لتنفيذ MCP موثوق  
 
-## عينات
+## أمثلة
 
 - [Java Calculator](../samples/java/calculator/README.md)  
 - [.Net Calculator](../../../../03-GettingStarted/samples/csharp)  
 - [JavaScript Calculator](../samples/javascript/README.md)  
 - [TypeScript Calculator](../samples/typescript/README.md)  
 - [Python Calculator](../../../../03-GettingStarted/samples/python)  
+- [Rust Calculator](../../../../03-GettingStarted/samples/rust)  
 
 ## المهمة
 
-أنشئ خادم MCP بسيط مع أداة من اختيارك:
+قم بإنشاء خادم MCP بسيط باستخدام أداة من اختيارك:
 
-1. نفذ الأداة باللغة التي تفضلها (.NET، Java، Python، أو JavaScript).  
-2. عرّف معلمات الإدخال وقيم الإرجاع.  
-3. شغّل أداة الفاحص للتأكد من أن الخادم يعمل كما هو متوقع.  
-4. اختبر التنفيذ مع مدخلات مختلفة.  
+1. قم بتنفيذ الأداة باللغة التي تفضلها (.NET، Java، Python، TypeScript، أو Rust).  
+2. قم بتحديد معلمات الإدخال وقيم الإرجاع.  
+3. قم بتشغيل أداة الفحص للتأكد من أن الخادم يعمل كما هو متوقع.  
+4. اختبر التنفيذ باستخدام مدخلات متنوعة.  
 
 ## الحل
 
-[Solution](./solution/README.md)  
+[الحل](./solution/README.md)
 
 ## موارد إضافية
 
-- [Build Agents using Model Context Protocol on Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
-- [Remote MCP with Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)  
+- [بناء وكلاء باستخدام Model Context Protocol على Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
+- [MCP عن بُعد باستخدام Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)  
 - [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)  
 
 ## ما التالي
 
-التالي: [Getting Started with MCP Clients](../02-client/README.md)
+التالي: [البدء مع عملاء MCP](../02-client/README.md)  
+
+---
 
 **إخلاء المسؤولية**:  
-تمت ترجمة هذا المستند باستخدام خدمة الترجمة الآلية [Co-op Translator](https://github.com/Azure/co-op-translator). بينما نسعى لتحقيق الدقة، يرجى العلم أن الترجمات الآلية قد تحتوي على أخطاء أو عدم دقة. يجب اعتبار المستند الأصلي بلغته الأصلية المصدر الموثوق به. للمعلومات الهامة، يُنصح بالاعتماد على الترجمة البشرية المهنية. نحن غير مسؤولين عن أي سوء فهم أو تفسير ناتج عن استخدام هذه الترجمة.
+تم ترجمة هذا المستند باستخدام خدمة الترجمة بالذكاء الاصطناعي [Co-op Translator](https://github.com/Azure/co-op-translator). بينما نسعى لتحقيق الدقة، يرجى العلم أن الترجمات الآلية قد تحتوي على أخطاء أو معلومات غير دقيقة. يجب اعتبار المستند الأصلي بلغته الأصلية المصدر الرسمي. للحصول على معلومات حاسمة، يُوصى بالاستعانة بترجمة بشرية احترافية. نحن غير مسؤولين عن أي سوء فهم أو تفسيرات خاطئة تنشأ عن استخدام هذه الترجمة.

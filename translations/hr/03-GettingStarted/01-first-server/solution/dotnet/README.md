@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "07863f50601f395c3bdfce30f555f11a",
-  "translation_date": "2025-07-13T17:51:01+00:00",
+  "original_hash": "92af35e8c34923031f3d228dffad9ebb",
+  "translation_date": "2025-09-03T16:19:31+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
   "language_code": "hr"
 }
@@ -17,14 +17,13 @@ dotnet restore
 
 ## -3- Pokrenite primjer
 
-
 ```bash
 dotnet run
 ```
 
 ## -4- Testirajte primjer
 
-Dok je server pokrenut u jednom terminalu, otvorite drugi terminal i pokrenite sljedeću naredbu:
+Dok server radi u jednom terminalu, otvorite drugi terminal i pokrenite sljedeću naredbu:
 
 ```bash
 npx @modelcontextprotocol/inspector dotnet run
@@ -34,8 +33,8 @@ Ovo bi trebalo pokrenuti web server s vizualnim sučeljem koje vam omogućuje te
 
 Kada se server poveže:
 
-- pokušajte popisati alate i pokrenuti `add` s argumentima 2 i 4, trebali biste vidjeti rezultat 6.
-- idite na resources i resource template te pozovite "greeting", unesite ime i trebali biste vidjeti pozdrav s imenom koje ste unijeli.
+- pokušajte popisati alate i pokrenuti `add` s argumentima 2 i 4, trebali biste vidjeti 6 kao rezultat.
+- idite na resurse i predložak resursa te pozovite "greeting", unesite ime i trebali biste vidjeti pozdrav s imenom koje ste unijeli.
 
 ### Testiranje u CLI načinu
 
@@ -45,7 +44,7 @@ Možete ga pokrenuti izravno u CLI načinu pokretanjem sljedeće naredbe:
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/list
 ```
 
-Ovo će prikazati sve alate dostupne na serveru. Trebali biste vidjeti sljedeći ispis:
+Ovo će prikazati popis svih alata dostupnih na serveru. Trebali biste vidjeti sljedeći izlaz:
 
 ```text
 {
@@ -75,13 +74,13 @@ Ovo će prikazati sve alate dostupne na serveru. Trebali biste vidjeti sljedeći
 }
 ```
 
-Za pozivanje alata upišite:
+Za pozivanje alata unesite:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/call --tool-name Add --tool-arg a=1 --tool-arg b=2
 ```
 
-Trebali biste vidjeti sljedeći ispis:
+Trebali biste vidjeti sljedeći izlaz:
 
 ```text
 {
@@ -95,9 +94,11 @@ Trebali biste vidjeti sljedeći ispis:
 }
 ```
 
-> ![!TIP]
+> [!TIP]
 > Obično je puno brže pokrenuti inspektor u CLI načinu nego u pregledniku.
-> Više o inspektoru pročitajte [ovdje](https://github.com/modelcontextprotocol/inspector).
+> Pročitajte više o inspektoru [ovdje](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Odricanje od odgovornosti**:  
-Ovaj dokument je preveden korištenjem AI usluge za prevođenje [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati službenim i autoritativnim izvorom. Za kritične informacije preporučuje se profesionalni ljudski prijevod. Ne snosimo odgovornost za bilo kakva nesporazuma ili pogrešna tumačenja koja proizlaze iz korištenja ovog prijevoda.
+Ovaj dokument je preveden pomoću AI usluge za prevođenje [Co-op Translator](https://github.com/Azure/co-op-translator). Iako nastojimo osigurati točnost, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za ključne informacije preporučuje se profesionalni prijevod od strane ljudskog prevoditelja. Ne preuzimamo odgovornost za bilo kakva nesporazuma ili pogrešna tumačenja koja proizlaze iz korištenja ovog prijevoda.

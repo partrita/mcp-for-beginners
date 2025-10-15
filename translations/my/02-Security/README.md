@@ -1,170 +1,286 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "382fddb4ee4d9c1bdc806e2ee99b70c8",
-  "translation_date": "2025-07-17T12:50:44+00:00",
+  "original_hash": "1c767a35642f753127dc08545c25a290",
+  "translation_date": "2025-08-19T18:44:48+00:00",
   "source_file": "02-Security/README.md",
   "language_code": "my"
 }
 -->
-# လုံခြုံရေးအကောင်းဆုံးလေ့လာမှုများ
+# MCP လုံခြုံရေး: AI စနစ်များအတွက် အပြည့်အစုံကာကွယ်မှု
 
-Model Context Protocol (MCP) ကို အသုံးပြုခြင်းဖြင့် AI အခြေပြု အက်ပလီကေးရှင်းများတွင် အင်အားကြီးသော စွမ်းဆောင်ရည်အသစ်များရရှိနိုင်သော်လည်း၊ ရိုးရာဆော့ဖ်ဝဲလ်အန္တရာယ်များထက် ပိုမိုထူးခြားသော လုံခြုံရေး စိန်ခေါ်မှုများကိုလည်း ဖြစ်ပေါ်စေပါသည်။ လုံခြုံရေးကုဒ်ရေးခြင်း၊ အနည်းဆုံးခွင့်ပြုချက်၊ နှင့် ပစ္စည်းလမ်းကြောင်းလုံခြုံရေးကဲ့သို့ ရှိပြီးသား စိုးရိမ်ချက်များအပြင် MCP နှင့် AI အလုပ်များတွင် prompt injection, tool poisoning, dynamic tool modification, session hijacking, confused deputy attacks, နှင့် token passthrough အန္တရာယ်များကဲ့သို့သော အသစ်သော အန္တရာယ်များလည်း ရှိပါသည်။ ဤအန္တရာယ်များကို မှန်ကန်စွာ စီမံမထားပါက ဒေတာထွက်ပေါက်ခြင်း၊ ကိုယ်ရေးကိုယ်တာ လုံခြုံမှုချိုးဖောက်ခြင်း၊ နှင့် မရည်ရွယ်ထားသော စနစ်အပြုအမူများ ဖြစ်ပေါ်နိုင်ပါသည်။
+[![MCP လုံခြုံရေးအကောင်းဆုံးအကြံပေးချက်များ](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.my.png)](https://youtu.be/88No8pw706o)
 
-ဤသင်ခန်းစာတွင် MCP နှင့်ဆက်စပ်သော အရေးကြီးဆုံး လုံခြုံရေးအန္တရာယ်များကို (authentication, authorization, အလွန်အကျွံခွင့်ပြုချက်များ, အတိုက်ရိုက်မဟုတ်သော prompt injection, session လုံခြုံရေး, confused deputy ပြဿနာများ, token passthrough အန္တရာယ်များ, နှင့် ပစ္စည်းလမ်းကြောင်း အန္တရာယ်များ) လေ့လာပြီး၊ ထိုအန္တရာယ်များကို လျော့နည်းစေရန် လုပ်ဆောင်နိုင်သော ထိန်းချုပ်မှုများနှင့် အကောင်းဆုံးလေ့လာမှုများကို ပေးပါသည်။ Microsoft ၏ Prompt Shields, Azure Content Safety, နှင့် GitHub Advanced Security ကဲ့သို့သော ဖြေရှင်းနည်းများကို အသုံးပြု၍ MCP ကို ပိုမိုခိုင်မာစေရန်လည်း သင်ယူနိုင်ပါသည်။ ဤထိန်းချုပ်မှုများကို နားလည်ပြီး အသုံးချခြင်းဖြင့် လုံခြုံရေးချိုးဖောက်မှု ဖြစ်ပေါ်နိုင်မှုကို အလွန်လျော့နည်းစေပြီး သင့် AI စနစ်များကို ခိုင်မာယုံကြည်စိတ်ချရစေပါသည်။
+_(ဤသင်ခန်းစာ၏ ဗီဒီယိုကို ကြည့်ရန် အထက်ပါပုံကို နှိပ်ပါ)_
 
-# သင်ယူရမည့် ရည်မှန်းချက်များ
+AI စနစ်ဒီဇိုင်းတွင် လုံခြုံရေးသည် အခြေခံအရေးပါမှုဖြစ်ပြီး၊ ထို့ကြောင့် Microsoft ၏ [Secure Future Initiative](https://www.microsoft.com/security/blog/2025/04/17/microsofts-secure-by-design-journey-one-year-of-success/) မှ **Secure by Design** အခြေခံသဘောတရားနှင့် ကိုက်ညီသောအနေဖြင့် ဒုတိယပိုင်းအဖြစ် ဦးစားပေးထားပါသည်။
 
-ဤသင်ခန်းစာအဆုံးတွင် သင်သည် -
+Model Context Protocol (MCP) သည် AI အခြေခံထားသော အက်ပ်လီကေးရှင်းများအတွက် အင်အားကြီးသော စွမ်းရည်အသစ်များကို ယူဆောင်လာသော်လည်း၊ ရိုးရာဆော့ဖ်ဝဲလုံခြုံရေးအန္တရာယ်များထက် ကျော်လွန်သော ထူးခြားသော လုံခြုံရေးစိန်ခေါ်မှုများကိုလည်း ဖန်တီးပေးပါသည်။ MCP စနစ်များသည် ရိုးရာလုံခြုံရေးစိုးရိမ်မှုများ (လုံခြုံသောကုဒ်ရေးသားခြင်း၊ အနည်းဆုံးအခွင့်အာဏာ၊ ပေးသွင်းမှုကွင်းဆက်လုံခြုံရေး) နှင့် AI အထူးပြု အန္တရာယ်များ (prompt injection, tool poisoning, session hijacking, confused deputy attacks, token passthrough vulnerabilities, dynamic capability modification) တို့ကို ရင်ဆိုင်ရပါသည်။
 
-- Model Context Protocol (MCP) မှ ဖြစ်ပေါ်လာသော ထူးခြားသော လုံခြုံရေးအန္တရာယ်များကို ရှာဖွေရှင်းလင်းနိုင်မည်၊ ၎င်းတွင် prompt injection, tool poisoning, အလွန်အကျွံခွင့်ပြုချက်များ, session hijacking, confused deputy ပြဿနာများ, token passthrough အန္တရာယ်များ, နှင့် ပစ္စည်းလမ်းကြောင်း အန္တရာယ်များ ပါဝင်သည်။
-- MCP လုံခြုံရေးအန္တရာယ်များအတွက် ထိရောက်သော ထိန်းချုပ်မှုများကို ဖော်ပြနိုင်ပြီး အသုံးချနိုင်မည်၊ ဥပမာအားဖြင့် ခိုင်မာသော authentication, အနည်းဆုံးခွင့်ပြုချက်, လုံခြုံသော token စီမံခန့်ခွဲမှု, session လုံခြုံရေး ထိန်းချုပ်မှုများ, နှင့် ပစ္စည်းလမ်းကြောင်း စစ်ဆေးမှုများ။
-- Microsoft ၏ Prompt Shields, Azure Content Safety, နှင့် GitHub Advanced Security ကဲ့သို့သော ဖြေရှင်းနည်းများကို နားလည်ပြီး MCP နှင့် AI အလုပ်များကို ကာကွယ်နိုင်မည်။
-- Tool metadata ကို စစ်ဆေးခြင်း၊ dynamic ပြောင်းလဲမှုများကို စောင့်ကြည့်ခြင်း၊ အတိုက်ရိုက်မဟုတ်သော prompt injection တိုက်ခိုက်မှုများကို ကာကွယ်ခြင်း၊ နှင့် session hijacking ကို တားဆီးခြင်း၏ အရေးပါမှုကို သိရှိနိုင်မည်။
-- လုံခြုံရေးအကောင်းဆုံးလေ့လာမှုများဖြစ်သော secure coding, server hardening, နှင့် zero trust architecture များကို MCP အကောင်အထည်ဖော်မှုတွင် ပေါင်းစပ်အသုံးပြု၍ လုံခြုံရေးချိုးဖောက်မှု ဖြစ်ပေါ်နိုင်မှုနှင့် ထိခိုက်မှုကို လျော့နည်းစေနိုင်မည်။
+ဤသင်ခန်းစာတွင် MCP အကောင်အထည်ဖော်မှုများတွင် အရေးကြီးဆုံး လုံခြုံရေးအန္တရာယ်များကို လေ့လာမည်ဖြစ်ပြီး၊ authentication, authorization, excessive permissions, indirect prompt injection, session security, confused deputy problems, token management, supply chain vulnerabilities တို့ကို အကျယ်တဝင့်ဖော်ပြထားပါသည်။ Microsoft ၏ Prompt Shields, Azure Content Safety, GitHub Advanced Security တို့ကဲ့သို့သော ဖြေရှင်းချက်များကို အသုံးပြု၍ MCP ကို ပိုမိုခိုင်မာစေရန် အကောင်းဆုံးအကြံပေးချက်များနှင့် ထိရောက်သော ထိန်းချုပ်မှုများကို သင်လေ့လာနိုင်ပါမည်။
 
-# MCP လုံခြုံရေး ထိန်းချုပ်မှုများ
+## သင်ယူရမည့်ရည်ရွယ်ချက်များ
 
-အရေးကြီးသော အရင်းအမြစ်များကို ဝင်ရောက်အသုံးပြုနိုင်သော စနစ်တိုင်းတွင် လုံခြုံရေး စိန်ခေါ်မှုများ ရှိသည်။ လုံခြုံရေး စိန်ခေါ်မှုများကို အခြေခံ လုံခြုံရေး ထိန်းချုပ်မှုများနှင့် အယူအဆများကို မှန်ကန်စွာ အသုံးချခြင်းဖြင့် ဖြေရှင်းနိုင်သည်။ MCP သည် အသစ်တင်သတ်မှတ်ထားသည့် ပရိုတိုကောဖြစ်သောကြောင့် သတ်မှတ်ချက်များသည် အလွန်လျင်မြန်စွာ ပြောင်းလဲနေပြီး ပရိုတိုကောတိုးတက်မှုနှင့်အမျှ လုံခြုံရေး ထိန်းချုပ်မှုများလည်း တိုးတက်လာမည်ဖြစ်သည်။ နောက်ဆုံးတွင် ၎င်းတို့သည် စီးပွားရေးအဖွဲ့အစည်းများနှင့် ရှိပြီးသား လုံခြုံရေး ဖွဲ့စည်းပုံများနှင့် အကောင်းဆုံးလေ့လာမှုများနှင့် ပိုမိုကောင်းမွန်စွာ ပေါင်းစည်းနိုင်မည်ဖြစ်သည်။
+ဤသင်ခန်းစာအဆုံးတွင် သင်သည် အောက်ပါများကို လုပ်ဆောင်နိုင်မည်ဖြစ်သည်-
 
-[Microsoft Digital Defense Report](https://aka.ms/mddr) တွင် ထုတ်ပြန်ထားသည့် သုတေသနအရ ၉၈% အထိ လုံခြုံရေးချိုးဖောက်မှုများကို ခိုင်မာသော လုံခြုံရေးစနစ်နှင့် ကာကွယ်နိုင်ပြီး၊ လုံခြုံရေးချိုးဖောက်မှု မည်သည့်အမျိုးအစားမဆို ကာကွယ်ရန် အကောင်းဆုံးနည်းလမ်းမှာ မူလ လုံခြုံရေးစနစ်၊ secure coding အကောင်းဆုံးလေ့လာမှုများနှင့် ပစ္စည်းလမ်းကြောင်း လုံခြုံရေးကို မှန်ကန်စွာ လုပ်ဆောင်ခြင်းဖြစ်သည်။ ယင်းနည်းလမ်းများသည် လုံခြုံရေးအန္တရာယ် လျော့နည်းစေရန် အကျိုးသက်ရောက်မှု အများဆုံးဖြစ်သည်။
+- **MCP အထူးပြု အန္တရာယ်များကို ဖော်ထုတ်ခြင်း**: MCP စနစ်များတွင် prompt injection, tool poisoning, excessive permissions, session hijacking, confused deputy problems, token passthrough vulnerabilities, supply chain risks တို့ကဲ့သို့သော ထူးခြားသော လုံခြုံရေးအန္တရာယ်များကို သိရှိနိုင်ခြင်း
+- **လုံခြုံရေးထိန်းချုပ်မှုများကို အသုံးချခြင်း**: authentication ခိုင်မာမှု၊ အနည်းဆုံးအခွင့်အာဏာဝင်ခွင့်၊ token management လုံခြုံရေး၊ session security ထိန်းချုပ်မှုများ၊ supply chain verification တို့ကဲ့သို့သော ထိရောက်သော ကာကွယ်မှုများကို အကောင်အထည်ဖော်နိုင်ခြင်း
+- **Microsoft လုံခြုံရေးဖြေရှင်းချက်များကို အသုံးပြုခြင်း**: MCP workload ကို ကာကွယ်ရန် Microsoft Prompt Shields, Azure Content Safety, GitHub Advanced Security တို့ကို နားလည်ပြီး အသုံးချနိုင်ခြင်း
+- **Tool လုံခြုံရေးကို အတည်ပြုခြင်း**: tool metadata ကို အတည်ပြုခြင်း၊ dynamic changes များကို စောင့်ကြည့်ခြင်း၊ indirect prompt injection အန္တရာယ်များကို ကာကွယ်ခြင်း၏ အရေးပါမှုကို သိရှိနိုင်ခြင်း
+- **အကောင်းဆုံးအကြံပေးချက်များကို ပေါင်းစည်းခြင်း**: secure coding, server hardening, zero trust ကဲ့သို့သော ရိုးရာလုံခြုံရေးအခြေခံများနှင့် MCP အထူးပြု ထိန်းချုပ်မှုများကို ပေါင်းစည်း၍ အပြည့်အစုံကာကွယ်မှုရရှိစေရန်
 
-MCP ကို အသုံးပြုစဉ် လုံခြုံရေးအန္တရာယ်များကို မည်သို့ စတင်ဖြေရှင်းနိုင်မည်ကို ကြည့်ကြရအောင်။
+# MCP လုံခြုံရေးဖွဲ့စည်းပုံနှင့် ထိန်းချုပ်မှုများ
 
-> **Note:** အောက်ပါ အချက်အလက်များသည် **၂၀၂၅ ခုနှစ် မေ ၂၉ ရက်** အခြေအနေအရ မှန်ကန်ပါသည်။ MCP ပရိုတိုကောသည် ဆက်လက်တိုးတက်နေပြီး နောင်လာမည့် အကောင်အထည်ဖော်မှုများတွင် အသစ်သော authentication ပုံစံများနှင့် ထိန်းချုပ်မှုများ ပါဝင်နိုင်ပါသည်။ နောက်ဆုံးရ အချက်အလက်များနှင့် လမ်းညွှန်ချက်များအတွက် [MCP Specification](https://spec.modelcontextprotocol.io/) နှင့် တရားဝင် [MCP GitHub repository](https://github.com/modelcontextprotocol) နှင့် [security best practice page](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices) ကို အမြဲတမ်း ရှာဖွေကြည့်ပါ။
+ခေတ်မီ MCP အကောင်အထည်ဖော်မှုများသည် ရိုးရာဆော့ဖ်ဝဲလုံခြုံရေးနှင့် AI အထူးပြု အန္တရာယ်များကို ရင်ဆိုင်နိုင်ရန် အလွှာလိုက် လုံခြုံရေးနည်းလမ်းများကို လိုအပ်ပါသည်။ MCP specification သည် လုံခြုံရေးထိန်းချုပ်မှုများကို ဆက်လက်တိုးတက်စေပြီး၊ စီးပွားရေးလုပ်ငန်းလုံခြုံရေးဖွဲ့စည်းပုံများနှင့် ရိုးရာအကောင်းဆုံးအကြံပေးချက်များနှင့် ပိုမိုကောင်းမွန်စွာ ပေါင်းစည်းနိုင်စေပါသည်။
 
-### ပြဿနာဖော်ပြချက်  
-မူလ MCP သတ်မှတ်ချက်တွင် ဖန်တီးသူများသည် ကိုယ်ပိုင် authentication server ကိုရေးသားမည်ဟု သတ်မှတ်ထားသည်။ ၎င်းသည် OAuth နှင့် ဆက်စပ်သော လုံခြုံရေး ကန့်သတ်ချက်များကို သိရှိထားရန် လိုအပ်သည်။ MCP server များသည် OAuth 2.0 Authorization Server အဖြစ် လုပ်ဆောင်ကာ အသုံးပြုသူ authentication ကို တိုက်ရိုက် စီမံခန့်ခွဲသည်၊ Microsoft Entra ID ကဲ့သို့သော ပြင်ပဝန်ဆောင်မှုသို့ မပေးအပ်ပါ။ **၂၀၂၅ ခုနှစ် ဧပြီ ၂၆ ရက်** တွင် MCP သတ်မှတ်ချက်ကို အပ်ဒိတ်ပြုလုပ်ပြီး MCP server များသည် အသုံးပြုသူ authentication ကို ပြင်ပဝန်ဆောင်မှုသို့ ပေးအပ်နိုင်ရန် ခွင့်ပြုထားသည်။
+[Microsoft Digital Defense Report](https://aka.ms/mddr) မှ သုတေသနအရ **reported breaches ၏ ၉၈% ကို ခိုင်မာသော လုံခြုံရေးအခြေခံအချက်များဖြင့် ကာကွယ်နိုင်မည်** ဖြစ်သည်။ အကျိုးရှိဆုံး ကာကွယ်မှုမဟာဗျူဟာသည် အခြေခံလုံခြုံရေးအခြေခံများနှင့် MCP အထူးပြု ထိန်းချုပ်မှုများကို ပေါင်းစည်းထားခြင်းဖြစ်ပြီး၊ အခြေခံလုံခြုံရေးအတိုင်းအတာများသည် စုစုပေါင်းလုံခြုံရေးအန္တရာယ်ကို လျှော့ချရန် အကျိုးရှိဆုံးဖြစ်သည်။
 
-### အန္တရာယ်များ
-- MCP server တွင် authorization logic မမှန်ကန်စွာ ဖွဲ့စည်းထားခြင်းကြောင့် အချက်အလက်များ ထွက်ပေါက်ခြင်းနှင့် မမှန်ကန်သော access control များ ဖြစ်ပေါ်နိုင်သည်။
-- OAuth token ကို MCP server တွင် ခိုးယူခြင်း။ ခိုးယူထားသော token ဖြင့် MCP server ကို မူရင်း server အဖြစ် လိမ်လည်အသုံးပြု၍ ဝန်ဆောင်မှုနှင့် ဒေတာများကို ဝင်ရောက်နိုင်သည်။
+## လက်ရှိ လုံခြုံရေးအခြေအနေ
 
-#### Token Passthrough  
-Authorization သတ်မှတ်ချက်တွင် token passthrough ကို တိတိကျကျ တားမြစ်ထားပြီး အောက်ပါ လုံခြုံရေးအန္တရာယ်များ ဖြစ်ပေါ်စေပါသည်။
+> **Note:** ဤအချက်အလက်များသည် **၂၀၂၅ ခုနှစ်၊ သြဂုတ်လ ၁၈ ရက်** အထိ MCP လုံခြုံရေးစံနှုန်းများကို အခြေခံထားသည်။ MCP protocol သည် အလွန်လျင်မြန်စွာ တိုးတက်နေပြီး၊ အနာဂတ်အကောင်အထည်ဖော်မှုများတွင် authentication ပုံစံအသစ်များနှင့် ထိန်းချုပ်မှုများကို တိုးတက်စေမည်ဖြစ်သည်။ လက်ရှိ [MCP Specification](https://spec.modelcontextprotocol.io/), [MCP GitHub repository](https://github.com/modelcontextprotocol), [security best practices documentation](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) တို့ကို အမြဲလေ့လာပါ။
 
-#### လုံခြုံရေး ထိန်းချုပ်မှုများကို လွှဲချော်ခြင်း  
-MCP Server သို့မဟုတ် downstream API များသည် token audience သို့မဟုတ် အခြား credential ကန့်သတ်ချက်များပေါ် မူတည်၍ rate limiting, request validation, traffic monitoring ကဲ့သို့သော လုံခြုံရေး ထိန်းချုပ်မှုများကို အရေးကြီးစွာ အကောင်အထည်ဖော်နိုင်သည်။ Clients များသည် MCP server မှ token မမှန်ကန်စွာ စစ်ဆေးခြင်းမရှိဘဲ တိုက်ရိုက် downstream API များနှင့် token များကို အသုံးပြုနိုင်ပါက ထိုထိန်းချုပ်မှုများကို လွှဲချော်နိုင်သည်။
+### MCP Authentication ၏ တိုးတက်မှု
 
-#### တာဝန်ယူမှုနှင့် စစ်ဆေးမှု ပြဿနာများ  
-MCP Server သည် upstream မှ ထုတ်ပေးသော access token ဖြင့် ခေါ်ဆိုသော MCP Clients များကို ခွဲခြားနိုင်ခြင်း မရှိပါ။  
-Downstream Resource Server ၏ မှတ်တမ်းများတွင် token များကို ပေးပို့နေသော MCP server မဟုတ်သော အခြား အရင်းအမြစ်မှ တောင်းဆိုမှုများအဖြစ် ပြသနိုင်သည်။  
-ဤအချက်များကြောင့် ဖြစ်ရပ်စစ်ဆေးခြင်း၊ ထိန်းချုပ်မှုများနှင့် စစ်ဆေးမှုများ ခက်ခဲစေပါသည်။  
-MCP Server သည် token များ၏ အခွင့်အရေးများ (ဥပမာ roles, privileges, audience) သို့မဟုတ် အခြား metadata များကို စစ်ဆေးခြင်းမပြုဘဲ token များကို ပေးပို့ပါက ခိုးယူထားသော token ကိုင်ဆောင်ထားသူ မကောင်းဆိုးရွားသူသည် MCP Server ကို ဒေတာထွက်ပေါက်အတွက် proxy အဖြစ် အသုံးပြုနိုင်သည်။
+MCP specification သည် authentication နှင့် authorization ကို အလွန်တိုးတက်စွာ ပြောင်းလဲလာသည်-
 
-#### ယုံကြည်မှုနယ်နိမိတ် ပြဿနာများ  
-Downstream Resource Server သည် အထူးသီးသန့် အဖွဲ့အစည်းများအား ယုံကြည်မှု ပေးသည်။ ယုံကြည်မှုတွင် မူလအရင်းအမြစ် သို့မဟုတ် client အပြုအမူ ပုံစံများအပေါ် အခြေခံထားသည်။ ယုံကြည်မှုနယ်နိမိတ်ကို ချိုးဖောက်ခြင်းသည် မမျှော်လင့်ထားသော ပြဿနာများ ဖြစ်ပေါ်စေနိုင်သည်။  
-Token ကို ဝန်ဆောင်မှုများစွာမှ လက်ခံပြီး မှန်ကန်စွာ စစ်ဆေးခြင်းမရှိပါက ဝန်ဆောင်မှုတစ်ခုကို ခိုးယူသူသည် token ကို အသုံးပြု၍ အခြား ဝန်ဆောင်မှုများကို ဝင်ရောက်နိုင်သည်။
+- **မူလနည်းလမ်း**: စတင်စံနှုန်းများတွင် developer များကို custom authentication servers ကို အကောင်အထည်ဖော်ရန် လိုအပ်ခဲ့ပြီး၊ MCP servers သည် OAuth 2.0 Authorization Servers အဖြစ် အသုံးပြု၍ user authentication ကို တိုက်ရိုက် စီမံခန့်ခွဲခဲ့သည်။
+- **လက်ရှိစံနှုန်း (၂၀၂၅-၀၆-၁၈)**: MCP servers သည် authentication ကို Microsoft Entra ID ကဲ့သို့သော အပြင် identity providers များသို့ လွှဲပြောင်းနိုင်စေသော specification အသစ်သည် လုံခြုံရေးအနေအထားကို တိုးတက်စေပြီး အကောင်အထည်ဖော်မှုအခက်အခဲကို လျှော့ချစေသည်။
+- **Transport Layer Security**: STDIO နှင့် Streamable HTTP ကဲ့သို့သော နည်းလမ်းများအတွက် authentication ပုံစံများကို ပိုမိုကောင်းမွန်စွာ ထောက်ပံ့ထားသည်။
 
-#### အနာဂတ် ကိုက်ညီမှု အန္တရာယ်  
-ယနေ့ MCP Server သည် "pure proxy" အဖြစ် စတင်ခဲ့ပါကလည်း နောင်လာမည့်အချိန်တွင် လုံခြုံရေး ထိန်းချုပ်မှုများ ထပ်မံ ထည့်သွင်းရန် လိုအပ်နိုင်သည်။ token audience ကို မှန်ကန်စွာ ခွဲခြားထားခြင်းဖြင့် လုံခြုံရေး မော်ဒယ် တိုးတက်ရန် ပိုမိုလွယ်ကူစေသည်။
+## Authentication နှင့် Authorization လုံခြုံရေး
 
-### လျော့နည်းစေရန် ထိန်းချုပ်မှုများ
+### လက်ရှိ လုံခြုံရေးစိန်ခေါ်မှုများ
 
-**MCP server များသည် MCP server အတွက် တိတိကျကျ ထုတ်ပေးထားသော token မဟုတ်သော token များကို လက်ခံမရပါ။**
+ခေတ်မီ MCP အကောင်အထည်ဖော်မှုများသည် authentication နှင့် authorization အခက်အခဲများစွာကို ရင်ဆိုင်ရသည်-
 
-- **Authorization Logic ကို ပြန်လည်သုံးသပ်ပြီး ခိုင်မာစေပါ:** MCP server ၏ authorization အကောင်အထည်ဖော်မှုကို သေချာစွာ စစ်ဆေး၍ ရည်ရွယ်ထားသော အသုံးပြုသူများနှင့် client များသာ အရေးကြီးသော အရင်းအမြစ်များကို ဝင်ရောက်နိုင်စေရန် သေချာစေပါ။ လက်တွေ့ လမ်းညွှန်ချက်များအတွက် [Azure API Management Your Auth Gateway For MCP Servers | Microsoft Community Hub](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) နှင့် [Using Microsoft Entra ID To Authenticate With MCP Servers Via Sessions - Den Delimarsky](https://den.dev/blog/mcp-server-auth-entra-id-session/) ကို ကြည့်ရှုပါ။
-- **လုံခြုံသော Token အသုံးပြုမှုများကို အကောင်အထည်ဖော်ပါ:** [Microsoft ၏ token စစ်ဆေးခြင်းနှင့် အသက်တာကာလအကောင်းဆုံးလေ့လာမှုများ](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens) ကို လိုက်နာကာ access token မမှန်ကန်စွာ အသုံးပြုခြင်းနှင့် token ပြန်လည်အသုံးပြုခြင်း၊ ခိုးယူခြင်း အန္တရာယ်များကို လျော့နည်းစေပါ။
-- **Token သိမ်းဆည်းမှုကို ကာကွယ်ပါ:** Token များကို အမြဲတမ်း လုံခြုံစွာ သိမ်းဆည်းပြီး သိုလှောင်ရာတွင် နှင့် လမ်းကြောင်းပေါ်တွင် စာရင်းအင်းကာကွယ်မှု (encryption) ကို အသုံးပြုပါ။ အကောင်အထည်ဖော်နည်းများအတွက် [Use secure token storage and encrypt tokens](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2) ကို ကြည့်ရှုပါ။
+### အန္တရာယ်များနှင့် အထိခိုက်မှုများ
 
-# MCP server များအတွက် အလွန်အကျွံခွင့်ပြုချက်များ
+- **Authorization Logic မှားယွင်းမှု**: MCP servers တွင် authorization ကို မှားယွင်းစွာ အကောင်အထည်ဖော်ခြင်းသည် အရေးကြီးသော ဒေတာများကို ဖော်ထုတ်စေပြီး access controls များကို မှားယွင်းစွာ အသုံးပြုစေသည်။
+- **OAuth Token Compromise**: MCP server token များကို ခိုးယူခြင်းသည် server များကို အတုလုပ်၍ downstream services များကို ဝင်ရောက်နိုင်စေသည်။
+- **Token Passthrough Vulnerabilities**: token များကို မှားယွင်းစွာ စီမံခန့်ခွဲခြင်းသည် လုံခြုံရေးထိန်းချုပ်မှုများကို ကျော်လွန်စေပြီး accountability gaps များကို ဖန်တီးစေသည်။
+- **Excessive Permissions**: MCP servers တွင် အခွင့်အာဏာများ အလွန်အကျွံရှိခြင်းသည် အနည်းဆုံးအခွင့်အာဏာသဘောတရားကို ချိုးဖောက်ပြီး အန္တရာယ်များကို တိုးတက်စေသည်။
 
-### ပြဿနာဖော်ပြချက်  
-MCP server များသည် ဝင်ရောက်နေသော ဝန်ဆောင်မှု/အရင်းအမြစ်များအတွက် အလွန်အကျွံခွင့်ပြုချက်များ ရရှိထားနိုင်သည်။ ဥပမာအားဖြင့် AI အရောင်းဆိုင်ရာ အက်ပလီကေးရှင်းတစ်ခုတွင် ပါဝင်သော MCP server သည် စီးပွားရေး ဒေတာသိုလှောင်ရာမှ အရောင်းဒေတာများကိုသာ ဝင်ရောက်ခွင့်ရှိပြီး သိုလှောင်ရာရှိ ဖိုင်အားလုံးကို မဝင်ရောက်ခွင့်မရှိသင့်ပါ။ အနည်းဆုံးခွင့်ပြုချက် သဘောတရား (least privilege) ကို ပြန်လည်ဆန်းစစ်ပါက တာဝန်ထမ်းဆောင်ရန် လိုအပ်သည့် ခွင့်ပြုချက်ထက် မပိုရသင့်ပါ။ AI သည် လွယ်ကူပြောင်းလဲနိုင်စေရန်အတွက် လိုအပ်သည့် ခွင့်ပြုချက်များကို တိတိကျကျ သတ်မှတ်ရန် အခက်အခဲများ ရှိသည်။
+#### Token Passthrough: အရေးကြီးသော Anti-Pattern
 
-### အန္တရာယ်များ  
-- အလွန်အကျွံခွင့်ပြုချက်များ ပေးခြင်းကြောင့် MCP server မရည်ရွယ်ထားသော ဒေတာများ ထွက်ပေါက်ခြင်း သို့မဟုတ် ပြင်ဆင်ခြင်း ဖြစ်ပေါ်နိုင်သည်။ ဒါ့အပြင် ဒေတာသည် ကိုယ်ရေးကိုယ်တာ သတင်းအချက်အလက် (PII) ဖြစ်ပါက ကိုယ်ရေးကိုယ်တာ လုံခြုံမှု ပြဿနာ ဖြစ်ပေါ်နိုင်သည်။
+**Token passthrough ကို လက်ရှိ MCP authorization specification တွင် တင်းကြပ်စွာ တားမြစ်ထားသည်** အကြောင်းမှာ လုံခြုံရေးအကျိုးဆက်များကြောင့် ဖြစ်သည်-
 
-### လျော့နည်းစေရန် ထိန်းချုပ်မှုများ  
-- **အနည်းဆုံးခွင့်ပြုချက် သဘောတရားကို အသုံးချပါ:** MCP server သည် လုပ်ဆောင်ရန် လိုအပ်သည့် အနည်းဆုံး ခွင့်ပြုချက်များသာ ပေးပါ။ ဤခွင့်ပြုချက်များကို ပုံမှန် ပြန်လည်သုံးသပ်ပြီး လိုအပ်သည့်အတိုင်းသာ ရှိနေစေရန် သေချာစေ
-The confused deputy problem သည် MCP server တစ်ခုသည် MCP client များနှင့် third-party API များအကြား proxy အဖြစ် လုပ်ဆောင်သောအခါ ဖြစ်ပေါ်လာနိုင်သည့် လုံခြုံရေးအားနည်းချက်တစ်ခုဖြစ်သည်။ ဤအားနည်းချက်ကို MCP server သည် static client ID ကို third-party authorization server နှင့် authentication ပြုလုပ်ရာတွင် dynamic client registration ကို မထောက်ပံ့သည့် authorization server ကို အသုံးပြုသောအခါ အကျိုးပြုနိုင်သည်။
+##### လုံခြုံရေးထိန်းချုပ်မှုများကို ကျော်လွန်ခြင်း
+- MCP servers နှင့် downstream APIs တွင် rate limiting, request validation, traffic monitoring ကဲ့သို့သော လုံခြုံရေးထိန်းချုပ်မှုများကို token validation မှာ အခြေခံထားသည်။
+- client-to-API token ကို တိုက်ရိုက်အသုံးပြုခြင်းသည် လုံခြုံရေးဖွဲ့စည်းပုံကို ချိုးဖောက်စေသည်။
 
-### အန္တရာယ်များ
+##### Accountability နှင့် Audit အခက်အခဲများ  
+- MCP servers သည် upstream-issued tokens ကို အသုံးပြုသော clients များကို ခွဲခြားနိုင်ခြင်းမရှိပါ။
+- downstream resource server logs တွင် request origins မမှန်ကန်သော အချက်အလက်များကို ဖော်ပြသည်။
+- အရေးပေါ်အခြေအနေများကို စုံစမ်းခြင်းနှင့် လိုက်နာမှု auditing များကို အလွန်ခက်ခဲစေသည်။
 
-- **Cookie-based consent bypass**: အသုံးပြုသူသည် ယခင်က MCP proxy server မှတဆင့် authentication ပြုလုပ်ပြီးသားဖြစ်ပါက၊ third-party authorization server သည် အသုံးပြုသူ၏ browser တွင် consent cookie တစ်ခုကို သတ်မှတ်နိုင်သည်။ အဆိုပါ cookie ကို အသုံးပြု၍ အတုယူသူသည် အသုံးပြုသူအား authorization request ပါဝင်သည့် မကောင်းသော redirect URI ပါသော မကောင်းသောလင့်ခ်တစ်ခု ပေးပို့ကာ အကျိုးပြုနိုင်သည်။
-- **Authorization code ခိုးယူခြင်း**: အသုံးပြုသူသည် မကောင်းသောလင့်ခ်ကို နှိပ်သောအခါ၊ third-party authorization server သည် ရှိပြီးသား cookie ကြောင့် consent screen ကို ကျော်လွှားပြီး authorization code ကို အတုယူသူ၏ server သို့ redirect ပြုလုပ်နိုင်သည်။
-- **မခွင့်ပြုထားသော API ဝင်ရောက်ခွင့်**: အတုယူသူသည် ခိုးယူထားသော authorization code ကို access token များအဖြစ် လဲလှယ်ကာ အသုံးပြုသူအဖြစ် impersonate ပြုလုပ်၍ third-party API ကို ခွင့်ပြုချက်မရှိဘဲ ဝင်ရောက်နိုင်သည်။
+##### Data Exfiltration အန္တရာယ်များ
+- token claims များကို အတည်ပြုခြင်းမရှိခြင်းသည် token များကို ခိုးယူထားသော မကောင်းဆိုးဝါးများကို MCP servers ကို proxy အဖြစ် အသုံးပြု၍ ဒေတာများကို ခိုးယူနိုင်စေသည်။
+- trust boundary များကို ချိုးဖောက်ပြီး security controls များကို ကျော်လွန်စေသည်။
 
-### ကာကွယ်ထိန်းချုပ်မှုများ
+##### Multi-Service Attack Vectors
+- token များကို ဝန်ဆောင်မှုများစွာမှ လက်ခံခြင်းသည် connected systems များအတွင်း lateral movement ကို ဖြစ်စေသည်။
+- token origins များကို အတည်ပြုနိုင်ခြင်းမရှိသောအခါ trust assumptions များကို ချိုးဖောက်နိုင်သည်။
 
-- **သေချာသော consent လိုအပ်ချက်များ**: Static client ID များကို အသုံးပြုသည့် MCP proxy server များသည် third-party authorization server များသို့ ပို့ဆောင်မည့်အခါ dynamic client တစ်ခုချင်းစီအတွက် အသုံးပြုသူ၏ သေချာသော consent ကို ရယူရမည်။
-- **OAuth ကို မှန်ကန်စွာ အကောင်အထည်ဖော်ခြင်း**: Authorization request များအတွက် code challenges (PKCE) ကို အသုံးပြုခြင်းအပါအဝင် OAuth 2.1 လုံခြုံရေးအကောင်းဆုံး လမ်းညွှန်ချက်များကို လိုက်နာရန်၊ interception အတိုက်ခိုက်မှုများကို ကာကွယ်ရန်။
-- **Client အတည်ပြုခြင်း**: မကောင်းသောသူများမှ အကျိုးပြုခြင်းကို ကာကွယ်ရန် redirect URI များနှင့် client identifier များကို တင်းကြပ်စွာ အတည်ပြုရန်။
+### လုံခြုံရေးထိန်းချုပ်မှုများနှင့် ကာကွယ်မှုများ
 
-# Token Passthrough Vulnerabilities
+**အရေးကြီးသော လုံခြုံရေးလိုအပ်ချက်များ:**
 
-### ပြဿနာအကြောင်းအရာ
+> **MANDATORY**: MCP servers သည် MCP server အတွက် အထူးထုတ်ပေးထားသော tokens များကိုသာ လက်ခံရမည်။
 
-"Token passthrough" သည် MCP server တစ်ခုသည် MCP client မှ token များကို MCP server ကိုပေးအပ်ခြင်းမပြုဘဲ တိုက်ရိုက် downstream API များသို့ "ဖြတ်သန်းပေး" သည့် anti-pattern ဖြစ်သည်။ ဤလုပ်ဆောင်ချက်သည် MCP authorization specification ကို ထိရောက်စွာ ချိုးဖောက်ပြီး လုံခြုံရေးအန္တရာယ်များကို ဖြစ်ပေါ်စေသည်။
+#### Authentication နှင့် Authorization ထိန်းချုပ်မှုများ
 
-### အန္တရာယ်များ
+- **Authorization Logic ကို စစ်ဆေးခြင်း**: MCP server authorization logic ကို စုံစမ်းစစ်ဆေးပြီး၊ သတ်မှတ်ထားသော users နှင့် clients များသာ sensitive resources များကို ဝင်ရောက်နိုင်စေရန် အတည်ပြုပါ။
+  - **Implementation Guide**: [Azure API Management as Authentication Gateway for MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+  - **Identity Integration**: [Using Microsoft Entra ID for MCP Server Authentication](https://den.dev/blog/mcp-server-auth-entra-id-session/)
 
-- **လုံခြုံရေးထိန်းချုပ်မှုများ ကျော်လွှားခြင်း**: Clients များသည် rate limiting, request validation, traffic monitoring ကဲ့သို့သော လုံခြုံရေးထိန်းချုပ်မှုများကို မမှန်ကန်စွာ စစ်ဆေးခြင်းမရှိဘဲ downstream API များနှင့် တိုက်ရိုက် token များကို အသုံးပြုနိုင်သည်။
-- **တာဝန်ယူမှုနှင့် စစ်ဆေးမှု ပြဿနာများ**: MCP server သည် upstream မှ ထုတ်ပေးသော access token များကို အသုံးပြုသော client များကို ခွဲခြားနိုင်ခြင်းမရှိသဖြင့် ဖြစ်ရပ်များ စုံစမ်းစစ်ဆေးခြင်းနှင့် စစ်ဆေးမှုများ ပြုလုပ်ရန် အခက်အခဲ ဖြစ်ပေါ်စေသည်။
-- **ဒေတာ ထွက်ပေါက်ခြင်း**: Token များကို မှန်ကန်သော claims validation မပြုဘဲ ဖြတ်သန်းပေးပါက ခိုးယူထားသော token ဖြင့် မကောင်းသောသူတစ်ဦးသည် server ကို proxy အဖြစ် အသုံးပြု၍ ဒေတာ ထွက်ပေါက်မှုများ ဖြစ်ပေါ်စေနိုင်သည်။
-- **ယုံကြည်မှုနယ်နိမိတ် ချိုးဖောက်ခြင်း**: Downstream resource server များသည် မူလအရင်းအမြစ် သို့မဟုတ် အပြုအမူ ပုံစံများအပေါ် အခြေခံ၍ ယုံကြည်မှု ပေးသည်။ ယုံကြည်မှုနယ်နိမိတ် ချိုးဖောက်ခြင်းသည် မမျှော်လင့်ထားသော လုံခြုံရေးပြဿနာများ ဖြစ်ပေါ်စေနိုင်သည်။
-- **Multi-service Token မမှန်ကန်စွာ အသုံးပြုခြင်း**: Token များကို ဝန်ဆောင်မှုများစွာမှ လက်ခံပြီး မှန်ကန်စွာ စစ်ဆေးခြင်းမရှိပါက ဝန်ဆောင်မှုတစ်ခု ခိုးယူခံရသူသည် အခြား ဝန်ဆောင်မှုများကိုလည်း token ဖြင့် ဝင်ရောက်နိုင်သည်။
+- **Token Management ကို လုံခြုံစွာ စီမံခန့်ခွဲခြင်း**: [Microsoft's token validation and lifecycle best practices](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens) ကို အသုံးပြုပါ။
+  - token audience claims များ MCP server identity နှင့် ကိုက်ညီမှုရှိကြောင်း အတည်ပြုပါ။
+  - token rotation နှင့် expiration policies များကို အကောင်အထည်ဖော်ပါ။
+  - token replay attacks နှင့် unauthorized usage များကို ကာကွယ်ပါ။
 
-### ကာကွယ်ထိန်းချုပ်မှုများ
+- **Token Storage ကို ကာကွယ်ထားခြင်း**: token storage ကို encryption ဖြင့် လုံခြုံစွာ စီမံပါ။
+  - **Best Practices**: [Secure Token Storage and Encryption Guidelines](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
 
-- **Token validation**: MCP server များသည် MCP server အတွက်သာ ထုတ်ပေးထားသော token များကိုသာ လက်ခံရမည်။
-- **Audience verification**: Token များတွင် MCP server ၏ အတည်ပြုချက်နှင့် ကိုက်ညီသော audience claim ရှိကြောင်း အမြဲစစ်ဆေးရမည်။
-- **Token lifecycle ကို မှန်ကန်စွာ စီမံခန့်ခွဲခြင်း**: Token ခိုးယူခြင်းနှင့် မမှန်ကန်စွာ အသုံးပြုခြင်း အန္တရာယ်ကို လျော့နည်းစေရန် အချိန်တို access token များနှင့် token rotation ကို မှန်ကန်စွာ အကောင်အထည်ဖော်ရန်။
+#### Access Control အကောင်အထည်ဖော်မှု
 
-# Session Hijacking
+- **Principle of Least Privilege**: MCP servers များကို လိုအပ်သော အနည်းဆုံး permissions များသာ ပေးပါ။
+  - permission များကို regular စစ်ဆေးပြီး privilege creep မဖြစ်စေရန် update လုပ်ပါ။
+  - **Microsoft Documentation**: [Secure Least-Privileged Access](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
 
-### ပြဿနာအကြောင်းအရာ
+- **Role-Based Access Control (RBAC)**: role များကို အလွန်သေးငယ်သော resource နှင့် action များအတွက် သတ်မှတ်ပါ။
+  - permissions များကို ကျယ်ကျယ်ပြန့်ပြန့် သတ်မှတ်ခြင်းမပြုပါ။
+  - attack surfaces များကို ကျဉ်းမြောင်းစေရန် broad permissions မပေးပါ။
 
-Session hijacking သည် client တစ်ဦးအား server မှ session ID တစ်ခု ပေးပြီး၊ မခွင့်ပြုထားသော တစ်ဦးတစ်ယောက်က ထို session ID ကို ခိုးယူ၍ မူလ client အဖြစ် impersonate ပြုလုပ်ကာ မခွင့်ပြုထားသော လုပ်ဆောင်ချက်များ ပြုလုပ်ခြင်းဖြစ်သည်။ ၎င်းသည် stateful HTTP server များတွင် MCP request များကို ကိုင်တွယ်ရာတွင် အထူးသဖြင့် စိုးရိမ်ရသော အတိုက်ခိုက်နည်းဖြစ်သည်။
+- **Continuous Permission Monitoring**: permission usage patterns များကို စောင့်ကြည့်ပြီး၊ anomaly များကို စောင့်ရှောက်ပါ။
+  - excessive privileges များကို အမြန်ဆုံး ပြုပြင်ပါ။
 
-### အန္တရာယ်များ
+## AI အထူးပြု လုံခြုံရေးအန္တရာယ်များ
 
-- **Session Hijack Prompt Injection**: Session ID ကို ခိုးယူထားသူသည် client ချိတ်ဆက်ထားသော server နှင့် session state ကို မျှဝေသော server သို့ မကောင်းသော event များ ပို့နိုင်ပြီး အန္တရာယ်ရှိသော လုပ်ဆောင်ချက်များကို ဖြစ်စေခြင်း သို့မဟုတ် အချက်အလက်များကို ဝင်ရောက်ကြည့်ရှုနိုင်သည်။
-- **Session Hijack Impersonation**: ခိုးယူထားသော session ID ဖြင့် အတုယူသူသည် MCP server ကို တိုက်ရိုက် ခေါ်ဆိုကာ authentication ကို ကျော်လွှားပြီး တရားဝင်အသုံးပြုသူအဖြစ် ဆက်ဆောင်နိုင်သည်။
-- **Compromised Resumable Streams**: Server တစ်ခုသည် redelivery/resumable streams ကို ထောက်ပံ့ပါက အတုယူသူသည် တောင်းဆိုမှုတစ်ခုကို မတော်တဆ ရပ်တန့်စေပြီး မူလ client မှ နောက်ပိုင်းတွင် ပြန်လည်ဆက်လက်လုပ်ဆောင်ရာတွင် မကောင်းသော အကြောင်းအရာများ ပါဝင်နိုင်သည်။
+### Prompt Injection နှင့် Tool Manipulation အန္တရာယ်များ
 
-### ကာကွယ်ထိန်းချုပ်မှုများ
+ခေတ်မီ MCP အကောင်အထည်ဖော်မှုများသည် ရိုးရာလုံခြုံရေးနည်းလမ်းများဖြင့် အပြည့်အဝ ကာကွယ်နိုင်မည့်အထက်တန်း AI-specific attack vectors များကို ရင်ဆိုင်ရသည်-
 
-- **Authorization verification**: Authorization ကို အကောင်အထည်ဖော်သည့် MCP server များသည် ဝင်ရောက်လာသော တောင်းဆိုမှုအားလုံးကို စစ်ဆေးရမည်ဖြစ်ပြီး session များကို authentication အတွက် အသုံးမပြုရ။
-- **Secure session IDs**: MCP server များသည် လုံခြုံပြီး မကြိုတင်ခန့်မှန်းနိုင်သော session ID များကို secure random number generator များဖြင့် ဖန်တီးရမည်။ ခန့်မှန်းနိုင်သော သို့မဟုတ် အဆက်မပြတ် ID များကို ရှောင်ရှားရန်။
-- **User-specific session binding**: MCP server များသည် session ID များကို အသုံးပြုသူအထူးသတ်မှတ်ချက်များနှင့် ပေါင်းစပ်၍ `<user_id>:<session_id>` ကဲ့သို့သော ဖော်မတ်ဖြင့် binding ပြုလုပ်သင့်သည်။
-- **Session expiration**: Session ID ခိုးယူခံရပါက အန္တရာယ်ကာလကို ကန့်သတ်ရန် session သက်တမ်းကုန်ဆုံးမှုနှင့် rotation ကို မှန်ကန်စွာ အကောင်အထည်ဖော်ရန်။
-- **Transport security**: Session ID များ ခိုးယူခံရမှုကို ကာကွယ်ရန် ဆက်သွယ်မှုအားလုံးတွင် HTTPS ကို အမြဲအသုံးပြုရန်။
+#### **Indirect Prompt Injection (Cross-Domain Prompt Injection)**
 
-# Supply chain security
+**Indirect Prompt Injection** သည် MCP-enabled AI စနစ်များတွင် အရေးကြီးဆုံး အန္တရာယ်တစ်ခုဖြစ်သည်။ မကောင်းဆိုးဝါးများသည် AI စနစ်များမှ legitimate commands အဖြစ် သတ်မှတ်ထားသော အပြင်အကြောင်းအရာများ (စာရွက်စာတမ်းများ၊ ဝက်ဘ်စာမျက်နှာများ၊ အီးမေးလ်များ၊ ဒေတာရင်းမြစ်များ) တွင် malicious instructions များကို embed လုပ်သည်။
 
-Supply chain security သည် AI ခေတ်တွင် အခြေခံအရေးပါမှုရှိနေဆဲဖြစ်သော်လည်း သင့် supply chain အတွင်း ပါဝင်သည့် အရာများ၏ အကျယ်အဝန်းသည် ကျယ်ပြန့်လာသည်။ ရိုးရာ code package များအပြင် foundation model များ၊ embeddings service များ၊ context provider များနှင့် third-party API များကိုလည်း တိကျစွာ စစ်ဆေးကြည့်ရှုခြင်းနှင့် စောင့်ကြည့်ခြင်း လိုအပ်သည်။ ၎င်းတို့သည် မှန်ကန်စွာ စီမံမထားပါက အားနည်းချက်များ သို့မဟုတ် အန္တရာယ်များ ဖြစ်ပေါ်စေနိုင်သည်။
+**တိုက်ခိုက်မှုအခြေအနေများ**:
+- **Document-based Injection**: စနစ်များမှ process လုပ်သောစာရွက်စာတမ်းများတွင် malicious instructions များကို hide လုပ်ခြင်း
+- **Web Content Exploitation**: AI behavior ကို manipulate လုပ်နိုင်သော malicious prompts များပါဝင်သော compromised web pages
+- **Email-based Attacks**: AI assistants ကို unauthorized actions လုပ်ဆောင်စေသော malicious prompts ပါဝင်သော အီးမေးလ်များ
+- **Data Source Contamination**: AI စနစ်များကို tainted content ပေးသော compromised databases သို့မဟုတ် APIs
 
-**AI နှင့် MCP အတွက် အဓိက supply chain security လုပ်ထုံးလုပ်နည်းများ**  
-- **ပေါင်းစည်းမှုမပြုမီ အစိတ်အပိုင်းအားလုံးကို စစ်ဆေးရန်**: Open-source library များသာမက AI model များ၊ ဒေတာရင်းမြစ်များနှင့် ပြင်ပ API များကိုပါ စစ်ဆေးရန်။ မူလအရင်းအမြစ်၊ လိုင်စင်နှင့် သိရှိထားသော အားနည်းချက်များကို အမြဲစစ်ဆေးရန်။  
-- **လုံခြုံသော deployment pipeline များ ထိန်းသိမ်းရန်**: CI/CD pipeline များတွင် လုံခြုံရေး စစ်ဆေးမှုများကို အလိုအလျောက် ထည့်သွင်းကာ ပြဿနာများကို အစောဆုံး တွေ့ရှိနိုင်ရန်။ ယုံကြည်ရသော artifact များကိုသာ production သို့ ထုတ်ပေးရန်။  
-- **ဆက်လက် စောင့်ကြည့်ခြင်းနှင့် စစ်ဆေးခြင်း**: Model များနှင့် ဒေတာဝန်ဆောင်မှုများအပါအဝင် အားလုံးကို ဆက်လက် စောင့်ကြည့်ကာ supply chain အတိုက်ခိုက်မှုများ သို့မဟုတ် အားနည်းချက်အသစ်များကို ရှာဖွေရန်။  
-- **အနည်းဆုံးခွင့်ပြုချက်နှင့် ဝင်ရောက်ခွင့် ထိန်းချုပ်မှုများ**: MCP server ၏ လုပ်ဆောင်မှုအတွက် လိုအပ်သည့် အရာများကိုသာ model များ၊ ဒေတာများနှင့် ဝန်ဆောင်မှုများသို့ ဝင်ရောက်ခွင့်ပေးရန် ကန့်သတ်ရန်။  
-- **အန္တရာယ်များကို အမြန်တုံ့ပြန်ရန်**: ခိုးယူခံရသည့် အစိတ်အပိုင်းများကို ပြင်ဆင်ခြင်း သို့မဟုတ် အစားထိုးခြင်း၊ လျှို့ဝှက်ချက်များ သို့မဟုတ် အတည်ပြုချက်များကို လှည့်ပြောင်းခြင်း အတွက် လုပ်ထုံးလုပ်နည်းများ ရှိထားရန်။
+**အကျိုးဆက်များ**: ဤတိုက်ခိုက်မှုများသည် ဒေတာခိုးယူမှု၊ privacy ချိုးဖောက်မှု၊ user interactions များကို manipulate လုပ်ခြင်းနှင့် harmful content များကို ဖန်တီးခြင်းတို့ကို ဖြစ်စေသည်။ [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/) တွင် အသေးစိတ်လေ့လာနိုင်ပါသည်။
 
-[GitHub Advanced Security] သည် secret scanning, dependency scanning, CodeQL analysis ကဲ့သို့သော လုပ်ဆောင်ချက်များကို ပံ့ပိုးပေးသည်။ ဤကိရိယာများကို [Azure DevOps] နှင့် [Azure Repos] နှင့် ပေါင်းစည်းကာ ကုဒ်နှင့် AI supply chain အားလုံးတွင် အားနည်းချက်များကို ရှာဖွေကာ ကာကွယ်နိုင်ရန် အကူအညီပေးသည်။
+![Prompt Injection Attack Diagram](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.my.png)
 
-Microsoft သည် ထုတ်ကုန်အားလုံးအတွက် supply chain security လုပ်ထုံးလုပ်နည်းများကို အတွင်းပိုင်းတွင် ကျယ်ပြန့်စွာ အသုံးပြုထားသည်။ ပိုမိုသိရှိလိုပါက [The Journey to Secure the Software Supply Chain at Microsoft] ကို ကြည့်ရှုနိုင်ပါသည်။
+#### **Tool Poisoning Attacks**
 
-# MCP implementation ၏ လုံခြုံရေးအခြေအနေကို မြှင့်တင်ပေးမည့် အတည်ပြုထားသော လုံခြုံရေးအကောင်းဆုံး လုပ်ထုံးလုပ်နည်းများ
+**Tool Poisoning** သည် MCP tools များ၏ metadata ကို target လုပ်ပြီး၊ LLMs များသည် tool descriptions နှင့် parameters ကို အကောင်အထည်ဖော်မှုအတွက် အသုံးပြုပုံကို exploit လုပ်သည်။
 
-MCP implementation တစ်ခုသည် သင့်အဖွဲ့အစည်း၏ ပတ်ဝန်းကျင်ရှိ လုံခြုံရေးအခြေအနေကို ဆက်ခံရရှိသဖြင့် MCP ကို သင့် AI စနစ်များ၏ အစိတ်အပိုင်းတစ်ခုအဖြစ် စဉ်းစားရာတွင် သင့်လုံခြုံရေးအခြေအနေကို မြှင့်တင်ရန် အကြံပြုသည်။ အောက်ပါ အတည်ပြုထားသော လုံခြုံရေးထိန်းချုပ်မှုများမှာ အထူးသဖြင့် သင့်အတွက် သင့်လျော်သည်။
+**တိုက်ခိုက်မှု Mechanisms**:
+- **Metadata Manipulation**: tool descriptions, parameter definitions, usage examples များတွင် malicious instructions များကို inject လုပ်ခြင်း
+- **Invisible Instructions**: tool metadata တွင် hidden prompts များကို AI models မှ process လုပ်သော်လည်း၊ လူများအတွက် မမြင်နိုင်သောအခြေအနေ
+- **Dynamic Tool Modification ("Rug Pulls")**: user မ
+- **လုံခြုံသော Session ဖန်တီးခြင်း**: လုံခြုံမှုရှိသော အလွှာများနှင့် မဟုတ်မမှန်သော session ID များကို လုံခြုံသော အလွှာအလိုက် random number generator များဖြင့် ဖန်တီးပါ  
+- **အသုံးပြုသူအလိုက် ချိတ်ဆက်မှု**: session ID များကို `<user_id>:<session_id>` ကဲ့သို့သော format များဖြင့် အသုံးပြုသူ-specific အချက်အလက်များနှင့် ချိတ်ဆက်ပါ၊ cross-user session မတရားအသုံးပြုမှုကို ကာကွယ်ရန်  
+- **Session အသက်ရှည်မှု စီမံခန့်ခွဲမှု**: အချိန်ကုန်ဆုံးမှု၊ ပြောင်းလဲမှုနှင့် ပယ်ဖျက်မှုများကို မှန်ကန်စွာ အကောင်အထည်ဖော်ပါ၊ အန္တရာယ်အချိန်ကို ကန့်သတ်ရန်  
+- **ပို့ဆောင်မှု လုံခြုံမှု**: session ID များကို ဖမ်းယူခြင်းမှ ကာကွယ်ရန် အားလုံးသော ဆက်သွယ်မှုများအတွက် HTTPS ကို မဖြစ်မနေ အသုံးပြုပါ  
 
-- သင့် AI application တွင် secure coding အကောင်းဆုံး လုပ်ထုံးလုပ်နည်းများ - [OWASP Top 10] နှင့် [OWASP Top 10 for LLMs] အပါအဝင်၊ လျှို့ဝှက်ချက်များနှင့် token များအတွက် secure vault များ အသုံးပြုခြင်း၊ application အစိတ်အပိုင်းအားလုံးအကြား end-to-end လုံခြုံသော ဆက်သွယ်မှုများ အကောင်အထည်ဖော်ခြင်း။
-- Server hardening - MFA ကို အသုံးပြုနိုင်သမျှ အသုံးပြုခြင်း၊ patch များကို အမြဲတမ်း update ပြုလုပ်ခြင်း၊ third-party identity provider နှင့် ပေါင်းစည်းခြင်း။
-- စက်ပစ္စည်းများ၊ အခြေခံအဆောက်အအုံနှင့် application များကို patch များဖြင့် အမြဲတမ်း update ပြုလုပ်ခြင်း။
-- လုံခြုံရေး စောင့်ကြည့်မှု - AI application (MCP client/server များအပါအဝင်) ၏ logging နှင့် monitoring ကို အကောင်အထည်ဖော်ကာ အထူးသဖြင့် anomalous လုပ်ဆောင်ချက်များကို စစ်ဆေးရန် SIEM သို့ logs များ ပို့ခြင်း။
-- Zero trust architecture - AI application တစ်ခု ခိုးယူခံရပါက lateral movement ကို လျော့နည်းစေရန် network နှင့် identity ထိန်းချုပ်မှုများဖြင့် component များကို သီးခြားထားခြင်း။
+### Confused Deputy ပြဿနာ
 
-# အဓိက သင်ခန်းစာများ
+**Confused deputy ပြဿနာ** သည် MCP server များသည် client များနှင့် third-party service များအကြား authentication proxy အဖြစ် လုပ်ဆောင်သောအခါ ဖြစ်ပေါ်လာပြီး static client ID များကို အသုံးပြု၍ authorization bypass အခွင့်အလမ်းများ ဖန်တီးပေးနိုင်သည်။
 
-- လုံခြုံရေး အခြေခံများသည် အရေးကြီးနေဆဲဖြစ်သည်။ Secure coding, least privilege, supply chain verification နှင့် ဆက်လက် စောင့်ကြည့်မှုများသည် MCP နှင့် AI workload များအတွက် မရှိမဖြစ် လိုအပ်သည်။
-- MCP သည် prompt injection, tool poisoning, session hijacking, confused deputy problem, token passthrough vulnerabilities နှင့် အလွန်အမင်းခွင့်ပြုချက်များကဲ့သို့သော အန္တရာယ်အသစ်များကို မိတ်ဆက်ပေးပြီး ယင်းတို့အတွက် ရိုးရာနှင့် AI အထူးထိန်းချုပ်မှုများ လိုအပ်သည်။
-- Microsoft Entra ID ကဲ့သို့သော ပြင်ပ identity provider များကို အသုံးပြုကာ authentication, authorization နှင့် token management ကို ခိုင်မာစွာ ဆောင်ရွက်ရန်။
-- Indirect prompt injection နှင့် tool poisoning ကို ကာကွယ်ရန် tool metadata ကို စစ်ဆေးခြင်း၊ dynamic ပြောင်းလဲမှုများကို စောင့်ကြည့်ခြင်းနှင့် Microsoft Prompt Shields ကဲ့သို့သော ဖြေရှင်းနည်းများကို အသုံးပြုရန်။
-- Non-deterministic session ID များကို အသုံးပြုခြင်း၊ session များကို user identity နှင့် binding ပြုလုပ်ခြင်းနှင့် authentication အတွက် session မသုံးရန် secure session management ကို အကောင်အထည်ဖော်ရန်။
-- Confused deputy attacks မဖြစ်ပေါ်စေရန် dynamic client တစ်ခုချင်းစီအတွက် အသုံးပြုသူ၏ သေချာသော consent ကို လိုအပ်သည့်အတိုင်း ရယူခြင်းနှင့် OAuth လုံခြုံရေး လုပ်ထုံးလုပ်နည်းများကို မှန်ကန်စွာ လိုက်နာရန်။
-- Token passthrough vulnerabilities မဖြစ်ပေါ်
+#### **တိုက်ခိုက်မှု Mechanic နှင့် အန္တရာယ်များ**
 
-**အကြောင်းကြားချက်**  
-ဤစာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ဖြင့် ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှန်ကန်မှုအတွက် ကြိုးစားသော်လည်း အလိုအလျောက် ဘာသာပြန်ခြင်းတွင် အမှားများ သို့မဟုတ် မှားယွင်းချက်များ ပါဝင်နိုင်ကြောင်း သတိပြုပါရန် မေတ္တာရပ်ခံအပ်ပါသည်။ မူရင်းစာတမ်းကို မိမိဘာသာစကားဖြင့်သာ တရားဝင်အချက်အလက်အဖြစ် ယူဆသင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူ့ပညာရှင်များ၏ ပရော်ဖက်ရှင်နယ် ဘာသာပြန်ခြင်းကို အကြံပြုပါသည်။ ဤဘာသာပြန်ချက်ကို အသုံးပြုရာမှ ဖြစ်ပေါ်လာနိုင်သည့် နားလည်မှုမှားယွင်းမှုများအတွက် ကျွန်ုပ်တို့သည် တာဝန်မခံပါ။
+- **Cookie-based Consent Bypass**: ယခင်အသုံးပြုသူ authentication မှ consent cookie များကို malicious authorization request များနှင့် crafted redirect URI များဖြင့် အကျိုးခံစားမှု ရယူရန် အသုံးပြုသည်  
+- **Authorization Code ခိုးယူမှု**: ရှိပြီးသား consent cookie များကြောင့် authorization server များသည် consent screen များကို ကျော်ဖြတ်ပြီး attacker ထိန်းချုပ်ထားသော endpoint များသို့ code များကို redirect လုပ်နိုင်သည်  
+- **API မတရားဝင် ဝင်ရောက်မှု**: ခိုးယူထားသော authorization code များကို token exchange နှင့် အသုံးပြုသူ impersonation အတွက် အသုံးပြုနိုင်သည်  
+
+#### **ကာကွယ်ရေး မဟာဗျူဟာများ**
+
+**မဖြစ်မနေလိုအပ်သော ထိန်းချုပ်မှုများ:**
+- **အသိအမှတ်ပြုမှု တိုက်ရိုက်လိုအပ်ချက်များ**: MCP proxy server များသည် static client ID များကို အသုံးပြုသောအခါ အသုံးပြုသူ၏ အသိအမှတ်ပြုမှုကို dynamic client တစ်ခုစီအတွက် မဖြစ်မနေ ရယူရမည်  
+- **OAuth 2.1 လုံခြုံရေး အကောင်အထည်ဖော်မှု**: PKCE (Proof Key for Code Exchange) အပါအဝင် OAuth လုံခြုံရေး အကောင်းဆုံး လက်တွေ့ကျမှုများကို authorization request အားလုံးအတွက် လိုက်နာပါ  
+- **Client စစ်ဆေးမှု တင်းကျပ်မှု**: redirect URI များနှင့် client identifier များကို အတိအကျစစ်ဆေးပါ၊ အကျိုးခံစားမှု ရယူမှုကို ကာကွယ်ရန်  
+
+### Token Passthrough အားနည်းချက်များ  
+
+**Token passthrough** သည် MCP server များသည် client token များကို မှန်ကန်စွာ စစ်ဆေးခြင်းမရှိဘဲ downstream API များသို့ ပေးပို့သော anti-pattern တစ်ခုဖြစ်ပြီး MCP authorization သတ်မှတ်ချက်များကို ချိုးဖောက်သည်။
+
+#### **လုံခြုံရေး အကျိုးဆက်များ**
+
+- **ထိန်းချုပ်မှု ကျော်ဖြတ်မှု**: client-to-API token များကို တိုက်ရိုက်အသုံးပြုခြင်းသည် rate limiting, validation, monitoring ထိန်းချုပ်မှုများကို ကျော်ဖြတ်စေသည်  
+- **Audit Trail ပျက်စီးမှု**: Upstream-issued token များကြောင့် client ကို အတိအကျဖော်ထုတ်ရန် မဖြစ်နိုင်တော့ဘဲ အမှုစစ်ဆေးမှုများ ပျက်စီးစေသည်  
+- **Proxy-based Data Exfiltration**: မစစ်ဆေးထားသော token များကြောင့် မတရားဝင် data access အတွက် server များကို proxy အဖြစ် အသုံးပြုနိုင်သည်  
+- **Trust Boundary ချိုးဖောက်မှု**: token များ၏ မူလအရင်းအမြစ်ကို အတည်ပြုနိုင်မှုမရှိသောအခါ downstream service များ၏ ယုံကြည်မှုအခြေခံချက်များ ချိုးဖောက်နိုင်သည်  
+- **Multi-service တိုက်ခိုက်မှု တိုးချဲ့မှု**: ခိုးယူထားသော token များကို အများပြားသော service များတွင် လက်ခံခြင်းကြောင့် lateral movement ဖြစ်ပေါ်စေသည်  
+
+#### **လိုအပ်သော လုံခြုံရေး ထိန်းချုပ်မှုများ**
+
+**မလွဲမသွေလိုအပ်ချက်များ:**
+- **Token စစ်ဆေးမှု**: MCP server များသည် MCP server အတွက် အထူးထုတ်ပေးထားသော token များကိုသာ လက်ခံရမည်  
+- **Audience Verification**: token audience claim များသည် MCP server ၏ identity နှင့် ကိုက်ညီမှုရှိကြောင်း အမြဲစစ်ဆေးပါ  
+- **Token အသက်ရှည်မှု မှန်ကန်မှု**: လုံခြုံသော rotation လုပ်ငန်းစဉ်များဖြင့် အချိန်တို access token များကို အကောင်အထည်ဖော်ပါ  
+
+## AI စနစ်များအတွက် Supply Chain လုံခြုံရေး
+
+Supply chain လုံခြုံရေးသည် ရိုးရာ software အချိုးအစားများမှ AI ecosystem အားလုံးကို အကျယ်တဝင့် ဖုံးလွှမ်းလာသည်။ MCP implementation များသည် AI ဆိုင်ရာ component အားလုံးကို စစ်ဆေးခြင်းနှင့် စောင့်ကြည့်မှုများကို တင်းကျပ်စွာ ဆောင်ရွက်ရမည်။ Component တစ်ခုစီသည် စနစ် integrity ကို ချိုးဖောက်နိုင်သော အန္တရာယ်များကို ထည့်သွင်းနိုင်သည်။
+
+### AI Supply Chain Component များ၏ တိုးချဲ့မှု
+
+**ရိုးရာ Software အချိုးအစားများ:**
+- Open-source library များနှင့် framework များ  
+- Container image များနှင့် base system များ  
+- Development tool များနှင့် build pipeline များ  
+- Infrastructure component များနှင့် service များ  
+
+**AI-specific Supply Chain Element များ:**
+- **Foundation Model များ**: မျိုးစုံသော provider များမှ ရရှိသော pre-trained model များကို provenance စစ်ဆေးမှု လိုအပ်သည်  
+- **Embedding Service များ**: External vectorization နှင့် semantic search service များ  
+- **Context Provider များ**: Data source, knowledge base, နှင့် document repository များ  
+- **Third-party API များ**: External AI service, ML pipeline, နှင့် data processing endpoint များ  
+- **Model Artifact များ**: Weight, configuration, နှင့် fine-tuned model variant များ  
+- **Training Data Source များ**: Model training နှင့် fine-tuning အတွက် အသုံးပြုသော dataset များ  
+
+### Supply Chain လုံခြုံရေး မဟာဗျူဟာ
+
+#### **Component စစ်ဆေးမှုနှင့် ယုံကြည်မှု**
+- **Provenance Validation**: AI component အားလုံး၏ မူလအရင်းအမြစ်၊ လိုင်စင်နှင့် integrity ကို စစ်ဆေးပါ  
+- **Security Assessment**: Model, data source, နှင့် AI service များအတွက် အန္တရာယ်စစ်ဆေးမှုနှင့် လုံခြုံရေး ပြန်လည်သုံးသပ်မှုများ ဆောင်ရွက်ပါ  
+- **Reputation Analysis**: AI service provider များ၏ လုံခြုံရေး track record နှင့် လက်တွေ့ကျမှုများကို အကဲဖြတ်ပါ  
+- **Compliance Verification**: Component အားလုံးသည် အဖွဲ့အစည်း၏ လုံခြုံရေးနှင့် စည်းမျဉ်းစည်းကမ်းလိုအပ်ချက်များနှင့် ကိုက်ညီမှုရှိကြောင်း သေချာစေပါ  
+
+#### **လုံခြုံသော Deployment Pipeline များ**  
+- **Automated CI/CD Security**: Automated deployment pipeline အတွင်း လုံခြုံရေး စစ်ဆေးမှုများ ထည့်သွင်းပါ  
+- **Artifact Integrity**: Deploy လုပ်သော artifact (code, model, configuration) အားလုံးအတွက် cryptographic verification ကို အကောင်အထည်ဖော်ပါ  
+- **Staged Deployment**: Deployment အဆင့်တစ်ခုစီတွင် လုံခြုံရေး စစ်ဆေးမှုများဖြင့် progressive deployment strategy များကို အသုံးပြုပါ  
+- **Trusted Artifact Repository များ**: Verified, secure artifact registry နှင့် repository များမှသာ deploy လုပ်ပါ  
+
+#### **ဆက်လက်စောင့်ကြည့်မှုနှင့် တုံ့ပြန်မှု**
+- **Dependency Scanning**: Software နှင့် AI component dependency အားလုံးအတွက် အန္တရာယ်စောင့်ကြည့်မှု ဆက်လက်ဆောင်ရွက်ပါ  
+- **Model Monitoring**: Model အပြုအမူ၊ performance drift, နှင့် လုံခြုံရေး အထူးအဆန်းများကို ဆက်လက်အကဲဖြတ်ပါ  
+- **Service Health Tracking**: External AI service များ၏ ရရှိနိုင်မှု၊ လုံခြုံရေးဖြစ်ရပ်များနှင့် မူဝါဒပြောင်းလဲမှုများကို စောင့်ကြည့်ပါ  
+- **Threat Intelligence Integration**: AI နှင့် ML လုံခြုံရေး အန္တရာယ်များအတွက် threat feed များကို ထည့်သွင်းပါ  
+
+#### **Access Control နှင့် Least Privilege**
+- **Component-level Permission များ**: Model, data, နှင့် service များကို လိုအပ်သော business necessity အပေါ်မူတည်၍ access ကို ကန့်သတ်ပါ  
+- **Service Account Management**: လိုအပ်သော minimal permission များဖြင့် dedicated service account များကို အသုံးပြုပါ  
+- **Network Segmentation**: AI component များကို သီးခြားထားပြီး service များအကြား network access ကို ကန့်သတ်ပါ  
+- **API Gateway Control များ**: External AI service များသို့ ဝင်ရောက်မှုကို ထိန်းချုပ်ရန်နှင့် စောင့်ကြည့်ရန် centralized API gateway များကို အသုံးပြုပါ  
+
+#### **Incident Response နှင့် Recovery**
+- **Rapid Response Procedure များ**: AI component များ ချိုးဖောက်ခံရပါက patch သို့မဟုတ် အစားထိုးရန် အဆင်သင့်ဖြစ်စေရန် လုပ်ငန်းစဉ်များ ရှိရမည်  
+- **Credential Rotation**: Secret, API key, နှင့် service credential များကို အလိုအလျောက် ပြောင်းလဲမှုစနစ်များ ရှိရမည်  
+- **Rollback Capability များ**: AI component များ၏ ယခင်ကောင်းမွန်သော version များသို့ အလျင်အမြန် ပြန်လည်ပြောင်းလဲနိုင်စေရန် စနစ်များ ရှိရမည်  
+- **Supply Chain Breach Recovery**: Upstream AI service များ ချိုးဖောက်ခံရပါက တုံ့ပြန်မှုအတွက် သီးသန့်လုပ်ငန်းစဉ်များ ရှိရမည်  
+
+### Microsoft Security Tools နှင့် Integration
+
+**GitHub Advanced Security** သည် supply chain လုံခြုံရေးအတွက် အပြည့်အစုံသော ကာကွယ်မှုများပေးသည်:  
+- **Secret Scanning**: Repository များအတွင်း credential, API key, နှင့် token များကို အလိုအလျောက် ရှာဖွေမှု  
+- **Dependency Scanning**: Open-source dependency နှင့် library များအတွက် အန္တရာယ်အကဲဖြတ်မှု  
+- **CodeQL Analysis**: Security vulnerability နှင့် coding issue များအတွက် static code analysis  
+- **Supply Chain Insights**: Dependency health နှင့် security status အပေါ် အမြင်ပေးစွမ်းမှု  
+
+**Azure DevOps & Azure Repos Integration:**
+- Microsoft development platform များအတွင်း security scanning integration  
+- AI workload များအတွက် Azure Pipeline အတွင်း automated security check များ  
+- AI component deployment အတွက် secure policy enforcement  
+
+**Microsoft Internal Practices:**
+Microsoft သည် supply chain လုံခြုံရေး လက်တွေ့ကျမှုများကို ထုတ်ကုန်အားလုံးတွင် ကျင့်သုံးသည်။ [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/) တွင် အတွေ့အကြုံများကို လေ့လာနိုင်ပါသည်။
+### **Microsoft Security Solutions**
+- [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Azure Content Safety Service](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [Microsoft Entra ID Security](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
+- [Azure Token Management Best Practices](https://learn.microsoft.com/entra/identity-platform/access-tokens)
+- [GitHub Advanced Security](https://github.com/security/advanced-security)
+
+### **Implementation Guides & Tutorials**
+- [Azure API Management as MCP Authentication Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+- [Microsoft Entra ID Authentication with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/)
+- [Secure Token Storage and Encryption (Video)](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
+
+### **DevOps & Supply Chain Security**
+- [Azure DevOps Security](https://azure.microsoft.com/products/devops)
+- [Azure Repos Security](https://azure.microsoft.com/products/devops/repos/)
+- [Microsoft Supply Chain Security Journey](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/)
+
+## **အပိုဆောင်း လုံခြုံရေး စာရွက်စာတမ်းများ**
+
+လုံခြုံရေးဆိုင်ရာ လမ်းညွှန်ချက်များကို အပြည့်အစုံ သိရှိရန်၊ အောက်ပါ အထူးပြု စာရွက်စာတမ်းများကို ကိုးကားပါ။
+
+- **[MCP Security Best Practices 2025](./mcp-security-best-practices-2025.md)** - MCP အကောင်အထည်ဖော်မှုများအတွက် လုံခြုံရေး အကောင်းဆုံး လေ့ကျင့်မှုများ
+- **[Azure Content Safety Implementation](./azure-content-safety-implementation.md)** - Azure Content Safety ကို ပေါင်းစည်းအသုံးပြုရန် လက်တွေ့ ဥပမာများ  
+- **[MCP Security Controls 2025](./mcp-security-controls-2025.md)** - MCP တပ်ဆင်မှုများအတွက် နောက်ဆုံးပေါ် လုံခြုံရေး ထိန်းချုပ်မှုများနှင့် နည်းလမ်းများ
+- **[MCP Best Practices Quick Reference](./mcp-best-practices.md)** - MCP လုံခြုံရေး အရေးကြီး လေ့ကျင့်မှုများအတွက် အမြန်ကိုးကားလမ်းညွှန်
+
+---
+
+## နောက်တစ်ဆင့်
+
+နောက်တစ်ဆင့်: [အခန်း ၃: စတင်ခြင်း](../03-GettingStarted/README.md)
+
+**ဝက်ဘ်ဆိုက်မှတ်ချက်**:  
+ဤစာရွက်စာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ကို အသုံးပြု၍ ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှန်ကန်မှုအတွက် ကြိုးစားနေပါသော်လည်း၊ အလိုအလျောက်ဘာသာပြန်ဆိုမှုများတွင် အမှားများ သို့မဟုတ် မမှန်ကန်မှုများ ပါဝင်နိုင်သည်ကို သတိပြုပါ။ မူရင်းစာရွက်စာတမ်းကို ၎င်း၏ မူလဘာသာစကားဖြင့် အာဏာတည်သောရင်းမြစ်အဖြစ် သတ်မှတ်ပါ။ အရေးကြီးသော အချက်အလက်များအတွက် လူသားဘာသာပြန်ပညာရှင်များမှ ပြန်ဆိုမှုကို အကြံပြုပါသည်။ ဤဘာသာပြန်ကို အသုံးပြုခြင်းမှ ဖြစ်ပေါ်လာသော နားလည်မှုမှားများ သို့မဟုတ် အဓိပ္ပါယ်မှားများအတွက် ကျွန်ုပ်တို့သည် တာဝန်မယူပါ။

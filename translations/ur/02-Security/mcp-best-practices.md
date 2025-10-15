@@ -1,108 +1,160 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "90bfc6f3be00e34f6124e2a24bf94167",
-  "translation_date": "2025-07-17T01:51:32+00:00",
+  "original_hash": "b2b9e15e78b9d9a2b3ff3e8fd7d1f434",
+  "translation_date": "2025-08-18T14:12:13+00:00",
   "source_file": "02-Security/mcp-best-practices.md",
   "language_code": "ur"
 }
 -->
-# MCP سیکیورٹی بہترین طریقے
+# ایم سی پی سیکیورٹی بہترین طریقے 2025
 
-جب آپ MCP سرورز کے ساتھ کام کر رہے ہوں تو اپنے ڈیٹا، انفراسٹرکچر، اور صارفین کی حفاظت کے لیے درج ذیل سیکیورٹی بہترین طریقے اپنائیں:
+یہ جامع گائیڈ ماڈل کانٹیکسٹ پروٹوکول (MCP) سسٹمز کے نفاذ کے لیے ضروری سیکیورٹی بہترین طریقوں کو بیان کرتی ہے، جو تازہ ترین **MCP اسپیسفیکیشن 2025-06-18** اور موجودہ صنعت کے معیارات پر مبنی ہیں۔ یہ طریقے روایتی سیکیورٹی خدشات اور ایم سی پی تعیناتیوں کے لیے منفرد AI مخصوص خطرات دونوں کو حل کرتے ہیں۔
 
-1. **ان پٹ کی تصدیق**: ہمیشہ ان پٹس کی تصدیق اور صفائی کریں تاکہ injection حملوں اور confused deputy مسائل سے بچا جا سکے۔
-2. **رسائی کنٹرول**: اپنے MCP سرور کے لیے مناسب authentication اور authorization نافذ کریں، اور permissions کو باریک بینی سے ترتیب دیں۔
-3. **محفوظ مواصلات**: اپنے MCP سرور کے ساتھ تمام مواصلات کے لیے HTTPS/TLS استعمال کریں اور حساس ڈیٹا کے لیے اضافی انکرپشن پر غور کریں۔
-4. **ریٹ لمٹنگ**: غلط استعمال، DoS حملوں، اور وسائل کے انتظام کے لیے ریٹ لمٹنگ نافذ کریں۔
-5. **لاگنگ اور مانیٹرنگ**: اپنے MCP سرور کی مشکوک سرگرمیوں کی نگرانی کریں اور مکمل audit trails نافذ کریں۔
-6. **محفوظ ذخیرہ**: حساس ڈیٹا اور اسناد کو محفوظ رکھنے کے لیے مناسب انکرپشن کا استعمال کریں۔
-7. **ٹوکن مینجمنٹ**: تمام ماڈل ان پٹس اور آؤٹ پٹس کی تصدیق اور صفائی کر کے token passthrough کی کمزوریوں سے بچیں۔
-8. **سیشن مینجمنٹ**: سیشن ہائی جیکنگ اور fixation حملوں سے بچاؤ کے لیے محفوظ سیشن ہینڈلنگ نافذ کریں۔
-9. **ٹول ایکزیکیوشن سینڈباکسنگ**: اگر کوئی کمپرو مائز ہو جائے تو lateral movement کو روکنے کے لیے ٹولز کو الگ تھلگ ماحول میں چلائیں۔
-10. **باقاعدہ سیکیورٹی آڈٹس**: اپنے MCP implementations اور dependencies کا باقاعدہ سیکیورٹی جائزہ لیں۔
-11. **پرومپٹ کی تصدیق**: پرومپٹ injection حملوں سے بچنے کے لیے ان پٹ اور آؤٹ پٹ دونوں پرومپٹس کو اسکین اور فلٹر کریں۔
-12. **authentication delegation**: اپنی مرضی کا authentication بنانے کی بجائے معروف identity providers استعمال کریں۔
-13. **permission scoping**: ہر ٹول اور resource کے لیے granular permissions نافذ کریں، کم از کم ضروری حقوق کے اصول کی پیروی کرتے ہوئے۔
-14. **ڈیٹا کی کمی**: ہر آپریشن کے لیے صرف ضروری کم از کم ڈیٹا ظاہر کریں تاکہ خطرے کی سطح کم ہو۔
-15. **خودکار کمزوری اسکیننگ**: اپنے MCP سرورز اور dependencies کو معروف کمزوریوں کے لیے باقاعدگی سے اسکین کریں۔
+## اہم سیکیورٹی ضروریات
 
-## MCP سیکیورٹی بہترین طریقوں کے لیے معاون وسائل
+### لازمی سیکیورٹی کنٹرولز (MUST ضروریات)
 
-### ان پٹ کی تصدیق
-- [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)
-- [Preventing Prompt Injection in MCP](https://modelcontextprotocol.io/docs/guides/security)
-- [Azure Content Safety Implementation](./azure-content-safety-implementation.md)
+1. **ٹوکن کی تصدیق**: ایم سی پی سرورز **کسی بھی ٹوکن کو قبول نہیں کریں گے** جو ایم سی پی سرور کے لیے واضح طور پر جاری نہیں کیے گئے ہوں۔
+2. **اجازت کی تصدیق**: ایم سی پی سرورز جو اجازت کو نافذ کرتے ہیں **تمام ان باؤنڈ درخواستوں کی تصدیق کریں گے** اور **سیشنز کو تصدیق کے لیے استعمال نہیں کریں گے**۔
+3. **صارف کی رضامندی**: ایم سی پی پراکسی سرورز جو جامد کلائنٹ IDs استعمال کرتے ہیں **ہر متحرک طور پر رجسٹرڈ کلائنٹ کے لیے واضح صارف کی رضامندی حاصل کریں گے**۔
+4. **محفوظ سیشن IDs**: ایم سی پی سرورز **کریپٹوگرافک طور پر محفوظ، غیر متعین سیشن IDs استعمال کریں گے** جو محفوظ رینڈم نمبر جنریٹرز کے ساتھ تیار کیے گئے ہوں۔
 
-### رسائی کنٹرول
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [Using Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/)
-- [Azure API Management as Auth Gateway for MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+## بنیادی سیکیورٹی طریقے
 
-### محفوظ مواصلات
-- [Transport Layer Security (TLS) Best Practices](https://learn.microsoft.com/security/engineering/solving-tls)
-- [MCP Transport Security Guidelines](https://modelcontextprotocol.io/docs/concepts/transports)
-- [End-to-End Encryption for AI Workloads](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption)
+### 1. ان پٹ کی تصدیق اور صفائی
+- **جامع ان پٹ کی تصدیق**: تمام ان پٹس کی تصدیق اور صفائی کریں تاکہ انجیکشن حملوں، کنفیوزڈ ڈپٹی مسائل، اور پرامپٹ انجیکشن خطرات کو روکا جا سکے۔
+- **پیرامیٹر اسکیمہ نافذ کرنا**: تمام ٹول پیرامیٹرز اور API ان پٹس کے لیے سخت JSON اسکیمہ کی تصدیق کریں۔
+- **مواد کی فلٹرنگ**: مائیکروسافٹ پرامپٹ شیلڈز اور Azure Content Safety کا استعمال کریں تاکہ پرامپٹس اور جوابات میں نقصان دہ مواد کو فلٹر کیا جا سکے۔
+- **آؤٹ پٹ کی صفائی**: ماڈل آؤٹ پٹس کی تصدیق اور صفائی کریں اس سے پہلے کہ انہیں صارفین یا ڈاؤن اسٹریم سسٹمز کو پیش کیا جائے۔
 
-### ریٹ لمٹنگ
-- [API Rate Limiting Patterns](https://learn.microsoft.com/azure/architecture/patterns/rate-limiting-pattern)
-- [Implementing Token Bucket Rate Limiting](https://konghq.com/blog/engineering/how-to-design-a-scalable-rate-limiting-algorithm)
-- [Rate Limiting in Azure API Management](https://learn.microsoft.com/azure/api-management/rate-limit-policy)
+### 2. تصدیق اور اجازت کی عمدگی  
+- **بیرونی شناخت فراہم کرنے والے**: تصدیق کو قائم شدہ شناخت فراہم کرنے والوں (Microsoft Entra ID، OAuth 2.1 فراہم کنندگان) کو تفویض کریں بجائے اس کے کہ اپنی تصدیق کو نافذ کریں۔
+- **باریک بینی سے اجازتیں**: کم سے کم مراعات کے اصول کے مطابق، ٹول مخصوص اجازتیں نافذ کریں۔
+- **ٹوکن لائف سائیکل مینجمنٹ**: مختصر مدت کے ایکسیس ٹوکنز کا استعمال کریں جن میں محفوظ گردش اور مناسب سامعین کی تصدیق ہو۔
+- **کثیر عوامل کی تصدیق**: تمام انتظامی رسائی اور حساس آپریشنز کے لیے MFA کی ضرورت ہے۔
 
-### لاگنگ اور مانیٹرنگ
-- [Centralized Logging for AI Systems](https://learn.microsoft.com/azure/architecture/example-scenario/logging/centralized-logging)
-- [Audit Logging Best Practices](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
-- [Azure Monitor for AI Workloads](https://learn.microsoft.com/azure/azure-monitor/overview)
+### 3. محفوظ مواصلاتی پروٹوکولز
+- **ٹرانسپورٹ لیئر سیکیورٹی**: تمام ایم سی پی مواصلات کے لیے HTTPS/TLS 1.3 کا استعمال کریں، مناسب سرٹیفکیٹ کی تصدیق کے ساتھ۔
+- **اینڈ ٹو اینڈ انکرپشن**: انتہائی حساس ڈیٹا کے لیے اضافی انکرپشن لیئرز نافذ کریں، چاہے وہ ٹرانزٹ میں ہو یا آرام میں۔
+- **سرٹیفکیٹ مینجمنٹ**: خودکار تجدید عمل کے ساتھ مناسب سرٹیفکیٹ لائف سائیکل مینجمنٹ کو برقرار رکھیں۔
+- **پروٹوکول ورژن نافذ کرنا**: موجودہ ایم سی پی پروٹوکول ورژن (2025-06-18) کا استعمال کریں، مناسب ورژن مذاکرات کے ساتھ۔
 
-### محفوظ ذخیرہ
-- [Azure Key Vault for Credential Storage](https://learn.microsoft.com/azure/key-vault/general/basic-concepts)
-- [Encrypting Sensitive Data at Rest](https://learn.microsoft.com/security/engineering/data-encryption-at-rest)
-- [Use Secure Token Storage and Encrypt Tokens](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
+### 4. جدید ریٹ لمیٹنگ اور وسائل کا تحفظ
+- **ملٹی لیئر ریٹ لمیٹنگ**: صارف، سیشن، ٹول، اور وسائل کی سطح پر ریٹ لمیٹنگ نافذ کریں تاکہ غلط استعمال کو روکا جا سکے۔
+- **ایڈاپٹیو ریٹ لمیٹنگ**: مشین لرننگ پر مبنی ریٹ لمیٹنگ کا استعمال کریں جو استعمال کے نمونوں اور خطرے کے اشارے کے مطابق ہو۔
+- **وسائل کوٹہ مینجمنٹ**: کمپیوٹیشنل وسائل، میموری کے استعمال، اور عمل درآمد کے وقت کے لیے مناسب حدود مقرر کریں۔
+- **DDoS تحفظ**: جامع DDoS تحفظ اور ٹریفک تجزیہ کے نظام تعینات کریں۔
 
-### ٹوکن مینجمنٹ
-- [JWT Best Practices (RFC 8725)](https://datatracker.ietf.org/doc/html/rfc8725)
-- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
-- [Best Practices for Token Validation and Lifetime](https://learn.microsoft.com/entra/identity-platform/access-tokens)
+### 5. جامع لاگنگ اور مانیٹرنگ
+- **ساختی آڈٹ لاگنگ**: تمام ایم سی پی آپریشنز، ٹول ایگزیکیوشنز، اور سیکیورٹی ایونٹس کے لیے تفصیلی، قابل تلاش لاگز نافذ کریں۔
+- **ریئل ٹائم سیکیورٹی مانیٹرنگ**: ایم سی پی ورک لوڈز کے لیے AI پاورڈ انوملی ڈیٹیکشن کے ساتھ SIEM سسٹمز تعینات کریں۔
+- **پرائیویسی کے مطابق لاگنگ**: ڈیٹا پرائیویسی کی ضروریات اور ضوابط کا احترام کرتے ہوئے سیکیورٹی ایونٹس کو لاگ کریں۔
+- **واقعہ کے ردعمل کا انضمام**: لاگنگ سسٹمز کو خودکار واقعہ کے ردعمل کے ورک فلو سے جوڑیں۔
 
-### سیشن مینجمنٹ
-- [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
-- [MCP Session Handling Guidelines](https://modelcontextprotocol.io/docs/guides/security)
-- [Secure Session Design Patterns](https://learn.microsoft.com/security/engineering/session-security)
+### 6. محفوظ اسٹوریج کے بہتر طریقے
+- **ہارڈویئر سیکیورٹی ماڈیولز**: اہم کریپٹوگرافک آپریشنز کے لیے HSM-بیکڈ کی اسٹوریج (Azure Key Vault، AWS CloudHSM) کا استعمال کریں۔
+- **انکرپشن کی مینجمنٹ**: انکرپشن کیز کے لیے مناسب گردش، علیحدگی، اور رسائی کنٹرولز نافذ کریں۔
+- **سیکریٹس مینجمنٹ**: تمام API کیز، ٹوکنز، اور اسناد کو مخصوص سیکریٹ مینجمنٹ سسٹمز میں اسٹور کریں۔
+- **ڈیٹا کی درجہ بندی**: حساسیت کی سطحوں کی بنیاد پر ڈیٹا کو درجہ بندی کریں اور مناسب تحفظ کے اقدامات نافذ کریں۔
 
-### ٹول ایکزیکیوشن سینڈباکسنگ
-- [Container Security Best Practices](https://learn.microsoft.com/azure/container-instances/container-instances-image-security)
-- [Implementing Process Isolation](https://learn.microsoft.com/windows/security/threat-protection/security-policy-settings/user-rights-assignment)
-- [Resource Limits for Containerized Applications](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+### 7. جدید ٹوکن مینجمنٹ
+- **ٹوکن پاس تھرو کی روک تھام**: ٹوکن پاس تھرو پیٹرنز کو واضح طور پر ممنوع قرار دیں جو سیکیورٹی کنٹرولز کو نظرانداز کرتے ہیں۔
+- **سامعین کی تصدیق**: ہمیشہ تصدیق کریں کہ ٹوکن سامعین کے دعوے ایم سی پی سرور کی مطلوبہ شناخت سے میل کھاتے ہیں۔
+- **دعویٰ پر مبنی اجازت**: ٹوکن دعووں اور صارف کی خصوصیات کی بنیاد پر باریک بینی سے اجازت نافذ کریں۔
+- **ٹوکن بائنڈنگ**: جہاں مناسب ہو، ٹوکنز کو مخصوص سیشنز، صارفین، یا ڈیوائسز سے باندھیں۔
 
-### باقاعدہ سیکیورٹی آڈٹس
-- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl)
-- [OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/)
-- [Security Code Review Guidelines](https://owasp.org/www-pdf-archive/OWASP_Code_Review_Guide_v2.pdf)
+### 8. محفوظ سیشن مینجمنٹ
+- **کریپٹوگرافک سیشن IDs**: سیشن IDs کو کریپٹوگرافک طور پر محفوظ رینڈم نمبر جنریٹرز کا استعمال کرتے ہوئے تیار کریں (پیش گوئی کے قابل تسلسل نہیں)۔
+- **صارف مخصوص بائنڈنگ**: سیشن IDs کو صارف مخصوص معلومات کے ساتھ محفوظ فارمیٹس جیسے `<user_id>:<session_id>` کے ذریعے باندھیں۔
+- **سیشن لائف سائیکل کنٹرولز**: مناسب سیشن کی میعاد ختم ہونے، گردش، اور کالعدم کرنے کے طریقہ کار نافذ کریں۔
+- **سیشن سیکیورٹی ہیڈرز**: سیشن تحفظ کے لیے مناسب HTTP سیکیورٹی ہیڈرز کا استعمال کریں۔
 
-### پرومپٹ کی تصدیق
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
-- [Azure Content Safety for AI](https://learn.microsoft.com/azure/ai-services/content-safety/)
-- [Preventing Prompt Injection](https://github.com/microsoft/prompt-shield-js)
+### 9. AI مخصوص سیکیورٹی کنٹرولز
+- **پرامپٹ انجیکشن دفاع**: مائیکروسافٹ پرامپٹ شیلڈز کو اسپاٹ لائٹنگ، ڈیلیمیٹرز، اور ڈیٹا مارکنگ تکنیک کے ساتھ تعینات کریں۔
+- **ٹول پوائزننگ کی روک تھام**: ٹول میٹا ڈیٹا کی تصدیق کریں، متحرک تبدیلیوں کی نگرانی کریں، اور ٹول کی سالمیت کی تصدیق کریں۔
+- **ماڈل آؤٹ پٹ کی تصدیق**: ماڈل آؤٹ پٹس کو ممکنہ ڈیٹا لیکیج، نقصان دہ مواد، یا سیکیورٹی پالیسی کی خلاف ورزیوں کے لیے اسکین کریں۔
+- **کانٹیکسٹ ونڈو تحفظ**: کانٹیکسٹ ونڈو پوائزننگ اور ہیرا پھیری کے حملوں کو روکنے کے لیے کنٹرولز نافذ کریں۔
 
-### authentication delegation
-- [Microsoft Entra ID Integration](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow)
-- [OAuth 2.0 for MCP Services](https://learn.microsoft.com/security/engineering/solving-oauth)
-- [MCP Security Controls 2025](./mcp-security-controls-2025.md)
+### 10. ٹول ایگزیکیوشن سیکیورٹی
+- **ایگزیکیوشن سینڈ باکسنگ**: ٹول ایگزیکیوشنز کو کنٹینرائزڈ، الگ تھلگ ماحول میں وسائل کی حدود کے ساتھ چلائیں۔
+- **مراعات کی علیحدگی**: ٹولز کو کم سے کم مطلوبہ مراعات کے ساتھ اور الگ سروس اکاؤنٹس کے ساتھ چلائیں۔
+- **نیٹ ورک کی علیحدگی**: ٹول ایگزیکیوشن ماحول کے لیے نیٹ ورک کی تقسیم کو نافذ کریں۔
+- **ایگزیکیوشن مانیٹرنگ**: ٹول ایگزیکیوشن کی غیر معمولی رویے، وسائل کے استعمال، اور سیکیورٹی کی خلاف ورزیوں کے لیے نگرانی کریں۔
 
-### permission scoping
-- [Secure Least-Privileged Access](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
-- [Role-Based Access Control (RBAC) Design](https://learn.microsoft.com/azure/role-based-access-control/overview)
-- [Tool-specific Authorization in MCP](https://modelcontextprotocol.io/docs/guides/best-practices)
+### 11. مسلسل سیکیورٹی کی تصدیق
+- **خودکار سیکیورٹی ٹیسٹنگ**: CI/CD پائپ لائنز میں سیکیورٹی ٹیسٹنگ کو GitHub Advanced Security جیسے ٹولز کے ساتھ ضم کریں۔
+- **کمزوری مینجمنٹ**: تمام انحصارات، بشمول AI ماڈلز اور بیرونی خدمات، کو باقاعدگی سے اسکین کریں۔
+- **پینیٹریشن ٹیسٹنگ**: ایم سی پی نفاذ کو خاص طور پر نشانہ بنانے والے باقاعدہ سیکیورٹی جائزے کریں۔
+- **سیکیورٹی کوڈ جائزے**: ایم سی پی سے متعلقہ کوڈ تبدیلیوں کے لیے لازمی سیکیورٹی جائزے نافذ کریں۔
 
-### ڈیٹا کی کمی
-- [Data Protection by Design](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments)
-- [AI Data Privacy Best Practices](https://learn.microsoft.com/legal/cognitive-services/openai/data-privacy)
-- [Implementing Privacy-enhancing Technologies](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/)
+### 12. AI کے لیے سپلائی چین سیکیورٹی
+- **اجزاء کی تصدیق**: تمام AI اجزاء (ماڈلز، ایمبیڈنگز، APIs) کی اصل، سالمیت، اور سیکیورٹی کی تصدیق کریں۔
+- **انحصار مینجمنٹ**: تمام سافٹ ویئر اور AI انحصارات کی موجودہ فہرستیں برقرار رکھیں، کمزوری کی ٹریکنگ کے ساتھ۔
+- **قابل اعتماد ریپوزٹریز**: تمام AI ماڈلز، لائبریریز، اور ٹولز کے لیے تصدیق شدہ، قابل اعتماد ذرائع کا استعمال کریں۔
+- **سپلائی چین مانیٹرنگ**: AI سروس فراہم کنندگان اور ماڈل ریپوزٹریز میں سمجھوتوں کی مسلسل نگرانی کریں۔
 
-### خودکار کمزوری اسکیننگ
-- [GitHub Advanced Security](https://github.com/security/advanced-security)
-- [DevSecOps Pipeline Implementation](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline)
-- [Continuous Security Validation](https://www.microsoft.com/security/blog/2022/04/05/step-by-step-building-a-more-efficient-devsecops-environment/)
+## جدید سیکیورٹی پیٹرنز
 
-**دستخطی نوٹ**:  
-یہ دستاویز AI ترجمہ سروس [Co-op Translator](https://github.com/Azure/co-op-translator) کے ذریعے ترجمہ کی گئی ہے۔ اگرچہ ہم درستگی کے لیے کوشاں ہیں، براہ کرم آگاہ رہیں کہ خودکار ترجموں میں غلطیاں یا عدم درستیاں ہو سکتی ہیں۔ اصل دستاویز اپنی مادری زبان میں معتبر ماخذ سمجھی جانی چاہیے۔ اہم معلومات کے لیے پیشہ ور انسانی ترجمہ کی سفارش کی جاتی ہے۔ اس ترجمے کے استعمال سے پیدا ہونے والی کسی بھی غلط فہمی یا غلط تشریح کی ذمہ داری ہم پر عائد نہیں ہوتی۔
+### ایم سی پی کے لیے زیرو ٹرسٹ آرکیٹیکچر
+- **کبھی اعتماد نہ کریں، ہمیشہ تصدیق کریں**: ایم سی پی کے تمام شرکاء کے لیے مسلسل تصدیق کو نافذ کریں۔
+- **مائیکرو سیگمنٹیشن**: ایم سی پی اجزاء کو باریک بینی سے نیٹ ورک اور شناخت کنٹرولز کے ساتھ الگ کریں۔
+- **مشروط رسائی**: خطرے پر مبنی رسائی کنٹرولز نافذ کریں جو سیاق و سباق اور رویے کے مطابق ہوں۔
+- **مسلسل خطرے کی تشخیص**: موجودہ خطرے کے اشارے کی بنیاد پر سیکیورٹی کی حالت کا متحرک اندازہ لگائیں۔
+
+### پرائیویسی کو محفوظ رکھنے والے AI کا نفاذ
+- **ڈیٹا کی کم سے کمیت**: ہر ایم سی پی آپریشن کے لیے کم سے کم ضروری ڈیٹا کو ہی ظاہر کریں۔
+- **ڈیفرینشل پرائیویسی**: حساس ڈیٹا پروسیسنگ کے لیے پرائیویسی کو محفوظ رکھنے والی تکنیکوں کو نافذ کریں۔
+- **ہومومورفک انکرپشن**: انکرپٹڈ ڈیٹا پر محفوظ کمپیوٹیشن کے لیے جدید انکرپشن تکنیکوں کا استعمال کریں۔
+- **فیڈریٹڈ لرننگ**: تقسیم شدہ لرننگ کے طریقے نافذ کریں جو ڈیٹا کی مقامی حیثیت اور پرائیویسی کو برقرار رکھیں۔
+
+### AI سسٹمز کے لیے واقعہ کے ردعمل
+- **AI مخصوص واقعہ کے طریقہ کار**: AI اور ایم سی پی مخصوص خطرات کے لیے تیار کردہ واقعہ کے ردعمل کے طریقہ کار تیار کریں۔
+- **خودکار ردعمل**: عام AI سیکیورٹی واقعات کے لیے خودکار کنٹینمنٹ اور اصلاح کو نافذ کریں۔
+- **فورینزک صلاحیتیں**: AI سسٹم کے سمجھوتوں اور ڈیٹا کی خلاف ورزیوں کے لیے فورینزک تیاری کو برقرار رکھیں۔
+- **بحالی کے طریقہ کار**: AI ماڈل پوائزننگ، پرامپٹ انجیکشن حملوں، اور سروس کے سمجھوتوں سے بحالی کے لیے طریقہ کار قائم کریں۔
+
+## نفاذ کے وسائل اور معیارات
+
+### آفیشل ایم سی پی دستاویزات
+- [MCP اسپیسفیکیشن 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) - موجودہ ایم سی پی پروٹوکول اسپیسفیکیشن
+- [MCP سیکیورٹی بہترین طریقے](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) - آفیشل سیکیورٹی گائیڈنس
+- [MCP اجازت اسپیسفیکیشن](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization) - تصدیق اور اجازت کے پیٹرنز
+- [MCP ٹرانسپورٹ سیکیورٹی](https://modelcontextprotocol.io/specification/2025-06-18/transports/) - ٹرانسپورٹ لیئر سیکیورٹی کی ضروریات
+
+### مائیکروسافٹ سیکیورٹی حل
+- [Microsoft پرامپٹ شیلڈز](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - جدید پرامپٹ انجیکشن تحفظ
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/) - جامع AI مواد کی فلٹرنگ
+- [Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow) - انٹرپرائز شناخت اور رسائی مینجمنٹ
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts) - محفوظ سیکریٹس اور اسناد کی مینجمنٹ
+- [GitHub Advanced Security](https://github.com/security/advanced-security) - سپلائی چین اور کوڈ سیکیورٹی اسکیننگ
+
+### سیکیورٹی معیارات اور فریم ورک
+- [OAuth 2.1 سیکیورٹی بہترین طریقے](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics) - موجودہ OAuth سیکیورٹی گائیڈنس
+- [OWASP ٹاپ 10](https://owasp.org/www-project-top-ten/) - ویب ایپلیکیشن سیکیورٹی خطرات
+- [OWASP ٹاپ 10 برائے LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559) - AI مخصوص سیکیورٹی خطرات
+- [NIST AI رسک مینجمنٹ فریم ورک](https://www.nist.gov/itl/ai-risk-management-framework) - جامع AI رسک مینجمنٹ
+- [ISO 27001:2022](https://www.iso.org/standard/27001) - معلوماتی سیکیورٹی مینجمنٹ سسٹمز
+
+### نفاذ کے گائیڈز اور ٹیوٹوریلز
+- [Azure API مینجمنٹ بطور ایم سی پی آتھ گیٹ وے](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) - انٹرپرائز تصدیق کے پیٹرنز
+- [Microsoft Entra ID کے ساتھ ایم سی پی سرورز](https://den.dev/blog/mcp-server-auth-entra-id-session/) - شناخت فراہم کنندہ کا انضمام
+- [محفوظ ٹوکن اسٹوریج نفاذ](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2) - ٹوکن مینجمنٹ بہترین طریقے
+- [AI کے لیے اینڈ ٹو اینڈ انکرپشن](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption) - جدید انکرپشن پیٹرنز
+
+### جدید سیکیورٹی وسائل
+- [Microsoft سیکیورٹی ڈیولپمنٹ لائف سائیکل](https://www.microsoft.com/sdl) - محفوظ ترقی کے طریقے
+- [AI ریڈ ٹیم گائیڈنس](https://learn.microsoft.com/security/ai-red-team/) - AI مخصوص سیکیورٹی ٹیسٹنگ
+- [AI سسٹمز کے لیے خطرے کی ماڈلنگ](https://learn.microsoft.com/security/adoption/approach/threats-ai) - AI خطرے کی ماڈلنگ کی طریقہ کار
+- [AI کے لیے پرائیویسی انجینئرنگ](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/) - پرائیویسی کو محفوظ رکھنے والی AI تکنیکیں
+
+### تعمیل اور گورننس
+- [AI کے لیے GDPR تعمیل](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments) - AI سسٹمز میں پرائیویسی
+- **ٹول ڈیولپمنٹ**: ایم سی پی ایکو سسٹم کے لیے سیکیورٹی ٹولز اور لائبریریاں تیار کریں اور شیئر کریں
+
+---
+
+*یہ دستاویز ایم سی پی سیکیورٹی کے بہترین طریقوں کو 18 اگست 2025 کے مطابق ظاہر کرتی ہے، جو ایم سی پی اسپیسفیکیشن 2025-06-18 پر مبنی ہے۔ سیکیورٹی کے طریقوں کو پروٹوکول اور خطرات کے منظرنامے کے ارتقاء کے ساتھ باقاعدگی سے جائزہ لیا جانا اور اپ ڈیٹ کیا جانا چاہیے۔*
+
+**ڈسکلیمر**:  
+یہ دستاویز AI ترجمہ سروس [Co-op Translator](https://github.com/Azure/co-op-translator) کا استعمال کرتے ہوئے ترجمہ کی گئی ہے۔ ہم درستگی کے لیے کوشش کرتے ہیں، لیکن براہ کرم آگاہ رہیں کہ خودکار ترجمے میں غلطیاں یا عدم درستگی ہو سکتی ہیں۔ اصل دستاویز، جو اس کی مقامی زبان میں ہے، کو مستند ذریعہ سمجھا جانا چاہیے۔ اہم معلومات کے لیے، پیشہ ور انسانی ترجمہ کی سفارش کی جاتی ہے۔ اس ترجمے کے استعمال سے پیدا ہونے والی کسی بھی غلط فہمی یا غلط تشریح کے لیے ہم ذمہ دار نہیں ہیں۔

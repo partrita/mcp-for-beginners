@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "d0f0d7012325b286e4a717791b23ae7e",
-  "translation_date": "2025-07-13T17:59:58+00:00",
+  "original_hash": "d4c162484df410632550a4a357d40341",
+  "translation_date": "2025-09-03T16:07:02+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/python/README.md",
   "language_code": "pl"
 }
@@ -11,16 +11,16 @@ CO_OP_TRANSLATOR_METADATA:
 
 Zaleca się zainstalowanie `uv`, ale nie jest to konieczne, zobacz [instrukcje](https://docs.astral.sh/uv/#highlights)
 
-## -0- Utwórz środowisko wirtualne
+## -0- Utwórz wirtualne środowisko
 
 ```bash
 python -m venv venv
 ```
 
-## -1- Aktywuj środowisko wirtualne
+## -1- Aktywuj wirtualne środowisko
 
 ```bash
-venv\Scrips\activate
+venv\Scripts\activate
 ```
 
 ## -2- Zainstaluj zależności
@@ -43,13 +43,13 @@ Gdy serwer działa w jednym terminalu, otwórz drugi terminal i uruchom następu
 mcp dev server.py
 ```
 
-To powinno uruchomić serwer WWW z interfejsem wizualnym, który pozwoli Ci przetestować przykład.
+Powinno to uruchomić serwer WWW z interfejsem wizualnym, który umożliwia testowanie przykładu.
 
-Po połączeniu z serwerem:
+Gdy serwer jest połączony:
 
-- spróbuj wyświetlić listę narzędzi i uruchom `add` z argumentami 2 i 4, w wyniku powinno pojawić się 6.
+- spróbuj wyświetlić listę narzędzi i uruchom `add`, z argumentami 2 i 4, powinieneś zobaczyć wynik 6.
 
-- przejdź do zasobów i szablonu zasobu, wywołaj get_greeting, wpisz imię i powinieneś zobaczyć powitanie z podanym imieniem.
+- przejdź do zasobów i szablonu zasobów, wywołaj funkcję get_greeting, wpisz imię, a powinieneś zobaczyć powitanie z podanym imieniem.
 
 ### Testowanie w trybie CLI
 
@@ -112,9 +112,11 @@ Powinieneś zobaczyć następujący wynik:
 }
 ```
 
-> ![!TIP]
-> Zazwyczaj znacznie szybciej jest uruchomić inspektora w trybie CLI niż w przeglądarce.
+> [!TIP]
+> Zazwyczaj inspektor działa znacznie szybciej w trybie CLI niż w przeglądarce.
 > Przeczytaj więcej o inspektorze [tutaj](https://github.com/modelcontextprotocol/inspector).
 
+---
+
 **Zastrzeżenie**:  
-Niniejszy dokument został przetłumaczony przy użyciu usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mimo że dążymy do dokładności, prosimy mieć na uwadze, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w języku źródłowym powinien być uznawany za źródło autorytatywne. W przypadku informacji o kluczowym znaczeniu zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczeniowej AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za wiarygodne źródło. W przypadku informacji o kluczowym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.

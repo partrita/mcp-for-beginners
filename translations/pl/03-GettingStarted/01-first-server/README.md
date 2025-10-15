@@ -1,49 +1,49 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "004572534b5c86f847fac76bcbb76e89",
-  "translation_date": "2025-07-22T09:01:32+00:00",
+  "original_hash": "ec11ee93f31fdadd94facd3e3d22f9e6",
+  "translation_date": "2025-09-09T21:48:07+00:00",
   "source_file": "03-GettingStarted/01-first-server/README.md",
   "language_code": "pl"
 }
 -->
-# Pierwsze kroki z MCP
+# Rozpoczęcie pracy z MCP
 
-Witamy w Twojej pierwszej przygodzie z Model Context Protocol (MCP)! Niezależnie od tego, czy dopiero zaczynasz swoją przygodę z MCP, czy chcesz pogłębić swoją wiedzę, ten przewodnik przeprowadzi Cię przez kluczowe etapy konfiguracji i procesu tworzenia. Dowiesz się, jak MCP umożliwia płynną integrację między modelami AI a aplikacjami oraz jak szybko przygotować środowisko do budowy i testowania rozwiązań opartych na MCP.
+Witamy w pierwszych krokach z Model Context Protocol (MCP)! Niezależnie od tego, czy dopiero zaczynasz swoją przygodę z MCP, czy chcesz pogłębić swoją wiedzę, ten przewodnik przeprowadzi Cię przez podstawową konfigurację i proces tworzenia. Dowiesz się, jak MCP umożliwia płynną integrację między modelami AI a aplikacjami oraz jak szybko przygotować środowisko do budowy i testowania rozwiązań opartych na MCP.
 
-> TLDR; Jeśli tworzysz aplikacje AI, wiesz, że możesz dodawać narzędzia i inne zasoby do swojego LLM (large language model), aby uczynić go bardziej wszechstronnym. Jednakże, jeśli umieścisz te narzędzia i zasoby na serwerze, aplikacja i możliwości serwera mogą być wykorzystywane przez dowolnego klienta, z LLM lub bez.
+> TLDR; Jeśli tworzysz aplikacje AI, wiesz, że możesz dodawać narzędzia i inne zasoby do swojego LLM (large language model), aby uczynić go bardziej kompetentnym. Jednakże, jeśli umieścisz te narzędzia i zasoby na serwerze, aplikacja i możliwości serwera mogą być używane przez dowolnego klienta, z LLM lub bez niego.
 
 ## Przegląd
 
-Ta lekcja dostarcza praktycznych wskazówek dotyczących konfiguracji środowisk MCP i budowy pierwszych aplikacji MCP. Nauczysz się, jak skonfigurować niezbędne narzędzia i frameworki, stworzyć podstawowe serwery MCP, utworzyć aplikacje hostujące oraz przetestować swoje implementacje.
+Ta lekcja dostarcza praktycznych wskazówek dotyczących konfiguracji środowisk MCP i budowy pierwszych aplikacji MCP. Nauczysz się, jak skonfigurować niezbędne narzędzia i frameworki, zbudować podstawowe serwery MCP, stworzyć aplikacje hostujące oraz przetestować swoje implementacje.
 
-Model Context Protocol (MCP) to otwarty protokół, który standaryzuje sposób, w jaki aplikacje dostarczają kontekst do LLM. Można o nim myśleć jak o porcie USB-C dla aplikacji AI – zapewnia ustandaryzowany sposób łączenia modeli AI z różnymi źródłami danych i narzędziami.
+Model Context Protocol (MCP) to otwarty protokół, który standaryzuje sposób, w jaki aplikacje dostarczają kontekst do LLM. Można go porównać do portu USB-C dla aplikacji AI - zapewnia ustandaryzowany sposób łączenia modeli AI z różnymi źródłami danych i narzędziami.
 
 ## Cele nauki
 
 Po ukończeniu tej lekcji będziesz w stanie:
 
-- Skonfigurować środowiska deweloperskie dla MCP w językach C#, Java, Python, TypeScript i JavaScript
-- Tworzyć i wdrażać podstawowe serwery MCP z niestandardowymi funkcjami (zasoby, podpowiedzi i narzędzia)
-- Tworzyć aplikacje hostujące, które łączą się z serwerami MCP
+- Skonfigurować środowiska programistyczne dla MCP w językach C#, Java, Python, TypeScript i Rust
+- Zbudować i wdrożyć podstawowe serwery MCP z niestandardowymi funkcjami (zasoby, podpowiedzi i narzędzia)
+- Stworzyć aplikacje hostujące, które łączą się z serwerami MCP
 - Testować i debugować implementacje MCP
 
 ## Konfiguracja środowiska MCP
 
-Zanim zaczniesz pracę z MCP, ważne jest, aby przygotować swoje środowisko deweloperskie i zrozumieć podstawowy przepływ pracy. Ta sekcja przeprowadzi Cię przez początkowe kroki konfiguracji, aby zapewnić płynny start z MCP.
+Zanim zaczniesz pracę z MCP, ważne jest, aby przygotować swoje środowisko programistyczne i zrozumieć podstawowy przepływ pracy. Ta sekcja przeprowadzi Cię przez początkowe kroki konfiguracji, aby zapewnić płynny start z MCP.
 
 ### Wymagania wstępne
 
 Przed rozpoczęciem pracy z MCP upewnij się, że masz:
 
-- **Środowisko deweloperskie**: Dla wybranego języka (C#, Java, Python, TypeScript lub JavaScript)
+- **Środowisko programistyczne**: Dla wybranego języka (C#, Java, Python, TypeScript lub Rust)
 - **IDE/Edytor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm lub dowolny nowoczesny edytor kodu
-- **Menedżery pakietów**: NuGet, Maven/Gradle, pip lub npm/yarn
-- **Klucze API**: Dla usług AI, które planujesz wykorzystać w swoich aplikacjach hostujących
+- **Menedżery pakietów**: NuGet, Maven/Gradle, pip, npm/yarn lub Cargo
+- **Klucze API**: Dla usług AI, które planujesz używać w swoich aplikacjach hostujących
 
 ## Podstawowa struktura serwera MCP
 
-Typowy serwer MCP zawiera:
+Typowy serwer MCP obejmuje:
 
 - **Konfigurację serwera**: Ustawienia portu, uwierzytelniania i inne
 - **Zasoby**: Dane i kontekst udostępniane LLM
@@ -53,33 +53,74 @@ Typowy serwer MCP zawiera:
 Oto uproszczony przykład w TypeScript:
 
 ```typescript
-import { Server, Tool, Resource } from "@modelcontextprotocol/typescript-server-sdk";
+import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
 
-// Create a new MCP server
-const server = new Server({
-  port: 3000,
-  name: "Example MCP Server",
+// Create an MCP server
+const server = new McpServer({
+  name: "Demo",
   version: "1.0.0"
 });
 
-// Register a tool
-server.registerTool({
-  name: "calculator",
-  description: "Performs basic calculations",
-  parameters: {
-    expression: {
-      type: "string",
-      description: "The math expression to evaluate"
-    }
-  },
-  handler: async (params) => {
-    const result = eval(params.expression);
-    return { result };
-  }
-});
+// Add an addition tool
+server.tool("add",
+  { a: z.number(), b: z.number() },
+  async ({ a, b }) => ({
+    content: [{ type: "text", text: String(a + b) }]
+  })
+);
 
-// Start the server
-server.start();
+// Add a dynamic greeting resource
+server.resource(
+  "file",
+  // The 'list' parameter controls how the resource lists available files. Setting it to undefined disables listing for this resource.
+  new ResourceTemplate("file://{path}", { list: undefined }),
+  async (uri, { path }) => ({
+    contents: [{
+      uri: uri.href,
+      text: `File, ${path}!`
+    }]
+  })
+);
+
+// Add a file resource that reads the file contents
+server.resource(
+  "file",
+  new ResourceTemplate("file://{path}", { list: undefined }),
+  async (uri, { path }) => {
+    let text;
+    try {
+      text = await fs.readFile(path, "utf8");
+    } catch (err) {
+      text = `Error reading file: ${err.message}`;
+    }
+    return {
+      contents: [{
+        uri: uri.href,
+        text
+      }]
+    };
+  }
+);
+
+server.prompt(
+  "review-code",
+  { code: z.string() },
+  ({ code }) => ({
+    messages: [{
+      role: "user",
+      content: {
+        type: "text",
+        text: `Please review this code:\n\n${code}`
+      }
+    }]
+  })
+);
+
+// Start receiving messages on stdin and sending messages on stdout
+const transport = new StdioServerTransport();
+await server.connect(transport);
 ```
 
 W powyższym kodzie:
@@ -87,23 +128,23 @@ W powyższym kodzie:
 - Importujemy niezbędne klasy z MCP TypeScript SDK.
 - Tworzymy i konfigurujemy nową instancję serwera MCP.
 - Rejestrujemy niestandardowe narzędzie (`calculator`) z funkcją obsługi.
-- Uruchamiamy serwer, aby nasłuchiwał na przychodzące żądania MCP.
+- Uruchamiamy serwer, aby nasłuchiwać przychodzących żądań MCP.
 
 ## Testowanie i debugowanie
 
-Zanim rozpoczniesz testowanie swojego serwera MCP, ważne jest, aby zrozumieć dostępne narzędzia i najlepsze praktyki debugowania. Skuteczne testowanie zapewnia, że serwer działa zgodnie z oczekiwaniami i pomaga szybko zidentyfikować oraz rozwiązać problemy. Poniższa sekcja przedstawia zalecane podejścia do weryfikacji implementacji MCP.
+Zanim zaczniesz testować swój serwer MCP, ważne jest, aby zrozumieć dostępne narzędzia i najlepsze praktyki debugowania. Skuteczne testowanie zapewnia, że serwer działa zgodnie z oczekiwaniami i pomaga szybko zidentyfikować oraz rozwiązać problemy. Poniższa sekcja przedstawia zalecane podejścia do walidacji implementacji MCP.
 
-MCP oferuje narzędzia, które pomogą Ci testować i debugować serwery:
+MCP oferuje narzędzia, które pomagają testować i debugować serwery:
 
 - **Narzędzie Inspector**: Graficzny interfejs umożliwiający połączenie z serwerem i testowanie narzędzi, podpowiedzi oraz zasobów.
-- **curl**: Możesz również połączyć się z serwerem za pomocą narzędzia wiersza poleceń, takiego jak curl, lub innych klientów, które mogą tworzyć i wykonywać polecenia HTTP.
+- **curl**: Możesz również połączyć się z serwerem za pomocą narzędzia wiersza poleceń, takiego jak curl, lub innych klientów, które mogą tworzyć i uruchamiać polecenia HTTP.
 
 ### Korzystanie z MCP Inspector
 
-[MCP Inspector](https://github.com/modelcontextprotocol/inspector) to wizualne narzędzie testowe, które pozwala:
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector) to wizualne narzędzie testowe, które pomaga:
 
 1. **Odkrywać możliwości serwera**: Automatycznie wykrywać dostępne zasoby, narzędzia i podpowiedzi
-2. **Testować wykonanie narzędzi**: Wypróbowywać różne parametry i obserwować odpowiedzi w czasie rzeczywistym
+2. **Testować wykonanie narzędzi**: Wypróbować różne parametry i zobaczyć odpowiedzi w czasie rzeczywistym
 3. **Przeglądać metadane serwera**: Analizować informacje o serwerze, schematy i konfiguracje
 
 ```bash
@@ -111,23 +152,23 @@ MCP oferuje narzędzia, które pomogą Ci testować i debugować serwery:
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Po uruchomieniu powyższych poleceń MCP Inspector otworzy lokalny interfejs w przeglądarce. Powinieneś zobaczyć pulpit nawigacyjny wyświetlający zarejestrowane serwery MCP, ich dostępne narzędzia, zasoby i podpowiedzi. Interfejs umożliwia interaktywne testowanie narzędzi, przeglądanie metadanych serwera i obserwowanie odpowiedzi w czasie rzeczywistym, co ułatwia weryfikację i debugowanie implementacji serwera MCP.
+Po uruchomieniu powyższych poleceń MCP Inspector uruchomi lokalny interfejs internetowy w Twojej przeglądarce. Możesz spodziewać się widoku pulpitu nawigacyjnego, który wyświetla zarejestrowane serwery MCP, dostępne narzędzia, zasoby i podpowiedzi. Interfejs umożliwia interaktywne testowanie wykonania narzędzi, przeglądanie metadanych serwera i oglądanie odpowiedzi w czasie rzeczywistym, co ułatwia walidację i debugowanie implementacji serwera MCP.
 
 Oto zrzut ekranu, jak to może wyglądać:
 
-![](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.pl.png)
+![Połączenie serwera MCP Inspector](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.pl.png)
 
-## Typowe problemy z konfiguracją i ich rozwiązania
+## Typowe problemy z konfiguracją i rozwiązania
 
 | Problem | Możliwe rozwiązanie |
 |--------|----------------------|
-| Odmowa połączenia | Sprawdź, czy serwer działa i czy port jest poprawny |
+| Odmowa połączenia | Sprawdź, czy serwer działa i port jest poprawny |
 | Błędy wykonania narzędzi | Przejrzyj walidację parametrów i obsługę błędów |
 | Problemy z uwierzytelnianiem | Zweryfikuj klucze API i uprawnienia |
 | Błędy walidacji schematu | Upewnij się, że parametry pasują do zdefiniowanego schematu |
 | Serwer nie uruchamia się | Sprawdź konflikty portów lub brakujące zależności |
 | Błędy CORS | Skonfiguruj odpowiednie nagłówki CORS dla żądań między domenami |
-| Problemy z tokenami uwierzytelniającymi | Zweryfikuj ważność tokenów i uprawnienia |
+| Problemy z uwierzytelnianiem | Zweryfikuj ważność tokenów i uprawnienia |
 
 ## Rozwój lokalny
 
@@ -143,7 +184,7 @@ npm run start
 # Server running at http://localhost:3000
 ```
 
-## Tworzenie pierwszego serwera MCP
+## Budowa pierwszego serwera MCP
 
 Omówiliśmy [Podstawowe pojęcia](/01-CoreConcepts/README.md) w poprzedniej lekcji, teraz czas wykorzystać tę wiedzę w praktyce.
 
@@ -159,11 +200,11 @@ Serwer MCP może na przykład:
 - Integracja z innymi narzędziami i usługami
 - Udostępniać interfejs użytkownika do interakcji
 
-Świetnie, teraz gdy wiemy, co możemy zrobić, zacznijmy kodować.
+Świetnie, teraz gdy wiemy, co możemy zrobić, zacznijmy pisać kod.
 
 ## Ćwiczenie: Tworzenie serwera
 
-Aby stworzyć serwer, należy wykonać następujące kroki:
+Aby stworzyć serwer, musisz wykonać następujące kroki:
 
 - Zainstalować MCP SDK.
 - Utworzyć projekt i skonfigurować jego strukturę.
@@ -214,7 +255,7 @@ curl https://start.spring.io/starter.zip \
   -o calculator-server.zip
 ```
 
-Wypakuj plik zip:
+Rozpakuj plik zip:
 
 ```bash
 unzip calculator-server.zip -d calculator-server
@@ -223,7 +264,7 @@ cd calculator-server
 rm -rf src/test/java
 ```
 
-Dodaj następującą pełną konfigurację do pliku *pom.xml*:
+Dodaj pełną konfigurację do pliku *pom.xml*:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -323,9 +364,17 @@ Dodaj następującą pełną konfigurację do pliku *pom.xml*:
 </project>
 ```
 
+#### Rust
+
+```sh
+mkdir calculator-server
+cd calculator-server
+cargo init
+```
+
 ### -2- Dodaj zależności
 
-Teraz, gdy masz utworzony projekt, dodajmy zależności:
+Teraz, gdy projekt został utworzony, dodajmy zależności:
 
 #### TypeScript
 
@@ -354,11 +403,19 @@ cd calculator-server
 ./mvnw clean install -DskipTests
 ```
 
+#### Rust
+
+```sh
+cargo add rmcp --features server,transport-io
+cargo add serde
+cargo add tokio --features rt-multi-thread
+```
+
 ### -3- Utwórz pliki projektu
 
 #### TypeScript
 
-Otwórz plik *package.json* i zastąp jego zawartość następującą, aby upewnić się, że możesz zbudować i uruchomić serwer:
+Otwórz plik *package.json* i zastąp jego zawartość następującym kodem, aby upewnić się, że możesz zbudować i uruchomić serwer:
 
 ```json
 {
@@ -405,7 +462,7 @@ Utwórz plik *tsconfig.json* z następującą zawartością:
 }
 ```
 
-Utwórz katalog na kod źródłowy:
+Utwórz katalog dla swojego kodu źródłowego:
 
 ```sh
 mkdir src
@@ -431,7 +488,11 @@ dotnet add package Microsoft.Extensions.Hosting
 
 #### Java
 
-Dla projektów Spring Boot struktura projektu jest tworzona automatycznie.
+Dla projektów Java Spring Boot struktura projektu jest tworzona automatycznie.
+
+#### Rust
+
+Dla Rust plik *src/main.rs* jest tworzony domyślnie po uruchomieniu `cargo init`. Otwórz plik i usuń domyślny kod.
 
 ### -4- Utwórz kod serwera
 
@@ -451,7 +512,7 @@ const server = new McpServer({
 });
 ```
 
-Teraz masz serwer, ale nie robi on zbyt wiele. Naprawmy to.
+Teraz masz serwer, ale nie robi zbyt wiele, poprawmy to.
 
 #### Python
 
@@ -664,7 +725,7 @@ public class CalculatorService {
 }
 ```
 
-**Opcjonalne komponenty dla gotowej do produkcji usługi:**
+**Opcjonalne komponenty dla serwisu gotowego do produkcji:**
 
 Utwórz konfigurację startową *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
 
@@ -768,6 +829,77 @@ Calculator MCP Server v1.0
 Spring Boot MCP Application
 ```
 
+#### Rust
+
+Dodaj następujący kod na początku pliku *src/main.rs*. Importuje on niezbędne biblioteki i moduły dla serwera MCP.
+
+```rust
+use rmcp::{
+    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    model::{ServerCapabilities, ServerInfo},
+    schemars, tool, tool_handler, tool_router,
+    transport::stdio,
+    ServerHandler, ServiceExt,
+};
+use std::error::Error;
+```
+
+Serwer kalkulatora będzie prostym serwerem, który może dodawać dwie liczby. Utwórz strukturę reprezentującą żądanie kalkulatora.
+
+```rust
+#[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
+pub struct CalculatorRequest {
+    pub a: f64,
+    pub b: f64,
+}
+```
+
+Następnie utwórz strukturę reprezentującą serwer kalkulatora. Ta struktura będzie przechowywać router narzędzi, który służy do rejestrowania narzędzi.
+
+```rust
+#[derive(Debug, Clone)]
+pub struct Calculator {
+    tool_router: ToolRouter<Self>,
+}
+```
+
+Teraz możemy zaimplementować strukturę `Calculator`, aby utworzyć nową instancję serwera i zaimplementować obsługę serwera w celu dostarczania informacji o serwerze.
+
+```rust
+#[tool_router]
+impl Calculator {
+    pub fn new() -> Self {
+        Self {
+            tool_router: Self::tool_router(),
+        }
+    }
+}
+
+#[tool_handler]
+impl ServerHandler for Calculator {
+    fn get_info(&self) -> ServerInfo {
+        ServerInfo {
+            instructions: Some("A simple calculator tool".into()),
+            capabilities: ServerCapabilities::builder().enable_tools().build(),
+            ..Default::default()
+        }
+    }
+}
+```
+
+Na koniec musimy zaimplementować funkcję główną, aby uruchomić serwer. Funkcja ta utworzy instancję struktury `Calculator` i udostępni ją przez standardowe wejście/wyjście.
+
+```rust
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let service = Calculator::new().serve(stdio()).await?;
+    service.waiting().await?;
+    Ok(())
+}
+```
+
+Serwer jest teraz skonfigurowany do dostarczania podstawowych informacji o sobie. Następnie dodamy narzędzie do wykonywania dodawania.
+
 ### -5- Dodanie narzędzia i zasobu
 
 Dodaj narzędzie i zasób, dodając następujący kod:
@@ -795,7 +927,7 @@ server.resource(
 );
 ```
 
-Twoje narzędzie przyjmuje parametry `a` i `b` i uruchamia funkcję, która zwraca odpowiedź w formie:
+Twoje narzędzie przyjmuje parametry `a` i `b` i uruchamia funkcję, która generuje odpowiedź w formie:
 
 ```typescript
 {
@@ -805,7 +937,7 @@ Twoje narzędzie przyjmuje parametry `a` i `b` i uruchamia funkcję, która zwra
 }
 ```
 
-Twój zasób jest dostępny przez ciąg "greeting" i przyjmuje parametr `name`, zwracając podobną odpowiedź jak narzędzie:
+Twój zasób jest dostępny przez ciąg "greeting" i przyjmuje parametr `name`, generując podobną odpowiedź do narzędzia:
 
 ```typescript
 {
@@ -833,8 +965,8 @@ def get_greeting(name: str) -> str:
 
 W powyższym kodzie:
 
-- Zdefiniowano narzędzie `add`, które przyjmuje parametry `a` i `p`, oba jako liczby całkowite.
-- Utworzono zasób o nazwie `greeting`, który przyjmuje parametr `name`.
+- Zdefiniowaliśmy narzędzie `add`, które przyjmuje parametry `a` i `p`, oba jako liczby całkowite.
+- Utworzyliśmy zasób o nazwie `greeting`, który przyjmuje parametr `name`.
 
 #### .NET
 
@@ -853,9 +985,23 @@ public static class CalculatorTool
 
 Narzędzia zostały już utworzone w poprzednim kroku.
 
+#### Rust
+
+Dodaj nowe narzędzie wewnątrz bloku `impl Calculator`:
+
+```rust
+#[tool(description = "Adds a and b")]
+async fn add(
+    &self,
+    Parameters(CalculatorRequest { a, b }): Parameters<CalculatorRequest>,
+) -> String {
+    (a + b).to_string()
+}
+```
+
 ### -6- Ostateczny kod
 
-Dodajmy ostatni kod, aby serwer mógł się uruchomić:
+Dodajmy ostatni kod, który pozwoli serwerowi się uruchomić:
 
 #### TypeScript
 
@@ -994,6 +1140,67 @@ public class McpServerApplication {
 }
 ```
 
+#### Rust
+
+Ostateczny kod dla serwera Rust powinien wyglądać tak:
+
+```rust
+use rmcp::{
+    ServerHandler, ServiceExt,
+    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    model::{ServerCapabilities, ServerInfo},
+    schemars, tool, tool_handler, tool_router,
+    transport::stdio,
+};
+use std::error::Error;
+
+#[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
+pub struct CalculatorRequest {
+    pub a: f64,
+    pub b: f64,
+}
+
+#[derive(Debug, Clone)]
+pub struct Calculator {
+    tool_router: ToolRouter<Self>,
+}
+
+#[tool_router]
+impl Calculator {
+    pub fn new() -> Self {
+        Self {
+            tool_router: Self::tool_router(),
+        }
+    }
+    
+    #[tool(description = "Adds a and b")]
+    async fn add(
+        &self,
+        Parameters(CalculatorRequest { a, b }): Parameters<CalculatorRequest>,
+    ) -> String {
+        (a + b).to_string()
+    }
+}
+
+#[tool_handler]
+impl ServerHandler for Calculator {
+    fn get_info(&self) -> ServerInfo {
+        ServerInfo {
+            instructions: Some("A simple calculator tool".into()),
+            capabilities: ServerCapabilities::builder().enable_tools().build(),
+            ..Default::default()
+        }
+    }
+}
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let service = Calculator::new().serve(stdio()).await?;
+    service.waiting().await?;
+    Ok(())
+}
+```
+
 ### -7- Testowanie serwera
 
 Uruchom serwer za pomocą następującego polecenia:
@@ -1010,11 +1217,11 @@ npm run build
 mcp run server.py
 ```
 
-> Aby użyć MCP Inspector, użyj `mcp dev server.py`, co automatycznie uruchamia Inspector i dostarcza wymagany token sesji proxy. Jeśli używasz `mcp run server.py`, będziesz musiał ręcznie uruchomić Inspector i skonfigurować połączenie.
+> Aby użyć MCP Inspector, użyj `mcp dev server.py`, który automatycznie uruchamia Inspector i dostarcza wymagany token sesji proxy. Jeśli używasz `mcp run server.py`, będziesz musiał ręcznie uruchomić Inspector i skonfigurować połączenie.
 
 #### .NET
 
-Upewnij się, że znajdujesz się w katalogu projektu:
+Upewnij się, że jesteś w katalogu projektu:
 
 ```sh
 cd McpCalculatorServer
@@ -1028,9 +1235,18 @@ dotnet run
 java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 ```
 
-### -8- Uruchom za pomocą Inspectora
+#### Rust
 
-Inspector to świetne narzędzie, które pozwala uruchomić serwer i umożliwia interakcję z nim, aby przetestować jego działanie. Uruchommy go:
+Uruchom następujące polecenia, aby sformatować i uruchomić serwer:
+
+```sh
+cargo fmt
+cargo run
+```
+
+### -8- Uruchom za pomocą Inspector
+
+Inspector to świetne narzędzie, które pozwala uruchomić serwer i interaktywnie testować jego działanie. Uruchommy go:
 
 > [!NOTE]
 > Może wyglądać inaczej w polu "command", ponieważ zawiera polecenie do uruchomienia serwera z Twoim konkretnym środowiskiem uruchomieniowym.
@@ -1041,7 +1257,7 @@ Inspector to świetne narzędzie, które pozwala uruchomić serwer i umożliwia 
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-lub dodaj to do swojego *package.json* w następujący sposób: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` i następnie uruchom `npm run inspect`
+lub dodaj to do swojego *package.json* w następujący sposób: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` i następnie uruchom `npm run inspector`
 
 Python korzysta z narzędzia Node.js o nazwie inspector. Można je wywołać w następujący sposób:
 
@@ -1049,18 +1265,18 @@ Python korzysta z narzędzia Node.js o nazwie inspector. Można je wywołać w n
 mcp dev server.py
 ```
 
-Jednakże nie implementuje wszystkich dostępnych metod, dlatego zaleca się uruchomienie narzędzia Node.js bezpośrednio, jak poniżej:
+Jednakże nie implementuje wszystkich metod dostępnych w narzędziu, więc zaleca się uruchomienie narzędzia Node.js bezpośrednio, jak poniżej:
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-Jeśli używasz narzędzia lub IDE, które pozwala konfigurować polecenia i argumenty do uruchamiania skryptów, 
-upewnij się, że ustawisz `python` w polu `Command` i `server.py` jako `Arguments`. Dzięki temu skrypt uruchomi się poprawnie.
+Jeśli używasz narzędzia lub IDE, które pozwala skonfigurować polecenia i argumenty do uruchamiania skryptów, 
+upewnij się, że ustawisz `python` w polu `Command` i `server.py` jako `Arguments`. Zapewni to poprawne uruchomienie skryptu.
 
 #### .NET
 
-Upewnij się, że znajdujesz się w katalogu projektu:
+Upewnij się, że jesteś w katalogu projektu:
 
 ```sh
 cd McpCalculatorServer
@@ -1075,35 +1291,42 @@ Upewnij się, że serwer kalkulatora działa. Następnie uruchom Inspector:
 npx @modelcontextprotocol/inspector
 ```
 
-W interfejsie webowym Inspectora:
+W interfejsie internetowym Inspector:
 
 1. Wybierz "SSE" jako typ transportu
 2. Ustaw URL na: `http://localhost:8080/sse`
 3. Kliknij "Connect"
+![Połącz](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.pl.png)
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.pl.png)
-
-**Teraz jesteś połączony z serwerem**
+**Jesteś teraz połączony z serwerem**  
 **Sekcja testowania serwera Java została zakończona**
 
-Następna sekcja dotyczy interakcji z serwerem.
+Kolejna sekcja dotyczy interakcji z serwerem.
 
 Powinieneś zobaczyć następujący interfejs użytkownika:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.pl.png)
+![Połącz](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.pl.png)
 
-1. Połącz się z serwerem, wybierając przycisk Connect.
-   Po połączeniu z serwerem powinieneś zobaczyć następujące:
+1. Połącz się z serwerem, wybierając przycisk Połącz.  
+   Po połączeniu z serwerem powinieneś zobaczyć następujący widok:
 
-   ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.pl.png)
+   ![Połączono](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.pl.png)
 
-1. Wybierz "Tools" i "listTools", powinieneś zobaczyć "Add", wybierz "Add" i wypełnij wartości parametrów.
+2. Wybierz "Narzędzia" i "listTools", powinieneś zobaczyć opcję "Dodaj". Wybierz "Dodaj" i wypełnij wartości parametrów.
 
-   Powinieneś zobaczyć następującą odpowiedź, tj. wynik działania narzędzia "add":
+   Powinieneś zobaczyć następującą odpowiedź, czyli wynik działania narzędzia "Dodaj":
 
-   ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.pl.png)
+   ![Wynik działania narzędzia Dodaj](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.pl.png)
 
 Gratulacje, udało Ci się stworzyć i uruchomić swój pierwszy serwer!
+
+#### Rust
+
+Aby uruchomić serwer Rust za pomocą MCP Inspector CLI, użyj następującego polecenia:
+
+```sh
+npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-name add --tool-arg a=1 b=2
+```
 
 ### Oficjalne SDK
 
@@ -1113,46 +1336,49 @@ MCP oferuje oficjalne SDK dla wielu języków:
 - [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Utrzymywane we współpracy z Spring AI
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Oficjalna implementacja TypeScript
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Oficjalna implementacja Python
-- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Oficjalna implementacja w Kotlinie  
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Utrzymywana we współpracy z Loopwork AI  
-- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Oficjalna implementacja w Rust  
+- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Oficjalna implementacja Kotlin
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Utrzymywane we współpracy z Loopwork AI
+- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Oficjalna implementacja Rust
 
-## Kluczowe informacje  
+## Kluczowe informacje
 
-- Konfiguracja środowiska deweloperskiego MCP jest prosta dzięki SDK specyficznym dla języka  
-- Tworzenie serwerów MCP polega na budowaniu i rejestrowaniu narzędzi z jasnymi schematami  
-- Testowanie i debugowanie są kluczowe dla niezawodnych implementacji MCP  
+- Konfiguracja środowiska deweloperskiego MCP jest prosta dzięki SDK specyficznym dla języków
+- Tworzenie serwerów MCP obejmuje tworzenie i rejestrowanie narzędzi z jasnymi schematami
+- Testowanie i debugowanie są kluczowe dla niezawodnych implementacji MCP
 
-## Przykłady  
+## Przykłady
 
-- [Java Calculator](../samples/java/calculator/README.md)  
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript Calculator](../samples/javascript/README.md)  
-- [TypeScript Calculator](../samples/typescript/README.md)  
-- [Python Calculator](../../../../03-GettingStarted/samples/python)  
+- [Java Kalkulator](../samples/java/calculator/README.md)
+- [.Net Kalkulator](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Kalkulator](../samples/javascript/README.md)
+- [TypeScript Kalkulator](../samples/typescript/README.md)
+- [Python Kalkulator](../../../../03-GettingStarted/samples/python)
+- [Rust Kalkulator](../../../../03-GettingStarted/samples/rust)
 
-## Zadanie  
+## Zadanie
 
-Stwórz prosty serwer MCP z narzędziem według własnego wyboru:  
+Stwórz prosty serwer MCP z wybranym narzędziem:
 
-1. Zaimplementuj narzędzie w preferowanym języku (.NET, Java, Python lub JavaScript).  
-2. Zdefiniuj parametry wejściowe i wartości zwracane.  
-3. Uruchom narzędzie inspektora, aby upewnić się, że serwer działa zgodnie z oczekiwaniami.  
-4. Przetestuj implementację z różnymi danymi wejściowymi.  
+1. Zaimplementuj narzędzie w preferowanym języku (.NET, Java, Python, TypeScript lub Rust).
+2. Zdefiniuj parametry wejściowe i wartości zwracane.
+3. Uruchom narzędzie inspektora, aby upewnić się, że serwer działa poprawnie.
+4. Przetestuj implementację z różnymi danymi wejściowymi.
 
-## Rozwiązanie  
+## Rozwiązanie
 
-[Rozwiązanie](./solution/README.md)  
+[Rozwiązanie](./solution/README.md)
 
-## Dodatkowe zasoby  
+## Dodatkowe zasoby
 
-- [Budowanie agentów za pomocą Model Context Protocol na platformie Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
-- [Zdalny MCP z Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)  
-- [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)  
+- [Tworzenie agentów za pomocą Model Context Protocol na Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [Zdalny MCP z Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
+- [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
-## Co dalej  
+## Co dalej
 
-Dalej: [Pierwsze kroki z klientami MCP](../02-client/README.md)  
+Następne: [Pierwsze kroki z klientami MCP](../02-client/README.md)
+
+---
 
 **Zastrzeżenie**:  
-Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za autorytatywne źródło. W przypadku informacji o kluczowym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego języku źródłowym powinien być uznawany za autorytatywne źródło. W przypadku informacji o kluczowym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.

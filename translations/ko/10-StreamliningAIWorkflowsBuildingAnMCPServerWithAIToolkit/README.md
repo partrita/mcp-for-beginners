@@ -1,46 +1,44 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "9c61ceb0227f07a85c9e809d3914f965",
-  "translation_date": "2025-07-22T08:02:53+00:00",
+  "original_hash": "1b000fd6e1b04c047578bfc5d07d54eb",
+  "translation_date": "2025-07-29T00:33:16+00:00",
   "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md",
   "language_code": "ko"
 }
 -->
 # AI 워크플로우 간소화: AI Toolkit을 활용한 MCP 서버 구축
 
-[![MCP Version](https://img.shields.io/badge/MCP-1.9.3-blue.svg)](https://modelcontextprotocol.io/)
-[![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)
-[![VS Code](https://img.shields.io/badge/VS%20Code-Latest-orange.svg)](https://code.visualstudio.com/)
-
-![logo](../../../translated_images/logo.ec93918ec338dadde1715c8aaf118079e0ed0502e9efdfcc84d6a0f4a9a70ae8.ko.png)
-
 ## 🎯 개요
 
-**Model Context Protocol (MCP) 워크숍**에 오신 것을 환영합니다! 이 실습 중심 워크숍은 AI 애플리케이션 개발을 혁신하는 두 가지 최첨단 기술을 결합합니다:
+[![Build AI Agents in VS Code: 4 Hands-On Labs with MCP and AI Toolkit](../../../translated_images/11.0f6db6a0fb6068856d0468590a120ffe35dbccc49b93dc88b2003f306c81493a.ko.png)](https://youtu.be/r34Csn3rkeQ)
 
-- **🔗 Model Context Protocol (MCP)**: AI 도구 통합을 간소화하는 오픈 표준
+_(위 이미지를 클릭하면 이 강의의 동영상을 볼 수 있습니다)_
+
+**Model Context Protocol (MCP) 워크숍**에 오신 것을 환영합니다! 이 포괄적인 실습 워크숍은 AI 애플리케이션 개발을 혁신하는 두 가지 최첨단 기술을 결합합니다:
+
+- **🔗 Model Context Protocol (MCP)**: AI 도구 통합을 위한 개방형 표준
 - **🛠️ Visual Studio Code용 AI Toolkit (AITK)**: Microsoft의 강력한 AI 개발 확장 프로그램
 
 ### 🎓 학습 목표
 
-이 워크숍을 통해 AI 모델을 실제 도구 및 서비스와 연결하는 지능형 애플리케이션을 구축하는 기술을 익히게 됩니다. 자동화된 테스트부터 맞춤형 API 통합까지, 복잡한 비즈니스 문제를 해결할 수 있는 실질적인 기술을 습득할 수 있습니다.
+이 워크숍을 통해 AI 모델을 실제 도구 및 서비스와 연결하는 지능형 애플리케이션 구축 기술을 익히게 됩니다. 자동화된 테스트부터 맞춤형 API 통합까지, 복잡한 비즈니스 문제를 해결할 수 있는 실질적인 기술을 습득할 수 있습니다.
 
 ## 🏗️ 기술 스택
 
 ### 🔌 Model Context Protocol (MCP)
 
-MCP는 AI를 위한 **"USB-C"**로, AI 모델을 외부 도구 및 데이터 소스와 연결하는 범용 표준입니다.
+MCP는 **"AI를 위한 USB-C"**로, AI 모델을 외부 도구 및 데이터 소스와 연결하는 범용 표준입니다.
 
 **✨ 주요 기능:**
 
 - 🔄 **표준화된 통합**: AI 도구 연결을 위한 범용 인터페이스
 - 🏛️ **유연한 아키텍처**: stdio/SSE 전송을 통한 로컬 및 원격 서버 지원
 - 🧰 **풍부한 생태계**: 하나의 프로토콜에서 도구, 프롬프트 및 리소스 제공
-- 🔒 **기업용 준비**: 내장된 보안 및 안정성
+- 🔒 **엔터프라이즈 준비**: 내장된 보안 및 안정성
 
 **🎯 MCP의 중요성:**
-USB-C가 케이블 혼란을 없앤 것처럼, MCP는 AI 통합의 복잡성을 제거합니다. 하나의 프로토콜로 무한한 가능성을 제공합니다.
+USB-C가 케이블 혼란을 없앴듯이, MCP는 AI 통합의 복잡성을 제거합니다. 하나의 프로토콜로 무한한 가능성을 제공합니다.
 
 ### 🤖 Visual Studio Code용 AI Toolkit (AITK)
 
@@ -49,8 +47,8 @@ Microsoft의 대표적인 AI 개발 확장 프로그램으로, VS Code를 AI 개
 **🚀 핵심 기능:**
 
 - 📦 **모델 카탈로그**: Azure AI, GitHub, Hugging Face, Ollama의 모델에 액세스
-- ⚡ **로컬 추론**: ONNX로 최적화된 CPU/GPU/NPU 실행
-- 🏗️ **에이전트 빌더**: MCP 통합을 활용한 시각적 AI 에이전트 개발
+- ⚡ **로컬 추론**: ONNX 최적화 CPU/GPU/NPU 실행
+- 🏗️ **에이전트 빌더**: MCP 통합을 통한 시각적 AI 에이전트 개발
 - 🎭 **멀티모달 지원**: 텍스트, 비전 및 구조화된 출력 지원
 
 **💡 개발 혜택:**
@@ -66,25 +64,25 @@ Microsoft의 대표적인 AI 개발 확장 프로그램으로, VS Code를 AI 개
 
 **소요 시간**: 15분
 
-- 🛠️ Visual Studio Code용 AI Toolkit 설치 및 구성
+- 🛠️ AI Toolkit을 설치하고 VS Code에서 구성하기
 - 🗂️ 모델 카탈로그 탐색 (GitHub, ONNX, OpenAI, Anthropic, Google의 100개 이상의 모델)
-- 🎮 실시간 모델 테스트를 위한 인터랙티브 플레이그라운드 활용
+- 🎮 실시간 모델 테스트를 위한 인터랙티브 플레이그라운드 익히기
 - 🤖 에이전트 빌더로 첫 번째 AI 에이전트 구축
-- 📊 F1, 관련성, 유사성, 일관성 등 내장된 메트릭으로 모델 성능 평가
+- 📊 내장된 메트릭(F1, 관련성, 유사성, 일관성)을 사용하여 모델 성능 평가
 - ⚡ 배치 처리 및 멀티모달 지원 기능 학습
 
 **🎯 학습 결과**: AITK 기능에 대한 포괄적인 이해를 바탕으로 기능적인 AI 에이전트 생성
 
-### [🌐 모듈 2: AI Toolkit과 MCP 기본](./lab2/README.md)
+### [🌐 모듈 2: MCP와 AI Toolkit 기본](./lab2/README.md)
 
 **소요 시간**: 20분
 
 - 🧠 Model Context Protocol (MCP) 아키텍처 및 개념 숙달
 - 🌐 Microsoft의 MCP 서버 생태계 탐색
-- 🤖 Playwright MCP 서버를 활용한 브라우저 자동화 에이전트 구축
-- 🔧 AI Toolkit 에이전트 빌더와 MCP 서버 통합
+- 🤖 Playwright MCP 서버를 사용하여 브라우저 자동화 에이전트 구축
+- 🔧 MCP 서버를 AI Toolkit 에이전트 빌더와 통합
 - 📊 에이전트 내 MCP 도구 구성 및 테스트
-- 🚀 MCP 기반 에이전트의 내보내기 및 배포
+- 🚀 MCP 기반 에이전트를 내보내고 배포
 
 **🎯 학습 결과**: 외부 도구로 강화된 AI 에이전트 배포
 
@@ -92,13 +90,13 @@ Microsoft의 대표적인 AI 개발 확장 프로그램으로, VS Code를 AI 개
 
 **소요 시간**: 20분
 
-- 💻 AI Toolkit을 활용한 맞춤형 MCP 서버 생성
-- 🐍 최신 MCP Python SDK (v1.9.3) 구성 및 사용
+- 💻 AI Toolkit을 사용하여 맞춤형 MCP 서버 생성
+- 🐍 최신 MCP Python SDK(v1.9.3) 구성 및 사용
 - 🔍 디버깅을 위한 MCP Inspector 설정 및 활용
-- 🛠️ 전문 디버깅 워크플로우를 활용한 Weather MCP 서버 구축
+- 🛠️ 전문 디버깅 워크플로우를 사용하여 Weather MCP 서버 구축
 - 🧪 에이전트 빌더 및 Inspector 환경에서 MCP 서버 디버깅
 
-**🎯 학습 결과**: 현대적인 도구를 활용한 맞춤형 MCP 서버 개발 및 디버깅
+**🎯 학습 결과**: 현대적인 도구를 사용하여 맞춤형 MCP 서버 개발 및 디버깅
 
 ### [🐙 모듈 4: 실용적인 MCP 개발 - 맞춤형 GitHub 클론 서버](./lab4/README.md)
 
@@ -107,14 +105,14 @@ Microsoft의 대표적인 AI 개발 확장 프로그램으로, VS Code를 AI 개
 - 🏗️ 개발 워크플로우를 위한 실제 GitHub 클론 MCP 서버 구축
 - 🔄 유효성 검사 및 오류 처리를 포함한 스마트 리포지토리 클로닝 구현
 - 📁 지능형 디렉토리 관리 및 VS Code 통합 생성
-- 🤖 맞춤형 MCP 도구를 활용한 GitHub Copilot 에이전트 모드 사용
+- 🤖 맞춤형 MCP 도구를 사용한 GitHub Copilot 에이전트 모드 활용
 - 🛡️ 생산 준비된 안정성과 크로스 플랫폼 호환성 적용
 
 **🎯 학습 결과**: 실제 개발 워크플로우를 간소화하는 생산 준비된 MCP 서버 배포
 
 ## 💡 실제 응용 및 영향
 
-### 🏢 기업 활용 사례
+### 🏢 엔터프라이즈 활용 사례
 
 #### 🔄 DevOps 자동화
 
@@ -145,8 +143,8 @@ AI 기반 자동화를 통해 테스트를 향상:
 탁월한 고객 상호작용 생성:
 
 - **컨텍스트 인식 지원**: 고객 기록에 액세스하는 AI 에이전트
-- **예측적 문제 해결**: 예측 기반 고객 서비스
-- **멀티 채널 통합**: 플랫폼 전반에 걸친 통합된 AI 경험
+- **예측적 문제 해결**: 예측적 고객 서비스
+- **멀티 채널 통합**: 플랫폼 전반에 걸친 통합 AI 경험
 
 ## 🛠️ 사전 준비 및 설정
 
@@ -155,14 +153,14 @@ AI 기반 자동화를 통해 테스트를 향상:
 | 구성 요소 | 요구 사항 | 비고 |
 |-----------|-------------|-------|
 | **운영 체제** | Windows 10+, macOS 10.15+, Linux | 최신 OS |
-| **Visual Studio Code** | 최신 안정 버전 | AITK 필수 |
+| **Visual Studio Code** | 최신 안정 버전 | AITK에 필요 |
 | **Node.js** | v18.0+ 및 npm | MCP 서버 개발용 |
-| **Python** | 3.10+ | Python MCP 서버 선택 사항 |
+| **Python** | 3.10+ | Python MCP 서버에 선택적 |
 | **메모리** | 최소 8GB RAM | 로컬 모델용 16GB 권장 |
 
 ### 🔧 개발 환경
 
-#### 권장 VS Code 확장 프로그램
+#### 추천 VS Code 확장 프로그램
 
 - **AI Toolkit** (ms-windows-ai-studio.windows-ai-studio)
 - **Python** (ms-python.python)
@@ -179,29 +177,29 @@ AI 기반 자동화를 통해 테스트를 향상:
 
 ### 🏆 기술 숙련 체크리스트
 
-이 워크숍을 완료하면 다음 기술을 숙달하게 됩니다:
+이 워크숍을 완료하면 다음을 숙달하게 됩니다:
 
 #### 🎯 핵심 역량
 
 - [ ] **MCP 프로토콜 숙련**: 아키텍처 및 구현 패턴에 대한 깊은 이해
 - [ ] **AITK 숙련도**: 빠른 개발을 위한 AI Toolkit의 전문적 사용
 - [ ] **맞춤형 서버 개발**: 생산 MCP 서버 구축, 배포 및 유지 관리
-- [ ] **도구 통합 우수성**: AI와 기존 개발 워크플로우의 원활한 연결
+- [ ] **도구 통합 우수성**: AI를 기존 개발 워크플로우와 원활하게 연결
 - [ ] **문제 해결 응용**: 학습한 기술을 실제 비즈니스 문제에 적용
 
-#### 🔧 기술적 스킬
+#### 🔧 기술적 기술
 
 - [ ] VS Code에서 AI Toolkit 설정 및 구성
 - [ ] 맞춤형 MCP 서버 설계 및 구현
 - [ ] MCP 아키텍처와 GitHub 모델 통합
-- [ ] Playwright를 활용한 자동화 테스트 워크플로우 구축
+- [ ] Playwright를 사용한 자동화 테스트 워크플로우 구축
 - [ ] 생산용 AI 에이전트 배포
 - [ ] MCP 서버 성능 디버깅 및 최적화
 
-#### 🚀 고급 역량
+#### 🚀 고급 기능
 
-- [ ] 기업 규모의 AI 통합 설계
-- [ ] AI 애플리케이션 보안 모범 사례 구현
+- [ ] 엔터프라이즈 규모의 AI 통합 설계
+- [ ] AI 애플리케이션을 위한 보안 모범 사례 구현
 - [ ] 확장 가능한 MCP 서버 아키텍처 설계
 - [ ] 특정 도메인을 위한 맞춤형 도구 체인 생성
 - [ ] AI 네이티브 개발에서 다른 사람을 멘토링
@@ -217,7 +215,7 @@ AI 기반 자동화를 통해 테스트를 향상:
 
 **🚀 AI 개발 워크플로우를 혁신할 준비가 되셨나요?**
 
-MCP와 AI Toolkit을 통해 지능형 애플리케이션의 미래를 함께 만들어 갑시다!
+MCP와 AI Toolkit으로 지능형 애플리케이션의 미래를 함께 만들어 봅시다!
 
 **면책 조항**:  
 이 문서는 AI 번역 서비스 [Co-op Translator](https://github.com/Azure/co-op-translator)를 사용하여 번역되었습니다. 정확성을 위해 최선을 다하고 있지만, 자동 번역에는 오류나 부정확성이 포함될 수 있습니다. 원본 문서의 원어 버전을 권위 있는 출처로 간주해야 합니다. 중요한 정보의 경우, 전문적인 인간 번역을 권장합니다. 이 번역 사용으로 인해 발생하는 오해나 잘못된 해석에 대해 책임을 지지 않습니다.

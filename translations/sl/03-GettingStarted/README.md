@@ -1,92 +1,98 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "860935ff95d05b006d1d3323e8e3f9e8",
-  "translation_date": "2025-07-13T17:21:06+00:00",
+  "original_hash": "f400d87053221363769113c24f117248",
+  "translation_date": "2025-10-07T00:15:45+00:00",
   "source_file": "03-GettingStarted/README.md",
   "language_code": "sl"
 }
 -->
 ## Začetek  
 
+[![Ustvari svoj prvi MCP strežnik](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.sl.png)](https://youtu.be/sNDZO9N4m9Y)
+
+_(Kliknite zgornjo sliko za ogled videa te lekcije)_
+
 Ta razdelek vsebuje več lekcij:
 
-- **1 Vaš prvi strežnik**, v tej prvi lekciji se boste naučili, kako ustvariti svoj prvi strežnik in ga pregledati z orodjem za inšpekcijo, kar je dragocen način za testiranje in odpravljanje napak na strežniku, [do lekcije](01-first-server/README.md)
+- **1 Vaš prvi strežnik**, v tej prvi lekciji se boste naučili, kako ustvariti svoj prvi strežnik in ga pregledati z orodjem za pregledovanje, kar je dragocen način za testiranje in odpravljanje napak na vašem strežniku, [na lekcijo](01-first-server/README.md)
 
-- **2 Odjemalec**, v tej lekciji se boste naučili, kako napisati odjemalca, ki se lahko poveže z vašim strežnikom, [do lekcije](02-client/README.md)
+- **2 Odjemalec**, v tej lekciji se boste naučili, kako napisati odjemalca, ki se lahko poveže z vašim strežnikom, [na lekcijo](02-client/README.md)
 
-- **3 Odjemalec z LLM**, še boljši način pisanja odjemalca je dodajanje LLM, da lahko "pogaja" s strežnikom o tem, kaj naj naredi, [do lekcije](03-llm-client/README.md)
+- **3 Odjemalec z LLM**, še boljši način pisanja odjemalca je dodajanje LLM, da lahko "pogaja" z vašim strežnikom o tem, kaj storiti, [na lekcijo](03-llm-client/README.md)
 
-- **4 Uporaba strežnika v načinu GitHub Copilot Agent v Visual Studio Code**. Tukaj si ogledamo, kako zagnati naš MCP strežnik neposredno iz Visual Studio Code, [do lekcije](04-vscode/README.md)
+- **4 Uporaba strežnika v načinu GitHub Copilot Agent v Visual Studio Code**. Tukaj bomo preučili, kako zagnati naš MCP strežnik znotraj Visual Studio Code, [na lekcijo](04-vscode/README.md)
 
-- **5 Uporaba SSE (Server Sent Events)** SSE je standard za pretakanje podatkov s strežnika na odjemalca, ki omogoča strežnikom pošiljanje posodobitev v realnem času prek HTTP, [do lekcije](05-sse-server/README.md)
+- **5 Strežnik s prenosom stdio** stdio prenos je priporočeni standard za komunikacijo med MCP strežnikom in odjemalcem v trenutni specifikaciji, ki zagotavlja varno komunikacijo na osnovi podprocesov [na lekcijo](05-stdio-server/README.md)
 
-- **6 HTTP pretakanje z MCP (Streamable HTTP)**. Spoznajte sodobno HTTP pretakanje, obvestila o napredku in kako implementirati razširljive, realnočasovne MCP strežnike in odjemalce z uporabo Streamable HTTP, [do lekcije](06-http-streaming/README.md)
+- **6 HTTP pretakanje z MCP (Streamable HTTP)**. Naučite se o sodobnem HTTP pretakanju, obvestilih o napredku in kako implementirati skalabilne, realnočasovne MCP strežnike in odjemalce z uporabo Streamable HTTP. [na lekcijo](06-http-streaming/README.md)
 
-- **7 Uporaba AI Toolkit za VSCode** za uporabo in testiranje vaših MCP odjemalcev in strežnikov, [do lekcije](07-aitk/README.md)
+- **7 Uporaba AI Toolkit za VSCode** za uporabo in testiranje vaših MCP odjemalcev in strežnikov [na lekcijo](07-aitk/README.md)
 
-- **8 Testiranje**. Tukaj se bomo osredotočili predvsem na različne načine testiranja našega strežnika in odjemalca, [do lekcije](08-testing/README.md)
+- **8 Testiranje**. Tukaj se bomo osredotočili predvsem na to, kako lahko na različne načine testiramo naš strežnik in odjemalca, [na lekcijo](08-testing/README.md)
 
-- **9 Namestitev**. Ta poglavje bo obravnavalo različne načine nameščanja vaših MCP rešitev, [do lekcije](09-deployment/README.md)
+- **9 Namestitev**. Ta poglavje bo preučilo različne načine namestitve vaših MCP rešitev, [na lekcijo](09-deployment/README.md)
 
+- **10 Napredna uporaba strežnika**. To poglavje pokriva napredno uporabo strežnika, [na lekcijo](./10-advanced/README.md)
 
-Model Context Protocol (MCP) je odprt protokol, ki standardizira način, kako aplikacije zagotavljajo kontekst LLM-jem. MCP si lahko predstavljate kot USB-C priključek za AI aplikacije – omogoča standardiziran način povezovanja AI modelov z različnimi viri podatkov in orodji.
+- **11 Avtentikacija**. To poglavje pokriva, kako dodati preprosto avtentikacijo, od osnovne avtentikacije do uporabe JWT in RBAC. Priporočamo, da začnete tukaj in nato preučite napredne teme v poglavju 5 ter izvedete dodatno utrjevanje varnosti po priporočilih v poglavju 2, [na lekcijo](./11-simple-auth/README.md)
+
+Model Context Protocol (MCP) je odprt protokol, ki standardizira, kako aplikacije zagotavljajo kontekst LLM-jem. MCP si lahko predstavljate kot USB-C priključek za AI aplikacije - zagotavlja standardiziran način povezovanja AI modelov z različnimi viri podatkov in orodji.
 
 ## Cilji učenja
 
-Do konca te lekcije boste znali:
+Do konca te lekcije boste lahko:
 
-- Nastaviti razvojna okolja za MCP v C#, Javi, Pythonu, TypeScriptu in JavaScriptu
-- Zgraditi in namestiti osnovne MCP strežnike s prilagojenimi funkcijami (viri, pozivi in orodja)
-- Ustvariti gostiteljske aplikacije, ki se povezujejo z MCP strežniki
-- Testirati in odpravljati napake v implementacijah MCP
-- Razumeti pogoste izzive pri nastavitvi in njihove rešitve
-- Povezati svoje MCP implementacije s priljubljenimi LLM storitvami
+- Nastavili razvojna okolja za MCP v C#, Java, Python, TypeScript in JavaScript
+- Zgradili in namestili osnovne MCP strežnike s prilagojenimi funkcijami (viri, pozivi in orodji)
+- Ustvarili gostiteljske aplikacije, ki se povezujejo z MCP strežniki
+- Testirali in odpravljali napake MCP implementacij
+- Razumeli pogoste izzive pri nastavitvi in njihove rešitve
+- Povezali svoje MCP implementacije s priljubljenimi LLM storitvami
 
 ## Nastavitev vašega MCP okolja
 
-Preden začnete delati z MCP, je pomembno, da pripravite razvojno okolje in razumete osnovni potek dela. Ta razdelek vas bo vodil skozi začetne korake nastavitve, da bo začetek z MCP potekal gladko.
+Preden začnete delati z MCP, je pomembno, da pripravite svoje razvojno okolje in razumete osnovni potek dela. Ta razdelek vas bo vodil skozi začetne korake nastavitve, da zagotovite gladek začetek z MCP.
 
 ### Predpogoji
 
 Preden se lotite razvoja MCP, poskrbite, da imate:
 
-- **Razvojno okolje**: za izbrani programski jezik (C#, Java, Python, TypeScript ali JavaScript)
+- **Razvojno okolje**: Za izbrani jezik (C#, Java, Python, TypeScript ali JavaScript)
 - **IDE/Urejevalnik**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm ali kateri koli sodoben urejevalnik kode
 - **Upravitelji paketov**: NuGet, Maven/Gradle, pip ali npm/yarn
-- **API ključi**: za vse AI storitve, ki jih nameravate uporabljati v gostiteljskih aplikacijah
-
+- **API ključe**: Za vse AI storitve, ki jih nameravate uporabiti v svojih gostiteljskih aplikacijah
 
 ### Uradni SDK-ji
 
-V prihajajočih poglavjih boste videli rešitve, zgrajene z uporabo Pythona, TypeScripta, Jave in .NET. Tukaj so vsi uradno podprti SDK-ji.
+V prihajajočih poglavjih boste videli rešitve, zgrajene z uporabo Python, TypeScript, Java in .NET. Tukaj so vsi uradno podprti SDK-ji.
 
-MCP ponuja uradne SDK-je za več jezikov:
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - vzdrževan v sodelovanju z Microsoftom
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - vzdrževan v sodelovanju s Spring AI
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - uradna implementacija za TypeScript
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - uradna implementacija za Python
-- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - uradna implementacija za Kotlin
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - vzdrževan v sodelovanju z Loopwork AI
-- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - uradna implementacija za Rust
+MCP zagotavlja uradne SDK-je za več jezikov:
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - V sodelovanju z Microsoftom
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - V sodelovanju s Spring AI
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Uradna implementacija TypeScript
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Uradna implementacija Python
+- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Uradna implementacija Kotlin
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - V sodelovanju z Loopwork AI
+- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Uradna implementacija Rust
 
-## Ključne ugotovitve
+## Ključne točke
 
-- Nastavitev MCP razvojnega okolja je enostavna z jezikovno specifičnimi SDK-ji
+- Nastavitev razvojnega okolja MCP je enostavna z jezikovno specifičnimi SDK-ji
 - Gradnja MCP strežnikov vključuje ustvarjanje in registracijo orodij z jasnimi shemami
 - MCP odjemalci se povezujejo s strežniki in modeli za izkoriščanje razširjenih zmogljivosti
 - Testiranje in odpravljanje napak sta ključna za zanesljive MCP implementacije
-- Možnosti nameščanja segajo od lokalnega razvoja do rešitev v oblaku
+- Možnosti namestitve segajo od lokalnega razvoja do rešitev v oblaku
 
-## Vaja
+## Praksa
 
-Imamo nabor primerov, ki dopolnjujejo vaje, ki jih boste videli v vseh poglavjih tega razdelka. Poleg tega ima vsako poglavje tudi svoje vaje in naloge.
+Imamo niz vzorcev, ki dopolnjujejo vaje, ki jih boste videli v vseh poglavjih tega razdelka. Poleg tega ima vsako poglavje tudi svoje vaje in naloge.
 
-- [Java kalkulator](./samples/java/calculator/README.md)
-- [.Net kalkulator](../../../03-GettingStarted/samples/csharp)
-- [JavaScript kalkulator](./samples/javascript/README.md)
-- [TypeScript kalkulator](./samples/typescript/README.md)
-- [Python kalkulator](../../../03-GettingStarted/samples/python)
+- [Java Kalkulator](./samples/java/calculator/README.md)
+- [.Net Kalkulator](../../../03-GettingStarted/samples/csharp)
+- [JavaScript Kalkulator](./samples/javascript/README.md)
+- [TypeScript Kalkulator](./samples/typescript/README.md)
+- [Python Kalkulator](../../../03-GettingStarted/samples/python)
 
 ## Dodatni viri
 
@@ -96,7 +102,9 @@ Imamo nabor primerov, ki dopolnjujejo vaje, ki jih boste videli v vseh poglavjih
 
 ## Kaj sledi
 
-Naslednje: [Ustvarjanje vašega prvega MCP strežnika](01-first-server/README.md)
+Naprej: [Ustvarjanje vašega prvega MCP strežnika](01-first-server/README.md)
+
+---
 
 **Omejitev odgovornosti**:  
-Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas opozarjamo, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku velja za avtoritativni vir. Za ključne informacije priporočamo strokovni človeški prevod. Za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda, ne odgovarjamo.
+Ta dokument je bil preveden z uporabo storitve AI za prevajanje [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da lahko avtomatizirani prevodi vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za ključne informacije priporočamo profesionalni človeški prevod. Ne prevzemamo odgovornosti za morebitne nesporazume ali napačne razlage, ki izhajajo iz uporabe tega prevoda.

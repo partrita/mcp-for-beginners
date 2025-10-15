@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4eb6a48c54555c64b33c763fba3f2842",
-  "translation_date": "2025-07-13T21:04:00+00:00",
+  "original_hash": "dde4e32e4b55ef4962c411b39d2340a7",
+  "translation_date": "2025-09-03T16:05:19+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/dotnet/README.md",
   "language_code": "pt"
 }
@@ -23,9 +23,9 @@ dotnet run
 
 ## -3- Testar o exemplo
 
-Abra um terminal separado antes de executar o comando abaixo (certifique-se de que o servidor continua a funcionar).
+Inicie um terminal separado antes de executar o comando abaixo (certifique-se de que o servidor ainda está em execução).
 
-Com o servidor a correr num terminal, abra outro terminal e execute o seguinte comando:
+Com o servidor a funcionar num terminal, abra outro terminal e execute o seguinte comando:
 
 ```bash
 npx @modelcontextprotocol/inspector http://localhost:3001
@@ -33,22 +33,22 @@ npx @modelcontextprotocol/inspector http://localhost:3001
 
 Isto deverá iniciar um servidor web com uma interface visual que permite testar o exemplo.
 
-> Certifique-se de que o **Streamable HTTP** está selecionado como tipo de transporte, e que a URL é `http://localhost:3001/mcp`.
+> Certifique-se de que o **HTTP Streamable** está selecionado como tipo de transporte e que o URL é `http://localhost:3001/mcp`.
 
-Assim que o servidor estiver ligado:
+Depois de o servidor estar conectado:
 
-- experimente listar as ferramentas e executar `add`, com os argumentos 2 e 4, deverá ver 6 no resultado.
-- vá a resources e resource template e chame "greeting", escreva um nome e deverá ver uma saudação com o nome que forneceu.
+- experimente listar ferramentas e executar `add`, com os argumentos 2 e 4, deverá ver 6 no resultado.
+- vá a recursos e ao modelo de recurso e chame "greeting", insira um nome e deverá ver uma saudação com o nome que forneceu.
 
-### Testar em modo CLI
+### Testar no modo CLI
 
-Pode iniciar diretamente em modo CLI executando o seguinte comando:
+Pode iniciar diretamente no modo CLI executando o seguinte comando:
 
 ```bash 
 npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/list
 ```
 
-Isto irá listar todas as ferramentas disponíveis no servidor. Deverá ver a seguinte saída:
+Isto irá listar todas as ferramentas disponíveis no servidor. Deverá ver o seguinte resultado:
 
 ```text
 {
@@ -80,13 +80,13 @@ Isto irá listar todas as ferramentas disponíveis no servidor. Deverá ver a se
 }
 ```
 
-Para invocar uma ferramenta, escreva:
+Para invocar uma ferramenta, digite:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/call --tool-name AddNumbers --tool-arg a=1 --tool-arg b=2
 ```
 
-Deverá ver a seguinte saída:
+Deverá ver o seguinte resultado:
 
 ```text
 {
@@ -100,9 +100,11 @@ Deverá ver a seguinte saída:
 }
 ```
 
-> ![!TIP]
-> Normalmente é muito mais rápido executar o inspector em modo CLI do que no navegador.
+> [!TIP]
+> Normalmente é muito mais rápido executar o inspector no modo CLI do que no navegador.
 > Leia mais sobre o inspector [aqui](https://github.com/modelcontextprotocol/inspector).
 
+---
+
 **Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, por favor tenha em conta que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, é importante notar que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.

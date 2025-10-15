@@ -1,15 +1,15 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "d0f0d7012325b286e4a717791b23ae7e",
-  "translation_date": "2025-07-13T17:58:01+00:00",
+  "original_hash": "d4c162484df410632550a4a357d40341",
+  "translation_date": "2025-09-03T15:56:46+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/python/README.md",
   "language_code": "ar"
 }
 -->
 # تشغيل هذا المثال
 
-يوصى بتثبيت `uv` لكنه ليس ضروريًا، راجع [التعليمات](https://docs.astral.sh/uv/#highlights)
+يُوصى بتثبيت `uv` ولكنه ليس إلزاميًا، راجع [التعليمات](https://docs.astral.sh/uv/#highlights)
 
 ## -0- إنشاء بيئة افتراضية
 
@@ -20,7 +20,7 @@ python -m venv venv
 ## -1- تفعيل البيئة الافتراضية
 
 ```bash
-venv\Scrips\activate
+venv\Scripts\activate
 ```
 
 ## -2- تثبيت التبعيات
@@ -43,19 +43,19 @@ mcp run server.py
 mcp dev server.py
 ```
 
-يجب أن يبدأ هذا خادم ويب بواجهة مرئية تتيح لك اختبار المثال.
+يجب أن يبدأ هذا تشغيل خادم ويب بواجهة مرئية تتيح لك اختبار المثال.
 
 بمجرد اتصال الخادم:
 
-- جرب عرض الأدوات وتشغيل `add` مع الوسيطين 2 و4، يجب أن ترى النتيجة 6.
+- حاول عرض الأدوات وتشغيل `add`، مع الوسيطين 2 و4، يجب أن ترى النتيجة 6.
 
-- انتقل إلى الموارد وقالب الموارد واستدعِ get_greeting، اكتب اسمًا وسترى تحية تحتوي على الاسم الذي أدخلته.
+- انتقل إلى الموارد وقالب الموارد وقم باستدعاء `get_greeting`، اكتب اسمًا وسترى تحية بالاسم الذي أدخلته.
 
 ### الاختبار في وضع CLI
 
-المفتش الذي شغلته هو في الواقع تطبيق Node.js و`mcp dev` هو غلاف له.
+المفتش الذي قمت بتشغيله هو في الواقع تطبيق Node.js و`mcp dev` هو غلاف حوله.
 
-يمكنك تشغيله مباشرة في وضع CLI عن طريق تنفيذ الأمر التالي:
+يمكنك تشغيله مباشرة في وضع CLI عن طريق تشغيل الأمر التالي:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli mcp run server.py --method tools/list
@@ -92,7 +92,7 @@ npx @modelcontextprotocol/inspector --cli mcp run server.py --method tools/list
 }
 ```
 
-لاستدعاء أداة اكتب:
+لإجراء استدعاء لأداة، اكتب:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli mcp run server.py --method tools/call --tool-name add --tool-arg a=1 --tool-arg b=2
@@ -112,9 +112,11 @@ npx @modelcontextprotocol/inspector --cli mcp run server.py --method tools/call 
 }
 ```
 
-> ![!TIP]
+> [!TIP]
 > عادةً ما يكون تشغيل المفتش في وضع CLI أسرع بكثير من تشغيله في المتصفح.
 > اقرأ المزيد عن المفتش [هنا](https://github.com/modelcontextprotocol/inspector).
 
+---
+
 **إخلاء المسؤولية**:  
-تمت ترجمة هذا المستند باستخدام خدمة الترجمة الآلية [Co-op Translator](https://github.com/Azure/co-op-translator). بينما نسعى لتحقيق الدقة، يرجى العلم أن الترجمات الآلية قد تحتوي على أخطاء أو عدم دقة. يجب اعتبار المستند الأصلي بلغته الأصلية المصدر الموثوق به. للمعلومات الهامة، يُنصح بالاعتماد على الترجمة البشرية المهنية. نحن غير مسؤولين عن أي سوء فهم أو تفسير ناتج عن استخدام هذه الترجمة.
+تم ترجمة هذا المستند باستخدام خدمة الترجمة بالذكاء الاصطناعي [Co-op Translator](https://github.com/Azure/co-op-translator). بينما نسعى لتحقيق الدقة، يرجى العلم أن الترجمات الآلية قد تحتوي على أخطاء أو معلومات غير دقيقة. يجب اعتبار المستند الأصلي بلغته الأصلية المصدر الرسمي. للحصول على معلومات حاسمة، يُوصى بالاستعانة بترجمة بشرية احترافية. نحن غير مسؤولين عن أي سوء فهم أو تفسيرات خاطئة تنشأ عن استخدام هذه الترجمة.

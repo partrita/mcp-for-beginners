@@ -50,7 +50,8 @@ AZURE_OPENAI_API_VERSION=
 
 Fill in these values with your Azure OpenAI resource details before running the app.
 
-> **Tip:** You can easily deploy your own models using [Azure AI Foundry](https://ai.azure.com/).
+> [!TIP]
+> You can easily deploy your own models using [Azure AI Foundry](https://ai.azure.com/).
 
 ### Scenario 3: In-Editor Docs with MCP Server in VS Code
 

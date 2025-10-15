@@ -1,28 +1,28 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "73240f845b99df9401fffd21c09a5f7b",
-  "translation_date": "2025-07-17T08:05:23+00:00",
+  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
+  "translation_date": "2025-08-18T17:55:41+00:00",
   "source_file": "05-AdvancedTopics/mcp-integration/README.md",
   "language_code": "ms"
 }
 -->
 # Integrasi Perusahaan
 
-Apabila membina Server MCP dalam konteks perusahaan, anda sering perlu mengintegrasikan dengan platform dan perkhidmatan AI sedia ada. Bahagian ini menerangkan cara mengintegrasikan MCP dengan sistem perusahaan seperti Azure OpenAI dan Microsoft AI Foundry, membolehkan keupayaan AI lanjutan dan orkestrasi alat.
+Apabila membina Pelayan MCP dalam konteks perusahaan, anda sering perlu mengintegrasikan dengan platform dan perkhidmatan AI sedia ada. Bahagian ini merangkumi cara untuk mengintegrasikan MCP dengan sistem perusahaan seperti Azure OpenAI dan Microsoft AI Foundry, membolehkan keupayaan AI yang canggih dan orkestrasi alat.
 
 ## Pengenalan
 
-Dalam pelajaran ini, anda akan belajar cara mengintegrasikan Model Context Protocol (MCP) dengan sistem AI perusahaan, dengan fokus pada Azure OpenAI dan Microsoft AI Foundry. Integrasi ini membolehkan anda memanfaatkan model dan alat AI yang berkuasa sambil mengekalkan fleksibiliti dan kebolehlanjutan MCP.
+Dalam pelajaran ini, anda akan mempelajari cara mengintegrasikan Model Context Protocol (MCP) dengan sistem AI perusahaan, dengan fokus pada Azure OpenAI dan Microsoft AI Foundry. Integrasi ini membolehkan anda memanfaatkan model dan alat AI yang berkuasa sambil mengekalkan fleksibiliti dan kebolehlanjutan MCP.
 
 ## Objektif Pembelajaran
 
-Menjelang akhir pelajaran ini, anda akan dapat:
+Pada akhir pelajaran ini, anda akan dapat:
 
 - Mengintegrasikan MCP dengan Azure OpenAI untuk menggunakan keupayaan AI-nya.
 - Melaksanakan orkestrasi alat MCP dengan Azure OpenAI.
-- Menggabungkan MCP dengan Microsoft AI Foundry untuk keupayaan ejen AI lanjutan.
-- Memanfaatkan Azure Machine Learning (ML) untuk melaksanakan saluran ML dan mendaftarkan model sebagai alat MCP.
+- Menggabungkan MCP dengan Microsoft AI Foundry untuk keupayaan agen AI yang canggih.
+- Memanfaatkan Azure Machine Learning (ML) untuk melaksanakan saluran paip ML dan mendaftarkan model sebagai alat MCP.
 
 ## Integrasi Azure OpenAI
 
@@ -94,19 +94,19 @@ namespace EnterpriseIntegration
 }
 ```
 
-Dalam kod di atas kami telah:
+Dalam kod di atas, kami telah:
 
-- Mengkonfigurasi klien Azure OpenAI dengan titik akhir, nama penyebaran dan kunci API.
+- Mengkonfigurasi klien Azure OpenAI dengan titik akhir, nama penyebaran, dan kunci API.
 - Mencipta kaedah `GetCompletionWithToolsAsync` untuk mendapatkan penyelesaian dengan sokongan alat.
 - Mengendalikan panggilan alat dalam respons.
 
-Anda digalakkan untuk melaksanakan logik pengendalian alat sebenar berdasarkan tetapan server MCP anda.
+Anda digalakkan untuk melaksanakan logik pengendalian alat sebenar berdasarkan persediaan pelayan MCP anda.
 
 ## Integrasi Microsoft AI Foundry
 
-Azure AI Foundry menyediakan platform untuk membina dan menyebarkan ejen AI. Mengintegrasikan MCP dengan AI Foundry membolehkan anda memanfaatkan keupayaannya sambil mengekalkan fleksibiliti MCP.
+Azure AI Foundry menyediakan platform untuk membina dan menyebarkan agen AI. Mengintegrasikan MCP dengan AI Foundry membolehkan anda memanfaatkan keupayaannya sambil mengekalkan fleksibiliti MCP.
 
-Dalam kod di bawah, kami membangunkan integrasi Ejen yang memproses permintaan dan mengendalikan panggilan alat menggunakan MCP.
+Dalam kod di bawah, kami membangunkan integrasi Agen yang memproses permintaan dan mengendalikan panggilan alat menggunakan MCP.
 
 ### Pelaksanaan Java
 
@@ -168,13 +168,13 @@ public class AIFoundryMcpBridge {
 
 Dalam kod di atas, kami telah:
 
-- Mencipta kelas `AIFoundryMcpBridge` yang mengintegrasikan kedua-dua AI Foundry dan MCP.
-- Melaksanakan kaedah `processAgentRequest` yang memproses permintaan ejen AI Foundry.
-- Mengendalikan panggilan alat dengan melaksanakannya melalui klien MCP dan menghantar keputusan kembali kepada ejen AI Foundry.
+- Mencipta kelas `AIFoundryMcpBridge` yang mengintegrasikan dengan kedua-dua AI Foundry dan MCP.
+- Melaksanakan kaedah `processAgentRequest` yang memproses permintaan agen AI Foundry.
+- Mengendalikan panggilan alat dengan melaksanakannya melalui klien MCP dan menyerahkan hasilnya kembali kepada agen AI Foundry.
 
 ## Mengintegrasikan MCP dengan Azure ML
 
-Mengintegrasikan MCP dengan Azure Machine Learning (ML) membolehkan anda memanfaatkan keupayaan ML Azure yang berkuasa sambil mengekalkan fleksibiliti MCP. Integrasi ini boleh digunakan untuk melaksanakan saluran ML, mendaftarkan model sebagai alat, dan mengurus sumber pengkomputeran.
+Mengintegrasikan MCP dengan Azure Machine Learning (ML) membolehkan anda memanfaatkan keupayaan ML Azure yang berkuasa sambil mengekalkan fleksibiliti MCP. Integrasi ini boleh digunakan untuk melaksanakan saluran paip ML, mendaftarkan model sebagai alat, dan mengurus sumber pengkomputeran.
 
 ### Pelaksanaan Python
 
@@ -303,14 +303,14 @@ class EnterpriseAiIntegration:
 Dalam kod di atas, kami telah:
 
 - Mencipta kelas `EnterpriseAiIntegration` yang mengintegrasikan MCP dengan Azure ML.
-- Melaksanakan kaedah `execute_ml_pipeline` yang memproses data input menggunakan alat MCP dan menghantar saluran ML ke Azure ML.
+- Melaksanakan kaedah `execute_ml_pipeline` yang memproses data input menggunakan alat MCP dan menyerahkan saluran paip ML kepada Azure ML.
 - Melaksanakan kaedah `register_ml_model_as_tool` yang mendaftarkan model Azure ML sebagai alat MCP, termasuk mencipta persekitaran penyebaran dan sumber pengkomputeran yang diperlukan.
 - Memetakan jenis data Azure ML kepada jenis skema JSON untuk pendaftaran alat.
-- Menggunakan pengaturcaraan tak segerak untuk mengendalikan operasi yang mungkin mengambil masa lama seperti pelaksanaan saluran ML dan pendaftaran model.
+- Menggunakan pengaturcaraan asinkron untuk mengendalikan operasi yang berpotensi mengambil masa lama seperti pelaksanaan saluran paip ML dan pendaftaran model.
 
-## Apa seterusnya
+## Apa yang seterusnya
 
 - [5.2 Multi modality](../mcp-multi-modality/README.md)
 
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

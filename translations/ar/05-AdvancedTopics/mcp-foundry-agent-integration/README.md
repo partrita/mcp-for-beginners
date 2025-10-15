@@ -60,7 +60,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## تنفيذ Python
 
-***ملاحظة*** يمكنك تشغيل هذا [الدفتر](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb)
+***ملاحظة*** يمكنك تشغيل هذا [الدفتر](mcp_support_python.ipynb)
 
 ### 1. تثبيت الحزم المطلوبة
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## تنفيذ .NET
 
-***ملاحظة*** يمكنك تشغيل هذا [الدفتر](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb)
+***ملاحظة*** يمكنك تشغيل هذا [الدفتر](mcp_support_dotnet.ipynb)
 
 ### 1. تثبيت الحزم المطلوبة
 

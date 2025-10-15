@@ -33,7 +33,7 @@ Here's how to run the classic HTTP streaming server and client, as well as the M
 1. **Install required dependencies:**
 
    ```pwsh
-   pip install "mcp[cli]"
+   pip install "mcp[cli]" fastapi requests
    ```
 
 ### Files

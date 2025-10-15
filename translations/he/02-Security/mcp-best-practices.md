@@ -1,108 +1,175 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "90bfc6f3be00e34f6124e2a24bf94167",
-  "translation_date": "2025-07-17T08:49:46+00:00",
+  "original_hash": "b2b9e15e78b9d9a2b3ff3e8fd7d1f434",
+  "translation_date": "2025-08-18T16:53:17+00:00",
   "source_file": "02-Security/mcp-best-practices.md",
   "language_code": "he"
 }
 -->
-# שיטות עבודה מומלצות לאבטחת MCP
+# עקרונות אבטחה מומלצים ל-MCP לשנת 2025
 
-בעת עבודה עם שרתי MCP, יש לעקוב אחרי שיטות עבודה מומלצות לאבטחה כדי להגן על הנתונים, התשתית והמשתמשים שלך:
+מדריך מקיף זה מציג עקרונות אבטחה חיוניים ליישום מערכות Model Context Protocol (MCP) בהתבסס על **MCP Specification 2025-06-18** והסטנדרטים העדכניים בתעשייה. עקרונות אלו מתייחסים הן לאיומי אבטחה מסורתיים והן לאיומים ייחודיים הקשורים ל-AI בפריסות MCP.
 
-1. **אימות קלט**: תמיד לאמת ולנקות את הקלטים כדי למנוע התקפות הזרקה ובעיות של נציג מבולבל.
-2. **בקרת גישה**: ליישם אימות והרשאות מתאימות לשרת MCP שלך עם הרשאות מדויקות.
-3. **תקשורת מאובטחת**: להשתמש ב-HTTPS/TLS לכל התקשורת עם שרת MCP ולשקול הוספת הצפנה נוספת לנתונים רגישים.
-4. **הגבלת קצב**: ליישם הגבלת קצב כדי למנוע שימוש לרעה, התקפות DoS ולנהל את צריכת המשאבים.
-5. **רישום ומעקב**: לעקוב אחרי פעילות חשודה בשרת MCP וליישם רישומי ביקורת מקיפים.
-6. **אחסון מאובטח**: להגן על נתונים רגישים ואישורים עם הצפנה מתאימה במצב מנוחה.
-7. **ניהול טוקנים**: למנוע פגיעויות של העברת טוקנים על ידי אימות וניקוי כל הקלטים והפלטים של המודל.
-8. **ניהול סשנים**: ליישם טיפול מאובטח בסשנים כדי למנוע חטיפת סשנים והתקפות קיבוע.
-9. **הרצת כלים בסביבה מבודדת**: להריץ את הכלים בסביבות מבודדות כדי למנוע תנועה רוחבית במקרה של פגיעה.
-10. **בדיקות אבטחה תקופתיות**: לבצע סקירות אבטחה תקופתיות של יישומי MCP והתלויות שלהם.
-11. **אימות פרומפטים**: לסרוק ולסנן פרומפטים נכנסים ויוצאים כדי למנוע התקפות הזרקת פרומפט.
-12. **הסמכת אימות**: להשתמש בספקי זהות מוכרים במקום ליישם אימות מותאם אישית.
-13. **הגבלת הרשאות**: ליישם הרשאות מדויקות לכל כלי ומשאב בהתאם לעקרונות המינימום הנדרש.
-14. **מזעור נתונים**: לחשוף רק את הנתונים המינימליים הנדרשים לכל פעולה כדי לצמצם את שטח הסיכון.
-15. **סריקה אוטומטית לפגיעויות**: לסרוק באופן קבוע את שרתי MCP והתלויות שלהם לפגיעויות ידועות.
+## דרישות אבטחה קריטיות
 
-## משאבים תומכים לשיטות עבודה מומלצות לאבטחת MCP
+### בקרות אבטחה חובה (דרישות MUST)
 
-### אימות קלט
-- [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)
-- [Preventing Prompt Injection in MCP](https://modelcontextprotocol.io/docs/guides/security)
-- [Azure Content Safety Implementation](./azure-content-safety-implementation.md)
+1. **אימות אסימונים**: שרתי MCP **חייבים שלא** לקבל אסימונים שלא הונפקו במפורש עבור השרת עצמו.
+2. **אימות הרשאות**: שרתי MCP המיישמים הרשאות **חייבים** לאמת את כל הבקשות הנכנסות ו**חייבים שלא** להשתמש במפגשים לצורך אימות.
+3. **הסכמת משתמש**: שרתי פרוקסי של MCP המשתמשים במזהי לקוח סטטיים **חייבים** לקבל הסכמה מפורשת מהמשתמש עבור כל לקוח שנרשם באופן דינמי.
+4. **מזהי מפגש מאובטחים**: שרתי MCP **חייבים** להשתמש במזהי מפגש קריפטוגרפיים, לא דטרמיניסטיים, שנוצרו באמצעות מחוללי מספרים אקראיים מאובטחים.
 
-### בקרת גישה
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [Using Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/)
-- [Azure API Management as Auth Gateway for MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+## עקרונות אבטחה מרכזיים
 
-### תקשורת מאובטחת
-- [Transport Layer Security (TLS) Best Practices](https://learn.microsoft.com/security/engineering/solving-tls)
-- [MCP Transport Security Guidelines](https://modelcontextprotocol.io/docs/concepts/transports)
-- [End-to-End Encryption for AI Workloads](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption)
+### 1. אימות וניקוי קלטים
+- **אימות קלט מקיף**: יש לאמת ולנקות את כל הקלטים כדי למנוע התקפות הזרקה, בעיות "סגן מבולבל" ופגיעויות הזרקת הנחיות.
+- **אכיפת סכמות פרמטרים**: יש ליישם אימות סכמות JSON קפדני עבור כל פרמטרי הכלים וקלטי ה-API.
+- **סינון תוכן**: השתמשו ב-Microsoft Prompt Shields וב-Azure Content Safety לסינון תוכן זדוני בהנחיות ובתגובות.
+- **ניקוי פלטים**: יש לאמת ולנקות את כל פלטי המודלים לפני הצגתם למשתמשים או למערכות המשך.
 
-### הגבלת קצב
-- [API Rate Limiting Patterns](https://learn.microsoft.com/azure/architecture/patterns/rate-limiting-pattern)
-- [Implementing Token Bucket Rate Limiting](https://konghq.com/blog/engineering/how-to-design-a-scalable-rate-limiting-algorithm)
-- [Rate Limiting in Azure API Management](https://learn.microsoft.com/azure/api-management/rate-limit-policy)
+### 2. מצוינות באימות והרשאות
+- **ספקי זהות חיצוניים**: האצילו את תהליך האימות לספקי זהות מבוססים (Microsoft Entra ID, ספקי OAuth 2.1) במקום ליישם אימות מותאם אישית.
+- **הרשאות מדויקות**: יישמו הרשאות מדויקות וממוקדות כלים בהתאם לעקרון המינימום הנדרש.
+- **ניהול מחזור חיים של אסימונים**: השתמשו באסימוני גישה קצרי טווח עם רוטציה מאובטחת ואימות קהל מתאים.
+- **אימות רב-גורמי**: דרשו MFA עבור כל גישה ניהולית ופעולות רגישות.
 
-### רישום ומעקב
-- [Centralized Logging for AI Systems](https://learn.microsoft.com/azure/architecture/example-scenario/logging/centralized-logging)
-- [Audit Logging Best Practices](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
-- [Azure Monitor for AI Workloads](https://learn.microsoft.com/azure/azure-monitor/overview)
+### 3. פרוטוקולי תקשורת מאובטחים
+- **אבטחת שכבת תעבורה**: השתמשו ב-HTTPS/TLS 1.3 לכל תקשורת MCP עם אימות תעודות מתאים.
+- **הצפנה מקצה לקצה**: יישמו שכבות הצפנה נוספות עבור נתונים רגישים במיוחד במעבר ובמנוחה.
+- **ניהול תעודות**: תחזקו ניהול מחזור חיים של תעודות עם תהליכי חידוש אוטומטיים.
+- **אכיפת גרסת פרוטוקול**: השתמשו בגרסת הפרוטוקול הנוכחית של MCP (2025-06-18) עם ניהול גרסאות מתאים.
 
-### אחסון מאובטח
-- [Azure Key Vault for Credential Storage](https://learn.microsoft.com/azure/key-vault/general/basic-concepts)
-- [Encrypting Sensitive Data at Rest](https://learn.microsoft.com/security/engineering/data-encryption-at-rest)
-- [Use Secure Token Storage and Encrypt Tokens](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
+### 4. הגבלת קצב מתקדמת והגנה על משאבים
+- **הגבלת קצב רב-שכבתית**: יישמו הגבלת קצב ברמת המשתמש, המפגש, הכלי והמשאב כדי למנוע ניצול לרעה.
+- **הגבלת קצב אדפטיבית**: השתמשו בהגבלת קצב מבוססת למידת מכונה המותאמת לדפוסי שימוש ואינדיקטורים לאיומים.
+- **ניהול מכסות משאבים**: הגדירו מגבלות מתאימות למשאבי חישוב, שימוש בזיכרון וזמן ביצוע.
+- **הגנה מפני DDoS**: פרסו מערכות הגנה מקיפות מפני DDoS וניתוח תעבורה.
 
-### ניהול טוקנים
-- [JWT Best Practices (RFC 8725)](https://datatracker.ietf.org/doc/html/rfc8725)
-- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
-- [Best Practices for Token Validation and Lifetime](https://learn.microsoft.com/entra/identity-platform/access-tokens)
+### 5. רישום וניטור מקיפים
+- **רישום ביקורת מובנה**: יישמו יומנים מפורטים הניתנים לחיפוש עבור כל פעולות MCP, ביצועי כלים ואירועי אבטחה.
+- **ניטור אבטחה בזמן אמת**: פרסו מערכות SIEM עם זיהוי אנומליות מבוסס AI עבור עומסי עבודה של MCP.
+- **רישום תואם פרטיות**: רשמו אירועי אבטחה תוך שמירה על דרישות פרטיות ורגולציות.
+- **שילוב תגובה לאירועים**: חברו מערכות רישום לזרימות עבודה אוטומטיות של תגובה לאירועים.
 
-### ניהול סשנים
-- [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
-- [MCP Session Handling Guidelines](https://modelcontextprotocol.io/docs/guides/security)
-- [Secure Session Design Patterns](https://learn.microsoft.com/security/engineering/session-security)
+### 6. שיטות אחסון מאובטחות משופרות
+- **מודולי אבטחת חומרה**: השתמשו באחסון מפתחות מבוסס HSM (Azure Key Vault, AWS CloudHSM) עבור פעולות קריפטוגרפיות קריטיות.
+- **ניהול מפתחות הצפנה**: יישמו רוטציה, הפרדה ובקרות גישה מתאימות למפתחות הצפנה.
+- **ניהול סודות**: אחסנו את כל מפתחות ה-API, האסימונים והאישורים במערכות ייעודיות לניהול סודות.
+- **סיווג נתונים**: סווגו נתונים לפי רמות רגישות ויישמו אמצעי הגנה מתאימים.
 
-### הרצת כלים בסביבה מבודדת
-- [Container Security Best Practices](https://learn.microsoft.com/azure/container-instances/container-instances-image-security)
-- [Implementing Process Isolation](https://learn.microsoft.com/windows/security/threat-protection/security-policy-settings/user-rights-assignment)
-- [Resource Limits for Containerized Applications](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+### 7. ניהול אסימונים מתקדם
+- **מניעת העברת אסימונים**: אסרו במפורש דפוסי העברת אסימונים שעוקפים בקרות אבטחה.
+- **אימות קהל**: תמיד ודאו שתביעות הקהל של האסימונים תואמות לזהות שרת ה-MCP המיועד.
+- **הרשאות מבוססות תביעות**: יישמו הרשאות מדויקות המבוססות על תביעות אסימונים ותכונות משתמש.
+- **קשירת אסימונים**: קשרו אסימונים למפגשים, משתמשים או מכשירים ספציפיים במידת הצורך.
 
-### בדיקות אבטחה תקופתיות
-- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl)
-- [OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/)
-- [Security Code Review Guidelines](https://owasp.org/www-pdf-archive/OWASP_Code_Review_Guide_v2.pdf)
+### 8. ניהול מפגשים מאובטח
+- **מזהי מפגש קריפטוגרפיים**: צרו מזהי מפגש באמצעות מחוללי מספרים אקראיים מאובטחים (לא רצפים צפויים).
+- **קשירה למשתמש**: קשרו מזהי מפגש למידע ייחודי למשתמש בפורמטים מאובטחים כמו `<user_id>:<session_id>`.
+- **בקרות מחזור חיים של מפגשים**: יישמו מנגנוני פקיעה, רוטציה וביטול מתאימים למפגשים.
+- **כותרות אבטחת מפגשים**: השתמשו בכותרות HTTP מתאימות להגנה על מפגשים.
 
-### אימות פרומפטים
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
-- [Azure Content Safety for AI](https://learn.microsoft.com/azure/ai-services/content-safety/)
-- [Preventing Prompt Injection](https://github.com/microsoft/prompt-shield-js)
+### 9. בקרות אבטחה ייחודיות ל-AI
+- **הגנה מפני הזרקת הנחיות**: פרסו Microsoft Prompt Shields עם טכניקות כמו הדגשה, מפרידים וסימוני נתונים.
+- **מניעת הרעלת כלים**: אימתו מטא-נתונים של כלים, עקבו אחר שינויים דינמיים ואמתו את שלמות הכלים.
+- **אימות פלטי מודלים**: סרקו פלטי מודלים לאיתור דליפות נתונים פוטנציאליות, תוכן מזיק או הפרות מדיניות אבטחה.
+- **הגנה על חלון הקשר**: יישמו בקרות למניעת הרעלת חלון הקשר והתקפות מניפולציה.
 
-### הסמכת אימות
-- [Microsoft Entra ID Integration](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow)
-- [OAuth 2.0 for MCP Services](https://learn.microsoft.com/security/engineering/solving-oauth)
-- [MCP Security Controls 2025](./mcp-security-controls-2025.md)
+### 10. אבטחת ביצוע כלים
+- **בידוד ביצוע**: הריצו ביצועי כלים בסביבות מבודדות ומכולות עם מגבלות משאבים.
+- **הפרדת הרשאות**: הריצו כלים עם ההרשאות המינימליות הנדרשות וחשבונות שירות נפרדים.
+- **בידוד רשת**: יישמו הפרדת רשת עבור סביבות ביצוע כלים.
+- **ניטור ביצוע**: עקבו אחר ביצועי כלים לאיתור התנהגות חריגה, שימוש במשאבים והפרות אבטחה.
 
-### הגבלת הרשאות
-- [Secure Least-Privileged Access](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
-- [Role-Based Access Control (RBAC) Design](https://learn.microsoft.com/azure/role-based-access-control/overview)
-- [Tool-specific Authorization in MCP](https://modelcontextprotocol.io/docs/guides/best-practices)
+### 11. אימות אבטחה מתמשך
+- **בדיקות אבטחה אוטומטיות**: שלבו בדיקות אבטחה בצינורות CI/CD עם כלים כמו GitHub Advanced Security.
+- **ניהול פגיעויות**: סרקו באופן קבוע את כל התלויות, כולל מודלים של AI ושירותים חיצוניים.
+- **בדיקות חדירה**: בצעו הערכות אבטחה תקופתיות הממוקדות במיוחד ביישומי MCP.
+- **סקירות קוד אבטחה**: יישמו סקירות אבטחה חובה לכל שינויי קוד הקשורים ל-MCP.
 
-### מזעור נתונים
-- [Data Protection by Design](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments)
-- [AI Data Privacy Best Practices](https://learn.microsoft.com/legal/cognitive-services/openai/data-privacy)
-- [Implementing Privacy-enhancing Technologies](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/)
+### 12. אבטחת שרשרת אספקה ל-AI
+- **אימות רכיבים**: אימתו את המקור, השלמות והאבטחה של כל רכיבי ה-AI (מודלים, הטמעות, APIs).
+- **ניהול תלויות**: תחזקו רשימות עדכניות של כל התוכנות ותלויות ה-AI עם מעקב אחר פגיעויות.
+- **מאגרי מידע מהימנים**: השתמשו במקורות מאומתים ומהימנים לכל מודלי ה-AI, הספריות והכלים.
+- **ניטור שרשרת אספקה**: עקבו באופן מתמשך אחר פשרות אצל ספקי שירותי AI ומאגרי מודלים.
 
-### סריקה אוטומטית לפגיעויות
-- [GitHub Advanced Security](https://github.com/security/advanced-security)
-- [DevSecOps Pipeline Implementation](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline)
-- [Continuous Security Validation](https://www.microsoft.com/security/blog/2022/04/05/step-by-step-building-a-more-efficient-devsecops-environment/)
+## דפוסי אבטחה מתקדמים
+
+### ארכיטקטורת Zero Trust עבור MCP
+- **לעולם אל תסמוך, תמיד אמת**: יישמו אימות מתמשך לכל משתתפי MCP.
+- **מיקרו-סגמנטציה**: בידדו רכיבי MCP עם בקרות רשת וזהות מדויקות.
+- **גישה מותנית**: יישמו בקרות גישה מבוססות סיכון המותאמות להקשר ולהתנהגות.
+- **הערכת סיכון מתמשכת**: העריכו באופן דינמי את מצב האבטחה בהתבסס על אינדיקטורים לאיומים.
+
+### יישום AI שומר פרטיות
+- **מזעור נתונים**: חשפו רק את המידע המינימלי הנדרש לכל פעולה של MCP.
+- **פרטיות דיפרנציאלית**: יישמו טכניקות שימור פרטיות לעיבוד נתונים רגישים.
+- **הצפנה הומומורפית**: השתמשו בטכניקות הצפנה מתקדמות לחישוב מאובטח על נתונים מוצפנים.
+- **למידה מבוזרת**: יישמו גישות למידה מבוזרות השומרות על מקומיות ופרטיות הנתונים.
+
+### תגובה לאירועים במערכות AI
+- **נהלים ייחודיים לאירועי AI**: פתחו נהלי תגובה לאירועים המותאמים לאיומים ייחודיים ל-AI ול-MCP.
+- **תגובה אוטומטית**: יישמו הכלה ותיקון אוטומטיים לאירועי אבטחה נפוצים ב-AI.
+- **יכולות פורנזיות**: תחזקו מוכנות פורנזית לפשרות במערכות AI ודליפות נתונים.
+- **נהלי התאוששות**: הגדירו נהלים להתאוששות מהרעלת מודלים, התקפות הזרקת הנחיות ופגיעות בשירותים.
+
+## משאבי יישום וסטנדרטים
+
+### תיעוד רשמי של MCP
+- [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) - מפרט הפרוטוקול הנוכחי של MCP  
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) - הנחיות אבטחה רשמיות  
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization) - דפוסי אימות והרשאות  
+- [MCP Transport Security](https://modelcontextprotocol.io/specification/2025-06-18/transports/) - דרישות אבטחת שכבת תעבורה  
+
+### פתרונות אבטחה של Microsoft
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - הגנה מתקדמת מפני הזרקת הנחיות  
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/) - סינון תוכן AI מקיף  
+- [Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow) - ניהול זהות וגישה ארגוני  
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts) - ניהול מאובטח של סודות ואישורים  
+- [GitHub Advanced Security](https://github.com/security/advanced-security) - סריקת אבטחת קוד ושרשרת אספקה  
+
+### סטנדרטים ומסגרות אבטחה
+- [OAuth 2.1 Security Best Practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics) - הנחיות אבטחה עדכניות ל-OAuth  
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - סיכוני אבטחת יישומי אינטרנט  
+- [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559) - סיכוני אבטחה ייחודיים ל-AI  
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) - ניהול סיכוני AI מקיף  
+- [ISO 27001:2022](https://www.iso.org/standard/27001) - מערכות ניהול אבטחת מידע  
+
+### מדריכי יישום והדרכות
+- [Azure API Management as MCP Auth Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) - דפוסי אימות ארגוניים  
+- [Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/) - אינטגרציה עם ספקי זהות  
+- [Secure Token Storage Implementation](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2) - עקרונות ניהול אסימונים  
+- [End-to-End Encryption for AI](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption) - דפוסי הצפנה מתקדמים  
+
+### משאבי אבטחה מתקדמים
+- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl) - עקרונות פיתוח מאובטח  
+- [AI Red Team Guidance](https://learn.microsoft.com/security/ai-red-team/) - בדיקות אבטחה ייחודיות ל-AI  
+- [Threat Modeling for AI Systems](https://learn.microsoft.com/security/adoption/approach/threats-ai) - מתודולוגיית ניתוח איומים ל-AI  
+- [Privacy Engineering for AI](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/) - טכניקות AI לשמירה על פרטיות  
+
+### תאימות וממשל
+- [GDPR Compliance for AI](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments) - תאימות פרטיות במערכות AI  
+- [AI Governance Framework](https://learn.microsoft.com/azure/architecture/guide/responsible-ai/responsible-ai-overview) - יישום AI אחראי  
+- [SOC 2 for AI Services](https://learn.microsoft.com/compliance/regulatory/offering-soc) - בקרות אבטחה לספקי שירותי AI  
+- [HIPAA Compliance for AI](https://learn.microsoft.com/compliance/regulatory/offering-hipaa-hitech) - דרישות תאימות AI בתחום הבריאות  
+
+### DevSecOps ואוטומציה
+- [DevSecOps Pipeline for AI](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline) - צינורות פיתוח מאובטחים ל-AI  
+- [Automated Security Testing](https://learn.microsoft.com/security/engineering/devsecops) - אימות אבטחה מתמשך  
+- [Infrastructure as Code Security](https://learn.microsoft.com/security/engineering/infrastructure-security) - פריסת תשתית מאובטחת  
+- [Container Security for AI](https://learn.microsoft.com/azure/container-instances/container-instances-image-security) - אבטחת מכולות לעומסי עבודה של AI  
+
+### ניטור ותגובה לאירועים  
+- [Azure Monitor for AI Workloads](https://learn.microsoft.com/azure/azure-monitor/overview) - פתרונות ניטור מקיפים  
+- [AI Security Incident Response](https://learn.microsoft.com/security/compass/incident-response-playbooks) - נהלים ייחודיים לאירועי אבטחת AI  
+- [SIEM for AI Systems](https://learn.microsoft.com/azure/sentinel/overview) - ניהול מידע ואירועי אבטחה  
+- [Threat Intelligence for AI](https://learn.microsoft.com/security/compass/security-
+- **פיתוח כלים**: פיתוח ושיתוף כלים וספריות אבטחה עבור מערכת MCP
+
+---
+
+*מסמך זה משקף את שיטות האבטחה הטובות ביותר של MCP נכון ל-18 באוגוסט 2025, בהתבסס על מפרט MCP 2025-06-18. יש לבחון ולעדכן באופן קבוע את שיטות האבטחה בהתאם להתפתחות הפרוטוקול ונוף האיומים.*
 
 **כתב ויתור**:  
-מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש לקחת בחשבון כי תרגומים אוטומטיים עלולים להכיל שגיאות או אי-דיוקים. המסמך המקורי בשפת המקור שלו צריך להיחשב כמקור הסמכות. למידע קריטי מומלץ להשתמש בתרגום מקצועי על ידי מתרגם אנושי. אנו לא נושאים באחריות לכל אי-הבנה או פרשנות שגויה הנובעת משימוש בתרגום זה.
+מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). בעוד שאנו שואפים לדיוק, יש להיות מודעים לכך שתרגומים אוטומטיים עשויים להכיל שגיאות או אי דיוקים. המסמך המקורי בשפתו המקורית צריך להיחשב כמקור סמכותי. עבור מידע קריטי, מומלץ להשתמש בתרגום מקצועי על ידי אדם. איננו נושאים באחריות לאי הבנות או לפרשנויות שגויות הנובעות משימוש בתרגום זה.

@@ -1,42 +1,42 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "8da8a0fd44d58fab5979d0f2914a1f37",
-  "translation_date": "2025-07-17T09:06:35+00:00",
+  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
+  "translation_date": "2025-08-18T17:00:31+00:00",
   "source_file": "03-GettingStarted/02-client/README.md",
   "language_code": "he"
 }
 -->
 # יצירת לקוח
 
-לקוחות הם אפליקציות מותאמות אישית או סקריפטים שמתקשרים ישירות עם שרת MCP כדי לבקש משאבים, כלים והנחיות. בניגוד לשימוש בכלי המפקח, שמספק ממשק גרפי לאינטראקציה עם השרת, כתיבת לקוח משלך מאפשרת אינטראקציות תכנותיות ואוטומטיות. זה מאפשר למפתחים לשלב את יכולות ה-MCP בתוך זרימות העבודה שלהם, לאוטומט משימות ולבנות פתרונות מותאמים לצרכים ספציפיים.
+לקוחות הם יישומים מותאמים אישית או סקריפטים שמתקשרים ישירות עם שרת MCP כדי לבקש משאבים, כלים והנחיות. בניגוד לשימוש בכלי הבדיקה, שמספק ממשק גרפי לאינטראקציה עם השרת, כתיבת לקוח משלך מאפשרת אינטראקציות תכנותיות ואוטומטיות. זה מאפשר למפתחים לשלב את יכולות MCP בתהליכי העבודה שלהם, לאוטומט משימות ולבנות פתרונות מותאמים לצרכים ספציפיים.
 
 ## סקירה כללית
 
-השיעור הזה מציג את מושג הלקוחות בתוך מערכת Model Context Protocol (MCP). תלמד כיצד לכתוב לקוח משלך ולחבר אותו לשרת MCP.
+שיעור זה מציג את מושג הלקוחות בתוך מערכת Model Context Protocol (MCP). תלמדו כיצד לכתוב לקוח משלכם ולחבר אותו לשרת MCP.
 
-## מטרות הלמידה
+## מטרות למידה
 
-בסיום השיעור תוכל:
+בסוף השיעור הזה, תוכלו:
 
 - להבין מה לקוח יכול לעשות.
-- לכתוב לקוח משלך.
-- להתחבר ולבדוק את הלקוח עם שרת MCP כדי לוודא שהשרת פועל כמצופה.
+- לכתוב לקוח משלכם.
+- לחבר ולבדוק את הלקוח עם שרת MCP כדי לוודא שהוא פועל כמצופה.
 
 ## מה נדרש לכתיבת לקוח?
 
-כדי לכתוב לקוח, תצטרך לבצע את הפעולות הבאות:
+כדי לכתוב לקוח, תצטרכו לבצע את הפעולות הבאות:
 
-- **ייבא את הספריות הנכונות**. תשתמש באותה ספריה כמו קודם, רק במבנים שונים.
-- **אתחל לקוח**. זה יכלול יצירת מופע של לקוח וחיבורו לשיטת התקשורת שנבחרה.
-- **החלט אילו משאבים לרשום**. לשרת MCP שלך יש משאבים, כלים והנחיות, עליך להחליט אילו מהם להציג.
-- **שלב את הלקוח באפליקציית מארח**. ברגע שתדע את יכולות השרת, עליך לשלב את זה באפליקציית המארח כך שאם משתמש מקליד הנחיה או פקודה אחרת, תתבצע הפונקציה המתאימה בשרת.
+- **לייבא את הספריות הנכונות**. תשתמשו באותה ספרייה כמו קודם, רק במבנים שונים.
+- **ליצור מופע של לקוח**. זה יכלול יצירת מופע לקוח וחיבורו לשיטת התעבורה שנבחרה.
+- **להחליט אילו משאבים לרשום**. שרת MCP שלכם מגיע עם משאבים, כלים והנחיות, תצטרכו להחליט אילו מהם לרשום.
+- **לשלב את הלקוח ביישום מארח**. לאחר שתדעו את יכולות השרת, תצטרכו לשלב זאת ביישום המארח שלכם כך שאם משתמש מקליד הנחיה או פקודה אחרת, תכונת השרת המתאימה תופעל.
 
-כעת, כשאנחנו מבינים ברמה גבוהה מה עומדים לעשות, בוא נבחן דוגמה.
+עכשיו כשאנחנו מבינים ברמה גבוהה מה אנחנו עומדים לעשות, בואו נסתכל על דוגמה.
 
-### דוגמה ללקוח
+### דוגמת לקוח
 
-בוא נבחן את דוגמת הלקוח הבאה:
+בואו נסתכל על דוגמת לקוח זו:
 
 ### TypeScript
 
@@ -86,39 +86,39 @@ const result = await client.callTool({
 });
 ```
 
-בקוד שלמעלה:
+בקוד הקודם:
 
-- ייבאנו את הספריות
-- יצרנו מופע של לקוח וחיברנו אותו באמצעות stdio כפרוטוקול תקשורת.
+- ייבאנו את הספריות.
+- יצרנו מופע של לקוח וחיברנו אותו באמצעות stdio לתעבורה.
 - רשמנו הנחיות, משאבים וכלים והפעלנו את כולם.
 
-וזהו, לקוח שיכול לתקשר עם שרת MCP.
+הנה לכם, לקוח שיכול לתקשר עם שרת MCP.
 
-בואו נקדיש זמן בחלק התרגיל הבא ונפרק כל קטע קוד ונבין מה קורה.
+בואו ניקח את הזמן בחלק הבא של התרגיל ונפרק כל קטע קוד ונסביר מה קורה.
 
 ## תרגיל: כתיבת לקוח
 
-כפי שנאמר, נקדיש זמן להסבר הקוד, ואתם מוזמנים לכתוב את הקוד במקביל אם תרצו.
+כפי שנאמר לעיל, בואו ניקח את הזמן להסביר את הקוד, ואם תרצו, תוכלו לכתוב את הקוד יחד איתנו.
 
 ### -1- ייבוא הספריות
 
-נייבא את הספריות הדרושות, נצטרך הפניות ללקוח ולפרוטוקול התקשורת שבחרנו, stdio. stdio הוא פרוטוקול לדברים שמיועדים לרוץ במחשב המקומי שלך. SSE הוא פרוטוקול תקשורת נוסף שנציג בפרקים הבאים, אבל כרגע נמשיך עם stdio.
+בואו נייבא את הספריות שאנחנו צריכים. נצטרך הפניות ללקוח ולפרוטוקול התעבורה שנבחר, stdio. stdio הוא פרוטוקול לדברים שמיועדים לפעול על המחשב המקומי שלכם. SSE הוא פרוטוקול תעבורה נוסף שנראה בפרקים הבאים, אבל זו האפשרות האחרת שלכם. לעת עתה, בואו נמשיך עם stdio.
 
-### TypeScript
+#### TypeScript
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 ```
 
-### Python
+#### Python
 
 ```python
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 ```
 
-### .NET
+#### .NET
 
 ```csharp
 using Microsoft.Extensions.AI;
@@ -128,9 +128,9 @@ using ModelContextProtocol.Client;
 using ModelContextProtocol.Protocol.Transport;
 ```
 
-### Java
+#### Java
 
-לג'אווה, תיצור לקוח שמתחבר לשרת MCP מהתרגיל הקודם. תוך שימוש במבנה פרויקט Java Spring Boot מהקובץ [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), צור מחלקה חדשה בשם `SDKClient` בתיקייה `src/main/java/com/microsoft/mcp/sample/client/` והוסף את הייבוא הבא:
+עבור Java, תיצרו לקוח שמתחבר לשרת MCP מהתרגיל הקודם. באמצעות אותה מבנה פרויקט Java Spring Boot מ-[התחלה עם שרת MCP](../../../../03-GettingStarted/01-first-server/solution/java), צרו מחלקה חדשה בשם `SDKClient` בתיקייה `src/main/java/com/microsoft/mcp/sample/client/` והוסיפו את הייבוא הבא:
 
 ```java
 import java.util.Map;
@@ -143,13 +143,41 @@ import io.modelcontextprotocol.spec.McpSchema.CallToolResult;
 import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 ```
 
-נעבור לאתחול.
+#### Rust
 
-### -2- אתחול הלקוח והפרוטוקול
+תצטרכו להוסיף את התלויות הבאות לקובץ `Cargo.toml` שלכם.
 
-נצטרך ליצור מופע של הפרוטוקול ושל הלקוח שלנו:
+```toml
+[package]
+name = "calculator-client"
+version = "0.1.0"
+edition = "2024"
 
-### TypeScript
+[dependencies]
+rmcp = { version = "0.5.0", features = ["client", "transport-child-process"] }
+serde_json = "1.0.141"
+tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
+```
+
+משם, תוכלו לייבא את הספריות הנחוצות בקוד הלקוח שלכם.
+
+```rust
+use rmcp::{
+    RmcpError,
+    model::CallToolRequestParam,
+    service::ServiceExt,
+    transport::{ConfigureCommandExt, TokioChildProcess},
+};
+use tokio::process::Command;
+```
+
+בואו נמשיך ליצירת מופע.
+
+### -2- יצירת מופע לקוח ותעבורה
+
+נצטרך ליצור מופע של התעבורה ושל הלקוח שלנו:
+
+#### TypeScript
 
 ```typescript
 const transport = new StdioClientTransport({
@@ -167,9 +195,9 @@ const client = new Client(
 await client.connect(transport);
 ```
 
-בקוד שלמעלה:
+בקוד הקודם:
 
-- יצרנו מופע של פרוטוקול stdio. שים לב איך הוא מגדיר פקודה וארגומנטים לאיתור והפעלת השרת, כי זה משהו שנצטרך לעשות כשניצור את הלקוח.
+- יצרנו מופע תעבורה stdio. שימו לב כיצד הוא מציין פקודה וארגומנטים כדי למצוא ולהפעיל את השרת, שכן זה משהו שנצטרך לעשות כשניצור את הלקוח.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -178,7 +206,7 @@ await client.connect(transport);
     });
     ```
 
-- אתחלנו לקוח על ידי מתן שם וגרסה.
+- יצרנו מופע לקוח על ידי מתן שם וגרסה.
 
     ```typescript
     const client = new Client(
@@ -188,13 +216,13 @@ await client.connect(transport);
     });
     ```
 
-- חיברנו את הלקוח לפרוטוקול שנבחר.
+- חיברנו את הלקוח לתעבורה שנבחרה.
 
     ```typescript
     await client.connect(transport);
     ```
 
-### Python
+#### Python
 
 ```python
 from mcp import ClientSession, StdioServerParameters, types
@@ -223,14 +251,14 @@ if __name__ == "__main__":
     asyncio.run(run())
 ```
 
-בקוד שלמעלה:
+בקוד הקודם:
 
-- ייבאנו את הספריות הנדרשות
-- אתחלנו אובייקט פרמטרים לשרת כדי שנוכל להריץ את השרת ולחבר אליו את הלקוח.
-- הגדרנו פונקציה `run` שקוראת ל-`stdio_client` שמתחילה סשן לקוח.
-- יצרנו נקודת כניסה שבה אנו מפעילים את `run` דרך `asyncio.run`.
+- ייבאנו את הספריות הנחוצות.
+- יצרנו אובייקט פרמטרים של שרת שנשתמש בו כדי להפעיל את השרת כך שנוכל להתחבר אליו עם הלקוח שלנו.
+- הגדרנו שיטה `run` שמצידה קוראת ל-`stdio_client` שמתחילה סשן לקוח.
+- יצרנו נקודת כניסה שבה אנו מספקים את השיטה `run` ל-`asyncio.run`.
 
-### .NET
+#### .NET
 
 ```dotnet
 using Microsoft.Extensions.AI;
@@ -257,14 +285,14 @@ var clientTransport = new StdioClientTransport(new()
 await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
 ```
 
-בקוד שלמעלה:
+בקוד הקודם:
 
-- ייבאנו את הספריות הנדרשות.
-- יצרנו פרוטוקול stdio ואת הלקוח `mcpClient`. הלקוח ישמש אותנו לרשום ולהפעיל פונקציות בשרת MCP.
+- ייבאנו את הספריות הנחוצות.
+- יצרנו תעבורת stdio ויצרנו לקוח `mcpClient`. האחרון הוא משהו שנשתמש בו כדי לרשום ולהפעיל תכונות בשרת MCP.
 
-שים לב, ב-"Arguments" אפשר להצביע על קובץ *.csproj* או על הקובץ ההרצה.
+שימו לב, ב"Arguments", תוכלו להצביע על *.csproj* או על הקובץ הביצועי.
 
-### Java
+#### Java
 
 ```java
 public class SDKClient {
@@ -289,18 +317,50 @@ public class SDKClient {
 }
 ```
 
-בקוד שלמעלה:
+בקוד הקודם:
 
-- יצרנו פונקציית main שמגדירה פרוטוקול SSE שמצביע ל-`http://localhost:8080` שבו שרת MCP ירוץ.
-- יצרנו מחלקת לקוח שמקבלת את הפרוטוקול בפרמטר הבנאי.
-- בפונקציית `run` יצרנו לקוח MCP סינכרוני באמצעות הפרוטוקול ואתחול החיבור.
-- השתמשנו בפרוטוקול SSE (Server-Sent Events) שמתאים לתקשורת HTTP עם שרתי MCP מבוססי Java Spring Boot.
+- יצרנו שיטת main שמגדירה תעבורת SSE המצביעה על `http://localhost:8080` שבו שרת MCP שלנו יפעל.
+- יצרנו מחלקת לקוח שלוקחת את התעבורה כפרמטר קונסטרוקטור.
+- בשיטה `run`, יצרנו לקוח MCP סינכרוני באמצעות התעבורה ואתחלנו את החיבור.
+- השתמשנו בתעבורת SSE (Server-Sent Events) שמתאימה לתקשורת מבוססת HTTP עם שרתי MCP של Java Spring Boot.
 
-### -3- רשימת הפיצ'רים של השרת
+#### Rust
 
-כעת יש לנו לקוח שיכול להתחבר אם התוכנית תרוץ. עם זאת, הוא לא מציג את הפיצ'רים שלו, אז נעשה זאת כעת:
+שימו לב שלקוח Rust זה מניח שהשרת הוא פרויקט אח בשם "calculator-server" באותה תיקייה. הקוד למטה יפעיל את השרת ויתחבר אליו.
 
-### TypeScript
+```rust
+async fn main() -> Result<(), RmcpError> {
+    // Assume the server is a sibling project named "calculator-server" in the same directory
+    let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .expect("failed to locate workspace root")
+        .join("calculator-server");
+
+    let client = ()
+        .serve(
+            TokioChildProcess::new(Command::new("cargo").configure(|cmd| {
+                cmd.arg("run").current_dir(server_dir);
+            }))
+            .map_err(RmcpError::transport_creation::<TokioChildProcess>)?,
+        )
+        .await?;
+
+    // TODO: Initialize
+
+    // TODO: List tools
+
+    // TODO: Call add tool with arguments = {"a": 3, "b": 2}
+
+    client.cancel().await?;
+    Ok(())
+}
+```
+
+### -3- רישום תכונות השרת
+
+עכשיו יש לנו לקוח שיכול להתחבר אם התוכנית תופעל. עם זאת, הוא לא באמת רושם את התכונות שלו, אז בואו נעשה זאת עכשיו:
+
+#### TypeScript
 
 ```typescript
 // List prompts
@@ -313,7 +373,7 @@ const resources = await client.listResources();
 const tools = await client.listTools();
 ```
 
-### Python
+#### Python
 
 ```python
 # List available resources
@@ -329,9 +389,9 @@ for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-כאן אנו מציגים את המשאבים הזמינים, `list_resources()` ואת הכלים, `list_tools` ומדפיסים אותם.
+כאן אנו רושמים את המשאבים הזמינים, `list_resources()` ואת הכלים, `list_tools` ומדפיסים אותם.
 
-### .NET
+#### .NET
 
 ```dotnet
 foreach (var tool in await client.ListToolsAsync())
@@ -340,9 +400,9 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-מעל זו דוגמה כיצד ניתן לרשום את הכלים בשרת. עבור כל כלי, מדפיסים את שמו.
+לעיל דוגמה כיצד ניתן לרשום את הכלים בשרת. עבור כל כלי, אנו מדפיסים את שמו.
 
-### Java
+#### Java
 
 ```java
 // List and demonstrate tools
@@ -353,19 +413,33 @@ System.out.println("Available Tools = " + toolsList);
 client.ping();
 ```
 
-בקוד שלמעלה:
+בקוד הקודם:
 
-- קראנו ל-`listTools()` כדי לקבל את כל הכלים הזמינים מהשרת MCP.
-- השתמשנו ב-`ping()` כדי לוודא שהחיבור לשרת תקין.
-- האובייקט `ListToolsResult` מכיל מידע על כל הכלים כולל שמות, תיאורים וסכימות קלט.
+- קראנו ל-`listTools()` כדי לקבל את כל הכלים הזמינים משרת MCP.
+- השתמשנו ב-`ping()` כדי לוודא שהחיבור לשרת עובד.
+- ה-`ListToolsResult` מכיל מידע על כל הכלים כולל שמותיהם, תיאורים וסכמות קלט.
 
-מעולה, עכשיו תפסנו את כל הפיצ'רים. השאלה היא מתי משתמשים בהם? הלקוח הזה פשוט יחסית, כלומר נצטרך לקרוא במפורש לפיצ'רים כשנרצה אותם. בפרק הבא ניצור לקוח מתקדם יותר שיש לו גישה למודל שפה גדול (LLM) משלו. בינתיים, נראה איך מפעילים את הפיצ'רים בשרת:
+מצוין, עכשיו רשמנו את כל התכונות. עכשיו השאלה היא מתי נשתמש בהם? ובכן, הלקוח הזה די פשוט, פשוט במובן שנצטרך לקרוא לתכונות באופן מפורש כשנרצה אותן. בפרק הבא, ניצור לקוח מתקדם יותר שיש לו גישה למודל שפה גדול משלו, LLM. לעת עתה, בואו נראה כיצד ניתן להפעיל את התכונות בשרת:
 
-### -4- הפעלת פיצ'רים
+#### Rust
 
-כדי להפעיל פיצ'רים, עלינו לוודא שאנו מציינים את הארגומנטים הנכונים ובמקרים מסוימים את שם הפיצ'ר שאנו מנסים להפעיל.
+בפונקציה הראשית, לאחר אתחול הלקוח, נוכל לאתחל את השרת ולרשום כמה מהתכונות שלו.
 
-### TypeScript
+```rust
+// Initialize
+let server_info = client.peer_info();
+println!("Server info: {:?}", server_info);
+
+// List tools
+let tools = client.list_tools(Default::default()).await?;
+println!("Available tools: {:?}", tools);
+```
+
+### -4- הפעלת תכונות
+
+כדי להפעיל את התכונות, עלינו לוודא שאנו מציינים את הארגומנטים הנכונים ובמקרים מסוימים את שם מה שאנחנו מנסים להפעיל.
+
+#### TypeScript
 
 ```typescript
 
@@ -391,9 +465,9 @@ const promptResult = await client.getPrompt({
 })
 ```
 
-בקוד שלמעלה:
+בקוד הקודם:
 
-- קוראים למשאב, קוראים למשאב על ידי קריאה ל-`readResource()` עם הפרמטר `uri`. כך זה נראה כנראה בצד השרת:
+- קראנו למשאב, אנו קוראים למשאב על ידי קריאה ל-`readResource()` וציון `uri`. הנה איך זה נראה ככל הנראה בצד השרת:
 
     ```typescript
     server.resource(
@@ -408,9 +482,9 @@ const promptResult = await client.getPrompt({
     );
     ```
 
-    הערך שלנו `uri` הוא `file://example.txt` שמתאים ל-`file://{name}` בשרת. `example.txt` יוקצה ל-`name`.
+    ערך ה-`uri` שלנו `file://example.txt` תואם ל-`file://{name}` בשרת. `example.txt` ימופה ל-`name`.
 
-- קוראים לכלי, קוראים לו על ידי ציון `name` ו-`arguments` כך:
+- קראנו לכלי, אנו קוראים לו על ידי ציון `name` ו-`arguments` כמו כך:
 
     ```typescript
     const result = await client.callTool({
@@ -421,7 +495,7 @@ const promptResult = await client.getPrompt({
     });
     ```
 
-- מקבלים הנחיה, כדי לקבל הנחיה, קוראים ל-`getPrompt()` עם `name` ו-`arguments`. קוד השרת נראה כך:
+- קיבלנו הנחיה, כדי לקבל הנחיה, אנו קוראים ל-`getPrompt()` עם `name` ו-`arguments`. קוד השרת נראה כך:
 
     ```typescript
     server.prompt(
@@ -439,7 +513,7 @@ const promptResult = await client.getPrompt({
     );
     ```
 
-    ולכן קוד הלקוח שלך ייראה כך כדי להתאים למה שהוגדר בשרת:
+    ולכן קוד הלקוח שלכם נראה כך כדי להתאים למה שמוצהר בשרת:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -450,7 +524,7 @@ const promptResult = await client.getPrompt({
     })
     ```
 
-### Python
+#### Python
 
 ```python
 # Read a resource
@@ -463,14 +537,14 @@ result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
 ```
 
-בקוד שלמעלה:
+בקוד הקודם:
 
 - קראנו למשאב בשם `greeting` באמצעות `read_resource`.
 - הפעלנו כלי בשם `add` באמצעות `call_tool`.
 
-### .NET
+#### .NET
 
-1. נוסיף קוד לקריאה לכלי:
+1. בואו נוסיף קוד לקרוא לכלי:
 
   ```csharp
   var result = await mcpClient.CallToolAsync(
@@ -479,14 +553,14 @@ print(result.content)
       cancellationToken:CancellationToken.None);
   ```
 
-1. כדי להדפיס את התוצאה, הנה קוד לטיפול בזה:
+1. כדי להדפיס את התוצאה, הנה קוד לטיפול בכך:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
   // Sum 4
   ```
 
-### Java
+#### Java
 
 ```java
 // Call various calculator tools
@@ -506,46 +580,61 @@ CallToolResult resultHelp = client.callTool(new CallToolRequest("help", Map.of()
 System.out.println("Help = " + resultHelp);
 ```
 
-בקוד שלמעלה:
+בקוד הקודם:
 
-- קראנו למספר כלים של מחשבון באמצעות המתודה `callTool()` עם אובייקטים מסוג `CallToolRequest`.
-- כל קריאה לכלי מציינת את שם הכלי ומפה (`Map`) של ארגומנטים הנדרשים לכלי.
-- כלים בשרת מצפים לשמות פרמטרים ספציפיים (כמו "a", "b" לפעולות מתמטיות).
-- התוצאות מוחזרות כאובייקטים מסוג `CallToolResult` שמכילים את התגובה מהשרת.
+- קראנו למספר כלים של מחשבון באמצעות שיטת `callTool()` עם אובייקטים של `CallToolRequest`.
+- כל קריאה לכלי מציינת את שם הכלי ואת `Map` של ארגומנטים הנדרשים על ידי אותו כלי.
+- הכלים בשרת מצפים לשמות פרמטרים ספציפיים (כמו "a", "b" לפעולות מתמטיות).
+- התוצאות מוחזרות כאובייקטים של `CallToolResult` המכילים את התגובה מהשרת.
 
-### -5- הרצת הלקוח
+#### Rust
 
-כדי להריץ את הלקוח, הקלד את הפקודה הבאה בטרמינל:
+```rust
+// Call add tool with arguments = {"a": 3, "b": 2}
+let a = 3;
+let b = 2;
+let tool_result = client
+    .call_tool(CallToolRequestParam {
+        name: "add".into(),
+        arguments: serde_json::json!({ "a": a, "b": b }).as_object().cloned(),
+    })
+    .await?;
+println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
+```
 
-### TypeScript
+### -5- הפעלת הלקוח
 
-הוסף את הערך הבא לקטע "scripts" בקובץ *package.json* שלך:
+כדי להפעיל את הלקוח, הקלידו את הפקודה הבאה בטרמינל:
+
+#### TypeScript
+
+הוסיפו את הערך הבא לקטע "scripts" ב-*package.json*:
 
 ```json
-"client": "tsx && node build/client.js"
+"client": "tsc && node build/client.js"
 ```
 
 ```sh
 npm run client
 ```
 
-### Python
+#### Python
 
-הפעל את הלקוח עם הפקודה הבאה:
+קראו ללקוח עם הפקודה הבאה:
 
 ```sh
 python client.py
 ```
 
-### .NET
+#### .NET
 
 ```sh
 dotnet run
 ```
 
-### Java
+#### Java
 
-ראשית, ודא ששרת MCP שלך רץ ב-`http://localhost:8080`. לאחר מכן הרץ את הלקוח:
+ראשית, ודאו ששרת MCP שלכם פועל ב-`http://localhost:8080`. לאחר מכן הפעילו את הלקוח:
 
 ```bash
 # Build you project
@@ -555,7 +644,7 @@ dotnet run
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-כחלופה, תוכל להריץ את פרויקט הלקוח המלא שמסופק בתיקיית הפתרון `03-GettingStarted\02-client\solution\java`:
+לחילופין, תוכלו להפעיל את פרויקט הלקוח המלא המסופק בתיקיית הפתרון `03-GettingStarted\02-client\solution\java`:
 
 ```bash
 # Navigate to the solution directory
@@ -566,11 +655,18 @@ cd 03-GettingStarted/02-client/solution/java
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
 
+#### Rust
+
+```bash
+cargo fmt
+cargo run
+```
+
 ## משימה
 
-במשימה זו, תשתמש במה שלמדת ביצירת לקוח, אך תיצור לקוח משלך.
+במשימה זו, תשתמשו במה שלמדתם ביצירת לקוח אך תיצרו לקוח משלכם.
 
-הנה שרת שתוכל להשתמש בו שעליך לקרוא אליו דרך קוד הלקוח שלך, נסה להוסיף פיצ'רים נוספים לשרת כדי להפוך אותו למעניין יותר.
+הנה שרת שתוכלו להשתמש בו ושעליכם לקרוא לו באמצעות קוד הלקוח שלכם. נסו להוסיף עוד תכונות לשרת כדי להפוך אותו למעניין יותר.
 
 ### TypeScript
 
@@ -674,19 +770,23 @@ public static class CalculatorTool
 }
 ```
 
-עיין בפרויקט זה כדי לראות כיצד ניתן [להוסיף הנחיות ומשאבים](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
+ראו את הפרויקט הזה כדי לראות כיצד ניתן [להוסיף הנחיות ומשאבים](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
 
-כמו כן, בדוק קישור זה לגבי אופן הפעלת [הנחיות ומשאבים](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+כמו כן, בדקו את הקישור הזה כיצד להפעיל [הנחיות ומשאבים](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+
+### Rust
+
+ב-[החלק הקודם](../../../../03-GettingStarted/01-first-server), למדתם כיצד ליצור שרת MCP פשוט עם Rust. תוכלו להמשיך לבנות על זה או לבדוק את הקישור הזה לעוד דוגמאות שרת MCP מבוססות Rust: [דוגמאות שרת MCP](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## פתרון
 
-**תיקיית הפתרון** מכילה מימושים מלאים של לקוחות מוכנים להפעלה שמדגימים את כל המושגים שנלמדו במדריך זה. כל פתרון כולל קוד לקוח ושרת מאורגן בפרויקטים נפרדים ועצמאיים.
+תיקיית **הפתרון** מכילה יישומי לקוח מלאים ומוכנים להפעלה שמדגימים את כל המושגים שנלמדו במדריך זה. כל פתרון כולל גם קוד לקוח וגם קוד שרת המאורגנים בפרויקטים נפרדים ועצמאיים.
 
 ### 📁 מבנה הפתרון
 
 תיקיית הפתרון מאורגנת לפי שפת תכנות:
 
-```
+```text
 solution/
 ├── typescript/          # TypeScript client with npm/Node.js setup
 │   ├── package.json     # Dependencies and scripts
@@ -695,7 +795,7 @@ solution/
 ├── java/                # Java Spring Boot client project
 │   ├── pom.xml          # Maven configuration
 │   ├── src/             # Java source files
-│   └── mvnw            # Maven wrapper
+│   └── mvnw             # Maven wrapper
 ├── python/              # Python client implementation
 │   ├── client.py        # Main client code
 │   ├── server.py        # Compatible server
@@ -704,6 +804,11 @@ solution/
 │   ├── dotnet.csproj    # Project configuration
 │   ├── Program.cs       # Main client code
 │   └── dotnet.sln       # Solution file
+├── rust/                # Rust client implementation
+|  ├── Cargo.lock        # Cargo lock file
+|  ├── Cargo.toml        # Project configuration and dependencies
+|  ├── src               # Source code
+|  │   └── main.rs       # Main client code
 └── server/              # Additional .NET server implementation
     ├── Program.cs       # Server code
     └── server.csproj    # Server project file
@@ -713,15 +818,16 @@ solution/
 
 כל פתרון ספציפי לשפה מספק:
 
-- **מימוש לקוח מלא** עם כל הפיצ'רים מהמדריך
-- **מבנה פרויקט עובד** עם תלותים והגדרות נכונות
-- **סקריפטים לבנייה והרצה** להתקנה והפעלה קלה
-- **קובץ README מפורט** עם הוראות ספציפיות לשפה
-- **טיפול בשגיאות** ודוגמאות לעיבוד תוצאות
+- **יישום לקוח מלא** עם כל התכונות מהמדריך
+- **מבנה פרויקט עובד** עם תלות ותצורה נכונה
+- **סקריפטים לבנייה והפעלה** להגדרה והפעלה קלה
+- **README מפורט** עם הוראות ספציפיות לשפה
+- **דוגמאות לטיפול בשגיאות** ועיבוד תוצאות
 
 ### 📖 שימוש בפתרונות
 
-1. **נווט לתיקיית השפה המועדפת עליך**:
+1. **נווטו לתיקיית השפה המועדפת עליכם**:
+
    ```bash
    cd solution/typescript/    # For TypeScript
    cd solution/java/          # For Java
@@ -729,84 +835,87 @@ solution/
    cd solution/dotnet/        # For .NET
    ```
 
-2. **עקוב אחרי הוראות ה-README** בכל תיקייה עבור:
-   - התקנת תלותים
+2. **עקבו אחר הוראות README** בכל תיקייה עבור:
+   - התקנת תלות
    - בניית הפרויקט
-   - הרצת הלקוח
+   - הפעלת הלקוח
 
-3. **פלט לדוגמה** שתראה:
+3. **פלט דוגמה** שאתם אמורים לראות:
+
    ```text
    Prompt: Please review this code: console.log("hello");
    Resource template: file
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-לתיעוד מלא והוראות שלב-אחר-שלב, ראה: **[📖 תיעוד הפתרונות](./solution/README.md)**
+למסמכים מלאים והוראות שלב-אחר-שלב, ראו: **[📖 מסמכי פתרון](./solution/README.md)**
 
 ## 🎯 דוגמאות מלאות
 
-סיפקנו מימושים מלאים של לקוחות עובדים לכל שפות התכנות שנלמדו במדריך זה. דוגמאות אלו מדגימות את כל הפונקציונליות שתוארה למעלה וניתן להשתמש בהן כהפניות או נקודות התחלה לפרויקטים שלך.
+סיפקנו יישומי לקוח מלאים ועובדים לכל שפות התכנות שנלמדו במדריך זה. דוגמאות אלו מדגימות את כל הפונקציונליות שתוארה לעיל וניתן להשתמש בהן כהפניות או נקודות התחלה לפרויקטים שלכם.
 
 ### דוגמאות מלאות זמינות
 
 | שפה | קובץ | תיאור |
-|----------|------|-------------|
-| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | לקוח Java מלא המשתמש בפרוטוקול SSE עם טיפול שגיאות מקיף |
-| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | לקוח C# מלא המשתמש בפרוטוקול stdio עם הפעלת שרת אוטומטית |
+|-----|------|-------|
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | לקוח Java מלא המשתמש בתעבורת SSE עם טיפול שגיאות מקיף |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | לקוח C# מלא המשתמש בתעבורת stdio עם הפעלה אוטומטית של השרת |
 | **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | לקוח TypeScript מלא עם תמיכה מלאה בפרוטוקול MCP |
 | **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | לקוח Python מלא המשתמש בתבניות async/await |
-
+| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | לקוח Rust מלא המשתמש ב-Tokio לפעולות אסינכרוניות |
 כל דוגמה מלאה כוללת:
 
-- ✅ **הקמת חיבור** וטיפול בשגיאות
-- ✅ **גילוי שרת** (כלים, משאבים, הנחיות במידת הצורך)
-- ✅ **פעולות מחשבון** (חיבור, חיסור, כפל, חילוק, עזרה)
-- ✅ **עיבוד תוצאות** ופלט מעוצב
-- ✅ **טיפול שגיאות מקיף**
-- ✅ **קוד נקי ומתועד** עם הסברים שלב-אחר-שלב
+- ✅ **הקמת חיבור** וטיפול בשגיאות  
+- ✅ **גילוי שרת** (כלים, משאבים, הנחיות במידת הצורך)  
+- ✅ **פעולות מחשבון** (חיבור, חיסור, כפל, חילוק, עזרה)  
+- ✅ **עיבוד תוצאות** ופלט מעוצב  
+- ✅ **טיפול מקיף בשגיאות**  
+- ✅ **קוד נקי ומתועד** עם הערות שלב אחר שלב  
 
-### התחלה עם דוגמאות מלאות
+### התחלת עבודה עם דוגמאות מלאות
 
-1. **בחר את שפת התכנות המועדפת עליך** מהטבלה למעלה
-2. **עיין בקובץ הדוגמה המלא** כדי להבין את המימוש המלא
-3. **הרץ את הדוגמה** בהתאם להוראות ב-[`complete_examples.md`](./complete_examples.md)
-4. **שנה והרחב** את הדוגמה לצרכים הספציפיים שלך
+1. **בחר את השפה המועדפת עליך** מהטבלה למעלה  
+2. **סקור את קובץ הדוגמה המלא** כדי להבין את היישום המלא  
+3. **הרץ את הדוגמה** לפי ההוראות ב-[`complete_examples.md`](./complete_examples.md)  
+4. **התאם והרחב** את הדוגמה לצרכים הספציפיים שלך  
 
-לתיעוד מפורט על הרצה והתאמה של דוגמאות אלו, ראה: **[📖 תיעוד דוגמאות מלאות](./complete_examples.md)**
+למסמכים מפורטים על הרצה והתאמה של דוגמאות אלו, ראה: **[📖 תיעוד דוגמאות מלאות](./complete_examples.md)**  
 
-### 💡 תיקיית פתרון לעומת דוגמאות מלאות
+### 💡 פתרון מול דוגמאות מלאות
 
 | **תיקיית פתרון** | **דוגמאות מלאות** |
 |--------------------|--------------------- |
-| מבנה פרויקט מלא עם קבצי בנייה | מימושים בקובץ יחיד |
-| מוכן להפעלה עם תלותים | דוגמאות קוד ממוקדות |
-| הגדרה בסגנון ייצור | הפניה חינוכית |
-| כלי פיתוח ספציפיים לשפה | השוואה בין שפות |
-שתי הגישות הן בעלות ערך - השתמשו בתיקיית **solution** לפרויקטים שלמים ובדוגמאות ה**complete** ללמידה ולהתייחסות.
+| מבנה פרויקט מלא עם קבצי בנייה | יישומים בקובץ יחיד |
+| מוכן להרצה עם תלות | דוגמאות קוד ממוקדות |
+| הגדרות דמויות ייצור | התייחסות חינוכית |
+| כלים ספציפיים לשפה | השוואה בין שפות |
 
-## נקודות מפתח
+שתי הגישות חשובות - השתמש ב**תיקיית הפתרון** לפרויקטים מלאים וב**דוגמאות המלאות** ללמידה והתייחסות.
 
-נקודות המפתח בפרק זה לגבי הלקוחות הן:
+## נקודות מרכזיות
 
-- ניתן להשתמש בהם גם לגילוי וגם לקריאה של פונקציות בשרת.
-- יכולים להפעיל שרת בזמן שהם מתחילים לפעול (כמו בפרק זה), אך לקוחות יכולים להתחבר גם לשרתים שכבר פועלים.
-- זו דרך מצוינת לבדוק את יכולות השרת לצד חלופות כמו ה-Inspector כפי שתואר בפרק הקודם.
+הנקודות המרכזיות בפרק זה לגבי לקוחות הן:
+
+- ניתן להשתמש בהם הן לגילוי והן להפעלת תכונות על השרת.  
+- יכולים להפעיל שרת תוך כדי הפעלתם (כמו בפרק זה), אך לקוחות יכולים גם להתחבר לשרתים פעילים.  
+- מהווים דרך מצוינת לבדוק יכולות שרת לצד חלופות כמו ה-Inspector שתואר בפרק הקודם.  
 
 ## משאבים נוספים
 
-- [Building clients in MCP](https://modelcontextprotocol.io/quickstart/client)
+- [בניית לקוחות ב-MCP](https://modelcontextprotocol.io/quickstart/client)
 
 ## דוגמאות
 
-- [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Calculator](../samples/javascript/README.md)
-- [TypeScript Calculator](../samples/typescript/README.md)
-- [Python Calculator](../../../../03-GettingStarted/samples/python)
+- [מחשבון ב-Java](../samples/java/calculator/README.md)  
+- [מחשבון ב-.Net](../../../../03-GettingStarted/samples/csharp)  
+- [מחשבון ב-JavaScript](../samples/javascript/README.md)  
+- [מחשבון ב-TypeScript](../samples/typescript/README.md)  
+- [מחשבון ב-Python](../../../../03-GettingStarted/samples/python)  
+- [מחשבון ב-Rust](../../../../03-GettingStarted/samples/rust)  
 
 ## מה הלאה
 
-- הבא: [Creating a client with an LLM](../03-llm-client/README.md)
+- הבא: [יצירת לקוח עם LLM](../03-llm-client/README.md)  
 
 **כתב ויתור**:  
-מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש לקחת בחשבון כי תרגומים אוטומטיים עלולים להכיל שגיאות או אי-דיוקים. יש להתייחס למסמך המקורי בשפתו המקורית כמקור הסמכות. למידע קריטי מומלץ להשתמש בתרגום מקצועי על ידי מתרגם אנושי. אנו לא נושאים באחריות לכל אי-הבנה או פרשנות שגויה הנובעת משימוש בתרגום זה.
+מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש לקחת בחשבון שתרגומים אוטומטיים עשויים להכיל שגיאות או אי דיוקים. המסמך המקורי בשפתו המקורית צריך להיחשב כמקור הסמכותי. עבור מידע קריטי, מומלץ להשתמש בתרגום מקצועי על ידי אדם. איננו נושאים באחריות לאי הבנות או לפרשנויות שגויות הנובעות משימוש בתרגום זה.

@@ -1,68 +1,76 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "6755bc4f6d0293ce6c49cfc5efba0d8e",
-  "translation_date": "2025-07-18T09:21:04+00:00",
+  "original_hash": "41f16dac486d2086a53bc644a01cbe42",
+  "translation_date": "2025-08-18T14:30:29+00:00",
   "source_file": "07-LessonsfromEarlyAdoption/README.md",
   "language_code": "mo"
 }
 -->
-# 🌟 早期採用者的經驗教訓
+# 🌟 從早期採用者學到的經驗
 
-## 🎯 本模組涵蓋內容
+[![從 MCP 早期採用者學到的經驗](../../../translated_images/08.980bb2babbaadd8a97739effc9b31e5f1abd8f4c4a3fbc90fb9f931a866674d0.mo.png)](https://youtu.be/jds7dSmNptE)
 
-本模組探討真實組織與開發者如何運用 Model Context Protocol (MCP) 解決實際挑戰並推動創新。透過詳細的案例研究與實作專案，您將了解 MCP 如何實現安全、可擴展的 AI 整合，連結語言模型、工具與企業資料。
+_（點擊上方圖片觀看本課程的影片）_
 
-### 案例研究 5：Azure MCP – 企業級 Model Context Protocol 即服務
+## 🎯 本模組涵蓋的內容
 
-Azure MCP ([https://aka.ms/azmcp](https://aka.ms/azmcp)) 是微軟管理的企業級 Model Context Protocol 實作，旨在作為雲端服務提供可擴展、安全且合規的 MCP 伺服器功能。此完整套件包含多個專門針對不同 Azure 服務與場景的 MCP 伺服器。
+本模組探討了真實的組織和開發者如何利用 Model Context Protocol（MCP）解決實際挑戰並推動創新。透過詳細的案例研究和實作範例，您將了解 MCP 如何實現安全、可擴展的 AI 整合，將語言模型、工具和企業數據連結在一起。
 
-> **🎯 生產環境可用工具**  
-> 本案例展示多個生產環境可用的 MCP 伺服器！請參考我們的 [**Microsoft MCP 伺服器指南**](microsoft-mcp-servers.md#2--azure-mcp-server) 了解 Azure MCP 伺服器及其他 Azure 整合伺服器。
+### 案例研究 5：Azure MCP – 企業級 Model Context Protocol 雲端服務
 
-**主要特色：**  
-- 完全託管的 MCP 伺服器主機，內建擴展、監控與安全機制  
-- 原生整合 Azure OpenAI、Azure AI Search 及其他 Azure 服務  
-- 透過 Microsoft Entra ID 實現企業級身份驗證與授權  
-- 支援自訂工具、提示模板與資源連接器  
-- 符合企業安全與法規要求  
-- 超過 15 種專用 Azure 服務連接器，包括資料庫、監控與儲存
+Azure MCP（[https://aka.ms/azmcp](https://aka.ms/azmcp)）是 Microsoft 提供的企業級 MCP 雲端服務，旨在提供可擴展、安全且合規的 MCP 伺服器功能。這套完整的解決方案包含多個專為不同 Azure 服務和場景設計的 MCP 伺服器。
 
-**Azure MCP 伺服器功能：**  
-- **資源管理**：完整 Azure 資源生命週期管理  
-- **資料庫連接器**：直接存取 Azure Database for PostgreSQL 與 SQL Server  
-- **Azure Monitor**：基於 KQL 的日誌分析與運營洞察  
-- **身份驗證**：支援 DefaultAzureCredential 與管理身分識別模式  
-- **儲存服務**：Blob Storage、Queue Storage 與 Table Storage 操作  
-- **容器服務**：Azure Container Apps、Container Instances 與 AKS 管理
+[Microsoft MCP Center](https://mcp.azure.com) 是一個 Microsoft MCP 伺服器的目錄，幫助您建立可擴展且適合企業的 MCP 註冊中心。
 
-### 📚 MCP 實際應用展示
+> **🎯 生產就緒工具**
+> 
+> 此案例研究展示了多個生產就緒的 MCP 伺服器！了解 Azure MCP Server 和其他 Azure 整合伺服器的更多資訊，請參閱我們的 [**Microsoft MCP Servers Guide**](microsoft-mcp-servers.md#2--azure-mcp-server)。
 
-想看這些原則如何應用於生產環境工具？請參考我們的 [**10 個改變開發者生產力的 Microsoft MCP 伺服器**](microsoft-mcp-servers.md)，展示您今天就能使用的真實 Microsoft MCP 伺服器。
+**主要功能：**
+- 完全託管的 MCP 伺服器，內建擴展、監控和安全性功能
+- 與 Azure OpenAI、Azure AI Search 及其他 Azure 服務的原生整合
+- 透過 Microsoft Entra ID 提供企業級身份驗證與授權
+- 支援自訂工具、提示模板和資源連接器
+- 符合企業安全性和法規要求
+- 提供 15+ 種專為 Azure 服務設計的連接器，包括資料庫、監控和儲存
+
+**Azure MCP Server 功能：**
+- **資源管理**：完整的 Azure 資源生命週期管理
+- **資料庫連接器**：直接存取 Azure Database for PostgreSQL 和 SQL Server
+- **Azure Monitor**：基於 KQL 的日誌分析和運營洞察
+- **身份驗證**：支援 DefaultAzureCredential 和受管理身份模式
+- **儲存服務**：Blob 儲存、Queue 儲存和 Table 儲存操作
+- **容器服務**：Azure Container Apps、Container Instances 和 AKS 管理
+
+### 📚 MCP 的實際應用
+
+想了解這些原則如何應用於生產就緒工具？請參閱我們的 [**10 個正在改變開發者生產力的 Microsoft MCP 伺服器**](microsoft-mcp-servers.md)，其中展示了您今天就能使用的真實 Microsoft MCP 伺服器。
 
 ## 概述
 
-本課程探討早期採用者如何利用 Model Context Protocol (MCP) 解決實際問題並推動各行業創新。透過詳細案例研究與實作專案，您將看到 MCP 如何實現標準化、安全且可擴展的 AI 整合，將大型語言模型、工具與企業資料統一連結。您將獲得設計與建置 MCP 解決方案的實務經驗，學習經驗豐富的實作模式，並掌握 MCP 在生產環境部署的最佳實踐。課程同時介紹新興趨勢、未來方向與開源資源，助您站在 MCP 技術及其生態系的最前端。
+本課程探討了早期採用者如何利用 Model Context Protocol（MCP）解決實際挑戰並推動各行業的創新。透過詳細的案例研究和實作專案，您將了解 MCP 如何實現標準化、安全且可擴展的 AI 整合，將大型語言模型、工具和企業數據統一在一個框架中。您將獲得設計和構建基於 MCP 解決方案的實際經驗，學習經過驗證的實施模式，並發現如何在生產環境中部署 MCP 的最佳實踐。本課程還強調了新興趨勢、未來方向以及幫助您保持 MCP 技術前沿的開源資源。
 
 ## 學習目標
 
-- 分析不同行業的真實 MCP 實作案例  
-- 設計並建置完整的 MCP 應用程式  
-- 探索 MCP 技術的新興趨勢與未來發展  
+- 分析不同行業的真實 MCP 實施案例
+- 設計並構建完整的 MCP 應用程式
+- 探索 MCP 技術的新興趨勢和未來方向
 - 在實際開發場景中應用最佳實踐
 
-## 真實世界的 MCP 實作案例
+## 真實世界的 MCP 實施
 
-### 案例研究 1：企業客戶支援自動化
+### 案例研究 1：企業客戶支持自動化
 
-一家跨國企業實施 MCP 解決方案，標準化其客戶支援系統中的 AI 互動，達成以下目標：
+一家跨國公司實施了基於 MCP 的解決方案，標準化了其客戶支持系統中的 AI 互動。這使他們能夠：
 
-- 建立多個大型語言模型供應商的統一介面  
-- 跨部門維持一致的提示管理  
-- 實施強健的安全與合規控管  
-- 根據需求輕鬆切換不同 AI 模型
+- 為多個 LLM 提供商創建統一的介面
+- 在部門間保持一致的提示管理
+- 實施強大的安全性和合規控制
+- 根據具體需求輕鬆切換不同的 AI 模型
 
-**技術實作：**  
+**技術實施：**
+
 ```python
 # Python MCP server implementation for customer support
 import logging
@@ -123,18 +131,19 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-**成果：** 模型成本降低 30%，回應一致性提升 45%，並加強全球營運的合規性。
+**結果：** 模型成本降低 30%，響應一致性提高 45%，並增強了全球業務的合規性。
 
-### 案例研究 2：醫療診斷助理
+### 案例研究 2：醫療診斷助手
 
-一家醫療機構建立 MCP 基礎架構，整合多個專業醫療 AI 模型，同時確保敏感病患資料受到保護：
+一家醫療機構開發了 MCP 基礎設施，整合多個專業醫療 AI 模型，同時確保敏感的患者數據受到保護：
 
-- 無縫切換通用與專科醫療模型  
-- 嚴格的隱私控管與審計追蹤  
-- 與現有電子病歷系統 (EHR) 整合  
-- 醫療術語的一致提示工程
+- 在通用和專業醫療模型之間無縫切換
+- 嚴格的隱私控制和審計記錄
+- 與現有電子健康記錄（EHR）系統整合
+- 為醫療術語提供一致的提示工程
 
-**技術實作：**  
+**技術實施：**
+
 ```csharp
 // C# MCP host application implementation in healthcare application
 using Microsoft.Extensions.DependencyInjection;
@@ -199,18 +208,19 @@ public class DiagnosticAssistant
 }
 ```
 
-**成果：** 改善醫師診斷建議，完全符合 HIPAA 規範，並大幅減少系統間的上下文切換。
+**結果：** 為醫生提供改進的診斷建議，同時完全符合 HIPAA 規範，並顯著減少系統間的上下文切換。
 
 ### 案例研究 3：金融服務風險分析
 
-一家金融機構利用 MCP 標準化不同部門的風險分析流程：
+一家金融機構實施了 MCP，標準化了不同部門的風險分析流程：
 
-- 建立信用風險、詐欺偵測與投資風險模型的統一介面  
-- 實施嚴格的存取控管與模型版本管理  
-- 確保所有 AI 建議具備可審計性  
-- 維持多元系統間一致的資料格式
+- 為信用風險、欺詐檢測和投資風險模型創建統一介面
+- 實施嚴格的訪問控制和模型版本管理
+- 確保所有 AI 建議的可審計性
+- 在多樣化系統間保持一致的數據格式
 
-**技術實作：**  
+**技術實施：**
+
 ```java
 // Java MCP server for financial risk assessment
 import org.mcp.server.*;
@@ -241,23 +251,25 @@ public class FinancialRiskMCPServer {
 }
 ```
 
-**成果：** 強化法規遵循，模型部署週期加快 40%，風險評估一致性提升。
+**結果：** 增強了法規合規性，模型部署週期加快 40%，並提高了部門間風險評估的一致性。
 
-### 案例研究 4：Microsoft Playwright MCP 伺服器用於瀏覽器自動化
+### 案例研究 4：Microsoft Playwright MCP Server 用於瀏覽器自動化
 
-微軟開發了 [Playwright MCP 伺服器](https://github.com/microsoft/playwright-mcp)，透過 Model Context Protocol 實現安全且標準化的瀏覽器自動化。此生產環境伺服器允許 AI 代理與大型語言模型以受控、可審計且可擴充的方式與瀏覽器互動，支援自動化網頁測試、資料擷取與端對端工作流程等應用。
+Microsoft 開發了 [Playwright MCP 伺服器](https://github.com/microsoft/playwright-mcp)，通過 Model Context Protocol 實現安全、標準化的瀏覽器自動化。這個生產就緒的伺服器允許 AI 代理和 LLM 在受控、可審計且可擴展的方式下與網頁瀏覽器互動，支持自動化網頁測試、數據提取和端到端工作流程等用例。
 
-> **🎯 生產環境可用工具**  
-> 本案例展示您今天就能使用的真實 MCP 伺服器！請參考我們的 [**Microsoft MCP 伺服器指南**](microsoft-mcp-servers.md#8--playwright-mcp-server) 了解 Playwright MCP 伺服器及其他 9 個生產環境可用的 Microsoft MCP 伺服器。
+> **🎯 生產就緒工具**
+> 
+> 此案例研究展示了一個您今天就能使用的真實 MCP 伺服器！了解更多關於 Playwright MCP Server 和其他 9 個生產就緒 Microsoft MCP 伺服器的資訊，請參閱我們的 [**Microsoft MCP Servers Guide**](microsoft-mcp-servers.md#8--playwright-mcp-server)。
 
-**主要特色：**  
-- 將瀏覽器自動化功能（導航、表單填寫、截圖等）以 MCP 工具形式暴露  
-- 實施嚴格存取控管與沙箱機制，防止未授權操作  
-- 提供詳細的瀏覽器互動審計日誌  
-- 支援與 Azure OpenAI 及其他大型語言模型供應商整合，實現代理驅動自動化  
-- 為 GitHub Copilot 的程式碼代理提供網頁瀏覽能力
+**主要功能：**
+- 將瀏覽器自動化功能（如導航、表單填寫、截圖捕捉等）作為 MCP 工具公開
+- 實施嚴格的訪問控制和沙箱機制以防止未授權操作
+- 提供所有瀏覽器互動的詳細審計日誌
+- 支援與 Azure OpenAI 和其他 LLM 提供商的整合，用於代理驅動的自動化
+- 為 GitHub Copilot 的 Coding Agent 提供網頁瀏覽功能
 
-**技術實作：**  
+**技術實施：**
+
 ```typescript
 // TypeScript: Registering Playwright browser automation tools in an MCP server
 import { createServer, ToolDefinition } from 'modelcontextprotocol';
@@ -292,30 +304,33 @@ server.tools.register(
 server.listen(8080);
 ```
 
-**成果：**  
-- 為 AI 代理與大型語言模型提供安全的程式化瀏覽器自動化  
-- 降低手動測試工作量，提升網頁應用測試覆蓋率  
-- 提供可重用且可擴充的企業級瀏覽器工具整合框架  
+**結果：**
+- 為 AI 代理和 LLM 實現安全的程式化瀏覽器自動化
+- 減少手動測試工作量並提高網頁應用程式的測試覆蓋率
+- 提供可重用且可擴展的框架，用於企業環境中的基於瀏覽器的工具整合
 - 支援 GitHub Copilot 的網頁瀏覽功能
 
-**參考資料：**  
-- [Playwright MCP 伺服器 GitHub 倉庫](https://github.com/microsoft/playwright-mcp)  
-- [Microsoft AI 與自動化解決方案](https://azure.microsoft.com/en-us/products/ai-services/)
+**參考資料：**
 
-### 案例研究 5：Azure MCP – 企業級 Model Context Protocol 即服務
+- [Playwright MCP Server GitHub Repository](https://github.com/microsoft/playwright-mcp)
+- [Microsoft AI 和自動化解決方案](https://azure.microsoft.com/en-us/products/ai-services/)
 
-Azure MCP 伺服器 ([https://aka.ms/azmcp](https://aka.ms/azmcp)) 是微軟管理的企業級 Model Context Protocol 實作，設計為雲端服務提供可擴展、安全且合規的 MCP 伺服器功能。Azure MCP 讓組織能快速部署、管理並整合 MCP 伺服器與 Azure AI、資料及安全服務，降低營運負擔並加速 AI 採用。
+### 案例研究 5：Azure MCP – 企業級 Model Context Protocol 雲端服務
 
-> **🎯 生產環境可用工具**  
-> 這是您今天就能使用的真實 MCP 伺服器！請參考我們的 [**Microsoft MCP 伺服器指南**](microsoft-mcp-servers.md)。
+Azure MCP Server（[https://aka.ms/azmcp](https://aka.ms/azmcp)）是 Microsoft 提供的企業級 MCP 雲端服務，旨在提供可擴展、安全且合規的 MCP 伺服器功能。Azure MCP 幫助組織快速部署、管理和整合 MCP 伺服器與 Azure AI、數據和安全服務，減少運營負擔並加速 AI 的採用。
 
-- 完全託管的 MCP 伺服器主機，內建擴展、監控與安全機制  
-- 原生整合 Azure OpenAI、Azure AI Search 及其他 Azure 服務  
-- 透過 Microsoft Entra ID 實現企業級身份驗證與授權  
-- 支援自訂工具、提示模板與資源連接器  
-- 符合企業安全與法規要求
+> **🎯 生產就緒工具**
+> 
+> 這是一個您今天就能使用的真實 MCP 伺服器！了解更多關於 Azure AI Foundry MCP Server 的資訊，請參閱我們的 [**Microsoft MCP Servers Guide**](microsoft-mcp-servers.md)。
 
-**技術實作：**  
+- 完全託管的 MCP 伺服器，內建擴展、監控和安全性功能
+- 與 Azure OpenAI、Azure AI Search 及其他 Azure 服務的原生整合
+- 透過 Microsoft Entra ID 提供企業級身份驗證與授權
+- 支援自訂工具、提示模板和資源連接器
+- 符合企業安全性和法規要求
+
+**技術實施：**
+
 ```yaml
 # Example: Azure MCP server deployment configuration (YAML)
 apiVersion: mcp.microsoft.com/v1
@@ -341,104 +356,88 @@ spec:
     logAnalyticsWorkspace: <your-log-analytics-id>
 ```
 
-**成果：**  
-- 提供即用且合規的 MCP 伺服器平台，縮短企業 AI 專案的價值實現時間  
-- 簡化大型語言模型、工具與企業資料來源的整合  
-- 強化 MCP 工作負載的安全性、可觀察性與營運效率  
-- 透過 Azure SDK 最佳實踐與最新身份驗證模式提升程式碼品質
+**結果：**  
+- 通過提供即用型、合規的 MCP 伺服器平台，縮短企業 AI 專案的價值實現時間
+- 簡化 LLM、工具和企業數據源的整合
+- 增強 MCP 工作負載的安全性、可觀測性和運營效率
+- 使用 Azure SDK 最佳實踐和最新身份驗證模式提高代碼質量
+
+**參考資料：**  
+- [Azure MCP 文件](https://aka.ms/azmcp)
+- [Azure MCP Server GitHub Repository](https://github.com/Azure/azure-mcp)
+- [Azure AI 服務](https://azure.microsoft.com/en-us/products/ai-services/)
+- [Microsoft MCP Center](https://mcp.azure.com)
+
+### 案例研究 6：NLWeb
+
+MCP（Model Context Protocol）是一種新興協議，用於讓聊天機器人和 AI 助手與工具互動。每個 NLWeb 實例也是一個 MCP 伺服器，支援一個核心方法 `ask`，用於以自然語言向網站提問。返回的回應利用了 schema.org，一種廣泛使用的網頁數據描述詞彙。簡單來說，MCP 與 NLWeb 的關係就像 Http 與 HTML 的關係。NLWeb 結合協議、Schema.org 格式和示例代碼，幫助網站快速創建這些端點，既能造福於人類的對話介面，也能促進機器之間的自然互動。
+
+NLWeb 包含兩個主要組成部分：
+- 一個簡單的協議，用於以自然語言與網站互動，以及一種格式，利用 JSON 和 schema.org 返回答案。更多細節請參閱 REST API 文件。
+- 一個基於現有標記的簡單實現，適用於可以抽象為項目列表（如產品、食譜、景點、評論等）的網站。結合一組用戶介面小工具，網站可以輕鬆為其內容提供對話介面。更多細節請參閱聊天查詢的生命週期文件。
 
 **參考資料：**  
 - [Azure MCP 文件](https://aka.ms/azmcp)  
-- [Azure MCP 伺服器 GitHub 倉庫](https://github.com/Azure/azure-mcp)  
-- [Azure AI 服務](https://azure.microsoft.com/en-us/products/ai-services/)
+- [NLWeb](https://github.com/microsoft/NlWeb)
 
-### 案例研究 6：NLWeb – 自然語言網頁介面協定
+### 案例研究 7：Azure AI Foundry MCP Server – 企業 AI 代理整合
 
-NLWeb 代表微軟對 AI 網路基礎層的願景。每個 NLWeb 實例同時也是 MCP 伺服器，支援一個核心方法 `ask`，用於以自然語言向網站提問。回傳的回應採用 schema.org 格式，這是一種廣泛使用的網頁資料描述詞彙。簡言之，MCP 對 NLWeb 的意義，就像 HTTP 對 HTML。
+Azure AI Foundry MCP 伺服器展示了 MCP 如何用於協調和管理企業環境中的 AI 代理和工作流程。通過將 MCP 與 Azure AI Foundry 整合，組織可以標準化代理互動，利用 Foundry 的工作流程管理，並確保安全、可擴展的部署。
 
-**主要特色：**  
-- **協定層**：簡單協定，讓網站以自然語言介面互動  
-- **Schema.org 格式**：利用 JSON 與 schema.org 提供結構化、機器可讀的回應  
-- **社群實作**：適用於可抽象為項目清單（產品、食譜、景點、評論等）網站的簡易實作  
-- **UI 元件**：預建的對話式介面使用者元件
-
-**架構組件：**  
-1. **協定**：針對網站的自然語言查詢簡易 REST API  
-2. **實作**：利用現有標記與網站結構自動回應  
-3. **UI 元件**：即用型對話介面整合元件
-
-**優點：**  
-- 支援人與網站及代理間的互動  
-- 提供 AI 系統易於處理的結構化資料回應  
-- 快速部署於清單型內容網站  
-- 標準化網站 AI 可存取性
-
-**成果：**  
-- 建立 AI 網路互動標準基礎  
-- 簡化內容網站對話介面建置  
-- 提升 AI 系統對網頁內容的可發現性與可存取性  
-- 促進不同 AI 代理與網路服務間的互通性
-
-**參考資料：**  
-- [NLWeb GitHub 倉庫](https://github.com/microsoft/NlWeb)  
-- [NLWeb 文件](https://github.com/microsoft/NlWeb)
-
-### 案例研究 7：Azure AI Foundry MCP 伺服器 – 企業 AI 代理整合
-
-Azure AI Foundry MCP 伺服器展示 MCP 如何在企業環境中協調與管理 AI 代理與工作流程。透過與 Azure AI Foundry 整合，組織能標準化代理互動，利用 Foundry 的工作流程管理，並確保安全且可擴展的部署。
-
-> **🎯 生產環境可用工具**  
-> 這是您今天就能使用的真實 MCP 伺服器！請參考我們的 [**Microsoft MCP 伺服器指南**](microsoft-mcp-servers.md#9--azure-ai-foundry-mcp-server) 了解 Azure AI Foundry MCP 伺服器。
-
-**主要特色：**  
-- 全面存取 Azure AI 生態系，包括模型目錄與部署管理  
-- 利用 Azure AI Search 進行知識索引，支援 RAG 應用  
-- AI 模型效能與品質保證評估工具  
-- 與 Azure AI Foundry Catalog 及 Labs 整合，支援前沿研究模型  
-- 代理管理與生產場景評估功能
-
-**成果：**  
-- 快速原型開發與穩健監控 AI 代理工作流程  
-- 與 Azure AI 服務無縫整合，支援進階應用  
-- 統一介面建置、部署與監控代理管線  
-- 提升企業安全、合規與營運效率  
-- 加速 AI 採用，同時掌控複雜代理驅動流程
-
-**參考資料：**  
-- [Azure AI Foundry MCP 伺服器 GitHub 倉庫](https://github.com/azure-ai-foundry/mcp-foundry)  
-- [Azure AI 代理與 MCP 整合（Microsoft Foundry 部落格）](https://devblogs.microsoft.com/foundry/integrating-azure-ai-agents-mcp/)
-
-### 案例研究 8：Foundry MCP Playground – 實驗與原型開發
-
-Foundry MCP Playground 提供即用環境，方便開發者實驗 MCP 伺服器與 Azure AI Foundry 整合。開發者可快速原型、測試與評估 AI 模型及代理工作流程，利用 Azure AI Foundry Catalog 與 Labs 的資源。此 Playground 簡化設定，提供範例專案，支援協作開發，讓您輕鬆探索最佳實踐與新場景，降低基礎建設門檻，促進 MCP 與 Azure AI Foundry 生態系的創新與社群貢獻。
-
-**參考資料：**  
-- [Foundry MCP Playground GitHub 倉庫](https://github.com/azure-ai-foundry/foundry-mcp-playground)
-
-### 案例研究 9：Microsoft Learn Docs MCP 伺服器 – AI 驅動的文件存取
-
-Microsoft Learn Docs MCP 伺服器是一項雲端服務，透過 Model Context Protocol 為 AI 助理提供即時存取官方 Microsoft 文件的能力。此生產環境伺服器連結完整的 Microsoft Learn 生態系，支援跨所有官方 Microsoft 資源的語意搜尋。
-> **🎯 生產環境可用工具**
+> **🎯 生產就緒工具**
 > 
-> 這是一個你今天就能使用的真實 MCP 伺服器！想了解更多關於 Microsoft Learn Docs MCP Server 的資訊，請參考我們的 [**Microsoft MCP Servers Guide**](microsoft-mcp-servers.md#1--microsoft-learn-docs-mcp-server)。
-**主要特色：**
-- 即時存取官方 Microsoft 文件、Azure 文件及 Microsoft 365 文件
-- 具備理解上下文與意圖的進階語意搜尋功能
-- 隨著 Microsoft Learn 內容發布，資訊始終保持最新
-- 全面涵蓋 Microsoft Learn、Azure 文件及 Microsoft 365 資源
-- 回傳最多 10 筆高品質內容片段，附帶文章標題與 URL
+> 這是一個您今天就能使用的真實 MCP 伺服器！了解更多關於 Azure AI Foundry MCP Server 的資訊，請參閱我們的 [**Microsoft MCP Servers Guide**](microsoft-mcp-servers.md#9--azure-ai-foundry-mcp-server)。
 
-**重要性說明：**
-- 解決 Microsoft 技術「AI 知識過時」的問題
-- 確保 AI 助理能取得最新的 .NET、C#、Azure 及 Microsoft 365 功能資訊
-- 提供權威且第一方的資訊，確保程式碼生成準確無誤
-- 對於使用快速演進 Microsoft 技術的開發者至關重要
+**主要功能：**
+- 全面訪問 Azure 的 AI 生態系統，包括模型目錄和部署管理
+- 使用 Azure AI Search 進行 RAG 應用的知識索引
+- 用於 AI 模型性能和質量保證的評估工具
+- 與 Azure AI Foundry Catalog 和 Labs 整合，支持前沿研究模型
+- 用於生產場景的代理管理和評估功能
+
+**結果：**
+- 快速原型設計和強大的 AI 代理工作流程監控
+- 與 Azure AI 服務無縫整合，支持高級場景
+- 為構建、部署和監控代理管道提供統一介面
+- 提高企業的安全性、合規性和運營效率
+- 加速 AI 採用，同時保持對複雜代理驅動流程的控制
+
+**參考資料：**
+- [Azure AI Foundry MCP Server GitHub Repository](https://github.com/azure-ai-foundry/mcp-foundry)
+- [整合 Azure AI Agents 與 MCP（Microsoft Foundry Blog）](https://devblogs.microsoft.com/foundry/integrating-azure-ai-agents-mcp/)
+
+### 案例研究 8：Foundry MCP Playground – 實驗與原型設計
+
+Foundry MCP Playground 提供了一個即用型環境，用於實驗 MCP 伺服器和 Azure AI Foundry 的整合。開發者可以快速原型設計、測試和評估 AI 模型及代理工作流程，使用來自 Azure AI Foundry Catalog 和 Labs 的資源。Playground 簡化了設置，提供示例專案，並支持協作開發，使團隊能夠以最小的負擔探索最佳實踐和新場景。通過降低進入門檻，Playground 幫助推動 MCP 和 Azure AI Foundry 生態系統中的創新和社區貢獻。
+
+**參考資料：**
+
+- [Foundry MCP Playground GitHub Repository](https://github.com/azure-ai-foundry/foundry-mcp-playground)
+
+### 案例研究 9：Microsoft Learn Docs MCP Server – AI 驅動的文件存取
+
+Microsoft Learn Docs MCP Server 是一個雲端託管服務，通過 Model Context Protocol 為 AI 助手提供即時存取官方 Microsoft 文件的能力。這個生產就緒的伺服器連接到全面的 Microsoft Learn 生態系統，並支持跨所有官方 Microsoft 資源的語義搜索。
+> **🎯 生產就緒工具**  
+>  
+> 這是一個您今天就可以使用的真正 MCP 伺服器！深入了解 Microsoft Learn Docs MCP 伺服器，請參閱我們的 [**Microsoft MCP 伺服器指南**](microsoft-mcp-servers.md#1--microsoft-learn-docs-mcp-server)。
+**主要功能：**
+- 即時存取官方 Microsoft 文件、Azure 文件及 Microsoft 365 文件
+- 高級語義搜尋功能，能理解上下文及意圖
+- 隨 Microsoft Learn 內容發布而保持最新資訊
+- 全面涵蓋 Microsoft Learn、Azure 文件及 Microsoft 365 資源
+- 提供最多 10 個高品質內容片段，附文章標題及 URL
+
+**重要性：**
+- 解決 Microsoft 技術中「過時 AI 知識」的問題
+- 確保 AI 助手能存取最新的 .NET、C#、Azure 和 Microsoft 365 功能
+- 提供權威的一手資訊以生成準確的程式碼
+- 對於使用快速演進的 Microsoft 技術的開發者至關重要
 
 **成果：**
-- 大幅提升 AI 生成 Microsoft 技術程式碼的準確度
-- 減少尋找最新文件與最佳實務的時間
-- 透過具上下文意識的文件檢索，提升開發者生產力
-- 無縫整合開發流程，無需離開 IDE
+- 顯著提升 AI 生成 Microsoft 技術程式碼的準確性
+- 減少搜尋最新文件及最佳實踐的時間
+- 通過上下文感知的文件檢索提升開發者生產力
+- 無需離開 IDE 即可與開發工作流程無縫整合
 
 **參考資料：**
 - [Microsoft Learn Docs MCP Server GitHub Repository](https://github.com/MicrosoftDocs/mcp)
@@ -446,144 +445,153 @@ Microsoft Learn Docs MCP 伺服器是一項雲端服務，透過 Model Context P
 
 ## 實作專案
 
-### 專案 1：建置多供應商 MCP 伺服器
+### 專案 1：建立多供應商 MCP 伺服器
 
 **目標：** 建立一個 MCP 伺服器，能根據特定條件將請求路由至多個 AI 模型供應商。
 
 **需求：**
-- 支援至少三個不同模型供應商（例如 OpenAI、Anthropic、本地模型）
-- 根據請求的元資料實作路由機制
-- 建立管理供應商憑證的設定系統
-- 加入快取以優化效能與成本
-- 建置簡易儀表板以監控使用狀況
+
+- 支援至少三個不同的模型供應商（例如 OpenAI、Anthropic、本地模型）
+- 實作基於請求元數據的路由機制
+- 建立管理供應商憑證的配置系統
+- 添加快取以優化效能及成本
+- 建立簡易儀表板以監控使用情況
 
 **實作步驟：**
-1. 建立基本 MCP 伺服器架構
+
+1. 設置基本 MCP 伺服器架構
 2. 為每個 AI 模型服務實作供應商適配器
-3. 根據請求屬性建立路由邏輯
-4. 為頻繁請求加入快取機制
+3. 建立基於請求屬性的路由邏輯
+4. 添加頻繁請求的快取機制
 5. 開發監控儀表板
-6. 以多種請求模式進行測試
+6. 測試各種請求模式
 
-**技術選擇：** 可選擇 Python（或依喜好使用 .NET/Java/Python）、Redis 作為快取，以及簡單的網頁框架建置儀表板。
+**技術選擇：** 可選用 Python（基於 .NET/Java/Python 的偏好），Redis 作為快取，及簡易網頁框架作為儀表板。
 
-### 專案 2：企業級提示管理系統
+### 專案 2：企業提示管理系統
 
-**目標：** 開發基於 MCP 的系統，用於管理、版本控制及部署組織內的提示模板。
+**目標：** 開發基於 MCP 的系統，用於管理、版本控制及部署提示模板於整個組織。
 
 **需求：**
-- 建立集中式提示模板庫
-- 實作版本控制與審核流程
-- 建置模板測試功能，支援範例輸入
+
+- 建立提示模板的集中式存儲庫
+- 實作版本控制及審批工作流程
+- 建立使用範例輸入的模板測試功能
 - 開發基於角色的存取控制
-- 建立模板檢索與部署的 API
+- 建立模板檢索及部署的 API
 
 **實作步驟：**
-1. 設計模板儲存的資料庫結構
+
+1. 設計模板存儲的資料庫架構
 2. 建立模板 CRUD 操作的核心 API
 3. 實作版本控制系統
-4. 建置審核工作流程
+4. 建立審批工作流程
 5. 開發測試框架
-6. 建立簡易的管理網頁介面
+6. 建立簡易網頁介面以進行管理
 7. 與 MCP 伺服器整合
 
-**技術選擇：** 自行選擇後端框架、SQL 或 NoSQL 資料庫，以及前端框架來建置管理介面。
+**技術選擇：** 可選擇後端框架、SQL 或 NoSQL 資料庫，以及前端框架以進行管理介面開發。
 
 ### 專案 3：基於 MCP 的內容生成平台
 
-**目標：** 建立一個內容生成平台，利用 MCP 提供跨不同內容類型的一致結果。
+**目標：** 建立一個內容生成平台，利用 MCP 提供不同內容類型的一致性結果。
 
 **需求：**
-- 支援多種內容格式（部落格文章、社群媒體、行銷文案）
+
+- 支援多種內容格式（部落格文章、社交媒體、行銷文案）
 - 實作基於模板的生成，並提供自訂選項
-- 建立內容審核與回饋系統
-- 追蹤內容效能指標
-- 支援內容版本控制與迭代
+- 建立內容審查及反饋系統
+- 跟蹤內容效能指標
+- 支援內容版本控制及迭代
 
 **實作步驟：**
-1. 建置 MCP 用戶端架構
-2. 建立不同內容類型的模板
-3. 建構內容生成流程
-4. 實作審核系統
-5. 開發效能指標追蹤系統
-6. 建立模板管理與內容生成的使用者介面
 
-**技術選擇：** 選擇您偏好的程式語言、網頁框架及資料庫系統。
+1. 設置 MCP 客戶端架構
+2. 為不同內容類型建立模板
+3. 建立內容生成管道
+4. 實作審查系統
+5. 開發效能指標跟蹤系統
+6. 建立用戶介面以進行模板管理及內容生成
 
-## MCP 技術未來發展方向
+**技術選擇：** 可選擇偏好的程式語言、網頁框架及資料庫系統。
+
+## MCP 技術的未來方向
 
 ### 新興趨勢
 
 1. **多模態 MCP**
-   - 擴展 MCP 以標準化與影像、音訊及影片模型的互動
-   - 發展跨模態推理能力
-   - 為不同模態制定標準化提示格式
+   - 擴展 MCP 以標準化與影像、音頻及視頻模型的互動
+   - 開發跨模態推理能力
+   - 為不同模態建立標準化提示格式
 
-2. **聯邦 MCP 基礎設施**
-   - 分散式 MCP 網路，可跨組織共享資源
-   - 標準化安全模型共享協定
+2. **聯邦 MCP 基礎架構**
+   - 分散式 MCP 網絡，可在組織間共享資源
+   - 安全模型共享的標準化協議
    - 隱私保護計算技術
 
-3. **MCP 市場生態系**
-   - 分享與貨幣化 MCP 模板與插件的生態系
-   - 品質保證與認證流程
+3. **MCP 市場**
+   - 用於共享及貨幣化 MCP 模板及插件的生態系統
+   - 質量保證及認證流程
    - 與模型市場整合
 
-4. **邊緣運算的 MCP**
-   - 適用於資源受限邊緣裝置的 MCP 標準調整
-   - 針對低頻寬環境優化協定
-   - 專為物聯網生態系設計的 MCP 實作
+4. **MCP 用於邊緣計算**
+   - 為資源受限的邊緣設備調整 MCP 標準
+   - 為低頻寬環境優化協議
+   - 專為 IoT 生態系統設計的 MCP 實作
 
-5. **法規框架**
-   - 為符合法規開發 MCP 擴充功能
-   - 標準化稽核軌跡與可解釋性介面
-   - 與新興 AI 治理框架整合
+5. **監管框架**
+   - 開發 MCP 擴展以符合監管要求
+   - 標準化審計追蹤及可解釋性介面
+   - 與新興 AI 管理框架整合
 
-### Microsoft 提供的 MCP 解決方案
+### Microsoft 的 MCP 解決方案
 
-Microsoft 與 Azure 開發了多個開源資源庫，協助開發者在不同場景中實作 MCP：
+Microsoft 和 Azure 開發了多個開源存儲庫，幫助開發者在各種場景中實作 MCP：
 
-#### Microsoft Organization
-1. [playwright-mcp](https://github.com/microsoft/playwright-mcp) - 用於瀏覽器自動化與測試的 Playwright MCP 伺服器
-2. [files-mcp-server](https://github.com/microsoft/files-mcp-server) - OneDrive MCP 伺服器實作，供本地測試與社群貢獻
-3. [NLWeb](https://github.com/microsoft/NlWeb) - NLWeb 是一套開放協定與相關開源工具，主要聚焦於建立 AI Web 的基礎層
+#### Microsoft 組織
 
-#### Azure-Samples Organization
-1. [mcp](https://github.com/Azure-Samples/mcp) - 提供多語言在 Azure 上建置與整合 MCP 伺服器的範例、工具與資源
-2. [mcp-auth-servers](https://github.com/Azure-Samples/mcp-auth-servers) - 示範基於現行 Model Context Protocol 規範的認證 MCP 伺服器範例
-3. [remote-mcp-functions](https://github.com/Azure-Samples/remote-mcp-functions) - Azure Functions 上遠端 MCP 伺服器實作的入口頁，附語言專屬資源庫連結
-4. [remote-mcp-functions-python](https://github.com/Azure-Samples/remote-mcp-functions-python) - 使用 Python 於 Azure Functions 快速建置與部署自訂遠端 MCP 伺服器範本
-5. [remote-mcp-functions-dotnet](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) - 使用 .NET/C# 於 Azure Functions 快速建置與部署自訂遠端 MCP 伺服器範本
-6. [remote-mcp-functions-typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) - 使用 TypeScript 於 Azure Functions 快速建置與部署自訂遠端 MCP 伺服器範本
-7. [remote-mcp-apim-functions-python](https://github.com/Azure-Samples/remote-mcp-apim-functions-python) - 以 Python 實作 Azure API 管理作為遠端 MCP 伺服器的 AI 閘道
-8. [AI-Gateway](https://github.com/Azure-Samples/AI-Gateway) - APIM ❤️ AI 實驗專案，包含 MCP 功能，整合 Azure OpenAI 與 AI Foundry
+1. [playwright-mcp](https://github.com/microsoft/playwright-mcp) - 用於瀏覽器自動化及測試的 Playwright MCP 伺服器
+2. [files-mcp-server](https://github.com/microsoft/files-mcp-server) - 用於本地測試及社群貢獻的 OneDrive MCP 伺服器實作
+3. [NLWeb](https://github.com/microsoft/NlWeb) - NLWeb 是一套開放協議及相關開源工具，主要聚焦於建立 AI Web 的基礎層
 
-這些資源庫涵蓋多種程式語言與 Azure 服務的 MCP 實作、範本與工具，適用於從基礎伺服器建置到認證、雲端部署及企業整合等多種使用情境。
+#### Azure-Samples 組織
+
+1. [mcp](https://github.com/Azure-Samples/mcp) - 提供樣本、工具及資源以在 Azure 上使用多種語言建立及整合 MCP 伺服器
+2. [mcp-auth-servers](https://github.com/Azure-Samples/mcp-auth-servers) - 展示使用當前 Model Context Protocol 規範進行身份驗證的參考 MCP 伺服器
+3. [remote-mcp-functions](https://github.com/Azure-Samples/remote-mcp-functions) - 使用 Azure Functions 實作的遠端 MCP 伺服器的登陸頁，附語言特定存儲庫的連結
+4. [remote-mcp-functions-python](https://github.com/Azure-Samples/remote-mcp-functions-python) - 使用 Python 建立及部署自訂遠端 MCP 伺服器的快速入門模板
+5. [remote-mcp-functions-dotnet](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) - 使用 .NET/C# 建立及部署自訂遠端 MCP 伺服器的快速入門模板
+6. [remote-mcp-functions-typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) - 使用 TypeScript 建立及部署自訂遠端 MCP 伺服器的快速入門模板
+7. [remote-mcp-apim-functions-python](https://github.com/Azure-Samples/remote-mcp-apim-functions-python) - 使用 Python 的 Azure API Management 作為 AI Gateway 與遠端 MCP 伺服器整合
+8. [AI-Gateway](https://github.com/Azure-Samples/AI-Gateway) - APIM ❤️ AI 實驗，包括 MCP 功能，與 Azure OpenAI 及 AI Foundry 整合
+
+這些存儲庫提供了多種實作、模板及資源，用於在不同程式語言及 Azure 服務中使用 Model Context Protocol。涵蓋了從基本伺服器實作到身份驗證、雲端部署及企業整合場景的多種使用案例。
+
+#### MCP 資源目錄
+
+官方 Microsoft MCP 存儲庫中的 [MCP 資源目錄](https://github.com/microsoft/mcp/tree/main/Resources) 提供了一套精選的樣本資源、提示模板及工具定義，用於 Model Context Protocol 伺服器。此目錄旨在幫助開發者快速入門 MCP，提供可重用的構建模塊及最佳實踐範例：
+
+- **提示模板：** 用於常見 AI 任務及場景的即用型提示模板，可根據自己的 MCP 伺服器實作進行調整。
+- **工具定義：** 標準化工具整合及調用的示例工具架構及元數據。
+- **資源樣本：** 用於在 MCP 框架中連接數據源、API 及外部服務的示例資源定義。
+- **參考實作：** 展示如何在實際 MCP 專案中結構化及組織資源、提示及工具的實用樣本。
+
+這些資源加速開發，促進標準化，並幫助在構建及部署基於 MCP 的解決方案時遵循最佳實踐。
 
 #### MCP 資源目錄
 
-官方 Microsoft MCP 資源庫中的 [MCP Resources 目錄](https://github.com/microsoft/mcp/tree/main/Resources) 提供精選的範例資源、提示模板與工具定義，協助開發者快速上手 MCP，並提供可重用的組件與最佳實務範例，包括：
-
-- **提示模板：** 適用於常見 AI 任務與場景的現成提示模板，可依需求調整用於 MCP 伺服器實作。
-- **工具定義：** 範例工具結構與元資料，標準化不同 MCP 伺服器間的工具整合與調用。
-- **資源範例：** 連接資料來源、API 與外部服務的範例資源定義，適用於 MCP 框架。
-- **參考實作：** 展示如何在實際 MCP 專案中組織資源、提示與工具的實用範例。
-
-這些資源加速開發、促進標準化，並確保 MCP 解決方案的最佳實務。
-
-#### MCP 資源目錄
-- [MCP Resources（範例提示、工具與資源定義）](https://github.com/microsoft/mcp/tree/main/Resources)
+- [MCP 資源（樣本提示、工具及資源定義）](https://github.com/microsoft/mcp/tree/main/Resources)
 
 ### 研究機會
 
 - MCP 框架內的高效提示優化技術
 - 多租戶 MCP 部署的安全模型
 - 不同 MCP 實作的效能基準測試
-- MCP 伺服器的形式驗證方法
+- MCP 伺服器的形式化驗證方法
 
 ## 結論
 
-Model Context Protocol (MCP) 正快速塑造標準化、安全且可互操作的 AI 整合未來。透過本課程中的案例研究與實作專案，您已見識到包括 Microsoft 與 Azure 在內的早期採用者如何利用 MCP 解決實際問題、加速 AI 採用，並確保合規性、安全性與可擴展性。MCP 的模組化方法使組織能在統一且可稽核的框架中連結大型語言模型、工具與企業資料。隨著 MCP 持續演進，積極參與社群、探索開源資源並應用最佳實務，將是打造穩健且面向未來 AI 解決方案的關鍵。
+Model Context Protocol (MCP) 正在快速塑造跨行業標準化、安全及可互操作的 AI 整合的未來。通過本課程中的案例研究及實作專案，您已看到早期採用者（包括 Microsoft 和 Azure）如何利用 MCP 解決實際挑戰，加速 AI 採用，並確保合規性、安全性及可擴展性。MCP 的模組化方法使組織能在統一、可審計的框架中連接大型語言模型、工具及企業數據。隨著 MCP 的持續發展，與社群保持互動、探索開源資源及應用最佳實踐將是構建穩健、面向未來的 AI 解決方案的關鍵。
 
 ## 附加資源
 
@@ -606,14 +614,14 @@ Model Context Protocol (MCP) 正快速塑造標準化、安全且可互操作的
 - [AI-Gateway (Azure-Samples)](https://github.com/Azure-Samples/AI-Gateway)
 - [Microsoft AI and Automation Solutions](https://azure.microsoft.com/en-us/products/ai-services/)
 
-## 練習題
+## 練習
 
-1. 分析其中一個案例研究，並提出替代的實作方案。
-2. 選擇一個專案構想，撰寫詳細的技術規格。
-3. 研究一個案例中未涵蓋的產業，並概述 MCP 如何解決其特定挑戰。
-4. 探索未來發展方向之一，設計一個新的 MCP 擴充概念以支援該方向。
+1. 分析其中一個案例研究並提出替代的實作方法。
+2. 選擇其中一個專案構想並撰寫詳細的技術規格。
+3. 研究案例研究中未涵蓋的行業並概述 MCP 如何解決其特定挑戰。
+4. 探索其中一個未來方向並構思一個新的 MCP 擴展以支持該方向。
 
-下一課： [Microsoft MCP Server](../07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md)
+下一步：[Microsoft MCP Server](../07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md)
 
 **免責聲明**：  
-本文件係使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於確保準確性，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應視為權威來源。對於重要資訊，建議採用專業人工翻譯。我們不對因使用本翻譯而產生的任何誤解或誤釋負責。
+本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解讀概不負責。

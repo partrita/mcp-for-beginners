@@ -1,31 +1,31 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a656dbc7648e07da08eb4d1ffde4938e",
-  "translation_date": "2025-07-22T08:02:09+00:00",
+  "original_hash": "4d846ebb88fbb0f00549e2ff8cc3f746",
+  "translation_date": "2025-10-06T13:47:59+00:00",
   "source_file": "03-GettingStarted/03-llm-client/README.md",
   "language_code": "ko"
 }
 -->
-# LLM을 사용한 클라이언트 생성
+# LLM을 사용하여 클라이언트 생성하기
 
-지금까지 서버와 클라이언트를 생성하는 방법을 살펴보았습니다. 클라이언트는 서버에 명시적으로 호출하여 도구, 리소스 및 프롬프트를 나열할 수 있었습니다. 하지만 이는 실용적인 접근 방식이 아닙니다. 사용자는 에이전트 시대에 살고 있으며, 자연어 프롬프트를 사용하여 LLM과 소통하기를 기대합니다. 사용자는 MCP를 사용하여 기능을 저장하는지 여부에는 관심이 없지만, 자연어를 통해 상호작용하기를 원합니다. 그렇다면 이를 어떻게 해결할 수 있을까요? 해결책은 클라이언트에 LLM을 추가하는 것입니다.
+지금까지 서버와 클라이언트를 생성하는 방법을 살펴보았습니다. 클라이언트는 서버에 명시적으로 호출하여 도구, 리소스 및 프롬프트를 나열할 수 있었습니다. 하지만 이는 실용적인 접근 방식이 아닙니다. 사용자는 에이전트 시대에 살고 있으며, 프롬프트를 사용하고 LLM과 소통하기를 기대합니다. 사용자는 MCP를 사용하여 기능을 저장하는지 여부에는 관심이 없지만, 자연어를 사용하여 상호작용하기를 기대합니다. 그렇다면 이를 어떻게 해결할 수 있을까요? 해결책은 클라이언트에 LLM을 추가하는 것입니다.
 
 ## 개요
 
-이 강의에서는 클라이언트에 LLM을 추가하는 방법에 중점을 두고, 이를 통해 사용자 경험을 어떻게 개선할 수 있는지 보여줍니다.
+이 강의에서는 클라이언트에 LLM을 추가하는 방법에 초점을 맞추고, 이를 통해 사용자 경험을 크게 개선하는 방법을 보여줍니다.
 
 ## 학습 목표
 
-이 강의를 마치면 다음을 할 수 있습니다:
+이 강의를 마치면 다음을 수행할 수 있습니다:
 
 - LLM을 사용하는 클라이언트를 생성합니다.
 - LLM을 사용하여 MCP 서버와 원활하게 상호작용합니다.
-- 클라이언트 측에서 더 나은 사용자 경험을 제공합니다.
+- 클라이언트 측에서 더 나은 최종 사용자 경험을 제공합니다.
 
 ## 접근 방식
 
-우리가 취해야 할 접근 방식을 이해해 봅시다. LLM을 추가하는 것은 간단해 보이지만, 실제로는 어떻게 해야 할까요?
+우리가 취해야 할 접근 방식을 이해해 봅시다. LLM을 추가하는 것은 간단해 보이지만, 실제로 어떻게 해야 할까요?
 
 클라이언트가 서버와 상호작용하는 방식은 다음과 같습니다:
 
@@ -35,25 +35,25 @@ CO_OP_TRANSLATOR_METADATA:
 
 1. LLM을 추가하고 저장된 기능과 스키마를 LLM이 이해할 수 있는 형식으로 전달합니다.
 
-1. 사용자 프롬프트를 처리하고, 이를 클라이언트가 나열한 도구와 함께 LLM에 전달합니다.
+1. 사용자 프롬프트를 처리하여 LLM에 전달하고, 클라이언트가 나열한 도구와 함께 사용합니다.
 
 좋습니다. 이제 높은 수준에서 이를 어떻게 수행할 수 있는지 이해했으니, 아래 연습에서 이를 시도해 봅시다.
 
-## 연습: LLM을 사용하는 클라이언트 생성
+## 연습: LLM을 사용하는 클라이언트 생성하기
 
 이 연습에서는 클라이언트에 LLM을 추가하는 방법을 배웁니다.
 
 ### GitHub 개인 액세스 토큰을 사용한 인증
 
-GitHub 토큰을 생성하는 과정은 간단합니다. 다음 단계를 따르세요:
+GitHub 토큰을 생성하는 과정은 간단합니다. 다음은 그 방법입니다:
 
 - GitHub 설정으로 이동 – 오른쪽 상단의 프로필 사진을 클릭하고 설정(Settings)을 선택합니다.
 - 개발자 설정으로 이동 – 아래로 스크롤하여 개발자 설정(Developer Settings)을 클릭합니다.
-- 개인 액세스 토큰 선택 – 개인 액세스 토큰(Personal access tokens)을 클릭한 후 새 토큰 생성(Generate new token)을 선택합니다.
-- 토큰 구성 – 참조용 메모를 추가하고, 만료 날짜를 설정하며, 필요한 범위(권한)를 선택합니다.
-- 토큰 생성 및 복사 – 토큰 생성(Generate token)을 클릭하고 즉시 복사하세요. 나중에 다시 볼 수 없습니다.
+- 개인 액세스 토큰 선택 – 세분화된 토큰(Fine-grained tokens)을 클릭한 다음 새 토큰 생성(Generate new token)을 선택합니다.
+- 토큰 구성 – 참조용 메모를 추가하고, 만료 날짜를 설정하며 필요한 범위(권한)를 선택합니다. 이 경우 모델 권한을 추가해야 합니다.
+- 토큰 생성 및 복사 – 토큰 생성(Generate token)을 클릭하고 즉시 복사하세요. 이후에는 다시 볼 수 없습니다.
 
-### -1- 서버에 연결
+### -1- 서버에 연결하기
 
 먼저 클라이언트를 생성해 봅시다:
 
@@ -95,8 +95,8 @@ class MCPClient {
 위 코드에서 우리는 다음을 수행했습니다:
 
 - 필요한 라이브러리를 가져왔습니다.
-- 클라이언트와 LLM과 상호작용을 관리하는 두 멤버 `client`와 `openai`를 포함하는 클래스를 생성했습니다.
-- `baseUrl`을 설정하여 GitHub 모델을 사용하도록 LLM 인스턴스를 구성했습니다.
+- `client`와 `openai`라는 두 멤버를 가진 클래스를 생성하여 클라이언트를 관리하고 LLM과 상호작용할 수 있도록 했습니다.
+- GitHub Models를 사용하도록 LLM 인스턴스를 구성하고 `baseUrl`을 추론 API로 설정했습니다.
 
 #### Python
 
@@ -130,7 +130,7 @@ if __name__ == "__main__":
 
 위 코드에서 우리는 다음을 수행했습니다:
 
-- MCP에 필요한 라이브러리를 가져왔습니다.
+- MCP를 위한 필요한 라이브러리를 가져왔습니다.
 - 클라이언트를 생성했습니다.
 
 #### .NET
@@ -156,7 +156,7 @@ await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
 
 #### Java
 
-먼저, `pom.xml` 파일에 LangChain4j 종속성을 추가해야 합니다. MCP 통합 및 GitHub 모델 지원을 활성화하려면 다음 종속성을 추가하세요:
+먼저 `pom.xml` 파일에 LangChain4j 종속성을 추가해야 합니다. MCP 통합 및 GitHub Models 지원을 활성화하려면 다음 종속성을 추가하세요:
 
 ```xml
 <properties>
@@ -193,7 +193,7 @@ await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
 </dependencies>
 ```
 
-그런 다음 Java 클라이언트 클래스를 생성하세요:
+그런 다음 Java 클라이언트 클래스를 생성합니다:
 
 ```java
 import dev.langchain4j.mcp.McpToolProvider;
@@ -237,20 +237,100 @@ public class LangChain4jClient {
 
 위 코드에서 우리는 다음을 수행했습니다:
 
-- **LangChain4j 종속성 추가**: MCP 통합, OpenAI 공식 클라이언트 및 GitHub 모델 지원에 필요
+- **LangChain4j 종속성 추가**: MCP 통합, OpenAI 공식 클라이언트 및 GitHub Models 지원에 필요
 - **LangChain4j 라이브러리 가져오기**: MCP 통합 및 OpenAI 채팅 모델 기능을 위해
-- **`ChatLanguageModel` 생성**: GitHub 토큰을 사용하여 GitHub 모델을 사용하도록 구성
-- **HTTP 전송 설정**: 서버-발송 이벤트(SSE)를 사용하여 MCP 서버에 연결
+- **`ChatLanguageModel` 생성**: GitHub Models를 사용하도록 GitHub 토큰으로 구성
+- **HTTP 전송 설정**: MCP 서버에 연결하기 위해 Server-Sent Events(SSE)를 사용
 - **MCP 클라이언트 생성**: 서버와의 통신을 처리
-- **LangChain4j의 내장 MCP 지원 사용**: LLM과 MCP 서버 간의 통합을 단순화
+- **LangChain4j의 내장 MCP 지원 사용**: LLM과 MCP 서버 간의 통합을 간소화
+
+#### Rust
+
+이 예제는 Rust 기반 MCP 서버가 실행 중이라고 가정합니다. MCP 서버가 없다면 [01-first-server](../01-first-server/README.md) 강의를 참조하여 서버를 생성하세요.
+
+Rust MCP 서버가 준비되면 터미널을 열고 서버와 동일한 디렉토리로 이동합니다. 그런 다음 새 LLM 클라이언트 프로젝트를 생성하려면 다음 명령을 실행하세요:
+
+```bash
+mkdir calculator-llmclient
+cd calculator-llmclient
+cargo init
+```
+
+`Cargo.toml` 파일에 다음 종속성을 추가하세요:
+
+```toml
+[dependencies]
+async-openai = { version = "0.29.0", features = ["byot"] }
+rmcp = { version = "0.5.0", features = ["client", "transport-child-process"] }
+serde_json = "1.0.141"
+tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
+```
+
+> [!NOTE]
+> OpenAI의 공식 Rust 라이브러리는 없지만, `async-openai` 크레이트는 [커뮤니티에서 유지 관리되는 라이브러리](https://platform.openai.com/docs/libraries/rust#rust)로 자주 사용됩니다.
+
+`src/main.rs` 파일을 열고 내용을 다음 코드로 교체하세요:
+
+```rust
+use async_openai::{Client, config::OpenAIConfig};
+use rmcp::{
+    RmcpError,
+    model::{CallToolRequestParam, ListToolsResult},
+    service::{RoleClient, RunningService, ServiceExt},
+    transport::{ConfigureCommandExt, TokioChildProcess},
+};
+use serde_json::{Value, json};
+use std::error::Error;
+use tokio::process::Command;
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    // Initial message
+    let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
+
+    // Setup OpenAI client
+    let api_key = std::env::var("OPENAI_API_KEY")?;
+    let openai_client = Client::with_config(
+        OpenAIConfig::new()
+            .with_api_base("https://models.github.ai/inference/chat")
+            .with_api_key(api_key),
+    );
+
+    // Setup MCP client
+    let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .unwrap()
+        .join("calculator-server");
+
+    let mcp_client = ()
+        .serve(
+            TokioChildProcess::new(Command::new("cargo").configure(|cmd| {
+                cmd.arg("run").current_dir(server_dir);
+            }))
+            .map_err(RmcpError::transport_creation::<TokioChildProcess>)?,
+        )
+        .await?;
+
+    // TODO: Get MCP tool listing 
+
+    // TODO: LLM conversation with tool calls
+
+    Ok(())
+}
+```
+
+이 코드는 MCP 서버와 GitHub Models에 연결하여 LLM 상호작용을 설정하는 기본 Rust 애플리케이션을 구성합니다.
+
+> [!IMPORTANT]
+> 애플리케이션을 실행하기 전에 GitHub 토큰으로 `OPENAI_API_KEY` 환경 변수를 설정하세요.
 
 좋습니다. 다음 단계로 서버의 기능을 나열해 봅시다.
 
-### -2- 서버 기능 나열
+### -2- 서버 기능 나열하기
 
-이제 서버에 연결하고 기능을 요청해 봅시다:
+이제 서버에 연결하여 기능을 요청합니다:
 
-#### TypeScript
+#### Typescript
 
 같은 클래스에 다음 메서드를 추가하세요:
 
@@ -271,8 +351,8 @@ async run() {
 
 위 코드에서 우리는 다음을 수행했습니다:
 
-- 서버에 연결하는 `connectToServer` 코드를 추가했습니다.
-- 앱 흐름을 처리하는 `run` 메서드를 생성했습니다. 현재는 도구만 나열하지만, 곧 더 많은 기능을 추가할 것입니다.
+- 서버에 연결하는 코드를 추가했습니다, `connectToServer`.
+- 앱 흐름을 처리하는 `run` 메서드를 생성했습니다. 현재는 도구만 나열하지만 곧 더 많은 기능을 추가할 것입니다.
 
 #### Python
 
@@ -291,9 +371,9 @@ for tool in tools.tools:
     print("Tool", tool.inputSchema["properties"])
 ```
 
-추가한 내용은 다음과 같습니다:
+추가된 내용은 다음과 같습니다:
 
-- 리소스와 도구를 나열하고 이를 출력했습니다. 도구의 경우 나중에 사용할 `inputSchema`도 나열했습니다.
+- 리소스와 도구를 나열하고 이를 출력했습니다. 도구의 경우 나중에 사용할 `inputSchema`도 나열합니다.
 
 #### .NET
 
@@ -321,7 +401,7 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 위 코드에서 우리는 다음을 수행했습니다:
 
 - MCP 서버에서 사용 가능한 도구를 나열했습니다.
-- 각 도구에 대해 이름, 설명 및 스키마를 나열했습니다. 스키마는 곧 도구를 호출하는 데 사용할 것입니다.
+- 각 도구에 대해 이름, 설명 및 스키마를 나열했습니다. 후자는 곧 도구를 호출하는 데 사용할 것입니다.
 
 #### Java
 
@@ -343,9 +423,18 @@ ToolProvider toolProvider = McpToolProvider.builder()
 - 도구 제공자는 MCP 도구 스키마와 LangChain4j 도구 형식 간의 변환을 내부적으로 처리합니다.
 - 이 접근 방식은 수동 도구 나열 및 변환 프로세스를 추상화합니다.
 
-### -3- 서버 기능을 LLM 도구로 변환
+#### Rust
 
-서버 기능을 나열한 후 다음 단계는 이를 LLM이 이해할 수 있는 형식으로 변환하는 것입니다. 이를 통해 이러한 기능을 LLM 도구로 제공할 수 있습니다.
+MCP 서버에서 도구를 검색하는 것은 `list_tools` 메서드를 사용하여 수행됩니다. MCP 클라이언트를 설정한 후 `main` 함수에 다음 코드를 추가하세요:
+
+```rust
+// Get MCP tool listing 
+let tools = mcp_client.list_tools(Default::default()).await?;
+```
+
+### -3- 서버 기능을 LLM 도구로 변환하기
+
+서버 기능을 나열한 후에는 이를 LLM이 이해할 수 있는 형식으로 변환해야 합니다. 이를 수행하면 이러한 기능을 LLM에 도구로 제공할 수 있습니다.
 
 #### TypeScript
 
@@ -376,9 +465,9 @@ ToolProvider toolProvider = McpToolProvider.builder()
 
     ```
 
-    위 코드는 MCP 서버의 응답을 LLM이 이해할 수 있는 도구 정의 형식으로 변환합니다.
+    위 코드는 MCP 서버의 응답을 받아 LLM이 이해할 수 있는 도구 정의 형식으로 변환합니다.
 
-1. 다음으로 `run` 메서드를 업데이트하여 서버 기능을 나열하세요:
+1. 다음으로 `run` 메서드를 업데이트하여 서버 기능을 나열합니다:
 
     ```typescript
     async run() {
@@ -394,11 +483,11 @@ ToolProvider toolProvider = McpToolProvider.builder()
     }
     ```
 
-    위 코드에서 우리는 `run` 메서드를 업데이트하여 결과를 매핑하고 각 항목에 대해 `openAiToolAdapter`를 호출했습니다.
+    위 코드에서 우리는 `run` 메서드를 업데이트하여 결과를 매핑하고 각 항목에 대해 `openAiToolAdapter`를 호출합니다.
 
 #### Python
 
-1. 먼저 다음 변환 함수를 생성하세요:
+1. 먼저 다음 변환 함수를 생성합니다:
 
     ```python
     def convert_to_llm_tool(tool):
@@ -418,9 +507,9 @@ ToolProvider toolProvider = McpToolProvider.builder()
         return tool_schema
     ```
 
-    위 함수 `convert_to_llm_tools`는 MCP 도구 응답을 받아 LLM이 이해할 수 있는 형식으로 변환합니다.
+    위 함수 `convert_to_llm_tools`에서는 MCP 도구 응답을 받아 LLM이 이해할 수 있는 형식으로 변환합니다.
 
-1. 다음으로 클라이언트 코드를 업데이트하여 이 함수를 활용하세요:
+1. 다음으로 클라이언트 코드를 업데이트하여 이 함수를 활용합니다:
 
     ```python
     for tool in tools.tools:
@@ -429,11 +518,11 @@ ToolProvider toolProvider = McpToolProvider.builder()
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    여기서 우리는 MCP 도구 응답을 나중에 LLM에 전달할 수 있는 형식으로 변환하는 `convert_to_llm_tool` 호출을 추가했습니다.
+    여기서는 MCP 도구 응답을 변환하여 나중에 LLM에 전달할 수 있도록 `convert_to_llm_tool` 호출을 추가했습니다.
 
 #### .NET
 
-1. MCP 도구 응답을 LLM이 이해할 수 있는 형식으로 변환하는 코드를 추가하세요:
+1. MCP 도구 응답을 LLM이 이해할 수 있는 형식으로 변환하는 코드를 추가합니다:
 
 ```csharp
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
@@ -461,7 +550,7 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 - 이름, 설명 및 입력 스키마를 받는 `ConvertFrom` 함수를 생성했습니다.
 - FunctionDefinition을 생성하는 기능을 정의했으며, 이는 ChatCompletionsDefinition에 전달됩니다. 후자는 LLM이 이해할 수 있는 것입니다.
 
-1. 기존 코드를 업데이트하여 위 함수를 활용하는 방법을 살펴봅시다:
+1. 위 함수를 활용하기 위해 기존 코드를 업데이트합니다:
 
     ```csharp
     async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -489,9 +578,9 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 
         return toolDefinitions;
     }
-    ```
+    ```    In the preceding code, we've:
 
-    위 코드에서 우리는 MCP 도구 응답을 LLM 도구로 변환하는 기능을 업데이트했습니다. 추가한 코드는 다음과 같습니다:
+    - Update the function to convert the MCP tool response to an LLm tool. Let's highlight the code we added:
 
         ```csharp
         JsonElement propertiesElement;
@@ -502,7 +591,7 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
         toolDefinitions.Add(def);
         ```
 
-        입력 스키마는 도구 응답의 일부이지만 "properties" 속성에 있으므로 이를 추출해야 합니다. 또한 도구 세부 정보를 사용하여 `ConvertFrom`을 호출합니다. 이제 주요 작업을 완료했으니, 다음으로 사용자 프롬프트를 처리하는 방법을 살펴봅시다.
+        The input schema is part of the tool response but on the "properties" attribute, so we need to extract. Furthermore, we now call `ConvertFrom` with the tool details. Now we've done the heavy lifting, let's see how it call comes together as we handle a user prompt next.
 
 #### Java
 
@@ -523,18 +612,55 @@ Bot bot = AiServices.builder(Bot.class)
 
 - 자연어 상호작용을 위한 간단한 `Bot` 인터페이스를 정의했습니다.
 - LangChain4j의 `AiServices`를 사용하여 LLM과 MCP 도구 제공자를 자동으로 바인딩했습니다.
-- 프레임워크는 MCP 도구 스키마 변환 및 함수 호출을 자동으로 처리합니다.
-- 이 접근 방식은 수동 도구 변환을 제거하며, LangChain4j가 MCP 도구를 LLM 호환 형식으로 변환하는 모든 복잡성을 처리합니다.
+- 프레임워크는 도구 스키마 변환 및 함수 호출을 내부적으로 처리합니다.
+- 이 접근 방식은 MCP 도구를 LLM 호환 형식으로 변환하는 수동 작업을 제거합니다 - LangChain4j가 모든 복잡성을 처리합니다.
 
-좋습니다. 이제 사용자 요청을 처리할 준비가 되었으니, 이를 다뤄봅시다.
+#### Rust
 
-### -4- 사용자 프롬프트 요청 처리
+MCP 도구 응답을 LLM이 이해할 수 있는 형식으로 변환하려면 도구 목록을 포맷팅하는 헬퍼 함수를 추가합니다. 이 함수는 LLM 요청 시 호출됩니다. `main.rs` 파일의 `main` 함수 아래에 다음 코드를 추가하세요:
 
-이 코드 부분에서는 사용자 요청을 처리합니다.
+```rust
+async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
+    let tools_json = serde_json::to_value(tools)?;
+    let Some(tools_array) = tools_json.get("tools").and_then(|t| t.as_array()) else {
+        return Ok(vec![]);
+    };
+
+    let formatted_tools = tools_array
+        .iter()
+        .filter_map(|tool| {
+            let name = tool.get("name")?.as_str()?;
+            let description = tool.get("description")?.as_str()?;
+            let schema = tool.get("inputSchema")?;
+
+            Some(json!({
+                "type": "function",
+                "function": {
+                    "name": name,
+                    "description": description,
+                    "parameters": {
+                        "type": "object",
+                        "properties": schema.get("properties").unwrap_or(&json!({})),
+                        "required": schema.get("required").unwrap_or(&json!([]))
+                    }
+                }
+            }))
+        })
+        .collect();
+
+    Ok(formatted_tools)
+}
+```
+
+좋습니다. 이제 사용자 요청을 처리할 준비가 되었으니 다음 단계로 넘어갑시다.
+
+### -4- 사용자 프롬프트 요청 처리하기
+
+이 부분에서는 사용자 요청을 처리합니다.
 
 #### TypeScript
 
-1. LLM을 호출하는 데 사용할 메서드를 추가하세요:
+1. LLM을 호출하는 데 사용할 메서드를 추가합니다:
 
     ```typescript
     async callTools(
@@ -566,7 +692,7 @@ Bot bot = AiServices.builder(Bot.class)
     위 코드에서 우리는 다음을 수행했습니다:
 
     - `callTools` 메서드를 추가했습니다.
-    - 이 메서드는 LLM 응답을 받아 호출할 도구가 있는지 확인합니다:
+    - 이 메서드는 LLM 응답을 받아 호출된 도구가 있는지 확인합니다:
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -594,7 +720,7 @@ Bot bot = AiServices.builder(Bot.class)
         // TODO  
         ```
 
-1. `run` 메서드를 업데이트하여 LLM 호출 및 `callTools` 호출을 포함하세요:
+1. `run` 메서드를 업데이트하여 LLM 호출 및 `callTools` 호출을 포함합니다:
 
     ```typescript
 
@@ -769,7 +895,7 @@ client.connectToServer(transport);
 
 #### Python
 
-1. LLM 호출에 필요한 일부 가져오기를 추가하세요:
+1. LLM 호출에 필요한 일부 가져오기를 추가합니다:
 
     ```python
     # llm
@@ -780,7 +906,7 @@ client.connectToServer(transport);
     import json
     ```
 
-1. 다음으로 LLM을 호출하는 함수를 추가하세요:
+1. 다음으로 LLM을 호출하는 함수를 추가합니다:
 
     ```python
     # llm
@@ -832,12 +958,12 @@ client.connectToServer(transport);
 
     위 코드에서 우리는 다음을 수행했습니다:
 
-    - MCP 서버에서 찾은 함수와 변환된 함수를 LLM에 전달했습니다.
-    - 그런 다음 해당 함수로 LLM을 호출했습니다.
-    - 결과를 검사하여 호출할 함수가 있는지 확인했습니다.
-    - 마지막으로 호출할 함수 배열을 전달했습니다.
+    - MCP 서버에서 찾은 기능을 변환하여 LLM에 전달했습니다.
+    - 그런 다음 해당 기능을 사용하여 LLM을 호출했습니다.
+    - 결과를 검사하여 호출해야 할 기능이 있는지 확인했습니다.
+    - 마지막으로 호출할 기능 배열을 전달했습니다.
 
-1. 마지막 단계로, 메인 코드를 업데이트하세요:
+1. 마지막 단계로 메인 코드를 업데이트합니다:
 
     ```python
     prompt = "Add 2 to 20"
@@ -853,12 +979,12 @@ client.connectToServer(transport);
 
     위 코드에서 우리는 다음을 수행했습니다:
 
-    - LLM이 제안한 함수로 MCP 도구를 호출했습니다.
+    - LLM 프롬프트에 따라 MCP 도구를 `call_tool`을 통해 호출했습니다.
     - MCP 서버의 도구 호출 결과를 출력했습니다.
 
 #### .NET
 
-1. LLM 프롬프트 요청을 처리하는 코드를 살펴봅시다:
+1. LLM 프롬프트 요청을 수행하는 코드를 보여줍니다:
 
     ```csharp
     var tools = await GetMcpTools();
@@ -894,12 +1020,12 @@ client.connectToServer(transport);
 
     위 코드에서 우리는 다음을 수행했습니다:
 
-    - MCP 서버에서 도구를 가져왔습니다(`var tools = await GetMcpTools()`).
+    - MCP 서버에서 도구를 가져왔습니다, `var tools = await GetMcpTools()`.
     - 사용자 프롬프트 `userMessage`를 정의했습니다.
     - 모델과 도구를 지정하는 옵션 객체를 생성했습니다.
     - LLM에 요청을 보냈습니다.
 
-1. 마지막 단계로, LLM이 함수 호출을 제안하는지 확인해 봅시다:
+1. 마지막 단계로 LLM이 함수 호출을 해야 한다고 생각하는지 확인합니다:
 
     ```csharp
     // 4. Check if the response contains a function call
@@ -1076,11 +1202,11 @@ try {
 
 - 간단한 자연어 프롬프트를 사용하여 MCP 서버 도구와 상호작용했습니다.
 - LangChain4j 프레임워크는 다음을 자동으로 처리합니다:
-  - 사용자 프롬프트를 도구 호출로 변환
+  - 필요할 때 사용자 프롬프트를 도구 호출로 변환
   - LLM의 결정에 따라 적절한 MCP 도구 호출
   - LLM과 MCP 서버 간의 대화 흐름 관리
 - `bot.chat()` 메서드는 MCP 도구 실행 결과를 포함할 수 있는 자연어 응답을 반환합니다.
-- 이 접근 방식은 사용자가 기본 MCP 구현에 대해 알 필요 없이 원활한 사용자 경험을 제공합니다.
+- 이 접근 방식은 사용자가 기본 MCP 구현에 대해 알 필요가 없는 원활한 사용자 경험을 제공합니다.
 
 전체 코드 예제:
 
@@ -1131,20 +1257,151 @@ public class LangChain4jClient {
 }
 ```
 
-좋습니다. 해냈습니다!
+#### Rust
+
+여기에서 대부분의 작업이 이루어집니다. 초기 사용자 프롬프트로 LLM을 호출한 다음 응답을 처리하여 호출해야 할 도구가 있는지 확인합니다. 도구가 있다면 해당 도구를 호출하고 LLM과의 대화를 계속 진행하여 더 이상 도구 호출이 필요 없고 최종 응답이 나올 때까지 진행합니다.
+
+LLM에 여러 번 호출해야 하므로 LLM 호출을 처리할 함수를 정의합니다. `main.rs` 파일에 다음 함수를 추가하세요:
+
+```rust
+async fn call_llm(
+    client: &Client<OpenAIConfig>,
+    messages: &[Value],
+    tools: &ListToolsResult,
+) -> Result<Value, Box<dyn Error>> {
+    let response = client
+        .completions()
+        .create_byot(json!({
+            "messages": messages,
+            "model": "openai/gpt-4.1",
+            "tools": format_tools(tools).await?,
+        }))
+        .await?;
+    Ok(response)
+}
+```
+
+이 함수는 LLM 클라이언트, 메시지 목록(사용자 프롬프트 포함), MCP 서버의 도구를 받아 요청을 LLM에 보내고 응답을 반환합니다.
+LLM의 응답은 `choices` 배열을 포함합니다. 결과를 처리하여 `tool_calls`가 있는지 확인해야 합니다. 이를 통해 LLM이 특정 도구를 호출해야 한다는 요청을 하고 있는지 알 수 있습니다. `main.rs` 파일의 맨 아래에 다음 코드를 추가하여 LLM 응답을 처리하는 함수를 정의하세요:
+
+```rust
+async fn process_llm_response(
+    llm_response: &Value,
+    mcp_client: &RunningService<RoleClient, ()>,
+    openai_client: &Client<OpenAIConfig>,
+    mcp_tools: &ListToolsResult,
+    messages: &mut Vec<Value>,
+) -> Result<(), Box<dyn Error>> {
+    let Some(message) = llm_response
+        .get("choices")
+        .and_then(|c| c.as_array())
+        .and_then(|choices| choices.first())
+        .and_then(|choice| choice.get("message"))
+    else {
+        return Ok(());
+    };
+
+    // Print content if available
+    if let Some(content) = message.get("content").and_then(|c| c.as_str()) {
+        println!("🤖 {}", content);
+    }
+
+    // Handle tool calls
+    if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
+        messages.push(message.clone()); // Add assistant message
+
+        // Execute each tool call
+        for tool_call in tool_calls {
+            let (tool_id, name, args) = extract_tool_call_info(tool_call)?;
+            println!("⚡ Calling tool: {}", name);
+
+            let result = mcp_client
+                .call_tool(CallToolRequestParam {
+                    name: name.into(),
+                    arguments: serde_json::from_str::<Value>(&args)?.as_object().cloned(),
+                })
+                .await?;
+
+            // Add tool result to messages
+            messages.push(json!({
+                "role": "tool",
+                "tool_call_id": tool_id,
+                "content": serde_json::to_string_pretty(&result)?
+            }));
+        }
+
+        // Continue conversation with tool results
+        let response = call_llm(openai_client, messages, mcp_tools).await?;
+        Box::pin(process_llm_response(
+            &response,
+            mcp_client,
+            openai_client,
+            mcp_tools,
+            messages,
+        ))
+        .await?;
+    }
+    Ok(())
+}
+```
+
+`tool_calls`가 있는 경우, 도구 정보를 추출하고 MCP 서버에 도구 요청을 호출한 뒤 결과를 대화 메시지에 추가합니다. 그런 다음 LLM과의 대화를 계속 진행하며 메시지가 어시스턴트의 응답과 도구 호출 결과로 업데이트됩니다.
+
+LLM이 MCP 호출을 위해 반환하는 도구 호출 정보를 추출하려면, 호출에 필요한 모든 정보를 추출하는 또 다른 헬퍼 함수를 추가해야 합니다. `main.rs` 파일의 맨 아래에 다음 코드를 추가하세요:
+
+```rust
+fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
+    let tool_id = tool_call
+        .get("id")
+        .and_then(|id| id.as_str())
+        .unwrap_or("")
+        .to_string();
+    let function = tool_call.get("function").ok_or("Missing function")?;
+    let name = function
+        .get("name")
+        .and_then(|n| n.as_str())
+        .unwrap_or("")
+        .to_string();
+    let args = function
+        .get("arguments")
+        .and_then(|a| a.as_str())
+        .unwrap_or("{}")
+        .to_string();
+    Ok((tool_id, name, args))
+}
+```
+
+모든 준비가 완료되었으니 이제 초기 사용자 프롬프트를 처리하고 LLM을 호출할 수 있습니다. 초기 사용자 프롬프트를 포함하도록 `main` 함수를 업데이트하세요:
+
+```rust
+// LLM conversation with tool calls
+let response = call_llm(&openai_client, &messages, &tools).await?;
+process_llm_response(
+    &response,
+    &mcp_client,
+    &openai_client,
+    &tools,
+    &mut messages,
+)
+.await?;
+```
+
+이 코드는 두 숫자의 합을 묻는 초기 사용자 프롬프트로 LLM을 쿼리하고, 응답을 처리하여 도구 호출을 동적으로 처리합니다.
+
+좋아요, 성공했습니다!
 
 ## 과제
 
-연습에서 작성한 코드를 사용하여 더 많은 도구를 포함한 서버를 구축하세요. 그런 다음 연습에서처럼 LLM을 사용하는 클라이언트를 생성하고, 다양한 프롬프트로 테스트하여 서버의 모든 도구가 동적으로 호출되는지 확인하세요. 이러한 방식으로 클라이언트를 구축하면 최종 사용자는 정확한 클라이언트 명령 대신 프롬프트를 사용할 수 있으며, MCP 서버가 호출되는지 알 필요 없이 훌륭한 사용자 경험을 제공받을 수 있습니다.
+연습에서 사용한 코드를 기반으로 서버를 더 많은 도구로 확장하세요. 그런 다음 LLM을 포함한 클라이언트를 만들어 다양한 프롬프트로 테스트하여 서버 도구가 동적으로 호출되는지 확인하세요. 이러한 방식으로 클라이언트를 구축하면 최종 사용자가 프롬프트를 사용할 수 있어 더 나은 사용자 경험을 제공하며, MCP 서버가 호출되는지 알 필요가 없습니다.
 
-## 솔루션
+## 해결 방법
 
-[솔루션](/03-GettingStarted/03-llm-client/solution/README.md)
+[Solution](/03-GettingStarted/03-llm-client/solution/README.md)
 
 ## 주요 내용
 
 - 클라이언트에 LLM을 추가하면 MCP 서버와 상호작용하는 더 나은 방법을 제공합니다.
-- MCP 서버 응답을 LLM이 이해할 수 있는 형식으로 변환해야 합니다.
+- MCP 서버 응답을 LLM이 이해할 수 있는 형태로 변환해야 합니다.
 
 ## 샘플
 
@@ -1153,12 +1410,15 @@ public class LangChain4jClient {
 - [JavaScript 계산기](../samples/javascript/README.md)
 - [TypeScript 계산기](../samples/typescript/README.md)
 - [Python 계산기](../../../../03-GettingStarted/samples/python)
+- [Rust 계산기](../../../../03-GettingStarted/samples/rust)
 
 ## 추가 자료
 
 ## 다음 단계
 
-- 다음: [Visual Studio Code를 사용한 서버 소비](../04-vscode/README.md)
+- 다음: [Visual Studio Code를 사용하여 서버 소비하기](../04-vscode/README.md)
+
+---
 
 **면책 조항**:  
-이 문서는 AI 번역 서비스 [Co-op Translator](https://github.com/Azure/co-op-translator)를 사용하여 번역되었습니다. 정확성을 위해 최선을 다하고 있으나, 자동 번역에는 오류나 부정확성이 포함될 수 있습니다. 원본 문서의 원어 버전이 권위 있는 출처로 간주되어야 합니다. 중요한 정보의 경우, 전문적인 인간 번역을 권장합니다. 이 번역 사용으로 인해 발생하는 오해나 잘못된 해석에 대해 책임을 지지 않습니다.
+이 문서는 AI 번역 서비스 [Co-op Translator](https://github.com/Azure/co-op-translator)를 사용하여 번역되었습니다. 정확성을 위해 최선을 다하고 있으나, 자동 번역에는 오류나 부정확성이 포함될 수 있습니다. 원본 문서의 원어 버전을 권위 있는 출처로 간주해야 합니다. 중요한 정보의 경우, 전문적인 인간 번역을 권장합니다. 이 번역 사용으로 인해 발생하는 오해나 잘못된 해석에 대해 당사는 책임을 지지 않습니다.

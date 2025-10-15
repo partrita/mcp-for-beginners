@@ -1,36 +1,36 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4c4da5949611d91b06d8a5d450aae8d6",
-  "translation_date": "2025-07-13T21:21:43+00:00",
+  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
+  "translation_date": "2025-08-19T14:43:59+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
   "language_code": "sw"
 }
 -->
-# Kuendesha sampuli hii
+# Kuendesha Sampuli Hii
 
-Hapa kuna jinsi ya kuendesha seva ya kawaida ya HTTP streaming na mteja, pamoja na seva na mteja wa MCP streaming kwa kutumia Python.
+Hapa kuna jinsi ya kuendesha seva na mteja wa kawaida wa HTTP streaming, pamoja na seva na mteja wa MCP streaming kwa kutumia Python.
 
 ### Muhtasari
 
-- Utaanzisha seva ya MCP inayotuma taarifa za maendeleo kwa mteja wakati inashughulikia vitu.
-- Mteja ataonyesha kila taarifa kwa wakati halisi.
-- Mwongozo huu unahusu mahitaji ya awali, usanidi, kuendesha, na utatuzi wa matatizo.
+- Utaunda seva ya MCP inayotuma arifa za maendeleo kwa mteja wakati inachakata vitu.
+- Mteja ataonyesha kila arifa kwa wakati halisi.
+- Mwongozo huu unashughulikia mahitaji ya awali, usanidi, uendeshaji, na utatuzi wa matatizo.
 
 ### Mahitaji ya Awali
 
 - Python 3.9 au toleo jipya zaidi
-- Kifurushi cha Python `mcp` (weka kwa kutumia `pip install mcp`)
+- Kifurushi cha Python `mcp` (sakinisha kwa `pip install mcp`)
 
-### Usanidi na Ufungaji
+### Usakinishaji na Usanidi
 
-1. Nakili hifadhidata au pakua faili za suluhisho.
+1. Clone hifadhi au pakua faili za suluhisho.
 
    ```pwsh
    git clone https://github.com/microsoft/mcp-for-beginners
    ```
 
-1. **Tengeneza na wezesha mazingira ya virtual (inapendekezwa):**
+1. **Unda na uwashe mazingira ya kawaida (inapendekezwa):**
 
    ```pwsh
    python -m venv venv
@@ -42,7 +42,7 @@ Hapa kuna jinsi ya kuendesha seva ya kawaida ya HTTP streaming na mteja, pamoja 
 1. **Sakinisha utegemezi unaohitajika:**
 
    ```pwsh
-   pip install "mcp[cli]"
+   pip install "mcp[cli]" fastapi requests
    ```
 
 ### Faili
@@ -73,14 +73,14 @@ Hapa kuna jinsi ya kuendesha seva ya kawaida ya HTTP streaming na mteja, pamoja 
 
 ### Kuendesha Mteja wa Kawaida wa HTTP Streaming
 
-1. Fungua terminal mpya (wezeshaji mazingira ya virtual na saraka ile ile):
+1. Fungua terminal mpya (washa mazingira sawa ya kawaida na saraka):
 
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py
    ```
 
-2. Unapaswa kuona ujumbe unaotiririka ukichapishwa mfululizo:
+2. Utapaswa kuona ujumbe wa streaming ukichapishwa kwa mpangilio:
 
    ```text
    Running classic HTTP streaming client...
@@ -111,12 +111,12 @@ Hapa kuna jinsi ya kuendesha seva ya kawaida ya HTTP streaming na mteja, pamoja 
 
 ### Kuendesha Mteja wa MCP Streaming
 
-1. Fungua terminal mpya (wezeshaji mazingira ya virtual na saraka ile ile):
+1. Fungua terminal mpya (washa mazingira sawa ya kawaida na saraka):
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py mcp
    ```
-2. Unapaswa kuona taarifa zikichapishwa kwa wakati halisi wakati seva inashughulikia kila kipengee:
+2. Utapaswa kuona arifa zikichapishwa kwa wakati halisi wakati seva inachakata kila kipengee:
    ```
    Running MCP client...
    Starting client...
@@ -131,21 +131,21 @@ Hapa kuna jinsi ya kuendesha seva ya kawaida ya HTTP streaming na mteja, pamoja 
 
 ### Hatua Muhimu za Utekelezaji
 
-1. **Tengeneza seva ya MCP kwa kutumia FastMCP.**
-2. **Fafanua chombo kinachoshughulikia orodha na kutuma taarifa kwa kutumia `ctx.info()` au `ctx.log()`.**
-3. **Endesha seva kwa kutumia `transport="streamable-http"`.**
-4. **Tekeleza mteja mwenye mshughulikiaji wa ujumbe kuonyesha taarifa zinapofika.**
+1. **Unda seva ya MCP kwa kutumia FastMCP.**
+2. **Fafanua zana inayochakata orodha na kutuma arifa kwa kutumia `ctx.info()` au `ctx.log()`.**
+3. **Endesha seva kwa `transport="streamable-http"`.**
+4. **Tekeleza mteja mwenye mshughulikiaji wa ujumbe ili kuonyesha arifa zinapowasili.**
 
-### Maelezo ya Msimbo
-- Seva hutumia kazi za async na muktadha wa MCP kutuma taarifa za maendeleo.
-- Mteja hutekeleza mshughulikiaji wa ujumbe wa async kuchapisha taarifa na matokeo ya mwisho.
+### Muhtasari wa Msimbo
+- Seva inatumia kazi za async na muktadha wa MCP kutuma masasisho ya maendeleo.
+- Mteja hutekeleza mshughulikiaji wa ujumbe wa async ili kuchapisha arifa na matokeo ya mwisho.
 
 ### Vidokezo na Utatuzi wa Matatizo
 
-- Tumia `async/await` kwa shughuli zisizozuia.
-- Daima shughulikia makosa katika seva na mteja kwa ajili ya uimara.
-- Jaribu na wateja wengi kuona masasisho ya wakati halisi.
-- Ikiwa unakutana na makosa, hakikisha toleo la Python ni sahihi na utegemezi wote umewekwa.
+- Tumia `async/await` kwa operesheni zisizo na vizuizi.
+- Daima shughulikia vizuizi katika seva na mteja kwa uimara.
+- Jaribu na wateja wengi ili kuona masasisho ya wakati halisi.
+- Ukikumbana na makosa, angalia toleo lako la Python na hakikisha utegemezi wote umesakinishwa.
 
-**Kiarifu cha Kutotegemea**:  
-Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatubebei dhamana kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, inashauriwa kutumia huduma ya tafsiri ya kitaalamu ya binadamu. Hatutawajibika kwa maelewano mabaya au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

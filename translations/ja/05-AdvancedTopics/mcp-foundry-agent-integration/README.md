@@ -60,7 +60,7 @@ Model Context Protocol は、AIアプリケーションが外部のデータソ�
 
 ## Python 実装
 
-***Note*** この [ノートブック](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb) を実行できます
+***Note*** この [ノートブック](mcp_support_python.ipynb) を実行できます
 
 ### 1. 必要なパッケージのインストール
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET 実装
 
-***Note*** この [ノートブック](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb) を実行できます
+***Note*** この [ノートブック](mcp_support_dotnet.ipynb) を実行できます
 
 ### 1. 必要なパッケージのインストール
 

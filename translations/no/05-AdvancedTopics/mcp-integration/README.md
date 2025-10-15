@@ -1,36 +1,36 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "73240f845b99df9401fffd21c09a5f7b",
-  "translation_date": "2025-07-17T06:40:35+00:00",
+  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
+  "translation_date": "2025-08-18T15:38:54+00:00",
   "source_file": "05-AdvancedTopics/mcp-integration/README.md",
   "language_code": "no"
 }
 -->
-# Enterprise-integrasjon
+# Bedriftsintegrasjon
 
-Når du bygger MCP-servere i en bedriftskontekst, trenger du ofte å integrere med eksisterende AI-plattformer og -tjenester. Denne delen forklarer hvordan du kan integrere MCP med bedriftsystemer som Azure OpenAI og Microsoft AI Foundry, noe som gir avanserte AI-funksjoner og verktøyorchestrering.
+Når du bygger MCP-servere i en bedriftskontekst, må du ofte integrere med eksisterende AI-plattformer og -tjenester. Denne seksjonen dekker hvordan du kan integrere MCP med bedriftsystemer som Azure OpenAI og Microsoft AI Foundry, og dermed muliggjøre avanserte AI-funksjoner og verktøyorkestrering.
 
 ## Introduksjon
 
-I denne leksjonen lærer du hvordan du integrerer Model Context Protocol (MCP) med bedrifts-AI-systemer, med fokus på Azure OpenAI og Microsoft AI Foundry. Disse integrasjonene lar deg utnytte kraftige AI-modeller og verktøy samtidig som du beholder fleksibiliteten og utvidbarheten til MCP.
+I denne leksjonen vil du lære hvordan du integrerer Model Context Protocol (MCP) med bedrifts-AI-systemer, med fokus på Azure OpenAI og Microsoft AI Foundry. Disse integrasjonene lar deg utnytte kraftige AI-modeller og verktøy samtidig som du opprettholder fleksibiliteten og utvidbarheten til MCP.
 
 ## Læringsmål
 
-Etter denne leksjonen skal du kunne:
+Ved slutten av denne leksjonen vil du kunne:
 
-- Integrere MCP med Azure OpenAI for å bruke AI-funksjonene deres.
-- Implementere MCP-verktøyorchestrering med Azure OpenAI.
+- Integrere MCP med Azure OpenAI for å utnytte dets AI-funksjoner.
+- Implementere MCP-verktøyorkestrering med Azure OpenAI.
 - Kombinere MCP med Microsoft AI Foundry for avanserte AI-agentfunksjoner.
 - Utnytte Azure Machine Learning (ML) for å kjøre ML-pipelines og registrere modeller som MCP-verktøy.
 
 ## Azure OpenAI-integrasjon
 
-Azure OpenAI gir tilgang til kraftige AI-modeller som GPT-4 og flere. Å integrere MCP med Azure OpenAI gjør det mulig å bruke disse modellene samtidig som du beholder fleksibiliteten i MCPs verktøyorchestrering.
+Azure OpenAI gir tilgang til kraftige AI-modeller som GPT-4 og andre. Ved å integrere MCP med Azure OpenAI kan du utnytte disse modellene samtidig som du opprettholder fleksibiliteten til MCPs verktøyorkestrering.
 
 ### C#-implementasjon
 
-I denne kodeeksemplet viser vi hvordan du integrerer MCP med Azure OpenAI ved hjelp av Azure OpenAI SDK.
+I denne kodeeksempelet viser vi hvordan du integrerer MCP med Azure OpenAI ved hjelp av Azure OpenAI SDK.
 
 ```csharp
 // .NET Azure OpenAI Integration
@@ -94,7 +94,7 @@ namespace EnterpriseIntegration
 }
 ```
 
-I koden over har vi:
+I koden ovenfor har vi:
 
 - Konfigurert Azure OpenAI-klienten med endepunkt, distribusjonsnavn og API-nøkkel.
 - Opprettet en metode `GetCompletionWithToolsAsync` for å hente fullføringer med verktøystøtte.
@@ -104,9 +104,9 @@ Du oppfordres til å implementere den faktiske logikken for verktøyhåndtering 
 
 ## Microsoft AI Foundry-integrasjon
 
-Azure AI Foundry tilbyr en plattform for å bygge og distribuere AI-agenter. Å integrere MCP med AI Foundry gjør det mulig å utnytte plattformens funksjoner samtidig som du beholder fleksibiliteten til MCP.
+Azure AI Foundry gir en plattform for å bygge og distribuere AI-agenter. Ved å integrere MCP med AI Foundry kan du utnytte dens funksjoner samtidig som du opprettholder fleksibiliteten til MCP.
 
-I koden under utvikler vi en agentintegrasjon som behandler forespørsler og håndterer verktøykall ved hjelp av MCP.
+I koden nedenfor utvikler vi en agentintegrasjon som behandler forespørsler og håndterer verktøykall ved hjelp av MCP.
 
 ### Java-implementasjon
 
@@ -166,15 +166,15 @@ public class AIFoundryMcpBridge {
 }
 ```
 
-I koden over har vi:
+I koden ovenfor har vi:
 
-- Opprettet en `AIFoundryMcpBridge`-klasse som integrerer både med AI Foundry og MCP.
+- Opprettet en `AIFoundryMcpBridge`-klasse som integrerer både AI Foundry og MCP.
 - Implementert en metode `processAgentRequest` som behandler en AI Foundry-agentforespørsel.
 - Håndtert verktøykall ved å utføre dem gjennom MCP-klienten og sende resultatene tilbake til AI Foundry-agenten.
 
 ## Integrering av MCP med Azure ML
 
-Å integrere MCP med Azure Machine Learning (ML) gjør det mulig å utnytte Azures kraftige ML-funksjoner samtidig som du beholder fleksibiliteten til MCP. Denne integrasjonen kan brukes til å kjøre ML-pipelines, registrere modeller som verktøy og administrere databehandlingsressurser.
+Ved å integrere MCP med Azure Machine Learning (ML) kan du utnytte Azures kraftige ML-funksjoner samtidig som du opprettholder fleksibiliteten til MCP. Denne integrasjonen kan brukes til å kjøre ML-pipelines, registrere modeller som verktøy og administrere databehandlingsressurser.
 
 ### Python-implementasjon
 
@@ -300,17 +300,17 @@ class EnterpriseAiIntegration:
         return mapping.get(ml_type, "string")
 ```
 
-I koden over har vi:
+I koden ovenfor har vi:
 
 - Opprettet en `EnterpriseAiIntegration`-klasse som integrerer MCP med Azure ML.
 - Implementert en `execute_ml_pipeline`-metode som behandler inndata ved hjelp av MCP-verktøy og sender en ML-pipeline til Azure ML.
 - Implementert en `register_ml_model_as_tool`-metode som registrerer en Azure ML-modell som et MCP-verktøy, inkludert opprettelse av nødvendig distribusjonsmiljø og databehandlingsressurser.
-- Kartlagt Azure ML-datatypene til JSON-skjema-typer for verktøyregistrering.
-- Brukt asynkron programmering for å håndtere potensielt tidkrevende operasjoner som kjøring av ML-pipelines og modellregistrering.
+- Kartlagt Azure ML-datatyper til JSON-skjema-typer for verktøyregistrering.
+- Brukt asynkron programmering for å håndtere potensielt langvarige operasjoner som ML-pipelinekjøring og modellregistrering.
 
-## Hva skjer videre
+## Hva nå
 
 - [5.2 Multi modality](../mcp-multi-modality/README.md)
 
 **Ansvarsfraskrivelse**:  
-Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vennligst vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på originalspråket skal anses som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
+Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi tilstreber nøyaktighet, vær oppmerksom på at automatiserte oversettelser kan inneholde feil eller unøyaktigheter. Det originale dokumentet på sitt opprinnelige språk bør anses som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.

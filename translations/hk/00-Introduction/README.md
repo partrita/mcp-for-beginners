@@ -1,185 +1,193 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "105c2ddbb77bc38f7e9df009e1b06e45",
-  "translation_date": "2025-07-13T15:27:50+00:00",
+  "original_hash": "9678e0c6945b8e0c23586869b0e26783",
+  "translation_date": "2025-10-06T10:53:05+00:00",
   "source_file": "00-Introduction/README.md",
   "language_code": "hk"
 }
 -->
 # Model Context Protocol (MCP) 簡介：為何它對可擴展的 AI 應用至關重要
 
-生成式 AI 應用是一大進步，因為它們通常允許用戶透過自然語言提示與應用互動。然而，隨著投入更多時間和資源，你會希望能輕鬆整合功能和資源，使應用易於擴展，能同時支援多個模型，並處理各種模型的複雜性。簡言之，建立生成式 AI 應用起步容易，但隨著規模和複雜度增加，你需要開始定義架構，並可能需要依賴一個標準，確保應用以一致的方式構建。這正是 MCP 發揮作用，組織並提供標準的地方。
+[![Model Context Protocol 簡介](../../../translated_images/01.a467036d886b5fb5b9cf7b39bac0e743b6ca0a4a18a492de90061daaf0cc55f0.hk.png)](https://youtu.be/agBbdiOPLQA)
+
+_（點擊上方圖片觀看本課程影片）_
+
+生成式 AI 應用是一項重大進步，因為它們通常允許用戶使用自然語言提示與應用程式互動。然而，隨著投入更多時間和資源到這類應用中，您需要確保能輕鬆整合功能和資源，使其易於擴展，能支持多個模型的使用，並處理各種模型的複雜性。簡而言之，建立生成式 AI 應用在初期可能很簡單，但隨著應用的增長和複雜化，您需要開始定義架構，並可能需要依賴標準來確保應用以一致的方式構建。這就是 MCP 的作用所在，它能組織事物並提供標準。
 
 ---
 
-## **🔍 什麼是 Model Context Protocol (MCP)?**
+## **🔍 Model Context Protocol (MCP) 是什麼？**
 
-**Model Context Protocol (MCP)** 是一個**開放且標準化的介面**，讓大型語言模型（LLM）能無縫地與外部工具、API 和資料來源互動。它提供一致的架構，擴展 AI 模型的功能，超越訓練資料，實現更智能、可擴展且反應靈敏的 AI 系統。
+**Model Context Protocol (MCP)** 是一種**開放且標準化的介面**，允許大型語言模型（LLMs）與外部工具、API 和數據源無縫互動。它提供了一個一致的架構，增強 AI 模型超越其訓練數據的功能，從而實現更智能、更可擴展和更具響應性的 AI 系統。
 
 ---
 
-## **🎯 為何 AI 標準化如此重要**
+## **🎯 為什麼 AI 標準化很重要**
 
-隨著生成式 AI 應用變得越來越複雜，採用標準以確保**可擴展性、可延展性**和**可維護性**變得至關重要。MCP 解決了這些需求，透過：
+隨著生成式 AI 應用變得越來越複雜，採用標準以確保**可擴展性、可擴展性、可維護性**以及**避免供應商鎖定**至關重要。MCP 通過以下方式滿足這些需求：
 
 - 統一模型與工具的整合
-- 減少脆弱且一次性的客製化解決方案
-- 允許多個模型共存於同一生態系統中
+- 減少脆弱的、一次性定制解決方案
+- 允許來自不同供應商的多個模型在同一生態系統中共存
+
+**注意：** 雖然 MCP 自稱為開放標準，但目前沒有計劃通過任何現有標準機構（如 IEEE、IETF、W3C、ISO 或其他標準機構）對 MCP 進行標準化。
 
 ---
 
 ## **📚 學習目標**
 
-閱讀本文後，你將能夠：
+閱讀本文後，您將能夠：
 
-- 定義 **Model Context Protocol (MCP)** 及其應用場景
-- 理解 MCP 如何標準化模型與工具的溝通
-- 辨識 MCP 架構的核心組件
+- 定義 **Model Context Protocol (MCP)** 及其使用案例
+- 理解 MCP 如何標準化模型與工具的通信
+- 識別 MCP 架構的核心組件
 - 探索 MCP 在企業和開發環境中的實際應用
 
 ---
 
-## **💡 為何 Model Context Protocol (MCP) 是改變遊戲規則的技術**
+## **💡 為什麼 Model Context Protocol (MCP) 是一個改變遊戲規則的技術**
 
-### **🔗 MCP 解決 AI 互動的碎片化問題**
+### **🔗 MCP 解決了 AI 互動中的碎片化問題**
 
-在 MCP 出現之前，模型與工具的整合需要：
+在 MCP 出現之前，將模型與工具整合需要：
 
-- 每對工具與模型都寫客製化程式碼
-- 各廠商使用非標準 API
-- 更新頻繁導致整合中斷
-- 工具越多，擴展性越差
+- 每個工具與模型配對的定制代碼
+- 每個供應商的非標準化 API
+- 因更新而頻繁中斷
+- 隨著工具增多而難以擴展
 
 ### **✅ MCP 標準化的好處**
 
-| **好處**                 | **說明**                                                                    |
-|--------------------------|-----------------------------------------------------------------------------|
-| 互通性                   | LLM 能與不同廠商的工具無縫合作                                             |
-| 一致性                   | 跨平台和工具保持統一行為                                                    |
-| 可重用性                 | 工具只需開發一次，可跨專案和系統使用                                        |
-| 加速開發                 | 使用標準化、即插即用的介面，減少開發時間                                   |
+| **好處**                  | **描述**                                                                      |
+|--------------------------|------------------------------------------------------------------------------|
+| 互操作性                 | LLMs 能夠與不同供應商的工具無縫協作                                           |
+| 一致性                   | 在平台和工具之間保持統一的行為                                                |
+| 可重用性                 | 一次構建的工具可以在不同項目和系統中使用                                       |
+| 加速開發                 | 使用標準化的即插即用介面減少開發時間                                           |
 
 ---
 
-## **🧱 MCP 架構高階概覽**
+## **🧱 MCP 高層架構概述**
 
-MCP 採用**客戶端-伺服器模型**，其中：
+MCP 遵循**客戶端-伺服器模型**，其中：
 
 - **MCP Hosts** 運行 AI 模型
 - **MCP Clients** 發起請求
 - **MCP Servers** 提供上下文、工具和功能
 
-### **主要組件：**
+### **核心組件：**
 
-- **Resources** – 模型使用的靜態或動態資料  
-- **Prompts** – 預設的工作流程，用於引導生成  
-- **Tools** – 可執行的功能，如搜尋、計算  
-- **Sampling** – 透過遞迴互動實現代理行為
+- **資源** – 模型的靜態或動態數據  
+- **提示** – 用於引導生成的預定義工作流程  
+- **工具** – 可執行的功能，例如搜索、計算  
+- **採樣** – 通過遞歸互動實現代理行為  
 
 ---
 
 ## MCP 伺服器如何運作
 
-MCP 伺服器的運作流程如下：
+MCP 伺服器的運作方式如下：
 
-- **請求流程**：  
-    1. MCP Client 向運行於 MCP Host 的 AI 模型發送請求。  
-    2. AI 模型判斷何時需要外部工具或資料。  
-    3. 模型使用標準化協議與 MCP Server 通訊。
-
-- **MCP Server 功能**：  
-    - 工具註冊表：維護可用工具及其功能目錄。  
-    - 認證：驗證工具存取權限。  
-    - 請求處理器：處理模型發出的工具請求。  
-    - 回應格式化器：將工具輸出整理成模型可理解的格式。
-
-- **工具執行**：  
-    - 伺服器將請求導向適當的外部工具。  
-    - 工具執行其專門功能（搜尋、計算、資料庫查詢等）。  
-    - 結果以一致格式回傳給模型。
-
-- **回應完成**：  
-    - AI 模型將工具輸出整合進回應中。  
-    - 最終回應送回客戶端應用。
+- **請求流程**：
+    1. 最終用戶或代表其行動的軟件發起請求。
+    2. **MCP Client** 將請求發送到 **MCP Host**，該主機管理 AI 模型的運行時。
+    3. **AI 模型** 接收用戶提示，並可能通過一個或多個工具調用請求訪問外部工具或數據。
+    4. **MCP Host**（而非模型本身）使用標準化協議與適當的 **MCP Server(s)** 通信。
+- **MCP Host 功能**：
+    - **工具註冊表**：維護可用工具及其功能的目錄。
+    - **身份驗證**：驗證工具訪問的權限。
+    - **請求處理器**：處理模型發出的工具請求。
+    - **響應格式化器**：將工具輸出結構化為模型可理解的格式。
+- **MCP Server 執行**：
+    - **MCP Host** 將工具調用路由到一個或多個 **MCP Servers**，每個伺服器都提供專門的功能（例如搜索、計算、數據庫查詢）。
+    - **MCP Servers** 執行其各自的操作，並以一致的格式將結果返回給 **MCP Host**。
+    - **MCP Host** 格式化並將這些結果傳遞給 **AI 模型**。
+- **響應完成**：
+    - **AI 模型** 將工具輸出整合到最終響應中。
+    - **MCP Host** 將此響應發送回 **MCP Client**，由其交付給最終用戶或調用軟件。
 
 ```mermaid
 ---
-title: MCP Server Architecture and Component Interactions
-description: A diagram showing how AI models interact with MCP servers and various tools, depicting the request flow and server components including Tool Registry, Authentication, Request Handler, and Response Formatter
+title: MCP Architecture and Component Interactions
+description: A diagram showing the flows of the components in MCP.
 ---
 graph TD
-    A[AI Model in MCP Host] <-->|MCP Protocol| B[MCP Server]
-    B <-->|Tool Interface| C[Tool 1: Web Search]
-    B <-->|Tool Interface| D[Tool 2: Calculator]
-    B <-->|Tool Interface| E[Tool 3: Database Access]
-    B <-->|Tool Interface| F[Tool 4: File System]
-    
-    Client[MCP Client/Application] -->|Sends Request| A
-    A -->|Returns Response| Client
-    
-    subgraph "MCP Server Components"
-        B
+    Client[MCP Client/Application] -->|Sends Request| H[MCP Host]
+    H -->|Invokes| A[AI Model]
+    A -->|Tool Call Request| H
+    H -->|MCP Protocol| T1[MCP Server Tool 01: Web Search]
+    H -->|MCP Protocol| T2[MCP Server Tool 02: Calculator tool]
+    H -->|MCP Protocol| T3[MCP Server Tool 03: Database Access tool]
+    H -->|MCP Protocol| T4[MCP Server Tool 04: File System tool]
+    H -->|Sends Response| Client
+
+    subgraph "MCP Host Components"
+        H
         G[Tool Registry]
-        H[Authentication]
-        I[Request Handler]
-        J[Response Formatter]
+        I[Authentication]
+        J[Request Handler]
+        K[Response Formatter]
     end
-    
-    B <--> G
-    B <--> H
-    B <--> I
-    B <--> J
-    
+
+    H <--> G
+    H <--> I
+    H <--> J
+    H <--> K
+
     style A fill:#f9d5e5,stroke:#333,stroke-width:2px
-    style B fill:#eeeeee,stroke:#333,stroke-width:2px
+    style H fill:#eeeeee,stroke:#333,stroke-width:2px
     style Client fill:#d5e8f9,stroke:#333,stroke-width:2px
-    style C fill:#c2f0c2,stroke:#333,stroke-width:1px
-    style D fill:#c2f0c2,stroke:#333,stroke-width:1px
-    style E fill:#c2f0c2,stroke:#333,stroke-width:1px
-    style F fill:#c2f0c2,stroke:#333,stroke-width:1px    
+    style G fill:#fffbe6,stroke:#333,stroke-width:1px
+    style I fill:#fffbe6,stroke:#333,stroke-width:1px
+    style J fill:#fffbe6,stroke:#333,stroke-width:1px
+    style K fill:#fffbe6,stroke:#333,stroke-width:1px
+    style T1 fill:#c2f0c2,stroke:#333,stroke-width:1px
+    style T2 fill:#c2f0c2,stroke:#333,stroke-width:1px
+    style T3 fill:#c2f0c2,stroke:#333,stroke-width:1px
+    style T4 fill:#c2f0c2,stroke:#333,stroke-width:1px
 ```
 
-## 👨‍💻 如何建立 MCP 伺服器（附範例）
+## 👨‍💻 如何構建 MCP 伺服器（附示例）
 
-MCP 伺服器讓你能透過提供資料和功能來擴展 LLM 的能力。
+MCP 伺服器允許您通過提供數據和功能來擴展 LLM 的能力。
 
-準備好試試看了嗎？以下是用不同語言建立簡單 MCP 伺服器的範例：
+準備好試試了嗎？以下是基於不同語言/技術棧的 SDK 和示例，展示如何創建簡單的 MCP 伺服器：
 
-- **Python 範例**：https://github.com/modelcontextprotocol/python-sdk
+- **Python SDK**: https://github.com/modelcontextprotocol/python-sdk
 
-- **TypeScript 範例**：https://github.com/modelcontextprotocol/typescript-sdk
+- **TypeScript SDK**: https://github.com/modelcontextprotocol/typescript-sdk
 
-- **Java 範例**：https://github.com/modelcontextprotocol/java-sdk
+- **Java SDK**: https://github.com/modelcontextprotocol/java-sdk
 
-- **C#/.NET 範例**：https://github.com/modelcontextprotocol/csharp-sdk
+- **C#/.NET SDK**: https://github.com/modelcontextprotocol/csharp-sdk
 
 ## 🌍 MCP 的實際應用案例
 
-MCP 透過擴展 AI 能力，支持多種應用：
+MCP 通過擴展 AI 的能力支持多種應用：
 
-| **應用**                   | **說明**                                                                    |
-|----------------------------|-----------------------------------------------------------------------------|
-| 企業資料整合               | 將 LLM 連接到資料庫、CRM 或內部工具                                         |
-| 代理式 AI 系統             | 讓自主代理具備工具存取和決策工作流程                                         |
-| 多模態應用                 | 在單一統一 AI 應用中結合文字、影像和音訊工具                               |
-| 即時資料整合               | 將即時資料引入 AI 互動，提供更準確、即時的輸出                             |
+| **應用**                   | **描述**                                                                      |
+|----------------------------|------------------------------------------------------------------------------|
+| 企業數據整合               | 將 LLMs 連接到數據庫、CRM 或內部工具                                          |
+| 自主代理系統               | 為代理提供工具訪問和決策工作流程                                              |
+| 多模態應用                 | 在單一統一的 AI 應用中結合文本、圖像和音頻工具                                |
+| 實時數據整合               | 將實時數據引入 AI 互動中，以提供更準確、最新的輸出                             |
 
 ### 🧠 MCP = AI 互動的通用標準
 
-Model Context Protocol (MCP) 就像 USB-C 標準化裝置的物理連接一樣，是 AI 互動的通用標準。在 AI 世界中，MCP 提供一致的介面，讓模型（客戶端）能無縫整合外部工具和資料提供者（伺服器）。這消除了為每個 API 或資料來源設計多種客製化協議的需求。
+Model Context Protocol (MCP) 就像 USB-C 標準化了設備的物理連接一樣，在 AI 世界中提供了一個一致的介面，使模型（客戶端）能夠與外部工具和數據提供者（伺服器）無縫整合。這消除了每個 API 或數據源需要多樣化、定制協議的需求。
 
-在 MCP 下，符合 MCP 的工具（稱為 MCP 伺服器）遵循統一標準。這些伺服器能列出它們提供的工具或動作，並在 AI 代理請求時執行。支援 MCP 的 AI 代理平台能發現伺服器上的可用工具，並透過此標準協議調用它們。
+在 MCP 下，MCP 兼容工具（稱為 MCP 伺服器）遵循統一標準。這些伺服器可以列出它們提供的工具或操作，並在 AI 代理請求時執行這些操作。支持 MCP 的 AI 代理平台能夠通過此標準協議發現伺服器提供的工具並調用它們。
 
-### 💡 促進知識存取
+### 💡 促進知識訪問
 
-除了提供工具外，MCP 也促進知識的存取。它讓應用能為大型語言模型（LLM）提供上下文，將它們連結到各種資料來源。例如，某個 MCP 伺服器可能代表公司的文件庫，讓代理按需檢索相關資訊。另一個伺服器則可處理特定動作，如發送電子郵件或更新紀錄。對代理來說，這些都是可用的工具——有些工具回傳資料（知識上下文），有些則執行動作。MCP 有效管理兩者。
+除了提供工具，MCP 還促進了知識的訪問。它使應用能夠通過連接到各種數據源向大型語言模型（LLMs）提供上下文。例如，MCP 伺服器可能代表公司的文檔庫，允許代理按需檢索相關信息。另一個伺服器可能處理特定操作，例如發送電子郵件或更新記錄。從代理的角度來看，這些只是它可以使用的工具——有些工具返回數據（知識上下文），而其他工具執行操作。MCP 高效地管理了這兩者。
 
-代理連接到 MCP 伺服器時，會自動透過標準格式了解伺服器的可用功能和可存取資料。這種標準化使工具的可用性具動態性。例如，將新的 MCP 伺服器加入代理系統後，其功能即可立即使用，無需額外調整代理指令。
+代理連接到 MCP 伺服器後，能夠通過標準格式自動了解伺服器的可用功能和可訪問數據。這種標準化使工具的可用性具有動態性。例如，向代理系統添加新的 MCP 伺服器後，其功能立即可用，而無需進一步定制代理的指令。
 
-這種流暢整合與下方的 mermaid 圖示流程相符，伺服器同時提供工具和知識，確保系統間的無縫協作。
+這種簡化的整合方式與以下圖表中所示的流程一致，伺服器提供工具和知識，確保系統間的無縫協作。
 
-### 👉 範例：可擴展的代理解決方案
+### 👉 示例：可擴展的代理解決方案
 
 ```mermaid
 ---
@@ -207,10 +215,13 @@ graph TD
         ToolsB[Tools]
     end
 ```
+通用連接器使 MCP 伺服器能夠相互通信並共享功能，允許 ServerA 將任務委派給 ServerB 或訪問其工具和知識。這使工具和數據在伺服器之間得以聯邦化，支持可擴展和模塊化的代理架構。由於 MCP 標準化了工具的暴露，代理可以動態發現並在伺服器之間路由請求，而無需硬編碼的整合。
 
-### 🔄 進階 MCP 場景：客戶端 LLM 整合
+工具和知識聯邦化：工具和數據可以跨伺服器訪問，支持更可擴展和模塊化的代理架構。
 
-除了基本 MCP 架構外，還有進階場景，客戶端和伺服器都包含 LLM，實現更複雜的互動：
+### 🔄 客戶端 LLM 整合的高級 MCP 場景
+
+除了基本的 MCP 架構，還有一些高級場景，其中客戶端和伺服器都包含 LLM，實現更複雜的互動。在以下圖表中，**Client App** 可能是一個 IDE，提供多個 MCP 工具供 LLM 使用：
 
 ```mermaid
 ---
@@ -276,28 +287,28 @@ sequenceDiagram
 
 ## 🔐 MCP 的實際好處
 
-使用 MCP 的實際好處包括：
+以下是使用 MCP 的實際好處：
 
-- **資訊新鮮度**：模型能存取超出訓練資料的最新資訊  
-- **能力擴展**：模型可利用專門工具完成未訓練的任務  
-- **減少幻覺**：外部資料來源提供事實依據  
-- **隱私保護**：敏感資料可保留在安全環境，不需嵌入提示中
+- **新鮮度**：模型可以訪問超越其訓練數據的最新信息
+- **能力擴展**：模型可以利用專門的工具完成其未訓練的任務
+- **減少幻覺**：外部數據源提供事實基礎
+- **隱私**：敏感數據可以保留在安全環境中，而不是嵌入到提示中
 
-## 📌 重要重點整理
+## 📌 關鍵要點
 
-使用 MCP 的關鍵重點：
+以下是使用 MCP 的關鍵要點：
 
-- **MCP** 標準化 AI 模型與工具及資料的互動方式  
-- 促進**可延展性、一致性與互通性**  
-- MCP 有助於**縮短開發時間、提升可靠性及擴展模型能力**  
-- 客戶端-伺服器架構**支持靈活且可擴展的 AI 應用**
+- **MCP** 標準化了 AI 模型與工具和數據的互動方式
+- 促進**可擴展性、一致性和互操作性**
+- MCP 有助於**減少開發時間、提高可靠性並擴展模型能力**
+- 客戶端-伺服器架構**支持靈活、可擴展的 AI 應用**
 
 ## 🧠 練習
 
-思考你有興趣開發的 AI 應用：
+思考您感興趣的 AI 應用。
 
-- 哪些**外部工具或資料**能提升其能力？  
-- MCP 如何讓整合變得**更簡單且更可靠**？
+- 哪些**外部工具或數據**可以增強其功能？
+- MCP 如何使整合**更簡單、更可靠**？
 
 ## 其他資源
 
@@ -305,7 +316,9 @@ sequenceDiagram
 
 ## 下一步
 
-下一章：[Chapter 1: Core Concepts](../01-CoreConcepts/README.md)
+下一章：[第 1 章：核心概念](../01-CoreConcepts/README.md)
+
+---
 
 **免責聲明**：  
-本文件由 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於確保準確性，但請注意自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於重要資訊，建議採用專業人工翻譯。我們不對因使用本翻譯而引起的任何誤解或誤釋承擔責任。
+本文件已使用人工智能翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於重要信息，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋概不負責。

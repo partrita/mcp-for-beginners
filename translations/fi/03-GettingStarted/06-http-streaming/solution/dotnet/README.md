@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4eb6a48c54555c64b33c763fba3f2842",
-  "translation_date": "2025-07-13T21:05:05+00:00",
+  "original_hash": "dde4e32e4b55ef4962c411b39d2340a7",
+  "translation_date": "2025-09-03T16:11:01+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/dotnet/README.md",
   "language_code": "fi"
 }
@@ -21,9 +21,9 @@ dotnet restore
 dotnet run
 ```
 
-## -3- Testaa esimerkki
+## -3- Testaa esimerkkiä
 
-Avaa erillinen terminaali ennen alla olevan komennon suorittamista (varmista, että palvelin on edelleen käynnissä).
+Avaa erillinen terminaali ennen kuin suoritat alla olevan (varmista, että palvelin on edelleen käynnissä).
 
 Kun palvelin on käynnissä yhdessä terminaalissa, avaa toinen terminaali ja suorita seuraava komento:
 
@@ -31,14 +31,14 @@ Kun palvelin on käynnissä yhdessä terminaalissa, avaa toinen terminaali ja su
 npx @modelcontextprotocol/inspector http://localhost:3001
 ```
 
-Tämän pitäisi käynnistää web-palvelin, jossa on visuaalinen käyttöliittymä esimerkin testaamista varten.
+Tämän pitäisi käynnistää verkkopalvelin, jossa on visuaalinen käyttöliittymä, jonka avulla voit testata esimerkkiä.
 
-> Varmista, että **Streamable HTTP** on valittuna siirtotyyppinä ja URL on `http://localhost:3001/mcp`.
+> Varmista, että **Streamable HTTP** on valittu kuljetustyypiksi ja URL-osoite on `http://localhost:3001/mcp`.
 
-Kun palvelin on yhdistetty:
+Kun palvelin on yhdistetty: 
 
-- kokeile listata työkalut ja suorita `add` argumenteilla 2 ja 4, tuloksena pitäisi näkyä 6.
-- siirry resources- ja resource template -kohtiin ja kutsu "greeting", kirjoita nimi ja näet tervehdyksen antamallasi nimellä.
+- kokeile listata työkalut ja suorittaa `add` argumenteilla 2 ja 4, tuloksena pitäisi näkyä 6.
+- siirry resursseihin ja resurssipohjaan ja kutsu "greeting", kirjoita nimi ja sinun pitäisi nähdä tervehdys antamallasi nimellä.
 
 ### Testaus CLI-tilassa
 
@@ -48,7 +48,7 @@ Voit käynnistää sen suoraan CLI-tilassa suorittamalla seuraavan komennon:
 npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/list
 ```
 
-Tämä listaa kaikki palvelimella saatavilla olevat työkalut. Näet seuraavan tulosteen:
+Tämä listaa kaikki palvelimessa saatavilla olevat työkalut. Sinun pitäisi nähdä seuraava tuloste:
 
 ```text
 {
@@ -86,7 +86,7 @@ Työkalun kutsumiseksi kirjoita:
 npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/call --tool-name AddNumbers --tool-arg a=1 --tool-arg b=2
 ```
 
-Näet seuraavan tulosteen:
+Sinun pitäisi nähdä seuraava tuloste:
 
 ```text
 {
@@ -100,9 +100,11 @@ Näet seuraavan tulosteen:
 }
 ```
 
-> ![!TIP]
-> On yleensä paljon nopeampaa käyttää inspector-työkalua CLI-tilassa kuin selaimessa.
-> Lue lisää inspectorista [täältä](https://github.com/modelcontextprotocol/inspector).
+> [!TIP]
+> On yleensä paljon nopeampaa käyttää tarkastajaa CLI-tilassa kuin selaimessa.
+> Lue lisää tarkastajasta [täältä](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.

@@ -1,18 +1,19 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "accc66cf3ff6a24b00f6ac0e1235644b",
-  "translation_date": "2025-07-13T18:25:14+00:00",
+  "original_hash": "4d5e8e6f105e4f6e6953c0c14c99b394",
+  "translation_date": "2025-08-18T16:20:04+00:00",
   "source_file": "03-GettingStarted/02-client/solution/README.md",
   "language_code": "fi"
 }
 -->
-Tässä ratkaisut kullekin ajoympäristölle:
+Tässä ovat ratkaisut jokaiselle suoritusympäristölle:
 
 - [TypeScript](./typescript/README.md)
 - [Python](./python/README.md)
 - [.NET](../../../../../03-GettingStarted/02-client/solution/dotnet)
 - [Java](./java/README.md)
+- [Rust](../../../../../03-GettingStarted/02-client/solution/rust)
 
 **Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.

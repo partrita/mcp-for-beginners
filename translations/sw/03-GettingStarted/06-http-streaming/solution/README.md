@@ -1,17 +1,18 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "b38003a665ea7b9d02564a2d900e21a8",
-  "translation_date": "2025-07-13T21:01:09+00:00",
+  "original_hash": "96dbf17071ab774595ab8777468f0c83",
+  "translation_date": "2025-08-19T14:43:44+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/README.md",
   "language_code": "sw"
 }
 -->
-Hapa kuna suluhisho kwa kila runtime:
+Hapa kuna suluhisho kwa kila mazingira ya utekelezaji:
 
 - [Python](./python/README.md)
 - [Java](./java/README.md)
 - [.NET](./dotnet/README.md)
+- [Rust](../../../../../03-GettingStarted/06-http-streaming/solution/rust)
 
-**Kiarifu cha Kutotegemea**:  
-Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatubebei dhamana kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

@@ -1,260 +1,333 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "382fddb4ee4d9c1bdc806e2ee99b70c8",
-  "translation_date": "2025-07-17T07:44:42+00:00",
+  "original_hash": "1c767a35642f753127dc08545c25a290",
+  "translation_date": "2025-08-18T17:15:50+00:00",
   "source_file": "02-Security/README.md",
   "language_code": "vi"
 }
 -->
-# Thực hành bảo mật tốt nhất
+# MCP Bảo Mật: Bảo Vệ Toàn Diện cho Hệ Thống AI
 
-Việc áp dụng Model Context Protocol (MCP) mang lại những khả năng mạnh mẽ cho các ứng dụng dựa trên AI, nhưng cũng đồng thời tạo ra những thách thức bảo mật đặc thù vượt ra ngoài các rủi ro phần mềm truyền thống. Bên cạnh các mối quan tâm đã được thiết lập như lập trình an toàn, quyền truy cập tối thiểu và bảo mật chuỗi cung ứng, MCP và các khối lượng công việc AI còn đối mặt với các mối đe dọa mới như chèn prompt, đầu độc công cụ, thay đổi công cụ động, chiếm đoạt phiên làm việc, tấn công confused deputy và lỗ hổng truyền token. Những rủi ro này có thể dẫn đến việc rò rỉ dữ liệu, vi phạm quyền riêng tư và hành vi hệ thống không mong muốn nếu không được quản lý đúng cách.
+[![Thực hành tốt nhất về MCP Bảo Mật](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.vi.png)](https://youtu.be/88No8pw706o)
 
-Bài học này sẽ khám phá các rủi ro bảo mật liên quan đến MCP—bao gồm xác thực, ủy quyền, quyền truy cập quá mức, chèn prompt gián tiếp, bảo mật phiên làm việc, vấn đề confused deputy, lỗ hổng truyền token và lỗ hổng chuỗi cung ứng—và cung cấp các biện pháp kiểm soát cũng như thực hành tốt nhất để giảm thiểu chúng. Bạn cũng sẽ học cách tận dụng các giải pháp của Microsoft như Prompt Shields, Azure Content Safety và GitHub Advanced Security để củng cố việc triển khai MCP. Bằng cách hiểu và áp dụng các biện pháp kiểm soát này, bạn có thể giảm đáng kể khả năng xảy ra vi phạm bảo mật và đảm bảo hệ thống AI của mình luôn mạnh mẽ và đáng tin cậy.
+_(Nhấp vào hình ảnh trên để xem video của bài học này)_
 
-# Mục tiêu học tập
+Bảo mật là yếu tố cốt lõi trong thiết kế hệ thống AI, đó là lý do tại sao chúng tôi ưu tiên nó trong phần thứ hai. Điều này phù hợp với nguyên tắc **Secure by Design** của Microsoft từ [Sáng kiến Tương lai An toàn](https://www.microsoft.com/security/blog/2025/04/17/microsofts-secure-by-design-journey-one-year-of-success/).
 
-Sau khi hoàn thành bài học này, bạn sẽ có khả năng:
+Giao thức Model Context Protocol (MCP) mang lại những khả năng mạnh mẽ mới cho các ứng dụng dựa trên AI, đồng thời giới thiệu các thách thức bảo mật độc đáo vượt xa các rủi ro phần mềm truyền thống. Hệ thống MCP đối mặt với cả các mối lo ngại bảo mật đã được thiết lập (lập trình an toàn, quyền tối thiểu, bảo mật chuỗi cung ứng) và các mối đe dọa đặc thù AI mới bao gồm tiêm lệnh (prompt injection), đầu độc công cụ (tool poisoning), chiếm đoạt phiên (session hijacking), tấn công confused deputy, lỗ hổng truyền token, và sửa đổi khả năng động.
 
-- Nhận diện và giải thích các rủi ro bảo mật đặc thù do Model Context Protocol (MCP) mang lại, bao gồm chèn prompt, đầu độc công cụ, quyền truy cập quá mức, chiếm đoạt phiên làm việc, vấn đề confused deputy, lỗ hổng truyền token và lỗ hổng chuỗi cung ứng.
-- Mô tả và áp dụng các biện pháp kiểm soát hiệu quả để giảm thiểu rủi ro bảo mật MCP, như xác thực mạnh mẽ, quyền truy cập tối thiểu, quản lý token an toàn, kiểm soát bảo mật phiên làm việc và xác minh chuỗi cung ứng.
-- Hiểu và tận dụng các giải pháp của Microsoft như Prompt Shields, Azure Content Safety và GitHub Advanced Security để bảo vệ MCP và các khối lượng công việc AI.
-- Nhận biết tầm quan trọng của việc xác thực metadata công cụ, giám sát các thay đổi động, phòng chống các cuộc tấn công chèn prompt gián tiếp và ngăn chặn chiếm đoạt phiên làm việc.
-- Tích hợp các thực hành bảo mật đã được thiết lập—như lập trình an toàn, tăng cường bảo mật máy chủ và kiến trúc zero trust—vào việc triển khai MCP để giảm thiểu khả năng và tác động của các vi phạm bảo mật.
+Bài học này khám phá các rủi ro bảo mật quan trọng nhất trong triển khai MCP—bao gồm xác thực, ủy quyền, quyền hạn quá mức, tiêm lệnh gián tiếp, bảo mật phiên, vấn đề confused deputy, quản lý token, và lỗ hổng chuỗi cung ứng. Bạn sẽ học được các biện pháp kiểm soát và thực hành tốt nhất để giảm thiểu các rủi ro này, đồng thời tận dụng các giải pháp của Microsoft như Prompt Shields, Azure Content Safety, và GitHub Advanced Security để củng cố triển khai MCP của bạn.
 
-# Các biện pháp kiểm soát bảo mật MCP
+## Mục tiêu học tập
 
-Bất kỳ hệ thống nào có quyền truy cập vào các tài nguyên quan trọng đều đối mặt với những thách thức bảo mật nhất định. Các thách thức này thường được giải quyết thông qua việc áp dụng đúng các biện pháp kiểm soát và khái niệm bảo mật cơ bản. Vì MCP mới được định nghĩa gần đây, đặc tả đang thay đổi rất nhanh và sẽ tiếp tục phát triển. Cuối cùng, các biện pháp kiểm soát bảo mật trong MCP sẽ trưởng thành hơn, cho phép tích hợp tốt hơn với kiến trúc bảo mật doanh nghiệp và các thực hành tốt nhất đã được thiết lập.
+Sau khi hoàn thành bài học này, bạn sẽ có thể:
 
-Nghiên cứu được công bố trong [Microsoft Digital Defense Report](https://aka.ms/mddr) cho thấy 98% các vụ vi phạm được báo cáo có thể được ngăn chặn bằng việc duy trì vệ sinh bảo mật nghiêm ngặt và biện pháp bảo vệ tốt nhất chống lại mọi loại vi phạm là đảm bảo vệ sinh bảo mật cơ bản, thực hành lập trình an toàn và bảo mật chuỗi cung ứng được thực hiện đúng—những thực hành đã được kiểm chứng này vẫn là cách hiệu quả nhất để giảm thiểu rủi ro bảo mật.
+- **Nhận diện các mối đe dọa đặc thù MCP**: Nhận biết các rủi ro bảo mật độc đáo trong hệ thống MCP bao gồm tiêm lệnh, đầu độc công cụ, quyền hạn quá mức, chiếm đoạt phiên, vấn đề confused deputy, lỗ hổng truyền token, và rủi ro chuỗi cung ứng
+- **Áp dụng các biện pháp kiểm soát bảo mật**: Triển khai các biện pháp giảm thiểu hiệu quả bao gồm xác thực mạnh mẽ, truy cập quyền tối thiểu, quản lý token an toàn, kiểm soát bảo mật phiên, và xác minh chuỗi cung ứng
+- **Tận dụng các giải pháp bảo mật của Microsoft**: Hiểu và triển khai Microsoft Prompt Shields, Azure Content Safety, và GitHub Advanced Security để bảo vệ khối lượng công việc MCP
+- **Xác thực bảo mật công cụ**: Nhận thức tầm quan trọng của việc xác thực metadata công cụ, giám sát các thay đổi động, và bảo vệ chống lại các cuộc tấn công tiêm lệnh gián tiếp
+- **Tích hợp thực hành tốt nhất**: Kết hợp các nguyên tắc bảo mật đã được thiết lập (lập trình an toàn, làm cứng máy chủ, zero trust) với các biện pháp kiểm soát đặc thù MCP để bảo vệ toàn diện
 
-Hãy cùng xem một số cách bạn có thể bắt đầu giải quyết các rủi ro bảo mật khi áp dụng MCP.
+# Kiến trúc & Biện pháp kiểm soát MCP Bảo Mật
 
-> **Note:** Thông tin dưới đây chính xác tính đến **29 tháng 5 năm 2025**. Giao thức MCP liên tục phát triển, và các triển khai trong tương lai có thể giới thiệu các mẫu xác thực và biện pháp kiểm soát mới. Để cập nhật và hướng dẫn mới nhất, luôn tham khảo [MCP Specification](https://spec.modelcontextprotocol.io/), kho lưu trữ chính thức [MCP GitHub repository](https://github.com/modelcontextprotocol) và [trang thực hành bảo mật tốt nhất](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices).
+Các triển khai MCP hiện đại yêu cầu các phương pháp bảo mật nhiều lớp để giải quyết cả các mối đe dọa bảo mật phần mềm truyền thống và đặc thù AI. Đặc tả MCP đang phát triển nhanh chóng tiếp tục hoàn thiện các biện pháp kiểm soát bảo mật, cho phép tích hợp tốt hơn với các kiến trúc bảo mật doanh nghiệp và thực hành tốt nhất đã được thiết lập.
 
-### Vấn đề đặt ra  
-Đặc tả MCP ban đầu giả định rằng các nhà phát triển sẽ tự viết máy chủ xác thực của riêng họ. Điều này đòi hỏi kiến thức về OAuth và các ràng buộc bảo mật liên quan. Máy chủ MCP hoạt động như OAuth 2.0 Authorization Server, quản lý xác thực người dùng trực tiếp thay vì ủy quyền cho dịch vụ bên ngoài như Microsoft Entra ID. Từ ngày **26 tháng 4 năm 2025**, một cập nhật trong đặc tả MCP cho phép máy chủ MCP ủy quyền xác thực người dùng cho dịch vụ bên ngoài.
+Nghiên cứu từ [Báo cáo Phòng thủ Kỹ thuật số của Microsoft](https://aka.ms/mddr) cho thấy rằng **98% các vi phạm được báo cáo có thể được ngăn chặn bằng vệ sinh bảo mật mạnh mẽ**. Chiến lược bảo vệ hiệu quả nhất kết hợp các thực hành bảo mật cơ bản với các biện pháp kiểm soát đặc thù MCP—các biện pháp bảo mật cơ bản đã được chứng minh vẫn là tác động lớn nhất trong việc giảm thiểu rủi ro bảo mật tổng thể.
 
-### Rủi ro
-- Logic ủy quyền cấu hình sai trong máy chủ MCP có thể dẫn đến việc lộ dữ liệu nhạy cảm và áp dụng sai các kiểm soát truy cập.
-- Trộm token OAuth trên máy chủ MCP cục bộ. Nếu token bị đánh cắp, kẻ tấn công có thể giả mạo máy chủ MCP và truy cập tài nguyên, dữ liệu từ dịch vụ mà token OAuth đó được cấp.
+## Bối cảnh bảo mật hiện tại
 
-#### Token Passthrough
-Token passthrough bị cấm rõ ràng trong đặc tả ủy quyền vì nó tạo ra nhiều rủi ro bảo mật, bao gồm:
+> **Lưu ý:** Thông tin này phản ánh các tiêu chuẩn bảo mật MCP tính đến **18 tháng 8, 2025**. Giao thức MCP tiếp tục phát triển nhanh chóng, và các triển khai trong tương lai có thể giới thiệu các mẫu xác thực mới và các biện pháp kiểm soát nâng cao. Luôn tham khảo [Đặc tả MCP hiện tại](https://spec.modelcontextprotocol.io/), [Kho GitHub MCP](https://github.com/modelcontextprotocol), và [tài liệu thực hành tốt nhất về bảo mật](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) để có hướng dẫn mới nhất.
 
-#### Vượt qua kiểm soát bảo mật
-Máy chủ MCP hoặc các API hạ nguồn có thể triển khai các biện pháp kiểm soát bảo mật quan trọng như giới hạn tốc độ, xác thực yêu cầu hoặc giám sát lưu lượng, dựa vào đối tượng token hoặc các ràng buộc chứng thực khác. Nếu khách hàng có thể lấy và sử dụng token trực tiếp với các API hạ nguồn mà không qua xác thực đúng của máy chủ MCP hoặc không đảm bảo token được cấp cho dịch vụ đúng, họ sẽ vượt qua các kiểm soát này.
+### Sự phát triển của xác thực MCP
 
-#### Vấn đề trách nhiệm và theo dõi kiểm toán
-Máy chủ MCP sẽ không thể nhận diện hoặc phân biệt giữa các MCP Client khi khách hàng gọi với token truy cập được cấp từ upstream mà máy chủ MCP có thể không hiểu rõ.
-Nhật ký của Resource Server hạ nguồn có thể hiển thị các yêu cầu có vẻ đến từ nguồn khác với danh tính khác, thay vì từ máy chủ MCP thực sự chuyển tiếp token.
-Cả hai yếu tố này làm cho việc điều tra sự cố, kiểm soát và kiểm toán trở nên khó khăn hơn.
-Nếu máy chủ MCP chuyển tiếp token mà không xác thực các tuyên bố của token (ví dụ: vai trò, đặc quyền hoặc đối tượng) hoặc metadata khác, kẻ xấu có token bị đánh cắp có thể dùng máy chủ như một proxy để rút dữ liệu.
+Đặc tả MCP đã phát triển đáng kể trong cách tiếp cận xác thực và ủy quyền:
 
-#### Vấn đề ranh giới tin cậy
-Resource Server hạ nguồn cấp quyền tin cậy cho các thực thể cụ thể. Quyền tin cậy này có thể bao gồm các giả định về nguồn gốc hoặc hành vi của khách hàng. Việc phá vỡ ranh giới tin cậy này có thể dẫn đến các vấn đề không mong muốn.
-Nếu token được chấp nhận bởi nhiều dịch vụ mà không được xác thực đúng, kẻ tấn công xâm phạm một dịch vụ có thể dùng token để truy cập các dịch vụ kết nối khác.
+- **Cách tiếp cận ban đầu**: Các đặc tả ban đầu yêu cầu nhà phát triển triển khai các máy chủ xác thực tùy chỉnh, với các máy chủ MCP hoạt động như các Máy chủ Ủy quyền OAuth 2.0 quản lý xác thực người dùng trực tiếp
+- **Tiêu chuẩn hiện tại (2025-06-18)**: Đặc tả cập nhật cho phép các máy chủ MCP ủy quyền xác thực cho các nhà cung cấp danh tính bên ngoài (như Microsoft Entra ID), cải thiện tư thế bảo mật và giảm độ phức tạp triển khai
+- **Bảo mật tầng vận chuyển**: Hỗ trợ nâng cao cho các cơ chế vận chuyển an toàn với các mẫu xác thực phù hợp cho cả kết nối cục bộ (STDIO) và từ xa (Streamable HTTP)
 
-#### Rủi ro tương thích trong tương lai
-Ngay cả khi máy chủ MCP bắt đầu như một "proxy thuần túy" hôm nay, nó có thể cần thêm các biện pháp kiểm soát bảo mật sau này. Bắt đầu với việc phân tách đối tượng token đúng cách sẽ giúp dễ dàng phát triển mô hình bảo mật hơn.
+## Bảo mật Xác thực & Ủy quyền
 
-### Biện pháp giảm thiểu
+### Thách thức bảo mật hiện tại
 
-**Máy chủ MCP KHÔNG ĐƯỢC chấp nhận bất kỳ token nào không được cấp rõ ràng cho máy chủ MCP**
+Các triển khai MCP hiện đại đối mặt với một số thách thức về xác thực và ủy quyền:
 
-- **Xem xét và củng cố logic ủy quyền:** Kiểm tra kỹ lưỡng việc triển khai ủy quyền của máy chủ MCP để đảm bảo chỉ người dùng và khách hàng được phép mới có thể truy cập tài nguyên nhạy cảm. Để được hướng dẫn thực tế, xem [Azure API Management Your Auth Gateway For MCP Servers | Microsoft Community Hub](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) và [Using Microsoft Entra ID To Authenticate With MCP Servers Via Sessions - Den Delimarsky](https://den.dev/blog/mcp-server-auth-entra-id-session/).
-- **Thực thi các thực hành bảo mật token:** Tuân theo [thực hành tốt nhất của Microsoft về xác thực token và thời gian hiệu lực](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens) để ngăn chặn việc sử dụng sai token truy cập và giảm nguy cơ phát lại hoặc đánh cắp token.
-- **Bảo vệ lưu trữ token:** Luôn lưu trữ token một cách an toàn và sử dụng mã hóa để bảo vệ chúng khi lưu trữ và truyền tải. Để biết mẹo triển khai, xem [Use secure token storage and encrypt tokens](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2).
+### Rủi ro & Vectơ đe dọa
 
-# Quyền truy cập quá mức cho máy chủ MCP
+- **Logic ủy quyền cấu hình sai**: Triển khai ủy quyền sai trong các máy chủ MCP có thể làm lộ dữ liệu nhạy cảm và áp dụng sai các kiểm soát truy cập
+- **Thỏa hiệp token OAuth**: Việc đánh cắp token máy chủ MCP cục bộ cho phép kẻ tấn công giả mạo máy chủ và truy cập các dịch vụ hạ nguồn
+- **Lỗ hổng truyền token**: Xử lý token không đúng cách tạo ra các lỗ hổng bỏ qua kiểm soát bảo mật và khoảng trống trách nhiệm
+- **Quyền hạn quá mức**: Các máy chủ MCP có quyền hạn quá mức vi phạm nguyên tắc quyền tối thiểu và mở rộng bề mặt tấn công
 
-### Vấn đề đặt ra
-Máy chủ MCP có thể được cấp quyền truy cập quá mức đối với dịch vụ hoặc tài nguyên mà nó truy cập. Ví dụ, một máy chủ MCP trong ứng dụng bán hàng AI kết nối với kho dữ liệu doanh nghiệp nên chỉ được phép truy cập dữ liệu bán hàng, không được phép truy cập tất cả các tệp trong kho. Quay lại nguyên tắc quyền truy cập tối thiểu (một trong những nguyên tắc bảo mật lâu đời nhất), không tài nguyên nào nên có quyền vượt quá mức cần thiết để thực hiện nhiệm vụ được giao. AI đặt ra thách thức lớn hơn trong lĩnh vực này vì để nó linh hoạt, việc xác định chính xác quyền cần thiết có thể rất khó khăn.
+#### Truyền token: Một mẫu chống quan trọng
 
-### Rủi ro  
-- Cấp quyền quá mức có thể cho phép rút dữ liệu hoặc sửa đổi dữ liệu mà máy chủ MCP không được phép truy cập. Điều này cũng có thể gây ra vấn đề về quyền riêng tư nếu dữ liệu là thông tin cá nhân nhận dạng được (PII).
+**Truyền token bị nghiêm cấm rõ ràng** trong đặc tả ủy quyền MCP hiện tại do các tác động bảo mật nghiêm trọng:
 
-### Biện pháp giảm thiểu
-- **Áp dụng nguyên tắc quyền truy cập tối thiểu:** Chỉ cấp cho máy chủ MCP những quyền tối thiểu cần thiết để thực hiện nhiệm vụ. Thường xuyên xem xét và cập nhật quyền để đảm bảo không vượt quá mức cần thiết. Để được hướng dẫn chi tiết, xem [Secure least-privileged access](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access).
-- **Sử dụng kiểm soát truy cập dựa trên vai trò (RBAC):** Gán vai trò cho máy chủ MCP với phạm vi chặt chẽ đối với các tài nguyên và hành động cụ thể, tránh cấp quyền rộng hoặc không cần thiết.
-- **Giám sát và kiểm toán quyền:** Liên tục theo dõi việc sử dụng quyền và kiểm tra nhật ký truy cập để phát hiện và xử lý kịp thời các quyền quá mức hoặc không sử dụng.
+##### Vượt qua kiểm soát bảo mật
+- Các máy chủ MCP và API hạ nguồn triển khai các kiểm soát bảo mật quan trọng (giới hạn tốc độ, xác thực yêu cầu, giám sát lưu lượng) phụ thuộc vào việc xác thực token đúng cách
+- Việc sử dụng token trực tiếp từ client đến API bỏ qua các biện pháp bảo vệ thiết yếu này, làm suy yếu kiến trúc bảo mật
 
-# Tấn công chèn prompt gián tiếp
+##### Thách thức trách nhiệm & kiểm toán  
+- Các máy chủ MCP không thể phân biệt giữa các client sử dụng token được phát hành từ upstream, phá vỡ các dấu vết kiểm toán
+- Nhật ký máy chủ tài nguyên hạ nguồn hiển thị nguồn gốc yêu cầu sai lệch thay vì các trung gian máy chủ MCP thực tế
+- Điều tra sự cố và kiểm toán tuân thủ trở nên khó khăn đáng kể
 
-### Vấn đề đặt ra
+##### Rủi ro rò rỉ dữ liệu
+- Các tuyên bố token không được xác thực cho phép các tác nhân độc hại với token bị đánh cắp sử dụng các máy chủ MCP làm proxy để rò rỉ dữ liệu
+- Vi phạm ranh giới tin cậy cho phép các mẫu truy cập trái phép bỏ qua các kiểm soát bảo mật dự định
 
-Máy chủ MCP bị tấn công hoặc bị xâm phạm có thể gây ra rủi ro lớn bằng cách làm lộ dữ liệu khách hàng hoặc cho phép các hành động không mong muốn. Những rủi ro này đặc biệt quan trọng trong các khối lượng công việc AI và MCP, nơi:
+##### Vectơ tấn công đa dịch vụ
+- Các token bị thỏa hiệp được chấp nhận bởi nhiều dịch vụ cho phép di chuyển ngang qua các hệ thống kết nối
+- Các giả định tin cậy giữa các dịch vụ có thể bị vi phạm khi nguồn gốc token không thể được xác minh
 
-- **Tấn công chèn prompt:** Kẻ tấn công nhúng các chỉ dẫn độc hại vào prompt hoặc nội dung bên ngoài, khiến hệ thống AI thực hiện các hành động không mong muốn hoặc rò rỉ dữ liệu nhạy cảm. Tìm hiểu thêm: [Prompt Injection](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)
-- **Đầu độc công cụ:** Kẻ tấn công thao túng metadata công cụ (như mô tả hoặc tham số) để ảnh hưởng đến hành vi AI, có thể vượt qua các kiểm soát bảo mật hoặc rút dữ liệu. Chi tiết: [Tool Poisoning](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
-- **Chèn prompt xuyên miền:** Các chỉ dẫn độc hại được nhúng trong tài liệu, trang web hoặc email, sau đó được AI xử lý, dẫn đến rò rỉ hoặc thao túng dữ liệu.
-- **Thay đổi công cụ động (Rug Pulls):** Định nghĩa công cụ có thể bị thay đổi sau khi người dùng phê duyệt, đưa vào các hành vi độc hại mới mà người dùng không hay biết.
+### Biện pháp kiểm soát & Giảm thiểu
 
-Những lỗ hổng này nhấn mạnh sự cần thiết của việc xác thực chặt chẽ, giám sát và các biện pháp bảo mật khi tích hợp máy chủ MCP và công cụ vào môi trường của bạn. Để tìm hiểu sâu hơn, xem các tài liệu tham khảo liên kết ở trên.
+**Yêu cầu bảo mật quan trọng:**
 
-![prompt-injection-lg-2048x1034](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.vi.png)
+> **BẮT BUỘC**: Các máy chủ MCP **KHÔNG ĐƯỢC** chấp nhận bất kỳ token nào không được phát hành rõ ràng cho máy chủ MCP
 
-**Chèn prompt gián tiếp** (còn gọi là chèn prompt xuyên miền hoặc XPIA) là một lỗ hổng nghiêm trọng trong các hệ thống AI sinh tạo, bao gồm cả những hệ thống sử dụng Model Context Protocol (MCP). Trong cuộc tấn công này, các chỉ dẫn độc hại được giấu trong nội dung bên ngoài—như tài liệu, trang web hoặc email. Khi hệ thống AI xử lý nội dung này, nó có thể hiểu các chỉ dẫn nhúng như là lệnh hợp lệ từ người dùng, dẫn đến các hành động không mong muốn như rò rỉ dữ liệu, tạo nội dung có hại hoặc thao túng tương tác với người dùng. Để biết giải thích chi tiết và ví dụ thực tế, xem [Prompt Injection](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
+#### Biện pháp kiểm soát Xác thực & Ủy quyền
 
-Một dạng tấn công đặc biệt nguy hiểm là **Đầu độc công cụ**. Ở đây, kẻ tấn công chèn các chỉ dẫn độc hại vào metadata của các công cụ MCP (như mô tả công cụ hoặc tham số). Vì các mô hình ngôn ngữ lớn (LLM) dựa vào metadata này để quyết định công cụ nào sẽ được gọi, các mô tả bị xâm phạm có thể lừa mô hình thực thi các lệnh gọi công cụ trái phép hoặc vượt qua các kiểm soát bảo mật. Những thao túng này thường không hiển thị với người dùng cuối nhưng có thể được AI hiểu và thực hiện. Rủi ro này càng tăng cao trong môi trường máy chủ MCP được lưu trữ, nơi định nghĩa công cụ có thể được cập nhật sau khi người dùng phê duyệt—tình huống này đôi khi được gọi là "[rug pull](https://www.wiz.io/blog/mcp-security-research-briefing#remote-servers-22)". Trong trường hợp đó, một công cụ từng an toàn có thể bị thay đổi để thực hiện các hành vi độc hại, như rút dữ liệu hoặc thay đổi hành vi hệ thống, mà người dùng không hay biết. Để biết thêm về vectơ tấn công này, xem [Tool Poisoning](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
+- **Đánh giá ủy quyền nghiêm ngặt**: Thực hiện các cuộc kiểm toán toàn diện logic ủy quyền của máy chủ MCP để đảm bảo chỉ người dùng và client dự định mới có thể truy cập tài nguyên nhạy cảm
+  - **Hướng dẫn triển khai**: [Azure API Management làm Cổng xác thực cho Máy chủ MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+  - **Tích hợp danh tính**: [Sử dụng Microsoft Entra ID cho Xác thực Máy chủ MCP](https://den.dev/blog/mcp-server-auth-entra-id-session/)
 
-![tool-injection-lg-2048x1239 (1)](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.vi.png)
+- **Quản lý token an toàn**: Triển khai [thực hành tốt nhất về xác thực và vòng đời token của Microsoft](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens)
+  - Xác thực các tuyên bố đối tượng token khớp với danh tính máy chủ MCP
+  - Triển khai chính sách xoay vòng và hết hạn token đúng cách
+  - Ngăn chặn các cuộc tấn công phát lại token và sử dụng trái phép
 
-## Rủi ro
-Các hành động AI không mong muốn gây ra nhiều rủi ro bảo mật, bao gồm rút dữ liệu và vi phạm quyền riêng tư.
+- **Lưu trữ token được bảo vệ**: Lưu trữ token an toàn với mã hóa cả khi lưu trữ và khi truyền
+  - **Thực hành tốt nhất**: [Hướng dẫn Lưu trữ và Mã hóa Token An toàn](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
 
-### Biện pháp giảm thiểu
-### Sử dụng prompt shields để bảo vệ chống lại tấn công chèn prompt gián tiếp
------------------------------------------------------------------------------
+#### Triển khai kiểm soát truy cập
 
-**AI Prompt Shields** là giải pháp do Microsoft phát triển nhằm phòng chống cả tấn công chèn prompt trực tiếp và gián tiếp. Chúng hỗ trợ bằng cách:
+- **Nguyên tắc quyền tối thiểu**: Chỉ cấp cho các máy chủ MCP các quyền tối thiểu cần thiết cho chức năng dự định
+  - Đánh giá và cập nhật quyền thường xuyên để ngăn chặn sự gia tăng quyền
+  - **Tài liệu Microsoft**: [Truy cập An toàn với Quyền Tối thiểu](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
 
-1.  **Phát hiện và lọc:** Prompt Shields sử dụng các thuật toán học máy tiên tiến và xử lý ngôn ngữ tự nhiên để phát hiện và lọc các chỉ dẫn độc hại nhúng trong nội dung bên ngoài, như tài liệu, trang web hoặc email.
-    
-2.  **Spotlighting:** Kỹ thuật này giúp hệ thống AI phân biệt giữa các chỉ dẫn hệ thống hợp lệ và các đầu vào bên ngoài có thể không đáng tin cậy. Bằng cách biến đổi văn bản đầu vào sao cho phù hợp hơn với mô hình, Spotlighting giúp AI nhận diện và bỏ qua các chỉ dẫn độc hại tốt hơn.
-    
-3.  **Dấu phân cách và đánh dấu dữ liệu:** Việc bao gồm các dấu phân cách trong thông điệp hệ thống giúp xác định rõ vị trí của văn bản đầu vào, giúp AI nhận biết và tách biệt các đầu vào của người dùng với nội dung bên ngoài có thể gây hại. Đánh dấu dữ liệu mở rộng khái niệm này bằng cách sử dụng các ký hiệu đặc biệt để làm nổi bật ranh giới giữa dữ liệu tin cậy và không tin cậy.
-    
-4.  **Giám sát và cập nhật liên tục:** Microsoft liên tục giám sát và cập nhật Prompt Shields để đối phó với các mối đe dọa mới và đang phát triển. Cách tiếp cận chủ động này đảm bảo các biện pháp phòng thủ luôn hiệu quả trước các kỹ thuật tấn công mới nhất.
-    
-5. **Tích hợp với Azure Content Safety:** Prompt Shields là một phần của bộ công cụ Azure AI Content Safety rộng hơn, cung cấp các công cụ bổ sung để phát hiện các nỗ lực jailbreak, nội dung độc hại và các rủi ro bảo mật khác trong ứng dụng AI.
+- **Kiểm soát truy cập dựa trên vai trò (RBAC)**: Triển khai các phân công vai trò chi tiết
+  - Phạm vi vai trò chặt chẽ với các tài nguyên và hành động cụ thể
+  - Tránh các quyền rộng hoặc không cần thiết mở rộng bề mặt tấn công
 
-Bạn có thể đọc thêm về AI prompt shields trong [tài liệu Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection).
+- **Giám sát quyền liên tục**: Thực hiện kiểm toán và giám sát truy cập liên tục
+  - Giám sát các mẫu sử dụng quyền để phát hiện bất thường
+  - Khắc phục ngay lập tức các quyền quá mức hoặc không sử dụng
 
-![prompt-shield-lg-2048x1328](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.vi.png)
+## Các mối đe dọa bảo mật đặc thù AI
 
-# Vấn đề Confused Deputy
+### Tấn công Tiêm Lệnh & Thao Túng Công Cụ
 
+Các triển khai MCP hiện đại đối mặt với các vectơ tấn công đặc thù AI tinh vi mà các biện pháp bảo mật truyền thống không thể giải quyết hoàn toàn:
 
-Vấn đề confused deputy là một lỗ hổng bảo mật xảy ra khi một máy chủ MCP đóng vai trò làm proxy giữa các client MCP và các API bên thứ ba. Lỗ hổng này có thể bị khai thác khi máy chủ MCP sử dụng một client ID tĩnh để xác thực với máy chủ ủy quyền bên thứ ba không hỗ trợ đăng ký client động.
+#### **Tiêm Lệnh Gián Tiếp (Tiêm Lệnh Xuyên Miền)**
 
-### Rủi ro
+**Tiêm lệnh gián tiếp** là một trong những lỗ hổng nghiêm trọng nhất trong các hệ thống AI hỗ trợ MCP. Kẻ tấn công nhúng các hướng dẫn độc hại vào nội dung bên ngoài—tài liệu, trang web, email, hoặc nguồn dữ liệu—mà hệ thống AI sau đó xử lý như các lệnh hợp lệ.
 
-- **Vượt qua sự đồng ý dựa trên cookie**: Nếu người dùng đã từng xác thực qua máy chủ proxy MCP, máy chủ ủy quyền bên thứ ba có thể đặt cookie đồng ý trong trình duyệt của người dùng. Kẻ tấn công có thể lợi dụng điều này bằng cách gửi cho người dùng một liên kết độc hại chứa yêu cầu ủy quyền được tạo thủ công với URI chuyển hướng độc hại.
-- **Trộm mã ủy quyền**: Khi người dùng nhấp vào liên kết độc hại, máy chủ ủy quyền bên thứ ba có thể bỏ qua màn hình đồng ý do cookie đã tồn tại, và mã ủy quyền có thể bị chuyển hướng đến máy chủ của kẻ tấn công.
-- **Truy cập API trái phép**: Kẻ tấn công có thể đổi mã ủy quyền bị đánh cắp lấy token truy cập và giả danh người dùng để truy cập API bên thứ ba mà không cần sự chấp thuận rõ ràng.
+**Kịch bản tấn công:**
+- **Tiêm lệnh dựa trên tài liệu**: Hướng dẫn độc hại ẩn trong các tài liệu được xử lý, kích hoạt các hành động AI không mong muốn
+- **Khai thác nội dung web**: Các trang web bị xâm phạm chứa các lệnh nhúng thao túng hành vi AI khi được quét
+- **Tấn công dựa trên email**: Các lệnh độc hại trong email khiến trợ lý AI rò rỉ thông tin hoặc thực hiện các hành động trái phép
+- **Ô nhiễm nguồn dữ liệu**: Các cơ sở dữ liệu hoặc API bị xâm phạm cung cấp nội dung bị nhiễm độc cho hệ thống AI
 
-### Các biện pháp giảm thiểu
+**Tác động thực tế**: Các cuộc tấn công này có thể dẫn đến rò rỉ dữ liệu, vi phạm quyền riêng tư, tạo nội dung có hại, và thao túng tương tác người dùng. Để phân tích chi tiết, xem [Tiêm Lệnh trong MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-- **Yêu cầu đồng ý rõ ràng**: Máy chủ proxy MCP sử dụng client ID tĩnh **PHẢI** lấy sự đồng ý của người dùng cho mỗi client được đăng ký động trước khi chuyển tiếp đến máy chủ ủy quyền bên thứ ba.
-- **Triển khai OAuth đúng cách**: Tuân thủ các thực hành bảo mật tốt nhất của OAuth 2.1, bao gồm sử dụng code challenge (PKCE) cho các yêu cầu ủy quyền để ngăn chặn các cuộc tấn công chặn mã.
-- **Xác thực client**: Thực hiện xác thực nghiêm ngặt các URI chuyển hướng và định danh client để ngăn chặn việc khai thác bởi các tác nhân độc hại.
+![Sơ đồ Tấn công Tiêm Lệnh](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.vi.png)
 
-# Lỗ hổng Token Passthrough
+#### **Tấn công Đầu Độc Công Cụ**
 
-### Vấn đề
+**Đầu độc công cụ** nhắm vào metadata định nghĩa các công cụ MCP, khai thác cách LLM diễn giải mô tả công cụ và tham số để đưa ra quyết định thực thi.
 
-"Token passthrough" là một mô hình sai lầm khi máy chủ MCP chấp nhận token từ client MCP mà không xác thực rằng token đó được cấp hợp lệ cho chính máy chủ MCP, rồi "chuyển tiếp" token đó đến các API phía dưới. Thực hành này vi phạm rõ ràng đặc tả ủy quyền MCP và gây ra các rủi ro bảo mật nghiêm trọng.
+**Cơ chế tấn công:**
+- **Thao túng metadata**: Kẻ tấn công nhúng các hướng dẫn độc hại vào mô tả công cụ, định nghĩa tham số, hoặc ví dụ sử dụng
+- **Hướng dẫn vô hình**: Các lệnh ẩn trong metadata công cụ được AI xử lý nhưng vô hình với người dùng
+- **Sửa đổi công cụ động ("Rug Pulls")**: Các công cụ được người dùng phê duyệt sau đó bị sửa đổi để thực hiện các hành động độc hại mà không có sự nhận thức của người dùng
+- **Tiêm tham số**: Nội dung độc hại được nhúng trong các schema tham số công cụ ảnh hưởng đến hành vi của mô hình
 
-### Rủi ro
+**Rủi ro máy chủ được lưu trữ**: Các máy chủ MCP từ xa có rủi ro cao hơn vì các định nghĩa công cụ có thể được cập nhật sau khi được người dùng phê duyệt, tạo ra các kịch bản mà các công cụ trước đây an toàn trở nên độc hại. Để phân tích toàn diện, xem [Tấn công Đầu Độc Công Cụ (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-- **Vượt qua kiểm soát bảo mật**: Client có thể bỏ qua các kiểm soát bảo mật quan trọng như giới hạn tốc độ, xác thực yêu cầu hoặc giám sát lưu lượng nếu họ có thể sử dụng token trực tiếp với các API phía dưới mà không được xác thực đúng cách.
-- **Vấn đề trách nhiệm và theo dõi**: Máy chủ MCP sẽ không thể nhận diện hoặc phân biệt các client MCP khi client sử dụng token truy cập được cấp từ phía trên, làm cho việc điều tra sự cố và kiểm toán trở nên khó khăn hơn.
-- **Rò rỉ dữ liệu**: Nếu token được chuyển tiếp mà không xác thực các claims đúng cách, kẻ tấn công có token bị đánh cắp có thể dùng máy chủ làm proxy để rò rỉ dữ liệu.
-- **Vi phạm ranh giới tin cậy**: Các máy chủ tài nguyên phía dưới có thể tin tưởng vào các thực thể cụ thể dựa trên giả định về nguồn gốc hoặc hành vi. Vi phạm ranh giới tin cậy này có thể dẫn đến các vấn đề bảo mật không mong muốn.
-- **Lạm dụng token đa dịch vụ**: Nếu token được chấp nhận bởi nhiều dịch vụ mà không xác thực đúng, kẻ tấn công xâm nhập một dịch vụ có thể dùng token để truy cập các dịch vụ kết nối khác.
+![Sơ đồ Tấn công Tiêm Công Cụ](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.vi.png)
 
-### Các biện pháp giảm thiểu
+#### **Các vectơ tấn công AI bổ sung**
 
-- **Xác thực token**: Máy chủ MCP **KHÔNG ĐƯỢC** chấp nhận bất kỳ token nào không được cấp rõ ràng cho chính máy chủ MCP.
-- **Xác minh audience**: Luôn xác thực rằng token có claim audience đúng với định danh của máy chủ MCP.
-- **Quản lý vòng đời token đúng cách**: Triển khai token truy cập có thời gian sống ngắn và thực hành xoay vòng token hợp lý để giảm rủi ro trộm cắp và lạm dụng token.
+- **Tiêm Lệnh Xuyên Miền (XPIA)**: Các cuộc tấn công tinh vi tận dụng nội dung từ nhiều miền để vượt qua các kiểm soát bảo mật
+- **Sửa đổi khả năng động**: Thay đổi khả năng công cụ theo thời gian thực thoát khỏi các đánh giá bảo mật ban đầu
+- **Ô nhiễm cửa sổ ngữ cảnh**: Các cuộc tấn công thao túng các cửa sổ ngữ cảnh lớn để ẩn các hướng dẫn độc hại
+- **Tấn công nhầm lẫn mô hình**: Khai thác các hạn chế của mô hình để tạo ra các hành vi không thể đoán trước hoặc không an toàn
 
-# Chiếm đoạt phiên làm việc (Session Hijacking)
+### Tác động rủi ro bảo mật AI
 
-### Vấn đề
+**Hậu quả có tác động cao:**
+- **Rò rỉ dữ liệu**: Truy cập trái phép và đánh cắp dữ liệu nhạy cảm của doanh nghiệp hoặc cá nhân
+- **Vi phạm quyền riêng tư**: Lộ thông tin nhận dạng cá nhân (PII) và dữ liệu kinh doanh bí mật  
+- **Thao túng hệ thống**: Các sửa đổi không mong muốn đối với các hệ thống và quy trình quan trọng
+- **Đánh cắp thông tin xác thực**: Thỏa hiệp token xác thực và thông tin xác thực dịch vụ
+- **Di chuyển ngang**: Sử dụng các hệ thống AI bị xâm phạm làm điểm tựa cho các cuộc tấn công mạng rộng hơn
 
-Chiếm đoạt phiên làm việc là một phương thức tấn công khi client được máy chủ cấp một session ID, và một bên không được phép lấy được session ID đó để giả danh client gốc và thực hiện các hành động trái phép thay mặt họ. Điều này đặc biệt đáng lo ngại với các máy chủ HTTP trạng thái xử lý các yêu cầu MCP.
+### Giải pháp bảo mật AI của Microsoft
 
-### Rủi ro
+#### **AI Prompt Shields: Bảo vệ nâng cao chống lại các cuộc tấn công tiêm lệnh**
 
-- **Tiêm prompt chiếm đoạt phiên**: Kẻ tấn công có session ID có thể gửi các sự kiện độc hại đến máy chủ chia sẻ trạng thái phiên với máy chủ mà client đang kết nối, có thể kích hoạt các hành động gây hại hoặc truy cập dữ liệu nhạy cảm.
-- **Giả danh chiếm đoạt phiên**: Kẻ tấn công có session ID bị đánh cắp có thể gọi trực tiếp đến máy chủ MCP, bỏ qua xác thực và được xử lý như người dùng hợp pháp.
-- **Dòng dữ liệu có thể tiếp tục bị xâm phạm**: Khi máy chủ hỗ trợ tái gửi hoặc dòng dữ liệu có thể tiếp tục, kẻ tấn công có thể kết thúc yêu cầu sớm, dẫn đến việc client gốc tiếp tục yêu cầu với nội dung có thể độc hại.
+Microsoft **AI Prompt Shields** cung cấp sự bảo vệ toàn diện chống lại cả các cuộc tấn công tiêm lệnh trực tiếp và gián tiếp thông qua nhiều lớp bảo mật:
 
-### Các biện pháp giảm thiểu
+##### **Cơ chế bảo vệ cốt lõi:**
 
-- **Xác minh ủy quyền**: Máy chủ MCP triển khai ủy quyền **PHẢI** xác minh tất cả các yêu cầu đến và **KHÔNG ĐƯỢC** sử dụng phiên làm phương thức xác thực.
-- **Session ID an toàn**: Máy chủ MCP **PHẢI** sử dụng session ID an toàn, không xác định trước, được tạo bằng bộ sinh số ngẫu nhiên bảo mật. Tránh các định danh có thể đoán trước hoặc theo thứ tự.
-- **Ràng buộc phiên theo người dùng**: Máy chủ MCP **NÊN** ràng buộc session ID với thông tin người dùng cụ thể, kết hợp session ID với thông tin duy nhất của người dùng được ủy quyền (như user ID nội bộ) theo định dạng `
-<user_id>:<session_id>`.
-- **Hết hạn phiên**: Triển khai hết hạn và xoay vòng phiên hợp lý để giới hạn thời gian lộ diện nếu session ID bị xâm phạm.
-- **Bảo mật truyền tải**: Luôn sử dụng HTTPS cho mọi giao tiếp để ngăn chặn việc chặn session ID.
+1. **Phát hiện & Lọc nâng cao**
+   - Các thuật toán học máy và kỹ thuật NLP phát hiện các hướng dẫn độc hại trong nội dung bên ngoài
+   - Phân tích thời gian thực các tài liệu, trang web, email, và nguồn dữ liệu để tìm các mối đe dọa nhúng
+   - Hiểu ngữ cảnh giữa các mẫu lệnh hợp lệ và độc hại
 
-# Bảo mật chuỗi cung ứng
+2. **Kỹ thuật Spotlighting**  
+   - Phân biệt giữa các hướng dẫn hệ thống đáng tin cậy và các đầu vào bên ngoài có thể bị xâm phạm
+   - Các phương pháp chuyển đổi văn bản tăng cường sự liên quan của mô hình trong khi cô lập nội dung độc hại
+   - Giúp hệ thống AI duy trì thứ bậc hướng dẫn đúng và bỏ qua các lệnh được tiêm
 
-Bảo mật chuỗi cung ứng vẫn là yếu tố nền tảng trong thời đại AI, nhưng phạm vi của chuỗi cung ứng đã được mở rộng. Ngoài các gói mã truyền thống, bạn cần kiểm tra và giám sát nghiêm ngặt tất cả các thành phần liên quan đến AI, bao gồm các mô hình nền tảng, dịch vụ embeddings, nhà cung cấp ngữ cảnh và API bên thứ ba. Mỗi thành phần này có thể mang lại lỗ hổng hoặc rủi ro nếu không được quản lý đúng cách.
+3. **Hệ thống Đánh dấu & Phân định**
+   - Định nghĩa ranh giới rõ ràng giữa các thông điệp hệ thống đáng tin cậy và văn bản đầu vào bên ngoài
+   - Các dấu đặc biệt làm nổi bật ranh giới giữa các nguồn dữ liệu đáng tin cậy và không đáng tin cậy
+   - Sự tách biệt rõ ràng ngăn chặn sự nhầm lẫn hướng dẫn và thực thi lệnh trái phép
 
-**Các thực hành bảo mật chuỗi cung ứng quan trọng cho AI và MCP:**
-- **Xác minh tất cả thành phần trước khi tích hợp:** Bao gồm không chỉ thư viện mã nguồn mở mà còn các mô hình AI, nguồn dữ liệu và API bên ngoài. Luôn kiểm tra nguồn gốc, giấy phép và các lỗ hổng đã biết.
-- **Duy trì pipeline triển khai an toàn:** Sử dụng pipeline CI/CD tự động với tích hợp quét bảo mật để phát hiện sớm các vấn đề. Đảm bảo chỉ các artifact đáng tin cậy được triển khai vào môi trường sản xuất.
-- **Giám sát và kiểm toán liên tục:** Triển khai giám sát liên tục cho tất cả các phụ thuộc, bao gồm mô hình và dịch vụ dữ liệu, để phát hiện các lỗ hổng mới hoặc các cuộc tấn công chuỗi cung ứng.
-- **Áp dụng nguyên tắc ít đặc quyền và kiểm soát truy cập:** Hạn chế quyền truy cập vào mô hình, dữ liệu và dịch vụ chỉ trong phạm vi cần thiết cho máy chủ MCP hoạt động.
-- **Phản ứng nhanh với các mối đe dọa:** Có quy trình vá lỗi hoặc thay thế các thành phần bị xâm phạm, và xoay vòng bí mật hoặc thông tin xác thực khi phát hiện vi phạm.
+4. **Tình báo mối đ
+- **Tạo phiên làm việc an toàn**: Sử dụng ID phiên làm việc được tạo ngẫu nhiên bằng các trình tạo số ngẫu nhiên an toàn, không xác định trước.
+- **Liên kết theo người dùng**: Liên kết ID phiên làm việc với thông tin cụ thể của người dùng bằng các định dạng như `<user_id>:<session_id>` để ngăn chặn việc lạm dụng phiên giữa các người dùng.
+- **Quản lý vòng đời phiên làm việc**: Thực hiện việc hết hạn, xoay vòng và vô hiệu hóa đúng cách để giảm thiểu các lỗ hổng.
+- **Bảo mật truyền tải**: Bắt buộc sử dụng HTTPS cho tất cả các giao tiếp để ngăn chặn việc đánh cắp ID phiên làm việc.
 
-[GitHub Advanced Security](https://github.com/security/advanced-security) cung cấp các tính năng như quét bí mật, quét phụ thuộc và phân tích CodeQL. Các công cụ này tích hợp với [Azure DevOps](https://azure.microsoft.com/en-us/products/devops) và [Azure Repos](https://azure.microsoft.com/en-us/products/devops/repos/) giúp các nhóm phát hiện và giảm thiểu lỗ hổng trên cả mã nguồn và các thành phần chuỗi cung ứng AI.
+### Vấn đề "Confused Deputy"
 
-Microsoft cũng triển khai các thực hành bảo mật chuỗi cung ứng rộng rãi nội bộ cho tất cả sản phẩm. Tìm hiểu thêm tại [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/).
+Vấn đề **confused deputy** xảy ra khi các máy chủ MCP hoạt động như các proxy xác thực giữa khách hàng và dịch vụ bên thứ ba, tạo cơ hội cho việc bỏ qua ủy quyền thông qua việc khai thác ID khách hàng tĩnh.
 
-# Các thực hành bảo mật đã được thiết lập giúp nâng cao vị thế bảo mật của triển khai MCP
+#### **Cơ chế tấn công & Rủi ro**
 
-Bất kỳ triển khai MCP nào cũng kế thừa vị thế bảo mật hiện có của môi trường tổ chức mà nó được xây dựng trên đó, vì vậy khi xem xét bảo mật MCP như một thành phần trong hệ thống AI tổng thể, bạn nên nâng cao vị thế bảo mật hiện có của mình. Các kiểm soát bảo mật đã được thiết lập sau đây đặc biệt phù hợp:
+- **Bỏ qua sự đồng ý dựa trên cookie**: Xác thực người dùng trước đó tạo ra các cookie đồng ý mà kẻ tấn công khai thác thông qua các yêu cầu ủy quyền độc hại với URI chuyển hướng được tạo ra.
+- **Đánh cắp mã ủy quyền**: Cookie đồng ý hiện có có thể khiến máy chủ ủy quyền bỏ qua màn hình đồng ý, chuyển hướng mã đến các điểm cuối do kẻ tấn công kiểm soát.
+- **Truy cập API trái phép**: Mã ủy quyền bị đánh cắp cho phép trao đổi token và giả mạo người dùng mà không cần sự chấp thuận rõ ràng.
 
-- Thực hành mã hóa an toàn trong ứng dụng AI của bạn - bảo vệ chống lại [OWASP Top 10](https://owasp.org/www-project-top-ten/), [OWASP Top 10 cho LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559), sử dụng kho bí mật an toàn cho các bí mật và token, triển khai giao tiếp bảo mật đầu cuối giữa tất cả các thành phần ứng dụng, v.v.
-- Tăng cường bảo mật máy chủ -- sử dụng MFA khi có thể, cập nhật bản vá thường xuyên, tích hợp máy chủ với nhà cung cấp danh tính bên thứ ba để kiểm soát truy cập, v.v.
-- Giữ thiết bị, hạ tầng và ứng dụng luôn được cập nhật bản vá
-- Giám sát bảo mật -- triển khai ghi nhật ký và giám sát ứng dụng AI (bao gồm client/server MCP) và gửi các nhật ký đó đến SIEM trung tâm để phát hiện các hoạt động bất thường
-- Kiến trúc zero trust -- cô lập các thành phần qua kiểm soát mạng và danh tính một cách hợp lý để giảm thiểu di chuyển ngang nếu ứng dụng AI bị xâm phạm.
+#### **Chiến lược giảm thiểu**
 
-# Những điểm chính cần nhớ
+**Kiểm soát bắt buộc:**
+- **Yêu cầu đồng ý rõ ràng**: Các máy chủ proxy MCP sử dụng ID khách hàng tĩnh **PHẢI** nhận được sự đồng ý của người dùng cho mỗi khách hàng được đăng ký động.
+- **Triển khai bảo mật OAuth 2.1**: Tuân theo các thực tiễn bảo mật OAuth hiện tại bao gồm PKCE (Proof Key for Code Exchange) cho tất cả các yêu cầu ủy quyền.
+- **Xác thực khách hàng nghiêm ngặt**: Thực hiện xác thực nghiêm ngặt các URI chuyển hướng và định danh khách hàng để ngăn chặn khai thác.
 
-- Các nguyên tắc bảo mật cơ bản vẫn rất quan trọng: Mã hóa an toàn, nguyên tắc ít đặc quyền, xác minh chuỗi cung ứng và giám sát liên tục là thiết yếu cho MCP và khối lượng công việc AI.
-- MCP mang đến các rủi ro mới — như tiêm prompt, đầu độc công cụ, chiếm đoạt phiên, vấn đề confused deputy, lỗ hổng token passthrough và quyền hạn quá mức — đòi hỏi các kiểm soát truyền thống và đặc thù AI.
-- Sử dụng các thực hành xác thực, ủy quyền và quản lý token mạnh mẽ, tận dụng nhà cung cấp danh tính bên ngoài như Microsoft Entra ID khi có thể.
-- Bảo vệ chống lại tiêm prompt gián tiếp và đầu độc công cụ bằng cách xác thực metadata công cụ, giám sát các thay đổi động và sử dụng các giải pháp như Microsoft Prompt Shields.
-- Triển khai quản lý phiên an toàn bằng cách sử dụng session ID không xác định trước, ràng buộc phiên với danh tính người dùng và không bao giờ dùng phiên để xác thực.
-- Ngăn chặn các cuộc tấn công confused deputy bằng cách yêu cầu sự đồng ý rõ ràng của người dùng cho mỗi client đăng ký động và thực hiện các thực hành bảo mật OAuth đúng cách.
-- Tránh lỗ hổng token passthrough bằng cách đảm bảo máy chủ MCP chỉ chấp nhận token được cấp rõ ràng cho chúng và xác thực các claims token phù hợp.
-- Đối xử với tất cả các thành phần trong chuỗi cung ứng AI của bạn — bao gồm mô hình, embeddings và nhà cung cấp ngữ cảnh — với mức độ nghiêm ngặt tương tự như các phụ thuộc mã nguồn.
-- Luôn cập nhật các đặc tả MCP đang phát triển và đóng góp cho cộng đồng để giúp hình thành các tiêu chuẩn bảo mật.
+### Lỗ hổng "Token Passthrough"
 
-# Tài nguyên bổ sung
+**Token passthrough** là một mô hình chống rõ ràng, trong đó các máy chủ MCP chấp nhận token của khách hàng mà không xác thực đúng cách và chuyển tiếp chúng đến các API hạ nguồn, vi phạm các thông số ủy quyền của MCP.
 
-## Tài nguyên bên ngoài
-- [Microsoft Digital Defense Report](https://aka.ms/mddr)
-- [MCP Specification](https://spec.modelcontextprotocol.io/)
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
-- [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)
-- [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
-- [Rug Pulls in MCP (Wiz Security)](https://www.wiz.io/blog/mcp-security-research-briefing#remote-servers-22)
-- [Prompt Shields Documentation (Microsoft)](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
-- [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559)
+#### **Hệ quả bảo mật**
+
+- **Bỏ qua kiểm soát**: Việc sử dụng token trực tiếp từ khách hàng đến API bỏ qua các kiểm soát quan trọng như giới hạn tốc độ, xác thực và giám sát.
+- **Làm hỏng dấu vết kiểm toán**: Token được phát hành từ phía trên làm cho việc xác định khách hàng trở nên không thể, phá vỡ khả năng điều tra sự cố.
+- **Khai thác dữ liệu qua proxy**: Token không được xác thực cho phép kẻ tấn công sử dụng máy chủ làm proxy để truy cập dữ liệu trái phép.
+- **Vi phạm ranh giới tin cậy**: Các giả định tin cậy của dịch vụ hạ nguồn có thể bị vi phạm khi nguồn gốc của token không thể được xác minh.
+- **Mở rộng tấn công đa dịch vụ**: Token bị xâm phạm được chấp nhận trên nhiều dịch vụ cho phép di chuyển ngang.
+
+#### **Kiểm soát bảo mật bắt buộc**
+
+**Yêu cầu không thể thương lượng:**
+- **Xác thực token**: Các máy chủ MCP **KHÔNG ĐƯỢC** chấp nhận token không được phát hành rõ ràng cho máy chủ MCP.
+- **Xác minh đối tượng**: Luôn xác thực các tuyên bố đối tượng của token khớp với danh tính của máy chủ MCP.
+- **Vòng đời token đúng cách**: Thực hiện token truy cập ngắn hạn với các thực tiễn xoay vòng an toàn.
+
+## Bảo mật chuỗi cung ứng cho hệ thống AI
+
+Bảo mật chuỗi cung ứng đã vượt ra ngoài các phụ thuộc phần mềm truyền thống để bao gồm toàn bộ hệ sinh thái AI. Các triển khai MCP hiện đại phải xác minh và giám sát nghiêm ngặt tất cả các thành phần liên quan đến AI, vì mỗi thành phần đều có thể tạo ra các lỗ hổng tiềm năng làm ảnh hưởng đến tính toàn vẹn của hệ thống.
+
+### Các thành phần chuỗi cung ứng AI mở rộng
+
+**Phụ thuộc phần mềm truyền thống:**
+- Thư viện và framework mã nguồn mở
+- Hình ảnh container và hệ thống cơ sở
+- Công cụ phát triển và quy trình xây dựng
+- Các thành phần và dịch vụ hạ tầng
+
+**Các yếu tố chuỗi cung ứng cụ thể của AI:**
+- **Mô hình nền tảng**: Các mô hình được huấn luyện trước từ nhiều nhà cung cấp yêu cầu xác minh nguồn gốc.
+- **Dịch vụ nhúng**: Dịch vụ vector hóa và tìm kiếm ngữ nghĩa bên ngoài.
+- **Nhà cung cấp ngữ cảnh**: Nguồn dữ liệu, cơ sở tri thức và kho tài liệu.
+- **API bên thứ ba**: Dịch vụ AI bên ngoài, quy trình ML và điểm cuối xử lý dữ liệu.
+- **Tạo tác mô hình**: Trọng số, cấu hình và các biến thể mô hình được tinh chỉnh.
+- **Nguồn dữ liệu huấn luyện**: Bộ dữ liệu được sử dụng để huấn luyện và tinh chỉnh mô hình.
+
+### Chiến lược bảo mật chuỗi cung ứng toàn diện
+
+#### **Xác minh & Tin cậy thành phần**
+- **Xác minh nguồn gốc**: Xác minh nguồn gốc, giấy phép và tính toàn vẹn của tất cả các thành phần AI trước khi tích hợp.
+- **Đánh giá bảo mật**: Thực hiện quét lỗ hổng và đánh giá bảo mật cho các mô hình, nguồn dữ liệu và dịch vụ AI.
+- **Phân tích danh tiếng**: Đánh giá hồ sơ bảo mật và thực tiễn của các nhà cung cấp dịch vụ AI.
+- **Xác minh tuân thủ**: Đảm bảo tất cả các thành phần đáp ứng yêu cầu bảo mật và quy định của tổ chức.
+
+#### **Quy trình triển khai an toàn**
+- **Bảo mật CI/CD tự động**: Tích hợp quét bảo mật trong toàn bộ quy trình triển khai tự động.
+- **Tính toàn vẹn của tạo tác**: Thực hiện xác minh mã hóa cho tất cả các tạo tác được triển khai (mã, mô hình, cấu hình).
+- **Triển khai theo giai đoạn**: Sử dụng chiến lược triển khai tiến bộ với xác thực bảo mật ở mỗi giai đoạn.
+- **Kho tạo tác đáng tin cậy**: Chỉ triển khai từ các kho tạo tác đã được xác minh và bảo mật.
+
+#### **Giám sát & Phản ứng liên tục**
+- **Quét phụ thuộc**: Giám sát lỗ hổng liên tục cho tất cả các phụ thuộc phần mềm và thành phần AI.
+- **Giám sát mô hình**: Đánh giá liên tục hành vi mô hình, sự lệch hiệu suất và các bất thường về bảo mật.
+- **Theo dõi sức khỏe dịch vụ**: Giám sát các dịch vụ AI bên ngoài về tính khả dụng, sự cố bảo mật và thay đổi chính sách.
+- **Tích hợp thông tin mối đe dọa**: Kết hợp các nguồn thông tin mối đe dọa cụ thể cho rủi ro bảo mật AI và ML.
+
+#### **Kiểm soát truy cập & Nguyên tắc tối thiểu**
+- **Quyền hạn cấp thành phần**: Hạn chế quyền truy cập vào mô hình, dữ liệu và dịch vụ dựa trên nhu cầu kinh doanh.
+- **Quản lý tài khoản dịch vụ**: Thực hiện các tài khoản dịch vụ chuyên dụng với quyền hạn tối thiểu cần thiết.
+- **Phân đoạn mạng**: Cách ly các thành phần AI và hạn chế truy cập mạng giữa các dịch vụ.
+- **Kiểm soát cổng API**: Sử dụng cổng API tập trung để kiểm soát và giám sát quyền truy cập vào các dịch vụ AI bên ngoài.
+
+#### **Phản ứng & Khôi phục sự cố**
+- **Quy trình phản ứng nhanh**: Các quy trình được thiết lập để vá hoặc thay thế các thành phần AI bị xâm phạm.
+- **Xoay vòng thông tin xác thực**: Hệ thống tự động để xoay vòng các bí mật, khóa API và thông tin xác thực dịch vụ.
+- **Khả năng quay lại**: Khả năng nhanh chóng quay lại các phiên bản thành phần AI đã biết là tốt trước đó.
+- **Khôi phục vi phạm chuỗi cung ứng**: Các quy trình cụ thể để phản ứng với các sự cố chuỗi cung ứng AI từ phía trên.
+
+### Công cụ & Tích hợp bảo mật của Microsoft
+
+**GitHub Advanced Security** cung cấp bảo vệ chuỗi cung ứng toàn diện bao gồm:
+- **Quét bí mật**: Phát hiện tự động các thông tin xác thực, khóa API và token trong kho lưu trữ.
+- **Quét phụ thuộc**: Đánh giá lỗ hổng cho các phụ thuộc và thư viện mã nguồn mở.
+- **Phân tích CodeQL**: Phân tích mã tĩnh để tìm lỗ hổng bảo mật và vấn đề mã hóa.
+- **Thông tin chuỗi cung ứng**: Hiển thị tình trạng sức khỏe và bảo mật của các phụ thuộc.
+
+**Tích hợp Azure DevOps & Azure Repos:**
+- Tích hợp quét bảo mật liền mạch trên các nền tảng phát triển của Microsoft.
+- Kiểm tra bảo mật tự động trong Azure Pipelines cho khối lượng công việc AI.
+- Thực thi chính sách cho triển khai thành phần AI an toàn.
+
+**Thực tiễn nội bộ của Microsoft:**
+Microsoft thực hiện các thực tiễn bảo mật chuỗi cung ứng rộng rãi trên tất cả các sản phẩm. Tìm hiểu về các phương pháp đã được chứng minh trong [Hành trình bảo mật chuỗi cung ứng phần mềm tại Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/).
+### **Giải pháp bảo mật của Microsoft**
+- [Tài liệu Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Dịch vụ Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [Bảo mật Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
+- [Thực hành tốt nhất về quản lý token Azure](https://learn.microsoft.com/entra/identity-platform/access-tokens)
 - [GitHub Advanced Security](https://github.com/security/advanced-security)
-- [Azure DevOps](https://azure.microsoft.com/products/devops)
-- [Azure Repos](https://azure.microsoft.com/products/devops/repos/)
-- [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/)
-- [Secure Least-Privileged Access (Microsoft)](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
-- [Best Practices for Token Validation and Lifetime](https://learn.microsoft.com/entra/identity-platform/access-tokens)
-- [Use Secure Token Storage and Encrypt Tokens (YouTube)](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
-- [Azure API Management as Auth Gateway for MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
-- [Using Microsoft Entra ID to Authenticate with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/)
 
-## Tài liệu bảo mật bổ sung
+### **Hướng dẫn triển khai & bài học thực hành**
+- [Azure API Management làm cổng xác thực MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+- [Xác thực Microsoft Entra ID với máy chủ MCP](https://den.dev/blog/mcp-server-auth-entra-id-session/)
+- [Lưu trữ và mã hóa token an toàn (Video)](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
 
-Để có hướng dẫn bảo mật chi tiết hơn, vui lòng tham khảo các tài liệu sau:
+### **DevOps & Bảo mật chuỗi cung ứng**
+- [Bảo mật Azure DevOps](https://azure.microsoft.com/products/devops)
+- [Bảo mật Azure Repos](https://azure.microsoft.com/products/devops/repos/)
+- [Hành trình bảo mật chuỗi cung ứng của Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/)
 
-- [MCP Security Best Practices 2025](./mcp-security-best-practices-2025.md) - Danh sách toàn diện các thực hành bảo mật tốt nhất cho triển khai MCP
-- [Azure Content Safety Implementation](./azure-content-safety-implementation.md) - Ví dụ triển khai tích hợp Azure Content Safety với máy chủ MCP
-- [MCP Security Controls 2025](./mcp-security-controls-2025.md) - Các kiểm soát và kỹ thuật bảo mật mới nhất cho triển khai MCP
-- [MCP Best Practices](./mcp-best-practices.md) - Hướng dẫn tham khảo nhanh về bảo mật MCP
+## **Tài liệu bảo mật bổ sung**
 
-### Tiếp theo
+Để có hướng dẫn bảo mật toàn diện, hãy tham khảo các tài liệu chuyên biệt trong phần này:
+
+- **[Thực hành tốt nhất về bảo mật MCP 2025](./mcp-security-best-practices-2025.md)** - Các thực hành tốt nhất về bảo mật đầy đủ cho triển khai MCP
+- **[Triển khai Azure Content Safety](./azure-content-safety-implementation.md)** - Ví dụ thực tiễn về tích hợp Azure Content Safety  
+- **[Kiểm soát bảo mật MCP 2025](./mcp-security-controls-2025.md)** - Các kỹ thuật và kiểm soát bảo mật mới nhất cho triển khai MCP
+- **[Tham khảo nhanh thực hành tốt nhất MCP](./mcp-best-practices.md)** - Hướng dẫn tham khảo nhanh về các thực hành bảo mật MCP thiết yếu
+
+---
+
+## Tiếp theo
 
 Tiếp theo: [Chương 3: Bắt đầu](../03-GettingStarted/README.md)
 
-**Tuyên bố từ chối trách nhiệm**:  
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ gốc của nó nên được coi là nguồn chính xác và đáng tin cậy. Đối với các thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp do con người thực hiện. Chúng tôi không chịu trách nhiệm về bất kỳ sự hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
+**Tuyên bố miễn trừ trách nhiệm**:  
+Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ bản địa nên được coi là nguồn thông tin chính thức. Đối với các thông tin quan trọng, khuyến nghị sử dụng dịch vụ dịch thuật chuyên nghiệp bởi con người. Chúng tôi không chịu trách nhiệm về bất kỳ sự hiểu lầm hoặc diễn giải sai nào phát sinh từ việc sử dụng bản dịch này.

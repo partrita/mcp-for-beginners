@@ -60,7 +60,7 @@ Model Context Protocol သည် AI အက်ပလီကေးရှင်း�
 
 ## Python Implementation
 
-***[!NOTE]*** သင်သည် ဤ [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb) ကို ပြေးနိုင်သည်
+***[!NOTE]*** သင်သည် ဤ [notebook](mcp_support_python.ipynb) ကို ပြေးနိုင်သည်
 
 ### ၁။ လိုအပ်သော ပက်ကေ့ဂျ်များ တပ်ဆင်ခြင်း
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET Implementation
 
-***[!NOTE]*** သင်သည် ဤ [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb) ကို ပြေးနိုင်သည်
+***[!NOTE]*** သင်သည် ဤ [notebook](mcp_support_dotnet.ipynb) ကို ပြေးနိုင်သည်
 
 ### ၁။ လိုအပ်သော ပက်ကေ့ဂျ်များ တပ်ဆင်ခြင်း
 

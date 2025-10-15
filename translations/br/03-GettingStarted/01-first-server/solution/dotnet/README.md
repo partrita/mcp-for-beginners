@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "07863f50601f395c3bdfce30f555f11a",
-  "translation_date": "2025-07-13T17:48:38+00:00",
+  "original_hash": "92af35e8c34923031f3d228dffad9ebb",
+  "translation_date": "2025-09-03T16:06:13+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
   "language_code": "br"
 }
@@ -33,8 +33,8 @@ Isso deve iniciar um servidor web com uma interface visual que permite testar o 
 
 Uma vez que o servidor esteja conectado:
 
-- tente listar as ferramentas e execute `add`, com os argumentos 2 e 4, você deve ver 6 no resultado.
-- vá para resources e resource template e chame "greeting", digite um nome e você verá uma saudação com o nome que forneceu.
+- Experimente listar as ferramentas e executar `add`, com os argumentos 2 e 4. Você deve ver 6 como resultado.
+- Vá para recursos e modelo de recurso e chame "greeting". Digite um nome e você deve ver uma saudação com o nome que forneceu.
 
 ### Testando no modo CLI
 
@@ -94,9 +94,11 @@ Você deve ver a seguinte saída:
 }
 ```
 
-> ![!TIP]
-> Geralmente é muito mais rápido executar o inspector no modo CLI do que no navegador.
-> Leia mais sobre o inspector [aqui](https://github.com/modelcontextprotocol/inspector).
+> [!TIP]
+> Geralmente é muito mais rápido executar o inspetor no modo CLI do que no navegador.
+> Leia mais sobre o inspetor [aqui](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações equivocadas decorrentes do uso desta tradução.

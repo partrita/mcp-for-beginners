@@ -1,67 +1,73 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "860935ff95d05b006d1d3323e8e3f9e8",
-  "translation_date": "2025-07-13T17:19:04+00:00",
+  "original_hash": "f400d87053221363769113c24f117248",
+  "translation_date": "2025-10-06T23:46:00+00:00",
   "source_file": "03-GettingStarted/README.md",
   "language_code": "sw"
 }
 -->
-## Kuanzia  
+## Kuanza  
+
+[![Jenga Seva Yako ya Kwanza ya MCP](../../../translated_images/04.0ea920069efd979a0b2dad51e72c1df7ead9c57b3305796068a6cee1f0dd6674.sw.png)](https://youtu.be/sNDZO9N4m9Y)
+
+_(Bofya picha hapo juu kutazama video ya somo hili)_
 
 Sehemu hii ina masomo kadhaa:
 
-- **1 Server yako ya kwanza**, katika somo hili la kwanza, utajifunza jinsi ya kuunda server yako ya kwanza na kuichunguza kwa kutumia chombo cha inspector, njia muhimu ya kujaribu na kutatua matatizo ya server yako, [kwenda somo](01-first-server/README.md)
+- **1 Seva yako ya kwanza**, katika somo hili la kwanza, utajifunza jinsi ya kuunda seva yako ya kwanza na kuitazama kwa kutumia zana ya ukaguzi, njia muhimu ya kujaribu na kurekebisha seva yako, [kwenda kwenye somo](01-first-server/README.md)
 
-- **2 Mteja**, katika somo hili, utajifunza jinsi ya kuandika mteja anayeweza kuungana na server yako, [kwenda somo](02-client/README.md)
+- **2 Mteja**, katika somo hili, utajifunza jinsi ya kuandika mteja ambaye anaweza kuunganishwa na seva yako, [kwenda kwenye somo](02-client/README.md)
 
-- **3 Mteja na LLM**, njia bora zaidi ya kuandika mteja ni kwa kuongeza LLM ili iweze "kujadiliana" na server yako kuhusu nini cha kufanya, [kwenda somo](03-llm-client/README.md)
+- **3 Mteja na LLM**, njia bora zaidi ya kuandika mteja ni kwa kuongeza LLM ili iweze "kujadiliana" na seva yako kuhusu nini cha kufanya, [kwenda kwenye somo](03-llm-client/README.md)
 
-- **4 Kutumia server kwa mode ya GitHub Copilot Agent katika Visual Studio Code**. Hapa, tunatazama jinsi ya kuendesha MCP Server yetu kutoka ndani ya Visual Studio Code, [kwenda somo](04-vscode/README.md)
+- **4 Kutumia seva katika hali ya GitHub Copilot Agent ndani ya Visual Studio Code**. Hapa, tunatazama jinsi ya kuendesha seva yetu ya MCP kutoka ndani ya Visual Studio Code, [kwenda kwenye somo](04-vscode/README.md)
 
-- **5 Kutumia kutoka SSE (Server Sent Events)** SSE ni kiwango cha mtiririko wa data kutoka server kwenda kwa mteja, kinachoruhusu server kusukuma masasisho ya wakati halisi kwa wateja kupitia HTTP [kwenda somo](05-sse-server/README.md)
+- **5 Seva ya Usafirishaji ya stdio**. Usafirishaji wa stdio ni kiwango kilichopendekezwa kwa mawasiliano kati ya seva na mteja wa MCP katika maelezo ya sasa, ikitoa mawasiliano salama kwa msingi wa subprocess, [kwenda kwenye somo](05-stdio-server/README.md)
 
-- **6 HTTP Streaming na MCP (Streamable HTTP)**. Jifunze kuhusu mtiririko wa kisasa wa HTTP, arifa za maendeleo, na jinsi ya kutekeleza server na wateja wa MCP wenye uwezo wa kupanuka na wa wakati halisi kwa kutumia Streamable HTTP. [kwenda somo](06-http-streaming/README.md)
+- **6 Kutiririsha HTTP na MCP (HTTP Inayoweza Kutiririka)**. Jifunze kuhusu kutiririsha HTTP ya kisasa, arifa za maendeleo, na jinsi ya kutekeleza seva na wateja wa MCP wa wakati halisi, [kwenda kwenye somo](06-http-streaming/README.md)
 
-- **7 Kutumia AI Toolkit kwa VSCode** kwa ajili ya kutumia na kujaribu MCP Clients na Servers zako [kwenda somo](07-aitk/README.md)
+- **7 Kutumia Zana za AI kwa VSCode** ili kutumia na kujaribu wateja na seva zako za MCP, [kwenda kwenye somo](07-aitk/README.md)
 
-- **8 Upimaji**. Hapa tutazingatia hasa jinsi ya kujaribu server na mteja wetu kwa njia mbalimbali, [kwenda somo](08-testing/README.md)
+- **8 Upimaji**. Hapa tutazingatia hasa jinsi tunavyoweza kujaribu seva na mteja wetu kwa njia tofauti, [kwenda kwenye somo](08-testing/README.md)
 
-- **9 Utekelezaji**. Sura hii itatazama njia tofauti za kupeleka suluhisho zako za MCP, [kwenda somo](09-deployment/README.md)
+- **9 Uwekaji**. Sura hii itaangalia njia tofauti za kuweka suluhisho zako za MCP, [kwenda kwenye somo](09-deployment/README.md)
 
+- **10 Matumizi ya seva ya hali ya juu**. Sura hii inashughulikia matumizi ya hali ya juu ya seva, [kwenda kwenye somo](./10-advanced/README.md)
 
-Model Context Protocol (MCP) ni itifaki wazi inayobainisha jinsi programu zinavyotoa muktadha kwa LLMs. Fikiria MCP kama bandari ya USB-C kwa programu za AI - inatoa njia ya kawaida ya kuunganisha mifano ya AI na vyanzo tofauti vya data na zana.
+- **11 Uthibitishaji**. Sura hii inashughulikia jinsi ya kuongeza uthibitishaji rahisi, kutoka kwa Uthibitishaji wa Msingi hadi kutumia JWT na RBAC. Unahimizwa kuanza hapa na kisha kuangalia Mada za Juu katika Sura ya 5 na kufanya uimarishaji wa usalama wa ziada kupitia mapendekezo katika Sura ya 2, [kwenda kwenye somo](./11-simple-auth/README.md)
+
+Model Context Protocol (MCP) ni itifaki ya wazi inayosawazisha jinsi programu zinavyotoa muktadha kwa LLMs. Fikiria MCP kama bandari ya USB-C kwa programu za AI - inatoa njia ya kawaida ya kuunganisha mifano ya AI na vyanzo vya data na zana tofauti.
 
 ## Malengo ya Kujifunza
 
 Mwisho wa somo hili, utaweza:
 
-- Kuandaa mazingira ya maendeleo kwa MCP katika C#, Java, Python, TypeScript, na JavaScript
-- Kujenga na kupeleka server za MCP za msingi zenye vipengele maalum (rasilimali, maelekezo, na zana)
-- Kuunda programu za mwenyeji zinazounganisha na server za MCP
-- Kupima na kutatua matatizo ya utekelezaji wa MCP
+- Kuweka mazingira ya maendeleo kwa MCP katika C#, Java, Python, TypeScript, na JavaScript
+- Kujenga na kuweka seva za MCP za msingi zenye vipengele maalum (rasilimali, maelekezo, na zana)
+- Kuunda programu za mwenyeji zinazounganishwa na seva za MCP
+- Kujaribu na kurekebisha utekelezaji wa MCP
 - Kuelewa changamoto za kawaida za usanidi na suluhisho zake
 - Kuunganisha utekelezaji wako wa MCP na huduma maarufu za LLM
 
-## Kuandaa Mazingira Yako ya MCP
+## Kuweka Mazingira Yako ya MCP
 
-Kabla ya kuanza kufanya kazi na MCP, ni muhimu kuandaa mazingira yako ya maendeleo na kuelewa mtiririko wa kazi wa msingi. Sehemu hii itakuongoza kupitia hatua za mwanzo za usanidi ili kuhakikisha kuanza kwa laini na MCP.
+Kabla ya kuanza kufanya kazi na MCP, ni muhimu kuandaa mazingira yako ya maendeleo na kuelewa mtiririko wa kazi wa msingi. Sehemu hii itakuongoza kupitia hatua za awali za usanidi ili kuhakikisha unapata mwanzo mzuri na MCP.
 
 ### Mahitaji ya Awali
 
-Kabla ya kuingia katika maendeleo ya MCP, hakikisha una:
+Kabla ya kuanza maendeleo ya MCP, hakikisha una:
 
-- **Mazingira ya Maendeleo**: Kwa lugha uliyochagua (C#, Java, Python, TypeScript, au JavaScript)
-- **IDE/Mhariri**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm, au mhariri wa kisasa wa msimbo wowote
+- **Mazingira ya Maendeleo**: Kwa lugha unayochagua (C#, Java, Python, TypeScript, au JavaScript)
+- **IDE/Mhariri**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm, au mhariri wowote wa kisasa wa msimbo
 - **Wasimamizi wa Pakiti**: NuGet, Maven/Gradle, pip, au npm/yarn
-- **API Keys**: Kwa huduma zozote za AI unazopanga kutumia katika programu zako za mwenyeji
-
+- **Vifunguo vya API**: Kwa huduma zozote za AI unazopanga kutumia katika programu zako za mwenyeji
 
 ### SDK Rasmi
 
-Katika sura zijazo utaona suluhisho zilizojengwa kwa kutumia Python, TypeScript, Java na .NET. Hapa ni SDK zote zinazotegemewa rasmi.
+Katika sura zijazo utaona suluhisho zilizojengwa kwa kutumia Python, TypeScript, Java na .NET. Hapa kuna SDK zote zinazoungwa mkono rasmi.
 
-MCP hutoa SDK rasmi kwa lugha nyingi:
+MCP inatoa SDK rasmi kwa lugha mbalimbali:
 - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Inasimamiwa kwa ushirikiano na Microsoft
 - [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Inasimamiwa kwa ushirikiano na Spring AI
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Utekelezaji rasmi wa TypeScript
@@ -70,33 +76,35 @@ MCP hutoa SDK rasmi kwa lugha nyingi:
 - [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Inasimamiwa kwa ushirikiano na Loopwork AI
 - [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Utekelezaji rasmi wa Rust
 
-## Muhimu wa Kumbuka
+## Mambo Muhimu ya Kujifunza
 
-- Kuandaa mazingira ya maendeleo ya MCP ni rahisi kwa kutumia SDK za lugha maalum
-- Kujenga server za MCP kunahusisha kuunda na kusajili zana zenye miundo wazi
-- Wateja wa MCP huungana na server na mifano ili kutumia uwezo uliopanuliwa
-- Kupima na kutatua matatizo ni muhimu kwa utekelezaji wa MCP unaotegemewa
-- Chaguzi za utekelezaji zinatofautiana kutoka maendeleo ya ndani hadi suluhisho za wingu
+- Kuweka mazingira ya maendeleo ya MCP ni rahisi kwa kutumia SDK maalum za lugha
+- Kujenga seva za MCP kunahusisha kuunda na kusajili zana zenye miundo wazi
+- Wateja wa MCP huunganishwa na seva na mifano ili kutumia uwezo wa ziada
+- Upimaji na kurekebisha ni muhimu kwa utekelezaji wa MCP wa kuaminika
+- Chaguo za uwekaji zinatoka kwa maendeleo ya ndani hadi suluhisho za msingi wa wingu
 
 ## Mazoezi
 
-Tuna seti ya mifano inayosaidia mazoezi utakayoyaona katika sura zote za sehemu hii. Zaidi ya hayo kila sura pia ina mazoezi na kazi zake binafsi
+Tuna seti ya sampuli zinazosaidia mazoezi utakayoyaona katika sura zote za sehemu hii. Zaidi ya hayo, kila sura pia ina mazoezi na kazi zake.
 
-- [Kalkuleta ya Java](./samples/java/calculator/README.md)
-- [Kalkuleta ya .Net](../../../03-GettingStarted/samples/csharp)
-- [Kalkuleta ya JavaScript](./samples/javascript/README.md)
-- [Kalkuleta ya TypeScript](./samples/typescript/README.md)
-- [Kalkuleta ya Python](../../../03-GettingStarted/samples/python)
+- [Kikokotoo cha Java](./samples/java/calculator/README.md)
+- [Kikokotoo cha .Net](../../../03-GettingStarted/samples/csharp)
+- [Kikokotoo cha JavaScript](./samples/javascript/README.md)
+- [Kikokotoo cha TypeScript](./samples/typescript/README.md)
+- [Kikokotoo cha Python](../../../03-GettingStarted/samples/python)
 
-## Rasilimali Zaidi
+## Rasilimali za Ziada
 
-- [Jenga Maajenti kwa kutumia Model Context Protocol kwenye Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [Jenga Mawakala kwa kutumia Model Context Protocol kwenye Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
 - [MCP ya Mbali na Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
 - [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
-## Kinachofuata
+## Nini Kinachofuata
 
-Ifuatayo: [Kuunda Server yako ya kwanza ya MCP](01-first-server/README.md)
+Kinachofuata: [Kuunda Seva Yako ya Kwanza ya MCP](01-first-server/README.md)
 
-**Kiarifu cha Kutotegemea**:  
-Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatubebei dhamana kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+---
+
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya kutafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

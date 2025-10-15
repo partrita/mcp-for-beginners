@@ -1,28 +1,30 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "affcf199a44f60283a289dcb69dc144e",
-  "translation_date": "2025-07-17T09:12:54+00:00",
+  "original_hash": "8358c13b5b6877e475674697cdc1a904",
+  "translation_date": "2025-08-18T18:04:42+00:00",
   "source_file": "03-GettingStarted/02-client/complete_examples.md",
   "language_code": "ms"
 }
 -->
 # Contoh Lengkap Klien MCP
 
-Direktori ini mengandungi contoh lengkap dan berfungsi bagi klien MCP dalam pelbagai bahasa pengaturcaraan. Setiap klien menunjukkan fungsi penuh yang diterangkan dalam tutorial utama README.md.
+Direktori ini mengandungi contoh lengkap dan berfungsi untuk klien MCP dalam pelbagai bahasa pengaturcaraan. Setiap klien menunjukkan fungsi penuh seperti yang diterangkan dalam tutorial README.md utama.
 
-## Klien Tersedia
+## Klien Yang Tersedia
 
 ### 1. Klien Java (`client_example_java.java`)
+
 - **Pengangkutan**: SSE (Server-Sent Events) melalui HTTP
 - **Pelayan Sasaran**: `http://localhost:8080`
-- **Ciri-ciri**: 
+- **Ciri-ciri**:
   - Penubuhan sambungan dan ping
   - Senarai alat
   - Operasi kalkulator (tambah, tolak, darab, bahagi, bantuan)
-  - Pengendalian ralat dan pengekstrakan keputusan
+  - Pengendalian ralat dan pengekstrakan hasil
 
 **Untuk menjalankan:**
+
 ```bash
 # Ensure your MCP server is running on localhost:8080
 javac client_example_java.java
@@ -30,21 +32,24 @@ java client_example_java
 ```
 
 ### 2. Klien C# (`client_example_csharp.cs`)
+
 - **Pengangkutan**: Stdio (Input/Output Standard)
 - **Pelayan Sasaran**: Pelayan MCP .NET tempatan melalui dotnet run
 - **Ciri-ciri**:
   - Permulaan pelayan automatik melalui pengangkutan stdio
   - Senarai alat dan sumber
   - Operasi kalkulator
-  - Penguraian keputusan JSON
-  - Pengendalian ralat menyeluruh
+  - Penguraian hasil JSON
+  - Pengendalian ralat yang menyeluruh
 
 **Untuk menjalankan:**
+
 ```bash
 dotnet run
 ```
 
 ### 3. Klien TypeScript (`client_example_typescript.ts`)
+
 - **Pengangkutan**: Stdio (Input/Output Standard)
 - **Pelayan Sasaran**: Pelayan MCP Node.js tempatan
 - **Ciri-ciri**:
@@ -55,6 +60,7 @@ dotnet run
   - Pengendalian ralat yang kukuh
 
 **Untuk menjalankan:**
+
 ```bash
 # First compile TypeScript (if needed)
 npm run build
@@ -66,6 +72,7 @@ node client_example_typescript.js
 ```
 
 ### 4. Klien Python (`client_example_python.py`)
+
 - **Pengangkutan**: Stdio (Input/Output Standard)  
 - **Pelayan Sasaran**: Pelayan MCP Python tempatan
 - **Ciri-ciri**:
@@ -76,13 +83,14 @@ node client_example_typescript.js
   - Organisasi berasaskan kelas
 
 **Untuk menjalankan:**
+
 ```bash
 python client_example_python.py
 ```
 
-## Ciri-ciri Umum Di Semua Klien
+## Ciri-ciri Umum Dalam Semua Klien
 
-Setiap pelaksanaan klien menunjukkan:
+Setiap implementasi klien menunjukkan:
 
 1. **Pengurusan Sambungan**
    - Menubuhkan sambungan ke pelayan MCP
@@ -94,59 +102,60 @@ Setiap pelaksanaan klien menunjukkan:
    - Menyenaraikan sumber yang tersedia (jika disokong)
    - Menyenaraikan prompt yang tersedia (jika disokong)
 
-3. **Panggilan Alat**
+3. **Pelaksanaan Alat**
    - Operasi kalkulator asas (tambah, tolak, darab, bahagi)
-   - Arahan bantuan untuk maklumat pelayan
-   - Pemindahan argumen dan pengendalian keputusan yang betul
+   - Perintah bantuan untuk maklumat pelayan
+   - Penghantaran argumen dan pengendalian hasil yang betul
 
 4. **Pengendalian Ralat**
    - Ralat sambungan
    - Ralat pelaksanaan alat
-   - Kegagalan yang teratur dan maklum balas kepada pengguna
+   - Kegagalan yang terkawal dan maklum balas kepada pengguna
 
-5. **Pemprosesan Keputusan**
-   - Mengekstrak kandungan teks dari respons
+5. **Pemprosesan Hasil**
+   - Mengekstrak kandungan teks daripada respons
    - Memformat output untuk kebolehbacaan
-   - Mengendalikan pelbagai format respons
+   - Mengendalikan format respons yang berbeza
 
 ## Prasyarat
 
-Sebelum menjalankan klien ini, pastikan anda:
+Sebelum menjalankan klien ini, pastikan anda mempunyai:
 
 1. **Pelayan MCP yang sepadan sedang berjalan** (dari `../01-first-server/`)
-2. **Kebergantungan yang diperlukan telah dipasang** untuk bahasa pilihan anda
+2. **Kebergantungan yang diperlukan dipasang** untuk bahasa pilihan anda
 3. **Sambungan rangkaian yang betul** (untuk pengangkutan berasaskan HTTP)
 
-## Perbezaan Utama Antara Pelaksanaan
+## Perbezaan Utama Antara Implementasi
 
-| Bahasa     | Pengangkutan | Permulaan Pelayan | Model Async | Perpustakaan Utama |
-|------------|--------------|-------------------|-------------|--------------------|
-| Java       | SSE/HTTP     | Luaran            | Sinkron     | WebFlux, MCP SDK   |
-| C#         | Stdio        | Automatik         | Async/Await | .NET MCP SDK       |
-| TypeScript | Stdio        | Automatik         | Async/Await | Node MCP SDK       |
-| Python     | Stdio        | Automatik         | AsyncIO     | Python MCP SDK     |
+| Bahasa     | Pengangkutan | Permulaan Pelayan | Model Async | Pustaka Utama       |
+|------------|--------------|-------------------|-------------|---------------------|
+| Java       | SSE/HTTP     | Luaran            | Sync        | WebFlux, MCP SDK    |
+| C#         | Stdio        | Automatik         | Async/Await | .NET MCP SDK        |
+| TypeScript | Stdio        | Automatik         | Async/Await | Node MCP SDK        |
+| Python     | Stdio        | Automatik         | AsyncIO     | Python MCP SDK      |
+| Rust       | Stdio        | Automatik         | Async/Await | Rust MCP SDK, Tokio |
 
 ## Langkah Seterusnya
 
 Selepas meneroka contoh klien ini:
 
-1. **Ubah suai klien** untuk menambah ciri atau operasi baru
-2. **Bina pelayan anda sendiri** dan uji dengan klien ini
-3. **Cuba pengangkutan berbeza** (SSE vs. Stdio)
+1. **Ubah suai klien** untuk menambah ciri atau operasi baharu
+2. **Cipta pelayan anda sendiri** dan uji dengan klien ini
+3. **Eksperimen dengan pengangkutan yang berbeza** (SSE vs. Stdio)
 4. **Bina aplikasi yang lebih kompleks** yang mengintegrasikan fungsi MCP
 
 ## Penyelesaian Masalah
 
 ### Isu Biasa
 
-1. **Sambungan ditolak**: Pastikan pelayan MCP berjalan pada port/laluan yang dijangka
-2. **Modul tidak ditemui**: Pasang MCP SDK yang diperlukan untuk bahasa anda
+1. **Sambungan ditolak**: Pastikan pelayan MCP sedang berjalan pada port/laluan yang dijangka
+2. **Modul tidak dijumpai**: Pasang MCP SDK yang diperlukan untuk bahasa anda
 3. **Kebenaran ditolak**: Semak kebenaran fail untuk pengangkutan stdio
-4. **Alat tidak ditemui**: Sahkan pelayan melaksanakan alat yang dijangka
+4. **Alat tidak dijumpai**: Sahkan pelayan melaksanakan alat yang dijangka
 
 ### Petua Debug
 
-1. **Aktifkan log terperinci** dalam MCP SDK anda
+1. **Aktifkan log verbose** dalam MCP SDK anda
 2. **Semak log pelayan** untuk mesej ralat
 3. **Sahkan nama dan tandatangan alat** sepadan antara klien dan pelayan
 4. **Uji dengan MCP Inspector** terlebih dahulu untuk mengesahkan fungsi pelayan
@@ -159,4 +168,4 @@ Selepas meneroka contoh klien ini:
 - [Dokumentasi Rasmi MCP](https://modelcontextprotocol.io/)
 
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

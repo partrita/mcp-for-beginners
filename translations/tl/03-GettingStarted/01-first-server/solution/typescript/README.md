@@ -1,54 +1,54 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ac67652abc453e2a7e2c75cd7a8897ae",
-  "translation_date": "2025-07-13T18:06:46+00:00",
+  "original_hash": "6ebbb78b04c9b1f6c2367c713524fc95",
+  "translation_date": "2025-09-03T16:14:31+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/typescript/README.md",
   "language_code": "tl"
 }
 -->
-# Pagpapatakbo ng sample na ito
+# Pagtakbo ng halimbawang ito
 
-Inirerekomenda na i-install mo ang `uv` pero hindi ito kinakailangan, tingnan ang [instructions](https://docs.astral.sh/uv/#highlights)
+Inirerekomenda na i-install ang `uv` pero hindi ito kinakailangan, tingnan ang [mga tagubilin](https://docs.astral.sh/uv/#highlights)
 
-## -1- I-install ang mga dependencies
+## -1- I-install ang mga kinakailangang dependency
 
 ```bash
 npm install
 ```
 
-## -3- Patakbuhin ang sample
+## -3- Patakbuhin ang halimbawa
 
 ```bash
 npm run build
 ```
 
-## -4- Subukan ang sample
+## -4- Subukan ang halimbawa
 
-Habang tumatakbo ang server sa isang terminal, buksan ang isa pang terminal at patakbuhin ang sumusunod na utos:
+Habang tumatakbo ang server sa isang terminal, magbukas ng isa pang terminal at patakbuhin ang sumusunod na utos:
 
 ```bash
 npm run inspector
 ```
 
-Dapat magsimula ito ng isang web server na may visual interface na magpapahintulot sa iyo na subukan ang sample.
+Dapat nitong simulan ang isang web server na may visual na interface na magpapahintulot sa iyo na subukan ang halimbawa.
 
 Kapag nakakonekta na ang server:
 
-- subukang ilista ang mga tools at patakbuhin ang `add`, gamit ang mga argumento na 2 at 4, dapat lumabas ang 6 bilang resulta.
-- pumunta sa resources at resource template at tawagin ang "greeting", mag-type ng pangalan at makikita mo ang pagbati gamit ang pangalang ibinigay mo.
+- Subukang ilista ang mga tool at patakbuhin ang `add`, gamit ang mga argumento na 2 at 4, dapat mong makita ang 6 bilang resulta.
+- Pumunta sa mga resources at resource template at tawagin ang "greeting", mag-type ng isang pangalan at dapat mong makita ang pagbati gamit ang pangalang ibinigay mo.
 
 ### Pagsubok sa CLI mode
 
-Ang inspector na pinatakbo mo ay isang Node.js app at ang `mcp dev` ay isang wrapper nito.
+Ang inspector na pinatakbo mo ay aktwal na isang Node.js app at ang `mcp dev` ay isang wrapper nito.
 
-Maaari mo itong patakbuhin nang direkta sa CLI mode sa pamamagitan ng pagpapatakbo ng sumusunod na utos:
+Maaari mo itong patakbuhin nang direkta sa CLI mode gamit ang sumusunod na utos:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli node ./build/index.js --method tools/list
 ```
 
-Ililista nito ang lahat ng tools na available sa server. Dapat mong makita ang sumusunod na output:
+Ili-lista nito ang lahat ng mga tool na available sa server. Dapat mong makita ang sumusunod na output:
 
 ```text
 {
@@ -79,7 +79,7 @@ Ililista nito ang lahat ng tools na available sa server. Dapat mong makita ang s
 }
 ```
 
-Para tawagin ang isang tool, i-type:
+Upang tawagin ang isang tool, i-type:
 
 ```bash
 nnpx @modelcontextprotocol/inspector --cli node ./build/index.js --method tools/call --tool-name add --tool-arg a=1 --tool-arg b=2
@@ -99,9 +99,11 @@ Dapat mong makita ang sumusunod na output:
 }
 ```
 
-> ![!TIP]
-> Mas mabilis karaniwang patakbuhin ang inspector sa CLI mode kaysa sa browser.
-> Basahin pa ang tungkol sa inspector [dito](https://github.com/modelcontextprotocol/inspector).
+> [!TIP]
+> Karaniwang mas mabilis patakbuhin ang inspector sa CLI mode kaysa sa browser.
+> Magbasa pa tungkol sa inspector [dito](https://github.com/modelcontextprotocol/inspector).
 
-**Paalala**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagamat nagsusumikap kami para sa katumpakan, pakatandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o di-tumpak na impormasyon. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.
+---
+
+**Paunawa**:  
+Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, pakitandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi eksaktong interpretasyon. Ang orihinal na dokumento sa kanyang katutubong wika ang dapat ituring na opisyal na sanggunian. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na dulot ng paggamit ng pagsasaling ito.

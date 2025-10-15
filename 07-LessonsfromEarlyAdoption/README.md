@@ -10,6 +10,8 @@ This module explores how real organizations and developers are leveraging the Mo
 
 Azure MCP ([https://aka.ms/azmcp](https://aka.ms/azmcp)) is Microsoft's managed, enterprise-grade implementation of the Model Context Protocol, designed to provide scalable, secure, and compliant MCP server capabilities as a cloud service. This comprehensive suite includes multiple specialized MCP servers for different Azure services and scenarios.
 
+[Microsoft MCP Center](https://mcp.azure.com) Build Your Scalable, Enterprise-Ready MCP Registry with Azure API Center this is a catalog of available Microsoft MCP Servers.
+
 > **🎯 Production Ready Tools**
 > 
 > This case study represents multiple production-ready MCP servers! Learn about the Azure MCP Server and other Azure-integrated servers in our [**Microsoft MCP Servers Guide**](microsoft-mcp-servers.md#2--azure-mcp-server).
@@ -355,6 +357,7 @@ spec:
 - [Azure MCP Documentation](https://aka.ms/azmcp)
 - [Azure MCP Server GitHub Repository](https://github.com/Azure/azure-mcp)
 - [Azure AI Services](https://azure.microsoft.com/en-us/products/ai-services/)
+- [Microsoft MCP Center](https://mcp.azure.com)
 
 ## Case Study 6: NLWeb 
 MCP (Model Context Protocol) is an emerging protocol for Chatbots and AI assistants to interact with tools. Every NLWeb instance is also an MCP server, which supports one core method, ask, which is used to ask a website a question in natural language. The returned response leverages schema.org, a widely-used vocabulary for describing web data. Loosely speaking, MCP is NLWeb as Http is to HTML. NLWeb combines protocols, Schema.org formats, and sample code to help sites rapidly create these endpoints, benefiting both humans through conversational interfaces and machines through natural agent-to-agent interaction.

@@ -1,15 +1,15 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ac67652abc453e2a7e2c75cd7a8897ae",
-  "translation_date": "2025-07-13T18:05:49+00:00",
+  "original_hash": "6ebbb78b04c9b1f6c2367c713524fc95",
+  "translation_date": "2025-09-03T16:09:39+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/typescript/README.md",
   "language_code": "sv"
 }
 -->
 # Köra detta exempel
 
-Det rekommenderas att du installerar `uv` men det är inte ett måste, se [instruktioner](https://docs.astral.sh/uv/#highlights)
+Det rekommenderas att installera `uv`, men det är inte ett måste, se [instruktioner](https://docs.astral.sh/uv/#highlights)
 
 ## -1- Installera beroenden
 
@@ -18,7 +18,6 @@ npm install
 ```
 
 ## -3- Kör exemplet
-
 
 ```bash
 npm run build
@@ -36,12 +35,12 @@ Detta bör starta en webbserver med ett visuellt gränssnitt som låter dig test
 
 När servern är ansluten:
 
-- prova att lista verktyg och kör `add` med argumenten 2 och 4, du bör se 6 som resultat.
-- gå till resources och resource template och anropa "greeting", skriv in ett namn och du bör se en hälsning med det namn du angav.
+- försök lista verktyg och kör `add`, med argumenten 2 och 4, du bör se 6 som resultat.
+- gå till resurser och resursmall och anropa "greeting", skriv in ett namn och du bör se en hälsning med namnet du angav.
 
 ### Testa i CLI-läge
 
-Inspektören du körde är egentligen en Node.js-app och `mcp dev` är ett gränssnitt runt den.
+Inspektorn du körde är faktiskt en Node.js-app och `mcp dev` är ett omslag runt den.
 
 Du kan starta den direkt i CLI-läge genom att köra följande kommando:
 
@@ -49,7 +48,7 @@ Du kan starta den direkt i CLI-läge genom att köra följande kommando:
 npx @modelcontextprotocol/inspector --cli node ./build/index.js --method tools/list
 ```
 
-Detta listar alla verktyg som finns tillgängliga på servern. Du bör se följande output:
+Detta kommer att lista alla verktyg som är tillgängliga på servern. Du bör se följande output:
 
 ```text
 {
@@ -100,9 +99,11 @@ Du bör se följande output:
 }
 ```
 
-> ![!TIP]
-> Det går oftast mycket snabbare att köra inspektören i CLI-läge än i webbläsaren.
-> Läs mer om inspektören [här](https://github.com/modelcontextprotocol/inspector).
+> [!TIP]
+> Det är vanligtvis mycket snabbare att köra inspektorn i CLI-läge än i webbläsaren.
+> Läs mer om inspektorn [här](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Ansvarsfriskrivning**:  
-Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, vänligen observera att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess modersmål bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för några missförstånd eller feltolkningar som uppstår vid användning av denna översättning.
+Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, bör du vara medveten om att automatiserade översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess originalspråk bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för eventuella missförstånd eller feltolkningar som uppstår vid användning av denna översättning.

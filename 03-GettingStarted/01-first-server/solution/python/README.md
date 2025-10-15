@@ -11,7 +11,7 @@ python -m venv venv
 ## -1- Activate the virtual environment
 
 ```bash
-venv\Scrips\activate
+venv\Scripts\activate
 ```
 
 ## -2- Install the dependencies
@@ -104,6 +104,6 @@ You should see the following output:
 }
 ```
 
-> ![!TIP]
+> [!TIP]
 > It's usually a lot faster to run the ispector in CLI mode than in the browser.
 > Read more about the inspector [here](https://github.com/modelcontextprotocol/inspector).

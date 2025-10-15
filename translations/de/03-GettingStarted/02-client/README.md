@@ -1,42 +1,42 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "22afa94e3912cd37af9ff20cf4aebc93",
-  "translation_date": "2025-07-22T08:33:53+00:00",
+  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
+  "translation_date": "2025-08-12T19:19:32+00:00",
   "source_file": "03-GettingStarted/02-client/README.md",
   "language_code": "de"
 }
 -->
 # Erstellen eines Clients
 
-Clients sind benutzerdefinierte Anwendungen oder Skripte, die direkt mit einem MCP-Server kommunizieren, um Ressourcen, Tools und Eingabeaufforderungen anzufordern. Im Gegensatz zur Verwendung des Inspektor-Tools, das eine grafische Benutzeroberfläche für die Interaktion mit dem Server bietet, ermöglicht das Schreiben eines eigenen Clients programmatische und automatisierte Interaktionen. Dies ermöglicht Entwicklern, MCP-Funktionen in ihre eigenen Arbeitsabläufe zu integrieren, Aufgaben zu automatisieren und maßgeschneiderte Lösungen für spezifische Anforderungen zu erstellen.
+Clients sind benutzerdefinierte Anwendungen oder Skripte, die direkt mit einem MCP-Server kommunizieren, um Ressourcen, Tools und Eingabeaufforderungen anzufordern. Im Gegensatz zur Verwendung des Inspektor-Tools, das eine grafische Benutzeroberfläche für die Interaktion mit dem Server bietet, ermöglicht das Schreiben eines eigenen Clients programmatische und automatisierte Interaktionen. Dies erlaubt es Entwicklern, MCP-Funktionen in ihre eigenen Workflows zu integrieren, Aufgaben zu automatisieren und maßgeschneiderte Lösungen für spezifische Anforderungen zu erstellen.
 
 ## Überblick
 
-Diese Lektion führt in das Konzept von Clients innerhalb des Model Context Protocol (MCP)-Ökosystems ein. Sie lernen, wie Sie Ihren eigenen Client schreiben und ihn mit einem MCP-Server verbinden.
+Diese Lektion führt in das Konzept von Clients innerhalb des Model Context Protocol (MCP)-Ökosystems ein. Sie lernen, wie Sie Ihren eigenen Client schreiben und diesen mit einem MCP-Server verbinden.
 
 ## Lernziele
 
 Am Ende dieser Lektion werden Sie in der Lage sein:
 
-- Verstehen, was ein Client leisten kann.
-- Ihren eigenen Client schreiben.
-- Den Client mit einem MCP-Server verbinden und testen, um sicherzustellen, dass dieser wie erwartet funktioniert.
+- Zu verstehen, was ein Client leisten kann.
+- Ihren eigenen Client zu schreiben.
+- Den Client mit einem MCP-Server zu verbinden und zu testen, um sicherzustellen, dass dieser wie erwartet funktioniert.
 
 ## Was gehört zum Schreiben eines Clients?
 
 Um einen Client zu schreiben, müssen Sie Folgendes tun:
 
-- **Die richtigen Bibliotheken importieren**. Sie verwenden dieselbe Bibliothek wie zuvor, nur mit anderen Konstrukten.
-- **Einen Client instanziieren**. Dies beinhaltet das Erstellen einer Client-Instanz und deren Verbindung mit der gewählten Transportmethode.
-- **Entscheiden, welche Ressourcen aufgelistet werden sollen**. Ihr MCP-Server verfügt über Ressourcen, Tools und Eingabeaufforderungen. Sie müssen entscheiden, welche davon aufgelistet werden sollen.
-- **Den Client in eine Host-Anwendung integrieren**. Sobald Sie die Fähigkeiten des Servers kennen, müssen Sie ihn in Ihre Host-Anwendung integrieren, sodass bei Eingabe einer Eingabeaufforderung oder eines anderen Befehls durch den Benutzer die entsprechende Serverfunktion aufgerufen wird.
+- **Die richtigen Bibliotheken importieren**. Sie verwenden dieselbe Bibliothek wie zuvor, jedoch mit anderen Konstrukten.
+- **Einen Client instanziieren**. Dies beinhaltet das Erstellen einer Client-Instanz und das Verbinden mit der gewählten Transportmethode.
+- **Entscheiden, welche Ressourcen aufgelistet werden sollen**. Ihr MCP-Server bietet Ressourcen, Tools und Eingabeaufforderungen. Sie müssen entscheiden, welche davon aufgelistet werden sollen.
+- **Den Client in eine Hostanwendung integrieren**. Sobald Sie die Fähigkeiten des Servers kennen, müssen Sie diesen in Ihre Hostanwendung integrieren, sodass bei Eingabe einer Eingabeaufforderung oder eines Befehls durch den Benutzer die entsprechende Serverfunktion aufgerufen wird.
 
 Nachdem wir nun auf hoher Ebene verstanden haben, was wir tun werden, schauen wir uns als Nächstes ein Beispiel an.
 
 ### Ein Beispiel-Client
 
-Schauen wir uns diesen Beispiel-Client an:
+Werfen wir einen Blick auf diesen Beispiel-Client:
 
 ### TypeScript
 
@@ -89,20 +89,20 @@ const result = await client.callTool({
 Im obigen Code haben wir:
 
 - Die Bibliotheken importiert.
-- Eine Instanz eines Clients erstellt und ihn über stdio für den Transport verbunden.
+- Eine Instanz eines Clients erstellt und diese mithilfe von stdio für den Transport verbunden.
 - Eingabeaufforderungen, Ressourcen und Tools aufgelistet und alle aufgerufen.
 
 Da haben Sie es, ein Client, der mit einem MCP-Server kommunizieren kann.
 
-Nehmen wir uns Zeit im nächsten Übungsabschnitt und zerlegen jeden Code-Schnipsel, um zu erklären, was vor sich geht.
+Nehmen wir uns Zeit im nächsten Übungsabschnitt, um jeden Codeausschnitt aufzuschlüsseln und zu erklären, was vor sich geht.
 
-## Übung: Einen Client schreiben
+## Übung: Schreiben eines Clients
 
-Wie oben erwähnt, nehmen wir uns Zeit, um den Code zu erklären, und Sie können gerne mitprogrammieren, wenn Sie möchten.
+Wie oben erwähnt, nehmen wir uns Zeit, um den Code zu erklären, und Sie können gerne parallel dazu programmieren.
 
 ### -1- Die Bibliotheken importieren
 
-Importieren wir die benötigten Bibliotheken. Wir benötigen Referenzen zu einem Client und zu unserem gewählten Transportprotokoll, stdio. stdio ist ein Protokoll für Dinge, die auf Ihrem lokalen Rechner laufen sollen. SSE ist ein weiteres Transportprotokoll, das wir in zukünftigen Kapiteln zeigen werden, aber das ist Ihre andere Option. Für jetzt machen wir jedoch mit stdio weiter.
+Importieren wir die benötigten Bibliotheken. Wir benötigen Referenzen zu einem Client und zu unserem gewählten Transportprotokoll, stdio. stdio ist ein Protokoll für Dinge, die auf Ihrem lokalen Rechner ausgeführt werden sollen. SSE ist ein weiteres Transportprotokoll, das wir in zukünftigen Kapiteln zeigen werden, aber das ist Ihre andere Option. Für den Moment machen wir jedoch mit stdio weiter.
 
 #### TypeScript
 
@@ -130,7 +130,7 @@ using ModelContextProtocol.Protocol.Transport;
 
 #### Java
 
-Für Java erstellen Sie einen Client, der sich mit dem MCP-Server aus der vorherigen Übung verbindet. Verwenden Sie dieselbe Java Spring Boot-Projektstruktur aus [Erste Schritte mit MCP-Server](../../../../03-GettingStarted/01-first-server/solution/java), erstellen Sie eine neue Java-Klasse namens `SDKClient` im Ordner `src/main/java/com/microsoft/mcp/sample/client/` und fügen Sie die folgenden Importe hinzu:
+Für Java erstellen Sie einen Client, der sich mit dem MCP-Server aus der vorherigen Übung verbindet. Verwenden Sie die gleiche Java Spring Boot-Projektstruktur aus [Erste Schritte mit MCP-Server](../../../../03-GettingStarted/01-first-server/solution/java), erstellen Sie eine neue Java-Klasse namens `SDKClient` im Ordner `src/main/java/com/microsoft/mcp/sample/client/` und fügen Sie die folgenden Importe hinzu:
 
 ```java
 import java.util.Map;
@@ -143,7 +143,35 @@ import io.modelcontextprotocol.spec.McpSchema.CallToolResult;
 import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 ```
 
-Gehen wir zur Instanziierung über.
+#### Rust
+
+Sie müssen die folgenden Abhängigkeiten zu Ihrer `Cargo.toml`-Datei hinzufügen.
+
+```toml
+[package]
+name = "calculator-client"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rmcp = { version = "0.5.0", features = ["client", "transport-child-process"] }
+serde_json = "1.0.141"
+tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
+```
+
+Von dort aus können Sie die notwendigen Bibliotheken in Ihrem Client-Code importieren.
+
+```rust
+use rmcp::{
+    RmcpError,
+    model::CallToolRequestParam,
+    service::ServiceExt,
+    transport::{ConfigureCommandExt, TokioChildProcess},
+};
+use tokio::process::Command;
+```
+
+Fahren wir mit der Instanziierung fort.
 
 ### -2- Client und Transport instanziieren
 
@@ -226,7 +254,7 @@ if __name__ == "__main__":
 Im obigen Code haben wir:
 
 - Die benötigten Bibliotheken importiert.
-- Ein Server-Parameter-Objekt instanziiert, da wir dies verwenden werden, um den Server zu starten, damit wir uns mit unserem Client verbinden können.
+- Ein Server-Parameterobjekt instanziiert, da wir diesen verwenden werden, um den Server zu starten, damit wir uns mit unserem Client verbinden können.
 - Eine Methode `run` definiert, die wiederum `stdio_client` aufruft, um eine Client-Sitzung zu starten.
 - Einen Einstiegspunkt erstellt, an dem wir die `run`-Methode an `asyncio.run` übergeben.
 
@@ -260,9 +288,9 @@ await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
 Im obigen Code haben wir:
 
 - Die benötigten Bibliotheken importiert.
-- Einen stdio-Transport erstellt und einen Client `mcpClient` erstellt. Letzterer ist etwas, das wir verwenden werden, um Funktionen auf dem MCP-Server aufzulisten und aufzurufen.
+- Einen stdio-Transport erstellt und einen Client `mcpClient` erstellt. Letzterer wird verwendet, um Funktionen auf dem MCP-Server aufzulisten und aufzurufen.
 
-Beachten Sie, dass Sie in "Arguments" entweder auf die *.csproj* oder auf die ausführbare Datei verweisen können.
+Beachten Sie, dass Sie in "Arguments" entweder auf die *.csproj*-Datei oder auf die ausführbare Datei verweisen können.
 
 #### Java
 
@@ -291,14 +319,46 @@ public class SDKClient {
 
 Im obigen Code haben wir:
 
-- Eine Hauptmethode erstellt, die einen SSE-Transport einrichtet, der auf `http://localhost:8080` verweist, wo unser MCP-Server laufen wird.
+- Eine Hauptmethode erstellt, die einen SSE-Transport einrichtet, der auf `http://localhost:8080` verweist, wo unser MCP-Server ausgeführt wird.
 - Eine Client-Klasse erstellt, die den Transport als Konstruktorparameter übernimmt.
-- In der `run`-Methode einen synchronen MCP-Client mit dem Transport erstellt und die Verbindung initialisiert.
+- In der Methode `run` einen synchronen MCP-Client mithilfe des Transports erstellt und die Verbindung initialisiert.
 - SSE (Server-Sent Events)-Transport verwendet, der für HTTP-basierte Kommunikation mit Java Spring Boot MCP-Servern geeignet ist.
 
-### -3- Die Serverfunktionen auflisten
+#### Rust
 
-Nun haben wir einen Client, der sich verbinden kann, wenn das Programm ausgeführt wird. Allerdings listet er seine Funktionen nicht auf, also machen wir das als Nächstes:
+Dieser Rust-Client geht davon aus, dass der Server ein Schwesterprojekt namens "calculator-server" im selben Verzeichnis ist. Der folgende Code startet den Server und verbindet sich mit ihm.
+
+```rust
+async fn main() -> Result<(), RmcpError> {
+    // Assume the server is a sibling project named "calculator-server" in the same directory
+    let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .expect("failed to locate workspace root")
+        .join("calculator-server");
+
+    let client = ()
+        .serve(
+            TokioChildProcess::new(Command::new("cargo").configure(|cmd| {
+                cmd.arg("run").current_dir(server_dir);
+            }))
+            .map_err(RmcpError::transport_creation::<TokioChildProcess>)?,
+        )
+        .await?;
+
+    // TODO: Initialize
+
+    // TODO: List tools
+
+    // TODO: Call add tool with arguments = {"a": 3, "b": 2}
+
+    client.cancel().await?;
+    Ok(())
+}
+```
+
+### -3- Serverfunktionen auflisten
+
+Nun haben wir einen Client, der sich verbinden kann, wenn das Programm ausgeführt wird. Allerdings listet er noch keine Funktionen auf, also machen wir das als Nächstes:
 
 #### TypeScript
 
@@ -329,7 +389,7 @@ for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Hier listen wir die verfügbaren Ressourcen mit `list_resources()` und Tools mit `list_tools` und geben sie aus.
+Hier listen wir die verfügbaren Ressourcen mit `list_resources()` und Tools mit `list_tools` auf und geben sie aus.
 
 #### .NET
 
@@ -340,7 +400,7 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-Oben ist ein Beispiel, wie wir die Tools auf dem Server auflisten können. Für jedes Tool geben wir dann seinen Namen aus.
+Oben sehen Sie ein Beispiel, wie wir die Tools auf dem Server auflisten können. Für jedes Tool geben wir dann seinen Namen aus.
 
 #### Java
 
@@ -355,11 +415,25 @@ client.ping();
 
 Im obigen Code haben wir:
 
-- `listTools()` aufgerufen, um alle verfügbaren Tools vom MCP-Server zu erhalten.
+- `listTools()` aufgerufen, um alle verfügbaren Tools vom MCP-Server abzurufen.
 - `ping()` verwendet, um zu überprüfen, ob die Verbindung zum Server funktioniert.
-- Das `ListToolsResult` enthält Informationen über alle Tools, einschließlich ihrer Namen, Beschreibungen und Eingabeschablonen.
+- `ListToolsResult` enthält Informationen über alle Tools, einschließlich ihrer Namen, Beschreibungen und Eingabeschemata.
 
-Super, jetzt haben wir alle Funktionen erfasst. Nun stellt sich die Frage, wann wir sie verwenden? Nun, dieser Client ist ziemlich einfach, einfach in dem Sinne, dass wir die Funktionen explizit aufrufen müssen, wenn wir sie verwenden möchten. Im nächsten Kapitel erstellen wir einen fortgeschritteneren Client, der Zugriff auf sein eigenes großes Sprachmodell (LLM) hat. Für jetzt sehen wir uns jedoch an, wie wir die Funktionen auf dem Server aufrufen können:
+Super, jetzt haben wir alle Funktionen erfasst. Nun stellt sich die Frage, wann wir sie verwenden. Dieser Client ist ziemlich einfach, in dem Sinne, dass wir die Funktionen explizit aufrufen müssen, wenn wir sie benötigen. Im nächsten Kapitel erstellen wir einen fortschrittlicheren Client, der Zugriff auf sein eigenes großes Sprachmodell (LLM) hat. Für den Moment sehen wir uns jedoch an, wie wir die Funktionen auf dem Server aufrufen können:
+
+#### Rust
+
+Im Hauptprogramm, nach der Initialisierung des Clients, können wir den Server initialisieren und einige seiner Funktionen auflisten.
+
+```rust
+// Initialize
+let server_info = client.peer_info();
+println!("Server info: {:?}", server_info);
+
+// List tools
+let tools = client.list_tools(Default::default()).await?;
+println!("Available tools: {:?}", tools);
+```
 
 ### -4- Funktionen aufrufen
 
@@ -393,7 +467,7 @@ const promptResult = await client.getPrompt({
 
 Im obigen Code haben wir:
 
-- Eine Ressource gelesen, indem wir `readResource()` mit `uri` aufgerufen haben. So sieht es höchstwahrscheinlich auf der Serverseite aus:
+- Eine Ressource gelesen, indem wir `readResource()` mit `uri` aufgerufen haben. So sieht das wahrscheinlich auf der Serverseite aus:
 
     ```typescript
     server.resource(
@@ -439,7 +513,7 @@ Im obigen Code haben wir:
     );
     ```
 
-    und Ihr resultierender Clientcode sieht daher so aus, um das auf dem Server deklarierte zu entsprechen:
+    Und Ihr resultierender Clientcode sieht daher so aus, um das zu entsprechen, was auf dem Server deklariert ist:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -479,7 +553,7 @@ Im obigen Code haben wir:
       cancellationToken:CancellationToken.None);
   ```
 
-1. Um das Ergebnis auszugeben, hier ein Code, um dies zu behandeln:
+1. Um das Ergebnis auszugeben, hier ein Code, um dies zu handhaben:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -509,9 +583,24 @@ System.out.println("Help = " + resultHelp);
 Im obigen Code haben wir:
 
 - Mehrere Rechner-Tools mit der Methode `callTool()` und `CallToolRequest`-Objekten aufgerufen.
-- Jeder Tool-Aufruf gibt den Tool-Namen und eine `Map` der Argumente an, die von diesem Tool benötigt werden.
+- Jeder Tool-Aufruf gibt den Toolnamen und eine `Map` der für dieses Tool erforderlichen Argumente an.
 - Die Server-Tools erwarten spezifische Parameternamen (wie "a", "b" für mathematische Operationen).
-- Ergebnisse werden als `CallToolResult`-Objekte zurückgegeben, die die Antwort vom Server enthalten.
+- Ergebnisse werden als `CallToolResult`-Objekte zurückgegeben, die die Antwort des Servers enthalten.
+
+#### Rust
+
+```rust
+// Call add tool with arguments = {"a": 3, "b": 2}
+let a = 3;
+let b = 2;
+let tool_result = client
+    .call_tool(CallToolRequestParam {
+        name: "add".into(),
+        arguments: serde_json::json!({ "a": a, "b": b }).as_object().cloned(),
+    })
+    .await?;
+println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
+```
 
 ### -5- Den Client ausführen
 
@@ -522,7 +611,7 @@ Um den Client auszuführen, geben Sie den folgenden Befehl im Terminal ein:
 Fügen Sie den folgenden Eintrag in den Abschnitt "scripts" in *package.json* hinzu:
 
 ```json
-"client": "tsx && node build/client.js"
+"client": "tsc && node build/client.js"
 ```
 
 ```sh
@@ -555,7 +644,7 @@ Stellen Sie zunächst sicher, dass Ihr MCP-Server unter `http://localhost:8080` 
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Alternativ können Sie das vollständige Client-Projekt aus dem Lösungsordner `03-GettingStarted\02-client\solution\java` ausführen:
+Alternativ können Sie das vollständige Clientprojekt im Lösungsordner `03-GettingStarted\02-client\solution\java` ausführen:
 
 ```bash
 # Navigate to the solution directory
@@ -566,9 +655,16 @@ cd 03-GettingStarted/02-client/solution/java
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
 
+#### Rust
+
+```bash
+cargo fmt
+cargo run
+```
+
 ## Aufgabe
 
-In dieser Aufgabe verwenden Sie das Gelernte, um einen eigenen Client zu erstellen.
+In dieser Aufgabe verwenden Sie das, was Sie über das Erstellen eines Clients gelernt haben, um einen eigenen Client zu erstellen.
 
 Hier ist ein Server, den Sie verwenden können und den Sie über Ihren Client-Code aufrufen müssen. Versuchen Sie, dem Server weitere Funktionen hinzuzufügen, um ihn interessanter zu machen.
 
@@ -678,9 +774,13 @@ Sehen Sie sich dieses Projekt an, um zu erfahren, wie Sie [Eingabeaufforderungen
 
 Sehen Sie sich auch diesen Link an, um zu erfahren, wie Sie [Eingabeaufforderungen und Ressourcen aufrufen](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
 
+### Rust
+
+Im [vorherigen Abschnitt](../../../../03-GettingStarted/01-first-server) haben Sie gelernt, wie Sie einen einfachen MCP-Server mit Rust erstellen. Sie können darauf aufbauen oder diesen Link für weitere MCP-Server-Beispiele in Rust überprüfen: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+
 ## Lösung
 
-Der **Lösungsordner** enthält vollständige, einsatzbereite Client-Implementierungen, die alle in diesem Tutorial behandelten Konzepte demonstrieren. Jede Lösung enthält sowohl Client- als auch Server-Code, organisiert in separaten, eigenständigen Projekten.
+Der **Lösungsordner** enthält vollständige, ausführbare Client-Implementierungen, die alle in diesem Tutorial behandelten Konzepte demonstrieren. Jede Lösung enthält sowohl Client- als auch Servercode, organisiert in separaten, eigenständigen Projekten.
 
 ### 📁 Lösungsstruktur
 
@@ -695,7 +795,7 @@ solution/
 ├── java/                # Java Spring Boot client project
 │   ├── pom.xml          # Maven configuration
 │   ├── src/             # Java source files
-│   └── mvnw            # Maven wrapper
+│   └── mvnw             # Maven wrapper
 ├── python/              # Python client implementation
 │   ├── client.py        # Main client code
 │   ├── server.py        # Compatible server
@@ -704,6 +804,11 @@ solution/
 │   ├── dotnet.csproj    # Project configuration
 │   ├── Program.cs       # Main client code
 │   └── dotnet.sln       # Solution file
+├── rust/                # Rust client implementation
+|  ├── Cargo.lock        # Cargo lock file
+|  ├── Cargo.toml        # Project configuration and dependencies
+|  ├── src               # Source code
+|  │   └── main.rs       # Main client code
 └── server/              # Additional .NET server implementation
     ├── Program.cs       # Server code
     └── server.csproj    # Server project file
@@ -713,11 +818,11 @@ solution/
 
 Jede sprachspezifische Lösung bietet:
 
-- **Vollständige Client-Implementierung** mit allen Funktionen aus dem Tutorial
-- **Funktionsfähige Projektstruktur** mit den richtigen Abhängigkeiten und Konfigurationen
-- **Build- und Ausführungsskripte** für einfache Einrichtung und Ausführung
-- **Detaillierte README** mit sprachspezifischen Anweisungen
-- **Fehlerbehandlungs- und Ergebnisverarbeitungsbeispiele**
+- **Vollständige Client-Implementierung** mit allen Funktionen aus dem Tutorial.
+- **Funktionierende Projektstruktur** mit den richtigen Abhängigkeiten und Konfigurationen.
+- **Build- und Ausführungsskripte** für einfache Einrichtung und Ausführung.
+- **Detaillierte README** mit sprachspezifischen Anweisungen.
+- **Beispiele für Fehlerbehandlung** und Ergebnisverarbeitung.
 
 ### 📖 Verwendung der Lösungen
 
@@ -731,9 +836,9 @@ Jede sprachspezifische Lösung bietet:
    ```
 
 2. **Befolgen Sie die README-Anweisungen** in jedem Ordner für:
-   - Installation der Abhängigkeiten
-   - Aufbau des Projekts
-   - Ausführung des Clients
+   - Installation der Abhängigkeiten.
+   - Erstellen des Projekts.
+   - Ausführen des Clients.
 
 3. **Beispielausgabe**, die Sie sehen sollten:
 
@@ -747,68 +852,70 @@ Für vollständige Dokumentation und Schritt-für-Schritt-Anweisungen siehe: **[
 
 ## 🎯 Vollständige Beispiele
 
-Wir haben vollständige, funktionierende Client-Implementierungen für alle in diesem Tutorial behandelten Programmiersprachen bereitgestellt. Diese Beispiele demonstrieren die volle Funktionalität, die oben beschrieben wurde, und können als Referenzimplementierungen oder Ausgangspunkte für Ihre eigenen Projekte verwendet werden.
+Wir haben vollständige, funktionierende Client-Implementierungen für alle in diesem Tutorial behandelten Programmiersprachen bereitgestellt. Diese Beispiele demonstrieren die vollständige Funktionalität, die oben beschrieben wurde, und können als Referenzimplementierungen oder Ausgangspunkte für Ihre eigenen Projekte verwendet werden.
 
 ### Verfügbare vollständige Beispiele
 
-| Sprache | Datei | Beschreibung |
-|---------|-------|--------------|
-| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Vollständiger Java-Client mit SSE-Transport und umfassender Fehlerbehandlung |
-| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Vollständiger C#-Client mit stdio-Transport und automatischem Serverstart |
+| Sprache   | Datei                              | Beschreibung                                                                 |
+|-----------|------------------------------------|-----------------------------------------------------------------------------|
+| **Java**  | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Vollständiger Java-Client mit SSE-Transport und umfassender Fehlerbehandlung |
+| **C#**    | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Vollständiger C#-Client mit stdio-Transport und automatischem Serverstart    |
 | **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Vollständiger TypeScript-Client mit vollständiger MCP-Protokollunterstützung |
-| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Vollständiger Python-Client mit async/await-Mustern |
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Vollständiger Python-Client mit async/await-Mustern                          |
+| **Rust**  | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs)     | Vollständiger Rust-Client mit Tokio für asynchrone Operationen               |
+Jedes vollständige Beispiel umfasst:
 
-Jedes vollständige Beispiel enthält:
+- ✅ **Verbindungsaufbau** und Fehlerbehandlung  
+- ✅ **Server-Erkennung** (Tools, Ressourcen, Eingabeaufforderungen, wo zutreffend)  
+- ✅ **Rechneroperationen** (addieren, subtrahieren, multiplizieren, dividieren, Hilfe)  
+- ✅ **Ergebnisverarbeitung** und formatierte Ausgabe  
+- ✅ **Umfassende Fehlerbehandlung**  
+- ✅ **Sauberer, dokumentierter Code** mit Schritt-für-Schritt-Kommentaren  
 
-- ✅ **Verbindungsaufbau** und Fehlerbehandlung
-- ✅ **Servererkennung** (Tools, Ressourcen, Eingabeaufforderungen, wo zutreffend)
-- ✅ **Rechneroperationen** (Addieren, Subtrahieren, Multiplizieren, Dividieren, Hilfe)
-- ✅ **Ergebnisverarbeitung** und formatierte Ausgabe
-- ✅ **Umfassende Fehlerbehandlung**
-- ✅ **Sauberer, dokumentierter Code** mit Schritt-für-Schritt-Kommentaren
+### Einstieg mit vollständigen Beispielen
 
-### Erste Schritte mit vollständigen Beispielen
+1. **Wählen Sie Ihre bevorzugte Sprache** aus der obigen Tabelle  
+2. **Überprüfen Sie die vollständige Beispieldatei**, um die gesamte Implementierung zu verstehen  
+3. **Führen Sie das Beispiel aus**, indem Sie den Anweisungen in [`complete_examples.md`](./complete_examples.md) folgen  
+4. **Passen Sie das Beispiel an** und erweitern Sie es für Ihren spezifischen Anwendungsfall  
 
-1. **Wählen Sie Ihre bevorzugte Sprache** aus der obigen Tabelle.
-2. **Überprüfen Sie die vollständige Beispieldatei**, um die vollständige Implementierung zu verstehen.
-3. **Führen Sie das Beispiel aus**, indem Sie den Anweisungen in [`complete_examples.md`](./complete_examples.md) folgen.
-4. **Modifizieren und erweitern** Sie das Beispiel für Ihren spezifischen Anwendungsfall.
-
-Für detaillierte Dokumentation über das Ausführen und Anpassen dieser Beispiele siehe: **[📖 Dokumentation zu vollständigen Beispielen](./complete_examples.md)**
+Für detaillierte Dokumentation zum Ausführen und Anpassen dieser Beispiele, siehe: **[📖 Dokumentation zu vollständigen Beispielen](./complete_examples.md)**  
 
 ### 💡 Lösung vs. vollständige Beispiele
 
-| **Lösungsordner** | **Vollständige Beispiele** |
-|--------------------|---------------------------|
-| Vollständige Projektstruktur mit Build-Dateien | Einzeldatei-Implementierungen |
-| Einsatzbereit mit Abhängigkeiten | Fokus auf Code-Beispiele |
-| Produktionsähnliche Einrichtung | Pädagogische Referenz |
-| Sprachspezifische Tools | Sprachübergreifender Vergleich |
-Beide Ansätze sind wertvoll – verwenden Sie den **Lösungsordner** für vollständige Projekte und die **kompletten Beispiele** zum Lernen und als Referenz.
+| **Lösungsordner** | **Vollständige Beispiele** |  
+|--------------------|--------------------- |  
+| Vollständige Projektstruktur mit Build-Dateien | Implementierungen in einer einzigen Datei |  
+| Bereit zur Ausführung mit Abhängigkeiten | Fokus auf Code-Beispiele |  
+| Produktionsähnliches Setup | Pädagogische Referenz |  
+| Sprachspezifische Tools | Sprachübergreifender Vergleich |  
 
-## Wichtige Erkenntnisse
+Beide Ansätze sind wertvoll - verwenden Sie den **Lösungsordner** für vollständige Projekte und die **vollständigen Beispiele** für Lernen und Referenz.  
 
-Die wichtigsten Erkenntnisse für dieses Kapitel über Clients sind folgende:
+## Wichtige Erkenntnisse  
 
-- Können sowohl zur Entdeckung als auch zur Nutzung von Funktionen auf dem Server verwendet werden.
-- Können einen Server starten, während sie selbst starten (wie in diesem Kapitel), aber Clients können sich auch mit laufenden Servern verbinden.
-- Sind eine großartige Möglichkeit, Serverfähigkeiten zu testen, neben Alternativen wie dem Inspector, wie im vorherigen Kapitel beschrieben.
+Die wichtigsten Erkenntnisse für dieses Kapitel über Clients sind:  
 
-## Zusätzliche Ressourcen
+- Können sowohl zur Erkennung als auch zur Nutzung von Funktionen auf dem Server verwendet werden.  
+- Können einen Server starten, während sie selbst starten (wie in diesem Kapitel), aber Clients können auch mit laufenden Servern verbunden werden.  
+- Sind eine großartige Möglichkeit, Serverfähigkeiten zu testen, neben Alternativen wie dem Inspector, wie im vorherigen Kapitel beschrieben.  
 
-- [Clients in MCP erstellen](https://modelcontextprotocol.io/quickstart/client)
+## Zusätzliche Ressourcen  
 
-## Beispiele
+- [Clients in MCP erstellen](https://modelcontextprotocol.io/quickstart/client)  
 
-- [Java Rechner](../samples/java/calculator/README.md)
-- [.Net Rechner](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Rechner](../samples/javascript/README.md)
-- [TypeScript Rechner](../samples/typescript/README.md)
-- [Python Rechner](../../../../03-GettingStarted/samples/python)
+## Beispiele  
 
-## Was kommt als Nächstes?
+- [Java-Rechner](../samples/java/calculator/README.md)  
+- [.Net-Rechner](../../../../03-GettingStarted/samples/csharp)  
+- [JavaScript-Rechner](../samples/javascript/README.md)  
+- [TypeScript-Rechner](../samples/typescript/README.md)  
+- [Python-Rechner](../../../../03-GettingStarted/samples/python)  
+- [Rust-Rechner](../../../../03-GettingStarted/samples/rust)  
 
-- Weiter: [Einen Client mit einem LLM erstellen](../03-llm-client/README.md)
+## Was kommt als Nächstes  
+
+- Weiter: [Einen Client mit einem LLM erstellen](../03-llm-client/README.md)  
 
 **Haftungsausschluss**:  
 Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die sich aus der Nutzung dieser Übersetzung ergeben.

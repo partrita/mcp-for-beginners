@@ -1,28 +1,28 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4c4da5949611d91b06d8a5d450aae8d6",
-  "translation_date": "2025-07-13T21:16:23+00:00",
+  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
+  "translation_date": "2025-08-18T12:56:25+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
   "language_code": "fr"
 }
 -->
 # Exécution de cet exemple
 
-Voici comment lancer le serveur et le client de streaming HTTP classique, ainsi que le serveur et le client de streaming MCP en utilisant Python.
+Voici comment exécuter le serveur et le client de streaming HTTP classique, ainsi que le serveur et le client de streaming MCP en utilisant Python.
 
 ### Vue d'ensemble
 
-- Vous allez configurer un serveur MCP qui diffuse des notifications de progression au client pendant le traitement des éléments.
+- Vous allez configurer un serveur MCP qui envoie des notifications de progression au client pendant qu'il traite des éléments.
 - Le client affichera chaque notification en temps réel.
-- Ce guide couvre les prérequis, l’installation, l’exécution et le dépannage.
+- Ce guide couvre les prérequis, la configuration, l'exécution et le dépannage.
 
 ### Prérequis
 
-- Python 3.9 ou version ultérieure
-- Le package Python `mcp` (à installer avec `pip install mcp`)
+- Python 3.9 ou une version plus récente
+- Le package Python `mcp` (installer avec `pip install mcp`)
 
-### Installation & Configuration
+### Installation et configuration
 
 1. Clonez le dépôt ou téléchargez les fichiers de la solution.
 
@@ -39,10 +39,10 @@ Voici comment lancer le serveur et le client de streaming HTTP classique, ainsi 
    source venv/bin/activate      # On Linux/macOS
    ```
 
-1. **Installez les dépendances requises :**
+1. **Installez les dépendances nécessaires :**
 
    ```pwsh
-   pip install "mcp[cli]"
+   pip install "mcp[cli]" fastapi requests
    ```
 
 ### Fichiers
@@ -50,15 +50,15 @@ Voici comment lancer le serveur et le client de streaming HTTP classique, ainsi 
 - **Serveur :** [server.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/server.py)
 - **Client :** [client.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/client.py)
 
-### Lancement du serveur de streaming HTTP classique
+### Exécution du serveur de streaming HTTP classique
 
-1. Rendez-vous dans le répertoire de la solution :
+1. Accédez au répertoire de la solution :
 
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    ```
 
-2. Démarrez le serveur de streaming HTTP classique :
+2. Lancez le serveur de streaming HTTP classique :
 
    ```pwsh
    python server.py
@@ -71,7 +71,7 @@ Voici comment lancer le serveur et le client de streaming HTTP classique, ainsi 
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### Lancement du client de streaming HTTP classique
+### Exécution du client de streaming HTTP classique
 
 1. Ouvrez un nouveau terminal (activez le même environnement virtuel et répertoire) :
 
@@ -80,7 +80,7 @@ Voici comment lancer le serveur et le client de streaming HTTP classique, ainsi 
    python client.py
    ```
 
-2. Vous devriez voir les messages diffusés s’afficher séquentiellement :
+2. Vous devriez voir les messages diffusés imprimés séquentiellement :
 
    ```text
    Running classic HTTP streaming client...
@@ -93,30 +93,30 @@ Voici comment lancer le serveur et le client de streaming HTTP classique, ainsi 
    --- Stream Ended ---
    ```
 
-### Lancement du serveur de streaming MCP
+### Exécution du serveur de streaming MCP
 
-1. Rendez-vous dans le répertoire de la solution :  
+1. Accédez au répertoire de la solution :
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
-   ```  
-2. Démarrez le serveur MCP avec le transport streamable-http :  
+   ```
+2. Lancez le serveur MCP avec le transport streamable-http :
    ```pwsh
    python server.py mcp
-   ```  
-3. Le serveur démarrera et affichera :  
+   ```
+3. Le serveur démarrera et affichera :
    ```
    Starting MCP server with streamable-http transport...
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### Lancement du client de streaming MCP
+### Exécution du client de streaming MCP
 
-1. Ouvrez un nouveau terminal (activez le même environnement virtuel et répertoire) :  
+1. Ouvrez un nouveau terminal (activez le même environnement virtuel et répertoire) :
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py mcp
-   ```  
-2. Vous devriez voir les notifications s’afficher en temps réel au fur et à mesure que le serveur traite chaque élément :  
+   ```
+2. Vous devriez voir les notifications imprimées en temps réel pendant que le serveur traite chaque élément :
    ```
    Running MCP client...
    Starting client...
@@ -129,23 +129,23 @@ Voici comment lancer le serveur et le client de streaming HTTP classique, ainsi 
    Tool result: meta=None content=[TextContent(type='text', text='Processed files: file_1.txt, file_2.txt, file_3.txt | Message: hello from client')]
    ```
 
-### Étapes clés de l’implémentation
+### Étapes clés de l'implémentation
 
-1. **Créez le serveur MCP en utilisant FastMCP.**  
-2. **Définissez un outil qui traite une liste et envoie des notifications avec `ctx.info()` ou `ctx.log()`.**  
-3. **Lancez le serveur avec `transport="streamable-http"`.**  
-4. **Implémentez un client avec un gestionnaire de messages pour afficher les notifications à leur arrivée.**
+1. **Créez le serveur MCP en utilisant FastMCP.**
+2. **Définissez un outil qui traite une liste et envoie des notifications en utilisant `ctx.info()` ou `ctx.log()`.**
+3. **Exécutez le serveur avec `transport="streamable-http"`.**
+4. **Implémentez un client avec un gestionnaire de messages pour afficher les notifications dès leur arrivée.**
 
-### Parcours du code
-- Le serveur utilise des fonctions async et le contexte MCP pour envoyer des mises à jour de progression.  
-- Le client implémente un gestionnaire de messages async pour afficher les notifications et le résultat final.
+### Analyse du code
+- Le serveur utilise des fonctions asynchrones et le contexte MCP pour envoyer des mises à jour de progression.
+- Le client implémente un gestionnaire de messages asynchrone pour imprimer les notifications et le résultat final.
 
-### Conseils & Dépannage
+### Conseils et dépannage
 
-- Utilisez `async/await` pour des opérations non bloquantes.  
-- Gérez toujours les exceptions côté serveur et client pour plus de robustesse.  
-- Testez avec plusieurs clients pour observer les mises à jour en temps réel.  
-- En cas d’erreurs, vérifiez votre version de Python et assurez-vous que toutes les dépendances sont installées.
+- Utilisez `async/await` pour des opérations non bloquantes.
+- Gérez toujours les exceptions dans le serveur et le client pour garantir la robustesse.
+- Testez avec plusieurs clients pour observer les mises à jour en temps réel.
+- En cas d'erreurs, vérifiez votre version de Python et assurez-vous que toutes les dépendances sont installées.
 
 **Avertissement** :  
-Ce document a été traduit à l’aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d’assurer l’exactitude, veuillez noter que les traductions automatiques peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d’origine doit être considéré comme la source faisant foi. Pour les informations critiques, une traduction professionnelle réalisée par un humain est recommandée. Nous déclinons toute responsabilité en cas de malentendus ou de mauvaises interprétations résultant de l’utilisation de cette traduction.
+Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de faire appel à une traduction humaine professionnelle. Nous déclinons toute responsabilité en cas de malentendus ou d'interprétations erronées résultant de l'utilisation de cette traduction.

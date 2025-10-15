@@ -1,28 +1,30 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "affcf199a44f60283a289dcb69dc144e",
-  "translation_date": "2025-07-17T13:29:19+00:00",
+  "original_hash": "8358c13b5b6877e475674697cdc1a904",
+  "translation_date": "2025-08-11T11:01:28+00:00",
   "source_file": "03-GettingStarted/02-client/complete_examples.md",
   "language_code": "es"
 }
 -->
 # Ejemplos Completos de Clientes MCP
 
-Este directorio contiene ejemplos completos y funcionales de clientes MCP en diferentes lenguajes de programación. Cada cliente demuestra la funcionalidad completa descrita en el tutorial principal README.md.
+Este directorio contiene ejemplos completos y funcionales de clientes MCP en diferentes lenguajes de programación. Cada cliente demuestra toda la funcionalidad descrita en el tutorial principal README.md.
 
 ## Clientes Disponibles
 
 ### 1. Cliente Java (`client_example_java.java`)
-- **Transporte**: SSE (Server-Sent Events) sobre HTTP
-- **Servidor Destino**: `http://localhost:8080`
-- **Características**: 
+
+- **Transporte**: SSE (Eventos Enviados por el Servidor) sobre HTTP
+- **Servidor Objetivo**: `http://localhost:8080`
+- **Características**:
   - Establecimiento de conexión y ping
   - Listado de herramientas
   - Operaciones de calculadora (sumar, restar, multiplicar, dividir, ayuda)
   - Manejo de errores y extracción de resultados
 
 **Para ejecutar:**
+
 ```bash
 # Ensure your MCP server is running on localhost:8080
 javac client_example_java.java
@@ -30,23 +32,26 @@ java client_example_java
 ```
 
 ### 2. Cliente C# (`client_example_csharp.cs`)
-- **Transporte**: Stdio (Entrada/Salida estándar)
-- **Servidor Destino**: Servidor MCP .NET local mediante dotnet run
+
+- **Transporte**: Stdio (Entrada/Salida Estándar)
+- **Servidor Objetivo**: Servidor MCP local de .NET mediante dotnet run
 - **Características**:
-  - Inicio automático del servidor vía transporte stdio
+  - Inicio automático del servidor mediante transporte stdio
   - Listado de herramientas y recursos
   - Operaciones de calculadora
   - Análisis de resultados en JSON
-  - Manejo completo de errores
+  - Manejo de errores integral
 
 **Para ejecutar:**
+
 ```bash
 dotnet run
 ```
 
 ### 3. Cliente TypeScript (`client_example_typescript.ts`)
-- **Transporte**: Stdio (Entrada/Salida estándar)
-- **Servidor Destino**: Servidor MCP Node.js local
+
+- **Transporte**: Stdio (Entrada/Salida Estándar)
+- **Servidor Objetivo**: Servidor MCP local de Node.js
 - **Características**:
   - Soporte completo del protocolo MCP
   - Operaciones con herramientas, recursos y prompts
@@ -55,6 +60,7 @@ dotnet run
   - Manejo robusto de errores
 
 **Para ejecutar:**
+
 ```bash
 # First compile TypeScript (if needed)
 npm run build
@@ -66,8 +72,9 @@ node client_example_typescript.js
 ```
 
 ### 4. Cliente Python (`client_example_python.py`)
-- **Transporte**: Stdio (Entrada/Salida estándar)  
-- **Servidor Destino**: Servidor MCP Python local
+
+- **Transporte**: Stdio (Entrada/Salida Estándar)  
+- **Servidor Objetivo**: Servidor MCP local de Python
 - **Características**:
   - Patrón async/await para operaciones
   - Descubrimiento de herramientas y recursos
@@ -76,6 +83,7 @@ node client_example_typescript.js
   - Organización basada en clases
 
 **Para ejecutar:**
+
 ```bash
 python client_example_python.py
 ```
@@ -91,13 +99,13 @@ Cada implementación de cliente demuestra:
 
 2. **Descubrimiento del Servidor**
    - Listado de herramientas disponibles
-   - Listado de recursos disponibles (donde se soporta)
-   - Listado de prompts disponibles (donde se soporta)
+   - Listado de recursos disponibles (cuando sea compatible)
+   - Listado de prompts disponibles (cuando sea compatible)
 
 3. **Invocación de Herramientas**
    - Operaciones básicas de calculadora (sumar, restar, multiplicar, dividir)
    - Comando de ayuda para información del servidor
-   - Paso correcto de argumentos y manejo de resultados
+   - Paso adecuado de argumentos y manejo de resultados
 
 4. **Manejo de Errores**
    - Errores de conexión
@@ -119,44 +127,45 @@ Antes de ejecutar estos clientes, asegúrate de tener:
 
 ## Diferencias Clave Entre Implementaciones
 
-| Lenguaje   | Transporte | Inicio del Servidor | Modelo Async | Librerías Clave |
-|------------|------------|---------------------|--------------|-----------------|
-| Java       | SSE/HTTP   | Externo             | Sincrónico   | WebFlux, MCP SDK |
-| C#         | Stdio      | Automático          | Async/Await  | .NET MCP SDK    |
-| TypeScript | Stdio      | Automático          | Async/Await  | Node MCP SDK    |
-| Python     | Stdio      | Automático          | AsyncIO      | Python MCP SDK  |
+| Lenguaje   | Transporte | Inicio del Servidor | Modelo Async | Bibliotecas Clave       |
+|------------|-----------|---------------------|--------------|-------------------------|
+| Java       | SSE/HTTP  | Externo             | Sincrónico   | WebFlux, MCP SDK        |
+| C#         | Stdio     | Automático          | Async/Await  | .NET MCP SDK            |
+| TypeScript | Stdio     | Automático          | Async/Await  | Node MCP SDK            |
+| Python     | Stdio     | Automático          | AsyncIO      | Python MCP SDK          |
+| Rust       | Stdio     | Automático          | Async/Await  | Rust MCP SDK, Tokio     |
 
 ## Próximos Pasos
 
 Después de explorar estos ejemplos de clientes:
 
-1. **Modifica los clientes** para agregar nuevas funciones u operaciones
+1. **Modifica los clientes** para agregar nuevas características u operaciones
 2. **Crea tu propio servidor** y pruébalo con estos clientes
 3. **Experimenta con diferentes transportes** (SSE vs. Stdio)
 4. **Construye una aplicación más compleja** que integre la funcionalidad MCP
 
-## Solución de Problemas
+## Resolución de Problemas
 
 ### Problemas Comunes
 
-1. **Conexión rechazada**: Asegúrate de que el servidor MCP esté corriendo en el puerto/ruta esperada
-2. **Módulo no encontrado**: Instala el MCP SDK requerido para tu lenguaje
+1. **Conexión rechazada**: Asegúrate de que el servidor MCP esté ejecutándose en el puerto/ruta esperados
+2. **Módulo no encontrado**: Instala el SDK MCP requerido para tu lenguaje
 3. **Permiso denegado**: Verifica los permisos de archivo para el transporte stdio
 4. **Herramienta no encontrada**: Confirma que el servidor implemente las herramientas esperadas
 
-### Consejos para Depuración
+### Consejos de Depuración
 
-1. **Activa el registro detallado** en tu MCP SDK
-2. **Revisa los logs del servidor** para mensajes de error
-3. **Verifica que los nombres y firmas de las herramientas** coincidan entre cliente y servidor
+1. **Habilita el registro detallado** en tu SDK MCP
+2. **Revisa los registros del servidor** para mensajes de error
+3. **Verifica los nombres y firmas de las herramientas** entre el cliente y el servidor
 4. **Prueba primero con MCP Inspector** para validar la funcionalidad del servidor
 
 ## Documentación Relacionada
 
-- [Tutorial Principal del Cliente](./README.md)
-- [Ejemplos de Servidor MCP](../../../../03-GettingStarted/01-first-server)
+- [Tutorial Principal de Clientes](./README.md)
+- [Ejemplos de Servidores MCP](../../../../03-GettingStarted/01-first-server)
 - [MCP con Integración LLM](../../../../03-GettingStarted/03-llm-client)
-- [Documentación Oficial MCP](https://modelcontextprotocol.io/)
+- [Documentación Oficial de MCP](https://modelcontextprotocol.io/)
 
-**Aviso legal**:  
-Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Aunque nos esforzamos por la precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o inexactitudes. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda la traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas derivadas del uso de esta traducción.
+**Descargo de responsabilidad**:  
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por lograr precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.

@@ -60,7 +60,7 @@ Model Context Protocol คือวิธีมาตรฐานสำหรั
 
 ## การใช้งาน Python
 
-***Note*** คุณสามารถรัน [notebook นี้](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb)
+***Note*** คุณสามารถรัน [notebook นี้](mcp_support_python.ipynb)
 
 ### 1. ติดตั้งแพ็กเกจที่จำเป็น
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## การใช้งาน .NET
 
-***Note*** คุณสามารถรัน [notebook นี้](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb)
+***Note*** คุณสามารถรัน [notebook นี้](mcp_support_dotnet.ipynb)
 
 ### 1. ติดตั้งแพ็กเกจที่จำเป็น
 

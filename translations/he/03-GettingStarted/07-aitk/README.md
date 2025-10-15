@@ -1,44 +1,44 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "8248e3491f5245ee6ab48ef724a4f65a",
-  "translation_date": "2025-07-13T21:37:09+00:00",
+  "original_hash": "98bcd044860716da5819e31c152813b7",
+  "translation_date": "2025-08-18T16:57:25+00:00",
   "source_file": "03-GettingStarted/07-aitk/README.md",
   "language_code": "he"
 }
 -->
-# צריכת שרת מההרחבה AI Toolkit עבור Visual Studio Code
+# צריכת שרת מהרחבת AI Toolkit עבור Visual Studio Code
 
-כשאתה בונה סוכן AI, זה לא רק על יצירת תגובות חכמות; זה גם על מתן היכולת לסוכן שלך לפעול. כאן נכנס לתמונה Model Context Protocol (MCP). MCP מקל על סוכנים לגשת לכלים ושירותים חיצוניים בצורה עקבית. תחשוב על זה כמו לחבר את הסוכן שלך לתיבת כלים שהוא *באמת* יכול להשתמש בה.
+כשאתם בונים סוכן AI, זה לא רק על יצירת תגובות חכמות; זה גם על לתת לסוכן שלכם את היכולת לבצע פעולות. כאן נכנס לתמונה פרוטוקול Model Context Protocol (MCP). MCP מאפשר לסוכנים גישה לכלים ושירותים חיצוניים בצורה עקבית. תחשבו על זה כמו לחבר את הסוכן שלכם לארגז כלים שהוא *באמת* יכול להשתמש בו.
 
-נניח שאתה מחבר סוכן לשרת MCP של מחשבון. פתאום, הסוכן שלך יכול לבצע פעולות מתמטיות רק על ידי קבלת פקודה כמו "כמה זה 47 כפול 89?"—בלי צורך לקודד לוגיקה או לבנות APIs מותאמים.
+נניח שאתם מחברים סוכן לשרת MCP של מחשבון. פתאום, הסוכן שלכם יכול לבצע פעולות מתמטיות רק על ידי קבלת שאלה כמו "מה זה 47 כפול 89?"—בלי צורך לקודד לוגיקה או לבנות APIs מותאמים אישית.
 
 ## סקירה כללית
 
-השיעור הזה מסביר כיצד לחבר שרת MCP של מחשבון לסוכן באמצעות ההרחבה [AI Toolkit](https://aka.ms/AIToolkit) ב-Visual Studio Code, ומאפשר לסוכן שלך לבצע פעולות מתמטיות כמו חיבור, חיסור, כפל וחילוק בשפה טבעית.
+השיעור הזה מכסה איך לחבר שרת MCP של מחשבון לסוכן באמצעות הרחבת [AI Toolkit](https://aka.ms/AIToolkit) ב-Visual Studio Code, ולאפשר לסוכן שלכם לבצע פעולות מתמטיות כמו חיבור, חיסור, כפל וחילוק באמצעות שפה טבעית.
 
-AI Toolkit היא הרחבה עוצמתית ל-Visual Studio Code שמפשטת את פיתוח הסוכנים. מהנדסי AI יכולים בקלות לבנות יישומי AI על ידי פיתוח ובדיקת מודלים גנרטיביים—מקומית או בענן. ההרחבה תומכת ברוב המודלים הגנרטיביים המרכזיים הקיימים כיום.
+AI Toolkit היא הרחבה עוצמתית ל-Visual Studio Code שמייעלת את פיתוח הסוכנים. מהנדסי AI יכולים בקלות לבנות יישומי AI על ידי פיתוח ובדיקת מודלים גנרטיביים—מקומית או בענן. ההרחבה תומכת ברוב המודלים הגנרטיביים המרכזיים הזמינים כיום.
 
 *הערה*: AI Toolkit תומכת כרגע ב-Python ו-TypeScript.
 
-## מטרות הלמידה
+## מטרות למידה
 
-בסיום השיעור תוכל:
+בסוף השיעור הזה, תוכלו:
 
-- לצרוך שרת MCP דרך AI Toolkit.
-- להגדיר תצורת סוכן שתאפשר לו לגלות ולהשתמש בכלים שמספק שרת MCP.
-- להשתמש בכלי MCP דרך שפה טבעית.
+- לצרוך שרת MCP באמצעות AI Toolkit.
+- להגדיר תצורת סוכן שתאפשר לו לגלות ולהשתמש בכלים המסופקים על ידי שרת MCP.
+- להשתמש בכלי MCP באמצעות שפה טבעית.
 
 ## גישה
 
-כך ניגשים לנושא ברמה גבוהה:
+כך ניגש לנושא ברמה גבוהה:
 
-- צור סוכן והגדר את ה-system prompt שלו.
-- צור שרת MCP עם כלי מחשבון.
-- חבר את Agent Builder לשרת MCP.
-- בדוק את קריאת הכלים של הסוכן דרך שפה טבעית.
+- יצירת סוכן והגדרת ההנחיה המערכתית שלו.
+- יצירת שרת MCP עם כלים של מחשבון.
+- חיבור Agent Builder לשרת MCP.
+- בדיקת הפעלת הכלים של הסוכן באמצעות שפה טבעית.
 
-מעולה, עכשיו כשאנחנו מבינים את הזרימה, בוא נגדיר סוכן AI שישתמש בכלים חיצוניים דרך MCP, כדי להרחיב את היכולות שלו!
+מעולה, עכשיו כשאנחנו מבינים את הזרימה, בואו נגדיר סוכן AI שינצל כלים חיצוניים דרך MCP, ויעצים את היכולות שלו!
 
 ## דרישות מוקדמות
 
@@ -47,67 +47,70 @@ AI Toolkit היא הרחבה עוצמתית ל-Visual Studio Code שמפשטת �
 
 ## תרגיל: צריכת שרת
 
-בתרגיל זה תבנה, תריץ ותשפר סוכן AI עם כלים משרת MCP בתוך Visual Studio Code באמצעות AI Toolkit.
+> [!WARNING]
+> הערה למשתמשי macOS. אנחנו כרגע חוקרים בעיה שמשפיעה על התקנת תלותים ב-macOS. כתוצאה מכך, משתמשי macOS לא יוכלו להשלים את המדריך הזה בשלב זה. נעדכן את ההוראות ברגע שתהיה תיקון זמין. תודה על הסבלנות וההבנה!
 
-### -0- שלב מקדים, הוסף את מודל OpenAI GPT-4o ל-My Models
+בתרגיל הזה, תבנו, תפעילו ותשפרו סוכן AI עם כלים משרת MCP בתוך Visual Studio Code באמצעות AI Toolkit.
+
+### -0- שלב מקדים, הוסיפו את מודל OpenAI GPT-4o ל-My Models
 
 התרגיל משתמש במודל **GPT-4o**. יש להוסיף את המודל ל-**My Models** לפני יצירת הסוכן.
 
-![צילום מסך של ממשק בחירת מודל בהרחבת AI Toolkit ב-Visual Studio Code. הכותרת קוראת "מצא את המודל המתאים לפתרון ה-AI שלך" עם כותרת משנה המעודדת לגלות, לבדוק ולפרוס מודלים. מתחת, תחת "Popular Models," מוצגות שש כרטיסיות מודל: DeepSeek-R1 (מתארח ב-GitHub), OpenAI GPT-4o, OpenAI GPT-4.1, OpenAI o1, Phi 4 Mini (CPU - קטן, מהיר), ו-DeepSeek-R1 (מתארח ב-Ollama). בכל כרטיס יש אפשרויות "Add" ו-"Try in Playground"](../../../../translated_images/aitk-model-catalog.2acd38953bb9c119aa629fe74ef34cc56e4eed35e7f5acba7cd0a59e614ab335.he.png)
+![צילום מסך של ממשק בחירת מודלים בהרחבת AI Toolkit של Visual Studio Code. הכותרת היא "Find the right model for your AI Solution" עם כותרת משנה המעודדת משתמשים לגלות, לבדוק ולפרוס מודלים של AI. מתחת, תחת "Popular Models," מוצגים שישה כרטיסי מודלים: DeepSeek-R1 (מתארח ב-GitHub), OpenAI GPT-4o, OpenAI GPT-4.1, OpenAI o1, Phi 4 Mini (CPU - קטן, מהיר), ו-DeepSeek-R1 (מתארח ב-Ollama). כל כרטיס כולל אפשרויות "Add" להוספת המודל או "Try in Playground](../../../../translated_images/aitk-model-catalog.2acd38953bb9c119aa629fe74ef34cc56e4eed35e7f5acba7cd0a59e614ab335.he.png)
 
-1. פתח את ההרחבה **AI Toolkit** מ-**Activity Bar**.
-2. בקטגוריית **Catalog**, בחר **Models** כדי לפתוח את **Model Catalog**. בחירה ב-**Models** פותחת את **Model Catalog** בכרטיסייה חדשה בעורך.
-3. בשורת החיפוש של **Model Catalog**, הקלד **OpenAI GPT-4o**.
-4. לחץ על **+ Add** כדי להוסיף את המודל לרשימת **My Models**. ודא שבחרת במודל שמאוחסן ב-**GitHub**.
-5. ב-**Activity Bar**, ודא שמודל **OpenAI GPT-4o** מופיע ברשימה.
+1. פתחו את ההרחבה **AI Toolkit** מ-**Activity Bar**.
+1. בקטע **Catalog**, בחרו **Models** כדי לפתוח את **Model Catalog**. בחירת **Models** פותחת את **Model Catalog** בלשונית עורך חדשה.
+1. בשורת החיפוש של **Model Catalog**, הזינו **OpenAI GPT-4o**.
+1. לחצו על **+ Add** כדי להוסיף את המודל לרשימת **My Models**. ודאו שבחרתם במודל שמתארח ב-**GitHub**.
+1. ב-**Activity Bar**, ודאו שהמודל **OpenAI GPT-4o** מופיע ברשימה.
 
-### -1- צור סוכן
+### -1- יצירת סוכן
 
-ה-**Agent (Prompt) Builder** מאפשר לך ליצור ולהתאים אישית סוכני AI משלך. בחלק זה, תיצור סוכן חדש ותשייך לו מודל שיניע את השיחה.
+**Agent (Prompt) Builder** מאפשר לכם ליצור ולהתאים אישית סוכנים מבוססי AI. בחלק הזה, תיצרו סוכן חדש ותשייכו לו מודל שיניע את השיחה.
 
-![צילום מסך של ממשק "Calculator Agent" ב-AI Toolkit עבור Visual Studio Code. בפאנל השמאלי, המודל שנבחר הוא "OpenAI GPT-4o (via GitHub)." ה-system prompt אומר "אתה פרופסור באוניברסיטה שמלמד מתמטיקה," וה-prompt של המשתמש אומר "הסבר לי את משוואת פורייה במונחים פשוטים." אפשרויות נוספות כוללות כפתורים להוספת כלים, הפעלת MCP Server, ובחירת פלט מובנה. כפתור "Run" כחול בתחתית. בפאנל הימני, תחת "Get Started with Examples," מופיעים שלושה סוכנים לדוגמה: Web Developer (עם MCP Server, Second-Grade Simplifier, ו-Dream Interpreter, כל אחד עם תיאור קצר של תפקידו).](../../../../translated_images/aitk-agent-builder.901e3a2960c3e4774b29a23024ff5bec2d4232f57fae2a418b2aaae80f81c05f.he.png)
+![צילום מסך של ממשק "Calculator Agent" ב-AI Toolkit עבור Visual Studio Code. בלוח השמאלי, המודל שנבחר הוא "OpenAI GPT-4o (via GitHub)." הנחיית המערכת היא "You are a professor in university teaching math," והנחיית המשתמש היא "Explain to me the Fourier equation in simple terms." אפשרויות נוספות כוללות כפתורים להוספת כלים, הפעלת MCP Server, ובחירת פלט מובנה. כפתור כחול "Run" נמצא בתחתית. בלוח הימני, תחת "Get Started with Examples," מופיעים שלושה סוכנים לדוגמה: Web Developer (עם MCP Server, Second-Grade Simplifier, ו-Dream Interpreter, כל אחד עם תיאור קצר של תפקידו.](../../../../translated_images/aitk-agent-builder.901e3a2960c3e4774b29a23024ff5bec2d4232f57fae2a418b2aaae80f81c05f.he.png)
 
-1. פתח את ההרחבה **AI Toolkit** מ-**Activity Bar**.
-2. בקטגוריית **Tools**, בחר **Agent (Prompt) Builder**. בחירה זו פותחת את **Agent (Prompt) Builder** בכרטיסייה חדשה בעורך.
-3. לחץ על כפתור **+ New Agent**. ההרחבה תפעיל אשף הגדרה דרך **Command Palette**.
-4. הזן את השם **Calculator Agent** ולחץ **Enter**.
-5. ב-**Agent (Prompt) Builder**, בשדה **Model**, בחר את המודל **OpenAI GPT-4o (via GitHub)**.
+1. פתחו את ההרחבה **AI Toolkit** מ-**Activity Bar**.
+1. בקטע **Tools**, בחרו **Agent (Prompt) Builder**. בחירת **Agent (Prompt) Builder** פותחת את **Agent (Prompt) Builder** בלשונית עורך חדשה.
+1. לחצו על כפתור **+ New Agent**. ההרחבה תפעיל אשף הגדרה דרך **Command Palette**.
+1. הזינו את השם **Calculator Agent** ולחצו **Enter**.
+1. ב-**Agent (Prompt) Builder**, בשדה **Model**, בחרו במודל **OpenAI GPT-4o (via GitHub)**.
 
-### -2- צור system prompt לסוכן
+### -2- יצירת הנחיית מערכת לסוכן
 
-כעת כשיש לך את מסגרת הסוכן, הגיע הזמן להגדיר את האופי והמטרה שלו. בחלק זה, תשתמש בתכונת **Generate system prompt** כדי לתאר את ההתנהגות הרצויה של הסוכן—במקרה זה, סוכן מחשבון—ותאפשר למודל לכתוב עבורך את ה-system prompt.
+לאחר שהסוכן נבנה, הגיע הזמן להגדיר את האישיות והמטרה שלו. בחלק הזה, תשתמשו בתכונת **Generate system prompt** כדי לתאר את ההתנהגות המיועדת של הסוכן—במקרה הזה, סוכן מחשבון—ותתנו למודל לכתוב את הנחיית המערכת עבורכם.
 
-![צילום מסך של ממשק "Calculator Agent" ב-AI Toolkit עם חלון מודאלי פתוח שכותרתו "Generate a prompt." החלון מסביר שניתן ליצור תבנית prompt על ידי שיתוף פרטים בסיסיים וכולל תיבת טקסט עם דוגמת system prompt: "You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result." מתחת לתיבת הטקסט יש כפתורי "Close" ו-"Generate". ברקע, חלק מהגדרות הסוכן נראות, כולל המודל שנבחר "OpenAI GPT-4o (via GitHub)" ושדות ל-system ו-user prompts.](../../../../translated_images/aitk-generate-prompt.ba9e69d3d2bbe2a26444d0c78775540b14196061eee32c2054e9ee68c4f51f3a.he.png)
+![צילום מסך של ממשק "Calculator Agent" ב-AI Toolkit עבור Visual Studio Code עם חלון מודאלי פתוח שכותרתו "Generate a prompt." המודאל מסביר שניתן ליצור תבנית הנחיה על ידי שיתוף פרטים בסיסיים וכולל תיבת טקסט עם הנחיית מערכת לדוגמה: "You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result." מתחת לתיבת הטקסט יש כפתורים "Close" ו-"Generate". ברקע, חלק מהגדרת הסוכן גלויה, כולל המודל שנבחר "OpenAI GPT-4o (via GitHub)" ושדות להנחיות מערכת ומשתמש.](../../../../translated_images/aitk-generate-prompt.ba9e69d3d2bbe2a26444d0c78775540b14196061eee32c2054e9ee68c4f51f3a.he.png)
 
-1. בקטגוריית **Prompts**, לחץ על כפתור **Generate system prompt**. כפתור זה פותח את בונה ה-prompt שמשתמש ב-AI ליצירת system prompt לסוכן.
-2. בחלון **Generate a prompt**, הזן את הטקסט הבא: `You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result.`
-3. לחץ על כפתור **Generate**. תופיע הודעה בפינה הימנית התחתונה המאשרת שה-system prompt נוצר. לאחר סיום ההפקה, ה-prompt יופיע בשדה **System prompt** ב-**Agent (Prompt) Builder**.
-4. סקור את ה-system prompt וערוך במידת הצורך.
+1. בקטע **Prompts**, לחצו על כפתור **Generate system prompt**. כפתור זה פותח את בונה ההנחיות שמנצל AI ליצירת הנחיית מערכת עבור הסוכן.
+1. בחלון **Generate a prompt**, הזינו את הטקסט הבא: `אתה עוזר מתמטי יעיל ומועיל. כשנותנים לך בעיה הכוללת אריתמטיקה בסיסית, אתה מגיב עם התוצאה הנכונה.`
+1. לחצו על כפתור **Generate**. תופיע התראה בפינה הימנית-תחתונה המאשרת שהנחיית המערכת נוצרת. לאחר שהיצירה תושלם, ההנחיה תופיע בשדה **System prompt** של **Agent (Prompt) Builder**.
+1. סקרו את **System prompt** וערכו במידת הצורך.
 
-### -3- צור שרת MCP
+### -3- יצירת שרת MCP
 
-כעת כשהגדרת את ה-system prompt של הסוכן—המנחה את ההתנהגות והתגובות שלו—הגיע הזמן לצייד את הסוכן ביכולות מעשיות. בחלק זה, תיצור שרת MCP של מחשבון עם כלים לביצוע חיבור, חיסור, כפל וחילוק. שרת זה יאפשר לסוכן לבצע פעולות מתמטיות בזמן אמת בתגובה לפקודות בשפה טבעית.
+עכשיו, לאחר שהגדרתם את הנחיית המערכת של הסוכן—המנחה את התנהגותו ותגובותיו—הגיע הזמן לצייד את הסוכן ביכולות מעשיות. בחלק הזה, תיצרו שרת MCP של מחשבון עם כלים לביצוע חיבור, חיסור, כפל וחילוק. שרת זה יאפשר לסוכן שלכם לבצע פעולות מתמטיות בזמן אמת בתגובה להנחיות בשפה טבעית.
 
-![צילום מסך של החלק התחתון בממשק Calculator Agent ב-AI Toolkit עבור Visual Studio Code. מוצגים תפריטים נפתחים ל-"Tools" ו-"Structure output," יחד עם תפריט נפתח לבחירת פורמט פלט שנבחר כ-"text." מימין, יש כפתור "+ MCP Server" להוספת שרת Model Context Protocol. מעל אזור הכלים יש מקום לאייקון תמונה.](../../../../translated_images/aitk-add-mcp-server.9742cfddfe808353c0caf9cc0a7ed3e80e13abf4d2ebde315c81c3cb02a2a449.he.png)
+!["צילום מסך של החלק התחתון של ממשק Calculator Agent ב-AI Toolkit עבור Visual Studio Code. הוא מציג תפריטים נפתחים עבור “Tools” ו-“Structure output,” יחד עם תפריט נפתח שכותרתו “Choose output format” שמוגדר ל-“text.” מימין, יש כפתור שכותרתו “+ MCP Server” להוספת שרת Model Context Protocol. אייקון מציין מקום לתמונה מוצג מעל קטע Tools.](../../../../translated_images/aitk-add-mcp-server.9742cfddfe808353c0caf9cc0a7ed3e80e13abf4d2ebde315c81c3cb02a2a449.he.png)
 
-AI Toolkit מצויד בתבניות להקלה על יצירת שרת MCP משלך. נשתמש בתבנית Python ליצירת שרת MCP של מחשבון.
+AI Toolkit מצוידת בתבניות להקלת יצירת שרת MCP משלכם. נשתמש בתבנית Python ליצירת שרת MCP של מחשבון.
 
 *הערה*: AI Toolkit תומכת כרגע ב-Python ו-TypeScript.
 
-1. בקטגוריית **Tools** ב-**Agent (Prompt) Builder**, לחץ על כפתור **+ MCP Server**. ההרחבה תפעיל אשף הגדרה דרך **Command Palette**.
-2. בחר **+ Add Server**.
-3. בחר **Create a New MCP Server**.
-4. בחר בתבנית **python-weather**.
-5. בחר **Default folder** לשמירת תבנית שרת MCP.
-6. הזן את השם הבא לשרת: **Calculator**
-7. תפתח חלון חדש של Visual Studio Code. בחר **Yes, I trust the authors**.
-8. באמצעות הטרמינל (**Terminal** > **New Terminal**), צור סביבה וירטואלית: `python -m venv .venv`
-9. הפעל את הסביבה הווירטואלית בטרמינל:
+1. בקטע **Tools** של **Agent (Prompt) Builder**, לחצו על כפתור **+ MCP Server**. ההרחבה תפעיל אשף הגדרה דרך **Command Palette**.
+1. בחרו **+ Add Server**.
+1. בחרו **Create a New MCP Server**.
+1. בחרו **python-weather** כתבנית.
+1. בחרו **Default folder** לשמירת תבנית שרת MCP.
+1. הזינו את השם הבא לשרת: **Calculator**
+1. חלון חדש של Visual Studio Code ייפתח. בחרו **Yes, I trust the authors**.
+1. באמצעות הטרמינל (**Terminal** > **New Terminal**), צרו סביבה וירטואלית: `python -m venv .venv`
+1. באמצעות הטרמינל, הפעילו את הסביבה הווירטואלית:
     1. Windows - `.venv\Scripts\activate`
-    2. macOS/Linux - `source venv/bin/activate`
-10. התקן את התלויות בטרמינל: `pip install -e .[dev]`
-11. בתצוגת **Explorer** ב-**Activity Bar**, הרחב את תיקיית **src** ובחר ב-**server.py** לפתיחת הקובץ בעורך.
-12. החלף את הקוד בקובץ **server.py** בקוד הבא ושמור:
+    1. macOS/Linux - `source .venv/bin/activate`
+1. באמצעות הטרמינל, התקינו את התלויות: `pip install -e .[dev]`
+1. בתצוגת **Explorer** של **Activity Bar**, הרחיבו את התיקייה **src** ובחרו **server.py** כדי לפתוח את הקובץ בעורך.
+1. החליפו את הקוד בקובץ **server.py** עם הקוד הבא ושמרו:
 
     ```python
     """
@@ -150,30 +153,30 @@ AI Toolkit מצויד בתבניות להקלה על יצירת שרת MCP מש�
         return a / b
     ```
 
-### -4- הרץ את הסוכן עם שרת MCP של המחשבון
+### -4- הפעלת הסוכן עם שרת MCP של מחשבון
 
-כעת שלסוכן שלך יש כלים, הגיע הזמן להשתמש בהם! בחלק זה, תשלח פקודות לסוכן כדי לבדוק ולאמת האם הסוכן משתמש בכלי המתאים משרת MCP של המחשבון.
+עכשיו, כשהסוכן שלכם מצויד בכלים, הגיע הזמן להשתמש בהם! בחלק הזה, תגישו הנחיות לסוכן כדי לבדוק ולאמת אם הסוכן מנצל את הכלי המתאים משרת MCP של מחשבון.
 
-![צילום מסך של ממשק Calculator Agent ב-AI Toolkit עבור Visual Studio Code. בפאנל השמאלי, תחת "Tools," נוסף שרת MCP בשם local-server-calculator_server, המציג ארבעה כלים זמינים: add, subtract, multiply, ו-divide. תג מציין שארבעה כלים פעילים. מתחת יש קטע "Structure output" מקופל וכפתור "Run" כחול. בפאנל הימני, תחת "Model Response," הסוכן מפעיל את הכלים multiply ו-subtract עם קלטים {"a": 3, "b": 25} ו-{"a": 75, "b": 20} בהתאמה. התגובה הסופית של הכלי מוצגת כ-75.0. כפתור "View Code" מופיע בתחתית.](../../../../translated_images/aitk-agent-response-with-tools.e7c781869dc8041a25f9903ed4f7e8e0c7e13d7d94f6786a6c51b1e172f56866.he.png)
+![צילום מסך של ממשק Calculator Agent ב-AI Toolkit עבור Visual Studio Code. בלוח השמאלי, תחת “Tools,” נוסף שרת MCP בשם local-server-calculator_server, שמציג ארבעה כלים זמינים: add, subtract, multiply, ו-divide. תג מציין שארבעה כלים פעילים. מתחת יש קטע “Structure output” מכווץ וכפתור כחול “Run.” בלוח הימני, תחת “Model Response,” הסוכן מפעיל את הכלים multiply ו-subtract עם קלטים {"a": 3, "b": 25} ו-{"a": 75, "b": 20} בהתאמה. ה-“Tool Response” הסופי מוצג כ-75.0. כפתור “View Code” מופיע בתחתית.](../../../../translated_images/aitk-agent-response-with-tools.e7c781869dc8041a25f9903ed4f7e8e0c7e13d7d94f6786a6c51b1e172f56866.he.png)
 
-תריץ את שרת MCP של המחשבון במכונת הפיתוח המקומית שלך דרך **Agent Builder** כלקוח MCP.
+תפעילו את שרת MCP של מחשבון במכונת הפיתוח המקומית שלכם דרך **Agent Builder** כלקוח MCP.
 
-1. לחץ `F5` כדי להתחיל דיבוג של שרת MCP. **Agent (Prompt) Builder** ייפתח בכרטיסייה חדשה בעורך. מצב השרת נראה בטרמינל.
-2. בשדה **User prompt** של **Agent (Prompt) Builder**, הזן את הפקודה הבאה: `I bought 3 items priced at $25 each, and then used a $20 discount. How much did I pay?`
-3. לחץ על כפתור **Run** כדי ליצור את תגובת הסוכן.
-4. סקור את הפלט של הסוכן. המודל אמור להסיק ששילמת **$55**.
-5. הנה פירוט מה אמור לקרות:
-    - הסוכן בוחר בכלי ה-**multiply** וה-**subtract** כדי לסייע בחישוב.
-    - ערכי `a` ו-`b` מתאימים מוקצים לכלי ה-**multiply**.
-    - ערכי `a` ו-`b` מתאימים מוקצים לכלי ה-**subtract**.
-    - התגובה מכל כלי מוצגת ב-**Tool Response** המתאים.
-    - הפלט הסופי מהמודל מוצג ב-**Model Response** הסופי.
-6. שלח פקודות נוספות כדי לבדוק את הסוכן. ניתן לשנות את הפקודה הקיימת בשדה **User prompt** על ידי לחיצה ושינוי הטקסט.
-7. כשתסיים לבדוק את הסוכן, תוכל לעצור את השרת דרך הטרמינל על ידי הקשת **CTRL/CMD+C** ליציאה.
+1. לחצו `F5` כדי להתחיל לנפות שגיאות בשרת MCP. **Agent (Prompt) Builder** ייפתח בלשונית עורך חדשה. סטטוס השרת גלוי בטרמינל.
+1. בשדה **User prompt** של **Agent (Prompt) Builder**, הזינו את ההנחיה הבאה: `קניתי 3 פריטים במחיר של $25 כל אחד, ואז השתמשתי בהנחה של $20. כמה שילמתי?`
+1. לחצו על כפתור **Run** כדי ליצור את תגובת הסוכן.
+1. סקרו את הפלט של הסוכן. המודל אמור להסיק ששילמתם **$55**.
+1. הנה פירוט של מה שצריך לקרות:
+    - הסוכן בוחר בכלים **multiply** ו-**subtract** כדי לעזור בחישוב.
+    - הערכים `a` ו-`b` המתאימים מוקצים לכלי **multiply**.
+    - הערכים `a` ו-`b` המתאימים מוקצים לכלי **subtract**.
+    - התגובה מכל כלי מסופקת ב-**Tool Response** המתאים.
+    - הפלט הסופי מהמודל מסופק ב-**Model Response** הסופי.
+1. הגישו הנחיות נוספות כדי לבדוק את הסוכן. תוכלו לשנות את ההנחיה הקיימת בשדה **User prompt** על ידי לחיצה לתוך השדה והחלפת ההנחיה הקיימת.
+1. לאחר שתסיימו לבדוק את הסוכן, תוכלו לעצור את השרת דרך **הטרמינל** על ידי הזנת **CTRL/CMD+C** כדי לצאת.
 
 ## משימה
 
-נסה להוסיף כלי נוסף לקובץ **server.py** שלך (למשל: להחזיר את השורש הריבועי של מספר). שלח פקודות נוספות שידרשו מהסוכן להשתמש בכלי החדש (או בכלים קיימים). ודא שאתה מאתחל את השרת כדי לטעון את הכלים החדשים.
+נסו להוסיף כלי נוסף לקובץ **server.py** שלכם (לדוגמה: להחזיר את השורש הריבועי של מספר). הגישו הנחיות נוספות שידרשו מהסוכן לנצל את הכלי החדש שלכם (או כלים קיימים). ודאו שאתם מפעילים מחדש את השרת כדי לטעון כלים שנוספו.
 
 ## פתרון
 
@@ -181,18 +184,18 @@ AI Toolkit מצויד בתבניות להקלה על יצירת שרת MCP מש�
 
 ## נקודות מפתח
 
-הנקודות החשובות מפרק זה הן:
+הנקודות המרכזיות מהפרק הזה הן:
 
-- ההרחבה AI Toolkit היא לקוח מצוין שמאפשר לך לצרוך שרתי MCP וכלים שלהם.
-- ניתן להוסיף כלים חדשים לשרתי MCP, להרחיב את יכולות הסוכן כדי לעמוד בדרישות משתנות.
-- AI Toolkit כוללת תבניות (כגון תבניות שרת MCP ב-Python) שמפשטות את יצירת הכלים המותאמים.
+- הרחבת AI Toolkit היא לקוח מצוין שמאפשר לצרוך שרתי MCP והכלים שלהם.
+- תוכלו להוסיף כלים חדשים לשרתי MCP, להרחיב את יכולות הסוכן כדי לעמוד בדרישות משתנות.
+- AI Toolkit כוללת תבניות (לדוגמה, תבניות שרת MCP ב-Python) כדי לפשט את יצירת הכלים המותאמים אישית.
 
 ## משאבים נוספים
 
-- [תיעוד AI Toolkit](https://aka.ms/AIToolkit/doc)
+- [מסמכי AI Toolkit](https://aka.ms/AIToolkit/doc)
 
 ## מה הלאה
 - הבא: [בדיקות וניפוי שגיאות](../08-testing/README.md)
 
 **כתב ויתור**:  
-מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש לקחת בחשבון כי תרגומים אוטומטיים עלולים להכיל שגיאות או אי-דיוקים. המסמך המקורי בשפת המקור שלו נחשב למקור הסמכותי. למידע קריטי מומלץ להשתמש בתרגום מקצועי על ידי מתרגם אנושי. אנו לא נושאים באחריות לכל אי-הבנה או פרשנות שגויה הנובעת משימוש בתרגום זה.
+מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש לקחת בחשבון שתרגומים אוטומטיים עשויים להכיל שגיאות או אי דיוקים. המסמך המקורי בשפתו המקורית צריך להיחשב כמקור הסמכותי. עבור מידע קריטי, מומלץ להשתמש בתרגום מקצועי על ידי אדם. איננו נושאים באחריות לאי הבנות או לפרשנויות שגויות הנובעות משימוש בתרגום זה.

@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4eb6a48c54555c64b33c763fba3f2842",
-  "translation_date": "2025-07-13T21:01:56+00:00",
+  "original_hash": "dde4e32e4b55ef4962c411b39d2340a7",
+  "translation_date": "2025-09-03T15:53:57+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/dotnet/README.md",
   "language_code": "en"
 }
@@ -23,26 +23,26 @@ dotnet run
 
 ## -3- Test the sample
 
-Open a separate terminal before running the command below (make sure the server is still running).
+Start a separate terminal before running the commands below (ensure the server is still active).
 
-With the server running in one terminal, open another terminal and run the following command:
+With the server running in one terminal, open another terminal and execute the following command:
 
 ```bash
 npx @modelcontextprotocol/inspector http://localhost:3001
 ```
 
-This will start a web server with a visual interface that lets you test the sample.
+This will start a web server with a visual interface that allows you to test the sample.
 
-> Make sure **Streamable HTTP** is selected as the transport type, and the URL is `http://localhost:3001/mcp`.
+> Ensure that **Streamable HTTP** is selected as the transport type, and the URL is `http://localhost:3001/mcp`.
 
 Once the server is connected:
 
-- try listing tools and run `add` with arguments 2 and 4; you should see 6 as the result.
-- go to resources and resource template, call "greeting," enter a name, and you should see a greeting with the name you provided.
+- Try listing tools and run `add` with arguments 2 and 4. You should see 6 as the result.
+- Navigate to resources and resource templates, call "greeting," type in a name, and you should see a greeting with the name you provided.
 
 ### Testing in CLI mode
 
-You can launch it directly in CLI mode by running the following command:
+You can directly launch it in CLI mode by running the following command:
 
 ```bash 
 npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/list
@@ -100,9 +100,11 @@ You should see the following output:
 }
 ```
 
-> ![!TIP]
-> Running the inspector in CLI mode is usually much faster than in the browser.
-> Read more about the inspector [here](https://github.com/modelcontextprotocol/inspector).
+> [!TIP]
+> Running the inspector in CLI mode is usually much faster than using the browser.
+> Learn more about the inspector [here](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Disclaimer**:  
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we aim for accuracy, please note that automated translations may include errors or inaccuracies. The original document in its native language should be regarded as the authoritative source. For critical information, professional human translation is advised. We are not responsible for any misunderstandings or misinterpretations resulting from the use of this translation.

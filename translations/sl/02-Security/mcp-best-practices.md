@@ -1,108 +1,167 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "90bfc6f3be00e34f6124e2a24bf94167",
-  "translation_date": "2025-07-17T13:44:05+00:00",
+  "original_hash": "b2b9e15e78b9d9a2b3ff3e8fd7d1f434",
+  "translation_date": "2025-08-19T18:17:20+00:00",
   "source_file": "02-Security/mcp-best-practices.md",
   "language_code": "sl"
 }
 -->
-# Najboljše varnostne prakse za MCP
+# MCP Varnostne Najboljše Prakse 2025
 
-Pri delu z MCP strežniki upoštevajte naslednje varnostne najboljše prakse za zaščito svojih podatkov, infrastrukture in uporabnikov:
+Ta obsežen vodnik opisuje ključne varnostne najboljše prakse za implementacijo sistemov Model Context Protocol (MCP) na podlagi najnovejše **MCP Specifikacije 2025-06-18** in trenutnih industrijskih standardov. Prakse obravnavajo tako tradicionalne varnostne izzive kot tudi grožnje, specifične za umetno inteligenco, ki so edinstvene za MCP implementacije.
 
-1. **Preverjanje vhodnih podatkov**: Vedno preverjajte in čistite vhodne podatke, da preprečite napade z injekcijo in težave z zmedo pooblaščencev.
-2. **Nadzor dostopa**: Uvedite ustrezno avtentikacijo in avtorizacijo za vaš MCP strežnik z natančno določenimi dovoljenji.
-3. **Varnostna komunikacija**: Za vso komunikacijo z MCP strežnikom uporabljajte HTTPS/TLS in razmislite o dodatnem šifriranju občutljivih podatkov.
-4. **Omejevanje hitrosti**: Uvedite omejevanje hitrosti, da preprečite zlorabe, DoS napade in nadzorujete porabo virov.
-5. **Dnevnik in nadzor**: Spremljajte MCP strežnik za sumljive aktivnosti in uvedite celovite revizijske sledi.
-6. **Varnostno shranjevanje**: Zaščitite občutljive podatke in poverilnice z ustreznim šifriranjem v mirovanju.
-7. **Upravljanje žetonov**: Preprečite ranljivosti pri prenašanju žetonov z validacijo in čiščenjem vseh vhodnih in izhodnih podatkov modela.
-8. **Upravljanje sej**: Uvedite varno upravljanje sej, da preprečite prevzem in fiksacijo sej.
-9. **Izolacija izvajanja orodij**: Zaženite izvajanje orodij v izoliranih okoljih, da preprečite lateralno širjenje v primeru kompromitacije.
-10. **Redni varnostni pregledi**: Redno izvajajte varnostne preglede vaših MCP implementacij in odvisnosti.
-11. **Preverjanje pozivov**: Preverjajte in filtrirajte tako vhodne kot izhodne pozive, da preprečite napade z injekcijo pozivov.
-12. **Delegacija avtentikacije**: Uporabljajte uveljavljene ponudnike identitete namesto lastnih rešitev za avtentikacijo.
-13. **Določanje obsega dovoljenj**: Uvedite natančna dovoljenja za vsako orodje in vir, sledite načelom najmanjših privilegijev.
-14. **Minimizacija podatkov**: Razkrijte le najmanjše potrebne podatke za vsako operacijo, da zmanjšate tveganja.
-15. **Avtomatizirano skeniranje ranljivosti**: Redno pregledujte MCP strežnike in odvisnosti za znane ranljivosti.
+## Ključne Varnostne Zahteve
 
-## Podporni viri za najboljše varnostne prakse MCP
+### Obvezni Varnostni Nadzori (Zahteve MUST)
 
-### Preverjanje vhodnih podatkov
-- [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)
-- [Preventing Prompt Injection in MCP](https://modelcontextprotocol.io/docs/guides/security)
-- [Azure Content Safety Implementation](./azure-content-safety-implementation.md)
+1. **Validacija žetonov**: MCP strežniki **NE SMEJO** sprejemati žetonov, ki niso bili izrecno izdani za sam MCP strežnik.
+2. **Preverjanje avtorizacije**: MCP strežniki, ki izvajajo avtorizacijo, **MORAJO** preveriti VSE dohodne zahteve in **NE SMEJO** uporabljati sej za avtentikacijo.  
+3. **Uporabniško soglasje**: MCP proxy strežniki, ki uporabljajo statične ID-je odjemalcev, **MORAJO** pridobiti izrecno soglasje uporabnika za vsakega dinamično registriranega odjemalca.
+4. **Varni ID-ji sej**: MCP strežniki **MORAJO** uporabljati kriptografsko varne, nedeterministične ID-je sej, ustvarjene z varnimi generatorji naključnih števil.
 
-### Nadzor dostopa
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [Using Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/)
-- [Azure API Management as Auth Gateway for MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+## Osnovne Varnostne Prakse
 
-### Varnostna komunikacija
-- [Transport Layer Security (TLS) Best Practices](https://learn.microsoft.com/security/engineering/solving-tls)
-- [MCP Transport Security Guidelines](https://modelcontextprotocol.io/docs/concepts/transports)
-- [End-to-End Encryption for AI Workloads](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption)
+### 1. Validacija in Sanitizacija Vnosov
+- **Celovita validacija vnosov**: Validirajte in sanitizirajte vse vnose, da preprečite napade z vnosom, težave z zmedenimi pooblaščenci in ranljivosti zaradi vnosov v pozive.
+- **Uveljavljanje sheme parametrov**: Uporabite strogo validacijo JSON shem za vse parametre orodij in API vnose.
+- **Filtriranje vsebine**: Uporabite Microsoft Prompt Shields in Azure Content Safety za filtriranje zlonamerne vsebine v pozivih in odgovorih.
+- **Sanitizacija izhodov**: Validirajte in sanitizirajte vse izhode modela, preden jih predstavite uporabnikom ali sistemom navzdol.
 
-### Omejevanje hitrosti
-- [API Rate Limiting Patterns](https://learn.microsoft.com/azure/architecture/patterns/rate-limiting-pattern)
-- [Implementing Token Bucket Rate Limiting](https://konghq.com/blog/engineering/how-to-design-a-scalable-rate-limiting-algorithm)
-- [Rate Limiting in Azure API Management](https://learn.microsoft.com/azure/api-management/rate-limit-policy)
+### 2. Odličnost v Avtentikaciji in Avtorizaciji  
+- **Zunanji ponudniki identitete**: Avtentikacijo delegirajte uveljavljenim ponudnikom identitete (Microsoft Entra ID, ponudniki OAuth 2.1) namesto implementacije lastne avtentikacije.
+- **Drobnozrnata dovoljenja**: Implementirajte granularna, orodju specifična dovoljenja po načelu najmanjših privilegijev.
+- **Upravljanje življenjskega cikla žetonov**: Uporabljajte kratkožive dostopne žetone z varno rotacijo in pravilno validacijo občinstva.
+- **Večfaktorska avtentikacija**: Zahtevajte MFA za ves administrativni dostop in občutljive operacije.
 
-### Dnevnik in nadzor
-- [Centralized Logging for AI Systems](https://learn.microsoft.com/azure/architecture/example-scenario/logging/centralized-logging)
-- [Audit Logging Best Practices](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
-- [Azure Monitor for AI Workloads](https://learn.microsoft.com/azure/azure-monitor/overview)
+### 3. Varni Komunikacijski Protokoli
+- **Transportna plastna varnost**: Uporabljajte HTTPS/TLS 1.3 za vse MCP komunikacije z ustrezno validacijo certifikatov.
+- **Šifriranje od konca do konca**: Implementirajte dodatne sloje šifriranja za zelo občutljive podatke v prenosu in mirovanju.
+- **Upravljanje certifikatov**: Vzdržujte pravilno upravljanje življenjskega cikla certifikatov z avtomatiziranimi postopki obnove.
+- **Uveljavljanje različice protokola**: Uporabljajte trenutno različico MCP protokola (2025-06-18) z ustreznim pogajanjem o različici.
 
-### Varnostno shranjevanje
-- [Azure Key Vault for Credential Storage](https://learn.microsoft.com/azure/key-vault/general/basic-concepts)
-- [Encrypting Sensitive Data at Rest](https://learn.microsoft.com/security/engineering/data-encryption-at-rest)
-- [Use Secure Token Storage and Encrypt Tokens](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
+### 4. Napredno Omejevanje Hitrosti in Zaščita Virov
+- **Večplastno omejevanje hitrosti**: Implementirajte omejevanje hitrosti na ravni uporabnika, seje, orodja in virov za preprečevanje zlorab.
+- **Prilagodljivo omejevanje hitrosti**: Uporabljajte omejevanje hitrosti, ki temelji na strojni inteligenci in se prilagaja vzorcem uporabe ter indikatorjem groženj.
+- **Upravljanje kvot virov**: Nastavite ustrezne omejitve za računske vire, porabo pomnilnika in čas izvajanja.
+- **Zaščita pred DDoS**: Uvedite celovite sisteme za zaščito pred DDoS in analizo prometa.
 
-### Upravljanje žetonov
-- [JWT Best Practices (RFC 8725)](https://datatracker.ietf.org/doc/html/rfc8725)
-- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
-- [Best Practices for Token Validation and Lifetime](https://learn.microsoft.com/entra/identity-platform/access-tokens)
+### 5. Celovito Beleženje in Spremljanje
+- **Strukturirano beleženje revizij**: Implementirajte podrobne, iskalne dnevnike za vse MCP operacije, izvajanja orodij in varnostne dogodke.
+- **Spremljanje varnosti v realnem času**: Uvedite SIEM sisteme z AI-podprtim zaznavanjem anomalij za MCP delovne obremenitve.
+- **Beleženje skladno z zasebnostjo**: Beležite varnostne dogodke ob spoštovanju zahtev in predpisov o zasebnosti podatkov.
+- **Integracija odziva na incidente**: Povežite sisteme beleženja z avtomatiziranimi poteki dela za odziv na incidente.
 
-### Upravljanje sej
-- [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
-- [MCP Session Handling Guidelines](https://modelcontextprotocol.io/docs/guides/security)
-- [Secure Session Design Patterns](https://learn.microsoft.com/security/engineering/session-security)
+### 6. Izboljšane Prakse Varnega Shranjevanja
+- **Strojne varnostne module**: Uporabljajte HSM-podprto shranjevanje ključev (Azure Key Vault, AWS CloudHSM) za ključne kriptografske operacije.
+- **Upravljanje šifrirnih ključev**: Implementirajte pravilno rotacijo ključev, ločevanje in nadzor dostopa za šifrirne ključe.
+- **Upravljanje skrivnosti**: Shranjujte vse API ključe, žetone in poverilnice v namenskih sistemih za upravljanje skrivnosti.
+- **Razvrščanje podatkov**: Razvrstite podatke glede na stopnjo občutljivosti in uporabite ustrezne zaščitne ukrepe.
 
-### Izolacija izvajanja orodij
-- [Container Security Best Practices](https://learn.microsoft.com/azure/container-instances/container-instances-image-security)
-- [Implementing Process Isolation](https://learn.microsoft.com/windows/security/threat-protection/security-policy-settings/user-rights-assignment)
-- [Resource Limits for Containerized Applications](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+### 7. Napredno Upravljanje Žetonov
+- **Preprečevanje posredovanja žetonov**: Izrecno prepovejte vzorce posredovanja žetonov, ki obidejo varnostne nadzore.
+- **Validacija občinstva**: Vedno preverite, ali trditve o občinstvu žetona ustrezajo identiteti predvidenega MCP strežnika.
+- **Avtorizacija na podlagi trditev**: Implementirajte drobnozrnato avtorizacijo na podlagi trditev žetonov in atributov uporabnikov.
+- **Vezava žetonov**: Žetone vežite na specifične seje, uporabnike ali naprave, kjer je to primerno.
 
-### Redni varnostni pregledi
-- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl)
-- [OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/)
-- [Security Code Review Guidelines](https://owasp.org/www-pdf-archive/OWASP_Code_Review_Guide_v2.pdf)
+### 8. Varno Upravljanje Sej
+- **Kriptografski ID-ji sej**: Ustvarjajte ID-je sej z uporabo kriptografsko varnih generatorjev naključnih števil (nepredvidljivih zaporedij).
+- **Vezava na uporabnika**: ID-je sej vežite na uporabniško specifične informacije z uporabo varnih formatov, kot je `<user_id>:<session_id>`.
+- **Nadzor življenjskega cikla sej**: Implementirajte pravilno potekanje, rotacijo in razveljavitev sej.
+- **Varnostni glavi sej**: Uporabljajte ustrezne HTTP varnostne glave za zaščito sej.
 
-### Preverjanje pozivov
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
-- [Azure Content Safety for AI](https://learn.microsoft.com/azure/ai-services/content-safety/)
-- [Preventing Prompt Injection](https://github.com/microsoft/prompt-shield-js)
+### 9. Varnostni Nadzori Specifični za AI
+- **Obramba pred vnosom v pozive**: Uvedite Microsoft Prompt Shields z osvetljevanjem, ločili in tehnikami označevanja podatkov.
+- **Preprečevanje zastrupitve orodij**: Validirajte metapodatke orodij, spremljajte dinamične spremembe in preverjajte integriteto orodij.
+- **Validacija izhodov modela**: Preverjajte izhode modela za morebitno uhajanje podatkov, škodljivo vsebino ali kršitve varnostnih politik.
+- **Zaščita kontekstnega okna**: Implementirajte nadzore za preprečevanje zastrupitve in manipulacije kontekstnega okna.
 
-### Delegacija avtentikacije
-- [Microsoft Entra ID Integration](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow)
-- [OAuth 2.0 for MCP Services](https://learn.microsoft.com/security/engineering/solving-oauth)
-- [MCP Security Controls 2025](./mcp-security-controls-2025.md)
+### 10. Varnost Izvajanja Orodij
+- **Izolacija izvajanja**: Izvajajte orodja v vsebniških, izoliranih okoljih z omejitvami virov.
+- **Ločevanje privilegijev**: Izvajajte orodja z minimalno potrebnimi privilegiji in ločenimi uporabniškimi računi.
+- **Omrežna izolacija**: Implementirajte segmentacijo omrežja za okolja izvajanja orodij.
+- **Spremljanje izvajanja**: Spremljajte izvajanje orodij za nenavadno vedenje, porabo virov in varnostne kršitve.
 
-### Določanje obsega dovoljenj
-- [Secure Least-Privileged Access](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
-- [Role-Based Access Control (RBAC) Design](https://learn.microsoft.com/azure/role-based-access-control/overview)
-- [Tool-specific Authorization in MCP](https://modelcontextprotocol.io/docs/guides/best-practices)
+### 11. Nenehna Varnostna Validacija
+- **Avtomatizirano varnostno testiranje**: Integrirajte varnostno testiranje v CI/CD procese z orodji, kot je GitHub Advanced Security.
+- **Upravljanje ranljivosti**: Redno pregledujte vse odvisnosti, vključno z AI modeli in zunanjimi storitvami.
+- **Penetracijsko testiranje**: Redno izvajajte varnostne ocene, posebej usmerjene na MCP implementacije.
+- **Pregledi varnostne kode**: Implementirajte obvezne varnostne preglede za vse spremembe kode, povezane z MCP.
 
-### Minimizacija podatkov
-- [Data Protection by Design](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments)
-- [AI Data Privacy Best Practices](https://learn.microsoft.com/legal/cognitive-services/openai/data-privacy)
-- [Implementing Privacy-enhancing Technologies](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/)
+### 12. Varnost Dobavne Verige za AI
+- **Preverjanje komponent**: Preverjajte izvor, integriteto in varnost vseh AI komponent (modelov, vdelav, API-jev).
+- **Upravljanje odvisnosti**: Vzdržujte trenutne inventarje vseh programske opreme in AI odvisnosti z sledenjem ranljivostim.
+- **Zaupanja vredni repozitoriji**: Uporabljajte preverjene, zaupanja vredne vire za vse AI modele, knjižnice in orodja.
+- **Spremljanje dobavne verige**: Nenehno spremljajte morebitne kompromise pri ponudnikih AI storitev in repozitorijih modelov.
 
-### Avtomatizirano skeniranje ranljivosti
-- [GitHub Advanced Security](https://github.com/security/advanced-security)
-- [DevSecOps Pipeline Implementation](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline)
-- [Continuous Security Validation](https://www.microsoft.com/security/blog/2022/04/05/step-by-step-building-a-more-efficient-devsecops-environment/)
+## Napredni Varnostni Vzorci
+
+### Arhitektura Zero Trust za MCP
+- **Nikoli ne zaupaj, vedno preveri**: Implementirajte stalno preverjanje za vse MCP udeležence.
+- **Mikrosegmentacija**: Izolirajte MCP komponente z granularnimi omrežnimi in identitetnimi nadzori.
+- **Pogojni dostop**: Implementirajte nadzore dostopa, ki temeljijo na tveganju in se prilagajajo kontekstu ter vedenju.
+- **Nenehna ocena tveganja**: Dinamično ocenjujte varnostno stanje na podlagi trenutnih indikatorjev groženj.
+
+### Implementacija AI z Ohranjanjem Zasebnosti
+- **Minimizacija podatkov**: Razkrijte le minimalno potrebne podatke za vsako MCP operacijo.
+- **Diferencialna zasebnost**: Implementirajte tehnike za ohranjanje zasebnosti pri obdelavi občutljivih podatkov.
+- **Homomorfno šifriranje**: Uporabljajte napredne šifrirne tehnike za varno računanje na šifriranih podatkih.
+- **Federativno učenje**: Implementirajte porazdeljene pristope učenja, ki ohranjajo lokalnost in zasebnost podatkov.
+
+### Odziv na Incidente za AI Sisteme
+- **Postopki za incidente specifične za AI**: Razvijte postopke za odziv na incidente, prilagojene grožnjam, specifičnim za AI in MCP.
+- **Avtomatiziran odziv**: Implementirajte avtomatizirano zadrževanje in sanacijo za pogoste AI varnostne incidente.  
+- **Forenzične zmogljivosti**: Vzdržujte pripravljenost na forenzične preiskave za kompromise AI sistemov in kršitve podatkov.
+- **Postopki za obnovitev**: Ustanovite postopke za obnovitev po zastrupitvi AI modelov, napadih z vnosom v pozive in kompromisih storitev.
+
+## Viri za Implementacijo in Standardi
+
+### Uradna MCP Dokumentacija
+- [MCP Specifikacija 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) - Trenutna MCP specifikacija protokola
+- [MCP Varnostne Najboljše Prakse](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) - Uradna varnostna navodila
+- [MCP Specifikacija Avtorizacije](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization) - Vzorci avtentikacije in avtorizacije
+- [MCP Transportna Varnost](https://modelcontextprotocol.io/specification/2025-06-18/transports/) - Zahteve za varnost transportne plasti
+
+### Microsoft Varnostne Rešitve
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - Napredna zaščita pred vnosom v pozive
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/) - Celovito filtriranje vsebine AI
+- [Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow) - Upravljanje identitete in dostopa za podjetja
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts) - Varno upravljanje skrivnosti in poverilnic
+- [GitHub Advanced Security](https://github.com/security/advanced-security) - Pregledovanje varnosti kode in dobavne verige
+
+### Standardi in Okviri za Varnost
+- [OAuth 2.1 Varnostne Najboljše Prakse](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics) - Trenutna navodila za varnost OAuth
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Tveganja za spletne aplikacije
+- [OWASP Top 10 za LLM-je](https://genai.owasp.org/download/43299/?tmstv=1731900559) - Tveganja specifična za AI
+- [NIST Okvir za Upravljanje Tveganj AI](https://www.nist.gov/itl/ai-risk-management-framework) - Celovito upravljanje tveganj AI
+- [ISO 27001:2022](https://www.iso.org/standard/27001) - Sistemi za upravljanje informacijske varnosti
+
+### Vodniki za Implementacijo in Vadnice
+- [Azure API Management kot MCP Avtorizacijski Prehod](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) - Vzorci avtentikacije za podjetja
+- [Microsoft Entra ID z MCP Strežniki](https://den.dev/blog/mcp-server-auth-entra-id-session/) - Integracija ponudnika identitete
+- [Implementacija Varnega Shranjevanja Žetonov](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2) - Najboljše prakse za upravljanje žetonov
+- [Šifriranje od Konca do Konca za AI](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption) - Napredni vzorci šifriranja
+
+### Napredni Varnostni Viri
+- [Microsoftov Varnostni Razvojni Ciklus](https://www.microsoft.com/sdl) - Prakse za varen razvoj
+- [Vodnik za AI Rdeče Ekipe](https://learn.microsoft.com/security/ai-red-team/) - Testiranje varnosti specifično za AI
+- [Modeliranje Groženj za AI Sisteme](https://learn.microsoft.com/security/adoption/approach/threats-ai) - Metodologija za modeliranje groženj AI
+- [Inženiring Zasebnosti za AI](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/) - Tehnike za ohranjanje zasebnosti AI
+
+### Skladnost in Upravljanje
+- [Skladnost z GDPR za AI](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments) - Skladnost zasebnosti v AI sistemih
+- [Okvir za Upravljanje AI](https://learn.microsoft.com/azure/architecture/guide/responsible-ai/responsible-ai-overview) - Implementacija odgovorne AI
+- [SOC 2 za AI Storitve](https://learn.microsoft.com/compliance/regulatory/offering-soc) - Varnostni nadzori za ponudnike AI storitev
+- [Skladnost z HIPAA za AI](https://learn.microsoft.com/compliance/regulatory/offering-hipaa-hitech) - Zahteve za skladnost AI v zdravstvu
+
+### DevSecOps in Avtomatizacija
+- [DevSecOps Cevovod za AI](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline) - Varni razvojni cevovodi za AI
+- [Avtomatizirano Varnostno Testiranje](https://learn.microsoft.com/security/engineering/devsecops) - Nene
+- **Razvoj orodij**: Razvijajte in delite varnostna orodja ter knjižnice za ekosistem MCP
+
+---
+
+*Ta dokument odraža najboljše prakse za varnost MCP na dan 18. avgust 2025, skladno s specifikacijo MCP 2025-06-18. Varnostne prakse je treba redno pregledovati in posodabljati, saj se protokol in grožnje nenehno razvijajo.*
 
 **Omejitev odgovornosti**:  
-Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas opozarjamo, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku velja za avtoritativni vir. Za ključne informacije priporočamo strokovni človeški prevod. Za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda, ne odgovarjamo.
+Ta dokument je bil preveden z uporabo storitve za strojno prevajanje [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas opozarjamo, da lahko avtomatizirani prevodi vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za ključne informacije priporočamo strokovno človeško prevajanje. Ne prevzemamo odgovornosti za morebitna nesporazumevanja ali napačne razlage, ki izhajajo iz uporabe tega prevoda.

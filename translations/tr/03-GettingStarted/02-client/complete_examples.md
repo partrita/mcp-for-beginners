@@ -1,28 +1,30 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "affcf199a44f60283a289dcb69dc144e",
-  "translation_date": "2025-07-17T13:34:48+00:00",
+  "original_hash": "8358c13b5b6877e475674697cdc1a904",
+  "translation_date": "2025-08-18T18:03:42+00:00",
   "source_file": "03-GettingStarted/02-client/complete_examples.md",
   "language_code": "tr"
 }
 -->
 # Tam MCP İstemci Örnekleri
 
-Bu dizin, farklı programlama dillerinde tam ve çalışan MCP istemci örneklerini içerir. Her istemci, ana README.md öğreticisinde açıklanan tüm işlevselliği gösterir.
+Bu dizin, farklı programlama dillerinde tam ve çalışan MCP istemci örneklerini içerir. Her bir istemci, ana README.md eğitiminde açıklanan tüm işlevselliği göstermektedir.
 
 ## Mevcut İstemciler
 
 ### 1. Java İstemcisi (`client_example_java.java`)
-- **Taşıma**: HTTP üzerinden SSE (Server-Sent Events)
+
+- **Taşıma**: HTTP üzerinden SSE (Sunucu Gönderimli Olaylar)
 - **Hedef Sunucu**: `http://localhost:8080`
-- **Özellikler**: 
+- **Özellikler**:
   - Bağlantı kurulumu ve ping
-  - Araç listesi
+  - Araç listeleme
   - Hesap makinesi işlemleri (toplama, çıkarma, çarpma, bölme, yardım)
   - Hata yönetimi ve sonuç çıkarımı
 
 **Çalıştırmak için:**
+
 ```bash
 # Ensure your MCP server is running on localhost:8080
 javac client_example_java.java
@@ -30,31 +32,35 @@ java client_example_java
 ```
 
 ### 2. C# İstemcisi (`client_example_csharp.cs`)
+
 - **Taşıma**: Stdio (Standart Giriş/Çıkış)
-- **Hedef Sunucu**: dotnet run ile yerel .NET MCP sunucusu
+- **Hedef Sunucu**: Yerel .NET MCP sunucusu üzerinden dotnet çalıştırma
 - **Özellikler**:
   - Stdio taşıma ile otomatik sunucu başlatma
-  - Araç ve kaynak listesi
+  - Araç ve kaynak listeleme
   - Hesap makinesi işlemleri
   - JSON sonuç ayrıştırma
   - Kapsamlı hata yönetimi
 
 **Çalıştırmak için:**
+
 ```bash
 dotnet run
 ```
 
 ### 3. TypeScript İstemcisi (`client_example_typescript.ts`)
+
 - **Taşıma**: Stdio (Standart Giriş/Çıkış)
 - **Hedef Sunucu**: Yerel Node.js MCP sunucusu
 - **Özellikler**:
   - Tam MCP protokol desteği
-  - Araç, kaynak ve prompt işlemleri
+  - Araç, kaynak ve istem işlemleri
   - Hesap makinesi işlemleri
-  - Kaynak okuma ve prompt yürütme
-  - Sağlam hata yönetimi
+  - Kaynak okuma ve istem yürütme
+  - Güçlü hata yönetimi
 
 **Çalıştırmak için:**
+
 ```bash
 # First compile TypeScript (if needed)
 npm run build
@@ -66,74 +72,77 @@ node client_example_typescript.js
 ```
 
 ### 4. Python İstemcisi (`client_example_python.py`)
+
 - **Taşıma**: Stdio (Standart Giriş/Çıkış)  
 - **Hedef Sunucu**: Yerel Python MCP sunucusu
 - **Özellikler**:
-  - Async/await deseni ile işlemler
+  - İşlemler için async/await deseni
   - Araç ve kaynak keşfi
   - Hesap makinesi işlemleri testi
-  - Kaynak içerik okuma
+  - Kaynak içeriği okuma
   - Sınıf tabanlı organizasyon
 
 **Çalıştırmak için:**
+
 ```bash
 python client_example_python.py
 ```
 
 ## Tüm İstemcilerde Ortak Özellikler
 
-Her istemci uygulaması şunları gösterir:
+Her bir istemci uygulaması aşağıdakileri göstermektedir:
 
 1. **Bağlantı Yönetimi**
-   - MCP sunucusuna bağlantı kurulması
-   - Bağlantı hatalarının yönetimi
-   - Doğru temizlik ve kaynak yönetimi
+   - MCP sunucusuna bağlantı kurma
+   - Bağlantı hatalarını yönetme
+   - Uygun temizleme ve kaynak yönetimi
 
 2. **Sunucu Keşfi**
-   - Mevcut araçların listelenmesi
-   - Mevcut kaynakların listelenmesi (desteklenenlerde)
-   - Mevcut promptların listelenmesi (desteklenenlerde)
+   - Mevcut araçları listeleme
+   - Mevcut kaynakları listeleme (destekleniyorsa)
+   - Mevcut istemleri listeleme (destekleniyorsa)
 
-3. **Araç Çağrısı**
+3. **Araç Çağırma**
    - Temel hesap makinesi işlemleri (toplama, çıkarma, çarpma, bölme)
    - Sunucu bilgisi için yardım komutu
-   - Doğru argüman iletimi ve sonuç yönetimi
+   - Uygun argüman geçişi ve sonuç yönetimi
 
 4. **Hata Yönetimi**
    - Bağlantı hataları
    - Araç yürütme hataları
-   - Zarif hata yönetimi ve kullanıcı geri bildirimi
+   - Zarif başarısızlık ve kullanıcı geri bildirimi
 
 5. **Sonuç İşleme**
    - Yanıtlardan metin içeriği çıkarma
-   - Okunabilirlik için çıktı biçimlendirme
-   - Farklı yanıt formatlarının yönetimi
+   - Okunabilirlik için çıktıyı biçimlendirme
+   - Farklı yanıt formatlarını yönetme
 
 ## Ön Koşullar
 
-Bu istemcileri çalıştırmadan önce:
+Bu istemcileri çalıştırmadan önce, aşağıdakilere sahip olduğunuzdan emin olun:
 
-1. **İlgili MCP sunucusunun çalışıyor olması** (`../01-first-server/` dizininden)
-2. **Seçilen dil için gerekli bağımlılıkların kurulmuş olması**
-3. **Doğru ağ bağlantısının sağlanması** (HTTP tabanlı taşıma için)
+1. **İlgili MCP sunucusu çalışıyor** (`../01-first-server/` dizininden)
+2. **Seçtiğiniz dil için gerekli bağımlılıklar yüklü**
+3. **Uygun ağ bağlantısı** (HTTP tabanlı taşımalar için)
 
 ## Uygulamalar Arasındaki Temel Farklar
 
-| Dil        | Taşıma   | Sunucu Başlatma | Async Model | Önemli Kütüphaneler |
-|------------|----------|-----------------|-------------|---------------------|
-| Java       | SSE/HTTP | Harici          | Senkron     | WebFlux, MCP SDK    |
-| C#         | Stdio    | Otomatik        | Async/Await | .NET MCP SDK        |
-| TypeScript | Stdio    | Otomatik        | Async/Await | Node MCP SDK        |
-| Python     | Stdio    | Otomatik        | AsyncIO     | Python MCP SDK      |
+| Dil        | Taşıma    | Sunucu Başlatma | Async Modeli | Temel Kütüphaneler  |
+|------------|-----------|-----------------|--------------|---------------------|
+| Java       | SSE/HTTP  | Harici          | Senkron      | WebFlux, MCP SDK    |
+| C#         | Stdio     | Otomatik        | Async/Await  | .NET MCP SDK        |
+| TypeScript | Stdio     | Otomatik        | Async/Await  | Node MCP SDK        |
+| Python     | Stdio     | Otomatik        | AsyncIO      | Python MCP SDK      |
+| Rust       | Stdio     | Otomatik        | Async/Await  | Rust MCP SDK, Tokio |
 
 ## Sonraki Adımlar
 
 Bu istemci örneklerini inceledikten sonra:
 
-1. **İstemcileri değiştirerek yeni özellikler veya işlemler ekleyin**
-2. **Kendi sunucunuzu oluşturup bu istemcilerle test edin**
-3. **Farklı taşıma yöntemleriyle deneyler yapın** (SSE vs. Stdio)
-4. **MCP işlevselliğini entegre eden daha karmaşık bir uygulama geliştirin**
+1. **İstemcileri değiştirin** ve yeni özellikler veya işlemler ekleyin
+2. **Kendi sunucunuzu oluşturun** ve bu istemcilerle test edin
+3. **Farklı taşımaları deneyin** (SSE vs. Stdio)
+4. **MCP işlevselliğini entegre eden daha karmaşık bir uygulama oluşturun**
 
 ## Sorun Giderme
 
@@ -146,17 +155,17 @@ Bu istemci örneklerini inceledikten sonra:
 
 ### Hata Ayıklama İpuçları
 
-1. **MCP SDK'da ayrıntılı loglamayı etkinleştirin**
-2. **Sunucu loglarını hata mesajları için kontrol edin**
-3. **İstemci ve sunucu arasında araç isimleri ve imzalarının uyumlu olduğundan emin olun**
-4. **Öncelikle MCP Inspector ile sunucu işlevselliğini doğrulayın**
+1. **MCP SDK'nızda ayrıntılı günlüklemeyi etkinleştirin**
+2. **Sunucu günlüklerini kontrol edin** ve hata mesajlarını inceleyin
+3. **Araç adlarının ve imzalarının** istemci ve sunucu arasında eşleştiğini doğrulayın
+4. **Önce MCP Inspector ile test yapın** ve sunucu işlevselliğini doğrulayın
 
-## İlgili Dokümantasyon
+## İlgili Belgeler
 
-- [Ana İstemci Öğreticisi](./README.md)
+- [Ana İstemci Eğitimi](./README.md)
 - [MCP Sunucu Örnekleri](../../../../03-GettingStarted/01-first-server)
-- [LLM Entegrasyonlu MCP](../../../../03-GettingStarted/03-llm-client)
-- [Resmi MCP Dokümantasyonu](https://modelcontextprotocol.io/)
+- [MCP ile LLM Entegrasyonu](../../../../03-GettingStarted/03-llm-client)
+- [Resmi MCP Belgeleri](https://modelcontextprotocol.io/)
 
 **Feragatname**:  
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu oluşabilecek yanlış anlamalar veya yorum hatalarından sorumlu değiliz.
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belgenin kendi dilindeki hali yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan herhangi bir yanlış anlama veya yanlış yorumlama durumunda sorumluluk kabul edilmez.

@@ -1,28 +1,28 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4c4da5949611d91b06d8a5d450aae8d6",
-  "translation_date": "2025-07-13T21:19:43+00:00",
+  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
+  "translation_date": "2025-08-18T18:02:25+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
   "language_code": "tr"
 }
 -->
 # Bu örneği çalıştırma
 
-Klasik HTTP streaming sunucusu ve istemcisini, ayrıca MCP streaming sunucusu ve istemcisini Python kullanarak nasıl çalıştıracağınızı gösteriyoruz.
+Klasik HTTP akış sunucusu ve istemcisini, ayrıca MCP akış sunucusu ve istemcisini Python kullanarak nasıl çalıştıracağınızı öğrenin.
 
 ### Genel Bakış
 
-- İşlenen öğeler ilerledikçe istemciye bildirimler gönderen bir MCP sunucusu kuracaksınız.
+- İşlem sırasında öğeleri işlerken istemciye ilerleme bildirimleri gönderen bir MCP sunucusu kuracaksınız.
 - İstemci, her bildirimi gerçek zamanlı olarak gösterecek.
-- Bu rehber önkoşullar, kurulum, çalıştırma ve sorun giderme adımlarını kapsar.
+- Bu kılavuz, ön koşullar, kurulum, çalıştırma ve sorun giderme konularını kapsar.
 
-### Önkoşullar
+### Ön Koşullar
 
-- Python 3.9 veya daha yenisi
-- `mcp` Python paketi (yüklemek için `pip install mcp` kullanın)
+- Python 3.9 veya daha yeni bir sürüm
+- `mcp` Python paketi (şu komutla yükleyin: `pip install mcp`)
 
-### Kurulum & Ayarlar
+### Kurulum ve Ayarlar
 
 1. Depoyu klonlayın veya çözüm dosyalarını indirin.
 
@@ -42,7 +42,7 @@ Klasik HTTP streaming sunucusu ve istemcisini, ayrıca MCP streaming sunucusu ve
 1. **Gerekli bağımlılıkları yükleyin:**
 
    ```pwsh
-   pip install "mcp[cli]"
+   pip install "mcp[cli]" fastapi requests
    ```
 
 ### Dosyalar
@@ -50,7 +50,7 @@ Klasik HTTP streaming sunucusu ve istemcisini, ayrıca MCP streaming sunucusu ve
 - **Sunucu:** [server.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/server.py)
 - **İstemci:** [client.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/client.py)
 
-### Klasik HTTP Streaming Sunucusunu Çalıştırma
+### Klasik HTTP Akış Sunucusunu Çalıştırma
 
 1. Çözüm dizinine gidin:
 
@@ -58,7 +58,7 @@ Klasik HTTP streaming sunucusu ve istemcisini, ayrıca MCP streaming sunucusu ve
    cd 03-GettingStarted/06-http-streaming/solution
    ```
 
-2. Klasik HTTP streaming sunucusunu başlatın:
+2. Klasik HTTP akış sunucusunu başlatın:
 
    ```pwsh
    python server.py
@@ -71,7 +71,7 @@ Klasik HTTP streaming sunucusu ve istemcisini, ayrıca MCP streaming sunucusu ve
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### Klasik HTTP Streaming İstemcisini Çalıştırma
+### Klasik HTTP Akış İstemcisini Çalıştırma
 
 1. Yeni bir terminal açın (aynı sanal ortamı ve dizini etkinleştirin):
 
@@ -80,7 +80,7 @@ Klasik HTTP streaming sunucusu ve istemcisini, ayrıca MCP streaming sunucusu ve
    python client.py
    ```
 
-2. Akış halinde mesajların sırasıyla yazdırıldığını görmelisiniz:
+2. Akış mesajlarının sırasıyla yazdırıldığını göreceksiniz:
 
    ```text
    Running classic HTTP streaming client...
@@ -93,30 +93,30 @@ Klasik HTTP streaming sunucusu ve istemcisini, ayrıca MCP streaming sunucusu ve
    --- Stream Ended ---
    ```
 
-### MCP Streaming Sunucusunu Çalıştırma
+### MCP Akış Sunucusunu Çalıştırma
 
-1. Çözüm dizinine gidin:  
+1. Çözüm dizinine gidin:
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
-   ```  
-2. Streamable-http transport ile MCP sunucusunu başlatın:  
+   ```
+2. MCP sunucusunu streamable-http taşıma yöntemiyle başlatın:
    ```pwsh
    python server.py mcp
-   ```  
-3. Sunucu başlayacak ve şu çıktıyı gösterecek:  
+   ```
+3. Sunucu başlayacak ve şu çıktıyı gösterecek:
    ```
    Starting MCP server with streamable-http transport...
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### MCP Streaming İstemcisini Çalıştırma
+### MCP Akış İstemcisini Çalıştırma
 
-1. Yeni bir terminal açın (aynı sanal ortamı ve dizini etkinleştirin):  
+1. Yeni bir terminal açın (aynı sanal ortamı ve dizini etkinleştirin):
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py mcp
-   ```  
-2. Sunucu her öğeyi işlerken bildirimlerin gerçek zamanlı olarak yazdırıldığını görmelisiniz:  
+   ```
+2. Sunucu her öğeyi işlerken bildirimlerin gerçek zamanlı olarak yazdırıldığını göreceksiniz:
    ```
    Running MCP client...
    Starting client...
@@ -131,21 +131,21 @@ Klasik HTTP streaming sunucusu ve istemcisini, ayrıca MCP streaming sunucusu ve
 
 ### Temel Uygulama Adımları
 
-1. **FastMCP kullanarak MCP sunucusunu oluşturun.**  
-2. **Bir listeyi işleyen ve `ctx.info()` veya `ctx.log()` ile bildirim gönderen bir araç tanımlayın.**  
-3. **Sunucuyu `transport="streamable-http"` ile çalıştırın.**  
-4. **Bildirimler geldikçe göstermek için mesaj işleyicisi olan bir istemci uygulayın.**
+1. **FastMCP kullanarak MCP sunucusunu oluşturun.**
+2. **Bir listeyi işleyen ve `ctx.info()` veya `ctx.log()` kullanarak bildirim gönderen bir araç tanımlayın.**
+3. **Sunucuyu `transport="streamable-http"` ile çalıştırın.**
+4. **Bildirimleri geldikçe göstermek için bir mesaj işleyici içeren bir istemci uygulayın.**
 
 ### Kod İncelemesi
-- Sunucu, ilerleme güncellemelerini göndermek için async fonksiyonlar ve MCP bağlamını kullanır.  
-- İstemci, bildirimleri ve son sonucu yazdırmak için async mesaj işleyicisi uygular.
+- Sunucu, ilerleme güncellemeleri göndermek için async fonksiyonlar ve MCP bağlamını kullanır.
+- İstemci, bildirimleri ve nihai sonucu yazdırmak için bir async mesaj işleyici uygular.
 
-### İpuçları & Sorun Giderme
+### İpuçları ve Sorun Giderme
 
-- Engelleme olmaması için `async/await` kullanın.  
-- Hem sunucu hem de istemcide hataları her zaman yakalayarak sağlamlığı artırın.  
-- Gerçek zamanlı güncellemeleri görmek için birden fazla istemci ile test edin.  
+- Bloklamayan işlemler için `async/await` kullanın.
+- Hem sunucuda hem de istemcide istisnaları ele alarak dayanıklılığı artırın.
+- Gerçek zamanlı güncellemeleri gözlemlemek için birden fazla istemciyle test yapın.
 - Hata alırsanız, Python sürümünüzü kontrol edin ve tüm bağımlılıkların yüklü olduğundan emin olun.
 
 **Feragatname**:  
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu oluşabilecek yanlış anlamalar veya yorum hatalarından sorumlu değiliz.
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belgenin kendi dilindeki hali yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan herhangi bir yanlış anlama veya yanlış yorumlama durumunda sorumluluk kabul etmiyoruz.

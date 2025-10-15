@@ -1,264 +1,358 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "382fddb4ee4d9c1bdc806e2ee99b70c8",
-  "translation_date": "2025-07-16T21:28:28+00:00",
+  "original_hash": "1c767a35642f753127dc08545c25a290",
+  "translation_date": "2025-08-18T10:58:24+00:00",
   "source_file": "02-Security/README.md",
   "language_code": "fr"
 }
 -->
-# Bonnes pratiques de sécurité
+# Sécurité MCP : Protection complète des systèmes d'IA
 
-L’adoption du Model Context Protocol (MCP) apporte des capacités puissantes aux applications pilotées par l’IA, mais introduit également des défis de sécurité uniques qui vont au-delà des risques logiciels traditionnels. En plus des préoccupations établies telles que le codage sécurisé, le principe du moindre privilège et la sécurité de la chaîne d’approvisionnement, le MCP et les charges de travail IA font face à de nouvelles menaces comme l’injection de prompt, l’empoisonnement d’outils, la modification dynamique d’outils, le détournement de session, les attaques du délégué confus et les vulnérabilités de passage de jetons. Ces risques peuvent entraîner une exfiltration de données, des violations de la vie privée et des comportements système non souhaités s’ils ne sont pas correctement gérés.
+[![Meilleures pratiques de sécurité MCP](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.fr.png)](https://youtu.be/88No8pw706o)
 
-Cette leçon explore les risques de sécurité les plus pertinents associés au MCP — notamment l’authentification, l’autorisation, les permissions excessives, l’injection indirecte de prompt, la sécurité des sessions, les problèmes de délégué confus, les vulnérabilités de passage de jetons et les vulnérabilités de la chaîne d’approvisionnement — et fournit des contrôles concrets et des bonnes pratiques pour les atténuer. Vous apprendrez également à tirer parti des solutions Microsoft telles que Prompt Shields, Azure Content Safety et GitHub Advanced Security pour renforcer votre implémentation MCP. En comprenant et en appliquant ces contrôles, vous pouvez réduire significativement la probabilité d’une faille de sécurité et garantir que vos systèmes IA restent robustes et fiables.
+_(Cliquez sur l'image ci-dessus pour visionner la vidéo de cette leçon)_
 
-# Objectifs d’apprentissage
+La sécurité est essentielle dans la conception des systèmes d'IA, c'est pourquoi nous la plaçons au cœur de notre deuxième section. Cela s'aligne avec le principe **Secure by Design** de Microsoft issu de l'[Initiative pour un avenir sécurisé](https://www.microsoft.com/security/blog/2025/04/17/microsofts-secure-by-design-journey-one-year-of-success/).
+
+Le protocole Model Context Protocol (MCP) apporte de nouvelles capacités puissantes aux applications basées sur l'IA tout en introduisant des défis de sécurité uniques qui vont au-delà des risques traditionnels des logiciels. Les systèmes MCP sont confrontés à des préoccupations de sécurité établies (codage sécurisé, privilèges minimaux, sécurité de la chaîne d'approvisionnement) ainsi qu'à de nouvelles menaces spécifiques à l'IA, notamment l'injection de prompts, l'empoisonnement des outils, le détournement de session, les attaques de type "confused deputy", les vulnérabilités de transmission de jetons et la modification dynamique des capacités.
+
+Cette leçon explore les risques de sécurité les plus critiques dans les implémentations MCP, couvrant l'authentification, l'autorisation, les permissions excessives, l'injection indirecte de prompts, la sécurité des sessions, les problèmes de "confused deputy", la gestion des jetons et les vulnérabilités de la chaîne d'approvisionnement. Vous apprendrez des contrôles pratiques et des meilleures pratiques pour atténuer ces risques tout en utilisant des solutions Microsoft telles que Prompt Shields, Azure Content Safety et GitHub Advanced Security pour renforcer votre déploiement MCP.
+
+## Objectifs d'apprentissage
 
 À la fin de cette leçon, vous serez capable de :
 
-- Identifier et expliquer les risques de sécurité uniques introduits par le Model Context Protocol (MCP), notamment l’injection de prompt, l’empoisonnement d’outils, les permissions excessives, le détournement de session, les problèmes de délégué confus, les vulnérabilités de passage de jetons et les vulnérabilités de la chaîne d’approvisionnement.
-- Décrire et appliquer des contrôles efficaces pour atténuer les risques de sécurité du MCP, tels qu’une authentification robuste, le principe du moindre privilège, une gestion sécurisée des jetons, des contrôles de sécurité des sessions et la vérification de la chaîne d’approvisionnement.
-- Comprendre et exploiter les solutions Microsoft comme Prompt Shields, Azure Content Safety et GitHub Advanced Security pour protéger les charges de travail MCP et IA.
-- Reconnaître l’importance de valider les métadonnées des outils, de surveiller les modifications dynamiques, de se défendre contre les attaques d’injection indirecte de prompt et de prévenir le détournement de session.
-- Intégrer les bonnes pratiques de sécurité établies — telles que le codage sécurisé, le durcissement des serveurs et l’architecture zero trust — dans votre implémentation MCP pour réduire la probabilité et l’impact des failles de sécurité.
+- **Identifier les menaces spécifiques au MCP** : Reconnaître les risques uniques dans les systèmes MCP, notamment l'injection de prompts, l'empoisonnement des outils, les permissions excessives, le détournement de session, les problèmes de "confused deputy", les vulnérabilités de transmission de jetons et les risques liés à la chaîne d'approvisionnement
+- **Appliquer des contrôles de sécurité** : Mettre en œuvre des mesures efficaces, notamment une authentification robuste, un accès avec privilèges minimaux, une gestion sécurisée des jetons, des contrôles de sécurité des sessions et une vérification de la chaîne d'approvisionnement
+- **Utiliser les solutions de sécurité Microsoft** : Comprendre et déployer Microsoft Prompt Shields, Azure Content Safety et GitHub Advanced Security pour protéger les charges de travail MCP
+- **Valider la sécurité des outils** : Reconnaître l'importance de la validation des métadonnées des outils, surveiller les modifications dynamiques et se défendre contre les attaques d'injection indirecte de prompts
+- **Intégrer les meilleures pratiques** : Combiner les fondamentaux de la sécurité établis (codage sécurisé, durcissement des serveurs, zéro confiance) avec des contrôles spécifiques au MCP pour une protection complète
 
-# Contrôles de sécurité MCP
+# Architecture et contrôles de sécurité MCP
 
-Tout système ayant accès à des ressources importantes présente des défis de sécurité implicites. Ces défis peuvent généralement être traités par l’application correcte de contrôles et concepts fondamentaux de sécurité. Comme le MCP est une spécification récente, celle-ci évolue très rapidement. Au fur et à mesure de l’évolution du protocole, les contrôles de sécurité qu’il intègre mûriront, permettant une meilleure intégration avec les architectures de sécurité d’entreprise et les bonnes pratiques établies.
+Les implémentations modernes de MCP nécessitent des approches de sécurité en couches qui répondent à la fois aux menaces traditionnelles des logiciels et aux risques spécifiques à l'IA. La spécification MCP, en constante évolution, continue de renforcer ses contrôles de sécurité, permettant une meilleure intégration avec les architectures de sécurité d'entreprise et les meilleures pratiques établies.
 
-Une recherche publiée dans le [Microsoft Digital Defense Report](https://aka.ms/mddr) indique que 98 % des violations signalées auraient pu être évitées grâce à une hygiène de sécurité rigoureuse. La meilleure protection contre toute forme de faille est d’avoir une hygiène de sécurité de base solide, des bonnes pratiques de codage sécurisé et une sécurité renforcée de la chaîne d’approvisionnement — ces pratiques éprouvées restent les plus efficaces pour réduire les risques de sécurité.
+Les recherches du [Microsoft Digital Defense Report](https://aka.ms/mddr) montrent que **98 % des violations signalées pourraient être évitées grâce à une hygiène de sécurité robuste**. La stratégie de protection la plus efficace combine des pratiques de sécurité fondamentales avec des contrôles spécifiques au MCP : les mesures de sécurité de base éprouvées restent les plus impactantes pour réduire les risques globaux.
 
-Voyons quelques façons de commencer à adresser les risques de sécurité lors de l’adoption du MCP.
+## Paysage actuel de la sécurité
 
-> **Note :** Les informations suivantes sont exactes au **29 mai 2025**. Le protocole MCP évolue continuellement, et les futures implémentations pourraient introduire de nouveaux schémas d’authentification et contrôles. Pour les dernières mises à jour et recommandations, référez-vous toujours à la [spécification MCP](https://spec.modelcontextprotocol.io/), au [dépôt officiel MCP GitHub](https://github.com/modelcontextprotocol) et à la [page des bonnes pratiques de sécurité](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices).
+> **Note** : Ces informations reflètent les normes de sécurité MCP en date du **18 août 2025**. Le protocole MCP évolue rapidement, et les implémentations futures pourraient introduire de nouveaux modèles d'authentification et des contrôles améliorés. Consultez toujours la [spécification MCP actuelle](https://spec.modelcontextprotocol.io/), le [référentiel GitHub MCP](https://github.com/modelcontextprotocol) et la [documentation des meilleures pratiques de sécurité](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) pour les dernières recommandations.
 
-### Énoncé du problème  
-La spécification MCP originale supposait que les développeurs écriraient leur propre serveur d’authentification. Cela nécessitait une connaissance d’OAuth et des contraintes de sécurité associées. Les serveurs MCP agissaient comme des serveurs d’autorisation OAuth 2.0, gérant directement l’authentification utilisateur requise plutôt que de la déléguer à un service externe tel que Microsoft Entra ID. Depuis le **26 avril 2025**, une mise à jour de la spécification MCP permet aux serveurs MCP de déléguer l’authentification utilisateur à un service externe.
+### Évolution de l'authentification MCP
 
-### Risques
-- Une logique d’autorisation mal configurée dans le serveur MCP peut entraîner une exposition de données sensibles et des contrôles d’accès incorrectement appliqués.
-- Le vol de jetons OAuth sur le serveur MCP local. Si un jeton est volé, il peut être utilisé pour usurper le serveur MCP et accéder aux ressources et données du service associé au jeton OAuth.
+La spécification MCP a considérablement évolué dans son approche de l'authentification et de l'autorisation :
 
-#### Passage de jetons
-Le passage de jetons est explicitement interdit dans la spécification d’autorisation car il introduit plusieurs risques de sécurité, notamment :
+- **Approche initiale** : Les premières spécifications exigeaient que les développeurs implémentent des serveurs d'authentification personnalisés, les serveurs MCP agissant comme des serveurs d'autorisation OAuth 2.0 gérant directement l'authentification des utilisateurs
+- **Norme actuelle (2025-06-18)** : La spécification mise à jour permet aux serveurs MCP de déléguer l'authentification à des fournisseurs d'identité externes (tels que Microsoft Entra ID), améliorant la posture de sécurité et réduisant la complexité de l'implémentation
+- **Sécurité de la couche de transport** : Support renforcé pour les mécanismes de transport sécurisé avec des modèles d'authentification appropriés pour les connexions locales (STDIO) et distantes (Streamable HTTP)
 
-#### Contournement des contrôles de sécurité
-Le serveur MCP ou les API en aval peuvent implémenter des contrôles de sécurité importants comme la limitation de débit, la validation des requêtes ou la surveillance du trafic, qui dépendent de l’audience du jeton ou d’autres contraintes d’identifiants. Si les clients peuvent obtenir et utiliser des jetons directement avec les API en aval sans que le serveur MCP ne les valide correctement ou ne s’assure que les jetons sont émis pour le bon service, ils contournent ces contrôles.
+## Sécurité de l'authentification et de l'autorisation
 
-#### Problèmes de responsabilité et de traçabilité
-Le serveur MCP ne pourra pas identifier ou distinguer les clients MCP lorsque ceux-ci appellent avec un jeton d’accès émis en amont, qui peut être opaque pour le serveur MCP.  
-Les journaux du serveur de ressources en aval peuvent montrer des requêtes semblant provenir d’une source différente avec une identité différente, plutôt que du serveur MCP qui transmet réellement les jetons.  
-Ces deux facteurs compliquent l’investigation des incidents, les contrôles et les audits.  
-Si le serveur MCP transmet des jetons sans valider leurs revendications (par exemple, rôles, privilèges ou audience) ou autres métadonnées, un acteur malveillant en possession d’un jeton volé peut utiliser le serveur comme proxy pour exfiltrer des données.
+### Défis de sécurité actuels
 
-#### Problèmes de frontière de confiance
-Le serveur de ressources en aval accorde sa confiance à des entités spécifiques. Cette confiance peut inclure des hypothèses sur l’origine ou les comportements clients. Briser cette frontière de confiance peut entraîner des problèmes inattendus.  
-Si le jeton est accepté par plusieurs services sans validation appropriée, un attaquant compromettant un service peut utiliser le jeton pour accéder à d’autres services connectés.
+Les implémentations modernes de MCP sont confrontées à plusieurs défis en matière d'authentification et d'autorisation :
 
-#### Risque de compatibilité future
-Même si un serveur MCP commence aujourd’hui comme un « proxy pur », il pourrait devoir ajouter des contrôles de sécurité plus tard. Commencer avec une séparation correcte de l’audience des jetons facilite l’évolution du modèle de sécurité.
+### Risques et vecteurs de menace
 
-### Contrôles d’atténuation
+- **Logique d'autorisation mal configurée** : Une implémentation défaillante de l'autorisation dans les serveurs MCP peut exposer des données sensibles et appliquer incorrectement les contrôles d'accès
+- **Compromission des jetons OAuth** : Le vol de jetons de serveurs MCP locaux permet aux attaquants de se faire passer pour des serveurs et d'accéder à des services en aval
+- **Vulnérabilités de transmission de jetons** : Une gestion incorrecte des jetons crée des contournements des contrôles de sécurité et des lacunes en matière de responsabilité
+- **Permissions excessives** : Les serveurs MCP surpriviliégiés violent les principes de privilèges minimaux et augmentent les surfaces d'attaque
 
-**Les serveurs MCP NE DOIVENT PAS accepter de jetons qui n’ont pas été explicitement émis pour le serveur MCP**
+#### Transmission de jetons : un anti-modèle critique
 
-- **Revoir et renforcer la logique d’autorisation :** Auditez soigneusement l’implémentation d’autorisation de votre serveur MCP pour garantir que seuls les utilisateurs et clients prévus peuvent accéder aux ressources sensibles. Pour des conseils pratiques, consultez [Azure API Management Your Auth Gateway For MCP Servers | Microsoft Community Hub](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) et [Using Microsoft Entra ID To Authenticate With MCP Servers Via Sessions - Den Delimarsky](https://den.dev/blog/mcp-server-auth-entra-id-session/).
-- **Appliquer des pratiques sécurisées pour les jetons :** Suivez [les meilleures pratiques Microsoft pour la validation et la durée de vie des jetons](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens) afin d’éviter les usages abusifs des jetons d’accès et réduire le risque de rejouement ou de vol.
-- **Protéger le stockage des jetons :** Stockez toujours les jetons de manière sécurisée et utilisez le chiffrement pour les protéger au repos et en transit. Pour des conseils d’implémentation, voir [Use secure token storage and encrypt tokens](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2).
+**La transmission de jetons est explicitement interdite** dans la spécification actuelle d'autorisation MCP en raison de graves implications en matière de sécurité :
 
-# Permissions excessives pour les serveurs MCP
+##### Contournement des contrôles de sécurité
+- Les serveurs MCP et les API en aval implémentent des contrôles de sécurité critiques (limitation de débit, validation des requêtes, surveillance du trafic) qui dépendent d'une validation correcte des jetons
+- L'utilisation directe de jetons client-API contourne ces protections essentielles, compromettant l'architecture de sécurité
 
-### Énoncé du problème  
-Les serveurs MCP peuvent se voir accorder des permissions excessives sur le service ou la ressource qu’ils accèdent. Par exemple, un serveur MCP faisant partie d’une application de vente IA connectée à un magasin de données d’entreprise devrait avoir un accès limité aux données de vente et ne pas pouvoir accéder à tous les fichiers du magasin. En se référant au principe du moindre privilège (l’un des plus anciens principes de sécurité), aucune ressource ne devrait avoir des permissions supérieures à ce qui est nécessaire pour exécuter les tâches prévues. L’IA pose un défi accru dans ce domaine car, pour lui permettre d’être flexible, il peut être difficile de définir précisément les permissions requises.
+##### Défis de responsabilité et d'audit  
+- Les serveurs MCP ne peuvent pas distinguer les clients utilisant des jetons émis en amont, brisant les pistes d'audit
+- Les journaux des serveurs de ressources en aval montrent des origines de requêtes trompeuses plutôt que les intermédiaires réels des serveurs MCP
+- Les enquêtes sur les incidents et les audits de conformité deviennent beaucoup plus difficiles
 
-### Risques  
-- Accorder des permissions excessives peut permettre l’exfiltration ou la modification de données auxquelles le serveur MCP n’était pas censé accéder. Cela peut aussi poser un problème de confidentialité si les données sont des informations personnelles identifiables (PII).
+##### Risques d'exfiltration de données
+- Les revendications de jetons non validées permettent aux acteurs malveillants disposant de jetons volés d'utiliser les serveurs MCP comme des proxys pour l'exfiltration de données
+- Les violations des frontières de confiance permettent des modèles d'accès non autorisés qui contournent les contrôles de sécurité prévus
 
-### Contrôles d’atténuation  
-- **Appliquer le principe du moindre privilège :** Accordez au serveur MCP uniquement les permissions minimales nécessaires pour accomplir ses tâches. Révisez et mettez régulièrement à jour ces permissions pour vous assurer qu’elles ne dépassent pas ce qui est nécessaire. Pour des conseils détaillés, voir [Secure least-privileged access](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access).
-- **Utiliser le contrôle d’accès basé sur les rôles (RBAC) :** Attribuez des rôles au serveur MCP qui sont strictement limités à des ressources et actions spécifiques, en évitant les permissions larges ou inutiles.
-- **Surveiller et auditer les permissions :** Surveillez en continu l’utilisation des permissions et auditez les journaux d’accès pour détecter et corriger rapidement les privilèges excessifs ou inutilisés.
+##### Vecteurs d'attaque multi-services
+- Les jetons compromis acceptés par plusieurs services permettent des mouvements latéraux entre les systèmes connectés
+- Les hypothèses de confiance entre les services peuvent être violées lorsque les origines des jetons ne peuvent pas être vérifiées
 
-# Attaques d’injection de prompt indirectes
+### Contrôles de sécurité et mesures d'atténuation
 
-### Énoncé du problème
+**Exigences de sécurité critiques :**
 
-Les serveurs MCP malveillants ou compromis peuvent introduire des risques importants en exposant des données clients ou en permettant des actions non souhaitées. Ces risques sont particulièrement pertinents dans les charges de travail IA et MCP, où :
+> **OBLIGATOIRE** : Les serveurs MCP **NE DOIVENT PAS** accepter de jetons qui n'ont pas été explicitement émis pour le serveur MCP
 
-- **Attaques d’injection de prompt :** Les attaquants intègrent des instructions malveillantes dans des prompts ou contenus externes, poussant le système IA à effectuer des actions non prévues ou à divulguer des données sensibles. En savoir plus : [Prompt Injection](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)
-- **Empoisonnement d’outils :** Les attaquants manipulent les métadonnées des outils (comme les descriptions ou paramètres) pour influencer le comportement de l’IA, contournant potentiellement les contrôles de sécurité ou exfiltrant des données. Détails : [Tool Poisoning](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
-- **Injection de prompt cross-domain :** Des instructions malveillantes sont intégrées dans des documents, pages web ou emails, qui sont ensuite traités par l’IA, entraînant des fuites ou manipulations de données.
-- **Modification dynamique d’outils (Rug Pulls) :** Les définitions d’outils peuvent être modifiées après approbation utilisateur, introduisant de nouveaux comportements malveillants à l’insu de l’utilisateur.
+#### Contrôles d'authentification et d'autorisation
 
-Ces vulnérabilités soulignent la nécessité de validations robustes, de surveillance et de contrôles de sécurité lors de l’intégration des serveurs MCP et outils dans votre environnement. Pour approfondir, consultez les références ci-dessus.
+- **Examen rigoureux de l'autorisation** : Effectuer des audits complets de la logique d'autorisation des serveurs MCP pour garantir que seuls les utilisateurs et clients prévus peuvent accéder aux ressources sensibles
+  - **Guide d'implémentation** : [Azure API Management comme passerelle d'authentification pour les serveurs MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+  - **Intégration d'identité** : [Utilisation de Microsoft Entra ID pour l'authentification des serveurs MCP](https://den.dev/blog/mcp-server-auth-entra-id-session/)
 
-![prompt-injection-lg-2048x1034](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.fr.png)
+- **Gestion sécurisée des jetons** : Implémenter les [meilleures pratiques de validation et de cycle de vie des jetons de Microsoft](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens)
+  - Valider que les revendications d'audience des jetons correspondent à l'identité du serveur MCP
+  - Mettre en œuvre des politiques de rotation et d'expiration des jetons appropriées
+  - Prévenir les attaques par relecture de jetons et les usages non autorisés
 
-**Injection de prompt indirecte** (également appelée injection de prompt cross-domain ou XPIA) est une vulnérabilité critique dans les systèmes d’IA générative, y compris ceux utilisant le Model Context Protocol (MCP). Dans cette attaque, des instructions malveillantes sont cachées dans du contenu externe — comme des documents, pages web ou emails. Lorsque le système IA traite ce contenu, il peut interpréter ces instructions intégrées comme des commandes légitimes de l’utilisateur, entraînant des actions non souhaitées telles que des fuites de données, la génération de contenu nuisible ou la manipulation des interactions utilisateur. Pour une explication détaillée et des exemples concrets, voir [Prompt Injection](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
+- **Stockage sécurisé des jetons** : Stockage sécurisé des jetons avec chiffrement au repos et en transit
+  - **Meilleures pratiques** : [Directives de stockage et de chiffrement des jetons sécurisés](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
 
-Une forme particulièrement dangereuse de cette attaque est **l’empoisonnement d’outils**. Ici, les attaquants injectent des instructions malveillantes dans les métadonnées des outils MCP (comme les descriptions ou paramètres). Comme les grands modèles de langage (LLM) s’appuient sur ces métadonnées pour décider quels outils invoquer, des descriptions compromises peuvent tromper le modèle en l’incitant à exécuter des appels d’outils non autorisés ou à contourner les contrôles de sécurité. Ces manipulations sont souvent invisibles pour les utilisateurs finaux mais peuvent être interprétées et exploitées par le système IA. Ce risque est accentué dans les environnements de serveurs MCP hébergés, où les définitions d’outils peuvent être mises à jour après approbation utilisateur — un scénario parfois appelé « [rug pull](https://www.wiz.io/blog/mcp-security-research-briefing#remote-servers-22) ». Dans ces cas, un outil auparavant sûr peut être modifié ultérieurement pour effectuer des actions malveillantes, comme exfiltrer des données ou altérer le comportement du système, sans que l’utilisateur en soit informé. Pour en savoir plus sur ce vecteur d’attaque, voir [Tool Poisoning](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
+#### Implémentation des contrôles d'accès
 
-![tool-injection-lg-2048x1239 (1)](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.fr.png)
+- **Principe de privilèges minimaux** : Accorder aux serveurs MCP uniquement les permissions minimales nécessaires à leur fonctionnalité prévue
+  - Révisions régulières des permissions et mises à jour pour éviter l'accumulation de privilèges
+  - **Documentation Microsoft** : [Accès sécurisé avec privilèges minimaux](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
 
-## Risques  
-Les actions non intentionnelles de l’IA présentent divers risques de sécurité, notamment l’exfiltration de données et les violations de la vie privée.
+- **Contrôle d'accès basé sur les rôles (RBAC)** : Implémenter des attributions de rôles granulaires
+  - Limiter les rôles à des ressources et actions spécifiques
+  - Éviter les permissions larges ou inutiles qui augmentent les surfaces d'attaque
 
-### Contrôles d’atténuation  
-### Utilisation de prompt shields pour se protéger contre les attaques d’injection de prompt indirecte
------------------------------------------------------------------------------
+- **Surveillance continue des permissions** : Mettre en œuvre des audits et une surveillance continue des accès
+  - Surveiller les modèles d'utilisation des permissions pour détecter les anomalies
+  - Remédier rapidement aux privilèges excessifs ou inutilisés
 
-**AI Prompt Shields** sont une solution développée par Microsoft pour se défendre contre les attaques d’injection de prompt directes et indirectes. Ils aident grâce à :
+## Menaces spécifiques à l'IA
 
-1.  **Détection et filtrage :** Les Prompt Shields utilisent des algorithmes avancés d’apprentissage automatique et de traitement du langage naturel pour détecter et filtrer les instructions malveillantes intégrées dans des contenus externes, tels que documents, pages web ou emails.
-    
-2.  **Spotlighting :** Cette technique aide le système IA à distinguer les instructions système valides des entrées externes potentiellement non fiables. En transformant le texte d’entrée de manière à le rendre plus pertinent pour le modèle, Spotlighting permet à l’IA d’identifier et d’ignorer plus efficacement les instructions malveillantes.
-    
-3.  **Délimiteurs et marquage des données :** L’inclusion de délimiteurs dans le message système indique explicitement l’emplacement du texte d’entrée, aidant l’IA à reconnaître et séparer les entrées utilisateur du contenu externe potentiellement dangereux. Le marquage des données étend ce concept en utilisant des marqueurs spéciaux pour souligner les limites des données fiables et non fiables.
-    
-4.  **Surveillance continue et mises à jour :** Microsoft surveille et met à jour en permanence les Prompt Shields pour faire face aux menaces nouvelles et évolutives. Cette approche proactive garantit que les défenses restent efficaces contre les dernières techniques d’attaque.
-    
-5. **Intégration avec Azure Content Safety :** Les Prompt Shields font partie de la suite plus large Azure AI Content Safety, qui fournit des outils supplémentaires pour détecter les tentatives de jailbreak, les contenus nuisibles et autres risques de sécurité dans les applications IA.
+### Attaques par injection de prompts et manipulation des outils
 
-Vous pouvez en apprendre davantage sur les AI prompt shields dans la [documentation Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection).
+Les implémentations modernes de MCP sont confrontées à des vecteurs d'attaque sophistiqués spécifiques à l'IA que les mesures de sécurité traditionnelles ne peuvent pas entièrement contrer :
 
-![prompt-shield-lg-2048x1328](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.fr.png)
+#### **Injection indirecte de prompts (injection de prompts inter-domaines)**
 
-# Problème du délégué confus
+**L'injection indirecte de prompts** représente l'une des vulnérabilités les plus critiques dans les systèmes d'IA activés par MCP. Les attaquants intègrent des instructions malveillantes dans des contenus externes—documents, pages web, emails ou sources de données—que les systèmes d'IA traitent ensuite comme des commandes légitimes.
 
-### Énoncé du problème
-Le problème du délégué confus est une vulnérabilité de sécurité qui survient lorsqu’un serveur MCP agit comme un proxy entre des clients MCP et des API tierces. Cette vulnérabilité peut être exploitée lorsque le serveur MCP utilise un ID client statique pour s’authentifier auprès d’un serveur d’autorisation tiers qui ne prend pas en charge l’enregistrement dynamique des clients.
+**Scénarios d'attaque :**
+- **Injection basée sur des documents** : Instructions malveillantes cachées dans des documents traités qui déclenchent des actions non prévues de l'IA
+- **Exploitation de contenu web** : Pages web compromises contenant des prompts intégrés qui manipulent le comportement de l'IA lorsqu'elles sont analysées
+- **Attaques basées sur les emails** : Prompts malveillants dans des emails qui poussent les assistants IA à divulguer des informations ou à effectuer des actions non autorisées
+- **Contamination des sources de données** : Bases de données ou API compromises servant du contenu altéré aux systèmes d'IA
 
-### Risques
+**Impact réel** : Ces attaques peuvent entraîner l'exfiltration de données, des violations de la vie privée, la génération de contenu nuisible et la manipulation des interactions utilisateur. Pour une analyse détaillée, voir [Injection de prompts dans MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-- **Contournement du consentement basé sur les cookies** : Si un utilisateur s’est déjà authentifié via le serveur proxy MCP, un serveur d’autorisation tiers peut définir un cookie de consentement dans le navigateur de l’utilisateur. Un attaquant peut ensuite exploiter cela en envoyant à l’utilisateur un lien malveillant contenant une requête d’autorisation avec une URI de redirection malicieuse.
-- **Vol de code d’autorisation** : Lorsque l’utilisateur clique sur le lien malveillant, le serveur d’autorisation tiers peut ignorer l’écran de consentement à cause du cookie existant, et le code d’autorisation pourrait être redirigé vers le serveur de l’attaquant.
-- **Accès non autorisé à l’API** : L’attaquant peut échanger le code d’autorisation volé contre des jetons d’accès et usurper l’identité de l’utilisateur pour accéder à l’API tierce sans approbation explicite.
+![Diagramme d'attaque par injection de prompts](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.fr.png)
 
-### Contrôles d’atténuation
+#### **Attaques par empoisonnement des outils**
 
-- **Exigences de consentement explicite** : Les serveurs proxy MCP utilisant des ID clients statiques **DOIVENT** obtenir le consentement de l’utilisateur pour chaque client enregistré dynamiquement avant de transmettre aux serveurs d’autorisation tiers.
-- **Mise en œuvre correcte d’OAuth** : Suivre les meilleures pratiques de sécurité OAuth 2.1, notamment l’utilisation de challenges de code (PKCE) pour les requêtes d’autorisation afin d’éviter les attaques par interception.
-- **Validation des clients** : Mettre en place une validation stricte des URI de redirection et des identifiants clients pour empêcher l’exploitation par des acteurs malveillants.
+**L'empoisonnement des outils** cible les métadonnées qui définissent les outils MCP, exploitant la manière dont les LLM interprètent les descriptions et paramètres des outils pour prendre des décisions d'exécution.
 
+**Mécanismes d'attaque :**
+- **Manipulation des métadonnées** : Les attaquants injectent des instructions malveillantes dans les descriptions des outils, les définitions de paramètres ou les exemples d'utilisation
+- **Instructions invisibles** : Prompts cachés dans les métadonnées des outils qui sont traités par les modèles d'IA mais invisibles pour les utilisateurs humains
+- **Modification dynamique des outils ("Rug Pulls")** : Les outils approuvés par les utilisateurs sont ensuite modifiés pour effectuer des actions malveillantes sans que les utilisateurs en soient conscients
+- **Injection de paramètres** : Contenu malveillant intégré dans les schémas de paramètres des outils qui influence le comportement des modèles
 
-# Vulnérabilités liées au passage de jetons
+**Risques des serveurs hébergés** : Les serveurs MCP distants présentent des risques accrus car les définitions des outils peuvent être mises à jour après l'approbation initiale des utilisateurs, créant des scénarios où des outils auparavant sûrs deviennent malveillants. Pour une analyse complète, voir [Attaques par empoisonnement des outils (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-### Énoncé du problème
+![Diagramme d'attaque par injection d'outils](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.fr.png)
 
-Le « passage de jetons » est un anti-pattern où un serveur MCP accepte des jetons d’un client MCP sans vérifier que ces jetons ont été correctement émis pour le serveur MCP lui-même, puis les « transmet » aux API en aval. Cette pratique viole explicitement la spécification d’autorisation MCP et introduit des risques de sécurité importants.
+#### **Autres vecteurs d'attaque IA**
 
-### Risques
+- **Injection de prompts inter-domaines (XPIA)** : Attaques sophistiquées exploitant du contenu provenant de plusieurs domaines pour contourner les contrôles de sécurité
+- **Modification dynamique des capacités** : Changements en temps réel des capacités des outils qui échappent aux évaluations de sécurité initiales
+- **Empoisonnement de la fenêtre contextuelle** : Attaques manipulant de grandes fenêtres contextuelles pour cacher des instructions malveillantes
+- **Attaques de confusion des modèles** : Exploitation des limitations des modèles pour créer des comportements imprévisibles ou dangereux
 
-- **Contournement des contrôles de sécurité** : Les clients pourraient contourner des contrôles importants comme la limitation de débit, la validation des requêtes ou la surveillance du trafic s’ils peuvent utiliser des jetons directement avec les API en aval sans validation appropriée.
-- **Problèmes de responsabilité et de traçabilité** : Le serveur MCP ne pourra pas identifier ou distinguer les clients MCP lorsque ceux-ci utilisent des jetons d’accès émis en amont, compliquant ainsi les enquêtes et audits en cas d’incident.
-- **Exfiltration de données** : Si les jetons sont transmis sans validation correcte des revendications, un acteur malveillant disposant d’un jeton volé pourrait utiliser le serveur comme proxy pour exfiltrer des données.
-- **Violation des frontières de confiance** : Les serveurs de ressources en aval peuvent accorder leur confiance à des entités spécifiques en se basant sur leur origine ou leurs comportements. Briser cette frontière de confiance peut entraîner des problèmes de sécurité inattendus.
-- **Mauvaise utilisation des jetons multi-services** : Si des jetons sont acceptés par plusieurs services sans validation appropriée, un attaquant compromettant un service pourrait utiliser le jeton pour accéder à d’autres services connectés.
+### Impact des risques de sécurité IA
 
-### Contrôles d’atténuation
+**Conséquences à fort impact :**
+- **Exfiltration de données** : Accès non autorisé et vol de données sensibles d'entreprise ou personnelles
+- **Violations de la vie privée** : Exposition d'informations personnelles identifiables (PII) et de données confidentielles d'entreprise  
+- **Manipulation des systèmes** : Modifications non prévues des systèmes et workflows critiques
+- **Vol d'identifiants** : Compromission des jetons d'authentification et des identifiants de service
+- **Mouvement latéral** : Utilisation de systèmes d'IA compromis comme pivots pour des attaques réseau plus larges
 
-- **Validation des jetons** : Les serveurs MCP **NE DOIVENT PAS** accepter de jetons qui n’ont pas été explicitement émis pour le serveur MCP lui-même.
-- **Vérification de l’audience** : Toujours valider que les jetons contiennent la bonne revendication d’audience correspondant à l’identité du serveur MCP.
-- **Gestion appropriée du cycle de vie des jetons** : Mettre en œuvre des jetons d’accès à courte durée de vie et des pratiques de rotation des jetons pour réduire le risque de vol et d’utilisation abusive.
+### Solutions de sécurité IA de Microsoft
 
+#### **AI Prompt Shields : Protection avancée contre les attaques par injection**
 
-# Détournement de session
+Les **AI Prompt Shields** de Microsoft offrent une défense complète contre les attaques par injection directe et indirecte grâce à plusieurs couches de sécurité :
 
-### Énoncé du problème
+##### **Mécanismes de protection principaux :**
 
-Le détournement de session est un vecteur d’attaque où un client reçoit un ID de session du serveur, et une partie non autorisée obtient et utilise ce même ID de session pour usurper l’identité du client original et effectuer des actions non autorisées en son nom. Cela est particulièrement préoccupant dans les serveurs HTTP avec état traitant des requêtes MCP.
+1. **Détection et filtrage avancés**
+   - Algorithmes d'apprentissage automatique et techniques NLP détectant les instructions malveillantes dans le contenu externe
+   - Analyse en temps réel des documents, pages web, emails et sources de données pour identifier les menaces intégrées
+   - Compréhension contextuelle des modèles de prompts légitimes vs malveillants
 
-### Risques
+2. **Techniques de mise en lumière**  
+   - Distinction entre les instructions système de confiance et les entrées externes potentiellement compromises
+   - Méthodes de transformation de texte améliorant la pertinence des modèles tout en isolant le contenu malveillant
+   - Aide les systèmes d'IA à maintenir une hiérarchie d'instructions correcte et à ignorer les commandes injectées
 
-- **Injection de prompt via détournement de session** : Un attaquant qui obtient un ID de session pourrait envoyer des événements malveillants à un serveur partageant l’état de session avec le serveur auquel le client est connecté, déclenchant potentiellement des actions nuisibles ou accédant à des données sensibles.
-- **Usurpation via détournement de session** : Un attaquant disposant d’un ID de session volé pourrait effectuer des appels directement au serveur MCP, contournant l’authentification et étant traité comme l’utilisateur légitime.
-- **Flux résumables compromis** : Lorsqu’un serveur supporte la rediffusion ou les flux résumables, un attaquant pourrait interrompre prématurément une requête, qui serait ensuite reprise par le client original avec un contenu potentiellement malveillant.
+3. **Systèmes de délimitation et de marquage des données**
+   - Définition explicite des frontières entre les messages système de confiance et le texte d'entrée externe
+   - Marqueurs spéciaux mettant en évidence les limites entre les sources de données de confiance et non fiables
+   - Séparation claire empêchant la confusion des instructions et l'exécution de commandes non autorisées
 
-### Contrôles d’atténuation
+4. **Intelligence continue sur les menaces**
+   - Microsoft surveille en permanence les modèles d'attaque émergents et met à jour les défenses
+   - Recherche proactive des nouvelles techniques d'injection et vecteurs d'attaque
+   - Mises à jour régulières des modèles de sécurité pour maintenir l'efficacité face aux menaces évolutives
 
-- **Vérification de l’autorisation** : Les serveurs MCP qui implémentent une autorisation **DOIVENT** vérifier toutes les requêtes entrantes et **NE DOIVENT PAS** utiliser les sessions pour l’authentification.
-- **IDs de session sécurisés** : Les serveurs MCP **DOIVENT** utiliser des IDs de session sécurisés, non déterministes, générés avec des générateurs de nombres aléatoires sécurisés. Éviter les identifiants prévisibles ou séquentiels.
-- **Association spécifique à l’utilisateur** : Les serveurs MCP **DOIVENT** lier les IDs de session à des informations spécifiques à l’utilisateur, en combinant l’ID de session avec des informations uniques à l’utilisateur autorisé (comme son ID interne) selon un format tel que `
-<user_id>:<session_id>`.
-- **Expiration des sessions** : Mettre en place une expiration et une rotation appropriées des sessions pour limiter la fenêtre de vulnérabilité en cas de compromission d’un ID de session.
-- **Sécurité du transport** : Toujours utiliser HTTPS pour toutes les communications afin d’éviter l’interception des IDs de session.
+5. **Intégration avec Azure Content Safety**
+   - Partie intégrante de la suite complète Azure AI Content Safety
+   - Détection supplémentaire des tentatives de contournement, du contenu nuisible et des violations des politiques de sécurité
+   - Contrôles de sécurité unifiés pour les composants des applications IA
 
+**Ressources d'implémentation** : [Documentation Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-# Sécurité de la chaîne d’approvisionnement
+![Protection Microsoft Prompt Shields](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.fr.png)
 
-La sécurité de la chaîne d’approvisionnement reste fondamentale à l’ère de l’IA, mais la portée de ce qui constitue votre chaîne d’approvisionnement s’est élargie. En plus des packages de code traditionnels, vous devez désormais vérifier et surveiller rigoureusement tous les composants liés à l’IA, y compris les modèles de base, les services d’embeddings, les fournisseurs de contexte et les API tierces. Chacun de ces éléments peut introduire des vulnérabilités ou des risques s’ils ne sont pas correctement gérés.
 
-**Pratiques clés de sécurité de la chaîne d’approvisionnement pour l’IA et MCP :**
-- **Vérifier tous les composants avant intégration :** Cela inclut non seulement les bibliothèques open source, mais aussi les modèles d’IA, les sources de données et les API externes. Toujours vérifier la provenance, les licences et les vulnérabilités connues.
-- **Maintenir des pipelines de déploiement sécurisés :** Utiliser des pipelines CI/CD automatisés avec des analyses de sécurité intégrées pour détecter les problèmes tôt. S’assurer que seuls des artefacts de confiance sont déployés en production.
-- **Surveiller et auditer en continu :** Mettre en place une surveillance continue de toutes les dépendances, y compris les modèles et services de données, pour détecter de nouvelles vulnérabilités ou attaques sur la chaîne d’approvisionnement.
-- **Appliquer le principe du moindre privilège et des contrôles d’accès :** Restreindre l’accès aux modèles, données et services uniquement à ce qui est nécessaire au fonctionnement de votre serveur MCP.
-- **Réagir rapidement aux menaces :** Disposer d’un processus pour patcher ou remplacer les composants compromis, et pour faire tourner les secrets ou identifiants en cas de violation.
+## Menaces avancées de sécurité MCP
 
-[GitHub Advanced Security](https://github.com/security/advanced-security) offre des fonctionnalités telles que la détection de secrets, l’analyse des dépendances et l’analyse CodeQL. Ces outils s’intègrent avec [Azure DevOps](https://azure.microsoft.com/en-us/products/devops) et [Azure Repos](https://azure.microsoft.com/en-us/products/devops/repos/) pour aider les équipes à identifier et atténuer les vulnérabilités à la fois dans le code et dans les composants de la chaîne d’approvisionnement IA.
+### Vulnérabilités de détournement de session
 
-Microsoft applique également en interne des pratiques étendues de sécurité de la chaîne d’approvisionnement pour tous ses produits. En savoir plus dans [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/).
+Le **détournement de session** représente un vecteur d'attaque critique dans les implémentations MCP avec état, où des parties non autorisées obtiennent et abusent des identifiants de session légitimes pour se faire passer pour des clients et effectuer des actions non autorisées.
 
+#### **Scénarios d'attaque et risques**
 
-# Bonnes pratiques de sécurité établies pour renforcer la posture de sécurité de votre implémentation MCP
+- **Injection de prompts dans les sessions détournées** : Les attaquants disposant d'identifiants de session volés injectent des événements malveillants dans les serveurs partageant l'état de session, déclenchant potentiellement des actions nuisibles ou accédant
+- **Génération sécurisée de sessions** : Utilisez des identifiants de session cryptographiquement sécurisés et non déterministes, générés avec des générateurs de nombres aléatoires sécurisés.  
+- **Association spécifique à l'utilisateur** : Associez les identifiants de session à des informations spécifiques à l'utilisateur en utilisant des formats comme `<user_id>:<session_id>` pour éviter les abus de sessions entre utilisateurs.  
+- **Gestion du cycle de vie des sessions** : Mettez en œuvre une expiration, une rotation et une invalidation appropriées pour limiter les fenêtres de vulnérabilité.  
+- **Sécurité des transports** : HTTPS obligatoire pour toutes les communications afin d'empêcher l'interception des identifiants de session.  
 
-Toute implémentation MCP hérite de la posture de sécurité existante de l’environnement de votre organisation sur lequel elle est construite. Ainsi, lorsqu’on considère la sécurité de MCP comme un composant de vos systèmes IA globaux, il est recommandé d’améliorer la posture de sécurité globale existante. Les contrôles de sécurité établis suivants sont particulièrement pertinents :
+### Problème du "Confused Deputy"
 
--   Bonnes pratiques de codage sécurisé dans votre application IA – se protéger contre [le Top 10 OWASP](https://owasp.org/www-project-top-ten/), le [Top 10 OWASP pour les LLM](https://genai.owasp.org/download/43299/?tmstv=1731900559), l’utilisation de coffres-forts sécurisés pour les secrets et jetons, la mise en œuvre de communications sécurisées de bout en bout entre tous les composants de l’application, etc.
--   Durcissement des serveurs – utiliser l’authentification multifactorielle (MFA) lorsque c’est possible, maintenir les correctifs à jour, intégrer le serveur avec un fournisseur d’identité tiers pour l’accès, etc.
--   Maintenir les appareils, infrastructures et applications à jour avec les correctifs
--   Surveillance de la sécurité – mettre en place la journalisation et la surveillance d’une application IA (y compris les clients/serveurs MCP) et envoyer ces journaux à un SIEM central pour détecter les activités anormales
--   Architecture Zero Trust – isoler les composants via des contrôles réseau et d’identité de manière logique pour minimiser les mouvements latéraux en cas de compromission d’une application IA.
+Le **problème du "confused deputy"** survient lorsque les serveurs MCP agissent comme des proxys d'authentification entre les clients et des services tiers, créant des opportunités de contournement d'autorisation via l'exploitation d'identifiants clients statiques.
 
-# Points clés à retenir
+#### **Mécanismes d'attaque et risques**
 
-- Les fondamentaux de la sécurité restent essentiels : codage sécurisé, moindre privilège, vérification de la chaîne d’approvisionnement et surveillance continue sont indispensables pour les charges de travail MCP et IA.
-- MCP introduit de nouveaux risques — tels que l’injection de prompt, l’empoisonnement d’outils, le détournement de session, le problème du délégué confus, les vulnérabilités de passage de jetons et les permissions excessives — qui nécessitent des contrôles à la fois traditionnels et spécifiques à l’IA.
-- Utiliser des pratiques robustes d’authentification, d’autorisation et de gestion des jetons, en tirant parti de fournisseurs d’identité externes comme Microsoft Entra ID lorsque c’est possible.
-- Se protéger contre l’injection indirecte de prompt et l’empoisonnement d’outils en validant les métadonnées des outils, en surveillant les changements dynamiques et en utilisant des solutions comme Microsoft Prompt Shields.
-- Mettre en œuvre une gestion sécurisée des sessions en utilisant des IDs de session non déterministes, en liant les sessions aux identités des utilisateurs, et en n’utilisant jamais les sessions pour l’authentification.
-- Prévenir les attaques du délégué confus en exigeant un consentement explicite de l’utilisateur pour chaque client enregistré dynamiquement et en appliquant les bonnes pratiques de sécurité OAuth.
-- Éviter les vulnérabilités de passage de jetons en s’assurant que les serveurs MCP n’acceptent que les jetons explicitement émis pour eux et en validant correctement les revendications des jetons.
-- Traiter tous les composants de votre chaîne d’approvisionnement IA — y compris les modèles, embeddings et fournisseurs de contexte — avec la même rigueur que les dépendances de code.
-- Rester à jour avec l’évolution des spécifications MCP et contribuer à la communauté pour aider à façonner des standards sécurisés.
+- **Contournement du consentement basé sur les cookies** : Une authentification utilisateur précédente crée des cookies de consentement que les attaquants exploitent via des requêtes d'autorisation malveillantes avec des URI de redirection forgées.  
+- **Vol de codes d'autorisation** : Les cookies de consentement existants peuvent amener les serveurs d'autorisation à ignorer les écrans de consentement, redirigeant les codes vers des points de terminaison contrôlés par l'attaquant.  
+- **Accès non autorisé aux API** : Les codes d'autorisation volés permettent un échange de jetons et une usurpation d'identité utilisateur sans approbation explicite.  
 
-# Ressources supplémentaires
+#### **Stratégies d'atténuation**
 
-## Ressources externes
-- [Microsoft Digital Defense Report](https://aka.ms/mddr)
-- [Spécification MCP](https://spec.modelcontextprotocol.io/)
-- [Bonnes pratiques de sécurité MCP](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-- [Spécification d’autorisation MCP](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [Meilleures pratiques de sécurité OAuth 2.0 (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
-- [Injection de prompt dans MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)
-- [Attaques d’empoisonnement d’outils (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
-- [Rug Pulls dans MCP (Wiz Security)](https://www.wiz.io/blog/mcp-security-research-briefing#remote-servers-22)
-- [Documentation Prompt Shields (Microsoft)](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
-- [OWASP Top 10 pour LLM](https://genai.owasp.org/download/43299/?tmstv=1731900559)
+**Contrôles obligatoires :**  
+- **Exigences de consentement explicite** : Les serveurs proxy MCP utilisant des identifiants clients statiques **DOIVENT** obtenir le consentement de l'utilisateur pour chaque client enregistré dynamiquement.  
+- **Mise en œuvre de la sécurité OAuth 2.1** : Suivez les meilleures pratiques de sécurité OAuth actuelles, y compris PKCE (Proof Key for Code Exchange) pour toutes les requêtes d'autorisation.  
+- **Validation stricte des clients** : Mettez en œuvre une validation rigoureuse des URI de redirection et des identifiants clients pour éviter les exploitations.  
+
+### Vulnérabilités liées au transfert de jetons  
+
+Le **transfert de jetons** représente un anti-modèle explicite où les serveurs MCP acceptent des jetons clients sans validation appropriée et les transmettent aux API en aval, violant les spécifications d'autorisation MCP.
+
+#### **Implications de sécurité**
+
+- **Contournement des contrôles** : L'utilisation directe de jetons client-API contourne les contrôles critiques de limitation de débit, de validation et de surveillance.  
+- **Corruption des pistes d'audit** : Les jetons émis en amont rendent l'identification des clients impossible, compromettant les capacités d'enquête sur les incidents.  
+- **Exfiltration de données via proxy** : Les jetons non validés permettent aux acteurs malveillants d'utiliser les serveurs comme proxys pour accéder à des données non autorisées.  
+- **Violations des frontières de confiance** : Les hypothèses de confiance des services en aval peuvent être violées lorsque les origines des jetons ne peuvent pas être vérifiées.  
+- **Expansion des attaques multi-services** : Les jetons compromis acceptés par plusieurs services permettent des mouvements latéraux.  
+
+#### **Contrôles de sécurité requis**
+
+**Exigences non négociables :**  
+- **Validation des jetons** : Les serveurs MCP **NE DOIVENT PAS** accepter des jetons qui ne leur sont pas explicitement destinés.  
+- **Vérification de l'audience** : Validez toujours que les revendications d'audience des jetons correspondent à l'identité du serveur MCP.  
+- **Cycle de vie approprié des jetons** : Mettez en œuvre des jetons d'accès de courte durée avec des pratiques de rotation sécurisées.  
+
+## Sécurité de la chaîne d'approvisionnement pour les systèmes d'IA
+
+La sécurité de la chaîne d'approvisionnement s'est étendue au-delà des dépendances logicielles traditionnelles pour englober l'ensemble de l'écosystème de l'IA. Les implémentations modernes de MCP doivent vérifier et surveiller rigoureusement tous les composants liés à l'IA, car chacun peut introduire des vulnérabilités potentielles compromettant l'intégrité du système.
+
+### Composants élargis de la chaîne d'approvisionnement de l'IA
+
+**Dépendances logicielles traditionnelles :**  
+- Bibliothèques et frameworks open source  
+- Images de conteneurs et systèmes de base  
+- Outils de développement et pipelines de construction  
+- Composants et services d'infrastructure  
+
+**Éléments spécifiques à l'IA :**  
+- **Modèles fondamentaux** : Modèles pré-entraînés provenant de divers fournisseurs nécessitant une vérification de provenance  
+- **Services d'embedding** : Services externes de vectorisation et de recherche sémantique  
+- **Fournisseurs de contexte** : Sources de données, bases de connaissances et dépôts de documents  
+- **API tierces** : Services d'IA externes, pipelines de ML et points de terminaison de traitement des données  
+- **Artefacts de modèles** : Poids, configurations et variantes de modèles ajustés  
+- **Sources de données d'entraînement** : Jeux de données utilisés pour l'entraînement et l'ajustement des modèles  
+
+### Stratégie complète de sécurité de la chaîne d'approvisionnement
+
+#### **Vérification des composants et confiance**  
+- **Validation de provenance** : Vérifiez l'origine, la licence et l'intégrité de tous les composants d'IA avant leur intégration.  
+- **Évaluation de sécurité** : Effectuez des analyses de vulnérabilité et des revues de sécurité pour les modèles, sources de données et services d'IA.  
+- **Analyse de réputation** : Évaluez les antécédents et pratiques de sécurité des fournisseurs de services d'IA.  
+- **Vérification de conformité** : Assurez-vous que tous les composants respectent les exigences de sécurité et réglementaires de l'organisation.  
+
+#### **Pipelines de déploiement sécurisés**  
+- **Sécurité CI/CD automatisée** : Intégrez des analyses de sécurité tout au long des pipelines de déploiement automatisés.  
+- **Intégrité des artefacts** : Mettez en œuvre une vérification cryptographique pour tous les artefacts déployés (code, modèles, configurations).  
+- **Déploiement par étapes** : Utilisez des stratégies de déploiement progressif avec validation de sécurité à chaque étape.  
+- **Dépôts d'artefacts de confiance** : Déployez uniquement à partir de registres et dépôts d'artefacts vérifiés et sécurisés.  
+
+#### **Surveillance continue et réponse**  
+- **Analyse des dépendances** : Surveillance continue des vulnérabilités pour toutes les dépendances logicielles et composants d'IA.  
+- **Surveillance des modèles** : Évaluation continue du comportement des modèles, des dérives de performance et des anomalies de sécurité.  
+- **Suivi de la santé des services** : Surveillez les services d'IA externes pour leur disponibilité, incidents de sécurité et changements de politique.  
+- **Intégration de renseignements sur les menaces** : Intégrez des flux de menaces spécifiques aux risques de sécurité liés à l'IA et au ML.  
+
+#### **Contrôle d'accès et principe du moindre privilège**  
+- **Permissions au niveau des composants** : Restreignez l'accès aux modèles, données et services en fonction des besoins métier.  
+- **Gestion des comptes de service** : Implémentez des comptes de service dédiés avec les permissions minimales nécessaires.  
+- **Segmentation réseau** : Isolez les composants d'IA et limitez l'accès réseau entre les services.  
+- **Contrôles des passerelles API** : Utilisez des passerelles API centralisées pour contrôler et surveiller l'accès aux services d'IA externes.  
+
+#### **Réponse aux incidents et récupération**  
+- **Procédures de réponse rapide** : Processus établis pour corriger ou remplacer les composants d'IA compromis.  
+- **Rotation des identifiants** : Systèmes automatisés pour la rotation des secrets, clés API et identifiants de service.  
+- **Capacités de retour en arrière** : Possibilité de revenir rapidement à des versions précédentes connues comme sûres des composants d'IA.  
+- **Récupération après violation de la chaîne d'approvisionnement** : Procédures spécifiques pour répondre aux compromissions des services d'IA en amont.  
+
+### Outils de sécurité Microsoft et intégration
+
+**GitHub Advanced Security** offre une protection complète de la chaîne d'approvisionnement, notamment :  
+- **Analyse des secrets** : Détection automatisée des identifiants, clés API et jetons dans les dépôts.  
+- **Analyse des dépendances** : Évaluation des vulnérabilités pour les dépendances open source et bibliothèques.  
+- **Analyse CodeQL** : Analyse statique du code pour les vulnérabilités de sécurité et les problèmes de codage.  
+- **Aperçus de la chaîne d'approvisionnement** : Visibilité sur la santé et le statut de sécurité des dépendances.  
+
+**Intégration Azure DevOps et Azure Repos :**  
+- Intégration fluide des analyses de sécurité sur les plateformes de développement Microsoft.  
+- Vérifications de sécurité automatisées dans Azure Pipelines pour les charges de travail d'IA.  
+- Application de politiques pour un déploiement sécurisé des composants d'IA.  
+
+**Pratiques internes de Microsoft :**  
+Microsoft met en œuvre des pratiques de sécurité de la chaîne d'approvisionnement étendues dans tous ses produits. Découvrez des approches éprouvées dans [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/).  
+
+
+### **Solutions de sécurité Microsoft**
+- [Documentation sur Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Service Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [Sécurité Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
+- [Bonnes pratiques de gestion des jetons Azure](https://learn.microsoft.com/entra/identity-platform/access-tokens)
 - [GitHub Advanced Security](https://github.com/security/advanced-security)
-- [Azure DevOps](https://azure.microsoft.com/products/devops)
-- [Azure Repos](https://azure.microsoft.com/products/devops/repos/)
-- [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/)
-- [Accès sécurisé au moindre privilège (Microsoft)](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
-- [Bonnes pratiques pour la validation et la durée de vie des jetons](https://learn.microsoft.com/entra/identity-platform/access-tokens)
-- [Utiliser un stockage sécurisé des jetons et chiffrer les jetons (YouTube)](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
-- [Azure API Management comme passerelle d’authentification pour MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
-- [Utiliser Microsoft Entra ID pour s’authentifier auprès des serveurs MCP](https://den.dev/blog/mcp-server-auth-entra-id-session/)
 
-## Documents de sécurité supplémentaires
+### **Guides de mise en œuvre et tutoriels**
+- [Azure API Management comme passerelle d'authentification MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+- [Authentification Microsoft Entra ID avec les serveurs MCP](https://den.dev/blog/mcp-server-auth-entra-id-session/)
+- [Stockage sécurisé des jetons et chiffrement (Vidéo)](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
 
-Pour des conseils de sécurité plus détaillés, veuillez consulter ces documents :
+### **Sécurité DevOps et chaîne d'approvisionnement**
+- [Sécurité Azure DevOps](https://azure.microsoft.com/products/devops)
+- [Sécurité Azure Repos](https://azure.microsoft.com/products/devops/repos/)
+- [Parcours de sécurité de la chaîne d'approvisionnement Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/)
 
-- [Bonnes pratiques de sécurité MCP 2025](./mcp-security-best-practices-2025.md) – Liste complète des bonnes pratiques de sécurité pour les implémentations MCP
-- [Implémentation Azure Content Safety](./azure-content-safety-implementation.md) – Exemples d’intégration d’Azure Content Safety avec les serveurs MCP
-- [Contrôles de sécurité MCP 2025](./mcp-security-controls-2025.md) – Derniers contrôles et techniques de sécurité pour sécuriser les déploiements MCP
-- [Bonnes pratiques MCP](./mcp-best-practices.md) – Guide de référence rapide pour la sécurité MCP
+## **Documentation de sécurité supplémentaire**
 
-### Suivant
+Pour des conseils de sécurité complets, consultez ces documents spécialisés dans cette section :
 
-Suivant : [Chapitre 3 : Premiers pas](../03-GettingStarted/README.md)
+- **[Bonnes pratiques de sécurité MCP 2025](./mcp-security-best-practices-2025.md)** - Bonnes pratiques complètes pour les implémentations MCP  
+- **[Mise en œuvre d'Azure Content Safety](./azure-content-safety-implementation.md)** - Exemples pratiques pour l'intégration d'Azure Content Safety  
+- **[Contrôles de sécurité MCP 2025](./mcp-security-controls-2025.md)** - Derniers contrôles et techniques de sécurité pour les déploiements MCP  
+- **[Guide de référence rapide des bonnes pratiques MCP](./mcp-best-practices.md)** - Guide de référence rapide pour les pratiques de sécurité essentielles MCP  
+
+---
+
+## Et après
+
+Prochain chapitre : [Chapitre 3 : Premiers pas](../03-GettingStarted/README.md)
 
 **Avertissement** :  
-Ce document a été traduit à l’aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d’assurer l’exactitude, veuillez noter que les traductions automatiques peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d’origine doit être considéré comme la source faisant foi. Pour les informations critiques, une traduction professionnelle réalisée par un humain est recommandée. Nous déclinons toute responsabilité en cas de malentendus ou de mauvaises interprétations résultant de l’utilisation de cette traduction.
+Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de faire appel à une traduction humaine professionnelle. Nous déclinons toute responsabilité en cas de malentendus ou d'interprétations erronées résultant de l'utilisation de cette traduction.

@@ -1,39 +1,44 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "7b4b9bfacd2926725e6f1cda82bc8ff5",
-  "translation_date": "2025-07-17T06:48:43+00:00",
+  "original_hash": "fcf1e12b62102bf7d16b78deb2b163b7",
+  "translation_date": "2025-08-18T16:21:35+00:00",
   "source_file": "06-CommunityContributions/README.md",
   "language_code": "fi"
 }
 -->
 # Yhteisö ja kontribuutiot
 
+[![Kuinka osallistua MCP: Työkalut, dokumentaatio, koodi ja paljon muuta](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.fi.png)](https://youtu.be/v1pvCYAWpRE)
+
+_(Klikkaa yllä olevaa kuvaa nähdäksesi tämän oppitunnin videon)_
+
 ## Yleiskatsaus
 
-Tässä oppitunnissa keskitytään siihen, miten osallistua MCP-yhteisöön, tehdä kontribuutioita MCP-ekosysteemiin ja noudattaa parhaita käytäntöjä yhteiskehityksessä. Avoimen lähdekoodin MCP-projekteihin osallistumisen ymmärtäminen on olennaista niille, jotka haluavat vaikuttaa tämän teknologian tulevaisuuteen.
+Tämä oppitunti keskittyy siihen, miten osallistua MCP-yhteisöön, edistää MCP-ekosysteemiä ja noudattaa parhaita käytäntöjä yhteistyöhön perustuvassa kehityksessä. MCP:n avoimen lähdekoodin projekteihin osallistumisen ymmärtäminen on olennaista niille, jotka haluavat vaikuttaa tämän teknologian tulevaisuuteen.
 
 ## Oppimistavoitteet
 
-Oppitunnin lopuksi osaat:
+Oppitunnin lopussa osaat:
+
 - Ymmärtää MCP-yhteisön ja ekosysteemin rakenteen
 - Osallistua tehokkaasti MCP-yhteisön foorumeihin ja keskusteluihin
-- Tehdä kontribuutioita MCP:n avoimen lähdekoodin repositorioihin
-- Luoda ja jakaa omia MCP-työkaluja ja -palvelimia
+- Edistää MCP:n avoimen lähdekoodin arkistoja
+- Luoda ja jakaa omia MCP-työkaluja ja palvelimia
 - Noudattaa MCP-kehityksen ja yhteistyön parhaita käytäntöjä
 - Löytää yhteisön resursseja ja kehyksiä MCP-kehitykseen
 
 ## MCP-yhteisön ekosysteemi
 
-MCP-ekosysteemi koostuu erilaisista osista ja toimijoista, jotka työskentelevät yhdessä protokollan kehittämiseksi.
+MCP-ekosysteemi koostuu eri osista ja osallistujista, jotka työskentelevät yhdessä protokollan kehittämiseksi.
 
 ### Keskeiset yhteisön osat
 
-1. **Core Protocol Maintainers**: Virallinen [Model Context Protocol GitHub -organisaatio](https://github.com/modelcontextprotocol) ylläpitää MCP:n ydinspezifikaatioita ja referenssitoteutuksia
-2. **Työkalujen kehittäjät**: Yksilöt ja tiimit, jotka luovat MCP-työkaluja ja -palvelimia
-3. **Integraatiotoimittajat**: Yritykset, jotka integroivat MCP:n tuotteisiinsa ja palveluihinsa
-4. **Loppukäyttäjät**: Kehittäjät ja organisaatiot, jotka käyttävät MCP:tä sovelluksissaan
-5. **Kontribuuttorit**: Yhteisön jäsenet, jotka tuottavat koodia, dokumentaatiota tai muita resursseja
+1. **Ydinprotokollan ylläpitäjät**: Virallinen [Model Context Protocol GitHub -organisaatio](https://github.com/modelcontextprotocol) ylläpitää MCP:n ydinspecifikaatioita ja referenssitoteutuksia.
+2. **Työkalujen kehittäjät**: Henkilöt ja tiimit, jotka luovat MCP-työkaluja ja palvelimia.
+3. **Integraation tarjoajat**: Yritykset, jotka integroivat MCP:n tuotteisiinsa ja palveluihinsa.
+4. **Loppukäyttäjät**: Kehittäjät ja organisaatiot, jotka käyttävät MCP:tä sovelluksissaan.
+5. **Kontribuuttorit**: Yhteisön jäsenet, jotka edistävät koodia, dokumentaatiota tai muita resursseja.
 
 ### Yhteisön resurssit
 
@@ -41,56 +46,56 @@ MCP-ekosysteemi koostuu erilaisista osista ja toimijoista, jotka työskentelevä
 
 - [MCP GitHub -organisaatio](https://github.com/modelcontextprotocol)
 - [MCP-dokumentaatio](https://modelcontextprotocol.io/)
-- [MCP-spesifikaatio](https://modelcontextprotocol.io/docs/specification)
+- [MCP-specifikaatio](https://modelcontextprotocol.io/docs/specification)
 - [GitHub-keskustelut](https://github.com/orgs/modelcontextprotocol/discussions)
-- [MCP-esimerkit ja palvelimet -repositorio](https://github.com/modelcontextprotocol/servers)
+- [MCP-esimerkit ja palvelimet -arkisto](https://github.com/modelcontextprotocol/servers)
 
-#### Yhteisön ylläpitämät resurssit
+#### Yhteisön tuottamat resurssit
 
-- [MCP Clients](https://modelcontextprotocol.io/clients) – Lista MCP-integraatioita tukevista asiakkaista
-- [Community MCP Servers](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) – Kasvava lista yhteisön kehittämistä MCP-palvelimista
-- [Awesome MCP Servers](https://github.com/wong2/awesome-mcp-servers) – Kuratoitu lista MCP-palvelimista
-- [PulseMCP](https://www.pulsemcp.com/) – Yhteisön keskus ja uutiskirje MCP-resurssien löytämiseen
-- [Discord-palvelin](https://discord.gg/jHEGxQu2a5) – Yhteys MCP-kehittäjiin
-- Kieli- ja SDK-toteutukset
-- Blogikirjoitukset ja opetusmateriaalit
+- [MCP-asiakkaat](https://modelcontextprotocol.io/clients) - Lista asiakkaista, jotka tukevat MCP-integraatioita.
+- [Yhteisön MCP-palvelimet](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - Kasvava lista yhteisön kehittämistä MCP-palvelimista.
+- [Awesome MCP Servers](https://github.com/wong2/awesome-mcp-servers) - Kuratoitu lista MCP-palvelimista.
+- [PulseMCP](https://www.pulsemcp.com/) - Yhteisön keskus ja uutiskirje MCP-resurssien löytämiseen.
+- [Discord-palvelin](https://discord.gg/jHEGxQu2a5) - Yhdistä MCP-kehittäjiin.
+- Kieli-spesifiset SDK-toteutukset.
+- Blogikirjoitukset ja tutoriaalit.
 
-## Kontribuointi MCP:hen
+## MCP:n kontribuointi
 
 ### Kontribuution tyypit
 
-MCP-ekosysteemi ottaa vastaan monenlaisia kontribuutioita:
+MCP-ekosysteemi toivottaa tervetulleeksi monenlaisia kontribuutioita:
 
 1. **Koodikontribuutiot**:
-   - Ydinspezifikaation parannukset
+   - Ydinprotokollan parannukset
    - Virheenkorjaukset
    - Työkalujen ja palvelimien toteutukset
-   - Asiakas- ja palvelinkirjastot eri kielillä
+   - Asiakas-/palvelinkirjastot eri kielillä
 
 2. **Dokumentaatio**:
    - Olemassa olevan dokumentaation parantaminen
-   - Opetusmateriaalien ja ohjeiden luominen
+   - Tutoriaalien ja oppaiden luominen
    - Dokumentaation kääntäminen
-   - Esimerkkien ja mallisovellusten tekeminen
+   - Esimerkkien ja mallisovellusten luominen
 
 3. **Yhteisön tuki**:
    - Kysymyksiin vastaaminen foorumeilla ja keskusteluissa
-   - Testaus ja ongelmien raportointi
+   - Testaaminen ja ongelmien raportointi
    - Yhteisötapahtumien järjestäminen
-   - Uusien kontribuuttoreiden mentorointi
+   - Uusien kontribuuttorien mentorointi
 
-### Kontribuutioprosessi: Core Protocol
+### Kontribuutioprosessi: Ydinprotokolla
 
-Jos haluat tehdä kontribuution MCP:n ydinspezifikaatioon tai virallisiin toteutuksiin, noudata näitä periaatteita [virallisista ohjeista](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
+Jos haluat edistää MCP:n ydinprotokollaa tai virallisia toteutuksia, noudata näitä periaatteita [virallisista kontribuointiohjeista](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
 
-1. **Yksinkertaisuus ja minimalismi**: MCP-spesifikaatio pitää korkean riman uusien käsitteiden lisäämiselle. On helpompaa lisätä asioita kuin poistaa niitä.
+1. **Yksinkertaisuus ja minimalismi**: MCP-specifikaatio ylläpitää korkeaa kynnystä uusien konseptien lisäämiselle. Specifikaatioon on helpompi lisätä asioita kuin poistaa niitä.
 
-2. **Konkreettinen lähestymistapa**: Spesifikaatiomuutosten tulee perustua konkreettisiin toteutusongelmiin, ei spekulatiivisiin ideoihin.
+2. **Konkreettinen lähestymistapa**: Specifikaation muutosten tulisi perustua konkreettisiin toteutushaasteisiin, ei spekulatiivisiin ideoihin.
 
 3. **Ehdotuksen vaiheet**:
-   - Määrittele: Tutki ongelma-aluetta, varmista että muut MCP-käyttäjät kohtaavat saman haasteen
-   - Prototyyppi: Rakenna esimerkkiratkaisu ja näytä sen käytännön soveltuvuus
-   - Kirjoita: Prototyypin pohjalta kirjoita spesifikaatioehdotus
+   - Määrittele: Tutki ongelma-aluetta, varmista että muut MCP-käyttäjät kohtaavat samanlaisen ongelman.
+   - Prototyyppi: Rakenna esimerkkiratkaisu ja osoita sen käytännön soveltuvuus.
+   - Kirjoita: Prototyypin pohjalta kirjoita specifikaatioehdotus.
 
 ### Kehitysympäristön asennus
 
@@ -146,7 +151,7 @@ export function validateResource(resource: unknown): resource is MCPResource {
 }
 ```
 
-### Esimerkki: Uuden työkalun lisääminen standardikirjastoon
+### Esimerkki: Uuden työkalun kontribuointi standardikirjastoon
 
 ```python
 # Example contribution: A CSV data processing tool for the MCP standard library
@@ -306,18 +311,18 @@ class CsvProcessingTool(Tool):
             raise ToolExecutionException(f"Unsupported output format: {format}")
 ```
 
-### Kontribuution ohjeet
+### Kontribuointiohjeet
 
-Onnistuneen kontribuution tekemiseksi MCP-projekteihin:
+Onnistuneen MCP-projektin kontribuoinnin varmistamiseksi:
 
-1. **Aloita pienestä**: Aloita dokumentaatiosta, virheenkorjauksista tai pienistä parannuksista
-2. **Noudata tyyliopasta**: Seuraa projektin koodauskäytäntöjä ja konventioita
-3. **Kirjoita testit**: Lisää yksikkötestit koodikontribuutioillesi
-4. **Dokumentoi työsi**: Lisää selkeä dokumentaatio uusista ominaisuuksista tai muutoksista
-5. **Lähetä kohdennettuja PR:itä**: Pidä pull requestit keskittyneinä yhteen ongelmaan tai ominaisuuteen
-6. **Ole vuorovaikutteinen palautteen kanssa**: Vastaa rakentavasti saamasi palautteeseen
+1. **Aloita pienestä**: Aloita dokumentaatiosta, virheenkorjauksista tai pienistä parannuksista.
+2. **Noudata tyyliohjeita**: Noudata projektin koodityyliä ja konventioita.
+3. **Kirjoita testejä**: Sisällytä yksikkötestit koodikontribuutioihisi.
+4. **Dokumentoi työsi**: Lisää selkeä dokumentaatio uusille ominaisuuksille tai muutoksille.
+5. **Lähetä kohdennettuja PR:itä**: Pidä pull requestit keskittyneinä yhteen ongelmaan tai ominaisuuteen.
+6. **Vastaa palautteeseen**: Ole valmis vastaamaan palautteeseen kontribuutioistasi.
 
-### Esimerkkityönkulku kontribuutiolle
+### Esimerkkikontribuutiotyönkulku
 
 ```bash
 # Clone the repository
@@ -345,11 +350,11 @@ git push origin feature/my-contribution
 
 ## MCP-palvelimien luominen ja jakaminen
 
-Yksi arvokkaimmista tavoista osallistua MCP-ekosysteemiin on luoda ja jakaa omia MCP-palvelimia. Yhteisö on jo kehittänyt satoja palvelimia erilaisiin palveluihin ja käyttötarkoituksiin.
+Yksi arvokkaimmista tavoista edistää MCP-ekosysteemiä on luoda ja jakaa omia MCP-palvelimia. Yhteisö on jo kehittänyt satoja palvelimia eri palveluille ja käyttötarkoituksille.
 
-### MCP-palvelinkehityskehykset
+### MCP-palvelimen kehityskehykset
 
-Useita kehyksiä on saatavilla MCP-palvelimien kehityksen helpottamiseksi:
+Useita kehyksiä on saatavilla MCP-palvelimen kehityksen yksinkertaistamiseksi:
 
 1. **Viralliset SDK:t**:
    - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
@@ -359,11 +364,11 @@ Useita kehyksiä on saatavilla MCP-palvelimien kehityksen helpottamiseksi:
    - [Java SDK](https://github.com/modelcontextprotocol/java-sdk)
    - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk)
 
-2. **Yhteisön kehittämät kehykset**:
-   - [MCP-Framework](https://mcp-framework.com/) – Rakenna MCP-palvelimia tyylikkäästi ja nopeasti TypeScriptillä
-   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) – Annotaatiopohjaiset MCP-palvelimet Javalla
-   - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) – Java-kehys MCP-palvelimille
-   - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) – Aloitusprojekti Next.js:llä MCP-palvelimille
+2. **Yhteisön kehykset**:
+   - [MCP-Framework](https://mcp-framework.com/) - Rakenna MCP-palvelimia tyylikkäästi ja nopeasti TypeScriptillä.
+   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - Annotation-pohjaiset MCP-palvelimet Javalla.
+   - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - Java-kehys MCP-palvelimille.
+   - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - Aloitusprojekti MCP-palvelimille Next.js:llä.
 
 ### Jaettavien työkalujen kehittäminen
 
@@ -473,7 +478,7 @@ namespace McpFinanceTools
 // dotnet nuget push bin/Release/McpFinanceTools.1.0.0.nupkg -s https://api.nuget.org/v3/index.json -k YOUR_API_KEY
 ```
 
-#### Java-esimerkki: Maven-paketin luominen työkaluja varten
+#### Java-esimerkki: Maven-paketin luominen työkaluille
 
 ```java
 // pom.xml configuration for a shareable MCP tool package
@@ -574,7 +579,7 @@ public class WeatherForecastTool implements Tool {
 // mvn deploy
 ```
 
-#### Python-esimerkki: PyPI-paketin julkaisu
+#### Python-esimerkki: PyPI-paketin julkaiseminen
 
 ```python
 # Directory structure for a PyPI package:
@@ -679,68 +684,68 @@ class SentimentAnalysisTool(Tool):
 # python -m twine upload dist/*
 ```
 
-### Parhaat käytännöt jakamiseen
+### Parhaiden käytäntöjen jakaminen
 
-Kun jaat MCP-työkaluja yhteisön kanssa:
+Kun jaat MCP-työkaluja yhteisölle:
 
 1. **Täydellinen dokumentaatio**:
-   - Kuvaa tarkoitus, käyttö ja esimerkit
-   - Selitä parametrit ja palautusarvot
-   - Dokumentoi ulkoiset riippuvuudet
+   - Dokumentoi tarkoitus, käyttö ja esimerkit.
+   - Selitä parametrit ja palautusarvot.
+   - Dokumentoi ulkoiset riippuvuudet.
 
 2. **Virheenkäsittely**:
-   - Toteuta luotettava virheenkäsittely
-   - Tarjoa hyödylliset virheilmoitukset
-   - Käsittele reunatapaukset huolellisesti
+   - Toteuta vankka virheenkäsittely.
+   - Tarjoa hyödyllisiä virheilmoituksia.
+   - Käsittele reunatapaukset huolellisesti.
 
 3. **Suorituskyky**:
-   - Optimoi sekä nopeuden että resurssien käytön kannalta
-   - Käytä välimuistia tarpeen mukaan
-   - Huomioi skaalautuvuus
+   - Optimoi sekä nopeuden että resurssien käytön suhteen.
+   - Toteuta välimuisti tarvittaessa.
+   - Huomioi skaalautuvuus.
 
 4. **Turvallisuus**:
-   - Käytä turvallisia API-avaimia ja autentikointia
-   - Varmista ja puhdista syötteet
-   - Toteuta rajoitukset ulkoisille API-kutsuille
+   - Käytä turvallisia API-avaimia ja autentikointia.
+   - Vahvista ja puhdista syötteet.
+   - Toteuta rajoituksia ulkoisten API-kutsujen määrälle.
 
 5. **Testaus**:
-   - Sisällytä kattava testikattavuus
-   - Testaa erilaisilla syötetyypeillä ja reunatapauksilla
-   - Dokumentoi testausmenetelmät
+   - Sisällytä kattava testikattavuus.
+   - Testaa eri syötetyyppien ja reunatapausten kanssa.
+   - Dokumentoi testausmenetelmät.
 
 ## Yhteisön yhteistyö ja parhaat käytännöt
 
-Tehokas yhteistyö on avain menestyvään MCP-ekosysteemiin.
+Tehokas yhteistyö on avain MCP-ekosysteemin menestykseen.
 
 ### Viestintäkanavat
 
-- GitHub Issues ja Discussions
+- GitHub-ongelmat ja keskustelut
 - Microsoft Tech Community
 - Discord- ja Slack-kanavat
 - Stack Overflow (tagit: `model-context-protocol` tai `mcp`)
 
 ### Koodikatselmukset
 
-Kun arvioit MCP-kontribuutioita:
+Kun tarkastat MCP-kontribuutioita:
 
 1. **Selkeys**: Onko koodi selkeää ja hyvin dokumentoitua?
 2. **Oikeellisuus**: Toimiiko se odotetusti?
-3. **Johdonmukaisuus**: Noudattaako se projektin käytäntöjä?
-4. **Täydellisyys**: Sisältääkö se testit ja dokumentaation?
-5. **Turvallisuus**: Onko siinä turvallisuusriskejä?
+3. **Johdonmukaisuus**: Noudattaako se projektin konventioita?
+4. **Täydellisyys**: Sisältyvätkö testit ja dokumentaatio?
+5. **Turvallisuus**: Onko turvallisuuteen liittyviä huolenaiheita?
 
 ### Versioyhteensopivuus
 
-MCP-kehityksessä:
+Kun kehität MCP:lle:
 
-1. **Protokollan versiointi**: Noudata MCP-protokollan versiota, jota työkalusi tukee
-2. **Asiakasyhteensopivuus**: Huomioi taaksepäin yhteensopivuus
-3. **Palvelinyhteensopivuus**: Noudata palvelintoteutuksen ohjeita
-4. **Rikkovat muutokset**: Dokumentoi selkeästi kaikki rikkovat muutokset
+1. **Protokollan versiointi**: Noudata MCP-protokollan versiota, jota työkalusi tukee.
+2. **Asiakasyhteensopivuus**: Huomioi taaksepäin yhteensopivuus.
+3. **Palvelinyhteensopivuus**: Noudata palvelimen toteutusohjeita.
+4. **Rikkovat muutokset**: Dokumentoi selkeästi kaikki rikkovat muutokset.
 
-## Esimerkkiprojekti yhteisölle: MCP Tool Registry
+## Esimerkki yhteisöprojektista: MCP-työkalurekisteri
 
-Merkittävä yhteisön kontribuutio voisi olla julkisen rekisterin kehittäminen MCP-työkaluille.
+Tärkeä yhteisön kontribuutio voisi olla julkisen rekisterin kehittäminen MCP-työkaluille.
 
 ```python
 # Example schema for a community tool registry API
@@ -821,28 +826,27 @@ async def delete_tool(tool_name: str):
 
 ## Keskeiset opit
 
-- MCP-yhteisö on monimuotoinen ja ottaa vastaan erilaisia kontribuutioita
-- MCP:hen voi tehdä kontribuutioita ydinspezifikaation parannuksista omiin työkaluihin
-- Kontribuutiot ohjeiden mukaan parantavat PR:ien hyväksymismahdollisuuksia
-- MCP-työkalujen luominen ja jakaminen rikastuttaa ekosysteemiä
-- Yhteisön yhteistyö on välttämätöntä MCP:n kasvulle ja kehitykselle
+- MCP-yhteisö on monimuotoinen ja toivottaa tervetulleeksi monenlaisia kontribuutioita.
+- MCP:n kontribuointi voi vaihdella ydinprotokollan parannuksista omiin työkaluihin.
+- Kontribuointiohjeiden noudattaminen parantaa PR:n hyväksymismahdollisuuksia.
+- MCP-työkalujen luominen ja jakaminen on arvokas tapa parantaa ekosysteemiä.
+- Yhteisön yhteistyö on olennaista MCP:n kasvulle ja kehitykselle.
 
 ## Harjoitus
 
-1. Tunnista MCP-ekosysteemistä alue, johon voisit omien taitojesi ja kiinnostuksesi perusteella tehdä kontribuution
-2. Forkkaa MCP-repositorio ja ota käyttöön paikallinen kehitysympäristö
-3. Tee pieni parannus, virheenkorjaus tai työkalu, josta yhteisö hyötyy
-4. Dokumentoi kontribuutosi asianmukaisin testeineen ja dokumentaationa
-5. Lähetä pull request oikeaan repositorioon
+1. Tunnista MCP-ekosysteemistä alue, johon voisit kontribuoida taitojesi ja kiinnostuksesi perusteella.
+2. Haarauta MCP-arkisto ja asenna paikallinen kehitysympäristö.
+3. Luo pieni parannus, virheenkorjaus tai työkalu, joka hyödyttäisi yhteisöä.
+4. Dokumentoi kontribuutiosi asianmukaisilla testeillä ja dokumentaatiolla.
+5. Lähetä pull request sopivaan arkistoon.
 
 ## Lisäresurssit
 
-- [MCP Community Projects](https://github.com/topics/model-context-protocol)
-
+- [MCP-yhteisöprojektit](https://github.com/topics/model-context-protocol)
 
 ---
 
-Seuraava: [Lessons from Early Adoption](../07-LessonsfromEarlyAdoption/README.md)
+Seuraava: [Oppitunnit varhaisesta käyttöönotosta](../07-LessonsfromEarlyAdoption/README.md)
 
 **Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.

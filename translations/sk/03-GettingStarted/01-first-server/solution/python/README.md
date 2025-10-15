@@ -1,15 +1,15 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "d0f0d7012325b286e4a717791b23ae7e",
-  "translation_date": "2025-07-13T18:01:55+00:00",
+  "original_hash": "d4c162484df410632550a4a357d40341",
+  "translation_date": "2025-09-03T16:16:52+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/python/README.md",
   "language_code": "sk"
 }
 -->
-# Spustenie tohto príkladu
+# Spustenie tejto ukážky
 
-Odporúča sa nainštalovať `uv`, ale nie je to povinné, pozrite si [návod](https://docs.astral.sh/uv/#highlights)
+Odporúča sa nainštalovať `uv`, ale nie je to nevyhnutné, pozrite si [pokyny](https://docs.astral.sh/uv/#highlights)
 
 ## -0- Vytvorte virtuálne prostredie
 
@@ -20,7 +20,7 @@ python -m venv venv
 ## -1- Aktivujte virtuálne prostredie
 
 ```bash
-venv\Scrips\activate
+venv\Scripts\activate
 ```
 
 ## -2- Nainštalujte závislosti
@@ -29,39 +29,39 @@ venv\Scrips\activate
 pip install "mcp[cli]"
 ```
 
-## -3- Spustite príklad
+## -3- Spustite ukážku
 
 ```bash
 mcp run server.py
 ```
 
-## -4- Otestujte príklad
+## -4- Otestujte ukážku
 
-Keď máte server spustený v jednom termináli, otvorte ďalší terminál a spustite nasledujúci príkaz:
+Keď server beží v jednom termináli, otvorte ďalší terminál a spustite nasledujúci príkaz:
 
 ```bash
 mcp dev server.py
 ```
 
-Týmto by sa mal spustiť webový server s vizuálnym rozhraním, ktoré vám umožní otestovať príklad.
+Tým by sa mal spustiť webový server s vizuálnym rozhraním, ktoré vám umožní otestovať ukážku.
 
 Keď je server pripojený:
 
-- skúste zobraziť zoznam nástrojov a spustiť `add` s argumentmi 2 a 4, výsledok by mal byť 6.
+- skúste zobraziť zoznam nástrojov a spustiť `add` s argumentmi 2 a 4, mali by ste vidieť výsledok 6.
 
-- prejdite na resources a resource template a zavolajte get_greeting, zadajte meno a mali by ste vidieť pozdrav s menom, ktoré ste zadali.
+- prejdite na zdroje a šablónu zdroja a zavolajte get_greeting, zadajte meno a mali by ste vidieť pozdrav s menom, ktoré ste zadali.
 
-### Testovanie v CLI režime
+### Testovanie v režime CLI
 
-Inspector, ktorý ste spustili, je vlastne Node.js aplikácia a `mcp dev` je jej obal.
+Inšpektor, ktorý ste spustili, je vlastne aplikácia Node.js a `mcp dev` je obal okolo nej.
 
-Môžete ho spustiť priamo v CLI režime pomocou nasledujúceho príkazu:
+Môžete ho spustiť priamo v režime CLI pomocou nasledujúceho príkazu:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli mcp run server.py --method tools/list
 ```
 
-Týmto sa zobrazia všetky nástroje dostupné na serveri. Mali by ste vidieť nasledujúci výstup:
+Tým sa zobrazí zoznam všetkých nástrojov dostupných na serveri. Mali by ste vidieť nasledujúci výstup:
 
 ```text
 {
@@ -92,7 +92,7 @@ Týmto sa zobrazia všetky nástroje dostupné na serveri. Mali by ste vidieť n
 }
 ```
 
-Na vyvolanie nástroja zadajte:
+Na spustenie nástroja zadajte:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli mcp run server.py --method tools/call --tool-name add --tool-arg a=1 --tool-arg b=2
@@ -112,9 +112,11 @@ Mali by ste vidieť nasledujúci výstup:
 }
 ```
 
-> ![!TIP]
-> Zvyčajne je oveľa rýchlejšie spustiť inspector v CLI režime než v prehliadači.
-> Viac o inspectore si prečítate [tu](https://github.com/modelcontextprotocol/inspector).
+> [!TIP]
+> Zvyčajne je oveľa rýchlejšie spustiť inšpektor v režime CLI ako v prehliadači.
+> Viac o inšpektore si prečítajte [tu](https://github.com/modelcontextprotocol/inspector).
 
-**Zrieknutie sa zodpovednosti**:  
-Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Aj keď sa snažíme o presnosť, prosím, majte na pamäti, že automatizované preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho rodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nie sme zodpovední za akékoľvek nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.
+---
+
+**Upozornenie**:  
+Tento dokument bol preložený pomocou služby AI prekladu [Co-op Translator](https://github.com/Azure/co-op-translator). Hoci sa snažíme o presnosť, prosím, berte na vedomie, že automatizované preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho pôvodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nie sme zodpovední za akékoľvek nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.

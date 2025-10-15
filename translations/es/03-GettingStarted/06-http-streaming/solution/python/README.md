@@ -1,21 +1,21 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4c4da5949611d91b06d8a5d450aae8d6",
-  "translation_date": "2025-07-13T21:16:32+00:00",
+  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
+  "translation_date": "2025-08-18T12:57:56+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
   "language_code": "es"
 }
 -->
-# Ejecutando este ejemplo
+# Ejecutar este ejemplo
 
-Aquí se explica cómo ejecutar el servidor y cliente clásico de streaming HTTP, así como el servidor y cliente de streaming MCP usando Python.
+Aquí te mostramos cómo ejecutar el servidor y cliente de streaming HTTP clásico, así como el servidor y cliente de streaming MCP utilizando Python.
 
-### Resumen
+### Descripción general
 
 - Configurarás un servidor MCP que envía notificaciones de progreso al cliente mientras procesa elementos.
 - El cliente mostrará cada notificación en tiempo real.
-- Esta guía cubre los requisitos previos, la configuración, la ejecución y la solución de problemas.
+- Esta guía cubre los requisitos previos, la configuración, la ejecución y la resolución de problemas.
 
 ### Requisitos previos
 
@@ -42,7 +42,7 @@ Aquí se explica cómo ejecutar el servidor y cliente clásico de streaming HTTP
 1. **Instala las dependencias necesarias:**
 
    ```pwsh
-   pip install "mcp[cli]"
+   pip install "mcp[cli]" fastapi requests
    ```
 
 ### Archivos
@@ -50,7 +50,7 @@ Aquí se explica cómo ejecutar el servidor y cliente clásico de streaming HTTP
 - **Servidor:** [server.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/server.py)
 - **Cliente:** [client.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/client.py)
 
-### Ejecutando el servidor clásico de streaming HTTP
+### Ejecutar el servidor de streaming HTTP clásico
 
 1. Navega al directorio de la solución:
 
@@ -58,20 +58,20 @@ Aquí se explica cómo ejecutar el servidor y cliente clásico de streaming HTTP
    cd 03-GettingStarted/06-http-streaming/solution
    ```
 
-2. Inicia el servidor clásico de streaming HTTP:
+2. Inicia el servidor de streaming HTTP clásico:
 
    ```pwsh
    python server.py
    ```
 
-3. El servidor arrancará y mostrará:
+3. El servidor se iniciará y mostrará:
 
    ```
    Starting FastAPI server for classic HTTP streaming...
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### Ejecutando el cliente clásico de streaming HTTP
+### Ejecutar el cliente de streaming HTTP clásico
 
 1. Abre una nueva terminal (activa el mismo entorno virtual y directorio):
 
@@ -93,30 +93,30 @@ Aquí se explica cómo ejecutar el servidor y cliente clásico de streaming HTTP
    --- Stream Ended ---
    ```
 
-### Ejecutando el servidor de streaming MCP
+### Ejecutar el servidor de streaming MCP
 
-1. Navega al directorio de la solución:  
+1. Navega al directorio de la solución:
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
-   ```  
-2. Inicia el servidor MCP con el transporte streamable-http:  
+   ```
+2. Inicia el servidor MCP con el transporte streamable-http:
    ```pwsh
    python server.py mcp
-   ```  
-3. El servidor arrancará y mostrará:  
+   ```
+3. El servidor se iniciará y mostrará:
    ```
    Starting MCP server with streamable-http transport...
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### Ejecutando el cliente de streaming MCP
+### Ejecutar el cliente de streaming MCP
 
-1. Abre una nueva terminal (activa el mismo entorno virtual y directorio):  
+1. Abre una nueva terminal (activa el mismo entorno virtual y directorio):
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py mcp
-   ```  
-2. Deberías ver las notificaciones impresas en tiempo real mientras el servidor procesa cada elemento:  
+   ```
+2. Deberías ver las notificaciones impresas en tiempo real a medida que el servidor procesa cada elemento:
    ```
    Running MCP client...
    Starting client...
@@ -129,23 +129,23 @@ Aquí se explica cómo ejecutar el servidor y cliente clásico de streaming HTTP
    Tool result: meta=None content=[TextContent(type='text', text='Processed files: file_1.txt, file_2.txt, file_3.txt | Message: hello from client')]
    ```
 
-### Pasos clave de la implementación
+### Pasos clave de implementación
 
-1. **Crear el servidor MCP usando FastMCP.**  
-2. **Definir una herramienta que procese una lista y envíe notificaciones usando `ctx.info()` o `ctx.log()`.**  
-3. **Ejecutar el servidor con `transport="streamable-http"`.**  
-4. **Implementar un cliente con un manejador de mensajes para mostrar las notificaciones a medida que llegan.**
+1. **Crea el servidor MCP utilizando FastMCP.**
+2. **Define una herramienta que procese una lista y envíe notificaciones usando `ctx.info()` o `ctx.log()`.**
+3. **Ejecuta el servidor con `transport="streamable-http"`.**
+4. **Implementa un cliente con un manejador de mensajes para mostrar las notificaciones a medida que llegan.**
 
-### Revisión del código
-- El servidor usa funciones async y el contexto MCP para enviar actualizaciones de progreso.  
-- El cliente implementa un manejador de mensajes async para imprimir notificaciones y el resultado final.
+### Recorrido por el código
+- El servidor utiliza funciones asíncronas y el contexto MCP para enviar actualizaciones de progreso.
+- El cliente implementa un manejador de mensajes asíncrono para imprimir notificaciones y el resultado final.
 
-### Consejos y solución de problemas
+### Consejos y resolución de problemas
 
-- Usa `async/await` para operaciones no bloqueantes.  
-- Siempre maneja excepciones tanto en el servidor como en el cliente para mayor robustez.  
-- Prueba con varios clientes para observar las actualizaciones en tiempo real.  
+- Usa `async/await` para operaciones no bloqueantes.
+- Maneja siempre las excepciones tanto en el servidor como en el cliente para mayor robustez.
+- Prueba con múltiples clientes para observar actualizaciones en tiempo real.
 - Si encuentras errores, verifica tu versión de Python y asegúrate de que todas las dependencias estén instaladas.
 
-**Aviso legal**:  
-Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Aunque nos esforzamos por la precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o inexactitudes. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda la traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas derivadas del uso de esta traducción.
+**Descargo de responsabilidad**:  
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por lograr precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.

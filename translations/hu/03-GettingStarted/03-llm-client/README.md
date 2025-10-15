@@ -1,63 +1,63 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "343235ad6c122033c549a677913443f9",
-  "translation_date": "2025-07-17T19:15:13+00:00",
+  "original_hash": "4d846ebb88fbb0f00549e2ff8cc3f746",
+  "translation_date": "2025-10-06T15:03:22+00:00",
   "source_file": "03-GettingStarted/03-llm-client/README.md",
   "language_code": "hu"
 }
 -->
-# Ügyfél létrehozása LLM-mel
+# LLM kliens létrehozása
 
-Eddig láttad, hogyan lehet szervert és ügyfelet létrehozni. Az ügyfél képes volt explicit módon hívni a szervert, hogy listázza az eszközeit, erőforrásait és promptjait. Ez azonban nem túl praktikus megközelítés. A felhasználód az ügynöki korszakban él, és azt várja el, hogy promptokat használjon, és természetes nyelven kommunikáljon egy LLM-mel. A felhasználónak nem számít, hogy MCP-t használsz-e a képességek tárolására, de azt elvárja, hogy természetes nyelven tudjon interakcióba lépni. Hogyan oldjuk meg ezt? A megoldás, hogy LLM-et adunk az ügyfélhez.
+Eddig láthattad, hogyan hozhatsz létre szervert és klienst. A kliens képes volt kifejezetten hívni a szervert, hogy listázza az eszközeit, erőforrásait és promptjait. Ez azonban nem túl praktikus megközelítés. A felhasználóid az ügynöki korszakban élnek, és azt várják, hogy promptokat használjanak, és egy LLM-mel kommunikáljanak. Számukra nem számít, hogy MCP-t használsz-e a képességeid tárolására, de elvárják, hogy természetes nyelven kommunikáljanak. Hogyan oldjuk meg ezt? A megoldás az, hogy egy LLM-et adunk a klienshez.
 
 ## Áttekintés
 
-Ebben a leckében arra fókuszálunk, hogyan adjunk LLM-et az ügyfélhez, és megmutatjuk, hogyan nyújt ez sokkal jobb élményt a felhasználónak.
+Ebben a leckében arra koncentrálunk, hogyan adjunk hozzá egy LLM-et a klienshez, és bemutatjuk, hogy ez hogyan biztosít sokkal jobb élményt a felhasználóid számára.
 
 ## Tanulási célok
 
 A lecke végére képes leszel:
 
-- LLM-mel rendelkező ügyfelet létrehozni.
-- Zökkenőmentesen kommunikálni egy MCP szerverrel LLM segítségével.
-- Jobb végfelhasználói élményt biztosítani az ügyfél oldalon.
+- Létrehozni egy LLM-mel rendelkező klienst.
+- Zökkenőmentesen kommunikálni egy MCP szerverrel egy LLM segítségével.
+- Jobb felhasználói élményt nyújtani a kliens oldalon.
 
 ## Megközelítés
 
-Próbáljuk megérteni, milyen lépéseket kell tennünk. Egy LLM hozzáadása egyszerűnek hangzik, de tényleg meg is valósítjuk?
+Próbáljuk megérteni, milyen megközelítést kell alkalmaznunk. Egy LLM hozzáadása egyszerűnek hangzik, de tényleg így van?
 
-Így fog az ügyfél kommunikálni a szerverrel:
+Így fog a kliens kommunikálni a szerverrel:
 
-1. Kapcsolat létrehozása a szerverrel.
+1. Kapcsolatot létesít a szerverrel.
 
-1. A képességek, promptok, erőforrások és eszközök listázása, majd ezek sémájának elmentése.
+1. Listázza a képességeket, promptokat, erőforrásokat és eszközöket, majd elmenti azok sémáját.
 
-1. LLM hozzáadása, és a mentett képességek és sémájuk átadása az LLM számára érthető formátumban.
+1. Hozzáad egy LLM-et, és átadja a mentett képességeket és azok sémáját olyan formátumban, amelyet az LLM megért.
 
-1. Felhasználói prompt kezelése úgy, hogy azt az LLM-nek továbbítjuk az ügyfél által listázott eszközökkel együtt.
+1. Kezeli a felhasználói promptot úgy, hogy átadja azt az LLM-nek az eszközökkel együtt, amelyeket a kliens listázott.
 
-Remek, most, hogy nagy vonalakban értjük, hogyan csináljuk, próbáljuk ki a következő gyakorlatban.
+Nagyszerű, most már értjük, hogyan valósíthatjuk meg ezt magas szinten. Próbáljuk ki az alábbi gyakorlatban.
 
-## Gyakorlat: Ügyfél létrehozása LLM-mel
+## Gyakorlat: LLM-mel rendelkező kliens létrehozása
 
-Ebben a gyakorlatban megtanuljuk, hogyan adjunk LLM-et az ügyfelünkhöz.
+Ebben a gyakorlatban megtanuljuk, hogyan adjunk hozzá egy LLM-et a kliensünkhöz.
 
-## Hitelesítés GitHub személyes hozzáférési tokennel
+### Hitelesítés GitHub személyes hozzáférési tokennel
 
-GitHub token létrehozása egyszerű folyamat. Így csinálhatod:
+GitHub token létrehozása egyszerű folyamat. Így teheted meg:
 
-- Menj a GitHub Beállításokhoz – Kattints a profilképedre a jobb felső sarokban, majd válaszd a Beállításokat.
-- Navigálj a Fejlesztői beállításokhoz – Görgess le és kattints a Fejlesztői beállításokra.
-- Válaszd a Személyes hozzáférési tokeneket – Kattints a Személyes hozzáférési tokenekre, majd az Új token generálása gombra.
-- Állítsd be a tokent – Adj meg egy megjegyzést, állíts be lejárati dátumot, és válaszd ki a szükséges jogosultságokat.
-- Generáld és másold ki a tokent – Kattints a Token generálása gombra, és azonnal másold ki, mert később nem fogod látni újra.
+- Menj a GitHub Beállításokhoz – Kattints a profilképedre a jobb felső sarokban, majd válaszd a Beállítások lehetőséget.
+- Navigálj a Fejlesztői Beállításokhoz – Görgess le, és kattints a Fejlesztői Beállítások lehetőségre.
+- Válaszd a Személyes Hozzáférési Tokeneket – Kattints a Finomhangolt tokenekre, majd válaszd az Új token létrehozása lehetőséget.
+- Konfiguráld a tokenedet – Adj hozzá egy megjegyzést referenciaként, állíts be lejárati dátumot, és válaszd ki a szükséges jogosultságokat (engedélyeket). Ebben az esetben győződj meg róla, hogy hozzáadod a Modellek engedélyt.
+- Generáld és másold a tokent – Kattints a Token generálása gombra, és győződj meg róla, hogy azonnal lemásolod, mivel később nem fogod tudni újra megtekinteni.
 
 ### -1- Kapcsolódás a szerverhez
 
-Először hozzuk létre az ügyfelünket:
+Először hozzuk létre a kliensünket:
 
-### TypeScript
+#### TypeScript
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -94,11 +94,11 @@ class MCPClient {
 
 A fenti kódban:
 
-- Betöltöttük a szükséges könyvtárakat
-- Létrehoztunk egy osztályt két taggal, `client` és `openai`, amelyek segítenek az ügyfél kezelésében és az LLM-mel való kommunikációban.
-- Beállítottuk az LLM példányunkat, hogy GitHub Modelleket használjon, a `baseUrl`-t az inference API-ra mutatva.
+- Importáltuk a szükséges könyvtárakat.
+- Létrehoztunk egy osztályt két taggal, `client` és `openai`, amelyek segítenek a kliens kezelésében és az LLM-mel való interakcióban.
+- Konfiguráltuk az LLM példányt, hogy a GitHub Modelleket használja, beállítva a `baseUrl`-t az inference API-ra mutató értékre.
 
-### Python
+#### Python
 
 ```python
 from mcp import ClientSession, StdioServerParameters, types
@@ -130,10 +130,10 @@ if __name__ == "__main__":
 
 A fenti kódban:
 
-- Betöltöttük az MCP-hez szükséges könyvtárakat
-- Létrehoztunk egy ügyfelet
+- Importáltuk az MCP-hez szükséges könyvtárakat.
+- Létrehoztunk egy klienst.
 
-### .NET
+#### .NET
 
 ```csharp
 using Azure;
@@ -154,9 +154,9 @@ var clientTransport = new StdioClientTransport(new()
 await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
 ```
 
-### Java
+#### Java
 
-Először add hozzá a LangChain4j függőségeket a `pom.xml` fájlodhoz. Ezek engedélyezik az MCP integrációt és a GitHub Modellek támogatását:
+Először hozzá kell adnod a LangChain4j függőségeket a `pom.xml` fájlodhoz. Add hozzá ezeket a függőségeket az MCP integráció és a GitHub Modellek támogatásának engedélyezéséhez:
 
 ```xml
 <properties>
@@ -193,7 +193,7 @@ Először add hozzá a LangChain4j függőségeket a `pom.xml` fájlodhoz. Ezek 
 </dependencies>
 ```
 
-Ezután hozd létre a Java ügyfél osztályodat:
+Ezután hozd létre a Java kliens osztályodat:
 
 ```java
 import dev.langchain4j.mcp.McpToolProvider;
@@ -237,22 +237,102 @@ public class LangChain4jClient {
 
 A fenti kódban:
 
-- **Hozzáadtuk a LangChain4j függőségeket**: Szükségesek az MCP integrációhoz, az OpenAI hivatalos klienshez és a GitHub Modellek támogatásához
-- **Betöltöttük a LangChain4j könyvtárakat**: MCP integrációhoz és OpenAI chat modell funkciókhoz
-- **Létrehoztunk egy `ChatLanguageModel`-t**: Beállítva, hogy GitHub Modelleket használjon a GitHub tokeneddel
-- **Beállítottuk az HTTP kapcsolatot**: Server-Sent Events (SSE) használatával az MCP szerverhez való kapcsolódáshoz
-- **Létrehoztunk egy MCP ügyfelet**: Ami kezeli a kommunikációt a szerverrel
-- **Használtuk a LangChain4j beépített MCP támogatását**: Ami leegyszerűsíti az LLM-ek és MCP szerverek közötti integrációt
+- **Hozzáadtuk a LangChain4j függőségeket**: Szükséges az MCP integrációhoz, az OpenAI hivatalos klienséhez és a GitHub Modellek támogatásához.
+- **Importáltuk a LangChain4j könyvtárakat**: Az MCP integrációhoz és az OpenAI chat modell funkcionalitásához.
+- **Létrehoztunk egy `ChatLanguageModel`-t**: Konfiguráltuk, hogy a GitHub Modelleket használja a GitHub tokeneddel.
+- **Beállítottuk a HTTP transportot**: Server-Sent Events (SSE) használatával kapcsolódunk az MCP szerverhez.
+- **Létrehoztunk egy MCP klienst**: Ez kezeli a kommunikációt a szerverrel.
+- **Használtuk a LangChain4j beépített MCP támogatását**: Ez leegyszerűsíti az LLM-ek és MCP szerverek közötti integrációt.
 
-Remek, a következő lépésként listázzuk a szerver képességeit.
+#### Rust
 
-### -2- Szerver képességek listázása
+Ez a példa feltételezi, hogy van egy Rust alapú MCP szervered. Ha nincs, térj vissza az [01-first-server](../01-first-server/README.md) leckéhez, hogy létrehozd a szervert.
 
-Most kapcsolódunk a szerverhez, és lekérdezzük a képességeit:
+Miután megvan a Rust MCP szervered, nyiss meg egy terminált, és navigálj ugyanabba a könyvtárba, mint a szerver. Ezután futtasd az alábbi parancsot egy új LLM kliens projekt létrehozásához:
 
-### TypeScript
+```bash
+mkdir calculator-llmclient
+cd calculator-llmclient
+cargo init
+```
 
-Ugyanebben az osztályban add hozzá a következő metódusokat:
+Add hozzá a következő függőségeket a `Cargo.toml` fájlodhoz:
+
+```toml
+[dependencies]
+async-openai = { version = "0.29.0", features = ["byot"] }
+rmcp = { version = "0.5.0", features = ["client", "transport-child-process"] }
+serde_json = "1.0.141"
+tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
+```
+
+> [!NOTE]
+> Nincs hivatalos Rust könyvtár az OpenAI-hoz, azonban az `async-openai` crate egy [közösség által karbantartott könyvtár](https://platform.openai.com/docs/libraries/rust#rust), amelyet gyakran használnak.
+
+Nyisd meg a `src/main.rs` fájlt, és cseréld le a tartalmát az alábbi kódra:
+
+```rust
+use async_openai::{Client, config::OpenAIConfig};
+use rmcp::{
+    RmcpError,
+    model::{CallToolRequestParam, ListToolsResult},
+    service::{RoleClient, RunningService, ServiceExt},
+    transport::{ConfigureCommandExt, TokioChildProcess},
+};
+use serde_json::{Value, json};
+use std::error::Error;
+use tokio::process::Command;
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    // Initial message
+    let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
+
+    // Setup OpenAI client
+    let api_key = std::env::var("OPENAI_API_KEY")?;
+    let openai_client = Client::with_config(
+        OpenAIConfig::new()
+            .with_api_base("https://models.github.ai/inference/chat")
+            .with_api_key(api_key),
+    );
+
+    // Setup MCP client
+    let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .unwrap()
+        .join("calculator-server");
+
+    let mcp_client = ()
+        .serve(
+            TokioChildProcess::new(Command::new("cargo").configure(|cmd| {
+                cmd.arg("run").current_dir(server_dir);
+            }))
+            .map_err(RmcpError::transport_creation::<TokioChildProcess>)?,
+        )
+        .await?;
+
+    // TODO: Get MCP tool listing 
+
+    // TODO: LLM conversation with tool calls
+
+    Ok(())
+}
+```
+
+Ez a kód egy alapvető Rust alkalmazást állít be, amely kapcsolódik egy MCP szerverhez és a GitHub Modellekhez az LLM interakciókhoz.
+
+> [!IMPORTANT]
+> Győződj meg róla, hogy beállítod az `OPENAI_API_KEY` környezeti változót a GitHub tokeneddel, mielőtt futtatnád az alkalmazást.
+
+Nagyszerű, a következő lépésben listázzuk a szerver képességeit.
+
+### -2- A szerver képességeinek listázása
+
+Most csatlakozunk a szerverhez, és kérjük a képességeit:
+
+#### TypeScript
+
+Ugyanabban az osztályban add hozzá a következő metódusokat:
 
 ```typescript
 async connectToServer(transport: Transport) {
@@ -271,10 +351,10 @@ async run() {
 
 A fenti kódban:
 
-- Hozzáadtuk a szerverhez való kapcsolódás kódját, `connectToServer`.
-- Létrehoztunk egy `run` metódust, ami kezeli az alkalmazás folyamatát. Egyelőre csak az eszközöket listázza, de hamarosan bővítjük.
+- Hozzáadtuk a kódot a szerverhez való csatlakozáshoz, `connectToServer`.
+- Létrehoztunk egy `run` metódust, amely felelős az alkalmazásunk folyamatának kezeléséért. Eddig csak az eszközöket listázza, de hamarosan többet adunk hozzá.
 
-### Python
+#### Python
 
 ```python
 # List available resources
@@ -293,9 +373,9 @@ for tool in tools.tools:
 
 Amit hozzáadtunk:
 
-- Listáztuk az erőforrásokat és eszközöket, majd kiírtuk őket. Az eszközöknél az `inputSchema`-t is listázzuk, amit később használunk.
+- Listáztuk az erőforrásokat és eszközöket, majd kiírtuk őket. Az eszközöknél az `inputSchema`-t is listázzuk, amelyet később használunk.
 
-### .NET
+#### .NET
 
 ```csharp
 async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -311,7 +391,7 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
         Console.WriteLine($"Tool description: {tool.Description}");
         Console.WriteLine($"Tool parameters: {tool.JsonSchema}");
 
-        // TODO: convert tool defintion from MCP tool to LLm tool     
+        // TODO: convert tool definition from MCP tool to LLm tool     
     }
 
     return toolDefinitions;
@@ -320,10 +400,10 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 
 A fenti kódban:
 
-- Listáztuk az MCP szerveren elérhető eszközöket
-- Minden eszköznél megjelenítettük a nevét, leírását és sémáját. Ez utóbbit később az eszközök hívásához használjuk.
+- Listáztuk az MCP szerveren elérhető eszközöket.
+- Minden eszköznél listáztuk a nevet, leírást és annak sémáját. Ez utóbbit hamarosan használni fogjuk az eszközök hívásához.
 
-### Java
+#### Java
 
 ```java
 // Create a tool provider that automatically discovers MCP tools
@@ -339,17 +419,26 @@ ToolProvider toolProvider = McpToolProvider.builder()
 
 A fenti kódban:
 
-- Létrehoztunk egy `McpToolProvider`-t, ami automatikusan felfedezi és regisztrálja az összes eszközt az MCP szerverről
-- Az eszköz szolgáltató belsőleg kezeli az MCP eszköz sémák és a LangChain4j eszköz formátum közötti átalakítást
-- Ez a megközelítés elrejti az eszközök manuális listázását és átalakítását
+- Létrehoztunk egy `McpToolProvider`-t, amely automatikusan felfedezi és regisztrálja az összes eszközt az MCP szerverről.
+- Az eszközszolgáltató belsőleg kezeli az MCP eszközsémák és a LangChain4j eszközformátum közötti átalakítást.
+- Ez a megközelítés elvonja a manuális eszközlistázás és átalakítás folyamatát.
 
-### -3- Szerver képességek átalakítása LLM eszközökké
+#### Rust
 
-A következő lépés a szerver képességek átalakítása olyan formátumba, amit az LLM megért. Miután ez megvan, ezeket az eszközöket átadhatjuk az LLM-nek.
+Az MCP szerverről származó eszközök lekérése a `list_tools` metódussal történik. A `main` függvényedben, miután beállítottad az MCP klienst, add hozzá a következő kódot:
 
-### TypeScript
+```rust
+// Get MCP tool listing 
+let tools = mcp_client.list_tools(Default::default()).await?;
+```
 
-1. Add hozzá a következő kódot, hogy az MCP szerver válaszát olyan eszköz formátummá alakítsd, amit az LLM használni tud:
+### -3- A szerver képességeinek átalakítása LLM eszközökké
+
+A szerver képességeinek listázása után a következő lépés az, hogy átalakítsuk őket olyan formátumba, amelyet az LLM megért. Miután ezt megtettük, ezeket a képességeket eszközökként tudjuk biztosítani az LLM számára.
+
+#### TypeScript
+
+1. Add hozzá a következő kódot, amely átalakítja az MCP szerver válaszát egy olyan eszközformátumba, amelyet az LLM használhat:
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -376,7 +465,7 @@ A következő lépés a szerver képességek átalakítása olyan formátumba, a
 
     ```
 
-    A fenti kód az MCP szerver válaszát átalakítja egy olyan eszköz definícióvá, amit az LLM megért.
+    A fenti kód az MCP szerver válaszát egy eszközdefiníciós formátumba alakítja, amelyet az LLM megért.
 
 1. Frissítsük a `run` metódust, hogy listázza a szerver képességeit:
 
@@ -394,11 +483,11 @@ A következő lépés a szerver képességek átalakítása olyan formátumba, a
     }
     ```
 
-    A fenti kódban frissítettük a `run` metódust, hogy végigmenjen az eredményen, és minden elemre meghívja az `openAiToolAdapter`-t.
+    A fenti kódban frissítettük a `run` metódust, hogy végigmenjen az eredményen, és minden bejegyzéshez hívja az `openAiToolAdapter`-t.
 
-### Python
+#### Python
 
-1. Először hozzuk létre a következő konvertáló függvényt:
+1. Először hozzuk létre a következő átalakító függvényt:
 
     ```python
     def convert_to_llm_tool(tool):
@@ -418,9 +507,9 @@ A következő lépés a szerver képességek átalakítása olyan formátumba, a
         return tool_schema
     ```
 
-    A `convert_to_llm_tools` függvény az MCP eszköz válaszát olyan formátumba alakítja, amit az LLM megért.
+    A fenti `convert_to_llm_tools` függvényben az MCP eszközválaszt átalakítjuk olyan formátumba, amelyet az LLM megért.
 
-1. Ezután frissítsük az ügyfél kódját, hogy használja ezt a függvényt:
+1. Ezután frissítsük a klienskódunkat, hogy kihasználja ezt a függvényt, így:
 
     ```python
     for tool in tools.tools:
@@ -429,11 +518,11 @@ A következő lépés a szerver képességek átalakítása olyan formátumba, a
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    Itt hozzáadtunk egy hívást a `convert_to_llm_tool`-ra, hogy az MCP eszköz válaszát olyan formátumba alakítsuk, amit később az LLM-nek adhatunk.
+    Itt hozzáadunk egy hívást a `convert_to_llm_tool`-hoz, hogy az MCP eszközválaszt olyan formátumba alakítsuk, amelyet később az LLM-nek tudunk átadni.
 
-### .NET
+#### .NET
 
-1. Adjunk hozzá kódot, ami az MCP eszköz válaszát olyan formátumba alakítja, amit az LLM megért:
+1. Adjunk hozzá kódot az MCP eszközválasz átalakításához olyan formátumba, amelyet az LLM megért:
 
 ```csharp
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
@@ -458,10 +547,10 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 
 A fenti kódban:
 
-- Létrehoztunk egy `ConvertFrom` függvényt, ami nevet, leírást és input sémát fogad.
-- Definiáltunk egy funkciót, ami létrehoz egy `FunctionDefinition`-t, amit egy `ChatCompletionsDefinition`-nek ad át. Ez utóbbit az LLM megérti.
+- Létrehoztunk egy `ConvertFrom` függvényt, amely nevet, leírást és bemeneti sémát vesz át.
+- Meghatároztuk a funkcionalitást, amely létrehoz egy FunctionDefinition-t, amelyet egy ChatCompletionsDefinition-nek adunk át. Ez utóbbi az, amit az LLM megért.
 
-1. Nézzük meg, hogyan frissíthetjük a meglévő kódot, hogy kihasználja ezt a függvényt:
+1. Nézzük meg, hogyan frissíthetünk néhány meglévő kódot, hogy kihasználjuk a fenti függvényt:
 
     ```csharp
     async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -489,11 +578,9 @@ A fenti kódban:
 
         return toolDefinitions;
     }
-    ```
+    ```    In the preceding code, we've:
 
-    A fenti kódban:
-
-    - Frissítettük a függvényt, hogy az MCP eszköz válaszát LLM eszközzé alakítsa. Kiemeljük a hozzáadott kódot:
+    - Update the function to convert the MCP tool response to an LLm tool. Let's highlight the code we added:
 
         ```csharp
         JsonElement propertiesElement;
@@ -504,9 +591,9 @@ A fenti kódban:
         toolDefinitions.Add(def);
         ```
 
-        Az input séma az eszköz válasz része, de a "properties" attribútumban, ezért ki kell nyerni. Ezután meghívjuk a `ConvertFrom`-t az eszköz adataival. Most, hogy elvégeztük a nehezét, nézzük meg, hogyan kezeljük a felhasználói promptot.
+        The input schema is part of the tool response but on the "properties" attribute, so we need to extract. Furthermore, we now call `ConvertFrom` with the tool details. Now we've done the heavy lifting, let's see how it call comes together as we handle a user prompt next.
 
-### Java
+#### Java
 
 ```java
 // Create a Bot interface for natural language interaction
@@ -523,20 +610,57 @@ Bot bot = AiServices.builder(Bot.class)
 
 A fenti kódban:
 
-- Definiáltunk egy egyszerű `Bot` interfészt természetes nyelvű interakciókhoz
-- Használtuk a LangChain4j `AiServices`-ét, hogy automatikusan összekösse az LLM-et az MCP eszköz szolgáltatóval
-- A keretrendszer automatikusan kezeli az eszköz séma átalakítást és a funkcióhívásokat a háttérben
-- Ez a megközelítés megszünteti a manuális eszköz átalakítást – a LangChain4j kezeli az MCP eszközök LLM-kompatibilis formátumba konvertálásának összetettségét
+- Meghatároztunk egy egyszerű `Bot` interfészt a természetes nyelvi interakciókhoz.
+- Használtuk a LangChain4j `AiServices`-t, hogy automatikusan összekapcsoljuk az LLM-et az MCP eszközszolgáltatóval.
+- A keretrendszer automatikusan kezeli az eszközséma átalakítást és a funkcióhívásokat a háttérben.
+- Ez a megközelítés kiküszöböli a manuális eszközátalakítást - a LangChain4j kezeli az MCP eszközök LLM-kompatibilis formátumba való átalakításának összes bonyolultságát.
 
-Remek, most már készen állunk a felhasználói kérések kezelésére, nézzük meg azt.
+#### Rust
 
-### -4- Felhasználói prompt kezelése
+Az MCP eszközválasz olyan formátumba való átalakításához, amelyet az LLM megért, hozzáadunk egy segédfüggvényt, amely formázza az eszközlistát. Add hozzá a következő kódot a `main.rs` fájlodhoz a `main` függvény alá. Ezt akkor hívjuk meg, amikor kéréseket teszünk az LLM-hez:
+
+```rust
+async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
+    let tools_json = serde_json::to_value(tools)?;
+    let Some(tools_array) = tools_json.get("tools").and_then(|t| t.as_array()) else {
+        return Ok(vec![]);
+    };
+
+    let formatted_tools = tools_array
+        .iter()
+        .filter_map(|tool| {
+            let name = tool.get("name")?.as_str()?;
+            let description = tool.get("description")?.as_str()?;
+            let schema = tool.get("inputSchema")?;
+
+            Some(json!({
+                "type": "function",
+                "function": {
+                    "name": name,
+                    "description": description,
+                    "parameters": {
+                        "type": "object",
+                        "properties": schema.get("properties").unwrap_or(&json!({})),
+                        "required": schema.get("required").unwrap_or(&json!([]))
+                    }
+                }
+            }))
+        })
+        .collect();
+
+    Ok(formatted_tools)
+}
+```
+
+Nagyszerű, most már készen állunk a felhasználói kérések kezelésére, így foglalkozzunk ezzel a következő lépésben.
+
+### -4- Felhasználói prompt kérés kezelése
 
 Ebben a kódrészben a felhasználói kéréseket fogjuk kezelni.
 
-### TypeScript
+#### TypeScript
 
-1. Adjunk hozzá egy metódust, amivel az LLM-et hívjuk:
+1. Adjunk hozzá egy metódust, amelyet az LLM hívására használunk:
 
     ```typescript
     async callTools(
@@ -568,7 +692,7 @@ Ebben a kódrészben a felhasználói kéréseket fogjuk kezelni.
     A fenti kódban:
 
     - Hozzáadtunk egy `callTools` metódust.
-    - A metódus megvizsgálja az LLM válaszát, hogy mely eszközöket hívták meg, ha egyáltalán:
+    - A metódus veszi az LLM válaszát, és ellenőrzi, hogy milyen eszközöket kell hívni, ha vannak ilyenek:
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -581,7 +705,7 @@ Ebben a kódrészben a felhasználói kéréseket fogjuk kezelni.
         }
         ```
 
-    - Meghív egy eszközt, ha az LLM jelzi, hogy azt hívni kell:
+    - Meghív egy eszközt, ha az LLM jelzi, hogy hívni kell:
 
         ```typescript
         // 2. Call the server's tool 
@@ -596,7 +720,7 @@ Ebben a kódrészben a felhasználói kéréseket fogjuk kezelni.
         // TODO  
         ```
 
-1. Frissítsük a `run` metódust, hogy tartalmazza az LLM hívását és a `callTools` meghívását:
+1. Frissítsük a `run` metódust, hogy tartalmazza az LLM hívásokat és a `callTools` hívását:
 
     ```typescript
 
@@ -632,7 +756,7 @@ Ebben a kódrészben a felhasználói kéréseket fogjuk kezelni.
     });
     ```
 
-Remek, itt a teljes kód:
+Nagyszerű, nézzük meg a teljes kódot:
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -650,8 +774,6 @@ class MyClient {
             apiKey: process.env.GITHUB_TOKEN,
         });
 
-       
-        
         this.client = new Client(
             {
                 name: "example-client",
@@ -771,9 +893,9 @@ let client = new MyClient();
 client.connectToServer(transport);
 ```
 
-### Python
+#### Python
 
-1. Adjunk hozzá néhány importot az LLM híváshoz:
+1. Adjunk hozzá néhány importot, amelyek szükségesek az LLM hívásához:
 
     ```python
     # llm
@@ -784,7 +906,7 @@ client.connectToServer(transport);
     import json
     ```
 
-1. Ezután adjuk hozzá a függvényt, ami az LLM-et hívja:
+1. Ezután adjuk hozzá a függvényt, amely az LLM-et hívja:
 
     ```python
     # llm
@@ -836,12 +958,12 @@ client.connectToServer(transport);
 
     A fenti kódban:
 
-    - Átadtuk az LLM-nek azokat a függvényeket, amiket az MCP szerveren találtunk és átalakítottunk.
-    - Meghívtuk az LLM-et ezekkel a függvényekkel.
-    - Megvizsgáltuk az eredményt, hogy mely függvényeket kell meghívni, ha vannak ilyenek.
-    - Végül átadtunk egy tömböt a meghívandó függvényekről.
+    - Átadtuk az MCP szerveren talált és átalakított funkciókat az LLM-nek.
+    - Ezután hívtuk az LLM-et ezekkel a funkciókkal.
+    - Ezután megvizsgáljuk az eredményt, hogy lássuk, milyen funkciókat kell hívni, ha vannak ilyenek.
+    - Végül átadunk egy funkciókat tartalmazó tömböt a híváshoz.
 
-1. Végül frissítsük a fő kódot:
+1. Utolsó lépésként frissítsük a fő kódunkat:
 
     ```python
     prompt = "Add 2 to 20"
@@ -855,14 +977,14 @@ client.connectToServer(transport);
         print("TOOLS result: ", result.content)
     ```
 
-    Ez volt az utolsó lépés, a fenti kódban:
+    Ott van, ez volt az utolsó lépés. A fenti kódban:
 
-    - Meghívunk egy MCP eszközt a `call_tool` segítségével, egy olyan függvénnyel, amit az LLM javasolt a prompt alapján.
-    - Kiírjuk az eszköz hívás eredményét az MCP szerverről.
+    - Meghívunk egy MCP eszközt a `call_tool` segítségével, egy olyan funkcióval, amelyet az LLM gondolt, hogy hívni kell a promptunk alapján.
+    - Kiírjuk az MCP szerver eszközhívásának eredményét.
 
-### .NET
+#### .NET
 
-1. Mutatunk egy példát LLM prompt kérésre:
+1. Mutassunk néhány kódot egy LLM prompt kéréshez:
 
     ```csharp
     var tools = await GetMcpTools();
@@ -899,11 +1021,11 @@ client.connectToServer(transport);
     A fenti kódban:
 
     - Lekértük az eszközöket az MCP szerverről, `var tools = await GetMcpTools()`.
-    - Definiáltunk egy felhasználói promptot `userMessage`.
-    - Létrehoztunk egy opció objektumot, amely megadja a modellt és az eszközöket.
-    - Kérést küldtünk az LLM-nek.
+    - Meghatároztunk egy felhasználói promptot, `userMessage`.
+    - Létrehoztunk egy opciós objektumot, amely megadja a modellt és az eszközöket.
+    - Kérést tettünk az LLM felé.
 
-1. Egy utolsó lépésként nézzük meg, hogy az LLM szerint kell-e függvényt hívni:
+1. Egy utolsó lépés, nézzük meg, hogy az LLM szerint hívnunk kell-e egy funkciót:
 
     ```csharp
     // 4. Check if the response contains a function call
@@ -928,8 +1050,8 @@ client.connectToServer(transport);
 
     A fenti kódban:
 
-    - Végigiteráltunk a függvényhívások listáján.
-    - Minden eszköz hívásnál kinyertük a nevet és az argumentumokat, majd meghívtuk az eszközt az MCP szerveren az MCP kliens segítségével. Végül kiírtuk az eredményt.
+    - Végigmentünk egy funkcióhívások listáján.
+    - Minden eszközhívásnál kinyertük a nevet és az argumentumokat, majd meghívtuk az eszközt az MCP szerveren az MCP kliens segítségével. Végül kiírtuk az eredményeket.
 
 Itt a teljes kód:
 
@@ -1058,7 +1180,7 @@ for (int i = 0; i < response.ToolCalls.Count; i++)
 Console.WriteLine($"Assistant response: {content}");
 ```
 
-### Java
+#### Java
 
 ```java
 try {
@@ -1078,91 +1200,146 @@ try {
 
 A fenti kódban:
 
-- Egyszerű természetes nyelvű promptokat használtunk az MCP szerver eszközeivel való interakcióhoz
+- Egyszerű természetes nyelvi promptokat használtunk az MCP szerver eszközeivel való interakcióhoz.
 - A LangChain4j keretrendszer automatikusan kezeli:
-  - A felhasználói promptok eszköz hívásokká alakítását, ha szükséges
-  - A megfelelő MCP eszközök meghívását az LLM döntése alapján
-  - A beszélgetés folyamatának kezelését az LLM és az MCP szerver között
-- A `bot.chat()` metódus természetes nyelvű válaszokat ad, amelyek tartalmazhatják az MCP eszközök végrehajtásának eredményeit
-- Ez a megközelítés zökkenőmentes felhasználói élményt nyújt, ahol a felhasználóknak nem kell tudniuk az MCP mögöttes megvalósításáról
+  - A felhasználói promptok eszközhívás
+Az LLM válasza egy `choices` tömböt fog tartalmazni. A kapott eredményt fel kell dolgoznunk, hogy megállapítsuk, vannak-e `tool_calls`. Ez jelzi, hogy az LLM egy konkrét eszköz használatát kéri argumentumokkal. Adja hozzá az alábbi kódot a `main.rs` fájl végéhez, hogy definiáljon egy függvényt az LLM válaszának kezelésére:
 
-Teljes kód példa:
+```rust
+async fn process_llm_response(
+    llm_response: &Value,
+    mcp_client: &RunningService<RoleClient, ()>,
+    openai_client: &Client<OpenAIConfig>,
+    mcp_tools: &ListToolsResult,
+    messages: &mut Vec<Value>,
+) -> Result<(), Box<dyn Error>> {
+    let Some(message) = llm_response
+        .get("choices")
+        .and_then(|c| c.as_array())
+        .and_then(|choices| choices.first())
+        .and_then(|choice| choice.get("message"))
+    else {
+        return Ok(());
+    };
 
-```java
-public class LangChain4jClient {
-    
-    public static void main(String[] args) throws Exception {        ChatLanguageModel model = OpenAiOfficialChatModel.builder()
-                .isGitHubModels(true)
-                .apiKey(System.getenv("GITHUB_TOKEN"))
-                .timeout(Duration.ofSeconds(60))
-                .modelName("gpt-4.1-nano")
-                .timeout(Duration.ofSeconds(60))
-                .build();
-
-        McpTransport transport = new HttpMcpTransport.Builder()
-                .sseUrl("http://localhost:8080/sse")
-                .timeout(Duration.ofSeconds(60))
-                .logRequests(true)
-                .logResponses(true)
-                .build();
-
-        McpClient mcpClient = new DefaultMcpClient.Builder()
-                .transport(transport)
-                .build();
-
-        ToolProvider toolProvider = McpToolProvider.builder()
-                .mcpClients(List.of(mcpClient))
-                .build();
-
-        Bot bot = AiServices.builder(Bot.class)
-                .chatLanguageModel(model)
-                .toolProvider(toolProvider)
-                .build();
-
-        try {
-            String response = bot.chat("Calculate the sum of 24.5 and 17.3 using the calculator service");
-            System.out.println(response);
-
-            response = bot.chat("What's the square root of 144?");
-            System.out.println(response);
-
-            response = bot.chat("Show me the help for the calculator service");
-            System.out.println(response);
-        } finally {
-            mcpClient.close();
-        }
+    // Print content if available
+    if let Some(content) = message.get("content").and_then(|c| c.as_str()) {
+        println!("🤖 {}", content);
     }
+
+    // Handle tool calls
+    if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
+        messages.push(message.clone()); // Add assistant message
+
+        // Execute each tool call
+        for tool_call in tool_calls {
+            let (tool_id, name, args) = extract_tool_call_info(tool_call)?;
+            println!("⚡ Calling tool: {}", name);
+
+            let result = mcp_client
+                .call_tool(CallToolRequestParam {
+                    name: name.into(),
+                    arguments: serde_json::from_str::<Value>(&args)?.as_object().cloned(),
+                })
+                .await?;
+
+            // Add tool result to messages
+            messages.push(json!({
+                "role": "tool",
+                "tool_call_id": tool_id,
+                "content": serde_json::to_string_pretty(&result)?
+            }));
+        }
+
+        // Continue conversation with tool results
+        let response = call_llm(openai_client, messages, mcp_tools).await?;
+        Box::pin(process_llm_response(
+            &response,
+            mcp_client,
+            openai_client,
+            mcp_tools,
+            messages,
+        ))
+        .await?;
+    }
+    Ok(())
 }
 ```
 
-Gratulálok, sikerült!
+Ha `tool_calls` jelen vannak, a kód kinyeri az eszköz információit, meghívja az MCP szervert az eszköz kérésével, és hozzáadja az eredményeket a beszélgetési üzenetekhez. Ezután folytatja a beszélgetést az LLM-mel, és az üzenetek frissülnek az asszisztens válaszával és az eszköz hívás eredményeivel.
+
+Az MCP hívásokhoz szükséges eszköz hívási információk kinyeréséhez hozzáadunk egy segédfüggvényt, amely mindent kinyer, ami a híváshoz szükséges. Adja hozzá az alábbi kódot a `main.rs` fájl végéhez:
+
+```rust
+fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
+    let tool_id = tool_call
+        .get("id")
+        .and_then(|id| id.as_str())
+        .unwrap_or("")
+        .to_string();
+    let function = tool_call.get("function").ok_or("Missing function")?;
+    let name = function
+        .get("name")
+        .and_then(|n| n.as_str())
+        .unwrap_or("")
+        .to_string();
+    let args = function
+        .get("arguments")
+        .and_then(|a| a.as_str())
+        .unwrap_or("{}")
+        .to_string();
+    Ok((tool_id, name, args))
+}
+```
+
+Most, hogy minden szükséges elem rendelkezésre áll, kezelhetjük a kezdeti felhasználói promptot és meghívhatjuk az LLM-et. Frissítse a `main` függvényt az alábbi kód hozzáadásával:
+
+```rust
+// LLM conversation with tool calls
+let response = call_llm(&openai_client, &messages, &tools).await?;
+process_llm_response(
+    &response,
+    &mcp_client,
+    &openai_client,
+    &tools,
+    &mut messages,
+)
+.await?;
+```
+
+Ez lekérdezi az LLM-et a kezdeti felhasználói prompttal, amely két szám összegét kéri, és feldolgozza a választ, hogy dinamikusan kezelje az eszköz hívásokat.
+
+Nagyszerű, sikerült!
 
 ## Feladat
 
-Vedd elő a gyakorlat kódját, és bővítsd ki a szervert további eszközökkel. Ezután hozz létre egy LLM-mel rendelkező ügyfelet, ahogy a gyakorlatban, és teszteld különböző promptokkal, hogy megbizonyosodj róla, hogy a szerver összes eszköze dinamikusan meghívásra kerül. Ez az ügyfélépítési mód nagyszerű felhasználói élményt biztosít, mert a felhasználók promptokat használhatnak, nem pedig pontos kliens parancsokat, és nem kell tudniuk az MCP szerver hívásairól.
+Vegye az eddigi gyakorlatban használt kódot, és építse ki a szervert további eszközökkel. Ezután hozzon létre egy LLM-et használó klienst, mint a gyakorlatban, és tesztelje különböző promptokkal, hogy megbizonyosodjon arról, hogy az összes szerver eszköz dinamikusan meghívható. Ez a kliensépítési módszer kiváló felhasználói élményt biztosít, mivel a végfelhasználó promptokat használhat, ahelyett, hogy pontos kliens parancsokat adna meg, és nem kell tudnia az MCP szerver hívásairól.
 
 ## Megoldás
 
-[Solution](/03-GettingStarted/03-llm-client/solution/README.md)
+[Megoldás](/03-GettingStarted/03-llm-client/solution/README.md)
 
-## Főbb tanulságok
+## Fő tanulságok
 
-- LLM hozzáadása az ügyfélhez jobb módot kínál a felhasználóknak az MCP szerverekkel való interakcióra.
-- Az MCP szerver válaszát olyan formátumba kell alakítani, amit az LLM megért.
+- Az LLM hozzáadása a klienshez jobb módot biztosít a felhasználóknak az MCP szerverekkel való interakcióra.
+- Az MCP szerver válaszát olyan formátumra kell alakítani, amelyet az LLM megért.
 
 ## Minták
 
-- [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Calculator](../samples/javascript/README.md)
-- [TypeScript Calculator](../samples/typescript/README.md)
-- [Python Calculator](../../../../03-GettingStarted/samples/python)
+- [Java Kalkulátor](../samples/java/calculator/README.md)
+- [.Net Kalkulátor](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Kalkulátor](../samples/javascript/README.md)
+- [TypeScript Kalkulátor](../samples/typescript/README.md)
+- [Python Kalkulátor](../../../../03-GettingStarted/samples/python)
+- [Rust Kalkulátor](../../../../03-GettingStarted/samples/rust)
 
 ## További források
 
-## Mi következik
+## Mi következik?
 
-- Következő: [Szerver használata Visual Studio Code-dal](../04-vscode/README.md)
+- Következő: [Szerver használata Visual Studio Code segítségével](../04-vscode/README.md)
 
-**Jogi nyilatkozat**:  
-Ez a dokumentum az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Kritikus információk esetén professzionális emberi fordítást javaslunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+---
+
+**Felelősség kizárása**:  
+Ez a dokumentum az [Co-op Translator](https://github.com/Azure/co-op-translator) AI fordítási szolgáltatás segítségével került lefordításra. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Fontos információk esetén javasolt professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely a fordítás használatából eredhet.

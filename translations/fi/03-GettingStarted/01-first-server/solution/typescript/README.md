@@ -1,15 +1,15 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ac67652abc453e2a7e2c75cd7a8897ae",
-  "translation_date": "2025-07-13T18:06:09+00:00",
+  "original_hash": "6ebbb78b04c9b1f6c2367c713524fc95",
+  "translation_date": "2025-09-03T16:11:18+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/typescript/README.md",
   "language_code": "fi"
 }
 -->
 # Tämän esimerkin suorittaminen
 
-Suosittelemme asentamaan `uv`, mutta se ei ole pakollista, katso [ohjeet](https://docs.astral.sh/uv/#highlights)
+Suositellaan asentamaan `uv`, mutta se ei ole pakollista. Katso [ohjeet](https://docs.astral.sh/uv/#highlights)
 
 ## -1- Asenna riippuvuudet
 
@@ -23,7 +23,7 @@ npm install
 npm run build
 ```
 
-## -4- Testaa esimerkki
+## -4- Testaa esimerkkiä
 
 Kun palvelin on käynnissä yhdessä terminaalissa, avaa toinen terminaali ja suorita seuraava komento:
 
@@ -31,16 +31,16 @@ Kun palvelin on käynnissä yhdessä terminaalissa, avaa toinen terminaali ja su
 npm run inspector
 ```
 
-Tämän pitäisi käynnistää web-palvelin, jossa on visuaalinen käyttöliittymä, jonka avulla voit testata esimerkkiä.
+Tämän pitäisi käynnistää verkkopalvelin, jossa on visuaalinen käyttöliittymä, jonka avulla voit testata esimerkkiä.
 
 Kun palvelin on yhdistetty:
 
-- kokeile listata työkalut ja suorita `add` argumenteilla 2 ja 4, tuloksena pitäisi näkyä 6.
-- siirry resources- ja resource template -kohtiin ja kutsu "greeting", kirjoita nimi ja näet tervehdyksen antamallasi nimellä.
+- kokeile listata työkaluja ja suorita `add` argumenteilla 2 ja 4, sinun pitäisi nähdä tuloksena 6.
+- siirry resursseihin ja resurssipohjaan ja kutsu "greeting", kirjoita nimi, ja sinun pitäisi nähdä tervehdys antamallasi nimellä.
 
-### Testaus CLI-tilassa
+### Testaaminen CLI-tilassa
 
-Käyttämäsi inspector on itse asiassa Node.js-sovellus ja `mcp dev` on sen ympärille rakennettu käärö.
+Käyttämäsi tarkastustyökalu on itse asiassa Node.js-sovellus, ja `mcp dev` on sen ympärille rakennettu käynnistysskripti.
 
 Voit käynnistää sen suoraan CLI-tilassa suorittamalla seuraavan komennon:
 
@@ -48,7 +48,7 @@ Voit käynnistää sen suoraan CLI-tilassa suorittamalla seuraavan komennon:
 npx @modelcontextprotocol/inspector --cli node ./build/index.js --method tools/list
 ```
 
-Tämä listaa kaikki palvelimella saatavilla olevat työkalut. Näet seuraavanlaisen tulosteen:
+Tämä listaa kaikki palvelimessa saatavilla olevat työkalut. Sinun pitäisi nähdä seuraava tuloste:
 
 ```text
 {
@@ -85,7 +85,7 @@ Työkalun kutsumiseksi kirjoita:
 nnpx @modelcontextprotocol/inspector --cli node ./build/index.js --method tools/call --tool-name add --tool-arg a=1 --tool-arg b=2
 ```
 
-Näet seuraavan tulosteen:
+Sinun pitäisi nähdä seuraava tuloste:
 
 ```text
 {
@@ -99,9 +99,11 @@ Näet seuraavan tulosteen:
 }
 ```
 
-> ![!TIP]
-> On yleensä paljon nopeampaa suorittaa inspector CLI-tilassa kuin selaimessa.
-> Lue lisää inspectorista [täältä](https://github.com/modelcontextprotocol/inspector).
+> [!TIP]
+> Tarkastustyökalun suorittaminen CLI-tilassa on yleensä paljon nopeampaa kuin selaimessa.
+> Lue lisää tarkastustyökalusta [täältä](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.

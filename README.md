@@ -22,11 +22,13 @@ Follow these steps to get started using these resources:
 
 #### Supported via GitHub Action (Automated & Always Up-to-Date)
 
-[French](./translations/fr/README.md) | [Spanish](./translations/es/README.md) | [German](./translations/de/README.md) | [Russian](./translations/ru/README.md) | [Arabic](./translations/ar/README.md) | [Persian (Farsi)](./translations/fa/README.md) | [Urdu](./translations/ur/README.md) | [Chinese (Simplified)](./translations/zh/README.md) | [Chinese (Traditional, Macau)](./translations/mo/README.md) | [Chinese (Traditional, Hong Kong)](./translations/hk/README.md) | [Chinese (Traditional, Taiwan)](./translations/tw/README.md) | [Japanese](./translations/ja/README.md) | [Korean](./translations/ko/README.md) | [Hindi](./translations/hi/README.md) | [Bengali](./translations/bn/README.md) | [Marathi](./translations/mr/README.md) | [Nepali](./translations/ne/README.md) | [Punjabi (Gurmukhi)](./translations/pa/README.md) | [Portuguese (Portugal)](./translations/pt/README.md) | [Portuguese (Brazil)](./translations/br/README.md) | [Italian](./translations/it/README.md) | [Polish](./translations/pl/README.md) | [Turkish](./translations/tr/README.md) | [Greek](./translations/el/README.md) | [Thai](./translations/th/README.md) | [Swedish](./translations/sv/README.md) | [Danish](./translations/da/README.md) | [Norwegian](./translations/no/README.md) | [Finnish](./translations/fi/README.md) | [Dutch](./translations/nl/README.md) | [Hebrew](./translations/he/README.md) | [Vietnamese](./translations/vi/README.md) | [Indonesian](./translations/id/README.md) | [Malay](./translations/ms/README.md) | [Tagalog (Filipino)](./translations/tl/README.md) | [Swahili](./translations/sw/README.md) | [Hungarian](./translations/hu/README.md) | [Czech](./translations/cs/README.md) | [Slovak](./translations/sk/README.md) | [Romanian](./translations/ro/README.md) | [Bulgarian](./translations/bg/README.md) | [Serbian (Cyrillic)](./translations/sr/README.md) | [Croatian](./translations/hr/README.md) | [Slovenian](./translations/sl/README.md) | [Ukrainian](./translations/uk/README.md) | [Burmese (Myanmar)](./translations/my/README.md)
+<!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
+[Arabic](./translations/ar/README.md) | [Bengali](./translations/bn/README.md) | [Bulgarian](./translations/bg/README.md) | [Burmese (Myanmar)](./translations/my/README.md) | [Chinese (Simplified)](./translations/zh/README.md) | [Chinese (Traditional, Hong Kong)](./translations/hk/README.md) | [Chinese (Traditional, Macau)](./translations/mo/README.md) | [Chinese (Traditional, Taiwan)](./translations/tw/README.md) | [Croatian](./translations/hr/README.md) | [Czech](./translations/cs/README.md) | [Danish](./translations/da/README.md) | [Dutch](./translations/nl/README.md) | [Estonian](./translations/et/README.md) | [Finnish](./translations/fi/README.md) | [French](./translations/fr/README.md) | [German](./translations/de/README.md) | [Greek](./translations/el/README.md) | [Hebrew](./translations/he/README.md) | [Hindi](./translations/hi/README.md) | [Hungarian](./translations/hu/README.md) | [Indonesian](./translations/id/README.md) | [Italian](./translations/it/README.md) | [Japanese](./translations/ja/README.md) | [Korean](./translations/ko/README.md) | [Lithuanian](./translations/lt/README.md) | [Malay](./translations/ms/README.md) | [Marathi](./translations/mr/README.md) | [Nepali](./translations/ne/README.md) | [Norwegian](./translations/no/README.md) | [Persian (Farsi)](./translations/fa/README.md) | [Polish](./translations/pl/README.md) | [Portuguese (Brazil)](./translations/br/README.md) | [Portuguese (Portugal)](./translations/pt/README.md) | [Punjabi (Gurmukhi)](./translations/pa/README.md) | [Romanian](./translations/ro/README.md) | [Russian](./translations/ru/README.md) | [Serbian (Cyrillic)](./translations/sr/README.md) | [Slovak](./translations/sk/README.md) | [Slovenian](./translations/sl/README.md) | [Spanish](./translations/es/README.md) | [Swahili](./translations/sw/README.md) | [Swedish](./translations/sv/README.md) | [Tagalog (Filipino)](./translations/tl/README.md) | [Tamil](./translations/ta/README.md) | [Thai](./translations/th/README.md) | [Turkish](./translations/tr/README.md) | [Ukrainian](./translations/uk/README.md) | [Urdu](./translations/ur/README.md) | [Vietnamese](./translations/vi/README.md)
+<!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
 # 🚀 Model Context Protocol (MCP) Curriculum for Beginners
 
-## **Learn MCP with Hands-on Code Examples in C#, Java, JavaScript, Python, and TypeScript**
+## **Learn MCP with Hands-on Code Examples in C#, Java, JavaScript, Rust, Python, and TypeScript**
 
 ## 🧠 Overview of the Model Context Protocol Curriculum
 
@@ -41,40 +43,6 @@ Whether you're an AI developer, system architect, or software engineer, this gui
 - 📜 [Original MCP Specification](https://spec.modelcontextprotocol.io/) – Legacy technical references (may contain additional details)  
 - 🧑‍💻 [MCP GitHub Repository](https://github.com/modelcontextprotocol) – Open-source SDKs, tools, and code samples
 - 🌐 [MCP Community](https://github.com/orgs/modelcontextprotocol/discussions) – Join discussions and contribute to the community
-
-## Join us for MCP Dev Days 29-30th July 2025 
-
-Get ready for two days of deep technical insight, community connection, and hands-on learning at MCP Dev Days, a virtual event dedicated to the Model Context Protocol (MCP) — the emerging standard that bridges AI models and the tools they rely on.
-
-➡️ [Register for MCP Dev Days](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
-
-You can watch MCP Dev Days by registering on our event page: https://aka.ms/mcpdevdays. From there, you’ll be able to join a live stream on YouTube or Twitch. All of the content is recorded and will be available afterwards on the Microsoft Developer YouTube channel. Source code for the demos will be available on GitHub too.
-
-### Event Details
-- Dates: July 29 (Day 1) & July 30 (Day 2)
-- Time: 9:00 AM PST daily
-- Where: Online – join from anywhere!
-
-#### Day 1: MCP Productivity, DevTools, & Community: 
-
-Is all about empowering developers to use MCP in their developer workflow and celebrating the amazing MCP community. We’ll be joined with community members and partners such as Arcade, Block, Okta, and Neon to see how they are collaborating with Microsoft to shape an open, extensible MCP ecosystem. Real-world demos across VS Code, Visual Studio, GitHub Copilot, and popular community tools
-Practical, context-driven dev workflows
-Community-led sessions and insights
-Whether you’re just getting started with MCP or already building with it, Day 1 will set the stage with inspiration and actionable takeaways.
-
-#### Day 2: Build MCP Servers with Confidence
-
-Is for MCP builders. We’ll go deep into implementation strategies and best practices for creating MCP servers and integrating MCP into your AI workflows.
-
-### Topics include:
-
-- Building MCP Servers and integrating them into agent experiences
-- Prompt-driven development
-- Security best practices
-- Using building blocks like Functions, ACA, and API Management
-- Registry alignment and tooling (1P + 3P)
-
-If you’re a developer, tool builder, or AI product strategist, this day is packed with the insights you need to build scalable, secure, and future-ready MCP solutions.
 
 ## 🧭 MCP Curriculum Overview
 
@@ -92,11 +60,13 @@ If you’re a developer, tool builder, or AI product strategist, this day is pac
 | 3.2 | First Client | Develop a basic MCP client | [Guide](./03-GettingStarted/02-client/README.md) |
 | 3.3 | Client with LLM | Integrate large language models | [Guide](./03-GettingStarted/03-llm-client/README.md) |
 | 3.4 | VS Code Integration | Consume MCP servers in VS Code | [Guide](./03-GettingStarted/04-vscode/README.md) |
-| 3.5 | SSE Server | Create servers using Server-Sent Events | [Guide](./03-GettingStarted/05-sse-server/README.md) |
+| 3.5 | stdio Server | Create servers using stdio transport | [Guide](./03-GettingStarted/05-stdio-server/README.md) |
 | 3.6 | HTTP Streaming | Implement HTTP streaming in MCP | [Guide](./03-GettingStarted/06-http-streaming/README.md) |
 | 3.7 | AI Toolkit | Use AI Toolkit with MCP | [Guide](./03-GettingStarted/07-aitk/README.md) |
 | 3.8 | Testing | Test your MCP server implementation | [Guide](./03-GettingStarted/08-testing/README.md) |
 | 3.9 | Deployment | Deploy MCP servers to production | [Guide](./03-GettingStarted/09-deployment/README.md) |
+| 3.10 | Advanced server usage | Use advanced servers for advanced feature usage and improved architecture | [Guide](./03-GettingStarted/10-advanced/README.md) |
+| 3.11 | Simple auth | A chapter showing you auth from the beginning and RBAC | [Guide](./03-GettingStarted/11-simple-auth/README.md) |
 | **Module 4-5: Practical & Advanced** | | | |
 | 04 | Practical Implementation | SDKs, debugging, testing, reusable prompt templates | [Read more](./04-PracticalImplementation/README.md) |
 | 05 | Advanced Topics in MCP | Multi-modal AI, scaling, enterprise use | [Read more](./05-AdvancedTopics/README.md) |
@@ -114,12 +84,28 @@ If you’re a developer, tool builder, or AI product strategist, this day is pac
 | 5.12 | Entra ID Auth | Authentication with Microsoft Entra ID | [Guide](./05-AdvancedTopics/mcp-security-entra/README.md) |
 | 5.13 | Foundry Integration | Integrate with Azure AI Foundry | [Guide](./05-AdvancedTopics/mcp-foundry-agent-integration/README.md) |
 | 5.14 | Context Engineering | Techniques for effective context engineering | [Guide](./05-AdvancedTopics/mcp-contextengineering/README.md) |
+| 5.15 | MCP Custom Transport | Custom Transport implementations | [Guide](./05-AdvancedTopics/mcp-transport/README.md) |
 | **Module 6-10: Community & Best Practices** | | | |
 | 06 | Community Contributions | How to contribute to the MCP ecosystem | [Guide](./06-CommunityContributions/README.md) |
 | 07 | Insights from Early Adoption | Real-world implementation stories | [Guide](./07-LessonsFromEarlyAdoption/README.md) |
 | 08 | Best Practices for MCP | Performance, fault-tolerance, resilience | [Guide](./08-BestPractices/README.md) |
 | 09 | MCP Case Studies | Practical implementation examples | [Guide](./09-CaseStudy/README.md) |
 | 10 | Hands-on Workshop | Building an MCP Server with AI Toolkit | [Lab](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
+| **Module 11: MCP Server Hands On Lab** | | | |
+| 11 | MCP Server Database Integration | Comprehensive 13-lab hands-on learning path for PostgreSQL integration | [Labs](./11-MCPServerHandsOnLabs/README.md) |
+| 11.1 | Introduction | Overview of MCP with database integration and retail analytics use case | [Lab 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
+| 11.2 | Core Architecture | Understanding MCP server architecture, database layers, and security patterns | [Lab 01](./11-MCPServerHandsOnLabs/01-Architecture/README.md) |
+| 11.3 | Security & Multi-Tenancy | Row Level Security, authentication, and multi-tenant data access | [Lab 02](./11-MCPServerHandsOnLabs/02-Security/README.md) |
+| 11.4 | Environment Setup | Setting up development environment, Docker, Azure resources | [Lab 03](./11-MCPServerHandsOnLabs/03-Setup/README.md) |
+| 11.5 | Database Design | PostgreSQL setup, retail schema design, and sample data | [Lab 04](./11-MCPServerHandsOnLabs/04-Database/README.md) |
+| 11.6 | MCP Server Implementation | Building the FastMCP server with database integration | [Lab 05](./11-MCPServerHandsOnLabs/05-MCP-Server/README.md) |
+| 11.7 | Tool Development | Creating database query tools and schema introspection | [Lab 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
+| 11.8 | Semantic Search | Implementing vector embeddings with Azure OpenAI and pgvector | [Lab 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
+| 11.9 | Testing & Debugging | Testing strategies, debugging tools, and validation approaches | [Lab 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
+| 11.10 | VS Code Integration | Configuring VS Code MCP integration and AI Chat usage | [Lab 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
+| 11.11 | Deployment Strategies | Docker deployment, Azure Container Apps, and scaling considerations | [Lab 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
+| 11.12 | Monitoring | Application Insights, logging, performance monitoring | [Lab 11](./11-MCPServerHandsOnLabs/11-Monitoring/README.md) |
+| 11.13 | Best Practices | Performance optimization, security hardening, and production tips | [Lab 12](./11-MCPServerHandsOnLabs/12-Best-Practices/README.md) |
 
 ### 💻 Sample Code Projects
 
@@ -132,15 +118,16 @@ If you’re a developer, tool builder, or AI product strategist, this day is pac
 | JavaScript | MCP Demo | [View Code](./03-GettingStarted/samples/javascript/README.md) |
 | Python | MCP Server | [View Code](./03-GettingStarted/samples/python/mcp_calculator_server.py) |
 | TypeScript | MCP Example | [View Code](./03-GettingStarted/samples/typescript/README.md) |
+| Rust | MCP Example | [View Code](./03-GettingStarted/samples/rust/README.md) |
 
 #### Advanced MCP Implementations
 
 | Language | Description | Link |
 |----------|-------------|------|
 | C# | Advanced Sample | [View Code](./04-PracticalImplementation/samples/csharp/README.md) |
-| Java | Container App Example | [View Code](./04-PracticalImplementation/samples/java/containerapp/README.md) |
+| Java with Spring | Container App Example | [View Code](./04-PracticalImplementation/samples/java/containerapp/README.md) |
 | JavaScript | Advanced Sample | [View Code](./04-PracticalImplementation/samples/javascript/README.md) |
-| Python | Complex Implementation | [View Code](./04-PracticalImplementation/samples/python/mcp_sample.py) |
+| Python | Complex Implementation | [View Code](./04-PracticalImplementation/samples/python/READMEmd) |
 | TypeScript | Container Sample | [View Code](./04-PracticalImplementation/samples/typescript/README.md) |
 
 
@@ -187,6 +174,48 @@ Each lesson in this guide includes:
 3. Exercises to build real MCP applications  
 4. Extra resources for advanced learners
 
+## Events 
+
+### [MCP Dev Days July 2025](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+#### [➡️Watch on Demand - MCP Dev Days](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+Get ready for two days of deep technical insight, community connection, and hands-on learning at MCP Dev Days, a virtual event dedicated to the Model Context Protocol (MCP) — the emerging standard that bridges AI models and the tools they rely on.
+You can watch MCP Dev Days by registering on our event page: https://aka.ms/mcpdevdays. 
+
+#### [Day 1: MCP Productivity, DevTools, & Community:](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+
+Is all about empowering developers to use MCP in their developer workflow and celebrating the amazing MCP community. We’ll be joined with community members and partners such as Arcade, Block, Okta, and Neon to see how they are collaborating with Microsoft to shape an open, extensible MCP ecosystem. Real-world demos across VS Code, Visual Studio, GitHub Copilot, and popular community tools
+Practical, context-driven dev workflows
+Community-led sessions and insights
+Whether you’re just getting started with MCP or already building with it, Day 1 will set the stage with inspiration and actionable takeaways.
+
+#### [Day 2: Build MCP Servers with Confidence](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+
+Is for MCP builders. We’ll go deep into implementation strategies and best practices for creating MCP servers and integrating MCP into your AI workflows.
+
+#### Topics include:
+
+- Building MCP Servers and integrating them into agent experiences
+- Prompt-driven development
+- Security best practices
+- Using building blocks like Functions, ACA, and API Management
+- Registry alignment and tooling (1P + 3P)
+
+If you’re a developer, tool builder, or AI product strategist, this day is packed with the insights you need to build scalable, secure, and future-ready MCP solutions.
+
+### MCP Boot Camp August 2025
+Learn in intensive video sessions how to create MCP servers, integrate with VS Code, and deploy professionally on Azure based on content from the MCP for Beginners curriculum. Walk away with practical skills in a technology that major companies are already using.
+
+#### [➡️Watch on Demand MCP Bootcamp | English](https://developer.microsoft.com/en-us/reactor/series/s-1568/)
+#### [➡️Watch on Demand MCP Bootcamp | Brasil](https://developer.microsoft.com/en-us/reactor/series/S-1566/)
+#### [➡️Watch on Demand MCP Bootcamp | Spanish](https://developer.microsoft.com/en-us/reactor/series/S-1567/)
+
+
+### Let's Learn MCP with C# - Tutorial Series
+Let's learn about the Model Context Protocol (MCP), a cutting-edge framework designed to standardize interactions between AI models and client applications. Through this beginner-friendly session, we'll introduce you to MCP and guide you through creating your first MCP server.
+#### C#: [https://aka.ms/letslearnmcp-csharp](https://aka.ms/letslearnmcp-csharp)
+#### Java: [https://aka.ms/letslearnmcp-java](https://aka.ms/letslearnmcp-java)
+#### JavaScript: [https://aka.ms/letslearnmcp-javascript](https://aka.ms/letslearnmcp-javascript)
+#### Python: [https://aka.ms/letslearnmcp-python](https://aka.ms/letslearnmcp-python)
 
 ## 🌟 Community Thanks
 
@@ -214,7 +243,8 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 The repository is organized as follows:
 
-- **Core Curriculum (00-10)**: The main content organized in ten sequential modules
+- **Core Curriculum (00-11)**: The main content organized in eleven sequential modules, including comprehensive database integration labs
+- **11-MCPServerHandsOnLabs/**: Complete 13-lab learning path for building production-ready MCP servers with PostgreSQL integration
 - **images/**: Diagrams and illustrations used throughout the curriculum
 - **translations/**: Multi-language support with automated translations
 - **translated_images/**: Localized versions of diagrams and illustrations
@@ -226,14 +256,16 @@ The repository is organized as follows:
 ## 🎒 Other Courses
 Our team produces other courses! Check out:
 
+- [**NEW** Edge AI For Beginners](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
 - [AI Agents For Beginners](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
 - [Generative AI for Beginners using .NET](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
 - [Generative AI for Beginners using JavaScript](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
 - [Generative AI for Beginners](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
+- [Generative AI for Beginners using Java](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)
 - [ML for Beginners](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
 - [Data Science for Beginners](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
 - [AI for Beginners](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
-- [Cybersecurity for Beginners](https://github.com/microsoft/Security-101??WT.mc_id=academic-96948-sayoung)
+- [Cybersecurity for Beginners](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
 - [Web Dev for Beginners](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
 - [IoT for Beginners](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
 - [XR Development for Beginners](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
@@ -249,4 +281,14 @@ trademarks or logos is subject to and must follow
 [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos is subject to those third-parties' policies.
+
+## Getting Help
+
+If you get stuck or have any questions about building AI apps, join:
+
+[![Azure AI Foundry Discord](https://img.shields.io/badge/Discord-Azure_AI_Foundry_Community_Discord-blue?style=for-the-badge&logo=discord&color=5865f2&logoColor=fff)](https://aka.ms/foundry/discord)
+
+If you have product feedback or errors while building visit:
+
+[![Azure AI Foundry Developer Forum](https://img.shields.io/badge/GitHub-Azure_AI_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 

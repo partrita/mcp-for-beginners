@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4c4da5949611d91b06d8a5d450aae8d6",
-  "translation_date": "2025-07-13T21:22:02+00:00",
+  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
+  "translation_date": "2025-08-19T15:45:24+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
   "language_code": "cs"
 }
@@ -13,14 +13,14 @@ Zde je návod, jak spustit klasický HTTP streaming server a klienta, stejně ja
 
 ### Přehled
 
-- Nastavíte MCP server, který bude klientovi posílat notifikace o průběhu zpracování položek.
-- Klient bude zobrazovat každou notifikaci v reálném čase.
-- Tento průvodce pokrývá požadavky, nastavení, spuštění a řešení problémů.
+- Nastavíte MCP server, který bude během zpracování položek odesílat klientovi oznámení o průběhu.
+- Klient bude zobrazovat každé oznámení v reálném čase.
+- Tento průvodce pokrývá předpoklady, nastavení, spuštění a řešení problémů.
 
-### Požadavky
+### Předpoklady
 
 - Python 3.9 nebo novější
-- Python balíček `mcp` (nainstalujete pomocí `pip install mcp`)
+- Python balíček `mcp` (nainstalujte pomocí `pip install mcp`)
 
 ### Instalace a nastavení
 
@@ -42,7 +42,7 @@ Zde je návod, jak spustit klasický HTTP streaming server a klienta, stejně ja
 1. **Nainstalujte potřebné závislosti:**
 
    ```pwsh
-   pip install "mcp[cli]"
+   pip install "mcp[cli]" fastapi requests
    ```
 
 ### Soubory
@@ -80,7 +80,7 @@ Zde je návod, jak spustit klasický HTTP streaming server a klienta, stejně ja
    python client.py
    ```
 
-2. Měli byste vidět postupně vytištěné streamované zprávy:
+2. Měli byste vidět postupně vypisované zprávy:
 
    ```text
    Running classic HTTP streaming client...
@@ -116,7 +116,7 @@ Zde je návod, jak spustit klasický HTTP streaming server a klienta, stejně ja
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py mcp
    ```
-2. Měli byste vidět notifikace vytištěné v reálném čase, jak server zpracovává jednotlivé položky:
+2. Měli byste vidět oznámení vypisovaná v reálném čase, jak server zpracovává jednotlivé položky:
    ```
    Running MCP client...
    Starting client...
@@ -131,21 +131,21 @@ Zde je návod, jak spustit klasický HTTP streaming server a klienta, stejně ja
 
 ### Klíčové kroky implementace
 
-1. **Vytvořit MCP server pomocí FastMCP.**
-2. **Definovat nástroj, který zpracovává seznam a posílá notifikace pomocí `ctx.info()` nebo `ctx.log()`.**
-3. **Spustit server s `transport="streamable-http"`.**
-4. **Implementovat klienta s handlerem zpráv, který zobrazuje notifikace ihned po příchodu.**
+1. **Vytvořte MCP server pomocí FastMCP.**
+2. **Definujte nástroj, který zpracovává seznam a odesílá oznámení pomocí `ctx.info()` nebo `ctx.log()`.**
+3. **Spusťte server s `transport="streamable-http"`.**
+4. **Implementujte klienta s obslužnou funkcí zpráv pro zobrazení oznámení při jejich příchodu.**
 
-### Procházení kódu
-- Server používá asynchronní funkce a MCP kontext pro odesílání aktualizací průběhu.
-- Klient implementuje asynchronní handler zpráv, který tiskne notifikace a konečný výsledek.
+### Procházka kódem
+- Server používá asynchronní funkce a MCP kontext pro odesílání aktualizací o průběhu.
+- Klient implementuje asynchronní obslužnou funkci zpráv pro tisk oznámení a konečného výsledku.
 
 ### Tipy a řešení problémů
 
 - Používejte `async/await` pro neblokující operace.
-- Vždy ošetřujte výjimky jak na straně serveru, tak klienta pro větší spolehlivost.
+- Vždy ošetřujte výjimky jak na straně serveru, tak klienta pro zajištění robustnosti.
 - Testujte s více klienty, abyste viděli aktualizace v reálném čase.
-- Pokud narazíte na chyby, zkontrolujte verzi Pythonu a ujistěte se, že jsou nainstalovány všechny závislosti.
+- Pokud narazíte na chyby, zkontrolujte verzi Pythonu a ujistěte se, že všechny závislosti jsou nainstalovány.
 
-**Prohlášení o vyloučení odpovědnosti**:  
-Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). I když usilujeme o přesnost, mějte prosím na paměti, že automatické překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro důležité informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoliv nedorozumění nebo nesprávné výklady vyplývající z použití tohoto překladu.
+**Upozornění**:  
+Tento dokument byl přeložen pomocí služby pro automatický překlad [Co-op Translator](https://github.com/Azure/co-op-translator). I když se snažíme o co největší přesnost, mějte prosím na paměti, že automatické překlady mohou obsahovat chyby nebo nepřesnosti. Za autoritativní zdroj by měl být považován původní dokument v jeho původním jazyce. Pro důležité informace doporučujeme profesionální lidský překlad. Neodpovídáme za žádná nedorozumění nebo nesprávné interpretace vyplývající z použití tohoto překladu.

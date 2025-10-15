@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "affcf199a44f60283a289dcb69dc144e",
-  "translation_date": "2025-07-17T13:33:46+00:00",
+  "original_hash": "8358c13b5b6877e475674697cdc1a904",
+  "translation_date": "2025-08-11T10:51:16+00:00",
   "source_file": "03-GettingStarted/02-client/complete_examples.md",
   "language_code": "pt"
 }
@@ -14,15 +14,17 @@ Este diretório contém exemplos completos e funcionais de clientes MCP em difer
 ## Clientes Disponíveis
 
 ### 1. Cliente Java (`client_example_java.java`)
-- **Transporte**: SSE (Server-Sent Events) sobre HTTP
-- **Servidor Destino**: `http://localhost:8080`
-- **Funcionalidades**: 
-  - Estabelecimento de ligação e ping
+
+- **Transporte**: SSE (Server-Sent Events) via HTTP
+- **Servidor Alvo**: `http://localhost:8080`
+- **Funcionalidades**:
+  - Estabelecimento de conexão e ping
   - Listagem de ferramentas
-  - Operações de calculadora (adicionar, subtrair, multiplicar, dividir, ajuda)
+  - Operações de calculadora (somar, subtrair, multiplicar, dividir, ajuda)
   - Tratamento de erros e extração de resultados
 
 **Para executar:**
+
 ```bash
 # Ensure your MCP server is running on localhost:8080
 javac client_example_java.java
@@ -30,23 +32,26 @@ java client_example_java
 ```
 
 ### 2. Cliente C# (`client_example_csharp.cs`)
-- **Transporte**: Stdio (Entrada/Saída padrão)
-- **Servidor Destino**: Servidor MCP .NET local via dotnet run
+
+- **Transporte**: Stdio (Entrada/Saída Padrão)
+- **Servidor Alvo**: Servidor MCP local .NET via dotnet run
 - **Funcionalidades**:
-  - Arranque automático do servidor via transporte stdio
+  - Inicialização automática do servidor via transporte stdio
   - Listagem de ferramentas e recursos
   - Operações de calculadora
   - Análise de resultados em JSON
   - Tratamento de erros abrangente
 
 **Para executar:**
+
 ```bash
 dotnet run
 ```
 
 ### 3. Cliente TypeScript (`client_example_typescript.ts`)
-- **Transporte**: Stdio (Entrada/Saída padrão)
-- **Servidor Destino**: Servidor MCP Node.js local
+
+- **Transporte**: Stdio (Entrada/Saída Padrão)
+- **Servidor Alvo**: Servidor MCP local Node.js
 - **Funcionalidades**:
   - Suporte completo ao protocolo MCP
   - Operações com ferramentas, recursos e prompts
@@ -55,6 +60,7 @@ dotnet run
   - Tratamento robusto de erros
 
 **Para executar:**
+
 ```bash
 # First compile TypeScript (if needed)
 npm run build
@@ -66,27 +72,29 @@ node client_example_typescript.js
 ```
 
 ### 4. Cliente Python (`client_example_python.py`)
-- **Transporte**: Stdio (Entrada/Saída padrão)  
-- **Servidor Destino**: Servidor MCP Python local
+
+- **Transporte**: Stdio (Entrada/Saída Padrão)  
+- **Servidor Alvo**: Servidor MCP local Python
 - **Funcionalidades**:
   - Padrão async/await para operações
   - Descoberta de ferramentas e recursos
-  - Testes de operações de calculadora
+  - Teste de operações de calculadora
   - Leitura de conteúdo de recursos
   - Organização baseada em classes
 
 **Para executar:**
+
 ```bash
 python client_example_python.py
 ```
 
-## Funcionalidades Comuns a Todos os Clientes
+## Funcionalidades Comuns Entre Todos os Clientes
 
 Cada implementação de cliente demonstra:
 
-1. **Gestão de Ligação**
-   - Estabelecimento de ligação ao servidor MCP
-   - Tratamento de erros de ligação
+1. **Gestão de Conexão**
+   - Estabelecimento de conexão com o servidor MCP
+   - Tratamento de erros de conexão
    - Limpeza adequada e gestão de recursos
 
 2. **Descoberta do Servidor**
@@ -95,40 +103,41 @@ Cada implementação de cliente demonstra:
    - Listagem de prompts disponíveis (quando suportado)
 
 3. **Invocação de Ferramentas**
-   - Operações básicas de calculadora (adicionar, subtrair, multiplicar, dividir)
+   - Operações básicas de calculadora (somar, subtrair, multiplicar, dividir)
    - Comando de ajuda para informações do servidor
-   - Passagem correta de argumentos e tratamento de resultados
+   - Passagem adequada de argumentos e tratamento de resultados
 
 4. **Tratamento de Erros**
-   - Erros de ligação
-   - Erros na execução das ferramentas
+   - Erros de conexão
+   - Erros na execução de ferramentas
    - Falhas controladas e feedback ao utilizador
 
 5. **Processamento de Resultados**
-   - Extração do conteúdo de texto das respostas
-   - Formatação da saída para melhor leitura
+   - Extração de conteúdo textual das respostas
+   - Formatação de saída para melhor legibilidade
    - Tratamento de diferentes formatos de resposta
 
 ## Pré-requisitos
 
 Antes de executar estes clientes, certifique-se de que:
 
-1. **O servidor MCP correspondente está a correr** (a partir de `../01-first-server/`)
+1. **O servidor MCP correspondente está em execução** (a partir de `../01-first-server/`)
 2. **As dependências necessárias estão instaladas** para a linguagem escolhida
-3. **Conectividade de rede adequada** (para transportes baseados em HTTP)
+3. **A conectividade de rede está adequada** (para transportes baseados em HTTP)
 
-## Diferenças Principais Entre as Implementações
+## Diferenças Principais Entre Implementações
 
-| Linguagem  | Transporte | Arranque do Servidor | Modelo Async | Bibliotecas Principais |
-|------------|------------|----------------------|--------------|-----------------------|
-| Java       | SSE/HTTP   | Externo              | Síncrono     | WebFlux, MCP SDK      |
-| C#         | Stdio      | Automático           | Async/Await  | .NET MCP SDK          |
-| TypeScript | Stdio      | Automático           | Async/Await  | Node MCP SDK          |
-| Python     | Stdio      | Automático           | AsyncIO      | Python MCP SDK        |
+| Linguagem   | Transporte | Inicialização do Servidor | Modelo Assíncrono | Bibliotecas Principais |
+|-------------|------------|---------------------------|--------------------|-------------------------|
+| Java        | SSE/HTTP   | Externo                  | Sincrono           | WebFlux, MCP SDK        |
+| C#          | Stdio      | Automática               | Async/Await        | .NET MCP SDK            |
+| TypeScript  | Stdio      | Automática               | Async/Await        | Node MCP SDK            |
+| Python      | Stdio      | Automática               | AsyncIO            | Python MCP SDK          |
+| Rust        | Stdio      | Automática               | Async/Await        | Rust MCP SDK, Tokio     |
 
 ## Próximos Passos
 
-Depois de explorar estes exemplos de clientes:
+Após explorar estes exemplos de clientes:
 
 1. **Modifique os clientes** para adicionar novas funcionalidades ou operações
 2. **Crie o seu próprio servidor** e teste-o com estes clientes
@@ -139,24 +148,24 @@ Depois de explorar estes exemplos de clientes:
 
 ### Problemas Comuns
 
-1. **Ligação recusada**: Verifique se o servidor MCP está a correr na porta/caminho esperado
+1. **Conexão recusada**: Certifique-se de que o servidor MCP está em execução na porta/caminho esperado
 2. **Módulo não encontrado**: Instale o MCP SDK necessário para a sua linguagem
-3. **Permissão negada**: Verifique as permissões dos ficheiros para o transporte stdio
+3. **Permissão negada**: Verifique as permissões de ficheiros para o transporte stdio
 4. **Ferramenta não encontrada**: Confirme que o servidor implementa as ferramentas esperadas
 
 ### Dicas de Depuração
 
 1. **Ative o registo detalhado** no seu MCP SDK
-2. **Verifique os logs do servidor** para mensagens de erro
-3. **Confirme que os nomes e assinaturas das ferramentas** coincidem entre cliente e servidor
+2. **Verifique os registos do servidor** para mensagens de erro
+3. **Confirme os nomes e assinaturas das ferramentas** entre cliente e servidor
 4. **Teste primeiro com o MCP Inspector** para validar a funcionalidade do servidor
 
 ## Documentação Relacionada
 
-- [Tutorial Principal do Cliente](./README.md)
+- [Tutorial Principal de Cliente](./README.md)
 - [Exemplos de Servidor MCP](../../../../03-GettingStarted/01-first-server)
 - [MCP com Integração LLM](../../../../03-GettingStarted/03-llm-client)
 - [Documentação Oficial MCP](https://modelcontextprotocol.io/)
 
 **Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, por favor tenha em conta que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original no seu idioma nativo deve ser considerado a fonte oficial. Para informações críticas, recomenda-se uma tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas resultantes do uso desta tradução.

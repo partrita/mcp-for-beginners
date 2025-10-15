@@ -1,17 +1,21 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "8a92e2552cf3d4613f0fb4846c13d56d",
-  "translation_date": "2025-07-22T08:03:31+00:00",
+  "original_hash": "fcf1e12b62102bf7d16b78deb2b163b7",
+  "translation_date": "2025-07-29T00:33:42+00:00",
   "source_file": "06-CommunityContributions/README.md",
   "language_code": "pt"
 }
 -->
 # Comunidade e Contribuições
 
+[![Como Contribuir para MCP: Ferramentas, Documentação, Código e Mais](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.pt.png)](https://youtu.be/v1pvCYAWpRE)
+
+_(Clique na imagem acima para assistir ao vídeo desta lição)_
+
 ## Visão Geral
 
-Esta lição foca em como se envolver com a comunidade MCP, contribuir para o ecossistema MCP e seguir as melhores práticas para desenvolvimento colaborativo. Compreender como participar de projetos MCP de código aberto é essencial para quem deseja moldar o futuro desta tecnologia.
+Esta lição aborda como se envolver com a comunidade MCP, contribuir para o ecossistema MCP e seguir as melhores práticas para desenvolvimento colaborativo. Compreender como participar de projetos MCP de código aberto é essencial para quem deseja moldar o futuro desta tecnologia.
 
 ## Objetivos de Aprendizagem
 
@@ -32,8 +36,8 @@ O ecossistema MCP consiste em vários componentes e participantes que trabalham 
 
 1. **Mantenedores do Protocolo Principal**: A organização oficial [Model Context Protocol no GitHub](https://github.com/modelcontextprotocol) mantém as especificações principais do MCP e implementações de referência.
 2. **Desenvolvedores de Ferramentas**: Indivíduos e equipes que criam ferramentas e servidores MCP.
-3. **Provedores de Integração**: Empresas que integram o MCP em seus produtos e serviços.
-4. **Usuários Finais**: Desenvolvedores e organizações que utilizam o MCP em suas aplicações.
+3. **Provedores de Integração**: Empresas que integram MCP em seus produtos e serviços.
+4. **Utilizadores Finais**: Desenvolvedores e organizações que utilizam MCP em suas aplicações.
 5. **Contribuidores**: Membros da comunidade que contribuem com código, documentação ou outros recursos.
 
 ### Recursos da Comunidade
@@ -54,9 +58,9 @@ O ecossistema MCP consiste em vários componentes e participantes que trabalham 
 - [PulseMCP](https://www.pulsemcp.com/) - Hub da comunidade e newsletter para descobrir recursos MCP.
 - [Servidor Discord](https://discord.gg/jHEGxQu2a5) - Conecte-se com desenvolvedores MCP.
 - Implementações de SDK específicas para linguagens.
-- Postagens em blogs e tutoriais.
+- Posts em blogs e tutoriais.
 
-## Contribuindo para o MCP
+## Contribuindo para MCP
 
 ### Tipos de Contribuições
 
@@ -64,7 +68,7 @@ O ecossistema MCP acolhe diversos tipos de contribuições:
 
 1. **Contribuições de Código**:
    - Melhorias no protocolo principal.
-   - Correção de bugs.
+   - Correções de bugs.
    - Implementações de ferramentas e servidores.
    - Bibliotecas cliente/servidor em diferentes linguagens.
 
@@ -72,7 +76,7 @@ O ecossistema MCP acolhe diversos tipos de contribuições:
    - Melhorar a documentação existente.
    - Criar tutoriais e guias.
    - Traduzir documentação.
-   - Criar exemplos e aplicações de amostra.
+   - Criar exemplos e aplicações de demonstração.
 
 3. **Suporte à Comunidade**:
    - Responder perguntas em fóruns e discussões.
@@ -82,14 +86,14 @@ O ecossistema MCP acolhe diversos tipos de contribuições:
 
 ### Processo de Contribuição: Protocolo Principal
 
-Para contribuir com o protocolo principal MCP ou implementações oficiais, siga os princípios das [diretrizes oficiais de contribuição](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
+Para contribuir com o protocolo principal MCP ou implementações oficiais, siga estes princípios das [diretrizes oficiais de contribuição](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
 
 1. **Simplicidade e Minimalismo**: A especificação MCP mantém um alto padrão para adicionar novos conceitos. É mais fácil adicionar algo a uma especificação do que removê-lo.
 
-2. **Abordagem Concreta**: Mudanças na especificação devem ser baseadas em desafios específicos de implementação, não em ideias especulativas.
+2. **Abordagem Concreta**: Alterações na especificação devem ser baseadas em desafios específicos de implementação, não em ideias especulativas.
 
 3. **Etapas de uma Proposta**:
-   - Definir: Explorar o problema, validar que outros usuários MCP enfrentam um problema semelhante.
+   - Definir: Explorar o problema, validar que outros utilizadores MCP enfrentam um problema semelhante.
    - Prototipar: Construir uma solução de exemplo e demonstrar sua aplicação prática.
    - Escrever: Com base no protótipo, redigir uma proposta de especificação.
 
@@ -346,7 +350,7 @@ git push origin feature/my-contribution
 
 ## Criando e Compartilhando Servidores MCP
 
-Uma das formas mais valiosas de contribuir para o ecossistema MCP é criando e compartilhando servidores MCP personalizados. A comunidade já desenvolveu centenas de servidores para diversos serviços e casos de uso.
+Uma das formas mais valiosas de contribuir para o ecossistema MCP é criar e compartilhar servidores MCP personalizados. A comunidade já desenvolveu centenas de servidores para diversos serviços e casos de uso.
 
 ### Frameworks de Desenvolvimento de Servidores MCP
 
@@ -696,11 +700,11 @@ Ao compartilhar ferramentas MCP com a comunidade:
 
 3. **Considerações de Desempenho**:
    - Otimize para velocidade e uso de recursos.
-   - Implemente cache quando apropriado.
+   - Implemente caching quando apropriado.
    - Considere escalabilidade.
 
 4. **Segurança**:
-   - Utilize chaves de API seguras e autenticação.
+   - Utilize chaves de API e autenticação seguras.
    - Valide e sanitize entradas.
    - Implemente limitação de taxa para chamadas de API externas.
 
@@ -730,18 +734,18 @@ Ao revisar contribuições MCP:
 4. **Completude**: Inclui testes e documentação?
 5. **Segurança**: Há preocupações de segurança?
 
-### Compatibilidade de Versão
+### Compatibilidade de Versões
 
 Ao desenvolver para MCP:
 
 1. **Versionamento do Protocolo**: Adote a versão do protocolo MCP que sua ferramenta suporta.
 2. **Compatibilidade com Clientes**: Considere compatibilidade retroativa.
 3. **Compatibilidade com Servidores**: Siga as diretrizes de implementação de servidores.
-4. **Alterações Disruptivas**: Documente claramente quaisquer alterações disruptivas.
+4. **Alterações Significativas**: Documente claramente quaisquer alterações significativas.
 
-## Exemplo de Projeto Comunitário: Registro de Ferramentas MCP
+## Projeto Comunitário Exemplo: Registro de Ferramentas MCP
 
-Uma contribuição comunitária importante pode ser desenvolver um registro público para ferramentas MCP.
+Uma contribuição comunitária importante poderia ser desenvolver um registro público para ferramentas MCP.
 
 ```python
 # Example schema for a community tool registry API
@@ -820,10 +824,10 @@ async def delete_tool(tool_name: str):
     return {"message": f"Tool '{tool_name}' deleted"}
 ```
 
-## Principais Conclusões
+## Principais Pontos
 
 - A comunidade MCP é diversa e acolhe vários tipos de contribuições.
-- Contribuir para o MCP pode variar de melhorias no protocolo principal a ferramentas personalizadas.
+- Contribuir para MCP pode variar de melhorias no protocolo principal a ferramentas personalizadas.
 - Seguir as diretrizes de contribuição aumenta as chances de seu PR ser aceito.
 - Criar e compartilhar ferramentas MCP é uma forma valiosa de melhorar o ecossistema.
 - A colaboração comunitária é essencial para o crescimento e aprimoramento do MCP.
@@ -838,11 +842,11 @@ async def delete_tool(tool_name: str):
 
 ## Recursos Adicionais
 
-- [Projetos Comunitários MCP](https://github.com/topics/model-context-protocol)
+- [Projetos da Comunidade MCP](https://github.com/topics/model-context-protocol)
 
 ---
 
 Próximo: [Lições da Adoção Inicial](../07-LessonsfromEarlyAdoption/README.md)
 
 **Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, é importante notar que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.

@@ -1,60 +1,66 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "affcf199a44f60283a289dcb69dc144e",
-  "translation_date": "2025-07-17T09:10:40+00:00",
+  "original_hash": "8358c13b5b6877e475674697cdc1a904",
+  "translation_date": "2025-08-18T15:24:48+00:00",
   "source_file": "03-GettingStarted/02-client/complete_examples.md",
   "language_code": "da"
 }
 -->
-# Færdige MCP Client Eksempler
+# Komplette MCP-klienteksempler
 
-Denne mappe indeholder komplette, fungerende eksempler på MCP clients i forskellige programmeringssprog. Hver client demonstrerer den fulde funktionalitet beskrevet i hoved-README.md tutorialen.
+Denne mappe indeholder komplette, fungerende eksempler på MCP-klienter i forskellige programmeringssprog. Hver klient demonstrerer den fulde funktionalitet, der er beskrevet i hovedvejledningen README.md.
 
-## Tilgængelige Clients
+## Tilgængelige klienter
 
-### 1. Java Client (`client_example_java.java`)
+### 1. Java-klient (`client_example_java.java`)
+
 - **Transport**: SSE (Server-Sent Events) over HTTP
 - **Målserver**: `http://localhost:8080`
-- **Funktioner**: 
+- **Funktioner**:
   - Oprettelse af forbindelse og ping
   - Liste over værktøjer
-  - Lommeregner-operationer (add, subtract, multiply, divide, help)
+  - Regnefunktioner (plus, minus, gange, dividere, hjælp)
   - Fejlhåndtering og resultatudtrækning
 
-**For at køre:**
+**Sådan køres:**
+
 ```bash
 # Ensure your MCP server is running on localhost:8080
 javac client_example_java.java
 java client_example_java
 ```
 
-### 2. C# Client (`client_example_csharp.cs`)
+### 2. C#-klient (`client_example_csharp.cs`)
+
 - **Transport**: Stdio (Standard Input/Output)
-- **Målserver**: Lokal .NET MCP server via dotnet run
+- **Målserver**: Lokal .NET MCP-server via dotnet run
 - **Funktioner**:
-  - Automatisk serverstart via stdio transport
+  - Automatisk serverstart via stdio-transport
   - Liste over værktøjer og ressourcer
-  - Lommeregner-operationer
-  - JSON resultatparsing
+  - Regnefunktioner
+  - JSON-resultatparsing
   - Omfattende fejlhåndtering
 
-**For at køre:**
+**Sådan køres:**
+
 ```bash
 dotnet run
 ```
 
-### 3. TypeScript Client (`client_example_typescript.ts`)
+### 3. TypeScript-klient (`client_example_typescript.ts`)
+
 - **Transport**: Stdio (Standard Input/Output)
-- **Målserver**: Lokal Node.js MCP server
+- **Målserver**: Lokal Node.js MCP-server
 - **Funktioner**:
-  - Fuld MCP protokol support
-  - Værktøjer, ressourcer og prompt-operationer
-  - Lommeregner-operationer
-  - Ressourcelæsning og prompt-eksekvering
+  - Fuld MCP-protokolunderstøttelse
+  - Værktøjs-, ressource- og promptoperationer
+  - Regnefunktioner
+  - Læsning af ressourcer og udførelse af prompts
   - Robust fejlhåndtering
 
-**For at køre:**
+**Sådan køres:**
+
 ```bash
 # First compile TypeScript (if needed)
 npm run build
@@ -65,27 +71,29 @@ npm run client
 node client_example_typescript.js
 ```
 
-### 4. Python Client (`client_example_python.py`)
+### 4. Python-klient (`client_example_python.py`)
+
 - **Transport**: Stdio (Standard Input/Output)  
-- **Målserver**: Lokal Python MCP server
+- **Målserver**: Lokal Python MCP-server
 - **Funktioner**:
-  - Async/await mønster til operationer
+  - Async/await-mønster til operationer
   - Opdagelse af værktøjer og ressourcer
-  - Test af lommeregner-operationer
+  - Test af regnefunktioner
   - Læsning af ressourceindhold
   - Klassebaseret organisering
 
-**For at køre:**
+**Sådan køres:**
+
 ```bash
 python client_example_python.py
 ```
 
-## Fælles Funktioner på Tværs af Alle Clients
+## Fælles funktioner på tværs af alle klienter
 
-Hver client-implementering demonstrerer:
+Hver klientimplementering demonstrerer:
 
-1. **Forbindelsesstyring**
-   - Oprettelse af forbindelse til MCP server
+1. **Forbindelseshåndtering**
+   - Oprettelse af forbindelse til MCP-serveren
    - Håndtering af forbindelsesfejl
    - Korrekt oprydning og ressourcehåndtering
 
@@ -94,15 +102,15 @@ Hver client-implementering demonstrerer:
    - Liste over tilgængelige ressourcer (hvor understøttet)
    - Liste over tilgængelige prompts (hvor understøttet)
 
-3. **Værktøjskald**
-   - Grundlæggende lommeregner-operationer (add, subtract, multiply, divide)
-   - Help-kommando for serverinformation
-   - Korrekt argumentoverførsel og resultatbehandling
+3. **Værktøjsanvendelse**
+   - Grundlæggende regnefunktioner (plus, minus, gange, dividere)
+   - Hjælpekommando for serverinformation
+   - Korrekt argumentoverførsel og resultathåndtering
 
 4. **Fejlhåndtering**
    - Forbindelsesfejl
    - Fejl ved værktøjsudførelse
-   - Elegant fejlhåndtering og brugerfeedback
+   - Graciøs fejlhåndtering og brugerfeedback
 
 5. **Resultatbehandling**
    - Udtrækning af tekstindhold fra svar
@@ -111,52 +119,53 @@ Hver client-implementering demonstrerer:
 
 ## Forudsætninger
 
-Før du kører disse clients, skal du sikre dig:
+Før du kører disse klienter, skal du sikre dig:
 
-1. **At den tilsvarende MCP server kører** (fra `../01-first-server/`)
-2. **At nødvendige afhængigheder er installeret** for dit valgte sprog
-3. **At der er korrekt netværksforbindelse** (for HTTP-baserede transports)
+1. **Den tilsvarende MCP-server kører** (fra `../01-first-server/`)
+2. **Nødvendige afhængigheder er installeret** for det valgte sprog
+3. **Korrekt netværksforbindelse** (for HTTP-baserede transporter)
 
-## Væsentlige Forskelle Mellem Implementeringerne
+## Vigtige forskelle mellem implementeringer
 
-| Sprog      | Transport | Serverstart    | Async Model | Vigtige Biblioteker |
-|------------|-----------|----------------|-------------|--------------------|
+| Sprog      | Transport | Serverstart    | Async-model | Nøglebiblioteker    |
+|------------|-----------|----------------|-------------|---------------------|
 | Java       | SSE/HTTP  | Ekstern        | Synkron     | WebFlux, MCP SDK    |
 | C#         | Stdio     | Automatisk     | Async/Await | .NET MCP SDK        |
 | TypeScript | Stdio     | Automatisk     | Async/Await | Node MCP SDK        |
 | Python     | Stdio     | Automatisk     | AsyncIO     | Python MCP SDK      |
+| Rust       | Stdio     | Automatisk     | Async/Await | Rust MCP SDK, Tokio |
 
-## Næste Skridt
+## Næste skridt
 
-Efter at have gennemgået disse client-eksempler:
+Efter at have udforsket disse klienteksempler:
 
-1. **Ændr clients** for at tilføje nye funktioner eller operationer
-2. **Lav din egen server** og test den med disse clients
-3. **Eksperimenter med forskellige transports** (SSE vs. Stdio)
-4. **Byg en mere kompleks applikation** der integrerer MCP funktionalitet
+1. **Tilpas klienterne** for at tilføje nye funktioner eller operationer
+2. **Opret din egen server** og test den med disse klienter
+3. **Eksperimentér med forskellige transporter** (SSE vs. Stdio)
+4. **Byg en mere kompleks applikation** der integrerer MCP-funktionalitet
 
 ## Fejlfinding
 
-### Almindelige Problemer
+### Almindelige problemer
 
-1. **Connection refused**: Sørg for at MCP serveren kører på den forventede port/sti
-2. **Module not found**: Installer den nødvendige MCP SDK til dit sprog
-3. **Permission denied**: Tjek filrettigheder for stdio transport
-4. **Tool not found**: Bekræft at serveren implementerer de forventede værktøjer
+1. **Forbindelse nægtet**: Sørg for, at MCP-serveren kører på den forventede port/sti
+2. **Modul ikke fundet**: Installer det nødvendige MCP SDK for dit sprog
+3. **Adgang nægtet**: Tjek filrettigheder for stdio-transport
+4. **Værktøj ikke fundet**: Bekræft, at serveren implementerer de forventede værktøjer
 
-### Debug Tips
+### Debug-tips
 
-1. **Aktivér detaljeret logning** i din MCP SDK
-2. **Tjek serverlogs** for fejlmeddelelser
-3. **Bekræft at værktøjsnavne og signaturer** stemmer overens mellem client og server
-4. **Test først med MCP Inspector** for at validere serverfunktionalitet
+1. **Aktivér detaljeret logning** i dit MCP SDK
+2. **Tjek serverlogfiler** for fejlmeddelelser
+3. **Bekræft værktøjsnavne og signaturer** stemmer overens mellem klient og server
+4. **Test med MCP Inspector** først for at validere serverfunktionalitet
 
-## Relateret Dokumentation
+## Relateret dokumentation
 
-- [Main Client Tutorial](./README.md)
-- [MCP Server Examples](../../../../03-GettingStarted/01-first-server)
-- [MCP with LLM Integration](../../../../03-GettingStarted/03-llm-client)
-- [Official MCP Documentation](https://modelcontextprotocol.io/)
+- [Hovedvejledning til klienter](./README.md)
+- [MCP-servereksempler](../../../../03-GettingStarted/01-first-server)
+- [MCP med LLM-integration](../../../../03-GettingStarted/03-llm-client)
+- [Officiel MCP-dokumentation](https://modelcontextprotocol.io/)
 
 **Ansvarsfraskrivelse**:  
-Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, bedes du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det oprindelige dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os intet ansvar for misforståelser eller fejltolkninger, der opstår som følge af brugen af denne oversættelse.
+Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, skal det bemærkes, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det originale dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi er ikke ansvarlige for eventuelle misforståelser eller fejltolkninger, der måtte opstå som følge af brugen af denne oversættelse.

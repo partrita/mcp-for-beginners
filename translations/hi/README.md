@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "35fe22b9167cb7be62fddbcf53a255f4",
-  "translation_date": "2025-07-17T09:49:39+00:00",
+  "original_hash": "0bb2a83ef33c1506d42d73902a95aa0b",
+  "translation_date": "2025-10-11T10:30:49+00:00",
   "source_file": "README.md",
   "language_code": "hi"
 }
@@ -22,241 +22,278 @@ CO_OP_TRANSLATOR_METADATA:
 [![Microsoft Azure AI Foundry Discord](https://dcbadge.limes.pink/api/server/ByRwuEEgH4)](https://discord.com/invite/ByRwuEEgH4)
 
 इन संसाधनों का उपयोग शुरू करने के लिए निम्नलिखित चरणों का पालन करें:
-1. **रिपॉजिटरी को Fork करें**: क्लिक करें [![GitHub forks](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
-2. **रिपॉजिटरी को Clone करें**:   `git clone https://github.com/microsoft/mcp-for-beginners.git`
-3. [**Azure AI Foundry Discord में शामिल हों और विशेषज्ञों तथा अन्य डेवलपर्स से मिलें**](https://discord.com/invite/ByRwuEEgH4)
+1. **रेपॉजिटरी को फोर्क करें**: क्लिक करें [![GitHub forks](https://img.shields.io/github/forks/microsoft/mcp-for-beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/mcp-for-beginners/fork)
+2. **रेपॉजिटरी को क्लोन करें**:   `git clone https://github.com/microsoft/mcp-for-beginners.git`
+3. [**Azure AI Foundry Discord से जुड़ें और विशेषज्ञों व अन्य डेवलपर्स से मिलें**](https://discord.com/invite/ByRwuEEgH4)
 
 
 ### 🌐 बहुभाषी समर्थन
 
-#### GitHub Action के माध्यम से समर्थित (स्वचालित और हमेशा अपडेटेड)
+#### GitHub Action के माध्यम से समर्थित (स्वचालित और हमेशा अद्यतन)
 
-[French](../fr/README.md) | [Spanish](../es/README.md) | [German](../de/README.md) | [Russian](../ru/README.md) | [Arabic](../ar/README.md) | [Persian (Farsi)](../fa/README.md) | [Urdu](../ur/README.md) | [Chinese (Simplified)](../zh/README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Japanese](../ja/README.md) | [Korean](../ko/README.md) | [Hindi](./README.md) | [Bengali](../bn/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Portuguese (Brazil)](../br/README.md) | [Italian](../it/README.md) | [Polish](../pl/README.md) | [Turkish](../tr/README.md) | [Greek](../el/README.md) | [Thai](../th/README.md) | [Swedish](../sv/README.md) | [Danish](../da/README.md) | [Norwegian](../no/README.md) | [Finnish](../fi/README.md) | [Dutch](../nl/README.md) | [Hebrew](../he/README.md) | [Vietnamese](../vi/README.md) | [Indonesian](../id/README.md) | [Malay](../ms/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Swahili](../sw/README.md) | [Hungarian](../hu/README.md) | [Czech](../cs/README.md) | [Slovak](../sk/README.md) | [Romanian](../ro/README.md) | [Bulgarian](../bg/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Croatian](../hr/README.md) | [Slovenian](../sl/README.md) | [Ukrainian](../uk/README.md) | [Burmese (Myanmar)](../my/README.md)
+<!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
+[अरबी](../ar/README.md) | [बंगाली](../bn/README.md) | [बुल्गेरियन](../bg/README.md) | [बर्मी (म्यांमार)](../my/README.md) | [चीनी (सरलीकृत)](../zh/README.md) | [चीनी (पारंपरिक, हांगकांग)](../hk/README.md) | [चीनी (पारंपरिक, मकाऊ)](../mo/README.md) | [चीनी (पारंपरिक, ताइवान)](../tw/README.md) | [क्रोएशियन](../hr/README.md) | [चेक](../cs/README.md) | [डेनिश](../da/README.md) | [डच](../nl/README.md) | [एस्टोनियन](../et/README.md) | [फिनिश](../fi/README.md) | [फ्रेंच](../fr/README.md) | [जर्मन](../de/README.md) | [ग्रीक](../el/README.md) | [हिब्रू](../he/README.md) | [हिंदी](./README.md) | [हंगेरियन](../hu/README.md) | [इंडोनेशियन](../id/README.md) | [इतालवी](../it/README.md) | [जापानी](../ja/README.md) | [कोरियाई](../ko/README.md) | [लिथुआनियन](../lt/README.md) | [मलय](../ms/README.md) | [मराठी](../mr/README.md) | [नेपाली](../ne/README.md) | [नॉर्वेजियन](../no/README.md) | [फारसी (फारसी)](../fa/README.md) | [पोलिश](../pl/README.md) | [पुर्तगाली (ब्राज़ील)](../br/README.md) | [पुर्तगाली (पुर्तगाल)](../pt/README.md) | [पंजाबी (गुरमुखी)](../pa/README.md) | [रोमानियन](../ro/README.md) | [रूसी](../ru/README.md) | [सर्बियन (सिरिलिक)](../sr/README.md) | [स्लोवाक](../sk/README.md) | [स्लोवेनियन](../sl/README.md) | [स्पेनिश](../es/README.md) | [स्वाहिली](../sw/README.md) | [स्वीडिश](../sv/README.md) | [टैगालोग (फिलिपिनो)](../tl/README.md) | [तमिल](../ta/README.md) | [थाई](../th/README.md) | [तुर्की](../tr/README.md) | [यूक्रेनी](../uk/README.md) | [उर्दू](../ur/README.md) | [वियतनामी](../vi/README.md)
+<!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
-# 🚀 Model Context Protocol (MCP) शुरुआती के लिए पाठ्यक्रम
+# 🚀 मॉडल कॉन्टेक्स्ट प्रोटोकॉल (MCP) शुरुआती लोगों के लिए पाठ्यक्रम
 
-## **C#, Java, JavaScript, Python, और TypeScript में हैंड्स-ऑन कोड उदाहरणों के साथ MCP सीखें**
+## **C#, Java, JavaScript, Rust, Python, और TypeScript में कोड उदाहरणों के साथ MCP सीखें**
 
-## 🧠 Model Context Protocol पाठ्यक्रम का अवलोकन
+## 🧠 मॉडल कॉन्टेक्स्ट प्रोटोकॉल पाठ्यक्रम का अवलोकन
 
-**Model Context Protocol (MCP)** एक अत्याधुनिक फ्रेमवर्क है जो AI मॉडल और क्लाइंट एप्लिकेशन के बीच इंटरैक्शन को मानकीकृत करने के लिए बनाया गया है। यह ओपन-सोर्स पाठ्यक्रम एक संरचित सीखने का मार्ग प्रदान करता है, जिसमें व्यावहारिक कोडिंग उदाहरण और वास्तविक दुनिया के उपयोग के मामले शामिल हैं, जो लोकप्रिय प्रोग्रामिंग भाषाओं जैसे C#, Java, JavaScript, TypeScript, और Python में उपलब्ध हैं।
+**मॉडल कॉन्टेक्स्ट प्रोटोकॉल (MCP)** एक अत्याधुनिक फ्रेमवर्क है जो AI मॉडल और क्लाइंट एप्लिकेशन के बीच इंटरैक्शन को मानकीकृत करने के लिए डिज़ाइन किया गया है। यह ओपन-सोर्स पाठ्यक्रम एक संरचित सीखने का मार्ग प्रदान करता है, जिसमें लोकप्रिय प्रोग्रामिंग भाषाओं जैसे C#, Java, JavaScript, TypeScript, और Python में व्यावहारिक कोड उदाहरण और वास्तविक दुनिया के उपयोग के मामले शामिल हैं।
 
-चाहे आप AI डेवलपर हों, सिस्टम आर्किटेक्ट हों, या सॉफ्टवेयर इंजीनियर, यह गाइड MCP के मूल सिद्धांतों और कार्यान्वयन रणनीतियों को समझने के लिए आपका व्यापक संसाधन है।
+चाहे आप एक AI डेवलपर हों, सिस्टम आर्किटेक्ट हों, या सॉफ़्टवेयर इंजीनियर हों, यह गाइड MCP की मूल बातें और कार्यान्वयन रणनीतियों को मास्टर करने के लिए आपका व्यापक संसाधन है।
 
 ## 🔗 आधिकारिक MCP संसाधन
 
-- 📘 [MCP Documentation](https://modelcontextprotocol.io/) – विस्तृत ट्यूटोरियल और उपयोगकर्ता गाइड  
-- 📜 [MCP Specification](https://modelcontextprotocol.io/docs/) – प्रोटोकॉल आर्किटेक्चर और तकनीकी संदर्भ  
-- 📜 [Original MCP Specification](https://spec.modelcontextprotocol.io/) – पुराना तकनीकी संदर्भ (अतिरिक्त विवरण हो सकते हैं)  
-- 🧑‍💻 [MCP GitHub Repository](https://github.com/modelcontextprotocol) – ओपन-सोर्स SDK, टूल्स, और कोड उदाहरण
-- 🌐 [MCP Community](https://github.com/orgs/modelcontextprotocol/discussions) – चर्चाओं में शामिल हों और समुदाय में योगदान करें
-
-## MCP Dev Days 29-30 जुलाई 2025 में हमारे साथ जुड़ें
-
-MCP Dev Days के लिए तैयार हो जाइए, जो Model Context Protocol (MCP) को समर्पित एक वर्चुअल इवेंट है — यह दो दिन का गहरा तकनीकी ज्ञान, समुदाय से जुड़ाव, और व्यावहारिक सीखने का अवसर है, जो AI मॉडल और उनके टूल्स के बीच पुल का काम करता है।
-
-➡️ [MCP Dev Days के लिए रजिस्टर करें](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
-
-आप MCP Dev Days को हमारे इवेंट पेज https://aka.ms/mcpdevdays पर रजिस्टर करके देख सकते हैं। वहां से आप YouTube या Twitch पर लाइव स्ट्रीम में शामिल हो सकेंगे। सभी सामग्री रिकॉर्ड की जाएगी और बाद में Microsoft Developer YouTube चैनल पर उपलब्ध होगी। डेमो के सोर्स कोड GitHub पर भी उपलब्ध होंगे।
-
-### इवेंट विवरण
-- तिथियाँ: 29 जुलाई (दिन 1) और 30 जुलाई (दिन 2)
-- समय: रोजाना सुबह 9:00 बजे PST
-- स्थान: ऑनलाइन – कहीं से भी जुड़ें!
-
-#### दिन 1: MCP उत्पादकता, DevTools, और समुदाय:
-
-यह डेवलपर्स को MCP को उनके डेवलपर वर्कफ़्लो में उपयोग करने के लिए सशक्त बनाने और अद्भुत MCP समुदाय का जश्न मनाने के बारे में है। हम Arcade, Block, Okta, और Neon जैसे समुदाय के सदस्यों और भागीदारों के साथ जुड़ेंगे, जो Microsoft के साथ मिलकर एक खुला, विस्तार योग्य MCP इकोसिस्टम बना रहे हैं। VS Code, Visual Studio, GitHub Copilot, और लोकप्रिय समुदाय टूल्स में वास्तविक दुनिया के डेमो
-व्यावहारिक, संदर्भ-आधारित डेवलपर वर्कफ़्लो
-समुदाय द्वारा संचालित सत्र और अंतर्दृष्टि
-चाहे आप MCP के साथ अभी शुरुआत कर रहे हों या पहले से ही इसका उपयोग कर रहे हों, दिन 1 प्रेरणा और व्यावहारिक सुझावों के साथ मंच तैयार करेगा।
-
-#### दिन 2: आत्मविश्वास के साथ MCP सर्वर बनाएं
-
-यह MCP बिल्डर्स के लिए है। हम MCP सर्वर बनाने और MCP को आपके AI वर्कफ़्लो में एकीकृत करने के लिए कार्यान्वयन रणनीतियों और सर्वोत्तम प्रथाओं में गहराई से जाएंगे।
-
-### विषयों में शामिल हैं:
-
-- MCP सर्वर बनाना और उन्हें एजेंट अनुभवों में एकीकृत करना
-- प्रॉम्प्ट-चालित विकास
-- सुरक्षा सर्वोत्तम प्रथाएं
-- Functions, ACA, और API Management जैसे बिल्डिंग ब्लॉक्स का उपयोग
-- रजिस्ट्री संरेखण और टूलिंग (1P + 3P)
-
-यदि आप डेवलपर, टूल बिल्डर, या AI उत्पाद रणनीतिकार हैं, तो यह दिन स्केलेबल, सुरक्षित, और भविष्य के लिए तैयार MCP समाधान बनाने के लिए आवश्यक अंतर्दृष्टि से भरा होगा।
+- 📘 [MCP दस्तावेज़ीकरण](https://modelcontextprotocol.io/) – विस्तृत ट्यूटोरियल और उपयोगकर्ता गाइड  
+- 📜 [MCP विनिर्देश](https://modelcontextprotocol.io/docs/) – प्रोटोकॉल आर्किटेक्चर और तकनीकी संदर्भ  
+- 📜 [मूल MCP विनिर्देश](https://spec.modelcontextprotocol.io/) – पुरानी तकनीकी संदर्भ (अतिरिक्त विवरण हो सकते हैं)  
+- 🧑‍💻 [MCP GitHub रेपॉजिटरी](https://github.com/modelcontextprotocol) – ओपन-सोर्स SDKs, टूल्स, और कोड नमूने
+- 🌐 [MCP समुदाय](https://github.com/orgs/modelcontextprotocol/discussions) – चर्चाओं में शामिल हों और समुदाय में योगदान दें
 
 ## 🧭 MCP पाठ्यक्रम का अवलोकन
 
-### 📚 पूर्ण पाठ्यक्रम संरचना
+### 📚 पूरा पाठ्यक्रम संरचना
 
 | मॉड्यूल | विषय | विवरण | लिंक |
 |--------|-------|-------------|------|
 | **मॉड्यूल 1-3: मूल बातें** | | | |
-| 00 | MCP का परिचय | Model Context Protocol का अवलोकन और AI पाइपलाइनों में इसका महत्व | [और पढ़ें](./00-Introduction/README.md) |
-| 01 | कोर कॉन्सेप्ट्स की व्याख्या | MCP के मुख्य सिद्धांतों की गहन खोज | [और पढ़ें](./01-CoreConcepts/README.md) |
-| 02 | MCP में सुरक्षा | सुरक्षा खतरों और सर्वोत्तम प्रथाओं का परिचय | [और पढ़ें](./02-Security/README.md) |
-| 03 | MCP के साथ शुरुआत | पर्यावरण सेटअप, बेसिक सर्वर/क्लाइंट, एकीकरण | [और पढ़ें](./03-GettingStarted/README.md) |
+| 00 | MCP का परिचय | मॉडल कॉन्टेक्स्ट प्रोटोकॉल और AI पाइपलाइनों में इसका महत्व | [अधिक पढ़ें](./00-Introduction/README.md) |
+| 01 | मुख्य अवधारणाओं की व्याख्या | MCP की मुख्य अवधारणाओं की गहन खोज | [अधिक पढ़ें](./01-CoreConcepts/README.md) |
+| 02 | MCP में सुरक्षा | सुरक्षा खतरों और सर्वोत्तम प्रथाओं | [अधिक पढ़ें](./02-Security/README.md) |
+| 03 | MCP के साथ शुरुआत | पर्यावरण सेटअप, बुनियादी सर्वर/क्लाइंट, एकीकरण | [अधिक पढ़ें](./03-GettingStarted/README.md) |
 | **मॉड्यूल 3: अपना पहला सर्वर और क्लाइंट बनाना** | | | |
 | 3.1 | पहला सर्वर | अपना पहला MCP सर्वर बनाएं | [गाइड](./03-GettingStarted/01-first-server/README.md) |
-| 3.2 | पहला क्लाइंट | एक बेसिक MCP क्लाइंट विकसित करें | [गाइड](./03-GettingStarted/02-client/README.md) |
+| 3.2 | पहला क्लाइंट | एक बुनियादी MCP क्लाइंट विकसित करें | [गाइड](./03-GettingStarted/02-client/README.md) |
 | 3.3 | LLM के साथ क्लाइंट | बड़े भाषा मॉडल को एकीकृत करें | [गाइड](./03-GettingStarted/03-llm-client/README.md) |
-| 3.4 | VS Code एकीकरण | VS Code में MCP सर्वर का उपयोग करें | [गाइड](./03-GettingStarted/04-vscode/README.md) |
-| 3.5 | SSE सर्वर | Server-Sent Events का उपयोग करके सर्वर बनाएं | [गाइड](./03-GettingStarted/05-sse-server/README.md) |
+| 3.4 | VS कोड एकीकरण | MCP सर्वरों को VS कोड में उपयोग करें | [गाइड](./03-GettingStarted/04-vscode/README.md) |
+| 3.5 | stdio सर्वर | stdio ट्रांसपोर्ट का उपयोग करके सर्वर बनाएं | [गाइड](./03-GettingStarted/05-stdio-server/README.md) |
 | 3.6 | HTTP स्ट्रीमिंग | MCP में HTTP स्ट्रीमिंग लागू करें | [गाइड](./03-GettingStarted/06-http-streaming/README.md) |
 | 3.7 | AI टूलकिट | MCP के साथ AI टूलकिट का उपयोग करें | [गाइड](./03-GettingStarted/07-aitk/README.md) |
-| 3.8 | परीक्षण | अपने MCP सर्वर के कार्यान्वयन का परीक्षण करें | [गाइड](./03-GettingStarted/08-testing/README.md) |
-| 3.9 | तैनाती | MCP सर्वरों को प्रोडक्शन में तैनात करें | [गाइड](./03-GettingStarted/09-deployment/README.md) |
+| 3.8 | परीक्षण | अपने MCP सर्वर कार्यान्वयन का परीक्षण करें | [गाइड](./03-GettingStarted/08-testing/README.md) |
+| 3.9 | परिनियोजन | MCP सर्वरों को उत्पादन में परिनियोजित करें | [गाइड](./03-GettingStarted/09-deployment/README.md) |
+| 3.10 | उन्नत सर्वर उपयोग | उन्नत सुविधाओं और बेहतर आर्किटेक्चर के लिए उन्नत सर्वरों का उपयोग करें | [गाइड](./03-GettingStarted/10-advanced/README.md) |
+| 3.11 | सरल प्रमाणीकरण | शुरुआत से प्रमाणीकरण और RBAC दिखाने वाला एक अध्याय | [गाइड](./03-GettingStarted/11-simple-auth/README.md) |
 | **मॉड्यूल 4-5: व्यावहारिक और उन्नत** | | | |
-| 04 | व्यावहारिक कार्यान्वयन | SDKs, डिबगिंग, परीक्षण, पुन: उपयोग योग्य प्रॉम्प्ट टेम्पलेट्स | [और पढ़ें](./04-PracticalImplementation/README.md) |
-| 05 | MCP में उन्नत विषय | मल्टी-मॉडल AI, स्केलिंग, एंटरप्राइज उपयोग | [और पढ़ें](./05-AdvancedTopics/README.md) |
-| 5.1 | Azure एकीकरण | Azure के साथ MCP एकीकरण | [गाइड](./05-AdvancedTopics/mcp-integration/README.md) |
-| 5.2 | मल्टी-मॉडैलिटी | कई मोडैलिटी के साथ काम करना | [गाइड](./05-AdvancedTopics/mcp-multi-modality/README.md) |
+| 04 | व्यावहारिक कार्यान्वयन | SDKs, डिबगिंग, परीक्षण, पुन: उपयोग योग्य प्रॉम्प्ट टेम्पलेट्स | [अधिक पढ़ें](./04-PracticalImplementation/README.md) |
+| 05 | MCP में उन्नत विषय | मल्टी-मोडल AI, स्केलिंग, एंटरप्राइज़ उपयोग | [अधिक पढ़ें](./05-AdvancedTopics/README.md) |
+| 5.1 | Azure एकीकरण | MCP का Azure के साथ एकीकरण | [गाइड](./05-AdvancedTopics/mcp-integration/README.md) |
+| 5.2 | मल्टी-मोडालिटी | कई मोडालिटी के साथ काम करना | [गाइड](./05-AdvancedTopics/mcp-multi-modality/README.md) |
 | 5.3 | OAuth2 डेमो | OAuth2 प्रमाणीकरण लागू करें | [गाइड](./05-AdvancedTopics/mcp-oauth2-demo/README.md) |
 | 5.4 | रूट कॉन्टेक्स्ट | रूट कॉन्टेक्स्ट को समझें और लागू करें | [गाइड](./05-AdvancedTopics/mcp-root-contexts/README.md) |
 | 5.5 | रूटिंग | MCP रूटिंग रणनीतियाँ | [गाइड](./05-AdvancedTopics/mcp-routing/README.md) |
 | 5.6 | सैंपलिंग | MCP में सैंपलिंग तकनीकें | [गाइड](./05-AdvancedTopics/mcp-sampling/README.md) |
-| 5.7 | स्केलिंग | MCP कार्यान्वयन का स्केलिंग | [गाइड](./05-AdvancedTopics/mcp-scaling/README.md) |
+| 5.7 | स्केलिंग | MCP कार्यान्वयन को स्केल करें | [गाइड](./05-AdvancedTopics/mcp-scaling/README.md) |
 | 5.8 | सुरक्षा | उन्नत सुरक्षा विचार | [गाइड](./05-AdvancedTopics/mcp-security/README.md) |
-| 5.9 | वेब सर्च | वेब सर्च क्षमताओं को लागू करें | [गाइड](./05-AdvancedTopics/web-search-mcp/README.md) |
-| 5.10 | रियलटाइम स्ट्रीमिंग | रियलटाइम स्ट्रीमिंग कार्यक्षमता बनाएं | [गाइड](./05-AdvancedTopics/mcp-realtimestreaming/README.md) |
-| 5.11 | रियलटाइम सर्च | रियलटाइम सर्च लागू करें | [गाइड](./05-AdvancedTopics/mcp-realtimesearch/README.md) |
-| 5.12 | Entra ID Auth | Microsoft Entra ID के साथ प्रमाणीकरण | [Guide](./05-AdvancedTopics/mcp-security-entra/README.md) |
-| 5.13 | Foundry Integration | Azure AI Foundry के साथ एकीकरण | [Guide](./05-AdvancedTopics/mcp-foundry-agent-integration/README.md) |
-| 5.14 | Context Engineering | प्रभावी संदर्भ इंजीनियरिंग के तकनीक | [Guide](./05-AdvancedTopics/mcp-contextengineering/README.md) |
-| **Module 6-10: Community & Best Practices** | | | |
-| 06 | Community Contributions | MCP इकोसिस्टम में योगदान कैसे करें | [Guide](./06-CommunityContributions/README.md) |
-| 07 | Insights from Early Adoption | वास्तविक दुनिया के कार्यान्वयन कहानियाँ | [Guide](./07-LessonsFromEarlyAdoption/README.md) |
-| 08 | Best Practices for MCP | प्रदर्शन, दोष-सहनशीलता, लचीलापन | [Guide](./08-BestPractices/README.md) |
-| 09 | MCP Case Studies | व्यावहारिक कार्यान्वयन उदाहरण | [Guide](./09-CaseStudy/README.md) |
-| 10 | Hands-on Workshop | AI Toolkit के साथ MCP सर्वर बनाना | [Lab](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
+| 5.9 | वेब खोज | वेब खोज क्षमताओं को लागू करें | [गाइड](./05-AdvancedTopics/web-search-mcp/README.md) |
+| 5.10 | रीयलटाइम स्ट्रीमिंग | रीयलटाइम स्ट्रीमिंग कार्यक्षमता बनाएं | [गाइड](./05-AdvancedTopics/mcp-realtimestreaming/README.md) |
+| 5.11 | रीयलटाइम खोज | रीयलटाइम खोज लागू करें | [गाइड](./05-AdvancedTopics/mcp-realtimesearch/README.md) |
+| 5.12 | Entra ID प्रमाणीकरण | Microsoft Entra ID के साथ प्रमाणीकरण | [गाइड](./05-AdvancedTopics/mcp-security-entra/README.md) |
+| 5.13 | Foundry एकीकरण | Azure AI Foundry के साथ एकीकरण | [गाइड](./05-AdvancedTopics/mcp-foundry-agent-integration/README.md) |
+| 5.14 | कॉन्टेक्स्ट इंजीनियरिंग | प्रभावी कॉन्टेक्स्ट इंजीनियरिंग के लिए तकनीकें | [गाइड](./05-AdvancedTopics/mcp-contextengineering/README.md) |
+| 5.15 | MCP कस्टम ट्रांसपोर्ट | कस्टम ट्रांसपोर्ट कार्यान्वयन | [गाइड](./05-AdvancedTopics/mcp-transport/README.md) |
+| **मॉड्यूल 6-10: समुदाय और सर्वोत्तम प्रथाएँ** | | | |
+| 06 | सामुदायिक योगदान | MCP इकोसिस्टम में योगदान कैसे करें | [गाइड](./06-CommunityContributions/README.md) |
+| 07 | प्रारंभिक अपनाने से अंतर्दृष्टि | वास्तविक दुनिया के कार्यान्वयन की कहानियाँ | [गाइड](./07-LessonsFromEarlyAdoption/README.md) |
+| 08 | MCP के लिए सर्वोत्तम प्रथाएँ | प्रदर्शन, दोष-सहनशीलता, लचीलापन | [गाइड](./08-BestPractices/README.md) |
+| 09 | MCP केस स्टडी | व्यावहारिक कार्यान्वयन उदाहरण | [गाइड](./09-CaseStudy/README.md) |
+| 10 | हैंड्स-ऑन वर्कशॉप | AI टूलकिट के साथ MCP सर्वर बनाना | [लैब](./10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md) |
+| **मॉड्यूल 11: MCP सर्वर हैंड्स-ऑन लैब** | | | |
+| 11 | MCP सर्वर डेटाबेस इंटीग्रेशन | PostgreSQL इंटीग्रेशन के लिए व्यापक 13-लैब हैंड्स-ऑन लर्निंग पाथ | [Labs](./11-MCPServerHandsOnLabs/README.md) |
+| 11.1 | परिचय | डेटाबेस इंटीग्रेशन और रिटेल एनालिटिक्स उपयोग केस के साथ MCP का अवलोकन | [Lab 00](./11-MCPServerHandsOnLabs/00-Introduction/README.md) |
+| 11.2 | कोर आर्किटेक्चर | MCP सर्वर आर्किटेक्चर, डेटाबेस लेयर्स, और सुरक्षा पैटर्न को समझना | [Lab 01](./11-MCPServerHandsOnLabs/01-Architecture/README.md) |
+| 11.3 | सुरक्षा और मल्टी-टेनेंसी | रो लेवल सुरक्षा, ऑथेंटिकेशन, और मल्टी-टेनेंट डेटा एक्सेस | [Lab 02](./11-MCPServerHandsOnLabs/02-Security/README.md) |
+| 11.4 | एनवायरनमेंट सेटअप | डेवलपमेंट एनवायरनमेंट, Docker, और Azure संसाधनों को सेट करना | [Lab 03](./11-MCPServerHandsOnLabs/03-Setup/README.md) |
+| 11.5 | डेटाबेस डिज़ाइन | PostgreSQL सेटअप, रिटेल स्कीमा डिज़ाइन, और सैंपल डेटा | [Lab 04](./11-MCPServerHandsOnLabs/04-Database/README.md) |
+| 11.6 | MCP सर्वर इंप्लीमेंटेशन | डेटाबेस इंटीग्रेशन के साथ FastMCP सर्वर बनाना | [Lab 05](./11-MCPServerHandsOnLabs/05-MCP-Server/README.md) |
+| 11.7 | टूल डेवलपमेंट | डेटाबेस क्वेरी टूल्स और स्कीमा इंट्रोस्पेक्शन बनाना | [Lab 06](./11-MCPServerHandsOnLabs/06-Tools/README.md) |
+| 11.8 | सेमांटिक सर्च | Azure OpenAI और pgvector के साथ वेक्टर एम्बेडिंग लागू करना | [Lab 07](./11-MCPServerHandsOnLabs/07-Semantic-Search/README.md) |
+| 11.9 | टेस्टिंग और डिबगिंग | टेस्टिंग रणनीतियां, डिबगिंग टूल्स, और वैलिडेशन अप्रोच | [Lab 08](./11-MCPServerHandsOnLabs/08-Testing/README.md) |
+| 11.10 | VS Code इंटीग्रेशन | VS Code MCP इंटीग्रेशन और AI चैट उपयोग को कॉन्फ़िगर करना | [Lab 09](./11-MCPServerHandsOnLabs/09-VS-Code/README.md) |
+| 11.11 | डिप्लॉयमेंट रणनीतियां | Docker डिप्लॉयमेंट, Azure Container Apps, और स्केलिंग विचार | [Lab 10](./11-MCPServerHandsOnLabs/10-Deployment/README.md) |
+| 11.12 | मॉनिटरिंग | एप्लिकेशन इनसाइट्स, लॉगिंग, प्रदर्शन मॉनिटरिंग | [Lab 11](./11-MCPServerHandsOnLabs/11-Monitoring/README.md) |
+| 11.13 | सर्वोत्तम प्रथाएं | प्रदर्शन अनुकूलन, सुरक्षा सख्ती, और प्रोडक्शन टिप्स | [Lab 12](./11-MCPServerHandsOnLabs/12-Best-Practices/README.md) |
 
-### 💻 नमूना कोड प्रोजेक्ट्स
+### 💻 सैंपल कोड प्रोजेक्ट्स
 
-#### बेसिक MCP कैलकुलेटर नमूने
+#### बेसिक MCP कैलकुलेटर सैंपल्स
 
-| Language | Description | Link |
-|----------|-------------|------|
-| C# | MCP सर्वर उदाहरण | [View Code](./03-GettingStarted/samples/csharp/README.md) |
-| Java | MCP कैलकुलेटर | [View Code](./03-GettingStarted/samples/java/calculator/README.md) |
-| JavaScript | MCP डेमो | [View Code](./03-GettingStarted/samples/javascript/README.md) |
-| Python | MCP सर्वर | [View Code](../../03-GettingStarted/samples/python/mcp_calculator_server.py) |
-| TypeScript | MCP उदाहरण | [View Code](./03-GettingStarted/samples/typescript/README.md) |
+| भाषा | विवरण | लिंक |
+|------|-------|------|
+| C# | MCP सर्वर उदाहरण | [कोड देखें](./03-GettingStarted/samples/csharp/README.md) |
+| Java | MCP कैलकुलेटर | [कोड देखें](./03-GettingStarted/samples/java/calculator/README.md) |
+| JavaScript | MCP डेमो | [कोड देखें](./03-GettingStarted/samples/javascript/README.md) |
+| Python | MCP सर्वर | [कोड देखें](../../03-GettingStarted/samples/python/mcp_calculator_server.py) |
+| TypeScript | MCP उदाहरण | [कोड देखें](./03-GettingStarted/samples/typescript/README.md) |
+| Rust | MCP उदाहरण | [कोड देखें](./03-GettingStarted/samples/rust/README.md) |
 
-#### उन्नत MCP कार्यान्वयन
+#### एडवांस्ड MCP इंप्लीमेंटेशन
 
-| Language | Description | Link |
-|----------|-------------|------|
-| C# | उन्नत नमूना | [View Code](./04-PracticalImplementation/samples/csharp/README.md) |
-| Java | कंटेनर ऐप उदाहरण | [View Code](./04-PracticalImplementation/samples/java/containerapp/README.md) |
-| JavaScript | उन्नत नमूना | [View Code](./04-PracticalImplementation/samples/javascript/README.md) |
-| Python | जटिल कार्यान्वयन | [View Code](../../04-PracticalImplementation/samples/python/mcp_sample.py) |
-| TypeScript | कंटेनर नमूना | [View Code](./04-PracticalImplementation/samples/typescript/README.md) |
+| भाषा | विवरण | लिंक |
+|------|-------|------|
+| C# | एडवांस्ड सैंपल | [कोड देखें](./04-PracticalImplementation/samples/csharp/README.md) |
+| Java with Spring | कंटेनर ऐप उदाहरण | [कोड देखें](./04-PracticalImplementation/samples/java/containerapp/README.md) |
+| JavaScript | एडवांस्ड सैंपल | [कोड देखें](./04-PracticalImplementation/samples/javascript/README.md) |
+| Python | जटिल इंप्लीमेंटेशन | [कोड देखें](../../04-PracticalImplementation/samples/python/READMEmd) |
+| TypeScript | कंटेनर सैंपल | [कोड देखें](./04-PracticalImplementation/samples/typescript/README.md) |
 
+## 🎯 MCP सीखने के लिए आवश्यकताएं
 
-## 🎯 MCP सीखने के लिए आवश्यकताएँ
+इस पाठ्यक्रम का अधिकतम लाभ उठाने के लिए, आपके पास होना चाहिए:
 
-इस पाठ्यक्रम से अधिकतम लाभ उठाने के लिए, आपके पास होना चाहिए:
+- निम्नलिखित भाषाओं में से कम से कम एक में प्रोग्रामिंग का बुनियादी ज्ञान: C#, Java, JavaScript, Python, या TypeScript  
+- क्लाइंट-सर्वर मॉडल और APIs की समझ  
+- REST और HTTP अवधारणाओं की जानकारी  
+- (वैकल्पिक) AI/ML अवधारणाओं की पृष्ठभूमि  
 
-- कम से कम एक निम्नलिखित भाषाओं में प्रोग्रामिंग का बुनियादी ज्ञान: C#, Java, JavaScript, Python, या TypeScript
-- क्लाइंट-सर्वर मॉडल और API की समझ
-- REST और HTTP अवधारणाओं से परिचित होना
-- (वैकल्पिक) AI/ML अवधारणाओं का पृष्ठभूमि ज्ञान
-
-- सहायता के लिए हमारी समुदाय चर्चाओं में शामिल होना
+- समर्थन के लिए हमारे समुदाय चर्चाओं में शामिल हों  
 
 ## 📚 अध्ययन गाइड और संसाधन
 
-यह रिपॉजिटरी आपको प्रभावी ढंग से सीखने और नेविगेट करने में मदद करने के लिए कई संसाधन प्रदान करता है:
+यह रिपॉजिटरी कई संसाधन प्रदान करती है जो आपको प्रभावी ढंग से नेविगेट करने और सीखने में मदद करती है:
 
 ### अध्ययन गाइड
 
 एक व्यापक [अध्ययन गाइड](./study_guide.md) उपलब्ध है जो आपको इस रिपॉजिटरी को प्रभावी ढंग से नेविगेट करने में मदद करता है। गाइड में शामिल हैं:
 
-- सभी विषयों को दिखाने वाला एक दृश्य पाठ्यक्रम मानचित्र
-- प्रत्येक रिपॉजिटरी अनुभाग का विस्तृत विवरण
-- नमूना प्रोजेक्ट्स का उपयोग कैसे करें इस पर मार्गदर्शन
-- विभिन्न कौशल स्तरों के लिए अनुशंसित सीखने के रास्ते
-- आपकी सीखने की यात्रा को पूरा करने के लिए अतिरिक्त संसाधन
+- सभी कवर किए गए विषयों का एक दृश्य पाठ्यक्रम मानचित्र  
+- प्रत्येक रिपॉजिटरी अनुभाग का विस्तृत विवरण  
+- सैंपल प्रोजेक्ट्स का उपयोग करने के लिए मार्गदर्शन  
+- विभिन्न कौशल स्तरों के लिए अनुशंसित सीखने के पथ  
+- आपकी सीखने की यात्रा को पूरक करने के लिए अतिरिक्त संसाधन  
 
 ### चेंजलॉग
 
 हम एक विस्तृत [चेंजलॉग](./changelog.md) बनाए रखते हैं जो पाठ्यक्रम सामग्री में सभी महत्वपूर्ण अपडेट को ट्रैक करता है, जिसमें शामिल हैं:
 
-- नई सामग्री जोड़ना
-- संरचनात्मक परिवर्तन
-- फीचर सुधार
-- दस्तावेज़ीकरण अपडेट
+- नई सामग्री जोड़ना  
+- संरचनात्मक परिवर्तन  
+- फीचर सुधार  
+- दस्तावेज़ीकरण अपडेट  
 
-## 🛠️ इस पाठ्यक्रम का प्रभावी उपयोग कैसे करें
+## 🛠️ इस पाठ्यक्रम का प्रभावी ढंग से उपयोग कैसे करें
 
 इस गाइड में प्रत्येक पाठ में शामिल हैं:
 
-1. MCP अवधारणाओं की स्पष्ट व्याख्याएँ  
+1. MCP अवधारणाओं की स्पष्ट व्याख्या  
 2. कई भाषाओं में लाइव कोड उदाहरण  
 3. वास्तविक MCP एप्लिकेशन बनाने के लिए अभ्यास  
-4. उन्नत शिक्षार्थियों के लिए अतिरिक्त संसाधन
+4. उन्नत शिक्षार्थियों के लिए अतिरिक्त संसाधन  
 
+## इवेंट्स 
 
-## 🌟 समुदाय का धन्यवाद
+### [MCP Dev Days जुलाई 2025](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+#### [➡️ ऑन डिमांड देखें - MCP Dev Days](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+MCP Dev Days में दो दिनों की गहन तकनीकी जानकारी, सामुदायिक कनेक्शन, और हैंड्स-ऑन लर्निंग के लिए तैयार हो जाएं। यह वर्चुअल इवेंट Model Context Protocol (MCP) पर केंद्रित है — एक उभरता हुआ मानक जो AI मॉडल और उनके उपयोग किए जाने वाले टूल्स के बीच पुल बनाता है।  
+आप हमारे इवेंट पेज पर रजिस्टर करके MCP Dev Days देख सकते हैं: https://aka.ms/mcpdevdays।  
 
-महत्वपूर्ण कोड नमूने प्रदान करने के लिए Microsoft Valued Professional [Shivam Goyal](https://www.linkedin.com/in/shivam2003/) का धन्यवाद। 
+#### [दिन 1: MCP उत्पादकता, DevTools, और समुदाय](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+
+डेवलपर्स को उनके डेवलपर वर्कफ़्लो में MCP का उपयोग करने और अद्भुत MCP समुदाय का जश्न मनाने के लिए सशक्त बनाने पर केंद्रित है। हम Arcade, Block, Okta, और Neon जैसे सामुदायिक सदस्यों और भागीदारों के साथ जुड़ेंगे ताकि यह देखा जा सके कि वे Microsoft के साथ मिलकर एक ओपन, एक्स्टेंसिबल MCP इकोसिस्टम को कैसे आकार दे रहे हैं।  
+- VS Code, Visual Studio, GitHub Copilot, और लोकप्रिय सामुदायिक टूल्स में वास्तविक-विश्व डेमो  
+- व्यावहारिक, संदर्भ-चालित डेवलपमेंट वर्कफ़्लो  
+- सामुदायिक नेतृत्व वाले सत्र और अंतर्दृष्टि  
+चाहे आप MCP के साथ शुरुआत कर रहे हों या पहले से ही इसके साथ निर्माण कर रहे हों, दिन 1 प्रेरणा और कार्रवाई योग्य टेकअवे के साथ मंच तैयार करेगा।  
+
+#### [दिन 2: MCP सर्वर आत्मविश्वास के साथ बनाएं](https://developer.microsoft.com/en-us/reactor/series/S-1563/)
+
+MCP बिल्डर्स के लिए है। हम MCP सर्वर बनाने और उन्हें AI वर्कफ़्लो में एकीकृत करने के लिए इंप्लीमेंटेशन रणनीतियों और सर्वोत्तम प्रथाओं में गहराई से जाएंगे।  
+
+#### विषयों में शामिल हैं:
+
+- MCP सर्वर बनाना और उन्हें एजेंट अनुभवों में एकीकृत करना  
+- प्रॉम्प्ट-चालित विकास  
+- सुरक्षा सर्वोत्तम प्रथाएं  
+- Functions, ACA, और API Management जैसे बिल्डिंग ब्लॉक्स का उपयोग करना  
+- रजिस्ट्री संरेखण और टूलिंग (1P + 3P)  
+
+यदि आप डेवलपर, टूल बिल्डर, या AI उत्पाद रणनीतिकार हैं, तो यह दिन आपको स्केलेबल, सुरक्षित, और भविष्य-तैयार MCP समाधान बनाने के लिए आवश्यक अंतर्दृष्टि प्रदान करेगा।  
+
+### MCP बूट कैंप अगस्त 2025  
+गहन वीडियो सत्रों में सीखें कि MCP सर्वर कैसे बनाएं, VS Code के साथ एकीकृत करें, और MCP फॉर बिगिनर्स पाठ्यक्रम की सामग्री के आधार पर Azure पर पेशेवर रूप से तैनात करें। व्यावहारिक कौशल के साथ बाहर निकलें जो प्रमुख कंपनियां पहले से ही उपयोग कर रही हैं।  
+
+#### [➡️ ऑन डिमांड देखें MCP बूट कैंप | अंग्रेजी](https://developer.microsoft.com/en-us/reactor/series/s-1568/)  
+#### [➡️ ऑन डिमांड देखें MCP बूट कैंप | ब्राज़ील](https://developer.microsoft.com/en-us/reactor/series/S-1566/)  
+#### [➡️ ऑन डिमांड देखें MCP बूट कैंप | स्पेनिश](https://developer.microsoft.com/en-us/reactor/series/S-1567/)  
+
+### चलिए MCP सीखते हैं C# के साथ - ट्यूटोरियल सीरीज़  
+Model Context Protocol (MCP) के बारे में जानें, एक अत्याधुनिक फ्रेमवर्क जो AI मॉडल और क्लाइंट एप्लिकेशन के बीच इंटरैक्शन को मानकीकृत करने के लिए डिज़ाइन किया गया है। इस शुरुआती-अनुकूल सत्र के माध्यम से, हम आपको MCP से परिचित कराएंगे और आपके पहले MCP सर्वर को बनाने में मार्गदर्शन करेंगे।  
+#### C#: [https://aka.ms/letslearnmcp-csharp](https://aka.ms/letslearnmcp-csharp)  
+#### Java: [https://aka.ms/letslearnmcp-java](https://aka.ms/letslearnmcp-java)  
+#### JavaScript: [https://aka.ms/letslearnmcp-javascript](https://aka.ms/letslearnmcp-javascript)  
+#### Python: [https://aka.ms/letslearnmcp-python](https://aka.ms/letslearnmcp-python)  
+
+## 🌟 सामुदायिक धन्यवाद
+
+Microsoft Valued Professional [शिवम गोयल](https://www.linkedin.com/in/shivam2003/) को महत्वपूर्ण कोड सैंपल्स में योगदान देने के लिए धन्यवाद।  
 
 ## 📜 लाइसेंस जानकारी
 
-यह सामग्री **MIT License** के तहत लाइसेंस प्राप्त है। शर्तों और नियमों के लिए, देखें [LICENSE](../../LICENSE)।
+यह सामग्री **MIT लाइसेंस** के तहत लाइसेंस प्राप्त है। शर्तों और नियमों के लिए, [LICENSE](../../LICENSE) देखें।  
 
 ## 🤝 योगदान दिशानिर्देश
 
-यह प्रोजेक्ट योगदान और सुझावों का स्वागत करता है। अधिकांश योगदानों के लिए आपको एक
-Contributor License Agreement (CLA) से सहमत होना होगा जिसमें आप घोषणा करते हैं कि आपके पास
-अपने योगदान का उपयोग करने का अधिकार है और आप हमें वह अधिकार देते हैं। विवरण के लिए, देखें 
-<https://cla.opensource.microsoft.com>।
+यह प्रोजेक्ट योगदान और सुझावों का स्वागत करता है। अधिकांश योगदानों के लिए आपको एक  
+Contributor License Agreement (CLA) से सहमत होना होगा, जिसमें यह घोषणा की जाती है कि आपके पास अधिकार हैं और आप वास्तव में हमें  
+अपने योगदान का उपयोग करने का अधिकार प्रदान करते हैं। विवरण के लिए, <https://cla.opensource.microsoft.com> पर जाएं।  
 
-जब आप पुल रिक्वेस्ट सबमिट करते हैं, तो एक CLA बॉट स्वचालित रूप से निर्धारित करेगा कि क्या आपको
-CLA प्रदान करने की आवश्यकता है और PR को उपयुक्त रूप से चिह्नित करेगा (जैसे, स्थिति जांच, टिप्पणी)। बस बॉट द्वारा दिए गए निर्देशों का पालन करें। आपको यह केवल एक बार सभी रिपॉजिटरी में करना होगा जो हमारे CLA का उपयोग करते हैं।
+जब आप एक पुल रिक्वेस्ट सबमिट करते हैं, तो एक CLA बॉट स्वचालित रूप से निर्धारित करेगा कि क्या आपको CLA प्रदान करने की आवश्यकता है और PR को उपयुक्त रूप से सजाएगा (जैसे, स्टेटस चेक, टिप्पणी)। बस बॉट द्वारा प्रदान किए गए निर्देशों का पालन करें। आपको यह केवल एक बार सभी रिपॉजिटरी में करना होगा जो हमारे CLA का उपयोग करते हैं।  
 
-इस प्रोजेक्ट ने [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/) को अपनाया है।
-अधिक जानकारी के लिए देखें [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) या
-[opencode@microsoft.com](mailto:opencode@microsoft.com) पर संपर्क करें यदि आपके कोई अतिरिक्त प्रश्न या टिप्पणियाँ हों।
+इस प्रोजेक्ट ने [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/) को अपनाया है।  
+अधिक जानकारी के लिए [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) देखें या  
+[opencode@microsoft.com](mailto:opencode@microsoft.com) पर अतिरिक्त प्रश्न या टिप्पणियों के साथ संपर्क करें।  
 
 ## 📂 रिपॉजिटरी संरचना
 
-रिपॉजिटरी इस प्रकार व्यवस्थित है:
+रिपॉजिटरी निम्नलिखित रूप से व्यवस्थित है:
 
-- **Core Curriculum (00-10)**: मुख्य सामग्री जो दस अनुक्रमिक मॉड्यूल में व्यवस्थित है
-- **images/**: पाठ्यक्रम में उपयोग किए गए आरेख और चित्र
-- **translations/**: स्वचालित अनुवाद के साथ बहुभाषी समर्थन
-- **translated_images/**: स्थानीयकृत आरेख और चित्र
-- **study_guide.md**: रिपॉजिटरी नेविगेट करने के लिए व्यापक गाइड
-- **changelog.md**: पाठ्यक्रम सामग्री में सभी महत्वपूर्ण परिवर्तनों का रिकॉर्ड
-- **mcp.json**: MCP विनिर्देशन के लिए कॉन्फ़िगरेशन फ़ाइल
-- **CODE_OF_CONDUCT.md, LICENSE, SECURITY.md, SUPPORT.md**: प्रोजेक्ट शासन दस्तावेज़
+- **कोर पाठ्यक्रम (00-11)**: मुख्य सामग्री ग्यारह क्रमिक मॉड्यूल में व्यवस्थित, जिसमें व्यापक डेटाबेस इंटीग्रेशन लैब्स शामिल हैं  
+- **11-MCPServerHandsOnLabs/**: PostgreSQL इंटीग्रेशन के साथ प्रोडक्शन-रेडी MCP सर्वर बनाने के लिए पूर्ण 13-लैब लर्निंग पाथ  
+- **images/**: पाठ्यक्रम में उपयोग किए गए आरेख और चित्र  
+- **translations/**: स्वचालित अनुवाद के साथ बहु-भाषा समर्थन  
+- **translated_images/**: आरेख और चित्रों के स्थानीयकृत संस्करण  
+- **study_guide.md**: रिपॉजिटरी को नेविगेट करने के लिए व्यापक गाइड  
+- **changelog.md**: पाठ्यक्रम सामग्री में सभी महत्वपूर्ण परिवर्तनों का रिकॉर्ड  
+- **mcp.json**: MCP विनिर्देश के लिए कॉन्फ़िगरेशन फ़ाइल  
+- **CODE_OF_CONDUCT.md, LICENSE, SECURITY.md, SUPPORT.md**: प्रोजेक्ट गवर्नेंस दस्तावेज़  
 
-## 🎒 अन्य कोर्सेस
-हमारी टीम अन्य कोर्सेस भी बनाती है! देखें:
+## 🎒 अन्य पाठ्यक्रम  
+हमारी टीम अन्य पाठ्यक्रम भी तैयार करती है! देखें:  
 
-- [AI Agents For Beginners](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
-- [.NET के साथ शुरुआती के लिए Generative AI](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
-- [JavaScript के साथ शुरुआती के लिए Generative AI](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
-- [शुरुआती के लिए Generative AI](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
-- [शुरुआती के लिए ML](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
-- [शुरुआती के लिए डेटा साइंस](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
-- [शुरुआती के लिए AI](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
-- [शुरुआती के लिए साइबरसिक्योरिटी](https://github.com/microsoft/Security-101??WT.mc_id=academic-96948-sayoung)
-- [शुरुआती के लिए वेब डेवलपमेंट](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
-- [शुरुआती के लिए IoT](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
-- [शुरुआती के लिए XR डेवलपमेंट](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
-- [AI जोड़ी प्रोग्रामिंग के लिए GitHub Copilot में महारत](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
-- [C#/.NET डेवलपर्स के लिए GitHub Copilot में महारत](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
-- [अपनी खुद की Copilot एडवेंचर चुनें](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
+- [**नया** Edge AI For Beginners](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)  
+- [AI Agents For Beginners](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)  
+- [Generative AI for Beginners using .NET](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)  
+- [Generative AI for Beginners using JavaScript](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)  
+- [Generative AI for Beginners](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)  
+- [Generative AI for Beginners using Java](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)  
+- [ML for Beginners](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)  
+- [Data Science for Beginners](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)  
+- [AI for Beginners](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)  
+- [Cybersecurity for Beginners](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)  
+- [Web Dev for Beginners](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)  
+- [IoT for Beginners](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)  
+- [XR Development for Beginners](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)  
+- [GitHub Copilot के साथ AI पेयर्ड प्रोग्रामिंग में महारत हासिल करें](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
+- [C#/.NET डेवलपर्स के लिए GitHub Copilot में महारत हासिल करें](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
+- [अपना खुद का Copilot एडवेंचर चुनें](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
 
+## ™️ ट्रेडमार्क नोटिस
 
-## ™️ ट्रेडमार्क सूचना
+यह प्रोजेक्ट प्रोजेक्ट्स, प्रोडक्ट्स, या सेवाओं के लिए ट्रेडमार्क्स या लोगो को शामिल कर सकता है। Microsoft ट्रेडमार्क्स या लोगो का अधिकृत उपयोग [Microsoft के ट्रेडमार्क और ब्रांड दिशानिर्देशों](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general) का पालन करना चाहिए। इस प्रोजेक्ट के संशोधित संस्करणों में Microsoft ट्रेडमार्क्स या लोगो का उपयोग भ्रम पैदा नहीं करना चाहिए या Microsoft प्रायोजन का संकेत नहीं देना चाहिए। किसी भी तृतीय-पक्ष ट्रेडमार्क्स या लोगो का उपयोग उन तृतीय-पक्षों की नीतियों के अधीन है।
 
-इस प्रोजेक्ट में प्रोजेक्ट्स, उत्पादों, या सेवाओं के ट्रेडमार्क या लोगो हो सकते हैं। Microsoft ट्रेडमार्क या लोगो का अधिकृत उपयोग
-[Microsoft के ट्रेडमार्क और ब्रांड दिशानिर्देशों](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general) के अधीन है और उनका पालन करना आवश्यक है।
-इस प्रोजेक्ट के संशोधित संस्करणों में Microsoft ट्रेडमार्क या लोगो का उपयोग भ्रमित करने वाला नहीं होना चाहिए या Microsoft प्रायोजन का संकेत नहीं देना चाहिए।
-तीसरे पक्ष के ट्रेडमार्क या लोगो का उपयोग उन तीसरे पक्ष की नीतियों के अधीन है।
+## सहायता प्राप्त करना
+
+यदि आप अटक जाते हैं या AI ऐप्स बनाने के बारे में कोई सवाल है, तो शामिल हों:
+
+[![Azure AI Foundry Discord](https://img.shields.io/badge/Discord-Azure_AI_Foundry_Community_Discord-blue?style=for-the-badge&logo=discord&color=5865f2&logoColor=fff)](https://aka.ms/foundry/discord)
+
+यदि आपको प्रोडक्ट फीडबैक देना है या निर्माण के दौरान कोई त्रुटि आती है, तो यहां जाएं:
+
+[![Azure AI Foundry Developer Forum](https://img.shields.io/badge/GitHub-Azure_AI_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
+
+---
 
 **अस्वीकरण**:  
-यह दस्तावेज़ AI अनुवाद सेवा [Co-op Translator](https://github.com/Azure/co-op-translator) का उपयोग करके अनुवादित किया गया है। जबकि हम सटीकता के लिए प्रयासरत हैं, कृपया ध्यान दें कि स्वचालित अनुवादों में त्रुटियाँ या अशुद्धियाँ हो सकती हैं। मूल दस्तावेज़ अपनी मूल भाषा में ही अधिकारिक स्रोत माना जाना चाहिए। महत्वपूर्ण जानकारी के लिए, पेशेवर मानव अनुवाद की सलाह दी जाती है। इस अनुवाद के उपयोग से उत्पन्न किसी भी गलतफहमी या गलत व्याख्या के लिए हम जिम्मेदार नहीं हैं।
+यह दस्तावेज़ AI अनुवाद सेवा [Co-op Translator](https://github.com/Azure/co-op-translator) का उपयोग करके अनुवादित किया गया है। जबकि हम सटीकता सुनिश्चित करने का प्रयास करते हैं, कृपया ध्यान दें कि स्वचालित अनुवाद में त्रुटियां या अशुद्धियां हो सकती हैं। मूल भाषा में उपलब्ध मूल दस्तावेज़ को प्रामाणिक स्रोत माना जाना चाहिए। महत्वपूर्ण जानकारी के लिए, पेशेवर मानव अनुवाद की सिफारिश की जाती है। इस अनुवाद के उपयोग से उत्पन्न किसी भी गलतफहमी या गलत व्याख्या के लिए हम उत्तरदायी नहीं हैं।

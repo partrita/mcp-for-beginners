@@ -1,18 +1,19 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "f58f01197da8a381d70c98317b7e1f1d",
-  "translation_date": "2025-07-13T19:00:21+00:00",
+  "original_hash": "4117a42f3e7baae859515f7b8b911e56",
+  "translation_date": "2025-08-19T14:41:39+00:00",
   "source_file": "03-GettingStarted/03-llm-client/solution/README.md",
   "language_code": "sw"
 }
 -->
-Hapa kuna suluhisho kwa kila runtime:
+Hapa kuna suluhisho kwa kila muda wa utekelezaji:
 
 - [TypeScript](./typescript/README.md)
 - [Python](./python/README.md)
 - [.NET](./dotnet/README.md)
 - [Java](./java/README.md)
+- [Rust](./rust/README.md)
 
-**Kiarifu cha Kutotegemea**:  
-Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inashauriwa. Hatuna dhamana kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, inashauriwa kutumia huduma ya tafsiri ya kibinadamu ya kitaalamu. Hatutawajibika kwa maelewano mabaya au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

@@ -1,32 +1,32 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "fa635ae747c9b4d5c2f61c6c46cb695f",
-  "translation_date": "2025-07-17T19:30:20+00:00",
+  "original_hash": "ec11ee93f31fdadd94facd3e3d22f9e6",
+  "translation_date": "2025-09-09T22:17:43+00:00",
   "source_file": "03-GettingStarted/01-first-server/README.md",
   "language_code": "hr"
 }
 -->
 # Početak rada s MCP-om
 
-Dobrodošli u svoje prve korake s Model Context Protocolom (MCP)! Bilo da ste novi u MCP-u ili želite produbiti svoje znanje, ovaj vodič će vas provesti kroz osnovnu postavku i razvojni proces. Saznat ćete kako MCP omogućuje besprijekornu integraciju između AI modela i aplikacija te kako brzo pripremiti svoje okruženje za izgradnju i testiranje rješenja temeljenih na MCP-u.
+Dobrodošli u vaše prve korake s Model Context Protocol (MCP)! Bez obzira jeste li novi u MCP-u ili želite produbiti svoje razumijevanje, ovaj vodič će vas provesti kroz osnovne korake postavljanja i razvoja. Otkrit ćete kako MCP omogućuje besprijekornu integraciju između AI modela i aplikacija te naučiti kako brzo pripremiti svoje okruženje za izgradnju i testiranje rješenja temeljenih na MCP-u.
 
-> TLDR; Ako izrađujete AI aplikacije, znate da možete dodati alate i druge resurse svom LLM-u (velikom jezičnom modelu) kako biste ga učinili informiranijim. Međutim, ako te alate i resurse postavite na poslužitelj, mogućnosti aplikacije i poslužitelja mogu koristiti bilo koji klijent s ili bez LLM-a.
+> TLDR; Ako gradite AI aplikacije, znate da možete dodati alate i druge resurse svom LLM-u (velikom jezičnom modelu) kako bi LLM bio informiraniji. Međutim, ako te alate i resurse postavite na poslužitelj, aplikacija i mogućnosti poslužitelja mogu se koristiti od strane bilo kojeg klijenta, s LLM-om ili bez njega.
 
 ## Pregled
 
-Ova lekcija pruža praktične upute za postavljanje MCP okruženja i izradu vaših prvih MCP aplikacija. Naučit ćete kako postaviti potrebne alate i okvire, izgraditi osnovne MCP poslužitelje, kreirati host aplikacije i testirati svoje implementacije.
+Ova lekcija pruža praktične smjernice za postavljanje MCP okruženja i izgradnju vaših prvih MCP aplikacija. Naučit ćete kako postaviti potrebne alate i okvire, izgraditi osnovne MCP poslužitelje, kreirati host aplikacije i testirati svoje implementacije.
 
-Model Context Protocol (MCP) je otvoreni protokol koji standardizira način na koji aplikacije pružaju kontekst LLM-ovima. Zamislite MCP kao USB-C priključak za AI aplikacije – pruža standardizirani način povezivanja AI modela s različitim izvorima podataka i alatima.
+Model Context Protocol (MCP) je otvoreni protokol koji standardizira način na koji aplikacije pružaju kontekst LLM-ovima. Zamislite MCP kao USB-C priključak za AI aplikacije - pruža standardizirani način povezivanja AI modela s različitim izvorima podataka i alatima.
 
 ## Ciljevi učenja
 
-Na kraju ove lekcije moći ćete:
+Do kraja ove lekcije, moći ćete:
 
-- Postaviti razvojna okruženja za MCP u C#, Javi, Pythonu, TypeScriptu i JavaScriptu
-- Izgraditi i implementirati osnovne MCP poslužitelje s prilagođenim značajkama (resursi, promptovi i alati)
+- Postaviti razvojna okruženja za MCP u C#, Java, Python, TypeScript i Rust
+- Izgraditi i implementirati osnovne MCP poslužitelje s prilagođenim značajkama (resursi, upiti i alati)
 - Kreirati host aplikacije koje se povezuju s MCP poslužiteljima
-- Testirati i otklanjati pogreške u MCP implementacijama
+- Testirati i otkloniti greške u MCP implementacijama
 
 ## Postavljanje MCP okruženja
 
@@ -34,76 +34,117 @@ Prije nego što započnete rad s MCP-om, važno je pripremiti razvojno okruženj
 
 ### Preduvjeti
 
-Prije nego što se upustite u razvoj s MCP-om, provjerite imate li:
+Prije nego što se upustite u razvoj MCP-a, osigurajte da imate:
 
-- **Razvojno okruženje**: Za odabrani programski jezik (C#, Java, Python, TypeScript ili JavaScript)
-- **IDE/Uređivač**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm ili bilo koji suvremeni uređivač koda
-- **Upravitelji paketa**: NuGet, Maven/Gradle, pip ili npm/yarn
-- **API ključevi**: Za bilo koje AI usluge koje planirate koristiti u svojim host aplikacijama
+- **Razvojno okruženje**: Za odabrani jezik (C#, Java, Python, TypeScript ili Rust)
+- **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm ili bilo koji moderni editor koda
+- **Upravitelji paketa**: NuGet, Maven/Gradle, pip, npm/yarn ili Cargo
+- **API ključeve**: Za bilo koje AI usluge koje planirate koristiti u svojim host aplikacijama
 
 ## Osnovna struktura MCP poslužitelja
 
 MCP poslužitelj obično uključuje:
 
-- **Konfiguracija poslužitelja**: Postavljanje porta, autentikacije i drugih postavki
-- **Resursi**: Podaci i kontekst dostupni LLM-ovima
-- **Alati**: Funkcionalnosti koje modeli mogu pozivati
-- **Promptovi**: Predlošci za generiranje ili strukturiranje teksta
+- **Konfiguraciju poslužitelja**: Postavljanje porta, autentifikacije i drugih postavki
+- **Resurse**: Podatke i kontekst dostupne LLM-ovima
+- **Alate**: Funkcionalnosti koje modeli mogu pozvati
+- **Upite**: Predloške za generiranje ili strukturiranje teksta
 
 Evo pojednostavljenog primjera u TypeScriptu:
 
 ```typescript
-import { Server, Tool, Resource } from "@modelcontextprotocol/typescript-server-sdk";
+import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
 
-// Create a new MCP server
-const server = new Server({
-  port: 3000,
-  name: "Example MCP Server",
+// Create an MCP server
+const server = new McpServer({
+  name: "Demo",
   version: "1.0.0"
 });
 
-// Register a tool
-server.registerTool({
-  name: "calculator",
-  description: "Performs basic calculations",
-  parameters: {
-    expression: {
-      type: "string",
-      description: "The math expression to evaluate"
-    }
-  },
-  handler: async (params) => {
-    const result = eval(params.expression);
-    return { result };
-  }
-});
+// Add an addition tool
+server.tool("add",
+  { a: z.number(), b: z.number() },
+  async ({ a, b }) => ({
+    content: [{ type: "text", text: String(a + b) }]
+  })
+);
 
-// Start the server
-server.start();
+// Add a dynamic greeting resource
+server.resource(
+  "file",
+  // The 'list' parameter controls how the resource lists available files. Setting it to undefined disables listing for this resource.
+  new ResourceTemplate("file://{path}", { list: undefined }),
+  async (uri, { path }) => ({
+    contents: [{
+      uri: uri.href,
+      text: `File, ${path}!`
+    }]
+  })
+);
+
+// Add a file resource that reads the file contents
+server.resource(
+  "file",
+  new ResourceTemplate("file://{path}", { list: undefined }),
+  async (uri, { path }) => {
+    let text;
+    try {
+      text = await fs.readFile(path, "utf8");
+    } catch (err) {
+      text = `Error reading file: ${err.message}`;
+    }
+    return {
+      contents: [{
+        uri: uri.href,
+        text
+      }]
+    };
+  }
+);
+
+server.prompt(
+  "review-code",
+  { code: z.string() },
+  ({ code }) => ({
+    messages: [{
+      role: "user",
+      content: {
+        type: "text",
+        text: `Please review this code:\n\n${code}`
+      }
+    }]
+  })
+);
+
+// Start receiving messages on stdin and sending messages on stdout
+const transport = new StdioServerTransport();
+await server.connect(transport);
 ```
 
-U prethodnom kodu smo:
+U prethodnom kodu:
 
-- Uvezli potrebne klase iz MCP TypeScript SDK-a.
-- Kreirali i konfigurirali novu instancu MCP poslužitelja.
-- Registrirali prilagođeni alat (`calculator`) s funkcijom rukovanja.
-- Pokrenuli poslužitelj da sluša dolazne MCP zahtjeve.
+- Uvozimo potrebne klase iz MCP TypeScript SDK-a.
+- Kreiramo i konfiguriramo novu instancu MCP poslužitelja.
+- Registriramo prilagođeni alat (`calculator`) s funkcijom obrade.
+- Pokrećemo poslužitelj za slušanje dolaznih MCP zahtjeva.
 
-## Testiranje i otklanjanje pogrešaka
+## Testiranje i otklanjanje grešaka
 
-Prije nego što započnete testiranje svog MCP poslužitelja, važno je razumjeti dostupne alate i najbolje prakse za otklanjanje pogrešaka. Učinkovito testiranje osigurava da se poslužitelj ponaša kako se očekuje i pomaže vam brzo identificirati i riješiti probleme. Sljedeći odjeljak opisuje preporučene pristupe za provjeru vaše MCP implementacije.
+Prije nego što započnete testiranje svog MCP poslužitelja, važno je razumjeti dostupne alate i najbolje prakse za otklanjanje grešaka. Učinkovito testiranje osigurava da se vaš poslužitelj ponaša kako se očekuje i pomaže vam brzo identificirati i riješiti probleme. Sljedeći odjeljak opisuje preporučene pristupe za validaciju vaše MCP implementacije.
 
-MCP pruža alate koji vam pomažu u testiranju i otklanjanju pogrešaka poslužitelja:
+MCP pruža alate koji vam pomažu testirati i otkloniti greške na vašim poslužiteljima:
 
-- **Inspector tool**, ovaj grafički sučelje omogućuje vam povezivanje s poslužiteljem i testiranje vaših alata, promptova i resursa.
-- **curl**, također se možete povezati s poslužiteljem koristeći alat naredbenog retka poput curl ili druge klijente koji mogu kreirati i izvršavati HTTP naredbe.
+- **Inspector alat**, grafičko sučelje koje vam omogućuje povezivanje s poslužiteljem i testiranje vaših alata, upita i resursa.
+- **curl**, također se možete povezati s poslužiteljem pomoću alata naredbenog retka poput curl-a ili drugih klijenata koji mogu kreirati i pokretati HTTP naredbe.
 
 ### Korištenje MCP Inspectora
 
 [MCP Inspector](https://github.com/modelcontextprotocol/inspector) je vizualni alat za testiranje koji vam pomaže:
 
-1. **Otkrivanje mogućnosti poslužitelja**: Automatski detektira dostupne resurse, alate i promptove
-2. **Testiranje izvršavanja alata**: Isprobajte različite parametre i vidite odgovore u stvarnom vremenu
+1. **Otkrivanje mogućnosti poslužitelja**: Automatski otkriva dostupne resurse, alate i upite
+2. **Testiranje izvršenja alata**: Isprobajte različite parametre i vidite odgovore u stvarnom vremenu
 3. **Pregled metapodataka poslužitelja**: Pregledajte informacije o poslužitelju, sheme i konfiguracije
 
 ```bash
@@ -111,31 +152,31 @@ MCP pruža alate koji vam pomažu u testiranju i otklanjanju pogrešaka posluži
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Kada pokrenete gore navedene naredbe, MCP Inspector će otvoriti lokalno web sučelje u vašem pregledniku. Možete očekivati nadzornu ploču koja prikazuje vaše registrirane MCP poslužitelje, njihove dostupne alate, resurse i promptove. Sučelje vam omogućuje interaktivno testiranje izvršavanja alata, pregled metapodataka poslužitelja i prikaz odgovora u stvarnom vremenu, što olakšava provjeru i otklanjanje pogrešaka u vašim MCP implementacijama.
+Kada pokrenete gore navedene naredbe, MCP Inspector će pokrenuti lokalno web sučelje u vašem pregledniku. Možete očekivati da ćete vidjeti nadzornu ploču koja prikazuje vaše registrirane MCP poslužitelje, njihove dostupne alate, resurse i upite. Sučelje vam omogućuje interaktivno testiranje izvršenja alata, pregled metapodataka poslužitelja i prikaz odgovora u stvarnom vremenu, što olakšava validaciju i otklanjanje grešaka u vašim MCP implementacijama.
 
-Evo snimke zaslona kako to može izgledati:
+Evo kako to može izgledati:
 
-![](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.hr.png)
+![MCP Inspector povezivanje s poslužiteljem](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.hr.png)
 
-## Česti problemi pri postavljanju i rješenja
+## Uobičajeni problemi pri postavljanju i rješenja
 
 | Problem | Moguće rješenje |
 |---------|-----------------|
 | Veza odbijena | Provjerite je li poslužitelj pokrenut i je li port ispravan |
-| Pogreške pri izvršavanju alata | Provjerite validaciju parametara i rukovanje pogreškama |
-| Neuspjeh autentikacije | Provjerite API ključeve i dozvole |
-| Pogreške validacije sheme | Provjerite jesu li parametri u skladu s definiranim shemama |
-| Poslužitelj se ne pokreće | Provjerite sukobe portova ili nedostajuće ovisnosti |
-| CORS pogreške | Konfigurirajte ispravne CORS zaglavlja za zahtjeve s drugih izvora |
-| Problemi s autentikacijom | Provjerite valjanost tokena i dozvole |
+| Greške pri izvršenju alata | Pregledajte validaciju parametara i rukovanje greškama |
+| Neuspjesi autentifikacije | Provjerite API ključeve i dozvole |
+| Greške validacije sheme | Osigurajte da parametri odgovaraju definiranoj shemi |
+| Poslužitelj se ne pokreće | Provjerite konflikte portova ili nedostajuće ovisnosti |
+| CORS greške | Konfigurirajte odgovarajuće CORS zaglavlja za zahtjeve između domena |
+| Problemi s autentifikacijom | Provjerite valjanost tokena i dozvole |
 
 ## Lokalni razvoj
 
-Za lokalni razvoj i testiranje možete pokretati MCP poslužitelje izravno na svom računalu:
+Za lokalni razvoj i testiranje, MCP poslužitelje možete pokrenuti izravno na svom računalu:
 
-1. **Pokrenite proces poslužitelja**: Pokrenite svoju MCP poslužiteljsku aplikaciju
+1. **Pokrenite proces poslužitelja**: Pokrenite svoju MCP aplikaciju poslužitelja
 2. **Konfigurirajte mrežu**: Osigurajte da je poslužitelj dostupan na očekivanom portu
-3. **Povežite klijente**: Koristite lokalne URL-ove poput `http://localhost:3000`
+3. **Povežite klijente**: Koristite lokalne URL-ove za povezivanje, poput `http://localhost:3000`
 
 ```bash
 # Example: Running a TypeScript MCP server locally
@@ -143,9 +184,9 @@ npm run start
 # Server running at http://localhost:3000
 ```
 
-## Izrada vašeg prvog MCP poslužitelja
+## Izgradnja vašeg prvog MCP poslužitelja
 
-Obradili smo [Osnovne koncepte](/01-CoreConcepts/README.md) u prethodnoj lekciji, sada je vrijeme da to znanje primijenimo.
+Pokriti smo [Osnovne koncepte](/01-CoreConcepts/README.md) u prethodnoj lekciji, sada je vrijeme da to znanje primijenimo.
 
 ### Što poslužitelj može raditi
 
@@ -154,37 +195,34 @@ Prije nego što počnemo pisati kod, podsjetimo se što poslužitelj može radit
 MCP poslužitelj može, na primjer:
 
 - Pristupati lokalnim datotekama i bazama podataka
-- Povezivati se s udaljenim API-jima
-- Izvoditi izračune
+- Povezivati se s udaljenim API-jevima
+- Izvoditi proračune
 - Integrirati se s drugim alatima i uslugama
 - Pružati korisničko sučelje za interakciju
 
-Odlično, sada kad znamo što može, krenimo s kodiranjem.
+Odlično, sada kada znamo što možemo učiniti, krenimo s kodiranjem.
 
 ## Vježba: Kreiranje poslužitelja
 
-Za kreiranje poslužitelja trebate slijediti ove korake:
+Za kreiranje poslužitelja, trebate slijediti ove korake:
 
 - Instalirajte MCP SDK.
 - Kreirajte projekt i postavite strukturu projekta.
 - Napišite kod poslužitelja.
 - Testirajte poslužitelj.
 
-### -1- Instalacija SDK-a
+### -1- Kreiranje projekta
 
-Ovo se malo razlikuje ovisno o odabranom runtime-u, pa odaberite jedan od dolje navedenih:
-
-> [!NOTE]
-> Za Python prvo ćemo kreirati strukturu projekta, a zatim instalirati ovisnosti.
-
-### TypeScript
+#### TypeScript
 
 ```sh
-npm install @modelcontextprotocol/sdk zod
-npm install -D @types/node typescript
+# Create project directory and initialize npm project
+mkdir calculator-server
+cd calculator-server
+npm init -y
 ```
 
-### Python
+#### Python
 
 ```sh
 # Create project dir
@@ -194,16 +232,16 @@ cd calculator-server
 code .
 ```
 
-### .NET
+#### .NET
 
 ```sh
 dotnet new console -n McpCalculatorServer
 cd McpCalculatorServer
 ```
 
-### Java
+#### Java
 
-Za Javu kreirajte Spring Boot projekt:
+Za Java, kreirajte Spring Boot projekt:
 
 ```bash
 curl https://start.spring.io/starter.zip \
@@ -226,7 +264,7 @@ cd calculator-server
 rm -rf src/test/java
 ```
 
-Dodajte sljedeću kompletnu konfiguraciju u svoj *pom.xml*:
+Dodajte sljedeću kompletnu konfiguraciju u svoju *pom.xml* datoteku:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -326,18 +364,30 @@ Dodajte sljedeću kompletnu konfiguraciju u svoj *pom.xml*:
 </project>
 ```
 
-### -2- Kreiranje projekta
-
-Sada kada ste instalirali SDK, kreirajmo projekt:
-
-### TypeScript
+#### Rust
 
 ```sh
-mkdir src
-npm install -y
+mkdir calculator-server
+cd calculator-server
+cargo init
 ```
 
-### Python
+### -2- Dodavanje ovisnosti
+
+Sada kada ste kreirali projekt, dodajte ovisnosti:
+
+#### TypeScript
+
+```sh
+# If not already installed, install TypeScript globally
+npm install typescript -g
+
+# Install the MCP SDK and Zod for schema validation
+npm install @modelcontextprotocol/sdk zod
+npm install -D @types/node typescript
+```
+
+#### Python
 
 ```sh
 # Create a virtual env and install dependencies
@@ -346,34 +396,53 @@ venv\Scripts\activate
 pip install "mcp[cli]"
 ```
 
-### Java
+#### Java
 
 ```bash
 cd calculator-server
 ./mvnw clean install -DskipTests
 ```
 
-### -3- Kreiranje datoteka projekta  
-### TypeScript
+#### Rust
 
-Kreirajte *package.json* s ovim sadržajem:
+```sh
+cargo add rmcp --features server,transport-io
+cargo add serde
+cargo add tokio --features rt-multi-thread
+```
+
+### -3- Kreiranje datoteka projekta
+
+#### TypeScript
+
+Otvorite *package.json* datoteku i zamijenite sadržaj sljedećim kako biste osigurali da možete izgraditi i pokrenuti poslužitelj:
 
 ```json
 {
-   "type": "module",
-   "bin": {
-     "weather": "./build/index.js"
-   },
-   "scripts": {
-     "build": "tsc && node build/index.js"
-   },
-   "files": [
-     "build"
-   ]
+  "name": "calculator-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "tsc && node ./build/index.js",
+    "build": "tsc && node ./build/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "A simple calculator server using Model Context Protocol",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.16.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.14",
+    "typescript": "^5.8.3"
+  }
 }
 ```
 
-Kreirajte *tsconfig.json* s ovim sadržajem:
+Kreirajte *tsconfig.json* sa sljedećim sadržajem:
 
 ```json
 {
@@ -393,7 +462,14 @@ Kreirajte *tsconfig.json* s ovim sadržajem:
 }
 ```
 
-### Python
+Kreirajte direktorij za svoj izvorni kod:
+
+```sh
+mkdir src
+touch src/index.ts
+```
+
+#### Python
 
 Kreirajte datoteku *server.py*
 
@@ -401,7 +477,7 @@ Kreirajte datoteku *server.py*
 touch server.py
 ```
 
-### .NET
+#### .NET
 
 Instalirajte potrebne NuGet pakete:
 
@@ -410,13 +486,17 @@ dotnet add package ModelContextProtocol --prerelease
 dotnet add package Microsoft.Extensions.Hosting
 ```
 
-### Java
+#### Java
 
-Za Java Spring Boot projekte, struktura projekta se kreira automatski.
+Za Java Spring Boot projekte, struktura projekta se automatski kreira.
 
-### -4- Pisanje koda poslužitelja
+#### Rust
 
-### TypeScript
+Za Rust, *src/main.rs* datoteka se kreira automatski kada pokrenete `cargo init`. Otvorite datoteku i izbrišite zadani kod.
+
+### -4- Kreiranje koda poslužitelja
+
+#### TypeScript
 
 Kreirajte datoteku *index.ts* i dodajte sljedeći kod:
 
@@ -427,14 +507,14 @@ import { z } from "zod";
  
 // Create an MCP server
 const server = new McpServer({
-  name: "Demo",
+  name: "Calculator MCP Server",
   version: "1.0.0"
 });
 ```
 
-Sada imate poslužitelj, ali on ne radi mnogo, popravimo to.
+Sada imate poslužitelj, ali ne radi puno, popravimo to.
 
-### Python
+#### Python
 
 ```python
 # server.py
@@ -444,7 +524,7 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP("Demo")
 ```
 
-### .NET
+#### .NET
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -469,9 +549,9 @@ await builder.Build().RunAsync();
 // add features
 ```
 
-### Java
+#### Java
 
-Za Javu kreirajte osnovne komponente poslužitelja. Prvo, izmijenite glavnu klasu aplikacije:
+Za Java, kreirajte osnovne komponente poslužitelja. Prvo, izmijenite glavnu klasu aplikacije:
 
 *src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*:
 
@@ -499,7 +579,7 @@ public class McpServerApplication {
 }
 ```
 
-Kreirajte servis kalkulatora *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
+Kreirajte kalkulator servis *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.service;
@@ -645,7 +725,7 @@ public class CalculatorService {
 }
 ```
 
-**Opcionalne komponente za produkcijski servis:**
+**Opcionalne komponente za produkcijski spreman servis:**
 
 Kreirajte konfiguraciju pokretanja *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
 
@@ -698,7 +778,7 @@ public class HealthController {
 }
 ```
 
-Kreirajte rukovatelja iznimkama *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
+Kreirajte rukovatelj iznimkama *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.exception;
@@ -749,16 +829,86 @@ Calculator MCP Server v1.0
 Spring Boot MCP Application
 ```
 
-</details>
+#### Rust
+
+Dodajte sljedeći kod na vrh *src/main.rs* datoteke. Ovo uvozi potrebne biblioteke i module za vaš MCP poslužitelj.
+
+```rust
+use rmcp::{
+    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    model::{ServerCapabilities, ServerInfo},
+    schemars, tool, tool_handler, tool_router,
+    transport::stdio,
+    ServerHandler, ServiceExt,
+};
+use std::error::Error;
+```
+
+Kalkulator poslužitelj će biti jednostavan i moći će zbrajati dva broja. Kreirajmo strukturu za predstavljanje zahtjeva kalkulatora.
+
+```rust
+#[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
+pub struct CalculatorRequest {
+    pub a: f64,
+    pub b: f64,
+}
+```
+
+Zatim, kreirajte strukturu za predstavljanje kalkulator poslužitelja. Ova struktura će sadržavati alatni router, koji se koristi za registraciju alata.
+
+```rust
+#[derive(Debug, Clone)]
+pub struct Calculator {
+    tool_router: ToolRouter<Self>,
+}
+```
+
+Sada možemo implementirati `Calculator` strukturu za kreiranje nove instance poslužitelja i implementirati rukovatelj poslužitelja za pružanje informacija o poslužitelju.
+
+```rust
+#[tool_router]
+impl Calculator {
+    pub fn new() -> Self {
+        Self {
+            tool_router: Self::tool_router(),
+        }
+    }
+}
+
+#[tool_handler]
+impl ServerHandler for Calculator {
+    fn get_info(&self) -> ServerInfo {
+        ServerInfo {
+            instructions: Some("A simple calculator tool".into()),
+            capabilities: ServerCapabilities::builder().enable_tools().build(),
+            ..Default::default()
+        }
+    }
+}
+```
+
+Na kraju, trebamo implementirati glavnu funkciju za pokretanje poslužitelja. Ova funkcija će kreirati instancu `Calculator` strukture i poslužiti je preko standardnog ulaza/izlaza.
+
+```rust
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let service = Calculator::new().serve(stdio()).await?;
+    service.waiting().await?;
+    Ok(())
+}
+```
+
+Poslužitelj je sada postavljen za pružanje osnovnih informacija o sebi. Sljedeće, dodati ćemo alat za izvođenje zbrajanja.
 
 ### -5- Dodavanje alata i resursa
 
 Dodajte alat i resurs dodavanjem sljedećeg koda:
 
-### TypeScript
+#### TypeScript
 
 ```typescript
-  server.tool("add",
+server.tool(
+  "add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
     content: [{ type: "text", text: String(a + b) }]
@@ -777,7 +927,7 @@ server.resource(
 );
 ```
 
-Vaš alat prima parametre `a` i `b` i izvršava funkciju koja proizvodi odgovor u obliku:
+Vaš alat uzima parametre `a` i `b` i pokreće funkciju koja proizvodi odgovor u obliku:
 
 ```typescript
 {
@@ -787,7 +937,7 @@ Vaš alat prima parametre `a` i `b` i izvršava funkciju koja proizvodi odgovor 
 }
 ```
 
-Vaš resurs se pristupa putem stringa "greeting", prima parametar `name` i proizvodi sličan odgovor kao alat:
+Vaš resurs se pristupa putem stringa "greeting" i uzima parametar `name` te proizvodi sličan odgovor kao alat:
 
 ```typescript
 {
@@ -796,7 +946,7 @@ Vaš resurs se pristupa putem stringa "greeting", prima parametar `name` i proiz
 }
 ```
 
-### Python
+#### Python
 
 ```python
 # Add an addition tool
@@ -815,12 +965,12 @@ def get_greeting(name: str) -> str:
 
 U prethodnom kodu smo:
 
-- Definirali alat `add` koji prima parametre `a` i `p`, oba cijeli brojevi.
-- Kreirali resurs nazvan `greeting` koji prima parametar `name`.
+- Definirali alat `add` koji uzima parametre `a` i `p`, oba cijela broja.
+- Kreirali resurs nazvan `greeting` koji uzima parametar `name`.
 
-### .NET
+#### .NET
 
-Dodajte ovo u svoj Program.cs:
+Dodajte ovo u svoju Program.cs datoteku:
 
 ```csharp
 [McpServerToolType]
@@ -831,15 +981,29 @@ public static class CalculatorTool
 }
 ```
 
-### Java
+#### Java
 
 Alati su već kreirani u prethodnom koraku.
 
+#### Rust
+
+Dodajte novi alat unutar `impl Calculator` bloka:
+
+```rust
+#[tool(description = "Adds a and b")]
+async fn add(
+    &self,
+    Parameters(CalculatorRequest { a, b }): Parameters<CalculatorRequest>,
+) -> String {
+    (a + b).to_string()
+}
+```
+
 ### -6- Završni kod
 
-Dodajmo posljednji kod koji je potreban da se poslužitelj može pokrenuti:
+Dodajmo posljednji kod koji nam je potreban kako bi poslužitelj mogao započeti:
 
-### TypeScript
+#### TypeScript
 
 ```typescript
 // Start receiving messages on stdin and sending messages on stdout
@@ -857,12 +1021,13 @@ import { z } from "zod";
 
 // Create an MCP server
 const server = new McpServer({
-  name: "Demo",
+  name: "Calculator MCP Server",
   version: "1.0.0"
 });
 
 // Add an addition tool
-server.tool("add",
+server.tool(
+  "add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
     content: [{ type: "text", text: String(a + b) }]
@@ -883,10 +1048,10 @@ server.resource(
 
 // Start receiving messages on stdin and sending messages on stdout
 const transport = new StdioServerTransport();
-await server.connect(transport);
+server.connect(transport);
 ```
 
-### Python
+#### Python
 
 ```python
 # server.py
@@ -914,9 +1079,9 @@ if __name__ == "__main__":
     mcp.run()
 ```
 
-### .NET
+#### .NET
 
-Kreirajte Program.cs s ovim sadržajem:
+Kreirajte Program.cs datoteku sa sljedećim sadržajem:
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -946,7 +1111,7 @@ public static class CalculatorTool
 }
 ```
 
-### Java
+#### Java
 
 Vaša kompletna glavna klasa aplikacije trebala bi izgledati ovako:
 
@@ -975,25 +1140,86 @@ public class McpServerApplication {
 }
 ```
 
+#### Rust
+
+Završni kod za Rust poslužitelj trebao bi izgledati ovako:
+
+```rust
+use rmcp::{
+    ServerHandler, ServiceExt,
+    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    model::{ServerCapabilities, ServerInfo},
+    schemars, tool, tool_handler, tool_router,
+    transport::stdio,
+};
+use std::error::Error;
+
+#[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
+pub struct CalculatorRequest {
+    pub a: f64,
+    pub b: f64,
+}
+
+#[derive(Debug, Clone)]
+pub struct Calculator {
+    tool_router: ToolRouter<Self>,
+}
+
+#[tool_router]
+impl Calculator {
+    pub fn new() -> Self {
+        Self {
+            tool_router: Self::tool_router(),
+        }
+    }
+    
+    #[tool(description = "Adds a and b")]
+    async fn add(
+        &self,
+        Parameters(CalculatorRequest { a, b }): Parameters<CalculatorRequest>,
+    ) -> String {
+        (a + b).to_string()
+    }
+}
+
+#[tool_handler]
+impl ServerHandler for Calculator {
+    fn get_info(&self) -> ServerInfo {
+        ServerInfo {
+            instructions: Some("A simple calculator tool".into()),
+            capabilities: ServerCapabilities::builder().enable_tools().build(),
+            ..Default::default()
+        }
+    }
+}
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let service = Calculator::new().serve(stdio()).await?;
+    service.waiting().await?;
+    Ok(())
+}
+```
+
 ### -7- Testiranje poslužitelja
 
 Pokrenite poslužitelj sljedećom naredbom:
 
-### TypeScript
+#### TypeScript
 
 ```sh
 npm run build
 ```
 
-### Python
+#### Python
 
 ```sh
 mcp run server.py
 ```
 
-> Za korištenje MCP Inspectora, koristite `mcp dev server.py` koji automatski pokreće Inspector i pruža potrebni proxy session token. Ako koristite `mcp run server.py`, morat ćete ručno pokrenuti Inspector i konfigurirati vezu.
+> Za korištenje MCP Inspectora, koristite `mcp dev server.py` koji automatski pokreće Inspector i pruža potrebni proxy sesijski token. Ako koristite `mcp run server.py`, morat ćete ručno pokrenuti Inspector i konfigurirati vezu.
 
-### .NET
+#### .NET
 
 Provjerite jeste li u direktoriju projekta:
 
@@ -1002,44 +1228,53 @@ cd McpCalculatorServer
 dotnet run
 ```
 
-### Java
+#### Java
 
 ```bash
 ./mvnw clean install -DskipTests
 java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 ```
 
+#### Rust
+
+Pokrenite sljedeće naredbe za formatiranje i pokretanje poslužitelja:
+
+```sh
+cargo fmt
+cargo run
+```
+
 ### -8- Pokretanje pomoću Inspectora
 
-Inspector je izvrstan alat koji može pokrenuti vaš poslužitelj i omogućiti vam interakciju s njim kako biste testirali njegov rad. Pokrenimo ga:
+Inspector je izvrstan alat koji može pokrenuti vaš poslužitelj i omogućiti vam interakciju s njim kako biste testirali da radi. Pokrenimo ga:
 
 > [!NOTE]
 > Može izgledati drugačije u polju "command" jer sadrži naredbu za pokretanje poslužitelja s vašim specifičnim runtime-om.
 
-### TypeScript
+#### TypeScript
 
 ```sh
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-ili ga dodajte u svoj *package.json* ovako: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` i zatim pokrenite `npm run inspect`
+ili dodajte u svoj *package.json* ovako: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` i zatim pokrenite `npm run inspector`
 
-Python koristi Node.js alat nazvan inspector. Moguće je pozvati taj alat ovako:
+Python koristi Node.js alat nazvan inspector. Moguće je pozvati navedeni alat ovako:
 
 ```sh
 mcp dev server.py
 ```
 
-Međutim, ne implementira sve metode dostupne u alatu, stoga se preporučuje izravno pokretanje Node.js alata kao u nastavku:
+Međutim, ne implementira sve metode dostupne na alatu pa se preporučuje pokretanje Node.js alata izravno kao dolje:
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-Ako koristite alat ili IDE koji omogućuje konfiguraciju naredbi i argumenata za pokretanje skripti,  
-pobrinite se da u polju `Command` postavite `python`, a u `Arguments` `server.py`. To osigurava ispravan rad skripte.
+Ako koristite alat ili IDE koji vam omogućuje konfiguriranje naredbi i argumenata za pokretanje skripti, 
+provjerite da postavite `python` u polje `Command` i `server.py` kao `Arguments`. Ovo osigurava da skripta ispravno radi.
 
-### .NET
+#### .NET
 
 Provjerite jeste li u direktoriju projekta:
 
@@ -1048,10 +1283,9 @@ cd McpCalculatorServer
 npx @modelcontextprotocol/inspector dotnet run
 ```
 
-### Java
+#### Java
 
-Provjerite da je vaš kalkulator poslužitelj pokrenut  
-Zatim pokrenite inspector:
+Osigurajte da kalkulator poslužitelj radi. Zatim pokrenite Inspector:
 
 ```cmd
 npx @modelcontextprotocol/inspector
@@ -1059,82 +1293,92 @@ npx @modelcontextprotocol/inspector
 
 U web sučelju Inspectora:
 
-1. Odaberite "SSE" kao tip transporta
+1. Odaberite "SSE" kao vrstu transporta
 2. Postavite URL na: `http://localhost:8080/sse`
 3. Kliknite "Connect"
+![Poveži](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.hr.png)
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.hr.png)
+**Sada ste povezani na server**  
+**Sekcija testiranja Java servera je sada završena**
 
-**Sada ste povezani s poslužiteljem**  
-**Sekcija testiranja Java poslužitelja je sada završena**
-
-Sljedeći odjeljak odnosi se na interakciju s poslužiteljem.
+Sljedeća sekcija odnosi se na interakciju sa serverom.
 
 Trebali biste vidjeti sljedeće korisničko sučelje:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.hr.png)
+![Poveži](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.hr.png)
 
-1. Povežite se s poslužiteljem klikom na gumb Connect  
-   Nakon povezivanja trebali biste vidjeti sljedeće:
+1. Povežite se na server odabirom gumba "Poveži".  
+   Kada se povežete na server, trebali biste vidjeti sljedeće:
 
-   ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.hr.png)
+   ![Povezano](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.hr.png)
 
-2. Odaberite "Tools" i "listTools", trebali biste vidjeti "Add", odaberite "Add" i unesite vrijednosti parametara.
+2. Odaberite "Alati" i "listTools". Trebali biste vidjeti opciju "Dodaj". Odaberite "Dodaj" i unesite vrijednosti parametara.
 
-   Trebali biste vidjeti sljedeći odgovor, tj. rezultat iz alata "add":
+   Trebali biste vidjeti sljedeći odgovor, tj. rezultat alata "dodaj":
 
-   ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.hr.png)
+   ![Rezultat pokretanja dodaj](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.hr.png)
 
-Čestitamo, uspjeli ste kreirati i pokrenuti svoj prvi poslužitelj!
+Čestitamo, uspjeli ste kreirati i pokrenuti svoj prvi server!
+
+#### Rust
+
+Za pokretanje Rust servera pomoću MCP Inspector CLI-a, koristite sljedeću naredbu:
+
+```sh
+npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-name add --tool-arg a=1 b=2
+```
 
 ### Službeni SDK-ovi
 
 MCP pruža službene SDK-ove za više jezika:
 
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Održava se u suradnji s Microsoftom
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Održava se u suradnji sa Spring AI
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Službena TypeScript implementacija
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Službena Python implementacija
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Održava se u suradnji s Microsoftom  
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Održava se u suradnji s Spring AI  
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Službena TypeScript implementacija  
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Službena Python implementacija  
 - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Službena Kotlin implementacija  
 - [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Održava se u suradnji s Loopwork AI  
 - [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Službena Rust implementacija  
 
-## Ključne napomene
+## Ključne točke
 
-- Postavljanje MCP razvojne okoline je jednostavno uz SDK-ove specifične za jezik  
+- Postavljanje MCP razvojnog okruženja jednostavno je uz SDK-ove specifične za jezik  
 - Izgradnja MCP servera uključuje kreiranje i registraciju alata s jasnim shemama  
-- Testiranje i ispravljanje pogrešaka su ključni za pouzdane MCP implementacije  
+- Testiranje i otklanjanje grešaka ključni su za pouzdane MCP implementacije  
 
 ## Primjeri
 
-- [Java Calculator](../samples/java/calculator/README.md)  
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript Calculator](../samples/javascript/README.md)  
-- [TypeScript Calculator](../samples/typescript/README.md)  
-- [Python Calculator](../../../../03-GettingStarted/samples/python)  
+- [Java Kalkulator](../samples/java/calculator/README.md)  
+- [.Net Kalkulator](../../../../03-GettingStarted/samples/csharp)  
+- [JavaScript Kalkulator](../samples/javascript/README.md)  
+- [TypeScript Kalkulator](../samples/typescript/README.md)  
+- [Python Kalkulator](../../../../03-GettingStarted/samples/python)  
+- [Rust Kalkulator](../../../../03-GettingStarted/samples/rust)  
 
 ## Zadatak
 
-Napravite jednostavan MCP server s alatom po vašem izboru:
+Kreirajte jednostavan MCP server s alatom po vašem izboru:
 
-1. Implementirajte alat u željenom jeziku (.NET, Java, Python ili JavaScript).  
+1. Implementirajte alat u jeziku po vašem izboru (.NET, Java, Python, TypeScript ili Rust).  
 2. Definirajte ulazne parametre i povratne vrijednosti.  
-3. Pokrenite alat za inspekciju kako biste provjerili radi li server kako treba.  
-4. Testirajte implementaciju s različitim ulazima.  
+3. Pokrenite alat za inspekciju kako biste osigurali da server radi kako je predviđeno.  
+4. Testirajte implementaciju s različitim unosima.  
 
 ## Rješenje
 
-[Rješenje](./solution/README.md)  
+[Rješenje](./solution/README.md)
 
 ## Dodatni resursi
 
-- [Izgradnja agenata koristeći Model Context Protocol na Azureu](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
+- [Izgradnja agenata pomoću Model Context Protocol na Azureu](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
 - [Remote MCP s Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)  
 - [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)  
 
 ## Što slijedi
 
-Sljedeće: [Uvod u MCP klijente](../02-client/README.md)
+Sljedeće: [Uvod u MCP klijente](../02-client/README.md)  
+
+---
 
 **Odricanje od odgovornosti**:  
-Ovaj dokument je preveden korištenjem AI usluge za prevođenje [Co-op Translator](https://github.com/Azure/co-op-translator). Iako nastojimo postići točnost, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za kritične informacije preporučuje se profesionalni ljudski prijevod. Ne snosimo odgovornost za bilo kakva nesporazuma ili pogrešna tumačenja koja proizlaze iz korištenja ovog prijevoda.
+Ovaj dokument je preveden pomoću AI usluge za prevođenje [Co-op Translator](https://github.com/Azure/co-op-translator). Iako nastojimo osigurati točnost, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za ključne informacije preporučuje se profesionalni prijevod od strane čovjeka. Ne preuzimamo odgovornost za bilo kakva nesporazuma ili pogrešna tumačenja koja proizlaze iz korištenja ovog prijevoda.

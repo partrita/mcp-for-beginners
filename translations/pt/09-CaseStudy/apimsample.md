@@ -1,68 +1,68 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "36de9fae488d6de554d969fe8e0801a8",
-  "translation_date": "2025-07-14T05:30:16+00:00",
+  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
+  "translation_date": "2025-08-12T07:53:10+00:00",
   "source_file": "09-CaseStudy/apimsample.md",
   "language_code": "pt"
 }
 -->
-# Estudo de Caso: Expor REST API no API Management como um servidor MCP
+# Caso de Estudo: Expor API REST no API Management como um servidor MCP
 
-O Azure API Management é um serviço que fornece um Gateway por cima dos seus Endpoints de API. O funcionamento baseia-se no Azure API Management atuar como um proxy à frente das suas APIs, podendo decidir o que fazer com os pedidos recebidos.
+O Azure API Management é um serviço que fornece um Gateway sobre os seus endpoints de API. Ele funciona como um proxy à frente das suas APIs e pode decidir o que fazer com as solicitações recebidas.
 
-Ao utilizá-lo, adiciona uma série de funcionalidades como:
+Ao utilizá-lo, você adiciona uma série de funcionalidades, como:
 
 - **Segurança**, pode usar desde chaves de API, JWT até identidade gerida.
-- **Limitação de taxa**, uma funcionalidade excelente que permite decidir quantas chamadas são permitidas por unidade de tempo. Isto ajuda a garantir que todos os utilizadores têm uma boa experiência e que o seu serviço não fica sobrecarregado com pedidos.
-- **Escalabilidade e balanceamento de carga**. Pode configurar vários endpoints para distribuir a carga e também decidir como fazer o "balanceamento de carga".
-- **Funcionalidades de IA como cache semântico**, limite de tokens, monitorização de tokens e mais. Estas são funcionalidades que melhoram a capacidade de resposta e ajudam a controlar o consumo de tokens. [Leia mais aqui](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities).
+- **Limitação de taxa**, uma funcionalidade excelente que permite decidir quantas chamadas podem ser feitas por unidade de tempo. Isso ajuda a garantir que todos os utilizadores tenham uma ótima experiência e que o seu serviço não seja sobrecarregado com solicitações.
+- **Escalabilidade e balanceamento de carga**. Pode configurar vários endpoints para distribuir a carga e também decidir como "balancear a carga".
+- **Funcionalidades de IA como cache semântica**, limite de tokens, monitorização de tokens e mais. Estas são funcionalidades incríveis que melhoram a capacidade de resposta e ajudam a controlar o uso de tokens. [Leia mais aqui](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities).
 
-## Porquê MCP + Azure API Management?
+## Por que MCP + Azure API Management?
 
-O Model Context Protocol está rapidamente a tornar-se um padrão para aplicações de IA agentiva e para expor ferramentas e dados de forma consistente. O Azure API Management é uma escolha natural quando precisa de "gerir" APIs. Os servidores MCP frequentemente integram-se com outras APIs para resolver pedidos a uma ferramenta, por exemplo. Portanto, combinar o Azure API Management com MCP faz muito sentido.
+O Model Context Protocol está rapidamente a tornar-se um padrão para aplicações de IA com agentes e para expor ferramentas e dados de forma consistente. O Azure API Management é uma escolha natural quando precisa de "gerir" APIs. Os servidores MCP frequentemente integram-se com outras APIs para resolver solicitações de ferramentas, por exemplo. Portanto, combinar Azure API Management e MCP faz muito sentido.
 
 ## Visão Geral
 
-Neste caso de uso específico, vamos aprender a expor endpoints de API como um Servidor MCP. Ao fazer isto, podemos facilmente tornar estes endpoints parte de uma aplicação agentiva, ao mesmo tempo que aproveitamos as funcionalidades do Azure API Management.
+Neste caso de uso específico, vamos aprender a expor endpoints de API como um servidor MCP. Ao fazer isso, podemos facilmente tornar esses endpoints parte de uma aplicação com agentes, enquanto aproveitamos as funcionalidades do Azure API Management.
 
 ## Funcionalidades Principais
 
-- Seleciona os métodos do endpoint que quer expor como ferramentas.
-- As funcionalidades adicionais que obtém dependem do que configurar na secção de políticas para a sua API. Aqui vamos mostrar como adicionar limitação de taxa.
+- Pode selecionar os métodos de endpoint que deseja expor como ferramentas.
+- As funcionalidades adicionais que obtém dependem do que configurar na seção de políticas para a sua API. Aqui, mostraremos como pode adicionar limitação de taxa.
 
-## Passo prévio: importar uma API
+## Pré-passo: importar uma API
 
-Se já tem uma API no Azure API Management, ótimo, pode saltar este passo. Caso contrário, consulte este link, [importar uma API para o Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
+Se já tiver uma API no Azure API Management, ótimo, pode pular este passo. Caso contrário, consulte este link: [importar uma API para o Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
 
 ## Expor API como Servidor MCP
 
 Para expor os endpoints da API, siga estes passos:
 
-1. Navegue até ao Azure Portal e ao seguinte endereço <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp>  
-   Aceda à sua instância do API Management.
+1. Navegue até o Portal Azure no seguinte endereço <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp>  
+   Navegue até a sua instância do API Management.
 
-1. No menu à esquerda, selecione APIs > MCP Servers > + Criar novo MCP Server.
+1. No menu à esquerda, selecione APIs > MCP Servers > + Criar novo servidor MCP.
 
-1. Em API, selecione uma REST API para expor como servidor MCP.
+1. Na API, selecione uma API REST para expor como servidor MCP.
 
-1. Selecione uma ou mais Operações da API para expor como ferramentas. Pode selecionar todas as operações ou apenas operações específicas.
+1. Selecione uma ou mais operações de API para expor como ferramentas. Pode selecionar todas as operações ou apenas operações específicas.
 
     ![Selecionar métodos para expor](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
 
 1. Selecione **Criar**.
 
-1. Navegue até à opção de menu **APIs** e **MCP Servers**, deverá ver o seguinte:
+1. Navegue até a opção de menu **APIs** e **MCP Servers**, deverá ver o seguinte:
 
-    ![Ver o MCP Server no painel principal](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
+    ![Ver o servidor MCP no painel principal](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
 
-    O servidor MCP foi criado e as operações da API estão expostas como ferramentas. O servidor MCP está listado no painel MCP Servers. A coluna URL mostra o endpoint do servidor MCP que pode usar para testes ou dentro de uma aplicação cliente.
+    O servidor MCP é criado e as operações da API são expostas como ferramentas. O servidor MCP é listado no painel MCP Servers. A coluna URL mostra o endpoint do servidor MCP que pode ser chamado para testes ou dentro de uma aplicação cliente.
 
 ## Opcional: Configurar políticas
 
-O Azure API Management tem o conceito central de políticas, onde define regras diferentes para os seus endpoints, como por exemplo limitação de taxa ou cache semântico. Estas políticas são escritas em XML.
+O Azure API Management tem o conceito central de políticas, onde pode configurar diferentes regras para os seus endpoints, como limitação de taxa ou cache semântica. Estas políticas são escritas em XML.
 
-Aqui está como pode configurar uma política para limitar a taxa do seu Servidor MCP:
+Veja como configurar uma política para limitar a taxa do seu servidor MCP:
 
 1. No portal, em APIs, selecione **MCP Servers**.
 
@@ -70,7 +70,7 @@ Aqui está como pode configurar uma política para limitar a taxa do seu Servido
 
 1. No menu à esquerda, em MCP, selecione **Policies**.
 
-1. No editor de políticas, adicione ou edite as políticas que quer aplicar às ferramentas do servidor MCP. As políticas são definidas em formato XML. Por exemplo, pode adicionar uma política para limitar as chamadas às ferramentas do servidor MCP (neste exemplo, 5 chamadas por 30 segundos por endereço IP do cliente). Aqui está o XML que irá aplicar a limitação de taxa:
+1. No editor de políticas, adicione ou edite as políticas que deseja aplicar às ferramentas do servidor MCP. As políticas são definidas em formato XML. Por exemplo, pode adicionar uma política para limitar chamadas às ferramentas do servidor MCP (neste exemplo, 5 chamadas por 30 segundos por endereço IP do cliente). Aqui está o XML que causará a limitação de taxa:
 
     ```xml
      <rate-limit-by-key calls="5" 
@@ -83,26 +83,26 @@ Aqui está como pode configurar uma política para limitar a taxa do seu Servido
     Aqui está uma imagem do editor de políticas:
 
     ![Editor de políticas](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
- 
-## Experimente
 
-Vamos garantir que o nosso Servidor MCP está a funcionar como esperado.
+## Testar
 
-Para isso, vamos usar o Visual Studio Code e o GitHub Copilot no modo Agent. Vamos adicionar o servidor MCP a um *mcp.json*. Ao fazer isto, o Visual Studio Code atuará como um cliente com capacidades agentivas e os utilizadores finais poderão escrever um prompt e interagir com esse servidor.
+Vamos garantir que o nosso servidor MCP está a funcionar conforme esperado.
 
-Vamos ver como adicionar o servidor MCP no Visual Studio Code:
+Para isso, usaremos o Visual Studio Code e o GitHub Copilot no modo Agent. Adicionaremos o servidor MCP a um ficheiro *mcp.json*. Ao fazer isso, o Visual Studio Code atuará como um cliente com capacidades de agente e os utilizadores finais poderão digitar um prompt e interagir com o servidor.
 
-1. Use o comando MCP: **Add Server** a partir da Command Palette.
+Veja como adicionar o servidor MCP no Visual Studio Code:
+
+1. Use o comando MCP: **Add Server** no Command Palette.
 
 1. Quando solicitado, selecione o tipo de servidor: **HTTP (HTTP ou Server Sent Events)**.
 
-1. Introduza a URL do servidor MCP no API Management. Exemplo: **https://<apim-service-name>.azure-api.net/<api-name>-mcp/sse** (para endpoint SSE) ou **https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp** (para endpoint MCP), note que a diferença entre os transportes é `/sse` ou `/mcp`.
+1. Insira o URL do servidor MCP no API Management. Exemplo: **https://<apim-service-name>.azure-api.net/<api-name>-mcp/sse** (para endpoint SSE) ou **https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp** (para endpoint MCP), note como a diferença entre os transportes é `/sse` ou `/mcp`.
 
-1. Introduza um ID para o servidor à sua escolha. Este valor não é importante, mas ajuda a lembrar qual é esta instância do servidor.
+1. Insira um ID de servidor à sua escolha. Este valor não é importante, mas ajudará a lembrar o que esta instância de servidor representa.
 
-1. Selecione se quer guardar a configuração nas definições do espaço de trabalho ou nas definições do utilizador.
+1. Escolha se deseja salvar a configuração nas definições do espaço de trabalho ou nas definições do utilizador.
 
-  - **Definições do espaço de trabalho** - A configuração do servidor é guardada num ficheiro .vscode/mcp.json disponível apenas no espaço de trabalho atual.
+  - **Definições do espaço de trabalho** - A configuração do servidor é salva num ficheiro .vscode/mcp.json disponível apenas no espaço de trabalho atual.
 
     *mcp.json*
 
@@ -115,7 +115,7 @@ Vamos ver como adicionar o servidor MCP no Visual Studio Code:
     }
     ```
 
-    ou, se escolher HTTP streaming como transporte, será ligeiramente diferente:
+    ou, se escolher HTTP em streaming como transporte, será ligeiramente diferente:
 
     ```json
     "servers": {
@@ -126,17 +126,17 @@ Vamos ver como adicionar o servidor MCP no Visual Studio Code:
     }
     ```
 
-  - **Definições do utilizador** - A configuração do servidor é adicionada ao seu ficheiro global *settings.json* e está disponível em todos os espaços de trabalho. A configuração é semelhante ao seguinte:
+  - **Definições do utilizador** - A configuração do servidor é adicionada ao ficheiro global *settings.json* e está disponível em todos os espaços de trabalho. A configuração será semelhante ao seguinte:
 
-    ![Definições do utilizador](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
+    ![Definição do utilizador](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
 
-1. Também precisa de adicionar uma configuração, um cabeçalho para garantir que a autenticação funciona corretamente com o Azure API Management. Usa um cabeçalho chamado **Ocp-Apim-Subscription-Key**.
+1. Também precisa adicionar uma configuração, um cabeçalho para garantir que autentica corretamente com o Azure API Management. Ele usa um cabeçalho chamado **Ocp-Apim-Subscription-Key**.
 
-    - Aqui está como pode adicioná-lo às definições:
+    - Veja como pode adicioná-lo às definições:
 
-    ![Adicionar cabeçalho para autenticação](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), isto fará aparecer um prompt a pedir o valor da chave API, que pode encontrar no Azure Portal para a sua instância do Azure API Management.
+    ![Adicionar cabeçalho para autenticação](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), isso fará com que seja exibido um prompt para inserir o valor da chave de API, que pode ser encontrado no Portal Azure para a sua instância do Azure API Management.
 
-   - Para adicionar ao *mcp.json* em vez disso, pode fazê-lo assim:
+   - Para adicioná-lo ao *mcp.json*, pode fazer assim:
 
     ```json
     "inputs": [
@@ -160,42 +160,42 @@ Vamos ver como adicionar o servidor MCP no Visual Studio Code:
 
 ### Usar o modo Agent
 
-Agora que está tudo configurado, seja nas definições ou no *.vscode/mcp.json*, vamos experimentar.
+Agora estamos configurados, seja nas definições ou no *.vscode/mcp.json*. Vamos testá-lo.
 
-Deve haver um ícone de Ferramentas assim, onde as ferramentas expostas pelo seu servidor são listadas:
+Deverá haver um ícone de Ferramentas como este, onde as ferramentas expostas do seu servidor estão listadas:
 
 ![Ferramentas do servidor](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
 
-1. Clique no ícone de ferramentas e deverá ver uma lista de ferramentas assim:
+1. Clique no ícone de ferramentas e deverá ver uma lista de ferramentas como esta:
 
     ![Ferramentas](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/select-tools-visual-studio-code.png)
 
-1. Introduza um prompt no chat para invocar a ferramenta. Por exemplo, se selecionou uma ferramenta para obter informações sobre uma encomenda, pode perguntar ao agente sobre uma encomenda. Aqui está um exemplo de prompt:
+1. Insira um prompt no chat para invocar a ferramenta. Por exemplo, se selecionou uma ferramenta para obter informações sobre um pedido, pode perguntar ao agente sobre um pedido. Aqui está um exemplo de prompt:
 
     ```text
     get information from order 2
     ```
 
-    Agora será apresentado um ícone de ferramentas a pedir para continuar a chamar uma ferramenta. Selecione para continuar a executar a ferramenta, deverá ver uma saída assim:
+    Agora será apresentado um ícone de ferramentas pedindo para prosseguir com a chamada de uma ferramenta. Selecione para continuar a executar a ferramenta, deverá ver um resultado como este:
 
     ![Resultado do prompt](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
 
-    **o que vê acima depende das ferramentas que configurou, mas a ideia é que obtenha uma resposta textual como a mostrada**
+    **O que vê acima depende das ferramentas que configurou, mas a ideia é que obtenha uma resposta textual como acima.**
 
 ## Referências
 
 Aqui está como pode aprender mais:
 
 - [Tutorial sobre Azure API Management e MCP](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server)
-- [Exemplo em Python: Servidores MCP remotos seguros usando Azure API Management (experimental)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
+- [Exemplo em Python: Proteger servidores MCP remotos usando Azure API Management (experimental)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
 
 - [Laboratório de autorização de cliente MCP](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
 
-- [Use a extensão Azure API Management para VS Code para importar e gerir APIs](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
+- [Usar a extensão Azure API Management para VS Code para importar e gerir APIs](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
 
 - [Registar e descobrir servidores MCP remotos no Azure API Center](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
 - [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Excelente repositório que mostra muitas capacidades de IA com Azure API Management
-- [Workshops AI Gateway](https://azure-samples.github.io/AI-Gateway/) Contém workshops usando o Azure Portal, uma ótima forma de começar a avaliar capacidades de IA.
+- [Workshops do AI Gateway](https://azure-samples.github.io/AI-Gateway/) Contém workshops usando o Portal Azure, que é uma ótima forma de começar a avaliar capacidades de IA.
 
 **Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, por favor tenha em conta que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original no seu idioma nativo deve ser considerado a fonte oficial. Para informações críticas, recomenda-se a tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.

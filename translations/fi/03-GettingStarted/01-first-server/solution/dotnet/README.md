@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "07863f50601f395c3bdfce30f555f11a",
-  "translation_date": "2025-07-13T17:49:35+00:00",
+  "original_hash": "92af35e8c34923031f3d228dffad9ebb",
+  "translation_date": "2025-09-03T16:11:27+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
   "language_code": "fi"
 }
@@ -21,7 +21,7 @@ dotnet restore
 dotnet run
 ```
 
-## -4- Testaa esimerkki
+## -4- Testaa esimerkkiä
 
 Kun palvelin on käynnissä yhdessä terminaalissa, avaa toinen terminaali ja suorita seuraava komento:
 
@@ -29,12 +29,12 @@ Kun palvelin on käynnissä yhdessä terminaalissa, avaa toinen terminaali ja su
 npx @modelcontextprotocol/inspector dotnet run
 ```
 
-Tämän pitäisi käynnistää web-palvelin, jossa on visuaalinen käyttöliittymä, jonka avulla voit testata esimerkkiä.
+Tämän pitäisi käynnistää verkkopalvelin, jossa on visuaalinen käyttöliittymä, jonka avulla voit testata esimerkkiä.
 
 Kun palvelin on yhdistetty:
 
 - kokeile listata työkalut ja suorita `add` argumenteilla 2 ja 4, tuloksena pitäisi näkyä 6.
-- siirry resources- ja resource template -kohtiin ja kutsu "greeting", kirjoita nimi ja näet tervehdyksen antamallasi nimellä.
+- siirry resursseihin ja resurssimalliin ja kutsu "greeting", kirjoita nimi ja sinun pitäisi nähdä tervehdys antamallasi nimellä.
 
 ### Testaus CLI-tilassa
 
@@ -44,7 +44,7 @@ Voit käynnistää sen suoraan CLI-tilassa suorittamalla seuraavan komennon:
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/list
 ```
 
-Tämä listaa kaikki palvelimella saatavilla olevat työkalut. Näet seuraavanlaisen tulosteen:
+Tämä listaa kaikki palvelimessa saatavilla olevat työkalut. Sinun pitäisi nähdä seuraava tuloste:
 
 ```text
 {
@@ -80,7 +80,7 @@ Työkalun kutsumiseksi kirjoita:
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/call --tool-name Add --tool-arg a=1 --tool-arg b=2
 ```
 
-Näet seuraavan tulosteen:
+Sinun pitäisi nähdä seuraava tuloste:
 
 ```text
 {
@@ -94,9 +94,11 @@ Näet seuraavan tulosteen:
 }
 ```
 
-> ![!TIP]
-> Tarkastimen ajaminen CLI-tilassa on yleensä paljon nopeampaa kuin selaimessa.
-> Lue lisää inspectorista [täältä](https://github.com/modelcontextprotocol/inspector).
+> [!TIP]
+> Yleensä on paljon nopeampaa suorittaa tarkastaja CLI-tilassa kuin selaimessa.
+> Lue lisää tarkastajasta [täältä](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.

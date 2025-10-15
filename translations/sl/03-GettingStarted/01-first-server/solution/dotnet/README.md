@@ -1,13 +1,13 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "07863f50601f395c3bdfce30f555f11a",
-  "translation_date": "2025-07-13T17:51:07+00:00",
+  "original_hash": "92af35e8c34923031f3d228dffad9ebb",
+  "translation_date": "2025-09-03T16:20:03+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
   "language_code": "sl"
 }
 -->
-# Zagon tega primera
+# Zagon tega vzorca
 
 ## -1- Namestite odvisnosti
 
@@ -15,37 +15,36 @@ CO_OP_TRANSLATOR_METADATA:
 dotnet restore
 ```
 
-## -3- Zaženite primer
-
+## -3- Zaženite vzorec
 
 ```bash
 dotnet run
 ```
 
-## -4- Preizkusite primer
+## -4- Preizkusite vzorec
 
-Ko je strežnik zagnan v enem terminalu, odprite drug terminal in zaženite naslednji ukaz:
+Ko strežnik deluje v enem terminalu, odprite drug terminal in zaženite naslednji ukaz:
 
 ```bash
 npx @modelcontextprotocol/inspector dotnet run
 ```
 
-To bi moralo zagnati spletni strežnik z vizualnim vmesnikom, ki vam omogoča testiranje primera.
+To bi moralo zagnati spletni strežnik z vizualnim vmesnikom, ki vam omogoča testiranje vzorca.
 
 Ko je strežnik povezan:
 
-- poskusite našteti orodja in zaženite `add` z argumenti 2 in 4, v rezultatu bi morali videti 6.
-- pojdite na resources in resource template ter pokličite "greeting", vnesite ime in videli boste pozdrav z vnesenim imenom.
+- poskusite našteti orodja in zaženite `add` z argumentoma 2 in 4, v rezultatu bi morali videti 6.
+- pojdite na vire in predlogo virov ter pokličite "greeting", vnesite ime in videli boste pozdrav z imenom, ki ste ga vnesli.
 
-### Testiranje v CLI načinu
+### Testiranje v načinu CLI
 
-Lahko ga zaženete neposredno v CLI načinu z naslednjim ukazom:
+Lahko ga neposredno zaženete v načinu CLI z naslednjim ukazom:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/list
 ```
 
-To bo prikazalo vsa orodja, ki so na voljo na strežniku. Izpis bi moral biti naslednji:
+To bo prikazalo seznam vseh orodij, ki so na voljo na strežniku. Videti bi morali naslednji izpis:
 
 ```text
 {
@@ -75,13 +74,13 @@ To bo prikazalo vsa orodja, ki so na voljo na strežniku. Izpis bi moral biti na
 }
 ```
 
-Za klic orodja vnesite:
+Za uporabo orodja vnesite:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/call --tool-name Add --tool-arg a=1 --tool-arg b=2
 ```
 
-Videli boste naslednji izpis:
+Videti bi morali naslednji izpis:
 
 ```text
 {
@@ -95,9 +94,11 @@ Videli boste naslednji izpis:
 }
 ```
 
-> ![!TIP]
-> Običajno je veliko hitreje zagnati inspector v CLI načinu kot v brskalniku.
-> Več o inspectorju preberite [tukaj](https://github.com/modelcontextprotocol/inspector).
+> [!TIP]
+> Običajno je veliko hitreje zagnati inšpektor v načinu CLI kot v brskalniku.
+> Več o inšpektorju preberite [tukaj](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Omejitev odgovornosti**:  
-Ta dokument je bil preveden z uporabo storitve za avtomatski prevod AI [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas opozarjamo, da lahko avtomatski prevodi vsebujejo napake ali netočnosti. Izvirni dokument v izvirnem jeziku velja za avtoritativni vir. Za pomembne informacije priporočamo strokovni človeški prevod. Za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda, ne odgovarjamo.
+Ta dokument je bil preveden z uporabo storitve za prevajanje z umetno inteligenco [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da se zavedate, da lahko avtomatizirani prevodi vsebujejo napake ali netočnosti. Izvirni dokument v njegovem maternem jeziku je treba obravnavati kot avtoritativni vir. Za ključne informacije priporočamo profesionalni človeški prevod. Ne prevzemamo odgovornosti za morebitna napačna razumevanja ali napačne interpretacije, ki bi nastale zaradi uporabe tega prevoda.

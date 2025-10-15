@@ -1,28 +1,30 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "affcf199a44f60283a289dcb69dc144e",
-  "translation_date": "2025-07-17T13:34:33+00:00",
+  "original_hash": "8358c13b5b6877e475674697cdc1a904",
+  "translation_date": "2025-08-11T11:42:46+00:00",
   "source_file": "03-GettingStarted/02-client/complete_examples.md",
   "language_code": "pl"
 }
 -->
-# Kompletny zestaw przykładów klientów MCP
+# Kompletny Przykład Klientów MCP
 
 Ten katalog zawiera kompletne, działające przykłady klientów MCP w różnych językach programowania. Każdy klient demonstruje pełną funkcjonalność opisaną w głównym samouczku README.md.
 
-## Dostępni klienci
+## Dostępni Klienci
 
 ### 1. Klient Java (`client_example_java.java`)
+
 - **Transport**: SSE (Server-Sent Events) przez HTTP
-- **Docelowy serwer**: `http://localhost:8080`
-- **Funkcje**: 
+- **Serwer docelowy**: `http://localhost:8080`
+- **Funkcje**:
   - Nawiązywanie połączenia i ping
-  - Lista narzędzi
+  - Wyświetlanie listy narzędzi
   - Operacje kalkulatora (dodawanie, odejmowanie, mnożenie, dzielenie, pomoc)
-  - Obsługa błędów i wyciąganie wyników
+  - Obsługa błędów i ekstrakcja wyników
 
 **Aby uruchomić:**
+
 ```bash
 # Ensure your MCP server is running on localhost:8080
 javac client_example_java.java
@@ -30,31 +32,35 @@ java client_example_java
 ```
 
 ### 2. Klient C# (`client_example_csharp.cs`)
-- **Transport**: Stdio (Standardowe wejście/wyjście)
-- **Docelowy serwer**: Lokalny serwer MCP .NET uruchamiany przez dotnet run
+
+- **Transport**: Stdio (Standardowe Wejście/Wyjście)
+- **Serwer docelowy**: Lokalny serwer MCP .NET uruchamiany za pomocą dotnet run
 - **Funkcje**:
   - Automatyczne uruchamianie serwera przez transport stdio
-  - Lista narzędzi i zasobów
+  - Wyświetlanie listy narzędzi i zasobów
   - Operacje kalkulatora
   - Parsowanie wyników w formacie JSON
   - Kompleksowa obsługa błędów
 
 **Aby uruchomić:**
+
 ```bash
 dotnet run
 ```
 
 ### 3. Klient TypeScript (`client_example_typescript.ts`)
-- **Transport**: Stdio (Standardowe wejście/wyjście)
-- **Docelowy serwer**: Lokalny serwer MCP Node.js
+
+- **Transport**: Stdio (Standardowe Wejście/Wyjście)
+- **Serwer docelowy**: Lokalny serwer MCP Node.js
 - **Funkcje**:
-  - Pełne wsparcie protokołu MCP
+  - Pełne wsparcie dla protokołu MCP
   - Operacje na narzędziach, zasobach i promptach
   - Operacje kalkulatora
   - Odczyt zasobów i wykonywanie promptów
   - Solidna obsługa błędów
 
 **Aby uruchomić:**
+
 ```bash
 # First compile TypeScript (if needed)
 npm run build
@@ -66,67 +72,70 @@ node client_example_typescript.js
 ```
 
 ### 4. Klient Python (`client_example_python.py`)
-- **Transport**: Stdio (Standardowe wejście/wyjście)  
-- **Docelowy serwer**: Lokalny serwer MCP Python
+
+- **Transport**: Stdio (Standardowe Wejście/Wyjście)  
+- **Serwer docelowy**: Lokalny serwer MCP w Pythonie
 - **Funkcje**:
   - Wzorzec async/await dla operacji
   - Odkrywanie narzędzi i zasobów
   - Testowanie operacji kalkulatora
-  - Odczyt zawartości zasobów
+  - Odczyt treści zasobów
   - Organizacja oparta na klasach
 
 **Aby uruchomić:**
+
 ```bash
 python client_example_python.py
 ```
 
-## Wspólne cechy wszystkich klientów
+## Wspólne Funkcje Wszystkich Klientów
 
 Każda implementacja klienta demonstruje:
 
-1. **Zarządzanie połączeniem**
+1. **Zarządzanie Połączeniem**
    - Nawiązywanie połączenia z serwerem MCP
    - Obsługa błędów połączenia
-   - Prawidłowe sprzątanie i zarządzanie zasobami
+   - Odpowiednie czyszczenie i zarządzanie zasobami
 
-2. **Odkrywanie serwera**
-   - Lista dostępnych narzędzi
-   - Lista dostępnych zasobów (tam gdzie obsługiwane)
-   - Lista dostępnych promptów (tam gdzie obsługiwane)
+2. **Odkrywanie Serwera**
+   - Wyświetlanie dostępnych narzędzi
+   - Wyświetlanie dostępnych zasobów (jeśli obsługiwane)
+   - Wyświetlanie dostępnych promptów (jeśli obsługiwane)
 
-3. **Wywoływanie narzędzi**
+3. **Wywoływanie Narzędzi**
    - Podstawowe operacje kalkulatora (dodawanie, odejmowanie, mnożenie, dzielenie)
-   - Komenda pomocy z informacjami o serwerze
+   - Komenda pomocy dla informacji o serwerze
    - Prawidłowe przekazywanie argumentów i obsługa wyników
 
-4. **Obsługa błędów**
+4. **Obsługa Błędów**
    - Błędy połączenia
-   - Błędy wykonania narzędzi
-   - Łagodne zakończenie działania i informowanie użytkownika
+   - Błędy podczas wykonywania narzędzi
+   - Łagodne awarie i informowanie użytkownika
 
-5. **Przetwarzanie wyników**
-   - Wyciąganie tekstowej zawartości z odpowiedzi
-   - Formatowanie wyjścia dla czytelności
+5. **Przetwarzanie Wyników**
+   - Ekstrakcja treści tekstowej z odpowiedzi
+   - Formatowanie wyników dla czytelności
    - Obsługa różnych formatów odpowiedzi
 
-## Wymagania wstępne
+## Wymagania Wstępne
 
 Przed uruchomieniem tych klientów upewnij się, że:
 
-1. **Odpowiedni serwer MCP jest uruchomiony** (z katalogu `../01-first-server/`)
+1. **Odpowiedni serwer MCP działa** (z katalogu `../01-first-server/`)
 2. **Zainstalowano wymagane zależności** dla wybranego języka
-3. **Sieć działa poprawnie** (dla transportów opartych na HTTP)
+3. **Masz odpowiednią łączność sieciową** (dla transportów opartych na HTTP)
 
-## Kluczowe różnice między implementacjami
+## Kluczowe Różnice Między Implementacjami
 
-| Język      | Transport | Uruchomienie serwera | Model asynchroniczny | Kluczowe biblioteki |
-|------------|-----------|----------------------|---------------------|---------------------|
-| Java       | SSE/HTTP  | Zewnętrzne           | Synchroniczny       | WebFlux, MCP SDK    |
-| C#         | Stdio     | Automatyczne         | Async/Await         | .NET MCP SDK        |
-| TypeScript | Stdio     | Automatyczne         | Async/Await         | Node MCP SDK        |
-| Python     | Stdio     | Automatyczne         | AsyncIO             | Python MCP SDK      |
+| Język      | Transport | Uruchamianie Serwera | Model Async | Kluczowe Biblioteki |
+|------------|-----------|----------------------|-------------|---------------------|
+| Java       | SSE/HTTP  | Zewnętrzne          | Sync        | WebFlux, MCP SDK    |
+| C#         | Stdio     | Automatyczne        | Async/Await | .NET MCP SDK        |
+| TypeScript | Stdio     | Automatyczne        | Async/Await | Node MCP SDK        |
+| Python     | Stdio     | Automatyczne        | AsyncIO     | Python MCP SDK      |
+| Rust       | Stdio     | Automatyczne        | Async/Await | Rust MCP SDK, Tokio |
 
-## Kolejne kroki
+## Kolejne Kroki
 
 Po zapoznaniu się z tymi przykładami klientów:
 
@@ -135,28 +144,28 @@ Po zapoznaniu się z tymi przykładami klientów:
 3. **Eksperymentuj z różnymi transportami** (SSE vs. Stdio)
 4. **Zbuduj bardziej złożoną aplikację**, która integruje funkcjonalność MCP
 
-## Rozwiązywanie problemów
+## Rozwiązywanie Problemów
 
-### Najczęstsze problemy
+### Typowe Problemy
 
-1. **Połączenie odrzucone**: Upewnij się, że serwer MCP działa na oczekiwanym porcie/ścieżce
-2. **Nie znaleziono modułu**: Zainstaluj wymagany MCP SDK dla swojego języka
-3. **Brak uprawnień**: Sprawdź uprawnienia plików dla transportu stdio
-4. **Narzędzie nie znalezione**: Zweryfikuj, czy serwer implementuje oczekiwane narzędzia
+1. **Odmowa połączenia**: Upewnij się, że serwer MCP działa na oczekiwanym porcie/ścieżce
+2. **Nie znaleziono modułu**: Zainstaluj wymagane MCP SDK dla swojego języka
+3. **Odmowa dostępu**: Sprawdź uprawnienia do plików dla transportu stdio
+4. **Nie znaleziono narzędzia**: Zweryfikuj, czy serwer implementuje oczekiwane narzędzia
 
-### Wskazówki do debugowania
+### Wskazówki Debugowania
 
 1. **Włącz szczegółowe logowanie** w swoim MCP SDK
-2. **Sprawdź logi serwera** pod kątem komunikatów o błędach
-3. **Zweryfikuj nazwy i sygnatury narzędzi** zgodność między klientem a serwerem
-4. **Najpierw przetestuj z MCP Inspector**, aby zweryfikować działanie serwera
+2. **Sprawdź logi serwera** w poszukiwaniu komunikatów o błędach
+3. **Zweryfikuj nazwy i sygnatury narzędzi**, aby pasowały między klientem a serwerem
+4. **Przetestuj za pomocą MCP Inspector**, aby zweryfikować funkcjonalność serwera
 
-## Powiązana dokumentacja
+## Powiązana Dokumentacja
 
-- [Główny samouczek klienta](./README.md)
-- [Przykłady serwera MCP](../../../../03-GettingStarted/01-first-server)
-- [MCP z integracją LLM](../../../../03-GettingStarted/03-llm-client)
-- [Oficjalna dokumentacja MCP](https://modelcontextprotocol.io/)
+- [Główny Samouczek Klienta](./README.md)
+- [Przykłady Serwera MCP](../../../../03-GettingStarted/01-first-server)
+- [MCP z Integracją LLM](../../../../03-GettingStarted/03-llm-client)
+- [Oficjalna Dokumentacja MCP](https://modelcontextprotocol.io/)
 
 **Zastrzeżenie**:  
-Niniejszy dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mimo że dążymy do jak największej dokładności, prosimy mieć na uwadze, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w języku źródłowym powinien być uznawany za źródło autorytatywne. W przypadku informacji o kluczowym znaczeniu zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za wiarygodne źródło. W przypadku informacji o kluczowym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.

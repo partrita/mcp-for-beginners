@@ -1,28 +1,28 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4c4da5949611d91b06d8a5d450aae8d6",
-  "translation_date": "2025-07-13T21:21:26+00:00",
+  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
+  "translation_date": "2025-08-18T18:03:50+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
   "language_code": "ms"
 }
 -->
-# Menjalankan contoh ini
+# Menjalankan Sampel Ini
 
-Berikut adalah cara untuk menjalankan server dan klien streaming HTTP klasik, serta server dan klien streaming MCP menggunakan Python.
+Berikut adalah cara menjalankan pelayan dan klien penstriman HTTP klasik, serta pelayan dan klien penstriman MCP menggunakan Python.
 
-### Gambaran Keseluruhan
+### Gambaran Umum
 
-- Anda akan menyediakan server MCP yang menstrim notifikasi kemajuan kepada klien semasa ia memproses item.
+- Anda akan menyediakan pelayan MCP yang menstrimkan notifikasi kemajuan kepada klien semasa ia memproses item.
 - Klien akan memaparkan setiap notifikasi secara masa nyata.
-- Panduan ini merangkumi keperluan, persediaan, cara menjalankan, dan penyelesaian masalah.
+- Panduan ini merangkumi prasyarat, penyediaan, cara menjalankan, dan penyelesaian masalah.
 
-### Keperluan
+### Prasyarat
 
 - Python 3.9 atau lebih baru
 - Pakej Python `mcp` (pasang dengan `pip install mcp`)
 
-### Pemasangan & Persediaan
+### Pemasangan & Penyediaan
 
 1. Klon repositori atau muat turun fail penyelesaian.
 
@@ -30,7 +30,7 @@ Berikut adalah cara untuk menjalankan server dan klien streaming HTTP klasik, se
    git clone https://github.com/microsoft/mcp-for-beginners
    ```
 
-1. **Buat dan aktifkan persekitaran maya (disyorkan):**
+1. **Buat dan aktifkan persekitaran maya (disarankan):**
 
    ```pwsh
    python -m venv venv
@@ -42,15 +42,15 @@ Berikut adalah cara untuk menjalankan server dan klien streaming HTTP klasik, se
 1. **Pasang kebergantungan yang diperlukan:**
 
    ```pwsh
-   pip install "mcp[cli]"
+   pip install "mcp[cli]" fastapi requests
    ```
 
 ### Fail
 
-- **Server:** [server.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/server.py)
+- **Pelayan:** [server.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/server.py)
 - **Klien:** [client.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/client.py)
 
-### Menjalankan Server Streaming HTTP Klasik
+### Menjalankan Pelayan Penstriman HTTP Klasik
 
 1. Pergi ke direktori penyelesaian:
 
@@ -58,20 +58,20 @@ Berikut adalah cara untuk menjalankan server dan klien streaming HTTP klasik, se
    cd 03-GettingStarted/06-http-streaming/solution
    ```
 
-2. Mulakan server streaming HTTP klasik:
+2. Mulakan pelayan penstriman HTTP klasik:
 
    ```pwsh
    python server.py
    ```
 
-3. Server akan bermula dan memaparkan:
+3. Pelayan akan bermula dan memaparkan:
 
    ```
    Starting FastAPI server for classic HTTP streaming...
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### Menjalankan Klien Streaming HTTP Klasik
+### Menjalankan Klien Penstriman HTTP Klasik
 
 1. Buka terminal baru (aktifkan persekitaran maya dan direktori yang sama):
 
@@ -93,30 +93,30 @@ Berikut adalah cara untuk menjalankan server dan klien streaming HTTP klasik, se
    --- Stream Ended ---
    ```
 
-### Menjalankan Server Streaming MCP
+### Menjalankan Pelayan Penstriman MCP
 
 1. Pergi ke direktori penyelesaian:
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    ```
-2. Mulakan server MCP dengan pengangkutan streamable-http:
+2. Mulakan pelayan MCP dengan pengangkutan streamable-http:
    ```pwsh
    python server.py mcp
    ```
-3. Server akan bermula dan memaparkan:
+3. Pelayan akan bermula dan memaparkan:
    ```
    Starting MCP server with streamable-http transport...
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### Menjalankan Klien Streaming MCP
+### Menjalankan Klien Penstriman MCP
 
 1. Buka terminal baru (aktifkan persekitaran maya dan direktori yang sama):
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py mcp
    ```
-2. Anda akan melihat notifikasi dicetak secara masa nyata semasa server memproses setiap item:
+2. Anda akan melihat notifikasi dicetak secara masa nyata semasa pelayan memproses setiap item:
    ```
    Running MCP client...
    Starting client...
@@ -129,23 +129,23 @@ Berikut adalah cara untuk menjalankan server dan klien streaming HTTP klasik, se
    Tool result: meta=None content=[TextContent(type='text', text='Processed files: file_1.txt, file_2.txt, file_3.txt | Message: hello from client')]
    ```
 
-### Langkah Utama Pelaksanaan
+### Langkah-Langkah Utama Pelaksanaan
 
-1. **Buat server MCP menggunakan FastMCP.**
+1. **Buat pelayan MCP menggunakan FastMCP.**
 2. **Tentukan alat yang memproses senarai dan menghantar notifikasi menggunakan `ctx.info()` atau `ctx.log()`.**
-3. **Jalankan server dengan `transport="streamable-http"`.**
-4. **Laksanakan klien dengan pengendali mesej untuk memaparkan notifikasi sebaik tiba.**
+3. **Jalankan pelayan dengan `transport="streamable-http"`.**
+4. **Laksanakan klien dengan pengendali mesej untuk memaparkan notifikasi semasa ia tiba.**
 
 ### Penjelasan Kod
-- Server menggunakan fungsi async dan konteks MCP untuk menghantar kemas kini kemajuan.
+- Pelayan menggunakan fungsi async dan konteks MCP untuk menghantar kemas kini kemajuan.
 - Klien melaksanakan pengendali mesej async untuk mencetak notifikasi dan hasil akhir.
 
 ### Petua & Penyelesaian Masalah
 
-- Gunakan `async/await` untuk operasi tanpa sekatan.
-- Sentiasa tangani pengecualian di kedua-dua server dan klien untuk ketahanan.
+- Gunakan `async/await` untuk operasi yang tidak menyekat.
+- Sentiasa tangani pengecualian di kedua-dua pelayan dan klien untuk ketahanan.
 - Uji dengan pelbagai klien untuk melihat kemas kini masa nyata.
-- Jika menghadapi ralat, semak versi Python anda dan pastikan semua kebergantungan dipasang.
+- Jika anda menghadapi ralat, periksa versi Python anda dan pastikan semua kebergantungan telah dipasang.
 
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat penting, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

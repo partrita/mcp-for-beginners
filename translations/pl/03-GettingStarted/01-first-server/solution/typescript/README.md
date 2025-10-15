@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ac67652abc453e2a7e2c75cd7a8897ae",
-  "translation_date": "2025-07-13T18:05:20+00:00",
+  "original_hash": "6ebbb78b04c9b1f6c2367c713524fc95",
+  "translation_date": "2025-09-03T16:07:12+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/typescript/README.md",
   "language_code": "pl"
 }
@@ -25,18 +25,18 @@ npm run build
 
 ## -4- Przetestuj przykład
 
-Gdy serwer działa w jednym terminalu, otwórz inny terminal i uruchom następujące polecenie:
+Gdy serwer działa w jednym terminalu, otwórz drugi terminal i uruchom następujące polecenie:
 
 ```bash
 npm run inspector
 ```
 
-To powinno uruchomić serwer WWW z interfejsem wizualnym, który pozwoli Ci przetestować przykład.
+Powinno to uruchomić serwer WWW z interfejsem wizualnym, który umożliwia testowanie przykładu.
 
-Po połączeniu z serwerem:
+Gdy serwer zostanie połączony:
 
-- spróbuj wyświetlić listę narzędzi i uruchom `add` z argumentami 2 i 4, w wyniku powinno pojawić się 6.
-- przejdź do zasobów i szablonu zasobu, wywołaj "greeting", wpisz imię i powinieneś zobaczyć powitanie z podanym imieniem.
+- spróbuj wyświetlić listę narzędzi i uruchom `add` z argumentami 2 i 4, powinieneś zobaczyć wynik 6.
+- przejdź do zasobów i szablonu zasobów, wywołaj "greeting", wpisz imię, a powinieneś zobaczyć powitanie z podanym przez Ciebie imieniem.
 
 ### Testowanie w trybie CLI
 
@@ -99,9 +99,11 @@ Powinieneś zobaczyć następujący wynik:
 }
 ```
 
-> ![!TIP]
-> Zazwyczaj znacznie szybciej jest uruchomić inspektora w trybie CLI niż w przeglądarce.
-> Więcej o inspektorze przeczytasz [tutaj](https://github.com/modelcontextprotocol/inspector).
+> [!TIP]
+> Zazwyczaj inspektor działa znacznie szybciej w trybie CLI niż w przeglądarce.
+> Przeczytaj więcej o inspektorze [tutaj](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Zastrzeżenie**:  
-Niniejszy dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mimo że dążymy do dokładności, prosimy mieć na uwadze, że tłumaczenia automatyczne mogą zawierać błędy lub nieścisłości. Oryginalny dokument w języku źródłowym powinien być uznawany za źródło autorytatywne. W przypadku informacji krytycznych zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby zapewnić poprawność tłumaczenia, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za źródło autorytatywne. W przypadku informacji o kluczowym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.

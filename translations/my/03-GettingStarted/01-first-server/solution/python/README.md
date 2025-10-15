@@ -1,67 +1,67 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "d0f0d7012325b286e4a717791b23ae7e",
-  "translation_date": "2025-07-13T18:02:37+00:00",
+  "original_hash": "d4c162484df410632550a4a357d40341",
+  "translation_date": "2025-09-03T16:20:22+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/python/README.md",
   "language_code": "my"
 }
 -->
-# ဒီနမူနာကို chạy လုပ်ခြင်း
+# ဒီနမူနာကို အလုပ်လုပ်စေခြင်း
 
-`uv` ကို 설치 လုပ်ဖို့ အကြံပြုထားပေမယ့် မလိုအပ်ပါ၊ [ညွှန်ကြားချက်များ](https://docs.astral.sh/uv/#highlights) ကို ကြည့်ပါ။
+`uv` ကို install လုပ်ဖို့ အကြံပေးထားပေမယ့် မဖြစ်မဖြစ်လိုအပ်တာမဟုတ်ပါဘူး၊ [လမ်းညွှန်ချက်များ](https://docs.astral.sh/uv/#highlights) ကိုကြည့်ပါ။
 
-## -0- virtual environment တစ်ခု ဖန်တီးခြင်း
+## -0- Virtual Environment တစ်ခုဖန်တီးပါ
 
 ```bash
 python -m venv venv
 ```
 
-## -1- virtual environment ကို ဖွင့်ခြင်း
+## -1- Virtual Environment ကို အလုပ်လုပ်စေပါ
 
 ```bash
-venv\Scrips\activate
+venv\Scripts\activate
 ```
 
-## -2- လိုအပ်သော dependencies များ 설치 လုပ်ခြင်း
+## -2- လိုအပ်သော Dependencies များကို Install လုပ်ပါ
 
 ```bash
 pip install "mcp[cli]"
 ```
 
-## -3- နမူနာကို chạy လုပ်ခြင်း
+## -3- နမူနာကို အလုပ်လုပ်စေပါ
 
 ```bash
 mcp run server.py
 ```
 
-## -4- နမူနာကို စမ်းသပ်ခြင်း
+## -4- နမူနာကို စမ်းသပ်ပါ
 
-server ကို terminal တစ်ခုမှာ chạy လုပ်နေစဉ်၊ terminal တစ်ခုကို ထပ်ဖွင့်ပြီး အောက်ပါ command ကို chạy ပါ။
+Server ကို terminal တစ်ခုမှာ အလုပ်လုပ်နေစဉ်၊ အခြား terminal တစ်ခုဖွင့်ပြီး အောက်ပါ command ကို run လုပ်ပါ:
 
 ```bash
 mcp dev server.py
 ```
 
-ဒါက နမူနာကို စမ်းသပ်နိုင်ဖို့ visual interface ပါတဲ့ web server တစ်ခုကို စတင်ပေးပါလိမ့်မယ်။
+ဒီဟာက visual interface ပါတဲ့ web server တစ်ခုကို စတင်စေပြီး နမူနာကို စမ်းသပ်နိုင်ပါမယ်။
 
-server နဲ့ ချိတ်ဆက်ပြီးနောက် -
+Server ကို ချိတ်ဆက်ပြီးနောက်:
 
-- tools များကို စာရင်းပြပြီး `add` ကို args 2 နဲ့ 4 ဖြင့် chạy ကြည့်ပါ၊ ရလဒ်မှာ 6 ကို မြင်ရပါမယ်။
+- tools များကို list လုပ်ပြီး `add` ကို run လုပ်ပါ၊ arguments 2 နှင့် 4 ကိုထည့်ပါ၊ ရလဒ်မှာ 6 ဖြစ်သင့်ပါတယ်။
 
-- resources နဲ့ resource template ကို သွားပြီး get_greeting ကို ခေါ်ပါ၊ နာမည်တစ်ခု ရိုက်ထည့်လိုက်ရင် သင့်ရဲ့ နာမည်နဲ့ အကြိုဆိုစာကို မြင်ရပါလိမ့်မယ်။
+- resources နှင့် resource template ကိုသွားပြီး `get_greeting` ကိုခေါ်ပါ၊ နာမည်တစ်ခုရိုက်ထည့်ပြီး သင့်ရိုက်ထည့်ထားတဲ့နာမည်နဲ့ greeting ကိုမြင်ရပါမယ်။
 
 ### CLI mode မှာ စမ်းသပ်ခြင်း
 
-သင် chạy လုပ်ထားတဲ့ inspector က Node.js app တစ်ခုဖြစ်ပြီး `mcp dev` က အဲဒီ app ကို wrapper လုပ်ထားတာပါ။
+သင့်ရဲ့ inspector က အမှန်တကယ် Node.js app ဖြစ်ပြီး `mcp dev` က wrapper တစ်ခုဖြစ်ပါတယ်။
 
-အောက်ပါ command ကို chạy လုပ်ခြင်းဖြင့် CLI mode မှာ တိုက်ရိုက် စတင်နိုင်ပါတယ်။
+CLI mode မှာ တိုက်ရိုက် launch လုပ်နိုင်ဖို့ အောက်ပါ command ကို run လုပ်ပါ:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli mcp run server.py --method tools/list
 ```
 
-ဒါက server မှာ ရနိုင်တဲ့ tools အားလုံးကို စာရင်းပြပါလိမ့်မယ်။ အောက်ပါ output ကို မြင်ရပါမယ်။
+ဒီဟာက Server မှာ ရရှိနိုင်တဲ့ tools အားလုံးကို list လုပ်ပါမယ်။ သင့်ရဲ့ output မှာ အောက်ပါအတိုင်းမြင်ရပါမယ်:
 
 ```text
 {
@@ -92,13 +92,13 @@ npx @modelcontextprotocol/inspector --cli mcp run server.py --method tools/list
 }
 ```
 
-tool တစ်ခုကို ခေါ်ရန် -
+Tool တစ်ခုကို invoke လုပ်ဖို့:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli mcp run server.py --method tools/call --tool-name add --tool-arg a=1 --tool-arg b=2
 ```
 
-အောက်ပါ output ကို မြင်ရပါလိမ့်မယ်။
+သင့်ရဲ့ output မှာ အောက်ပါအတိုင်းမြင်ရပါမယ်:
 
 ```text
 {
@@ -112,9 +112,11 @@ npx @modelcontextprotocol/inspector --cli mcp run server.py --method tools/call 
 }
 ```
 
-> ![!TIP]
-> inspector ကို browser မှာ chạy လုပ်တာထက် CLI mode မှာ chạy လုပ်တာ ပိုမြန်တတ်ပါတယ်။
-> inspector အကြောင်း ပိုမိုသိရှိရန် [ဒီမှာ](https://github.com/modelcontextprotocol/inspector) ဖတ်ပါ။
+> [!TIP]
+> Browser မှာ inspector ကို run လုပ်တာထက် CLI mode မှာ run လုပ်တာ ပုံမှန်အားဖြင့် အလွန်လျင်မြန်ပါတယ်။
+> Inspector အကြောင်းပိုမိုဖတ်ရှုရန် [ဒီမှာ](https://github.com/modelcontextprotocol/inspector) ကြည့်ပါ။
 
-**အကြောင်းကြားချက်**  
-ဤစာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ဖြင့် ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှန်ကန်မှုအတွက် ကြိုးစားသော်လည်း၊ အလိုအလျောက် ဘာသာပြန်ခြင်းများတွင် အမှားများ သို့မဟုတ် မှားယွင်းချက်များ ပါဝင်နိုင်ကြောင်း သတိပြုပါရန် မေတ္တာရပ်ခံအပ်ပါသည်။ မူရင်းစာတမ်းကို မိမိဘာသာစကားဖြင့်သာ တရားဝင်အချက်အလက်အဖြစ် ယူဆသင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူ့ဘာသာပြန်ပညာရှင်မှ ဘာသာပြန်ခြင်းကို အကြံပြုပါသည်။ ဤဘာသာပြန်ချက်ကို အသုံးပြုမှုကြောင့် ဖြစ်ပေါ်လာနိုင်သည့် နားလည်မှုမှားယွင်းမှုများအတွက် ကျွန်ုပ်တို့ တာဝန်မယူပါ။
+---
+
+**အကြောင်းကြားချက်**:  
+ဤစာရွက်စာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ကို အသုံးပြု၍ ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှုအတွက် ကြိုးစားနေသော်လည်း၊ အလိုအလျောက် ဘာသာပြန်မှုများတွင် အမှားများ သို့မဟုတ် မတိကျမှုများ ပါဝင်နိုင်သည်ကို သတိပြုပါ။ မူရင်းစာရွက်စာတမ်းကို ၎င်း၏ မူရင်းဘာသာစကားဖြင့် အာဏာတရားရှိသော အရင်းအမြစ်အဖြစ် သတ်မှတ်သင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူ့ဘာသာပြန်ပညာရှင်များမှ ပရော်ဖက်ရှင်နယ် ဘာသာပြန်မှုကို အကြံပြုပါသည်။ ဤဘာသာပြန်မှုကို အသုံးပြုခြင်းမှ ဖြစ်ပေါ်လာသော အလွဲအလွတ်များ သို့မဟုတ် အနားလွဲမှုများအတွက် ကျွန်ုပ်တို့သည် တာဝန်မယူပါ။

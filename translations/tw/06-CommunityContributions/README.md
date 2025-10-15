@@ -1,13 +1,17 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "8a92e2552cf3d4613f0fb4846c13d56d",
-  "translation_date": "2025-07-22T07:02:03+00:00",
+  "original_hash": "fcf1e12b62102bf7d16b78deb2b163b7",
+  "translation_date": "2025-07-28T23:27:39+00:00",
   "source_file": "06-CommunityContributions/README.md",
   "language_code": "tw"
 }
 -->
 # 社群與貢獻
+
+[![如何貢獻給 MCP：工具、文件、程式碼及更多](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.tw.png)](https://youtu.be/v1pvCYAWpRE)
+
+_（點擊上方圖片觀看本課程影片）_
 
 ## 概述
 
@@ -26,22 +30,22 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## MCP 社群生態系統
 
-MCP 生態系統由多個組成部分與參與者組成，這些元素共同推動協議的發展。
+MCP 生態系統由多個組成部分與參與者組成，這些角色共同推動協議的發展。
 
-### 主要社群組成部分
+### 核心社群組成部分
 
-1. **核心協議維護者**：官方 [Model Context Protocol GitHub 組織](https://github.com/modelcontextprotocol) 負責維護 MCP 核心規範與參考實現。
-2. **工具開發者**：創建 MCP 工具與伺服器的個人或團隊。
-3. **整合提供者**：將 MCP 整合到其產品與服務中的公司。
-4. **終端用戶**：在應用中使用 MCP 的開發者與組織。
-5. **貢獻者**：為社群提供代碼、文檔或其他資源的成員。
+1. **核心協議維護者**：官方 [Model Context Protocol GitHub 組織](https://github.com/modelcontextprotocol) 負責維護 MCP 的核心規範與參考實現
+2. **工具開發者**：創建 MCP 工具與伺服器的個人或團隊
+3. **整合提供者**：將 MCP 整合到其產品與服務中的公司
+4. **終端使用者**：在應用程式中使用 MCP 的開發者與組織
+5. **貢獻者**：為社群提供程式碼、文件或其他資源的成員
 
 ### 社群資源
 
-#### 官方渠道
+#### 官方管道
 
 - [MCP GitHub 組織](https://github.com/modelcontextprotocol)
-- [MCP 文檔](https://modelcontextprotocol.io/)
+- [MCP 文件](https://modelcontextprotocol.io/)
 - [MCP 規範](https://modelcontextprotocol.io/docs/specification)
 - [GitHub 討論](https://github.com/orgs/modelcontextprotocol/discussions)
 - [MCP 範例與伺服器倉庫](https://github.com/modelcontextprotocol/servers)
@@ -52,9 +56,9 @@ MCP 生態系統由多個組成部分與參與者組成，這些元素共同推�
 - [社群 MCP 伺服器](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - 不斷增長的社群開發 MCP 伺服器列表
 - [Awesome MCP Servers](https://github.com/wong2/awesome-mcp-servers) - 精選 MCP 伺服器列表
 - [PulseMCP](https://www.pulsemcp.com/) - 發現 MCP 資源的社群中心與電子報
-- [Discord 伺服器](https://discord.gg/jHEGxQu2a5) - 與 MCP 開發者聯繫
+- [Discord 伺服器](https://discord.gg/jHEGxQu2a5) - 與 MCP 開發者交流
 - 特定語言的 SDK 實現
-- 部落格文章與教程
+- 部落格文章與教學
 
 ## 為 MCP 做出貢獻
 
@@ -62,33 +66,33 @@ MCP 生態系統由多個組成部分與參與者組成，這些元素共同推�
 
 MCP 生態系統歡迎多種形式的貢獻：
 
-1. **代碼貢獻**：
+1. **程式碼貢獻**：
    - 核心協議增強
    - 錯誤修復
    - 工具與伺服器實現
    - 不同語言的客戶端/伺服器庫
 
-2. **文檔**：
-   - 改進現有文檔
-   - 創建教程與指南
-   - 翻譯文檔
-   - 創建範例與示例應用
+2. **文件**：
+   - 改進現有文件
+   - 創建教學與指南
+   - 翻譯文件
+   - 創建範例與示例應用程式
 
 3. **社群支持**：
    - 在論壇與討論中回答問題
-   - 測試與報告問題
+   - 測試與回報問題
    - 組織社群活動
    - 指導新貢獻者
 
-### 貢獻流程：核心協議
+### 核心協議的貢獻流程
 
-要為核心 MCP 協議或官方實現做出貢獻，請遵循 [官方貢獻指南](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md) 中的原則：
+若要為核心 MCP 協議或官方實現做出貢獻，請遵循 [官方貢獻指南](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md) 中的原則：
 
-1. **簡單與極簡主義**：MCP 規範對新增概念設有高標準。新增規範比移除規範更容易。
-2. **具體方法**：規範變更應基於具體的實現挑戰，而非假設性想法。
-3. **提案階段**：
-   - 定義：探索問題範疇，驗證其他 MCP 用戶是否面臨類似問題
-   - 原型：構建範例解決方案並展示其實際應用
+1. **簡單與極簡主義**：MCP 規範對新增概念設有高標準。新增規範的內容比移除更容易。
+2. **具體方法**：規範變更應基於具體的實現挑戰，而非推測性想法。
+3. **提案的階段**：
+   - 定義：探索問題範疇，驗證其他 MCP 使用者是否面臨類似問題
+   - 原型：構建示例解決方案並展示其實際應用
    - 撰寫：基於原型撰寫規範提案
 
 ### 開發環境設置
@@ -309,11 +313,11 @@ class CsvProcessingTool(Tool):
 
 成功為 MCP 專案做出貢獻的建議：
 
-1. **從小處著手**：從文檔、錯誤修復或小型增強開始
-2. **遵循風格指南**：遵守專案的代碼風格與慣例
-3. **撰寫測試**：為代碼貢獻添加單元測試
-4. **記錄您的工作**：為新功能或更改添加清晰的文檔
-5. **提交有針對性的 PR**：將拉取請求集中於單一問題或功能
+1. **從小處著手**：從文件、錯誤修復或小型增強開始
+2. **遵循風格指南**：遵守專案的程式碼風格與慣例
+3. **撰寫測試**：為程式碼貢獻添加單元測試
+4. **記錄您的工作**：為新功能或更改添加清晰的文件
+5. **提交目標明確的 PR**：將拉取請求集中於單一問題或功能
 6. **回應反饋**：積極回應對您貢獻的反饋
 
 ### 範例貢獻工作流程
@@ -344,11 +348,11 @@ git push origin feature/my-contribution
 
 ## 創建與分享 MCP 伺服器
 
-創建並分享自定義 MCP 伺服器是為 MCP 生態系統做出貢獻的最有價值方式之一。社群已經開發了數百個針對各種服務與用例的伺服器。
+創建並分享自定義 MCP 伺服器是為 MCP 生態系統做出貢獻的最有價值方式之一。社群已經開發了數百個針對不同服務與用例的伺服器。
 
 ### MCP 伺服器開發框架
 
-多種框架可用於簡化 MCP 伺服器的開發：
+以下框架可簡化 MCP 伺服器的開發：
 
 1. **官方 SDK**：
    - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
@@ -359,10 +363,10 @@ git push origin feature/my-contribution
    - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk)
 
 2. **社群框架**：
-   - [MCP-Framework](https://mcp-framework.com/) - 使用 TypeScript 快速優雅地構建 MCP 伺服器
+   - [MCP-Framework](https://mcp-framework.com/) - 使用 TypeScript 優雅快速地構建 MCP 伺服器
    - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - 基於註解的 Java MCP 伺服器
    - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - Java MCP 伺服器框架
-   - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - MCP 伺服器的 Next.js 起始專案
+   - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - 用於 MCP 伺服器的 Next.js 起始專案
 
 ### 開發可分享的工具
 
@@ -682,64 +686,64 @@ class SentimentAnalysisTool(Tool):
 
 與社群分享 MCP 工具時：
 
-1. **完整文檔**：
+1. **完整文件**：
    - 記錄目的、用法與範例
    - 解釋參數與返回值
    - 記錄任何外部依賴
 
 2. **錯誤處理**：
-   - 實現健全的錯誤處理
+   - 實現穩健的錯誤處理
    - 提供有用的錯誤訊息
    - 優雅地處理邊界情況
 
-3. **性能考量**：
+3. **效能考量**：
    - 優化速度與資源使用
-   - 適當時實現緩存
+   - 適當實現快取
    - 考慮可擴展性
 
 4. **安全性**：
    - 使用安全的 API 金鑰與身份驗證
    - 驗證與清理輸入
-   - 為外部 API 調用實施速率限制
+   - 為外部 API 呼叫實現速率限制
 
 5. **測試**：
    - 包括全面的測試覆蓋
-   - 測試不同的輸入類型與邊界情況
+   - 測試不同輸入類型與邊界情況
    - 記錄測試程序
 
 ## 社群協作與最佳實踐
 
 有效的協作是 MCP 生態系統蓬勃發展的關鍵。
 
-### 通訊渠道
+### 通訊管道
 
 - GitHub 問題與討論
 - Microsoft Tech Community
 - Discord 與 Slack 頻道
 - Stack Overflow（標籤：`model-context-protocol` 或 `mcp`）
 
-### 代碼審查
+### 程式碼審查
 
 審查 MCP 貢獻時：
 
-1. **清晰性**：代碼是否清晰且有良好文檔？
+1. **清晰性**：程式碼是否清晰且有良好文件？
 2. **正確性**：是否按預期運作？
 3. **一致性**：是否遵循專案慣例？
-4. **完整性**：是否包含測試與文檔？
-5. **安全性**：是否存在安全問題？
+4. **完整性**：是否包含測試與文件？
+5. **安全性**：是否存在任何安全問題？
 
 ### 版本相容性
 
 開發 MCP 時：
 
-1. **協議版本控制**：遵守工具支援的 MCP 協議版本
+1. **協議版本控制**：遵循工具支援的 MCP 協議版本
 2. **客戶端相容性**：考慮向後相容性
 3. **伺服器相容性**：遵循伺服器實現指南
 4. **重大變更**：清楚記錄任何重大變更
 
 ## 範例社群專案：MCP 工具註冊表
 
-一個重要的社群貢獻可以是開發一個公共的 MCP 工具註冊表。
+開發一個公共的 MCP 工具註冊表可能是重要的社群貢獻。
 
 ```python
 # Example schema for a community tool registry API
@@ -828,10 +832,10 @@ async def delete_tool(tool_name: str):
 
 ## 練習
 
-1. 根據您的技能與興趣，識別 MCP 生態系統中您可以貢獻的領域
+1. 根據您的技能與興趣，確定 MCP 生態系統中您可以貢獻的領域
 2. Fork MCP 倉庫並設置本地開發環境
-3. 創建一個小型增強、錯誤修復或工具，為社群帶來益處
-4. 使用適當的測試與文檔記錄您的貢獻
+3. 創建一個小型增強、錯誤修復或工具，造福社群
+4. 使用適當的測試與文件記錄您的貢獻
 5. 向相關倉庫提交拉取請求
 
 ## 其他資源
@@ -843,4 +847,4 @@ async def delete_tool(tool_name: str):
 下一步：[早期採用的經驗教訓](../07-LessonsfromEarlyAdoption/README.md)
 
 **免責聲明**：  
-本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。儘管我們努力確保翻譯的準確性，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於重要信息，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋不承擔責任。
+本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於關鍵資訊，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋不承擔責任。

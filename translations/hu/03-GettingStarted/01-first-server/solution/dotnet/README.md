@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "07863f50601f395c3bdfce30f555f11a",
-  "translation_date": "2025-07-13T17:50:22+00:00",
+  "original_hash": "92af35e8c34923031f3d228dffad9ebb",
+  "translation_date": "2025-09-03T16:15:54+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
   "language_code": "hu"
 }
@@ -23,28 +23,28 @@ dotnet run
 
 ## -4- A minta tesztelése
 
-Amíg a szerver fut az egyik terminálban, nyiss meg egy másik terminált, és futtasd a következő parancsot:
+Amikor a szerver egy terminálban fut, nyiss meg egy másik terminált, és futtasd az alábbi parancsot:
 
 ```bash
 npx @modelcontextprotocol/inspector dotnet run
 ```
 
-Ez elindít egy web szervert vizuális felülettel, amely lehetővé teszi a minta tesztelését.
+Ez elindít egy webes szervert vizuális felülettel, amely lehetővé teszi a minta tesztelését.
 
 Miután a szerver csatlakozott:
 
-- próbáld meg lekérdezni az eszközöket, és futtasd az `add` parancsot a 2 és 4 argumentummal, az eredménynek 6-nak kell lennie.
-- menj a resources és resource template részhez, hívd meg a "greeting" funkciót, írj be egy nevet, és egy névre szóló üdvözlést kell látnod.
+- próbáld meg listázni az eszközöket, és futtasd az `add` parancsot a 2 és 4 argumentumokkal, az eredményben 6-ot kell látnod.
+- menj a forrásokhoz és a forrássablonhoz, hívd meg a "greeting" funkciót, írj be egy nevet, és látnod kell egy üdvözlést az általad megadott névvel.
 
 ### Tesztelés CLI módban
 
-Közvetlenül CLI módban is elindíthatod a következő paranccsal:
+Közvetlenül CLI módban is elindíthatod az alábbi parancs futtatásával:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/list
 ```
 
-Ez kilistázza a szerveren elérhető összes eszközt. A következő kimenetet kell látnod:
+Ez listázza az összes elérhető eszközt a szerveren. Az alábbi kimenetet kell látnod:
 
 ```text
 {
@@ -80,7 +80,7 @@ Egy eszköz meghívásához írd be:
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/call --tool-name Add --tool-arg a=1 --tool-arg b=2
 ```
 
-A következő kimenetet kell látnod:
+Az alábbi kimenetet kell látnod:
 
 ```text
 {
@@ -94,9 +94,11 @@ A következő kimenetet kell látnod:
 }
 ```
 
-> ![!TIP]
-> Általában sokkal gyorsabb az inspector futtatása CLI módban, mint a böngészőben.
-> További információkat az inspectorról [itt](https://github.com/modelcontextprotocol/inspector) találsz.
+> [!TIP]
+> Általában sokkal gyorsabb az inspektort CLI módban futtatni, mint böngészőben.
+> További információ az inspektorról [itt](https://github.com/modelcontextprotocol/inspector).
 
-**Jogi nyilatkozat**:  
-Ez a dokumentum az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén szakmai, emberi fordítást javaslunk. Nem vállalunk felelősséget az ebből a fordításból eredő félreértésekért vagy téves értelmezésekért.
+---
+
+**Felelősségkizárás**:  
+Ez a dokumentum az [Co-op Translator](https://github.com/Azure/co-op-translator) AI fordítási szolgáltatás segítségével készült. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Kritikus információk esetén javasolt professzionális, emberi fordítást igénybe venni. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.

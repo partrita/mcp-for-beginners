@@ -1,15 +1,15 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ac67652abc453e2a7e2c75cd7a8897ae",
-  "translation_date": "2025-07-13T18:05:13+00:00",
+  "original_hash": "6ebbb78b04c9b1f6c2367c713524fc95",
+  "translation_date": "2025-09-03T16:06:38+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/typescript/README.md",
   "language_code": "it"
 }
 -->
 # Esecuzione di questo esempio
 
-Si consiglia di installare `uv` ma non è obbligatorio, vedi [istruzioni](https://docs.astral.sh/uv/#highlights)
+Si consiglia di installare `uv`, ma non è obbligatorio. Consulta [le istruzioni](https://docs.astral.sh/uv/#highlights).
 
 ## -1- Installa le dipendenze
 
@@ -18,7 +18,6 @@ npm install
 ```
 
 ## -3- Esegui l'esempio
-
 
 ```bash
 npm run build
@@ -32,12 +31,12 @@ Con il server in esecuzione in un terminale, apri un altro terminale ed esegui i
 npm run inspector
 ```
 
-Questo dovrebbe avviare un server web con un'interfaccia visiva che ti permette di testare l'esempio.
+Questo avvierà un server web con un'interfaccia visiva che ti permetterà di testare l'esempio.
 
-Una volta connesso il server:
+Una volta che il server è connesso:
 
-- prova a elencare gli strumenti ed esegui `add`, con argomenti 2 e 4, dovresti vedere 6 come risultato.
-- vai su resources e resource template e chiama "greeting", digita un nome e dovresti vedere un saluto con il nome che hai inserito.
+- prova a elencare gli strumenti e a eseguire `add`, con gli argomenti 2 e 4, dovresti vedere 6 nel risultato.
+- vai alle risorse e al modello di risorsa e chiama "greeting", inserisci un nome e dovresti vedere un saluto con il nome che hai fornito.
 
 ### Test in modalità CLI
 
@@ -100,9 +99,11 @@ Dovresti vedere il seguente output:
 }
 ```
 
-> ![!TIP]
-> Di solito è molto più veloce eseguire l'inspector in modalità CLI che nel browser.
+> [!TIP]
+> Di solito è molto più veloce eseguire l'inspector in modalità CLI rispetto al browser.
 > Leggi di più sull'inspector [qui](https://github.com/modelcontextprotocol/inspector).
 
+---
+
 **Disclaimer**:  
-Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Pur impegnandoci per garantire accuratezza, si prega di notare che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa deve essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale effettuata da un umano. Non ci assumiamo alcuna responsabilità per eventuali malintesi o interpretazioni errate derivanti dall’uso di questa traduzione.
+Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Sebbene ci impegniamo per garantire l'accuratezza, si prega di notare che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa dovrebbe essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale effettuata da un traduttore umano. Non siamo responsabili per eventuali incomprensioni o interpretazioni errate derivanti dall'uso di questa traduzione.

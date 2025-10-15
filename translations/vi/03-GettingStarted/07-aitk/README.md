@@ -1,113 +1,108 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "8248e3491f5245ee6ab48ef724a4f65a",
-  "translation_date": "2025-07-13T21:37:33+00:00",
+  "original_hash": "98bcd044860716da5819e31c152813b7",
+  "translation_date": "2025-08-18T17:21:37+00:00",
   "source_file": "03-GettingStarted/07-aitk/README.md",
   "language_code": "vi"
 }
 -->
-# Sử dụng một server từ phần mở rộng AI Toolkit cho Visual Studio Code
+# Sử dụng một máy chủ từ tiện ích mở rộng AI Toolkit cho Visual Studio Code
 
-Khi bạn xây dựng một agent AI, không chỉ đơn thuần là tạo ra các phản hồi thông minh; mà còn là giúp agent có khả năng thực hiện hành động. Đó chính là vai trò của Model Context Protocol (MCP). MCP giúp các agent dễ dàng truy cập các công cụ và dịch vụ bên ngoài một cách nhất quán. Hãy tưởng tượng như bạn đang kết nối agent của mình với một hộp công cụ mà nó *thực sự* có thể sử dụng.
+Khi bạn xây dựng một tác nhân AI, không chỉ là tạo ra các phản hồi thông minh; mà còn là cung cấp cho tác nhân khả năng thực hiện hành động. Đó là lúc giao thức Model Context Protocol (MCP) xuất hiện. MCP giúp các tác nhân dễ dàng truy cập các công cụ và dịch vụ bên ngoài một cách nhất quán. Hãy tưởng tượng như bạn đang kết nối tác nhân của mình với một hộp công cụ mà nó có thể *thực sự* sử dụng.
 
-Giả sử bạn kết nối một agent với server MCP máy tính của bạn. Đột nhiên, agent có thể thực hiện các phép toán chỉ bằng cách nhận một câu hỏi như “47 nhân 89 bằng bao nhiêu?” — không cần phải mã hóa cứng logic hay xây dựng API tùy chỉnh.
+Ví dụ, bạn kết nối một tác nhân với máy chủ MCP của máy tính. Đột nhiên, tác nhân của bạn có thể thực hiện các phép toán chỉ bằng cách nhận một yêu cầu như “47 nhân 89 là bao nhiêu?”—không cần phải mã hóa logic hay xây dựng API tùy chỉnh.
 
 ## Tổng quan
 
-Bài học này hướng dẫn cách kết nối một server MCP máy tính với một agent sử dụng phần mở rộng [AI Toolkit](https://aka.ms/AIToolkit) trong Visual Studio Code, cho phép agent thực hiện các phép toán như cộng, trừ, nhân, chia thông qua ngôn ngữ tự nhiên.
+Bài học này hướng dẫn cách kết nối một máy chủ MCP của máy tính với một tác nhân bằng tiện ích mở rộng [AI Toolkit](https://aka.ms/AIToolkit) trong Visual Studio Code, cho phép tác nhân thực hiện các phép toán như cộng, trừ, nhân, và chia thông qua ngôn ngữ tự nhiên.
 
-AI Toolkit là một phần mở rộng mạnh mẽ cho Visual Studio Code giúp đơn giản hóa việc phát triển agent. Các kỹ sư AI có thể dễ dàng xây dựng ứng dụng AI bằng cách phát triển và thử nghiệm các mô hình AI sinh tạo — trên máy cục bộ hoặc trên đám mây. Phần mở rộng hỗ trợ hầu hết các mô hình sinh tạo phổ biến hiện nay.
+AI Toolkit là một tiện ích mạnh mẽ cho Visual Studio Code, giúp đơn giản hóa việc phát triển tác nhân AI. Các kỹ sư AI có thể dễ dàng xây dựng ứng dụng AI bằng cách phát triển và kiểm thử các mô hình AI sinh—cả cục bộ và trên đám mây. Tiện ích này hỗ trợ hầu hết các mô hình sinh lớn hiện nay.
 
 *Lưu ý*: AI Toolkit hiện hỗ trợ Python và TypeScript.
 
 ## Mục tiêu học tập
 
-Sau bài học này, bạn sẽ có thể:
+Sau khi hoàn thành bài học này, bạn sẽ có thể:
 
-- Sử dụng một server MCP qua AI Toolkit.
-- Cấu hình agent để nó có thể phát hiện và sử dụng các công cụ do server MCP cung cấp.
+- Sử dụng một máy chủ MCP thông qua AI Toolkit.
+- Cấu hình một tác nhân để cho phép nó khám phá và sử dụng các công cụ được cung cấp bởi máy chủ MCP.
 - Sử dụng các công cụ MCP thông qua ngôn ngữ tự nhiên.
 
-## Cách tiếp cận
+## Phương pháp tiếp cận
 
-Dưới đây là cách tiếp cận tổng quan:
+Dưới đây là cách tiếp cận ở mức độ cao:
 
-- Tạo một agent và định nghĩa prompt hệ thống cho nó.
-- Tạo một server MCP với các công cụ máy tính.
-- Kết nối Agent Builder với server MCP.
-- Kiểm tra việc gọi công cụ của agent qua ngôn ngữ tự nhiên.
+- Tạo một tác nhân và định nghĩa yêu cầu hệ thống của nó.
+- Tạo một máy chủ MCP với các công cụ máy tính.
+- Kết nối Agent Builder với máy chủ MCP.
+- Kiểm tra việc gọi công cụ của tác nhân thông qua ngôn ngữ tự nhiên.
 
-Tuyệt vời, giờ khi đã hiểu được quy trình, hãy cấu hình một agent AI để tận dụng các công cụ bên ngoài qua MCP, nâng cao khả năng của nó!
+Tuyệt vời, giờ chúng ta đã hiểu quy trình, hãy cấu hình một tác nhân AI để tận dụng các công cụ bên ngoài thông qua MCP, nâng cao khả năng của nó!
 
 ## Yêu cầu trước
 
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [AI Toolkit cho Visual Studio Code](https://aka.ms/AIToolkit)
 
-## Bài tập: Sử dụng một server
+## Bài tập: Sử dụng một máy chủ
 
-Trong bài tập này, bạn sẽ xây dựng, chạy và nâng cấp một agent AI với các công cụ từ server MCP bên trong Visual Studio Code sử dụng AI Toolkit.
+> [!WARNING]
+> Lưu ý cho người dùng macOS. Chúng tôi hiện đang điều tra một vấn đề ảnh hưởng đến việc cài đặt các phụ thuộc trên macOS. Do đó, người dùng macOS sẽ không thể hoàn thành hướng dẫn này vào thời điểm hiện tại. Chúng tôi sẽ cập nhật hướng dẫn ngay khi có bản sửa lỗi. Cảm ơn bạn đã kiên nhẫn và thông cảm!
+
+Trong bài tập này, bạn sẽ xây dựng, chạy, và cải thiện một tác nhân AI với các công cụ từ một máy chủ MCP bên trong Visual Studio Code sử dụng AI Toolkit.
 
 ### -0- Bước chuẩn bị, thêm mô hình OpenAI GPT-4o vào My Models
 
-Bài tập sử dụng mô hình **GPT-4o**. Mô hình này cần được thêm vào **My Models** trước khi tạo agent.
+Bài tập này sử dụng mô hình **GPT-4o**. Mô hình này cần được thêm vào **My Models** trước khi tạo tác nhân.
 
-![Ảnh chụp màn hình giao diện chọn mô hình trong phần mở rộng AI Toolkit của Visual Studio Code. Tiêu đề là "Find the right model for your AI Solution" với phụ đề khuyến khích người dùng khám phá, thử nghiệm và triển khai các mô hình AI. Dưới phần “Popular Models,” có sáu thẻ mô hình: DeepSeek-R1 (host trên GitHub), OpenAI GPT-4o, OpenAI GPT-4.1, OpenAI o1, Phi 4 Mini (CPU - Nhỏ, Nhanh), và DeepSeek-R1 (host trên Ollama). Mỗi thẻ có các tùy chọn “Add” hoặc “Try in Playground”.](../../../../translated_images/aitk-model-catalog.2acd38953bb9c119aa629fe74ef34cc56e4eed35e7f5acba7cd0a59e614ab335.vi.png)
+1. Mở tiện ích mở rộng **AI Toolkit** từ **Activity Bar**.
+1. Trong phần **Catalog**, chọn **Models** để mở **Model Catalog**. Việc chọn **Models** sẽ mở **Model Catalog** trong một tab trình chỉnh sửa mới.
+1. Trong thanh tìm kiếm của **Model Catalog**, nhập **OpenAI GPT-4o**.
+1. Nhấp vào **+ Add** để thêm mô hình vào danh sách **My Models** của bạn. Đảm bảo rằng bạn đã chọn mô hình được **Hosted by GitHub**.
+1. Trong **Activity Bar**, xác nhận rằng mô hình **OpenAI GPT-4o** xuất hiện trong danh sách.
 
-1. Mở phần mở rộng **AI Toolkit** từ **Activity Bar**.
-2. Trong phần **Catalog**, chọn **Models** để mở **Model Catalog**. Việc chọn **Models** sẽ mở **Model Catalog** trong một tab trình soạn thảo mới.
-3. Trong thanh tìm kiếm của **Model Catalog**, nhập **OpenAI GPT-4o**.
-4. Nhấn **+ Add** để thêm mô hình vào danh sách **My Models**. Đảm bảo bạn chọn mô hình được **host bởi GitHub**.
-5. Trên **Activity Bar**, xác nhận rằng mô hình **OpenAI GPT-4o** đã xuất hiện trong danh sách.
+### -1- Tạo một tác nhân
 
-### -1- Tạo một agent
+**Agent (Prompt) Builder** cho phép bạn tạo và tùy chỉnh các tác nhân AI của riêng mình. Trong phần này, bạn sẽ tạo một tác nhân mới và gán một mô hình để hỗ trợ cuộc trò chuyện.
 
-**Agent (Prompt) Builder** cho phép bạn tạo và tùy chỉnh các agent AI của riêng mình. Trong phần này, bạn sẽ tạo một agent mới và gán một mô hình để hỗ trợ cuộc trò chuyện.
+1. Mở tiện ích mở rộng **AI Toolkit** từ **Activity Bar**.
+1. Trong phần **Tools**, chọn **Agent (Prompt) Builder**. Việc chọn **Agent (Prompt) Builder** sẽ mở **Agent (Prompt) Builder** trong một tab trình chỉnh sửa mới.
+1. Nhấp vào nút **+ New Agent**. Tiện ích mở rộng sẽ khởi chạy một trình hướng dẫn thiết lập thông qua **Command Palette**.
+1. Nhập tên **Calculator Agent** và nhấn **Enter**.
+1. Trong **Agent (Prompt) Builder**, ở trường **Model**, chọn mô hình **OpenAI GPT-4o (via GitHub)**.
 
-![Ảnh chụp màn hình giao diện "Calculator Agent" trong phần mở rộng AI Toolkit cho Visual Studio Code. Bảng bên trái chọn mô hình "OpenAI GPT-4o (via GitHub)." Prompt hệ thống là "Bạn là một giáo sư đại học dạy toán," và prompt người dùng là "Giải thích cho tôi phương trình Fourier một cách đơn giản." Các tùy chọn bổ sung gồm nút thêm công cụ, bật MCP Server, và chọn đầu ra có cấu trúc. Nút “Run” màu xanh ở dưới cùng. Bảng bên phải, dưới "Get Started with Examples," liệt kê ba agent mẫu: Web Developer (với MCP Server, Second-Grade Simplifier, và Dream Interpreter, mỗi agent có mô tả chức năng ngắn gọn).](../../../../translated_images/aitk-agent-builder.901e3a2960c3e4774b29a23024ff5bec2d4232f57fae2a418b2aaae80f81c05f.vi.png)
+### -2- Tạo yêu cầu hệ thống cho tác nhân
 
-1. Mở phần mở rộng **AI Toolkit** từ **Activity Bar**.
-2. Trong phần **Tools**, chọn **Agent (Prompt) Builder**. Việc chọn này sẽ mở **Agent (Prompt) Builder** trong một tab trình soạn thảo mới.
-3. Nhấn nút **+ New Agent**. Phần mở rộng sẽ khởi chạy trình hướng dẫn thiết lập qua **Command Palette**.
-4. Nhập tên **Calculator Agent** và nhấn **Enter**.
-5. Trong **Agent (Prompt) Builder**, ở trường **Model**, chọn mô hình **OpenAI GPT-4o (via GitHub)**.
+Sau khi tạo khung cho tác nhân, đã đến lúc định nghĩa tính cách và mục đích của nó. Trong phần này, bạn sẽ sử dụng tính năng **Generate system prompt** để mô tả hành vi dự định của tác nhân—trong trường hợp này là một tác nhân máy tính—và để mô hình viết yêu cầu hệ thống cho bạn.
 
-### -2- Tạo prompt hệ thống cho agent
+1. Trong phần **Prompts**, nhấp vào nút **Generate system prompt**. Nút này mở trình tạo yêu cầu, sử dụng AI để tạo yêu cầu hệ thống cho tác nhân.
+1. Trong cửa sổ **Generate a prompt**, nhập nội dung sau: `Bạn là một trợ lý toán học hữu ích và hiệu quả. Khi được đưa ra một bài toán liên quan đến số học cơ bản, bạn trả lời với kết quả chính xác.`
+1. Nhấp vào nút **Generate**. Một thông báo sẽ xuất hiện ở góc dưới bên phải xác nhận rằng yêu cầu hệ thống đang được tạo. Sau khi hoàn tất, yêu cầu sẽ xuất hiện trong trường **System prompt** của **Agent (Prompt) Builder**.
+1. Xem lại **System prompt** và chỉnh sửa nếu cần.
 
-Khi agent đã được tạo khung, đã đến lúc định nghĩa tính cách và mục đích của nó. Trong phần này, bạn sẽ sử dụng tính năng **Generate system prompt** để mô tả hành vi dự kiến của agent — trong trường hợp này là một agent máy tính — và để mô hình viết prompt hệ thống cho bạn.
+### -3- Tạo một máy chủ MCP
 
-![Ảnh chụp màn hình giao diện "Calculator Agent" trong AI Toolkit cho Visual Studio Code với cửa sổ modal mở có tiêu đề "Generate a prompt." Cửa sổ giải thích rằng một mẫu prompt có thể được tạo ra bằng cách chia sẻ các thông tin cơ bản và có một ô nhập văn bản với prompt mẫu: "Bạn là một trợ lý toán học hữu ích và hiệu quả. Khi được đưa một bài toán liên quan đến số học cơ bản, bạn trả lời với kết quả chính xác." Dưới ô nhập có nút "Close" và "Generate." Phía sau, một phần cấu hình agent hiển thị mô hình đã chọn "OpenAI GPT-4o (via GitHub)" và các trường prompt hệ thống và người dùng.](../../../../translated_images/aitk-generate-prompt.ba9e69d3d2bbe2a26444d0c78775540b14196061eee32c2054e9ee68c4f51f3a.vi.png)
+Bây giờ bạn đã định nghĩa yêu cầu hệ thống của tác nhân—hướng dẫn hành vi và phản hồi của nó—đã đến lúc trang bị cho tác nhân các khả năng thực tế. Trong phần này, bạn sẽ tạo một máy chủ MCP máy tính với các công cụ để thực hiện các phép toán cộng, trừ, nhân, và chia. Máy chủ này sẽ cho phép tác nhân thực hiện các phép toán thời gian thực để đáp ứng các yêu cầu ngôn ngữ tự nhiên.
 
-1. Ở phần **Prompts**, nhấn nút **Generate system prompt**. Nút này mở trình tạo prompt sử dụng AI để tạo prompt hệ thống cho agent.
-2. Trong cửa sổ **Generate a prompt**, nhập: `Bạn là một trợ lý toán học hữu ích và hiệu quả. Khi được đưa một bài toán liên quan đến số học cơ bản, bạn trả lời với kết quả chính xác.`
-3. Nhấn nút **Generate**. Một thông báo sẽ xuất hiện ở góc dưới bên phải xác nhận prompt hệ thống đang được tạo. Khi hoàn tất, prompt sẽ xuất hiện trong trường **System prompt** của **Agent (Prompt) Builder**.
-4. Xem lại **System prompt** và chỉnh sửa nếu cần.
-
-### -3- Tạo một server MCP
-
-Khi bạn đã định nghĩa prompt hệ thống cho agent — hướng dẫn hành vi và phản hồi của nó — đã đến lúc trang bị cho agent các khả năng thực tế. Trong phần này, bạn sẽ tạo một server MCP máy tính với các công cụ thực hiện phép cộng, trừ, nhân, chia. Server này sẽ cho phép agent thực hiện các phép toán thời gian thực dựa trên các câu hỏi bằng ngôn ngữ tự nhiên.
-
-![Ảnh chụp màn hình phần dưới của giao diện Calculator Agent trong AI Toolkit cho Visual Studio Code. Hiển thị các menu mở rộng “Tools” và “Structure output,” cùng menu thả xuống “Choose output format” đặt ở “text.” Bên phải có nút “+ MCP Server” để thêm một server Model Context Protocol. Có biểu tượng hình ảnh đại diện phía trên phần Tools.](../../../../translated_images/aitk-add-mcp-server.9742cfddfe808353c0caf9cc0a7ed3e80e13abf4d2ebde315c81c3cb02a2a449.vi.png)
-
-AI Toolkit được trang bị các mẫu để dễ dàng tạo server MCP của riêng bạn. Chúng ta sẽ dùng mẫu Python để tạo server MCP máy tính.
+AI Toolkit được trang bị các mẫu để dễ dàng tạo máy chủ MCP của riêng bạn. Chúng ta sẽ sử dụng mẫu Python để tạo máy chủ MCP máy tính.
 
 *Lưu ý*: AI Toolkit hiện hỗ trợ Python và TypeScript.
 
-1. Trong phần **Tools** của **Agent (Prompt) Builder**, nhấn nút **+ MCP Server**. Phần mở rộng sẽ khởi chạy trình hướng dẫn thiết lập qua **Command Palette**.
-2. Chọn **+ Add Server**.
-3. Chọn **Create a New MCP Server**.
-4. Chọn mẫu **python-weather**.
-5. Chọn **Default folder** để lưu mẫu server MCP.
-6. Nhập tên cho server: **Calculator**
-7. Một cửa sổ Visual Studio Code mới sẽ mở ra. Chọn **Yes, I trust the authors**.
-8. Sử dụng terminal (**Terminal** > **New Terminal**), tạo môi trường ảo: `python -m venv .venv`
-9. Kích hoạt môi trường ảo trong terminal:
+1. Trong phần **Tools** của **Agent (Prompt) Builder**, nhấp vào nút **+ MCP Server**. Tiện ích mở rộng sẽ khởi chạy một trình hướng dẫn thiết lập thông qua **Command Palette**.
+1. Chọn **+ Add Server**.
+1. Chọn **Create a New MCP Server**.
+1. Chọn **python-weather** làm mẫu.
+1. Chọn **Default folder** để lưu mẫu máy chủ MCP.
+1. Nhập tên sau cho máy chủ: **Calculator**
+1. Một cửa sổ Visual Studio Code mới sẽ mở ra. Chọn **Yes, I trust the authors**.
+1. Sử dụng terminal (**Terminal** > **New Terminal**), tạo một môi trường ảo: `python -m venv .venv`
+1. Sử dụng terminal, kích hoạt môi trường ảo:
     1. Windows - `.venv\Scripts\activate`
-    2. macOS/Linux - `source venv/bin/activate`
-10. Cài đặt các phụ thuộc trong terminal: `pip install -e .[dev]`
-11. Trong phần **Explorer** của **Activity Bar**, mở rộng thư mục **src** và chọn **server.py** để mở file trong trình soạn thảo.
-12. Thay thế mã trong file **server.py** bằng đoạn mã sau và lưu lại:
+    1. macOS/Linux - `source .venv/bin/activate`
+1. Sử dụng terminal, cài đặt các phụ thuộc: `pip install -e .[dev]`
+1. Trong chế độ xem **Explorer** của **Activity Bar**, mở rộng thư mục **src** và chọn **server.py** để mở tệp trong trình chỉnh sửa.
+1. Thay thế mã trong tệp **server.py** bằng nội dung sau và lưu:
 
     ```python
     """
@@ -150,49 +145,47 @@ AI Toolkit được trang bị các mẫu để dễ dàng tạo server MCP củ
         return a / b
     ```
 
-### -4- Chạy agent với server MCP máy tính
+### -4- Chạy tác nhân với máy chủ MCP máy tính
 
-Khi agent đã có công cụ, đã đến lúc sử dụng chúng! Trong phần này, bạn sẽ gửi các câu hỏi đến agent để kiểm tra và xác nhận agent có sử dụng đúng công cụ từ server MCP máy tính hay không.
+Bây giờ tác nhân của bạn đã có công cụ, đã đến lúc sử dụng chúng! Trong phần này, bạn sẽ gửi các yêu cầu đến tác nhân để kiểm tra và xác nhận liệu tác nhân có sử dụng công cụ phù hợp từ máy chủ MCP máy tính hay không.
 
-![Ảnh chụp màn hình giao diện Calculator Agent trong AI Toolkit cho Visual Studio Code. Bảng bên trái, dưới “Tools,” có một server MCP tên local-server-calculator_server được thêm vào, hiển thị bốn công cụ có sẵn: add, subtract, multiply, và divide. Có huy hiệu cho biết bốn công cụ đang hoạt động. Dưới đó là phần “Structure output” đang thu gọn và nút “Run” màu xanh. Bảng bên phải, dưới “Model Response,” agent gọi công cụ multiply và subtract với đầu vào {"a": 3, "b": 25} và {"a": 75, "b": 20} tương ứng. Phản hồi cuối cùng của công cụ là 75.0. Có nút “View Code” ở dưới cùng.](../../../../translated_images/aitk-agent-response-with-tools.e7c781869dc8041a25f9903ed4f7e8e0c7e13d7d94f6786a6c51b1e172f56866.vi.png)
+Bạn sẽ chạy máy chủ MCP máy tính trên máy phát triển cục bộ của mình thông qua **Agent Builder** như một MCP client.
 
-Bạn sẽ chạy server MCP máy tính trên máy phát triển cục bộ qua **Agent Builder** như một client MCP.
+1. Nhấn `F5` để bắt đầu gỡ lỗi máy chủ MCP. **Agent (Prompt) Builder** sẽ mở trong một tab trình chỉnh sửa mới. Trạng thái của máy chủ hiển thị trong terminal.
+1. Trong trường **User prompt** của **Agent (Prompt) Builder**, nhập yêu cầu sau: `Tôi đã mua 3 món hàng giá $25 mỗi món, và sau đó sử dụng một phiếu giảm giá $20. Tôi đã trả bao nhiêu tiền?`
+1. Nhấp vào nút **Run** để tạo phản hồi của tác nhân.
+1. Xem lại đầu ra của tác nhân. Mô hình nên kết luận rằng bạn đã trả **$55**.
+1. Dưới đây là phân tích những gì sẽ xảy ra:
+    - Tác nhân chọn các công cụ **multiply** và **subtract** để hỗ trợ tính toán.
+    - Các giá trị `a` và `b` tương ứng được gán cho công cụ **multiply**.
+    - Các giá trị `a` và `b` tương ứng được gán cho công cụ **subtract**.
+    - Phản hồi từ mỗi công cụ được cung cấp trong **Tool Response** tương ứng.
+    - Đầu ra cuối cùng từ mô hình được cung cấp trong **Model Response** cuối cùng.
+1. Gửi thêm các yêu cầu để kiểm tra thêm tác nhân. Bạn có thể chỉnh sửa yêu cầu hiện tại trong trường **User prompt** bằng cách nhấp vào trường và thay thế yêu cầu hiện tại.
+1. Khi bạn hoàn tất việc kiểm tra tác nhân, bạn có thể dừng máy chủ thông qua **terminal** bằng cách nhập **CTRL/CMD+C** để thoát.
 
-1. Nhấn `F5` để bắt đầu gỡ lỗi server MCP. **Agent (Prompt) Builder** sẽ mở trong một tab trình soạn thảo mới. Trạng thái server hiển thị trong terminal.
-2. Trong trường **User prompt** của **Agent (Prompt) Builder**, nhập câu hỏi: `Tôi đã mua 3 món hàng với giá 25 đô mỗi món, sau đó dùng phiếu giảm giá 20 đô. Tôi đã trả bao nhiêu tiền?`
-3. Nhấn nút **Run** để tạo phản hồi của agent.
-4. Xem lại kết quả của agent. Mô hình nên kết luận bạn đã trả **55 đô la**.
-5. Đây là phân tích những gì sẽ xảy ra:
-    - Agent chọn công cụ **multiply** và **subtract** để hỗ trợ tính toán.
-    - Các giá trị `a` và `b` được gán tương ứng cho công cụ **multiply**.
-    - Các giá trị `a` và `b` được gán tương ứng cho công cụ **subtract**.
-    - Phản hồi từ mỗi công cụ được cung cấp trong phần **Tool Response** tương ứng.
-    - Kết quả cuối cùng từ mô hình được hiển thị trong phần **Model Response**.
-6. Gửi thêm các câu hỏi khác để kiểm tra agent. Bạn có thể chỉnh sửa prompt hiện tại trong trường **User prompt** bằng cách nhấp vào và thay thế nội dung.
-7. Khi hoàn tất kiểm tra, bạn có thể dừng server trong **terminal** bằng cách nhấn **CTRL/CMD+C** để thoát.
+## Bài tập
 
-## Bài tập về nhà
-
-Thử thêm một công cụ mới vào file **server.py** của bạn (ví dụ: trả về căn bậc hai của một số). Gửi thêm các câu hỏi yêu cầu agent sử dụng công cụ mới (hoặc các công cụ hiện có). Nhớ khởi động lại server để tải các công cụ mới thêm vào.
+Hãy thử thêm một mục công cụ mới vào tệp **server.py** của bạn (ví dụ: trả về căn bậc hai của một số). Gửi thêm các yêu cầu yêu cầu tác nhân sử dụng công cụ mới của bạn (hoặc các công cụ hiện có). Đảm bảo khởi động lại máy chủ để tải các công cụ mới được thêm vào.
 
 ## Giải pháp
 
-[Giải pháp](./solution/README.md)
+[Solution](./solution/README.md)
 
-## Những điểm chính cần nhớ
+## Những điểm chính
 
 Những điểm chính từ chương này bao gồm:
 
-- Phần mở rộng AI Toolkit là một client tuyệt vời giúp bạn sử dụng các server MCP và công cụ của chúng.
-- Bạn có thể thêm công cụ mới vào các server MCP, mở rộng khả năng của agent để đáp ứng các yêu cầu thay đổi.
-- AI Toolkit bao gồm các mẫu (ví dụ: mẫu server MCP Python) giúp đơn giản hóa việc tạo công cụ tùy chỉnh.
+- Tiện ích mở rộng AI Toolkit là một client tuyệt vời cho phép bạn sử dụng các máy chủ MCP và các công cụ của chúng.
+- Bạn có thể thêm các công cụ mới vào máy chủ MCP, mở rộng khả năng của tác nhân để đáp ứng các yêu cầu ngày càng tăng.
+- AI Toolkit bao gồm các mẫu (ví dụ: mẫu máy chủ MCP Python) để đơn giản hóa việc tạo các công cụ tùy chỉnh.
 
 ## Tài nguyên bổ sung
 
 - [Tài liệu AI Toolkit](https://aka.ms/AIToolkit/doc)
 
 ## Tiếp theo
-- Tiếp theo: [Testing & Debugging](../08-testing/README.md)
+- Tiếp theo: [Kiểm tra & Gỡ lỗi](../08-testing/README.md)
 
-**Tuyên bố từ chối trách nhiệm**:  
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ gốc của nó nên được coi là nguồn chính xác và đáng tin cậy. Đối với các thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp do con người thực hiện. Chúng tôi không chịu trách nhiệm về bất kỳ sự hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
+**Tuyên bố miễn trừ trách nhiệm**:  
+Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ bản địa nên được coi là nguồn tham khảo chính thức. Đối với các thông tin quan trọng, chúng tôi khuyến nghị sử dụng dịch vụ dịch thuật chuyên nghiệp từ con người. Chúng tôi không chịu trách nhiệm cho bất kỳ sự hiểu lầm hoặc diễn giải sai nào phát sinh từ việc sử dụng bản dịch này.

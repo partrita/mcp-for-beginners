@@ -60,7 +60,7 @@ Välj din föredragna utvecklingsmiljö:
 
 ## Python Implementation
 
-***Note*** Du kan köra denna [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb)
+***Note*** Du kan köra denna [notebook](mcp_support_python.ipynb)
 
 ### 1. Installera nödvändiga paket
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET Implementation
 
-***Note*** Du kan köra denna [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb)
+***Note*** Du kan köra denna [notebook](mcp_support_dotnet.ipynb)
 
 ### 1. Installera nödvändiga paket
 

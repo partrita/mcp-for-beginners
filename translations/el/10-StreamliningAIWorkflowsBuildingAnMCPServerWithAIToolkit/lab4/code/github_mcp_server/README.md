@@ -1,115 +1,117 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a3f252a62f059360855de5331a575898",
-  "translation_date": "2025-07-14T08:58:00+00:00",
+  "original_hash": "9a6a4d3497921d2f6d9699f0a6a1890c",
+  "translation_date": "2025-09-09T21:52:30+00:00",
   "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/README.md",
   "language_code": "el"
 }
 -->
 # Weather MCP Server
 
-Αυτός είναι ένας δείγμα MCP Server σε Python που υλοποιεί εργαλεία καιρού με προσομοιωμένες απαντήσεις. Μπορεί να χρησιμοποιηθεί ως βάση για τον δικό σας MCP Server. Περιλαμβάνει τις εξής λειτουργίες:
+Αυτός είναι ένας δείγμα MCP Server γραμμένος σε Python που υλοποιεί εργαλεία καιρού με ψεύτικες απαντήσεις. Μπορεί να χρησιμοποιηθεί ως βάση για τον δικό σας MCP Server. Περιλαμβάνει τις εξής δυνατότητες:
 
-- **Weather Tool**: Ένα εργαλείο που παρέχει προσομοιωμένες πληροφορίες καιρού βάσει της δοθείσας τοποθεσίας.
-- **Git Clone Tool**: Ένα εργαλείο που κλωνοποιεί ένα αποθετήριο git σε έναν συγκεκριμένο φάκελο.
-- **VS Code Open Tool**: Ένα εργαλείο που ανοίγει έναν φάκελο στο VS Code ή στο VS Code Insiders.
-- **Connect to Agent Builder**: Μια λειτουργία που επιτρέπει τη σύνδεση του MCP server με τον Agent Builder για δοκιμές και αποσφαλμάτωση.
-- **Debug in [MCP Inspector](https://github.com/modelcontextprotocol/inspector)**: Μια λειτουργία που επιτρέπει την αποσφαλμάτωση του MCP Server χρησιμοποιώντας το MCP Inspector.
+- **Εργαλείο Καιρού**: Ένα εργαλείο που παρέχει ψεύτικες πληροφορίες καιρού με βάση την δεδομένη τοποθεσία.
+- **Εργαλείο Git Clone**: Ένα εργαλείο που κλωνοποιεί ένα git repository σε έναν καθορισμένο φάκελο.
+- **Εργαλείο Άνοιγμα στο VS Code**: Ένα εργαλείο που ανοίγει έναν φάκελο στο VS Code ή στο VS Code Insiders.
+- **Σύνδεση με Agent Builder**: Μια δυνατότητα που σας επιτρέπει να συνδέσετε τον MCP server με το Agent Builder για δοκιμές και αποσφαλμάτωση.
+- **Αποσφαλμάτωση στο [MCP Inspector](https://github.com/modelcontextprotocol/inspector)**: Μια δυνατότητα που σας επιτρέπει να αποσφαλματώσετε τον MCP Server χρησιμοποιώντας το MCP Inspector.
 
-## Ξεκινώντας με το πρότυπο Weather MCP Server
+## Ξεκινήστε με το πρότυπο Weather MCP Server
 
 > **Προαπαιτούμενα**
 >
-> Για να τρέξετε τον MCP Server στον τοπικό σας υπολογιστή ανάπτυξης, θα χρειαστείτε:
+> Για να εκτελέσετε τον MCP Server στον τοπικό υπολογιστή ανάπτυξης, θα χρειαστείτε:
 >
 > - [Python](https://www.python.org/)
-> - [Git](https://git-scm.com/) (Απαραίτητο για το εργαλείο git_clone_repo)
-> - [VS Code](https://code.visualstudio.com/) ή [VS Code Insiders](https://code.visualstudio.com/insiders/) (Απαραίτητο για το εργαλείο open_in_vscode)
-> - (*Προαιρετικό - αν προτιμάτε uv*) [uv](https://github.com/astral-sh/uv)
+> - [Git](https://git-scm.com/) (Απαιτείται για το εργαλείο git_clone_repo)
+> - [VS Code](https://code.visualstudio.com/) ή [VS Code Insiders](https://code.visualstudio.com/insiders/) (Απαιτείται για το εργαλείο open_in_vscode)
+> - (*Προαιρετικό - αν προτιμάτε το uv*) [uv](https://github.com/astral-sh/uv)
 > - [Python Debugger Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy)
 
 ## Προετοιμασία περιβάλλοντος
 
-Υπάρχουν δύο τρόποι για να ρυθμίσετε το περιβάλλον για αυτό το έργο. Μπορείτε να επιλέξετε όποιον προτιμάτε.
+Υπάρχουν δύο τρόποι για να ρυθμίσετε το περιβάλλον για αυτό το έργο. Μπορείτε να επιλέξετε οποιονδήποτε από αυτούς ανάλογα με την προτίμησή σας.
 
-> Σημείωση: Κάντε επανεκκίνηση του VSCode ή του τερματικού για να βεβαιωθείτε ότι χρησιμοποιείται η python του εικονικού περιβάλλοντος μετά τη δημιουργία του.
+> Σημείωση: Επαναφορτώστε το VSCode ή το τερματικό για να βεβαιωθείτε ότι χρησιμοποιείται το Python του εικονικού περιβάλλοντος μετά τη δημιουργία του.
 
 | Τρόπος | Βήματα |
-| -------- | ----- |
-| Χρήση `uv` | 1. Δημιουργία εικονικού περιβάλλοντος: `uv venv` <br>2. Εκτέλεση της εντολής VSCode "***Python: Select Interpreter***" και επιλογή της python από το δημιουργημένο εικονικό περιβάλλον <br>3. Εγκατάσταση εξαρτήσεων (συμπεριλαμβανομένων των dev): `uv pip install -r pyproject.toml --extra dev` |
-| Χρήση `pip` | 1. Δημιουργία εικονικού περιβάλλοντος: `python -m venv .venv` <br>2. Εκτέλεση της εντολής VSCode "***Python: Select Interpreter***" και επιλογή της python από το δημιουργημένο εικονικό περιβάλλον<br>3. Εγκατάσταση εξαρτήσεων (συμπεριλαμβανομένων των dev): `pip install -e .[dev]` |
+| ------ | ------ |
+| Χρήση `uv` | 1. Δημιουργήστε εικονικό περιβάλλον: `uv venv` <br>2. Εκτελέστε την εντολή του VSCode "***Python: Select Interpreter***" και επιλέξτε το Python από το δημιουργημένο εικονικό περιβάλλον <br>3. Εγκαταστήστε εξαρτήσεις (συμπεριλαμβανομένων των εξαρτήσεων ανάπτυξης): `uv pip install -r pyproject.toml --extra dev` |
+| Χρήση `pip` | 1. Δημιουργήστε εικονικό περιβάλλον: `python -m venv .venv` <br>2. Εκτελέστε την εντολή του VSCode "***Python: Select Interpreter***" και επιλέξτε το Python από το δημιουργημένο εικονικό περιβάλλον <br>3. Εγκαταστήστε εξαρτήσεις (συμπεριλαμβανομένων των εξαρτήσεων ανάπτυξης): `pip install -e .[dev]` |
 
-Αφού ρυθμίσετε το περιβάλλον, μπορείτε να τρέξετε τον server στον τοπικό σας υπολογιστή ανάπτυξης μέσω του Agent Builder ως MCP Client για να ξεκινήσετε:
-1. Ανοίξτε το πάνελ αποσφαλμάτωσης του VS Code. Επιλέξτε `Debug in Agent Builder` ή πατήστε `F5` για να ξεκινήσετε την αποσφαλμάτωση του MCP server.
-2. Χρησιμοποιήστε το AI Toolkit Agent Builder για να δοκιμάσετε τον server με [αυτό το prompt](../../../../../../../../../../open_prompt_builder). Ο server θα συνδεθεί αυτόματα με τον Agent Builder.
+Αφού ρυθμίσετε το περιβάλλον, μπορείτε να εκτελέσετε τον server στον τοπικό υπολογιστή ανάπτυξης μέσω του Agent Builder ως MCP Client για να ξεκινήσετε:
+1. Ανοίξτε τον πίνακα αποσφαλμάτωσης του VS Code. Επιλέξτε `Debug in Agent Builder` ή πατήστε `F5` για να ξεκινήσετε την αποσφαλμάτωση του MCP server.
+2. Χρησιμοποιήστε το AI Toolkit Agent Builder για να δοκιμάσετε τον server με [αυτό το prompt](../../../../../../../../../../../open_prompt_builder). Ο server θα συνδεθεί αυτόματα με το Agent Builder.
 3. Πατήστε `Run` για να δοκιμάσετε τον server με το prompt.
 
-**Συγχαρητήρια**! Έχετε τρέξει επιτυχώς τον Weather MCP Server στον τοπικό σας υπολογιστή ανάπτυξης μέσω του Agent Builder ως MCP Client.
+**Συγχαρητήρια**! Έχετε εκτελέσει επιτυχώς τον Weather MCP Server στον τοπικό υπολογιστή ανάπτυξης μέσω του Agent Builder ως MCP Client.
 ![DebugMCP](https://raw.githubusercontent.com/microsoft/windows-ai-studio-templates/refs/heads/dev/mcpServers/mcp_debug.gif)
 
-## Τι περιλαμβάνει το πρότυπο
+## Τι περιλαμβάνεται στο πρότυπο
 
-| Φάκελος / Αρχείο | Περιεχόμενα                                  |
-| ---------------- | -------------------------------------------- |
-| `.vscode`        | Αρχεία VSCode για αποσφαλμάτωση              |
-| `.aitk`          | Ρυθμίσεις για το AI Toolkit                   |
-| `src`            | Ο πηγαίος κώδικας για τον weather mcp server |
+| Φάκελος / Αρχείο | Περιεχόμενα                                     |
+| ---------------- | ----------------------------------------------- |
+| `.vscode`        | Αρχεία VSCode για αποσφαλμάτωση                |
+| `.aitk`          | Ρυθμίσεις για το AI Toolkit                    |
+| `src`            | Ο πηγαίος κώδικας για τον Weather MCP Server   |
 
 ## Πώς να αποσφαλματώσετε τον Weather MCP Server
 
 > Σημειώσεις:
-> - Το [MCP Inspector](https://github.com/modelcontextprotocol/inspector) είναι ένα οπτικό εργαλείο για προγραμματιστές για δοκιμές και αποσφαλμάτωση MCP servers.
-> - Όλοι οι τρόποι αποσφαλμάτωσης υποστηρίζουν σημεία διακοπής (breakpoints), ώστε να μπορείτε να προσθέσετε σημεία διακοπής στον κώδικα υλοποίησης των εργαλείων.
+> - Το [MCP Inspector](https://github.com/modelcontextprotocol/inspector) είναι ένα οπτικό εργαλείο ανάπτυξης για δοκιμή και αποσφαλμάτωση MCP servers.
+> - Όλοι οι τρόποι αποσφαλμάτωσης υποστηρίζουν σημεία διακοπής, ώστε να μπορείτε να προσθέσετε σημεία διακοπής στον κώδικα υλοποίησης εργαλείων.
 
 ## Διαθέσιμα Εργαλεία
 
-### Weather Tool
-Το εργαλείο `get_weather` παρέχει προσομοιωμένες πληροφορίες καιρού για μια συγκεκριμένη τοποθεσία.
+### Εργαλείο Καιρού
+Το εργαλείο `get_weather` παρέχει ψεύτικες πληροφορίες καιρού για μια καθορισμένη τοποθεσία.
 
 | Παράμετρος | Τύπος | Περιγραφή |
 | ---------- | ----- | --------- |
-| `location` | string | Τοποθεσία για την οποία ζητείται ο καιρός (π.χ. όνομα πόλης, πολιτεία ή συντεταγμένες) |
+| `location` | string | Τοποθεσία για την οποία θέλετε πληροφορίες καιρού (π.χ., όνομα πόλης, πολιτεία ή συντεταγμένες) |
 
-### Git Clone Tool
-Το εργαλείο `git_clone_repo` κλωνοποιεί ένα αποθετήριο git σε έναν συγκεκριμένο φάκελο.
+### Εργαλείο Git Clone
+Το εργαλείο `git_clone_repo` κλωνοποιεί ένα git repository σε έναν καθορισμένο φάκελο.
 
 | Παράμετρος | Τύπος | Περιγραφή |
 | ---------- | ----- | --------- |
-| `repo_url` | string | URL του αποθετηρίου git που θα κλωνοποιηθεί |
-| `target_folder` | string | Διαδρομή προς τον φάκελο όπου θα κλωνοποιηθεί το αποθετήριο |
+| `repo_url` | string | URL του git repository για κλωνοποίηση |
+| `target_folder` | string | Διαδρομή προς τον φάκελο όπου θα κλωνοποιηθεί το repository |
 
 Το εργαλείο επιστρέφει ένα αντικείμενο JSON με:
 - `success`: Boolean που δείχνει αν η λειτουργία ήταν επιτυχής
-- `target_folder` ή `error`: Η διαδρομή του κλωνοποιημένου αποθετηρίου ή μήνυμα σφάλματος
+- `target_folder` ή `error`: Η διαδρομή του κλωνοποιημένου repository ή ένα μήνυμα σφάλματος
 
-### VS Code Open Tool
-Το εργαλείο `open_in_vscode` ανοίγει έναν φάκελο στην εφαρμογή VS Code ή VS Code Insiders.
+### Εργαλείο Άνοιγμα στο VS Code
+Το εργαλείο `open_in_vscode` ανοίγει έναν φάκελο στο VS Code ή στο VS Code Insiders.
 
 | Παράμετρος | Τύπος | Περιγραφή |
 | ---------- | ----- | --------- |
-| `folder_path` | string | Διαδρομή προς τον φάκελο που θα ανοίξει |
+| `folder_path` | string | Διαδρομή προς τον φάκελο που θέλετε να ανοίξετε |
 | `use_insiders` | boolean (προαιρετικό) | Αν θα χρησιμοποιηθεί το VS Code Insiders αντί για το κανονικό VS Code |
 
 Το εργαλείο επιστρέφει ένα αντικείμενο JSON με:
 - `success`: Boolean που δείχνει αν η λειτουργία ήταν επιτυχής
-- `message` ή `error`: Μήνυμα επιβεβαίωσης ή μήνυμα σφάλματος
+- `message` ή `error`: Ένα μήνυμα επιβεβαίωσης ή ένα μήνυμα σφάλματος
 
-## Τρόποι Αποσφαλμάτωσης | Περιγραφή | Βήματα αποσφαλμάτωσης |
-| -------------------- | --------- | --------------------- |
-| Agent Builder | Αποσφαλμάτωση του MCP server στον Agent Builder μέσω AI Toolkit. | 1. Ανοίξτε το πάνελ αποσφαλμάτωσης του VS Code. Επιλέξτε `Debug in Agent Builder` και πατήστε `F5` για να ξεκινήσετε την αποσφαλμάτωση του MCP server.<br>2. Χρησιμοποιήστε το AI Toolkit Agent Builder για να δοκιμάσετε τον server με [αυτό το prompt](../../../../../../../../../../open_prompt_builder). Ο server θα συνδεθεί αυτόματα με τον Agent Builder.<br>3. Πατήστε `Run` για να δοκιμάσετε τον server με το prompt. |
-| MCP Inspector | Αποσφαλμάτωση του MCP server χρησιμοποιώντας το MCP Inspector. | 1. Εγκαταστήστε το [Node.js](https://nodejs.org/)<br> 2. Ρυθμίστε το Inspector: `cd inspector` && `npm install` <br> 3. Ανοίξτε το πάνελ αποσφαλμάτωσης του VS Code. Επιλέξτε `Debug SSE in Inspector (Edge)` ή `Debug SSE in Inspector (Chrome)`. Πατήστε F5 για να ξεκινήσετε την αποσφαλμάτωση.<br> 4. Όταν το MCP Inspector ανοίξει στον browser, πατήστε το κουμπί `Connect` για να συνδέσετε αυτόν τον MCP server.<br> 5. Στη συνέχεια μπορείτε να κάνετε `List Tools`, να επιλέξετε ένα εργαλείο, να εισάγετε παραμέτρους και να κάνετε `Run Tool` για να αποσφαλματώσετε τον κώδικα του server.<br> |
+| Τρόπος Αποσφαλμάτωσης | Περιγραφή | Βήματα για αποσφαλμάτωση |
+| --------------------- | --------- | ----------------------- |
+| Agent Builder | Αποσφαλμάτωση του MCP server στο Agent Builder μέσω του AI Toolkit. | 1. Ανοίξτε τον πίνακα αποσφαλμάτωσης του VS Code. Επιλέξτε `Debug in Agent Builder` και πατήστε `F5` για να ξεκινήσετε την αποσφαλμάτωση του MCP server.<br>2. Χρησιμοποιήστε το AI Toolkit Agent Builder για να δοκιμάσετε τον server με [αυτό το prompt](../../../../../../../../../../../open_prompt_builder). Ο server θα συνδεθεί αυτόματα με το Agent Builder.<br>3. Πατήστε `Run` για να δοκιμάσετε τον server με το prompt. |
+| MCP Inspector | Αποσφαλμάτωση του MCP server χρησιμοποιώντας το MCP Inspector. | 1. Εγκαταστήστε [Node.js](https://nodejs.org/)<br> 2. Ρυθμίστε το Inspector: `cd inspector` && `npm install` <br> 3. Ανοίξτε τον πίνακα αποσφαλμάτωσης του VS Code. Επιλέξτε `Debug SSE in Inspector (Edge)` ή `Debug SSE in Inspector (Chrome)`. Πατήστε F5 για να ξεκινήσετε την αποσφαλμάτωση.<br> 4. Όταν το MCP Inspector ανοίξει στον browser, πατήστε το κουμπί `Connect` για να συνδέσετε αυτόν τον MCP server.<br> 5. Στη συνέχεια μπορείτε να `List Tools`, να επιλέξετε ένα εργαλείο, να εισάγετε παραμέτρους και να `Run Tool` για να αποσφαλματώσετε τον κώδικα του server. |
 
 ## Προεπιλεγμένες Θύρες και προσαρμογές
 
 | Τρόπος Αποσφαλμάτωσης | Θύρες | Ορισμοί | Προσαρμογές | Σημείωση |
-| --------------------- | ------ | -------- | ------------ | -------- |
+| --------------------- | ----- | -------- | ----------- | -------- |
 | Agent Builder | 3001 | [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/tasks.json) | Επεξεργαστείτε τα [launch.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/launch.json), [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/tasks.json), [\_\_init\_\_.py](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/src/__init__.py), [mcp.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.aitk/mcp.json) για να αλλάξετε τις παραπάνω θύρες. | N/A |
 | MCP Inspector | 3001 (Server); 5173 και 3000 (Inspector) | [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/tasks.json) | Επεξεργαστείτε τα [launch.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/launch.json), [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/tasks.json), [\_\_init\_\_.py](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/src/__init__.py), [mcp.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.aitk/mcp.json) για να αλλάξετε τις παραπάνω θύρες. | N/A |
 
-## Ανατροφοδότηση
+## Σχόλια
 
-Αν έχετε οποιαδήποτε σχόλια ή προτάσεις για αυτό το πρότυπο, παρακαλούμε ανοίξτε ένα issue στο [AI Toolkit GitHub repository](https://github.com/microsoft/vscode-ai-toolkit/issues)
+Αν έχετε οποιαδήποτε σχόλια ή προτάσεις για αυτό το πρότυπο, παρακαλούμε ανοίξτε ένα ζήτημα στο [AI Toolkit GitHub repository](https://github.com/microsoft/vscode-ai-toolkit/issues).
 
-**Αποποίηση ευθυνών**:  
-Αυτό το έγγραφο έχει μεταφραστεί χρησιμοποιώντας την υπηρεσία αυτόματης μετάφρασης AI [Co-op Translator](https://github.com/Azure/co-op-translator). Παρόλο που επιδιώκουμε την ακρίβεια, παρακαλούμε να έχετε υπόψη ότι οι αυτόματες μεταφράσεις ενδέχεται να περιέχουν λάθη ή ανακρίβειες. Το πρωτότυπο έγγραφο στη γλώσσα του θεωρείται η αυθεντική πηγή. Για κρίσιμες πληροφορίες, συνιστάται επαγγελματική ανθρώπινη μετάφραση. Δεν φέρουμε ευθύνη για τυχόν παρεξηγήσεις ή λανθασμένες ερμηνείες που προκύπτουν από τη χρήση αυτής της μετάφρασης.
+---
+
+**Αποποίηση ευθύνης**:  
+Αυτό το έγγραφο έχει μεταφραστεί χρησιμοποιώντας την υπηρεσία αυτόματης μετάφρασης [Co-op Translator](https://github.com/Azure/co-op-translator). Παρόλο που καταβάλλουμε προσπάθειες για ακρίβεια, παρακαλούμε να έχετε υπόψη ότι οι αυτόματες μεταφράσεις ενδέχεται να περιέχουν λάθη ή ανακρίβειες. Το πρωτότυπο έγγραφο στη μητρική του γλώσσα θα πρέπει να θεωρείται η αυθεντική πηγή. Για κρίσιμες πληροφορίες, συνιστάται επαγγελματική μετάφραση από ανθρώπους. Δεν φέρουμε ευθύνη για τυχόν παρεξηγήσεις ή εσφαλμένες ερμηνείες που προκύπτουν από τη χρήση αυτής της μετάφρασης.

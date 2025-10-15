@@ -1,65 +1,70 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "7b4b9bfacd2926725e6f1cda82bc8ff5",
-  "translation_date": "2025-07-17T07:47:08+00:00",
+  "original_hash": "fcf1e12b62102bf7d16b78deb2b163b7",
+  "translation_date": "2025-08-18T17:47:05+00:00",
   "source_file": "06-CommunityContributions/README.md",
   "language_code": "id"
 }
 -->
 # Komunitas dan Kontribusi
 
-## Ikhtisar
+[![Cara Berkontribusi pada MCP: Alat, Dokumentasi, Kode, dan Lainnya](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.id.png)](https://youtu.be/v1pvCYAWpRE)
 
-Pelajaran ini berfokus pada cara berinteraksi dengan komunitas MCP, berkontribusi pada ekosistem MCP, dan mengikuti praktik terbaik untuk pengembangan kolaboratif. Memahami cara berpartisipasi dalam proyek MCP open-source sangat penting bagi mereka yang ingin membentuk masa depan teknologi ini.
+_(Klik gambar di atas untuk menonton video pelajaran ini)_
+
+## Gambaran Umum
+
+Pelajaran ini berfokus pada cara berinteraksi dengan komunitas MCP, berkontribusi pada ekosistem MCP, dan mengikuti praktik terbaik dalam pengembangan kolaboratif. Memahami cara berpartisipasi dalam proyek MCP open-source sangat penting bagi mereka yang ingin membentuk masa depan teknologi ini.
 
 ## Tujuan Pembelajaran
 
-Pada akhir pelajaran ini, Anda akan mampu:
+Pada akhir pelajaran ini, Anda akan dapat:
+
 - Memahami struktur komunitas dan ekosistem MCP
 - Berpartisipasi secara efektif dalam forum dan diskusi komunitas MCP
 - Berkontribusi pada repositori open-source MCP
-- Membuat dan membagikan alat dan server MCP kustom
+- Membuat dan membagikan alat serta server MCP kustom
 - Mengikuti praktik terbaik untuk pengembangan dan kolaborasi MCP
 - Menemukan sumber daya dan kerangka kerja komunitas untuk pengembangan MCP
 
 ## Ekosistem Komunitas MCP
 
-Ekosistem MCP terdiri dari berbagai komponen dan peserta yang bekerja sama untuk mengembangkan protokol.
+Ekosistem MCP terdiri dari berbagai komponen dan peserta yang bekerja sama untuk memajukan protokol ini.
 
 ### Komponen Utama Komunitas
 
-1. **Core Protocol Maintainers**: Organisasi resmi [Model Context Protocol GitHub](https://github.com/modelcontextprotocol) yang memelihara spesifikasi inti MCP dan implementasi referensi
-2. **Tool Developers**: Individu dan tim yang membuat alat dan server MCP
-3. **Integration Providers**: Perusahaan yang mengintegrasikan MCP ke dalam produk dan layanan mereka
-4. **End Users**: Pengembang dan organisasi yang menggunakan MCP dalam aplikasi mereka
-5. **Contributors**: Anggota komunitas yang berkontribusi kode, dokumentasi, atau sumber daya lainnya
+1. **Pemelihara Protokol Inti**: [Organisasi GitHub Model Context Protocol](https://github.com/modelcontextprotocol) secara resmi memelihara spesifikasi inti MCP dan implementasi referensi.
+2. **Pengembang Alat**: Individu dan tim yang membuat alat dan server MCP.
+3. **Penyedia Integrasi**: Perusahaan yang mengintegrasikan MCP ke dalam produk dan layanan mereka.
+4. **Pengguna Akhir**: Pengembang dan organisasi yang menggunakan MCP dalam aplikasi mereka.
+5. **Kontributor**: Anggota komunitas yang menyumbangkan kode, dokumentasi, atau sumber daya lainnya.
 
 ### Sumber Daya Komunitas
 
 #### Saluran Resmi
 
-- [MCP GitHub Organization](https://github.com/modelcontextprotocol)
-- [MCP Documentation](https://modelcontextprotocol.io/)
-- [MCP Specification](https://modelcontextprotocol.io/docs/specification)
-- [GitHub Discussions](https://github.com/orgs/modelcontextprotocol/discussions)
-- [MCP Examples & Servers Repository](https://github.com/modelcontextprotocol/servers)
+- [Organisasi GitHub MCP](https://github.com/modelcontextprotocol)
+- [Dokumentasi MCP](https://modelcontextprotocol.io/)
+- [Spesifikasi MCP](https://modelcontextprotocol.io/docs/specification)
+- [Diskusi GitHub](https://github.com/orgs/modelcontextprotocol/discussions)
+- [Repositori Contoh & Server MCP](https://github.com/modelcontextprotocol/servers)
 
-#### Sumber Daya yang Didorong oleh Komunitas
+#### Sumber Daya yang Dikelola Komunitas
 
-- [MCP Clients](https://modelcontextprotocol.io/clients) - Daftar klien yang mendukung integrasi MCP
-- [Community MCP Servers](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - Daftar server MCP yang dikembangkan komunitas yang terus bertambah
-- [Awesome MCP Servers](https://github.com/wong2/awesome-mcp-servers) - Daftar kurasi server MCP
-- [PulseMCP](https://www.pulsemcp.com/) - Pusat komunitas & newsletter untuk menemukan sumber daya MCP
-- [Discord Server](https://discord.gg/jHEGxQu2a5) - Terhubung dengan pengembang MCP
-- Implementasi SDK spesifik bahasa
-- Blog dan tutorial
+- [Klien MCP](https://modelcontextprotocol.io/clients) - Daftar klien yang mendukung integrasi MCP
+- [Server MCP Komunitas](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - Daftar server MCP yang dikembangkan komunitas
+- [Awesome MCP Servers](https://github.com/wong2/awesome-mcp-servers) - Daftar server MCP yang dikurasi
+- [PulseMCP](https://www.pulsemcp.com/) - Pusat komunitas & buletin untuk menemukan sumber daya MCP
+- [Server Discord](https://discord.gg/jHEGxQu2a5) - Terhubung dengan pengembang MCP
+- Implementasi SDK khusus bahasa
+- Artikel blog dan tutorial
 
 ## Berkontribusi pada MCP
 
 ### Jenis Kontribusi
 
-Ekosistem MCP menerima berbagai jenis kontribusi:
+Ekosistem MCP menyambut berbagai jenis kontribusi:
 
 1. **Kontribusi Kode**:
    - Peningkatan protokol inti
@@ -68,7 +73,7 @@ Ekosistem MCP menerima berbagai jenis kontribusi:
    - Perpustakaan klien/server dalam berbagai bahasa
 
 2. **Dokumentasi**:
-   - Memperbaiki dokumentasi yang ada
+   - Meningkatkan dokumentasi yang ada
    - Membuat tutorial dan panduan
    - Menerjemahkan dokumentasi
    - Membuat contoh dan aplikasi sampel
@@ -79,18 +84,18 @@ Ekosistem MCP menerima berbagai jenis kontribusi:
    - Mengorganisir acara komunitas
    - Membimbing kontributor baru
 
-### Proses Kontribusi: Core Protocol
+### Proses Kontribusi: Protokol Inti
 
 Untuk berkontribusi pada protokol inti MCP atau implementasi resmi, ikuti prinsip-prinsip dari [panduan kontribusi resmi](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
 
-1. **Kesederhanaan dan Minimalisme**: Spesifikasi MCP menetapkan standar tinggi untuk menambahkan konsep baru. Lebih mudah menambahkan sesuatu ke spesifikasi daripada menghapusnya.
+1. **Kesederhanaan dan Minimalisme**: Spesifikasi MCP mempertahankan standar tinggi untuk menambahkan konsep baru. Lebih mudah menambahkan sesuatu ke spesifikasi daripada menghapusnya.
 
-2. **Pendekatan Konkret**: Perubahan spesifikasi harus didasarkan pada tantangan implementasi yang spesifik, bukan ide spekulatif.
+2. **Pendekatan Konkret**: Perubahan spesifikasi harus didasarkan pada tantangan implementasi spesifik, bukan ide spekulatif.
 
 3. **Tahapan Proposal**:
-   - Definisikan: Jelajahi ruang masalah, pastikan pengguna MCP lain menghadapi masalah serupa
-   - Prototipe: Bangun solusi contoh dan tunjukkan penerapan praktisnya
-   - Tulis: Berdasarkan prototipe, buat proposal spesifikasi
+   - Definisikan: Jelajahi ruang masalah, validasi bahwa pengguna MCP lain menghadapi masalah serupa.
+   - Prototipe: Bangun solusi contoh dan tunjukkan aplikasi praktisnya.
+   - Tulis: Berdasarkan prototipe, tulis proposal spesifikasi.
 
 ### Pengaturan Lingkungan Pengembangan
 
@@ -306,18 +311,18 @@ class CsvProcessingTool(Tool):
             raise ToolExecutionException(f"Unsupported output format: {format}")
 ```
 
-### Pedoman Kontribusi
+### Panduan Kontribusi
 
-Untuk membuat kontribusi yang berhasil pada proyek MCP:
+Untuk membuat kontribusi yang sukses pada proyek MCP:
 
-1. **Mulai dari yang Kecil**: Mulailah dengan dokumentasi, perbaikan bug, atau peningkatan kecil
-2. **Ikuti Panduan Gaya**: Patuhi gaya pengkodean dan konvensi proyek
-3. **Tulis Tes**: Sertakan unit test untuk kontribusi kode Anda
-4. **Dokumentasikan Pekerjaan Anda**: Tambahkan dokumentasi yang jelas untuk fitur atau perubahan baru
-5. **Ajukan PR yang Terfokus**: Jaga pull request tetap fokus pada satu masalah atau fitur
-6. **Tanggapi Masukan**: Responsif terhadap umpan balik pada kontribusi Anda
+1. **Mulai dari yang Kecil**: Mulailah dengan dokumentasi, perbaikan bug, atau peningkatan kecil.
+2. **Ikuti Panduan Gaya**: Patuhi gaya penulisan kode dan konvensi proyek.
+3. **Tulis Tes**: Sertakan tes unit untuk kontribusi kode Anda.
+4. **Dokumentasikan Pekerjaan Anda**: Tambahkan dokumentasi yang jelas untuk fitur atau perubahan baru.
+5. **Kirim PR yang Terfokus**: Pastikan pull request Anda hanya mencakup satu masalah atau fitur.
+6. **Tanggapi Umpan Balik**: Bersikap responsif terhadap umpan balik pada kontribusi Anda.
 
-### Contoh Alur Kerja Kontribusi
+### Alur Kerja Kontribusi Contoh
 
 ```bash
 # Clone the repository
@@ -349,7 +354,7 @@ Salah satu cara paling berharga untuk berkontribusi pada ekosistem MCP adalah de
 
 ### Kerangka Kerja Pengembangan Server MCP
 
-Beberapa kerangka kerja tersedia untuk mempermudah pengembangan server MCP:
+Beberapa kerangka kerja tersedia untuk menyederhanakan pengembangan server MCP:
 
 1. **SDK Resmi**:
    - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
@@ -360,14 +365,14 @@ Beberapa kerangka kerja tersedia untuk mempermudah pengembangan server MCP:
    - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk)
 
 2. **Kerangka Kerja Komunitas**:
-   - [MCP-Framework](https://mcp-framework.com/) - Bangun server MCP dengan elegan dan cepat menggunakan TypeScript
-   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - Server MCP berbasis anotasi dengan Java
-   - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - Kerangka kerja Java untuk server MCP
-   - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - Proyek starter Next.js untuk server MCP
+   - [MCP-Framework](https://mcp-framework.com/) - Bangun server MCP dengan elegan dan cepat menggunakan TypeScript.
+   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - Server MCP berbasis anotasi dengan Java.
+   - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - Kerangka kerja Java untuk server MCP.
+   - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - Proyek awal Next.js untuk server MCP.
 
-### Mengembangkan Alat yang Bisa Dibagikan
+### Mengembangkan Alat yang Dapat Dibagikan
 
-#### Contoh .NET: Membuat Paket Alat yang Bisa Dibagikan
+#### Contoh .NET: Membuat Paket Alat yang Dapat Dibagikan
 
 ```csharp
 // Create a new .NET library project
@@ -574,7 +579,7 @@ public class WeatherForecastTool implements Tool {
 // mvn deploy
 ```
 
-#### Contoh Python: Mempublikasikan Paket PyPI
+#### Contoh Python: Menerbitkan Paket PyPI
 
 ```python
 # Directory structure for a PyPI package:
@@ -684,29 +689,29 @@ class SentimentAnalysisTool(Tool):
 Saat membagikan alat MCP dengan komunitas:
 
 1. **Dokumentasi Lengkap**:
-   - Dokumentasikan tujuan, cara penggunaan, dan contoh
-   - Jelaskan parameter dan nilai kembalian
-   - Dokumentasikan ketergantungan eksternal jika ada
+   - Dokumentasikan tujuan, penggunaan, dan contoh.
+   - Jelaskan parameter dan nilai pengembalian.
+   - Dokumentasikan ketergantungan eksternal.
 
-2. **Penanganan Error**:
-   - Terapkan penanganan error yang kuat
-   - Berikan pesan error yang berguna
-   - Tangani kasus tepi dengan baik
+2. **Penanganan Kesalahan**:
+   - Terapkan penanganan kesalahan yang kuat.
+   - Berikan pesan kesalahan yang berguna.
+   - Tangani kasus tepi dengan baik.
 
-3. **Pertimbangan Performa**:
-   - Optimalkan untuk kecepatan dan penggunaan sumber daya
-   - Terapkan caching jika sesuai
-   - Pertimbangkan skalabilitas
+3. **Pertimbangan Kinerja**:
+   - Optimalkan untuk kecepatan dan penggunaan sumber daya.
+   - Terapkan caching jika diperlukan.
+   - Pertimbangkan skalabilitas.
 
 4. **Keamanan**:
-   - Gunakan API key dan autentikasi yang aman
-   - Validasi dan sanitasi input
-   - Terapkan pembatasan laju untuk panggilan API eksternal
+   - Gunakan kunci API dan autentikasi yang aman.
+   - Validasi dan sanitasi input.
+   - Terapkan pembatasan laju untuk panggilan API eksternal.
 
 5. **Pengujian**:
-   - Sertakan cakupan pengujian yang komprehensif
-   - Uji dengan berbagai tipe input dan kasus tepi
-   - Dokumentasikan prosedur pengujian
+   - Sertakan cakupan pengujian yang komprehensif.
+   - Uji dengan berbagai jenis input dan kasus tepi.
+   - Dokumentasikan prosedur pengujian.
 
 ## Kolaborasi Komunitas dan Praktik Terbaik
 
@@ -714,31 +719,31 @@ Kolaborasi yang efektif adalah kunci untuk ekosistem MCP yang berkembang.
 
 ### Saluran Komunikasi
 
-- GitHub Issues dan Discussions
+- Isu dan Diskusi GitHub
 - Microsoft Tech Community
 - Saluran Discord dan Slack
 - Stack Overflow (tag: `model-context-protocol` atau `mcp`)
 
-### Review Kode
+### Tinjauan Kode
 
 Saat meninjau kontribusi MCP:
 
 1. **Kejelasan**: Apakah kode jelas dan terdokumentasi dengan baik?
-2. **Kebenaran**: Apakah kode berfungsi sesuai harapan?
-3. **Konsistensi**: Apakah mengikuti konvensi proyek?
-4. **Kelengkapan**: Apakah tes dan dokumentasi sudah disertakan?
+2. **Kebenaran**: Apakah kode berfungsi seperti yang diharapkan?
+3. **Konsistensi**: Apakah kode mengikuti konvensi proyek?
+4. **Kelengkapan**: Apakah tes dan dokumentasi disertakan?
 5. **Keamanan**: Apakah ada masalah keamanan?
 
 ### Kompatibilitas Versi
 
 Saat mengembangkan untuk MCP:
 
-1. **Versi Protokol**: Patuhi versi protokol MCP yang didukung alat Anda
-2. **Kompatibilitas Klien**: Pertimbangkan kompatibilitas mundur
-3. **Kompatibilitas Server**: Ikuti panduan implementasi server
-4. **Perubahan yang Memutuskan**: Dokumentasikan dengan jelas setiap perubahan yang memutuskan kompatibilitas
+1. **Versi Protokol**: Patuhi versi protokol MCP yang didukung alat Anda.
+2. **Kompatibilitas Klien**: Pertimbangkan kompatibilitas ke belakang.
+3. **Kompatibilitas Server**: Ikuti panduan implementasi server.
+4. **Perubahan yang Merusak**: Dokumentasikan dengan jelas perubahan yang merusak.
 
-## Contoh Proyek Komunitas: MCP Tool Registry
+## Proyek Komunitas Contoh: Registri Alat MCP
 
 Kontribusi komunitas yang penting bisa berupa pengembangan registri publik untuk alat MCP.
 
@@ -821,28 +826,27 @@ async def delete_tool(tool_name: str):
 
 ## Poin Penting
 
-- Komunitas MCP beragam dan menerima berbagai jenis kontribusi
-- Kontribusi pada MCP bisa berupa peningkatan protokol inti hingga alat kustom
-- Mengikuti panduan kontribusi meningkatkan peluang PR Anda diterima
-- Membuat dan membagikan alat MCP adalah cara berharga untuk memperkaya ekosistem
-- Kolaborasi komunitas sangat penting untuk pertumbuhan dan perbaikan MCP
+- Komunitas MCP beragam dan menyambut berbagai jenis kontribusi.
+- Berkontribusi pada MCP dapat mencakup peningkatan protokol inti hingga alat kustom.
+- Mengikuti panduan kontribusi meningkatkan peluang PR Anda diterima.
+- Membuat dan membagikan alat MCP adalah cara berharga untuk meningkatkan ekosistem.
+- Kolaborasi komunitas sangat penting untuk pertumbuhan dan peningkatan MCP.
 
 ## Latihan
 
-1. Identifikasi area dalam ekosistem MCP di mana Anda bisa berkontribusi berdasarkan keahlian dan minat Anda
-2. Fork repositori MCP dan siapkan lingkungan pengembangan lokal
-3. Buat peningkatan kecil, perbaikan bug, atau alat yang bermanfaat bagi komunitas
-4. Dokumentasikan kontribusi Anda dengan tes dan dokumentasi yang tepat
-5. Ajukan pull request ke repositori yang sesuai
+1. Identifikasi area dalam ekosistem MCP di mana Anda dapat memberikan kontribusi berdasarkan keterampilan dan minat Anda.
+2. Fork repositori MCP dan atur lingkungan pengembangan lokal.
+3. Buat peningkatan kecil, perbaikan bug, atau alat yang akan bermanfaat bagi komunitas.
+4. Dokumentasikan kontribusi Anda dengan tes dan dokumentasi yang sesuai.
+5. Kirim pull request ke repositori yang sesuai.
 
 ## Sumber Daya Tambahan
 
-- [MCP Community Projects](https://github.com/topics/model-context-protocol)
-
+- [Proyek Komunitas MCP](https://github.com/topics/model-context-protocol)
 
 ---
 
-Selanjutnya: [Lessons from Early Adoption](../07-LessonsfromEarlyAdoption/README.md)
+Selanjutnya: [Pelajaran dari Adopsi Awal](../07-LessonsfromEarlyAdoption/README.md)
 
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk mencapai akurasi, harap diketahui bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sahih. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan layanan penerjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk memberikan hasil yang akurat, harap diperhatikan bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang berwenang. Untuk informasi yang bersifat kritis, disarankan menggunakan jasa penerjemahan manusia profesional. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.

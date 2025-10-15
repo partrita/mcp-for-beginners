@@ -1,15 +1,15 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "d0f0d7012325b286e4a717791b23ae7e",
-  "translation_date": "2025-07-13T18:02:30+00:00",
+  "original_hash": "d4c162484df410632550a4a357d40341",
+  "translation_date": "2025-09-03T16:19:47+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/python/README.md",
   "language_code": "sl"
 }
 -->
-# Zagon tega primera
+# Zagon tega vzorca
 
-Priporočamo, da namestite `uv`, vendar ni nujno, poglejte [navodila](https://docs.astral.sh/uv/#highlights)
+Priporočljivo je namestiti `uv`, vendar ni nujno, glejte [navodila](https://docs.astral.sh/uv/#highlights)
 
 ## -0- Ustvarite virtualno okolje
 
@@ -20,7 +20,7 @@ python -m venv venv
 ## -1- Aktivirajte virtualno okolje
 
 ```bash
-venv\Scrips\activate
+venv\Scripts\activate
 ```
 
 ## -2- Namestite odvisnosti
@@ -29,40 +29,39 @@ venv\Scrips\activate
 pip install "mcp[cli]"
 ```
 
-## -3- Zaženite primer
-
+## -3- Zaženite vzorec
 
 ```bash
 mcp run server.py
 ```
 
-## -4- Preizkusite primer
+## -4- Preizkusite vzorec
 
-Ko je strežnik zagnan v enem terminalu, odprite drug terminal in zaženite naslednji ukaz:
+Ko strežnik deluje v enem terminalu, odprite drug terminal in zaženite naslednji ukaz:
 
 ```bash
 mcp dev server.py
 ```
 
-To bi moralo zagnati spletni strežnik z vizualnim vmesnikom, ki vam omogoča testiranje primera.
+To bi moralo zagnati spletni strežnik z vizualnim vmesnikom, ki vam omogoča testiranje vzorca.
 
 Ko je strežnik povezan:
 
-- poskusite izpisati orodja in zaženite `add` z argumenti 2 in 4, v rezultatu bi morali videti 6.
+- poskusite našteti orodja in zaženite `add` z argumentoma 2 in 4, v rezultatu bi morali videti 6.
 
-- pojdite na resources in resource template ter pokličite get_greeting, vnesite ime in videli boste pozdrav z vnesenim imenom.
+- pojdite na vire in predlogo virov ter pokličite get_greeting, vnesite ime in videli boste pozdrav z imenom, ki ste ga vnesli.
 
-### Testiranje v CLI načinu
+### Testiranje v načinu CLI
 
-Inspector, ki ste ga zagnali, je pravzaprav Node.js aplikacija, `mcp dev` pa je ovitek okoli nje.
+Inšpektor, ki ste ga zagnali, je dejansko aplikacija Node.js, `mcp dev` pa je ovojnica okoli nje.
 
-Lahko ga zaženete neposredno v CLI načinu z naslednjim ukazom:
+Lahko ga zaženete neposredno v načinu CLI z naslednjim ukazom:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli mcp run server.py --method tools/list
 ```
 
-To bo izpisalo vsa orodja, ki so na voljo na strežniku. Videli bi morali naslednji izpis:
+To bo prikazalo seznam vseh orodij, ki so na voljo v strežniku. Videti bi morali naslednji izpis:
 
 ```text
 {
@@ -99,7 +98,7 @@ Za klic orodja vnesite:
 npx @modelcontextprotocol/inspector --cli mcp run server.py --method tools/call --tool-name add --tool-arg a=1 --tool-arg b=2
 ```
 
-Videli bi morali naslednji izpis:
+Videti bi morali naslednji izpis:
 
 ```text
 {
@@ -113,9 +112,11 @@ Videli bi morali naslednji izpis:
 }
 ```
 
-> ![!TIP]
-> Običajno je veliko hitreje zagnati inspector v CLI načinu kot v brskalniku.
-> Več o inspectorju preberite [tukaj](https://github.com/modelcontextprotocol/inspector).
+> [!TIP]
+> Običajno je veliko hitreje zagnati inšpektor v načinu CLI kot v brskalniku.
+> Več o inšpektorju preberite [tukaj](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Omejitev odgovornosti**:  
-Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas opozarjamo, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku velja za avtoritativni vir. Za pomembne informacije priporočamo strokovni človeški prevod. Za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda, ne odgovarjamo.
+Ta dokument je bil preveden z uporabo storitve za prevajanje z umetno inteligenco [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da lahko avtomatizirani prevodi vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za ključne informacije priporočamo profesionalni človeški prevod. Ne prevzemamo odgovornosti za morebitna nesporazumevanja ali napačne razlage, ki bi nastale zaradi uporabe tega prevoda.

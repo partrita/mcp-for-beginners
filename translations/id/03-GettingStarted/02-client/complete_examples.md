@@ -1,28 +1,30 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "affcf199a44f60283a289dcb69dc144e",
-  "translation_date": "2025-07-17T09:12:39+00:00",
+  "original_hash": "8358c13b5b6877e475674697cdc1a904",
+  "translation_date": "2025-08-18T17:44:59+00:00",
   "source_file": "03-GettingStarted/02-client/complete_examples.md",
   "language_code": "id"
 }
 -->
 # Contoh Lengkap Klien MCP
 
-Direktori ini berisi contoh lengkap dan berfungsi dari klien MCP dalam berbagai bahasa pemrograman. Setiap klien menunjukkan fungsionalitas penuh yang dijelaskan dalam tutorial utama README.md.
+Direktori ini berisi contoh lengkap dan berfungsi dari klien MCP dalam berbagai bahasa pemrograman. Setiap klien menunjukkan seluruh fungsionalitas yang dijelaskan dalam tutorial README.md utama.
 
 ## Klien yang Tersedia
 
 ### 1. Klien Java (`client_example_java.java`)
+
 - **Transport**: SSE (Server-Sent Events) melalui HTTP
 - **Server Target**: `http://localhost:8080`
-- **Fitur**: 
-  - Pembuatan koneksi dan ping
+- **Fitur**:
+  - Pembentukan koneksi dan ping
   - Daftar alat
   - Operasi kalkulator (tambah, kurang, kali, bagi, bantuan)
   - Penanganan kesalahan dan ekstraksi hasil
 
-**Untuk menjalankan:**
+**Cara menjalankan:**
+
 ```bash
 # Ensure your MCP server is running on localhost:8080
 javac client_example_java.java
@@ -30,7 +32,8 @@ java client_example_java
 ```
 
 ### 2. Klien C# (`client_example_csharp.cs`)
-- **Transport**: Stdio (Standard Input/Output)
+
+- **Transport**: Stdio (Input/Output Standar)
 - **Server Target**: Server MCP .NET lokal melalui dotnet run
 - **Fitur**:
   - Startup server otomatis melalui transport stdio
@@ -39,22 +42,25 @@ java client_example_java
   - Parsing hasil JSON
   - Penanganan kesalahan yang komprehensif
 
-**Untuk menjalankan:**
+**Cara menjalankan:**
+
 ```bash
 dotnet run
 ```
 
 ### 3. Klien TypeScript (`client_example_typescript.ts`)
-- **Transport**: Stdio (Standard Input/Output)
+
+- **Transport**: Stdio (Input/Output Standar)
 - **Server Target**: Server MCP Node.js lokal
 - **Fitur**:
-  - Dukungan penuh protokol MCP
+  - Dukungan penuh untuk protokol MCP
   - Operasi alat, sumber daya, dan prompt
   - Operasi kalkulator
-  - Membaca sumber daya dan menjalankan prompt
+  - Membaca sumber daya dan eksekusi prompt
   - Penanganan kesalahan yang tangguh
 
-**Untuk menjalankan:**
+**Cara menjalankan:**
+
 ```bash
 # First compile TypeScript (if needed)
 npm run build
@@ -66,7 +72,8 @@ node client_example_typescript.js
 ```
 
 ### 4. Klien Python (`client_example_python.py`)
-- **Transport**: Stdio (Standard Input/Output)  
+
+- **Transport**: Stdio (Input/Output Standar)  
 - **Server Target**: Server MCP Python lokal
 - **Fitur**:
   - Pola async/await untuk operasi
@@ -75,7 +82,8 @@ node client_example_typescript.js
   - Membaca konten sumber daya
   - Organisasi berbasis kelas
 
-**Untuk menjalankan:**
+**Cara menjalankan:**
+
 ```bash
 python client_example_python.py
 ```
@@ -85,9 +93,9 @@ python client_example_python.py
 Setiap implementasi klien menunjukkan:
 
 1. **Manajemen Koneksi**
-   - Membuat koneksi ke server MCP
+   - Membentuk koneksi ke server MCP
    - Menangani kesalahan koneksi
-   - Pembersihan dan pengelolaan sumber daya yang tepat
+   - Pembersihan dan manajemen sumber daya yang tepat
 
 2. **Penemuan Server**
    - Daftar alat yang tersedia
@@ -97,38 +105,39 @@ Setiap implementasi klien menunjukkan:
 3. **Pemanggilan Alat**
    - Operasi kalkulator dasar (tambah, kurang, kali, bagi)
    - Perintah bantuan untuk informasi server
-   - Pengiriman argumen dan penanganan hasil yang tepat
+   - Pengiriman argumen yang tepat dan penanganan hasil
 
 4. **Penanganan Kesalahan**
    - Kesalahan koneksi
    - Kesalahan eksekusi alat
-   - Kegagalan yang tertata dan umpan balik ke pengguna
+   - Kegagalan yang terkelola dan umpan balik kepada pengguna
 
 5. **Pemrosesan Hasil**
-   - Mengekstrak konten teks dari respons
-   - Memformat output agar mudah dibaca
-   - Menangani berbagai format respons
+   - Ekstraksi konten teks dari respons
+   - Format output untuk keterbacaan
+   - Penanganan berbagai format respons
 
 ## Prasyarat
 
-Sebelum menjalankan klien ini, pastikan Anda:
+Sebelum menjalankan klien ini, pastikan Anda memiliki:
 
-1. **Server MCP yang sesuai sudah berjalan** (dari `../01-first-server/`)
-2. **Dependensi yang dibutuhkan sudah terpasang** untuk bahasa yang Anda pilih
-3. **Konektivitas jaringan yang tepat** (untuk transport berbasis HTTP)
+1. **Server MCP yang sesuai berjalan** (dari `../01-first-server/`)
+2. **Dependensi yang diperlukan terinstal** untuk bahasa yang Anda pilih
+3. **Konektivitas jaringan yang memadai** (untuk transport berbasis HTTP)
 
-## Perbedaan Utama Antar Implementasi
+## Perbedaan Utama Antara Implementasi
 
-| Bahasa    | Transport | Startup Server | Model Async | Perpustakaan Utama |
-|-----------|-----------|----------------|-------------|--------------------|
-| Java      | SSE/HTTP  | Eksternal      | Sinkron     | WebFlux, MCP SDK   |
-| C#        | Stdio     | Otomatis       | Async/Await | .NET MCP SDK       |
-| TypeScript| Stdio     | Otomatis       | Async/Await | Node MCP SDK       |
-| Python    | Stdio     | Otomatis       | AsyncIO     | Python MCP SDK     |
+| Bahasa     | Transport | Startup Server | Model Async | Pustaka Utama       |
+|------------|-----------|----------------|-------------|---------------------|
+| Java       | SSE/HTTP  | Eksternal      | Sinkron     | WebFlux, MCP SDK    |
+| C#         | Stdio     | Otomatis       | Async/Await | .NET MCP SDK        |
+| TypeScript | Stdio     | Otomatis       | Async/Await | Node MCP SDK        |
+| Python     | Stdio     | Otomatis       | AsyncIO     | Python MCP SDK      |
+| Rust       | Stdio     | Otomatis       | Async/Await | Rust MCP SDK, Tokio |
 
 ## Langkah Selanjutnya
 
-Setelah mempelajari contoh klien ini:
+Setelah menjelajahi contoh klien ini:
 
 1. **Modifikasi klien** untuk menambahkan fitur atau operasi baru
 2. **Buat server Anda sendiri** dan uji dengan klien ini
@@ -139,17 +148,17 @@ Setelah mempelajari contoh klien ini:
 
 ### Masalah Umum
 
-1. **Koneksi ditolak**: Pastikan server MCP berjalan di port/path yang diharapkan
-2. **Modul tidak ditemukan**: Pasang MCP SDK yang diperlukan untuk bahasa Anda
+1. **Koneksi ditolak**: Pastikan server MCP berjalan di port/jalur yang diharapkan
+2. **Modul tidak ditemukan**: Instal MCP SDK yang diperlukan untuk bahasa Anda
 3. **Izin ditolak**: Periksa izin file untuk transport stdio
-4. **Alat tidak ditemukan**: Pastikan server mengimplementasikan alat yang diharapkan
+4. **Alat tidak ditemukan**: Verifikasi server mengimplementasikan alat yang diharapkan
 
-### Tips Debugging
+### Tips Debug
 
-1. **Aktifkan logging verbose** di MCP SDK Anda
+1. **Aktifkan logging yang lebih rinci** di MCP SDK Anda
 2. **Periksa log server** untuk pesan kesalahan
 3. **Verifikasi nama dan tanda tangan alat** cocok antara klien dan server
-4. **Uji dengan MCP Inspector** terlebih dahulu untuk memvalidasi fungsi server
+4. **Uji dengan MCP Inspector** terlebih dahulu untuk memvalidasi fungsionalitas server
 
 ## Dokumentasi Terkait
 
@@ -159,4 +168,4 @@ Setelah mempelajari contoh klien ini:
 - [Dokumentasi Resmi MCP](https://modelcontextprotocol.io/)
 
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk mencapai akurasi, harap diperhatikan bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sahih. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk memberikan hasil yang akurat, harap diperhatikan bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang berwenang. Untuk informasi yang bersifat kritis, disarankan menggunakan jasa terjemahan manusia profesional. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.

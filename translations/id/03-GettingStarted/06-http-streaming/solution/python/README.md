@@ -1,25 +1,25 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4c4da5949611d91b06d8a5d450aae8d6",
-  "translation_date": "2025-07-13T21:21:15+00:00",
+  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
+  "translation_date": "2025-08-18T17:44:05+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
   "language_code": "id"
 }
 -->
-# Menjalankan contoh ini
+# Menjalankan Contoh Ini
 
-Berikut cara menjalankan server dan klien streaming HTTP klasik, serta server dan klien streaming MCP menggunakan Python.
+Berikut adalah cara menjalankan server dan klien streaming HTTP klasik, serta server dan klien streaming MCP menggunakan Python.
 
 ### Gambaran Umum
 
-- Anda akan menyiapkan server MCP yang mengirimkan notifikasi progres ke klien saat memproses item.
-- Klien akan menampilkan setiap notifikasi secara real time.
+- Anda akan mengatur server MCP yang mengirimkan notifikasi kemajuan ke klien saat memproses item.
+- Klien akan menampilkan setiap notifikasi secara real-time.
 - Panduan ini mencakup prasyarat, pengaturan, menjalankan, dan pemecahan masalah.
 
 ### Prasyarat
 
-- Python 3.9 atau versi lebih baru
+- Python 3.9 atau lebih baru
 - Paket Python `mcp` (instal dengan `pip install mcp`)
 
 ### Instalasi & Pengaturan
@@ -30,7 +30,7 @@ Berikut cara menjalankan server dan klien streaming HTTP klasik, serta server da
    git clone https://github.com/microsoft/mcp-for-beginners
    ```
 
-1. **Buat dan aktifkan virtual environment (disarankan):**
+1. **Buat dan aktifkan lingkungan virtual (disarankan):**
 
    ```pwsh
    python -m venv venv
@@ -39,10 +39,10 @@ Berikut cara menjalankan server dan klien streaming HTTP klasik, serta server da
    source venv/bin/activate      # On Linux/macOS
    ```
 
-1. **Instal dependensi yang dibutuhkan:**
+1. **Instal dependensi yang diperlukan:**
 
    ```pwsh
-   pip install "mcp[cli]"
+   pip install "mcp[cli]" fastapi requests
    ```
 
 ### File
@@ -58,7 +58,7 @@ Berikut cara menjalankan server dan klien streaming HTTP klasik, serta server da
    cd 03-GettingStarted/06-http-streaming/solution
    ```
 
-2. Mulai server streaming HTTP klasik:
+2. Jalankan server streaming HTTP klasik:
 
    ```pwsh
    python server.py
@@ -73,14 +73,14 @@ Berikut cara menjalankan server dan klien streaming HTTP klasik, serta server da
 
 ### Menjalankan Klien Streaming HTTP Klasik
 
-1. Buka terminal baru (aktifkan virtual environment dan direktori yang sama):
+1. Buka terminal baru (aktifkan lingkungan virtual dan direktori yang sama):
 
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py
    ```
 
-2. Anda akan melihat pesan streaming dicetak secara berurutan:
+2. Anda akan melihat pesan yang di-streaming dicetak secara berurutan:
 
    ```text
    Running classic HTTP streaming client...
@@ -99,7 +99,7 @@ Berikut cara menjalankan server dan klien streaming HTTP klasik, serta server da
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    ```
-2. Mulai server MCP dengan transport streamable-http:
+2. Jalankan server MCP dengan transport streamable-http:
    ```pwsh
    python server.py mcp
    ```
@@ -111,12 +111,12 @@ Berikut cara menjalankan server dan klien streaming HTTP klasik, serta server da
 
 ### Menjalankan Klien Streaming MCP
 
-1. Buka terminal baru (aktifkan virtual environment dan direktori yang sama):
+1. Buka terminal baru (aktifkan lingkungan virtual dan direktori yang sama):
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py mcp
    ```
-2. Anda akan melihat notifikasi dicetak secara real time saat server memproses setiap item:
+2. Anda akan melihat notifikasi dicetak secara real-time saat server memproses setiap item:
    ```
    Running MCP client...
    Starting client...
@@ -129,23 +129,23 @@ Berikut cara menjalankan server dan klien streaming HTTP klasik, serta server da
    Tool result: meta=None content=[TextContent(type='text', text='Processed files: file_1.txt, file_2.txt, file_3.txt | Message: hello from client')]
    ```
 
-### Langkah Implementasi Utama
+### Langkah-Langkah Implementasi Utama
 
 1. **Buat server MCP menggunakan FastMCP.**
-2. **Definisikan tool yang memproses daftar dan mengirim notifikasi menggunakan `ctx.info()` atau `ctx.log()`.**
+2. **Definisikan alat yang memproses daftar dan mengirimkan notifikasi menggunakan `ctx.info()` atau `ctx.log()`.**
 3. **Jalankan server dengan `transport="streamable-http"`.**
 4. **Implementasikan klien dengan handler pesan untuk menampilkan notifikasi saat diterima.**
 
 ### Penjelasan Kode
-- Server menggunakan fungsi async dan konteks MCP untuk mengirim pembaruan progres.
+- Server menggunakan fungsi async dan konteks MCP untuk mengirimkan pembaruan kemajuan.
 - Klien mengimplementasikan handler pesan async untuk mencetak notifikasi dan hasil akhir.
 
 ### Tips & Pemecahan Masalah
 
 - Gunakan `async/await` untuk operasi non-blocking.
-- Selalu tangani pengecualian di server dan klien agar lebih tangguh.
-- Uji dengan beberapa klien untuk melihat pembaruan real time.
-- Jika mengalami error, periksa versi Python dan pastikan semua dependensi sudah terinstal.
+- Selalu tangani pengecualian di server dan klien untuk meningkatkan ketahanan.
+- Uji dengan beberapa klien untuk mengamati pembaruan real-time.
+- Jika Anda mengalami kesalahan, periksa versi Python Anda dan pastikan semua dependensi telah diinstal.
 
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk akurasi, harap diketahui bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sah. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang salah yang timbul dari penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan layanan penerjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk memberikan hasil yang akurat, harap diperhatikan bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang berwenang. Untuk informasi yang bersifat kritis, disarankan menggunakan jasa penerjemahan manusia profesional. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.

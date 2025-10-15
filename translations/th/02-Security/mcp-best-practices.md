@@ -1,108 +1,154 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "90bfc6f3be00e34f6124e2a24bf94167",
-  "translation_date": "2025-07-17T08:47:27+00:00",
+  "original_hash": "b2b9e15e78b9d9a2b3ff3e8fd7d1f434",
+  "translation_date": "2025-08-18T14:26:27+00:00",
   "source_file": "02-Security/mcp-best-practices.md",
   "language_code": "th"
 }
 -->
-# MCP แนวทางปฏิบัติด้านความปลอดภัยที่ดีที่สุด
+# แนวทางปฏิบัติที่ดีที่สุดด้านความปลอดภัย MCP 2025
 
-เมื่อทำงานกับเซิร์ฟเวอร์ MCP ให้ปฏิบัติตามแนวทางปฏิบัติด้านความปลอดภัยเหล่านี้เพื่อปกป้องข้อมูล โครงสร้างพื้นฐาน และผู้ใช้ของคุณ:
+คู่มือฉบับสมบูรณ์นี้นำเสนอแนวทางปฏิบัติที่สำคัญสำหรับการรักษาความปลอดภัยระบบ Model Context Protocol (MCP) โดยอ้างอิงจาก **MCP Specification 2025-06-18** และมาตรฐานอุตสาหกรรมในปัจจุบัน แนวทางเหล่านี้ครอบคลุมทั้งความกังวลด้านความปลอดภัยแบบดั้งเดิมและภัยคุกคามเฉพาะทาง AI ที่เกี่ยวข้องกับการใช้งาน MCP
 
-1. **การตรวจสอบข้อมูลนำเข้า**: ตรวจสอบและทำความสะอาดข้อมูลนำเข้าเสมอเพื่อป้องกันการโจมตีแบบ injection และปัญหา confused deputy
-2. **การควบคุมการเข้าถึง**: ใช้การพิสูจน์ตัวตนและการอนุญาตที่เหมาะสมสำหรับเซิร์ฟเวอร์ MCP ของคุณโดยมีสิทธิ์การเข้าถึงที่ละเอียด
-3. **การสื่อสารที่ปลอดภัย**: ใช้ HTTPS/TLS สำหรับการสื่อสารทั้งหมดกับเซิร์ฟเวอร์ MCP และพิจารณาเพิ่มการเข้ารหัสเพิ่มเติมสำหรับข้อมูลที่มีความละเอียดอ่อน
-4. **การจำกัดอัตราการใช้งาน**: ใช้การจำกัดอัตราเพื่อป้องกันการใช้งานเกินขอบเขต การโจมตี DoS และจัดการการใช้ทรัพยากร
-5. **การบันทึกและการตรวจสอบ**: ตรวจสอบเซิร์ฟเวอร์ MCP ของคุณเพื่อหากิจกรรมที่น่าสงสัยและจัดทำบันทึกตรวจสอบอย่างครบถ้วน
-6. **การจัดเก็บที่ปลอดภัย**: ปกป้องข้อมูลและข้อมูลรับรองที่มีความละเอียดอ่อนด้วยการเข้ารหัสที่เหมาะสมขณะจัดเก็บ
-7. **การจัดการโทเค็น**: ป้องกันช่องโหว่ token passthrough โดยการตรวจสอบและทำความสะอาดข้อมูลนำเข้าและผลลัพธ์ของโมเดลทั้งหมด
-8. **การจัดการเซสชัน**: ใช้การจัดการเซสชันที่ปลอดภัยเพื่อป้องกันการแฮ็กเซสชันและการโจมตีแบบ fixation
-9. **การแยกสภาพแวดล้อมการรันเครื่องมือ**: รันการทำงานของเครื่องมือในสภาพแวดล้อมที่แยกออกจากกันเพื่อป้องกันการเคลื่อนที่ในระบบหากถูกโจมตี
-10. **การตรวจสอบความปลอดภัยเป็นประจำ**: ดำเนินการตรวจสอบความปลอดภัยเป็นระยะสำหรับการใช้งาน MCP และส่วนประกอบที่เกี่ยวข้อง
-11. **การตรวจสอบคำสั่ง (Prompt Validation)**: สแกนและกรองคำสั่งทั้งขาเข้าและขาออกเพื่อป้องกันการโจมตีแบบ prompt injection
-12. **การมอบหมายการพิสูจน์ตัวตน**: ใช้ผู้ให้บริการตัวตนที่ได้รับการยอมรับแทนการสร้างระบบพิสูจน์ตัวตนเอง
-13. **การกำหนดขอบเขตสิทธิ์**: กำหนดสิทธิ์อย่างละเอียดสำหรับแต่ละเครื่องมือและทรัพยากรตามหลักการ least privilege
-14. **การลดข้อมูลที่เปิดเผย**: เปิดเผยข้อมูลให้น้อยที่สุดเท่าที่จำเป็นสำหรับแต่ละการทำงานเพื่อลดความเสี่ยง
-15. **การสแกนหาช่องโหว่อัตโนมัติ**: สแกนเซิร์ฟเวอร์ MCP และส่วนประกอบที่เกี่ยวข้องเป็นประจำเพื่อหาช่องโหว่ที่รู้จัก
+## ข้อกำหนดด้านความปลอดภัยที่สำคัญ
 
-## แหล่งข้อมูลสนับสนุนสำหรับแนวทางปฏิบัติด้านความปลอดภัย MCP
+### การควบคุมความปลอดภัยที่จำเป็น (ข้อกำหนด MUST)
 
-### การตรวจสอบข้อมูลนำเข้า
-- [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)
-- [Preventing Prompt Injection in MCP](https://modelcontextprotocol.io/docs/guides/security)
-- [Azure Content Safety Implementation](./azure-content-safety-implementation.md)
+1. **การตรวจสอบโทเค็น**: เซิร์ฟเวอร์ MCP **ต้องไม่** ยอมรับโทเค็นใด ๆ ที่ไม่ได้ออกให้โดยเฉพาะสำหรับเซิร์ฟเวอร์ MCP นั้น
+2. **การตรวจสอบสิทธิ์**: เซิร์ฟเวอร์ MCP ที่ใช้การตรวจสอบสิทธิ์ **ต้อง** ตรวจสอบคำขอขาเข้าทั้งหมด และ **ต้องไม่** ใช้เซสชันสำหรับการยืนยันตัวตน  
+3. **ความยินยอมของผู้ใช้**: MCP proxy servers ที่ใช้ client ID แบบคงที่ **ต้อง** ได้รับความยินยอมจากผู้ใช้อย่างชัดเจนสำหรับ client ที่ลงทะเบียนแบบไดนามิกแต่ละราย
+4. **Session ID ที่ปลอดภัย**: เซิร์ฟเวอร์ MCP **ต้อง** ใช้ Session ID ที่ปลอดภัยทางการเข้ารหัสและไม่สามารถคาดเดาได้ ซึ่งสร้างขึ้นด้วยตัวสร้างตัวเลขสุ่มที่ปลอดภัย
 
-### การควบคุมการเข้าถึง
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [Using Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/)
-- [Azure API Management as Auth Gateway for MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+## แนวทางปฏิบัติหลักด้านความปลอดภัย
 
-### การสื่อสารที่ปลอดภัย
-- [Transport Layer Security (TLS) Best Practices](https://learn.microsoft.com/security/engineering/solving-tls)
-- [MCP Transport Security Guidelines](https://modelcontextprotocol.io/docs/concepts/transports)
-- [End-to-End Encryption for AI Workloads](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption)
+### 1. การตรวจสอบและการกรองข้อมูลขาเข้า
+- **การตรวจสอบข้อมูลขาเข้าอย่างครอบคลุม**: ตรวจสอบและกรองข้อมูลขาเข้าทั้งหมดเพื่อป้องกันการโจมตีแบบ Injection, ปัญหา Confused Deputy และช่องโหว่ Prompt Injection
+- **การบังคับใช้ Schema ของพารามิเตอร์**: ใช้การตรวจสอบ JSON schema อย่างเข้มงวดสำหรับพารามิเตอร์เครื่องมือและข้อมูล API ทั้งหมด
+- **การกรองเนื้อหา**: ใช้ Microsoft Prompt Shields และ Azure Content Safety เพื่อกรองเนื้อหาที่เป็นอันตรายในคำสั่งและการตอบกลับ
+- **การกรองผลลัพธ์**: ตรวจสอบและกรองผลลัพธ์ของโมเดลทั้งหมดก่อนนำเสนอให้ผู้ใช้หรือระบบปลายทาง
 
-### การจำกัดอัตราการใช้งาน
-- [API Rate Limiting Patterns](https://learn.microsoft.com/azure/architecture/patterns/rate-limiting-pattern)
-- [Implementing Token Bucket Rate Limiting](https://konghq.com/blog/engineering/how-to-design-a-scalable-rate-limiting-algorithm)
-- [Rate Limiting in Azure API Management](https://learn.microsoft.com/azure/api-management/rate-limit-policy)
+### 2. ความเป็นเลิศด้านการยืนยันตัวตนและการอนุญาต
+- **ผู้ให้บริการยืนยันตัวตนภายนอก**: มอบหมายการยืนยันตัวตนให้กับผู้ให้บริการที่เชื่อถือได้ (Microsoft Entra ID, OAuth 2.1 providers) แทนการพัฒนาระบบยืนยันตัวตนเอง
+- **สิทธิ์แบบละเอียด**: ใช้สิทธิ์ที่ละเอียดอ่อนและเฉพาะเครื่องมือ โดยยึดหลักการสิทธิ์น้อยที่สุด
+- **การจัดการวงจรชีวิตโทเค็น**: ใช้โทเค็นการเข้าถึงที่มีอายุสั้น พร้อมการหมุนเวียนที่ปลอดภัยและการตรวจสอบ Audience อย่างเหมาะสม
+- **การยืนยันตัวตนหลายปัจจัย**: บังคับใช้ MFA สำหรับการเข้าถึงระดับผู้ดูแลระบบและการดำเนินการที่สำคัญ
 
-### การบันทึกและการตรวจสอบ
-- [Centralized Logging for AI Systems](https://learn.microsoft.com/azure/architecture/example-scenario/logging/centralized-logging)
-- [Audit Logging Best Practices](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
-- [Azure Monitor for AI Workloads](https://learn.microsoft.com/azure/azure-monitor/overview)
+### 3. โปรโตคอลการสื่อสารที่ปลอดภัย
+- **Transport Layer Security**: ใช้ HTTPS/TLS 1.3 สำหรับการสื่อสาร MCP ทั้งหมด พร้อมการตรวจสอบใบรับรองที่เหมาะสม
+- **การเข้ารหัสแบบ End-to-End**: ใช้ชั้นการเข้ารหัสเพิ่มเติมสำหรับข้อมูลที่มีความอ่อนไหวสูงทั้งในระหว่างการส่งและการจัดเก็บ
+- **การจัดการใบรับรอง**: รักษาวงจรชีวิตใบรับรองด้วยกระบวนการต่ออายุอัตโนมัติ
+- **การบังคับใช้เวอร์ชันโปรโตคอล**: ใช้เวอร์ชันโปรโตคอล MCP ปัจจุบัน (2025-06-18) พร้อมการเจรจาเวอร์ชันที่เหมาะสม
 
-### การจัดเก็บที่ปลอดภัย
-- [Azure Key Vault for Credential Storage](https://learn.microsoft.com/azure/key-vault/general/basic-concepts)
-- [Encrypting Sensitive Data at Rest](https://learn.microsoft.com/security/engineering/data-encryption-at-rest)
-- [Use Secure Token Storage and Encrypt Tokens](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
+### 4. การจำกัดอัตราและการป้องกันทรัพยากรขั้นสูง
+- **การจำกัดอัตราหลายชั้น**: ใช้การจำกัดอัตราที่ระดับผู้ใช้ เซสชัน เครื่องมือ และทรัพยากรเพื่อป้องกันการใช้งานในทางที่ผิด
+- **การจำกัดอัตราแบบปรับตัว**: ใช้การจำกัดอัตราที่ขับเคลื่อนด้วย Machine Learning ซึ่งปรับตามรูปแบบการใช้งานและตัวบ่งชี้ภัยคุกคาม
+- **การจัดการโควต้าทรัพยากร**: กำหนดขีดจำกัดที่เหมาะสมสำหรับทรัพยากรการประมวลผล การใช้หน่วยความจำ และเวลาการดำเนินการ
+- **การป้องกัน DDoS**: ใช้ระบบป้องกัน DDoS และการวิเคราะห์ทราฟฟิกอย่างครอบคลุม
 
-### การจัดการโทเค็น
-- [JWT Best Practices (RFC 8725)](https://datatracker.ietf.org/doc/html/rfc8725)
-- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
-- [Best Practices for Token Validation and Lifetime](https://learn.microsoft.com/entra/identity-platform/access-tokens)
+### 5. การบันทึกและการตรวจสอบอย่างครอบคลุม
+- **การบันทึกการตรวจสอบแบบมีโครงสร้าง**: ใช้บันทึกที่มีรายละเอียดและค้นหาได้สำหรับการดำเนินการ MCP ทั้งหมด การใช้งานเครื่องมือ และเหตุการณ์ด้านความปลอดภัย
+- **การตรวจสอบความปลอดภัยแบบเรียลไทม์**: ใช้ระบบ SIEM พร้อมการตรวจจับความผิดปกติที่ขับเคลื่อนด้วย AI สำหรับงาน MCP
+- **การบันทึกที่สอดคล้องกับความเป็นส่วนตัว**: บันทึกเหตุการณ์ด้านความปลอดภัยโดยเคารพข้อกำหนดและข้อบังคับด้านความเป็นส่วนตัวของข้อมูล
+- **การผสานรวมการตอบสนองต่อเหตุการณ์**: เชื่อมโยงระบบบันทึกกับเวิร์กโฟลว์การตอบสนองต่อเหตุการณ์อัตโนมัติ
 
-### การจัดการเซสชัน
-- [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
-- [MCP Session Handling Guidelines](https://modelcontextprotocol.io/docs/guides/security)
-- [Secure Session Design Patterns](https://learn.microsoft.com/security/engineering/session-security)
+### 6. แนวทางปฏิบัติด้านการจัดเก็บข้อมูลที่ปลอดภัยขั้นสูง
+- **Hardware Security Modules**: ใช้การจัดเก็บคีย์ที่รองรับ HSM (Azure Key Vault, AWS CloudHSM) สำหรับการดำเนินการเข้ารหัสที่สำคัญ
+- **การจัดการคีย์เข้ารหัส**: ใช้การหมุนเวียนคีย์ การแยกส่วน และการควบคุมการเข้าถึงที่เหมาะสมสำหรับคีย์เข้ารหัส
+- **การจัดการความลับ**: เก็บ API keys, tokens และ credentials ทั้งหมดในระบบจัดการความลับเฉพาะ
+- **การจัดประเภทข้อมูล**: จัดประเภทข้อมูลตามระดับความอ่อนไหวและใช้มาตรการป้องกันที่เหมาะสม
 
-### การแยกสภาพแวดล้อมการรันเครื่องมือ
-- [Container Security Best Practices](https://learn.microsoft.com/azure/container-instances/container-instances-image-security)
-- [Implementing Process Isolation](https://learn.microsoft.com/windows/security/threat-protection/security-policy-settings/user-rights-assignment)
-- [Resource Limits for Containerized Applications](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+### 7. การจัดการโทเค็นขั้นสูง
+- **การป้องกันการส่งผ่านโทเค็น**: ห้ามรูปแบบการส่งผ่านโทเค็นที่ข้ามการควบคุมความปลอดภัยโดยเด็ดขาด
+- **การตรวจสอบ Audience**: ตรวจสอบ Audience claims ของโทเค็นเสมอให้ตรงกับตัวตนของเซิร์ฟเวอร์ MCP ที่ตั้งใจไว้
+- **การอนุญาตตาม Claims**: ใช้การอนุญาตแบบละเอียดอ่อนตาม Claims ของโทเค็นและคุณลักษณะของผู้ใช้
+- **การผูกโทเค็น**: ผูกโทเค็นกับเซสชัน ผู้ใช้ หรืออุปกรณ์เฉพาะตามความเหมาะสม
 
-### การตรวจสอบความปลอดภัยเป็นประจำ
-- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl)
-- [OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/)
-- [Security Code Review Guidelines](https://owasp.org/www-pdf-archive/OWASP_Code_Review_Guide_v2.pdf)
+### 8. การจัดการเซสชันที่ปลอดภัย
+- **Session ID แบบเข้ารหัส**: สร้าง Session ID โดยใช้ตัวสร้างตัวเลขสุ่มที่ปลอดภัยทางการเข้ารหัส (ไม่ใช่ลำดับที่คาดเดาได้)
+- **การผูกกับผู้ใช้เฉพาะ**: ผูก Session ID กับข้อมูลเฉพาะผู้ใช้โดยใช้รูปแบบที่ปลอดภัย เช่น `<user_id>:<session_id>`
+- **การควบคุมวงจรชีวิตเซสชัน**: ใช้กลไกการหมดอายุ การหมุนเวียน และการยกเลิกเซสชันที่เหมาะสม
+- **ส่วนหัวความปลอดภัยของเซสชัน**: ใช้ HTTP security headers ที่เหมาะสมสำหรับการป้องกันเซสชัน
 
-### การตรวจสอบคำสั่ง (Prompt Validation)
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
-- [Azure Content Safety for AI](https://learn.microsoft.com/azure/ai-services/content-safety/)
-- [Preventing Prompt Injection](https://github.com/microsoft/prompt-shield-js)
+### 9. การควบคุมความปลอดภัยเฉพาะ AI
+- **การป้องกัน Prompt Injection**: ใช้ Microsoft Prompt Shields พร้อมเทคนิค spotlighting, delimiters และ datamarking
+- **การป้องกันการปนเปื้อนเครื่องมือ**: ตรวจสอบ metadata ของเครื่องมือ เฝ้าระวังการเปลี่ยนแปลงแบบไดนามิก และตรวจสอบความสมบูรณ์ของเครื่องมือ
+- **การตรวจสอบผลลัพธ์ของโมเดล**: สแกนผลลัพธ์ของโมเดลเพื่อหาการรั่วไหลของข้อมูล เนื้อหาที่เป็นอันตราย หรือการละเมิดนโยบายความปลอดภัย
+- **การป้องกัน Context Window**: ใช้การควบคุมเพื่อป้องกันการปนเปื้อนและการโจมตี Context Window
 
-### การมอบหมายการพิสูจน์ตัวตน
-- [Microsoft Entra ID Integration](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow)
-- [OAuth 2.0 for MCP Services](https://learn.microsoft.com/security/engineering/solving-oauth)
-- [MCP Security Controls 2025](./mcp-security-controls-2025.md)
+### 10. ความปลอดภัยในการใช้งานเครื่องมือ
+- **การแยกการใช้งาน**: รันการใช้งานเครื่องมือในสภาพแวดล้อมที่แยกออกจากกันและมีข้อจำกัดด้านทรัพยากร
+- **การแยกสิทธิ์**: ใช้งานเครื่องมือด้วยสิทธิ์ที่จำเป็นน้อยที่สุดและบัญชีบริการแยกต่างหาก
+- **การแยกเครือข่าย**: ใช้การแบ่งส่วนเครือข่ายสำหรับสภาพแวดล้อมการใช้งานเครื่องมือ
+- **การตรวจสอบการใช้งาน**: เฝ้าระวังการใช้งานเครื่องมือเพื่อหาพฤติกรรมผิดปกติ การใช้ทรัพยากร และการละเมิดความปลอดภัย
 
-### การกำหนดขอบเขตสิทธิ์
-- [Secure Least-Privileged Access](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
-- [Role-Based Access Control (RBAC) Design](https://learn.microsoft.com/azure/role-based-access-control/overview)
-- [Tool-specific Authorization in MCP](https://modelcontextprotocol.io/docs/guides/best-practices)
+### 11. การตรวจสอบความปลอดภัยอย่างต่อเนื่อง
+- **การทดสอบความปลอดภัยอัตโนมัติ**: ผสานการทดสอบความปลอดภัยเข้ากับ CI/CD pipelines ด้วยเครื่องมือ เช่น GitHub Advanced Security
+- **การจัดการช่องโหว่**: สแกนการพึ่งพาทั้งหมดอย่างสม่ำเสมอ รวมถึงโมเดล AI และบริการภายนอก
+- **การทดสอบการเจาะระบบ**: ดำเนินการประเมินความปลอดภัยเป็นประจำโดยมุ่งเป้าไปที่การใช้งาน MCP โดยเฉพาะ
+- **การตรวจสอบโค้ดด้านความปลอดภัย**: ใช้การตรวจสอบโค้ดด้านความปลอดภัยเป็นข้อบังคับสำหรับการเปลี่ยนแปลงโค้ดที่เกี่ยวข้องกับ MCP
 
-### การลดข้อมูลที่เปิดเผย
-- [Data Protection by Design](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments)
-- [AI Data Privacy Best Practices](https://learn.microsoft.com/legal/cognitive-services/openai/data-privacy)
-- [Implementing Privacy-enhancing Technologies](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/)
+### 12. ความปลอดภัยของห่วงโซ่อุปทานสำหรับ AI
+- **การตรวจสอบส่วนประกอบ**: ตรวจสอบแหล่งที่มา ความสมบูรณ์ และความปลอดภัยของส่วนประกอบ AI ทั้งหมด (โมเดล, embeddings, APIs)
+- **การจัดการการพึ่งพา**: รักษารายการสินค้าปัจจุบันของซอฟต์แวร์และการพึ่งพา AI ทั้งหมด พร้อมการติดตามช่องโหว่
+- **ที่เก็บที่เชื่อถือได้**: ใช้แหล่งที่ได้รับการยืนยันและเชื่อถือได้สำหรับโมเดล AI ไลบรารี และเครื่องมือทั้งหมด
+- **การตรวจสอบห่วงโซ่อุปทาน**: เฝ้าระวังการประนีประนอมในผู้ให้บริการ AI และที่เก็บโมเดลอย่างต่อเนื่อง
 
-### การสแกนหาช่องโหว่อัตโนมัติ
-- [GitHub Advanced Security](https://github.com/security/advanced-security)
-- [DevSecOps Pipeline Implementation](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline)
-- [Continuous Security Validation](https://www.microsoft.com/security/blog/2022/04/05/step-by-step-building-a-more-efficient-devsecops-environment/)
+## รูปแบบความปลอดภัยขั้นสูง
+
+### สถาปัตยกรรม Zero Trust สำหรับ MCP
+- **ไม่เชื่อถือใคร ตรวจสอบเสมอ**: ใช้การตรวจสอบอย่างต่อเนื่องสำหรับผู้เข้าร่วม MCP ทั้งหมด
+- **Micro-segmentation**: แยกส่วนประกอบ MCP ด้วยการควบคุมเครือข่ายและตัวตนที่ละเอียดอ่อน
+- **การเข้าถึงตามเงื่อนไข**: ใช้การควบคุมการเข้าถึงตามความเสี่ยงที่ปรับตามบริบทและพฤติกรรม
+- **การประเมินความเสี่ยงอย่างต่อเนื่อง**: ประเมินท่าทีด้านความปลอดภัยแบบไดนามิกตามตัวบ่งชี้ภัยคุกคามในปัจจุบัน
+
+### การใช้งาน AI ที่คำนึงถึงความเป็นส่วนตัว
+- **การลดข้อมูล**: เปิดเผยข้อมูลที่จำเป็นขั้นต่ำสำหรับการดำเนินการ MCP แต่ละครั้ง
+- **ความเป็นส่วนตัวเชิงต่าง**: ใช้เทคนิคการประมวลผลข้อมูลที่คำนึงถึงความเป็นส่วนตัว
+- **การเข้ารหัสแบบ Homomorphic**: ใช้เทคนิคการเข้ารหัสขั้นสูงสำหรับการประมวลผลข้อมูลที่เข้ารหัส
+- **Federated Learning**: ใช้แนวทางการเรียนรู้แบบกระจายที่รักษาความเป็นส่วนตัวและข้อมูลในพื้นที่
+
+### การตอบสนองต่อเหตุการณ์สำหรับระบบ AI
+- **ขั้นตอนเฉพาะสำหรับเหตุการณ์ AI**: พัฒนาขั้นตอนการตอบสนองต่อเหตุการณ์ที่ปรับให้เหมาะกับภัยคุกคามเฉพาะ AI และ MCP
+- **การตอบสนองอัตโนมัติ**: ใช้การกักกันและการแก้ไขปัญหาอัตโนมัติสำหรับเหตุการณ์ความปลอดภัย AI ทั่วไป  
+- **ความสามารถด้านนิติวิทยาศาสตร์**: รักษาความพร้อมด้านนิติวิทยาศาสตร์สำหรับการประนีประนอมระบบ AI และการละเมิดข้อมูล
+- **ขั้นตอนการกู้คืน**: จัดตั้งขั้นตอนสำหรับการกู้คืนจากการปนเปื้อนโมเดล AI การโจมตี Prompt Injection และการประนีประนอมบริการ
+
+## ทรัพยากรและมาตรฐานสำหรับการใช้งาน
+
+### เอกสาร MCP อย่างเป็นทางการ
+- [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) - ข้อกำหนดโปรโตคอล MCP ปัจจุบัน
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) - แนวทางปฏิบัติด้านความปลอดภัยอย่างเป็นทางการ
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization) - รูปแบบการยืนยันตัวตนและการอนุญาต
+- [MCP Transport Security](https://modelcontextprotocol.io/specification/2025-06-18/transports/) - ข้อกำหนดด้านความปลอดภัยของเลเยอร์การขนส่ง
+
+### โซลูชันความปลอดภัยของ Microsoft
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - การป้องกัน Prompt Injection ขั้นสูง
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/) - การกรองเนื้อหา AI อย่างครอบคลุม
+- [Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow) - การจัดการตัวตนและการเข้าถึงระดับองค์กร
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts) - การจัดการความลับและข้อมูลประจำตัวอย่างปลอดภัย
+- [GitHub Advanced Security](https://github.com/security/advanced-security) - การสแกนความปลอดภัยของซัพพลายเชนและโค้ด
+
+### มาตรฐานและกรอบงานด้านความปลอดภัย
+- [OAuth 2.1 Security Best Practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics) - แนวทางปฏิบัติด้านความปลอดภัย OAuth ปัจจุบัน
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - ความเสี่ยงด้านความปลอดภัยของเว็บแอปพลิเคชัน
+- [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559) - ความเสี่ยงด้านความปลอดภัยเฉพาะ AI
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) - การจัดการความเสี่ยง AI อย่างครอบคลุม
+- [ISO 27001:2022](https://www.iso.org/standard/27001) - ระบบการจัดการความปลอดภัยของข้อมูล
+
+### คู่มือและบทแนะนำการใช้งาน
+- [Azure API Management as MCP Auth Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) - รูปแบบการยืนยันตัวตนระดับองค์กร
+- [Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/) - การผสานรวมผู้ให้บริการตัวตน
+- [Secure Token Storage Implementation](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2) - แนวทางปฏิบัติที่ดีที่สุดในการจัดการโทเค็น
+- [End-to-End Encryption for AI](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption) - รูปแบบการเข้ารหัสขั้นสูง
+
+### ทรัพยากรด้านความปลอดภัยขั้นสูง
+- [Microsoft Security Development Lifecycle](https://www.microsoft.com
+- **การพัฒนาเครื่องมือ**: พัฒนาและแบ่งปันเครื่องมือและไลบรารีด้านความปลอดภัยสำหรับระบบนิเวศ MCP
+
+---
+
+*เอกสารนี้สะท้อนถึงแนวปฏิบัติที่ดีที่สุดด้านความปลอดภัยของ MCP ณ วันที่ 18 สิงหาคม 2025 โดยอ้างอิงจาก MCP Specification 2025-06-18 แนวปฏิบัติด้านความปลอดภัยควรได้รับการตรวจสอบและปรับปรุงอย่างสม่ำเสมอ เนื่องจากโปรโตคอลและภูมิทัศน์ของภัยคุกคามมีการเปลี่ยนแปลงอยู่เสมอ*
 
 **ข้อจำกัดความรับผิดชอบ**:  
-เอกสารนี้ได้รับการแปลโดยใช้บริการแปลภาษาอัตโนมัติ [Co-op Translator](https://github.com/Azure/co-op-translator) แม้เราจะพยายามให้ความถูกต้องสูงสุด แต่โปรดทราบว่าการแปลอัตโนมัติอาจมีข้อผิดพลาดหรือความไม่ถูกต้อง เอกสารต้นฉบับในภาษาต้นทางถือเป็นแหล่งข้อมูลที่เชื่อถือได้ สำหรับข้อมูลที่สำคัญ ขอแนะนำให้ใช้บริการแปลโดยผู้เชี่ยวชาญมนุษย์ เราไม่รับผิดชอบต่อความเข้าใจผิดหรือการตีความผิดใด ๆ ที่เกิดจากการใช้การแปลนี้
+เอกสารนี้ได้รับการแปลโดยใช้บริการแปลภาษา AI [Co-op Translator](https://github.com/Azure/co-op-translator) แม้ว่าเราจะพยายามให้การแปลมีความถูกต้อง แต่โปรดทราบว่าการแปลอัตโนมัติอาจมีข้อผิดพลาดหรือความไม่แม่นยำ เอกสารต้นฉบับในภาษาต้นทางควรถือเป็นแหล่งข้อมูลที่เชื่อถือได้ สำหรับข้อมูลที่สำคัญ แนะนำให้ใช้บริการแปลภาษาจากผู้เชี่ยวชาญที่เป็นมนุษย์ เราไม่รับผิดชอบต่อความเข้าใจผิดหรือการตีความที่ผิดพลาดซึ่งเกิดจากการใช้การแปลนี้

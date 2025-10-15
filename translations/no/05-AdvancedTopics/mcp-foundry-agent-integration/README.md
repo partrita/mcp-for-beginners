@@ -60,7 +60,7 @@ Velg ditt foretrukne utviklingsmiljø:
 
 ## Python-implementasjon
 
-***Note*** Du kan kjøre denne [notebooken](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb)
+***Note*** Du kan kjøre denne [notebooken](mcp_support_python.ipynb)
 
 ### 1. Installer nødvendige pakker
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET-implementasjon
 
-***Note*** Du kan kjøre denne [notebooken](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb)
+***Note*** Du kan kjøre denne [notebooken](mcp_support_dotnet.ipynb)
 
 ### 1. Installer nødvendige pakker
 

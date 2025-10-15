@@ -1,98 +1,103 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "7b4b9bfacd2926725e6f1cda82bc8ff5",
-  "translation_date": "2025-07-17T06:09:03+00:00",
+  "original_hash": "fcf1e12b62102bf7d16b78deb2b163b7",
+  "translation_date": "2025-08-18T15:03:05+00:00",
   "source_file": "06-CommunityContributions/README.md",
   "language_code": "sv"
 }
 -->
 # Community och Bidrag
 
+[![Hur man bidrar till MCP: Verktyg, Dokumentation, Kod och Mer](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.sv.png)](https://youtu.be/v1pvCYAWpRE)
+
+_(Klicka på bilden ovan för att se videon för denna lektion)_
+
 ## Översikt
 
-Den här lektionen fokuserar på hur man engagerar sig i MCP-communityt, bidrar till MCP-ekosystemet och följer bästa praxis för samarbetsutveckling. Att förstå hur man deltar i öppna MCP-projekt är avgörande för dem som vill forma framtiden för denna teknik.
+Denna lektion fokuserar på hur man engagerar sig i MCP-communityn, bidrar till MCP-ekosystemet och följer bästa praxis för samarbetsutveckling. Att förstå hur man deltar i öppna MCP-projekt är avgörande för dem som vill forma framtiden för denna teknik.
 
 ## Lärandemål
 
-Efter den här lektionen kommer du att kunna:
-- Förstå strukturen i MCP-communityt och ekosystemet
-- Delta effektivt i MCP-communityts forum och diskussioner
-- Bidra till MCP:s open-source-repositorier
+Efter denna lektion kommer du att kunna:
+
+- Förstå strukturen i MCP-communityn och ekosystemet
+- Delta effektivt i MCP-forum och diskussioner
+- Bidra till MCP:s öppna källkodsprojekt
 - Skapa och dela anpassade MCP-verktyg och servrar
 - Följa bästa praxis för MCP-utveckling och samarbete
-- Upptäcka communityresurser och ramverk för MCP-utveckling
+- Upptäcka resurser och ramverk för MCP-utveckling
 
-## MCP-communityts ekosystem
+## MCP-communityns ekosystem
 
-MCP-ekosystemet består av olika komponenter och deltagare som samarbetar för att driva protokollet framåt.
+MCP-ekosystemet består av olika komponenter och deltagare som arbetar tillsammans för att utveckla protokollet.
 
-### Viktiga communitykomponenter
+### Viktiga komponenter i communityn
 
-1. **Core Protocol Maintainers**: Den officiella [Model Context Protocol GitHub-organisationen](https://github.com/modelcontextprotocol) underhåller de centrala MCP-specifikationerna och referensimplementationerna
-2. **Tool Developers**: Individer och team som skapar MCP-verktyg och servrar
-3. **Integration Providers**: Företag som integrerar MCP i sina produkter och tjänster
-4. **End Users**: Utvecklare och organisationer som använder MCP i sina applikationer
-5. **Contributors**: Communitymedlemmar som bidrar med kod, dokumentation eller andra resurser
+1. **Kärnprotokollförvaltare**: Den officiella [Model Context Protocol GitHub-organisationen](https://github.com/modelcontextprotocol) underhåller MCP-specifikationerna och referensimplementationerna
+2. **Verktygsutvecklare**: Individer och team som skapar MCP-verktyg och servrar
+3. **Integrationsleverantörer**: Företag som integrerar MCP i sina produkter och tjänster
+4. **Slutanvändare**: Utvecklare och organisationer som använder MCP i sina applikationer
+5. **Bidragsgivare**: Medlemmar i communityn som bidrar med kod, dokumentation eller andra resurser
 
 ### Communityresurser
 
 #### Officiella kanaler
 
-- [MCP GitHub Organization](https://github.com/modelcontextprotocol)
-- [MCP Documentation](https://modelcontextprotocol.io/)
-- [MCP Specification](https://modelcontextprotocol.io/docs/specification)
-- [GitHub Discussions](https://github.com/orgs/modelcontextprotocol/discussions)
+- [MCP GitHub-organisation](https://github.com/modelcontextprotocol)
+- [MCP-dokumentation](https://modelcontextprotocol.io/)
+- [MCP-specifikation](https://modelcontextprotocol.io/docs/specification)
+- [GitHub-diskussioner](https://github.com/orgs/modelcontextprotocol/discussions)
 - [MCP Examples & Servers Repository](https://github.com/modelcontextprotocol/servers)
 
-#### Communitydrivna resurser
+#### Community-drivna resurser
 
-- [MCP Clients](https://modelcontextprotocol.io/clients) - Lista över klienter som stödjer MCP-integrationer
-- [Community MCP Servers](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - Växande lista över communityutvecklade MCP-servrar
-- [Awesome MCP Servers](https://github.com/wong2/awesome-mcp-servers) - Kurerad lista över MCP-servrar
+- [MCP-klienter](https://modelcontextprotocol.io/clients) - Lista över klienter som stöder MCP-integrationer
+- [Community MCP-servrar](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - Växande lista över community-utvecklade MCP-servrar
+- [Awesome MCP Servers](https://github.com/wong2/awesome-mcp-servers) - Kuraterad lista över MCP-servrar
 - [PulseMCP](https://www.pulsemcp.com/) - Communitynav och nyhetsbrev för att upptäcka MCP-resurser
-- [Discord Server](https://discord.gg/jHEGxQu2a5) - Koppla upp dig med MCP-utvecklare
+- [Discord-server](https://discord.gg/jHEGxQu2a5) - Anslut med MCP-utvecklare
 - Språkspecifika SDK-implementationer
-- Blogginlägg och tutorials
+- Blogginlägg och handledningar
 
-## Bidra till MCP
+## Att bidra till MCP
 
 ### Typer av bidrag
 
 MCP-ekosystemet välkomnar olika typer av bidrag:
 
 1. **Kodbidrag**:
-   - Förbättringar av core-protokollet
+   - Förbättringar av kärnprotokollet
    - Buggfixar
-   - Verktygs- och serverimplementationer
-   - Klient-/serverbibliotek i olika språk
+   - Implementeringar av verktyg och servrar
+   - Klient-/serverbibliotek på olika språk
 
 2. **Dokumentation**:
    - Förbättra befintlig dokumentation
-   - Skapa tutorials och guider
+   - Skapa handledningar och guider
    - Översätta dokumentation
-   - Skapa exempel och provapplikationer
+   - Skapa exempel och exempelapplikationer
 
-3. **Communitystöd**:
+3. **Communitysupport**:
    - Svara på frågor i forum och diskussioner
    - Testa och rapportera problem
-   - Organisera communityevent
-   - Vägleda nya bidragsgivare
+   - Organisera communityevenemang
+   - Mentorskap för nya bidragsgivare
 
-### Bidragsprocess: Core Protocol
+### Bidragsprocess: Kärnprotokoll
 
-För att bidra till core MCP-protokollet eller officiella implementationer, följ principerna i [de officiella bidragsriktlinjerna](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
+För att bidra till MCP:s kärnprotokoll eller officiella implementationer, följ dessa principer från de [officiella riktlinjerna för bidrag](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
 
-1. **Enkelhet och minimalism**: MCP-specifikationen håller en hög standard för att lägga till nya koncept. Det är lättare att lägga till saker än att ta bort dem.
+1. **Enkelhet och minimalism**: MCP-specifikationen håller en hög standard för att lägga till nya koncept. Det är lättare att lägga till saker i en specifikation än att ta bort dem.
 
-2. **Konkreta tillvägagångssätt**: Specifikationsändringar ska baseras på specifika implementeringsutmaningar, inte spekulativa idéer.
+2. **Konkret tillvägagångssätt**: Specifikationsändringar bör baseras på specifika implementeringsutmaningar, inte spekulativa idéer.
 
-3. **Faser för ett förslag**:
-   - Definiera: Utforska problemområdet, verifiera att andra MCP-användare har liknande problem
-   - Prototyp: Bygg en exempelösning och visa dess praktiska användning
+3. **Steg i ett förslag**:
+   - Definiera: Utforska problemområdet, validera att andra MCP-användare står inför liknande problem
+   - Prototyp: Bygg en exempelösning och visa dess praktiska tillämpning
    - Skriv: Baserat på prototypen, skriv ett specifikationsförslag
 
-### Utvecklingsmiljö Setup
+### Utvecklingsmiljöinställning
 
 ```bash
 # Fork the repository
@@ -306,18 +311,18 @@ class CsvProcessingTool(Tool):
             raise ToolExecutionException(f"Unsupported output format: {format}")
 ```
 
-### Bidragsriktlinjer
+### Riktlinjer för bidrag
 
 För att göra ett framgångsrikt bidrag till MCP-projekt:
 
-1. **Börja smått**: Starta med dokumentation, buggfixar eller små förbättringar
-2. **Följ stilguiden**: Håll dig till projektets kodningsstil och konventioner
+1. **Börja smått**: Börja med dokumentation, buggfixar eller små förbättringar
+2. **Följ stilguiden**: Följ projektets kodstil och konventioner
 3. **Skriv tester**: Inkludera enhetstester för dina kodbidrag
 4. **Dokumentera ditt arbete**: Lägg till tydlig dokumentation för nya funktioner eller ändringar
-5. **Skicka riktade PRs**: Håll pull requests fokuserade på en enda fråga eller funktion
+5. **Skicka fokuserade PRs**: Håll pull requests fokuserade på ett enda problem eller funktion
 6. **Engagera dig i feedback**: Var lyhörd för feedback på dina bidrag
 
-### Exempel på bidragsarbetsflöde
+### Exempel på arbetsflöde för bidrag
 
 ```bash
 # Clone the repository
@@ -345,13 +350,13 @@ git push origin feature/my-contribution
 
 ## Skapa och dela MCP-servrar
 
-Ett av de mest värdefulla sätten att bidra till MCP-ekosystemet är att skapa och dela anpassade MCP-servrar. Communityt har redan utvecklat hundratals servrar för olika tjänster och användningsområden.
+Ett av de mest värdefulla sätten att bidra till MCP-ekosystemet är att skapa och dela anpassade MCP-servrar. Communityn har redan utvecklat hundratals servrar för olika tjänster och användningsområden.
 
-### Ramverk för MCP-serverutveckling
+### MCP-serverutvecklingsramverk
 
-Flera ramverk finns för att förenkla utvecklingen av MCP-servrar:
+Flera ramverk finns tillgängliga för att förenkla utvecklingen av MCP-servrar:
 
-1. **Officiella SDKs**:
+1. **Officiella SDK:er**:
    - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
    - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
    - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
@@ -359,9 +364,9 @@ Flera ramverk finns för att förenkla utvecklingen av MCP-servrar:
    - [Java SDK](https://github.com/modelcontextprotocol/java-sdk)
    - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk)
 
-2. **Community-ramverk**:
-   - [MCP-Framework](https://mcp-framework.com/) - Bygg MCP-servrar med elegans och snabbhet i TypeScript
-   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - Annotation-drivna MCP-servrar med Java
+2. **Communityramverk**:
+   - [MCP-Framework](https://mcp-framework.com/) - Bygg MCP-servrar med elegans och hastighet i TypeScript
+   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - Annotationsdrivna MCP-servrar med Java
    - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - Java-ramverk för MCP-servrar
    - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - Startprojekt för MCP-servrar i Next.js
 
@@ -681,19 +686,19 @@ class SentimentAnalysisTool(Tool):
 
 ### Dela bästa praxis
 
-När du delar MCP-verktyg med communityt:
+När du delar MCP-verktyg med communityn:
 
 1. **Fullständig dokumentation**:
    - Dokumentera syfte, användning och exempel
    - Förklara parametrar och returvärden
    - Dokumentera eventuella externa beroenden
 
-2. **Felhantering**:
+2. **Felfunktionalitet**:
    - Implementera robust felhantering
    - Ge användbara felmeddelanden
    - Hantera kantfall på ett smidigt sätt
 
-3. **Prestanda**:
+3. **Prestandaöverväganden**:
    - Optimera för både hastighet och resursanvändning
    - Implementera caching när det är lämpligt
    - Tänk på skalbarhet
@@ -701,20 +706,20 @@ När du delar MCP-verktyg med communityt:
 4. **Säkerhet**:
    - Använd säkra API-nycklar och autentisering
    - Validera och sanera indata
-   - Implementera rate limiting för externa API-anrop
+   - Implementera hastighetsbegränsning för externa API-anrop
 
 5. **Testning**:
    - Inkludera omfattande testtäckning
-   - Testa med olika indata och kantfall
+   - Testa med olika indatatyper och kantfall
    - Dokumentera testprocedurer
 
-## Community-samarbete och bästa praxis
+## Communitysamarbete och bästa praxis
 
 Effektivt samarbete är nyckeln till ett blomstrande MCP-ekosystem.
 
 ### Kommunikationskanaler
 
-- GitHub Issues och Discussions
+- GitHub Issues och diskussioner
 - Microsoft Tech Community
 - Discord- och Slack-kanaler
 - Stack Overflow (tagg: `model-context-protocol` eller `mcp`)
@@ -726,16 +731,16 @@ När du granskar MCP-bidrag:
 1. **Tydlighet**: Är koden tydlig och väl dokumenterad?
 2. **Korrekthet**: Fungerar den som förväntat?
 3. **Konsekvens**: Följer den projektets konventioner?
-4. **Fullständighet**: Ingår tester och dokumentation?
-5. **Säkerhet**: Finns det några säkerhetsrisker?
+4. **Fullständighet**: Är tester och dokumentation inkluderade?
+5. **Säkerhet**: Finns det några säkerhetsproblem?
 
 ### Versionskompatibilitet
 
 När du utvecklar för MCP:
 
-1. **Protokollversionering**: Följ den MCP-protokollversion som ditt verktyg stödjer
+1. **Protokollversionering**: Följ MCP-protokollversionen som ditt verktyg stöder
 2. **Klientkompatibilitet**: Tänk på bakåtkompatibilitet
-3. **Serverkompatibilitet**: Följ riktlinjer för serverimplementation
+3. **Serverkompatibilitet**: Följ riktlinjerna för serverimplementation
 4. **Brytande ändringar**: Dokumentera tydligt eventuella brytande ändringar
 
 ## Exempel på communityprojekt: MCP Tool Registry
@@ -819,30 +824,29 @@ async def delete_tool(tool_name: str):
     return {"message": f"Tool '{tool_name}' deleted"}
 ```
 
-## Viktiga punkter att ta med sig
+## Viktiga insikter
 
-- MCP-communityt är mångsidigt och välkomnar olika typer av bidrag
-- Att bidra till MCP kan handla om allt från core-protokollförbättringar till anpassade verktyg
-- Att följa bidragsriktlinjer ökar chansen att din PR accepteras
-- Att skapa och dela MCP-verktyg är ett värdefullt sätt att stärka ekosystemet
-- Community-samarbete är avgörande för MCP:s tillväxt och förbättring
+- MCP-communityn är mångsidig och välkomnar olika typer av bidrag
+- Att bidra till MCP kan sträcka sig från förbättringar av kärnprotokollet till anpassade verktyg
+- Att följa riktlinjer för bidrag ökar chanserna att din PR accepteras
+- Att skapa och dela MCP-verktyg är ett värdefullt sätt att förbättra ekosystemet
+- Communitysamarbete är avgörande för MCP:s tillväxt och förbättring
 
 ## Övning
 
-1. Identifiera ett område i MCP-ekosystemet där du kan bidra utifrån dina kunskaper och intressen
-2. Fork:a MCP-repositoriet och sätt upp en lokal utvecklingsmiljö
-3. Skapa en liten förbättring, buggfix eller verktyg som kan gynna communityt
-4. Dokumentera ditt bidrag med lämpliga tester och dokumentation
+1. Identifiera ett område i MCP-ekosystemet där du kan bidra baserat på dina färdigheter och intressen
+2. Forka MCP-repositoriet och ställ in en lokal utvecklingsmiljö
+3. Skapa en liten förbättring, buggfix eller ett verktyg som skulle gynna communityn
+4. Dokumentera ditt bidrag med korrekta tester och dokumentation
 5. Skicka en pull request till rätt repository
 
 ## Ytterligare resurser
 
-- [MCP Community Projects](https://github.com/topics/model-context-protocol)
-
+- [MCP-communityprojekt](https://github.com/topics/model-context-protocol)
 
 ---
 
-Nästa: [Lessons from Early Adoption](../07-LessonsfromEarlyAdoption/README.md)
+Nästa: [Lektioner från tidig adoption](../07-LessonsfromEarlyAdoption/README.md)
 
 **Ansvarsfriskrivning**:  
-Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, vänligen observera att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess modersmål bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för några missförstånd eller feltolkningar som uppstår vid användning av denna översättning.
+Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, vänligen notera att automatiska översättningar kan innehålla fel eller felaktigheter. Det ursprungliga dokumentet på dess originalspråk bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för eventuella missförstånd eller feltolkningar som uppstår vid användning av denna översättning.

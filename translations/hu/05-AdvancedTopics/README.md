@@ -1,84 +1,88 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a5c1d9e9856024d23da4a65a847c75ac",
-  "translation_date": "2025-07-18T07:20:41+00:00",
+  "original_hash": "d204bc94ea6027d06a703b21b711ca57",
+  "translation_date": "2025-08-19T15:00:31+00:00",
   "source_file": "05-AdvancedTopics/README.md",
   "language_code": "hu"
 }
 -->
-# Fejlett témák az MCP-ben
+# Haladó témák az MCP-ben
 
-Ez a fejezet a Model Context Protocol (MCP) megvalósításának fejlett témáit tárgyalja, beleértve a többmodalitás integrációját, a skálázhatóságot, a biztonsági legjobb gyakorlatokat és a vállalati integrációt. Ezek a témák elengedhetetlenek ahhoz, hogy megbízható és éles környezetben is használható MCP alkalmazásokat építsünk, amelyek megfelelnek a modern AI rendszerek igényeinek.
+[![Haladó MCP: Biztonságos, skálázható és multimodális AI ügynökök](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.hu.png)](https://youtu.be/4yjmGvJzYdY)
+
+_(Kattints a fenti képre a leckéhez tartozó videó megtekintéséhez)_
+
+Ez a fejezet a Model Context Protocol (MCP) megvalósításának haladó témáit tárgyalja, beleértve a multimodális integrációt, a skálázhatóságot, a biztonsági bevált gyakorlatokat és a vállalati integrációt. Ezek a témák kulcsfontosságúak a robusztus és éles környezetre kész MCP alkalmazások fejlesztéséhez, amelyek megfelelnek a modern AI rendszerek igényeinek.
 
 ## Áttekintés
 
-Ebben a leckében a Model Context Protocol megvalósításának fejlett fogalmait vizsgáljuk, különös tekintettel a többmodalitás integrációjára, a skálázhatóságra, a biztonsági legjobb gyakorlatokra és a vállalati integrációra. Ezek a témák alapvetőek ahhoz, hogy éles környezetben is működőképes MCP alkalmazásokat hozzunk létre, amelyek képesek kezelni a vállalati környezetek összetett követelményeit.
+Ez a lecke a Model Context Protocol megvalósításának haladó koncepcióit vizsgálja, különös tekintettel a multimodális integrációra, a skálázhatóságra, a biztonsági bevált gyakorlatokra és a vállalati integrációra. Ezek a témák elengedhetetlenek az olyan éles környezetre szánt MCP alkalmazások építéséhez, amelyek képesek kezelni a vállalati környezetek összetett követelményeit.
 
 ## Tanulási célok
 
 A lecke végére képes leszel:
 
-- Többmodalitás képességek megvalósítása MCP keretrendszerekben
-- Skálázható MCP architektúrák tervezése nagy igénybevételű helyzetekre
-- Biztonsági legjobb gyakorlatok alkalmazása az MCP biztonsági elveinek megfelelően
-- MCP integrálása vállalati AI rendszerekkel és keretrendszerekkel
-- Teljesítmény és megbízhatóság optimalizálása éles környezetben
+- Multimodális képességeket megvalósítani MCP keretrendszerekben
+- Skálázható MCP architektúrákat tervezni nagy igénybevételű helyzetekre
+- Alkalmazni az MCP biztonsági elveivel összhangban lévő biztonsági bevált gyakorlatokat
+- MCP-t integrálni vállalati AI rendszerekkel és keretrendszerekkel
+- Optimalizálni a teljesítményt és a megbízhatóságot éles környezetben
 
 ## Leckék és mintaprojektek
 
 | Link | Cím | Leírás |
 |------|-------|-------------|
-| [5.1 Integration with Azure](./mcp-integration/README.md) | Integráció Azure-rel | Ismerd meg, hogyan integrálhatod MCP szerveredet Azure környezetbe |
-| [5.2 Multi modal sample](./mcp-multi-modality/README.md) | MCP többmodalitás minták | Minták hang, kép és többmodalitású válaszokhoz |
-| [5.3 MCP OAuth2 sample](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 Demo | Minimális Spring Boot alkalmazás, amely bemutatja az OAuth2 használatát MCP-vel, mint Authorization és Resource Server. Biztonságos token kibocsátást, védett végpontokat, Azure Container Apps telepítést és API Management integrációt mutat be. |
-| [5.4 Root Contexts](./mcp-root-contexts/README.md) | Root context-ek | Tudj meg többet a root context-ről és annak megvalósításáról |
-| [5.5 Routing](./mcp-routing/README.md) | Routing | Ismerd meg a különböző routing típusokat |
-| [5.6 Sampling](./mcp-sampling/README.md) | Mintavételezés | Tanuld meg, hogyan dolgozz mintavételezéssel |
-| [5.7 Scaling](./mcp-scaling/README.md) | Skálázás | Ismerd meg a skálázás alapjait |
-| [5.8 Security](./mcp-security/README.md) | Biztonság | Biztosítsd MCP szerveredet |
-| [5.9 Web Search sample](./web-search-mcp/README.md) | Web Search MCP | Python MCP szerver és kliens, amely integrálja a SerpAPI-t valós idejű webes, hírek, termékkeresés és kérdés-válasz funkciókhoz. Többeszközös koordinációt, külső API integrációt és robusztus hibakezelést mutat be. |
-| [5.10 Realtime Streaming](./mcp-realtimestreaming/README.md) | Streaming | A valós idejű adatfolyam ma már elengedhetetlen a gyors döntéshozatalt igénylő üzleti és alkalmazási környezetekben. |
-| [5.11 Realtime Web Search](./mcp-realtimesearch/README.md) | Web Search | Valós idejű webes keresés – hogyan alakítja át az MCP a valós idejű webes keresést azáltal, hogy egységes megközelítést kínál a kontextuskezeléshez AI modellek, keresőmotorok és alkalmazások között. |
-| [5.12  Entra ID Authentication for Model Context Protocol Servers](./mcp-security-entra/README.md) | Entra ID hitelesítés | A Microsoft Entra ID egy megbízható, felhőalapú identitás- és hozzáférés-kezelési megoldás, amely biztosítja, hogy csak jogosult felhasználók és alkalmazások férhessenek hozzá az MCP szerveredhez. |
-| [5.13 Azure AI Foundry Agent Integration](./mcp-foundry-agent-integration/README.md) | Azure AI Foundry integráció | Tanuld meg, hogyan integrálhatók az MCP szerverek az Azure AI Foundry ügynökeivel, lehetővé téve a hatékony eszközkoordinációt és a vállalati AI képességeket szabványosított külső adatforrás kapcsolatokkal. |
-| [5.14 Context Engineering](./mcp-contextengineering/README.md) | Kontextus mérnökség | A kontextus mérnökség jövőbeli lehetőségei MCP szerverek számára, beleértve a kontextus optimalizálást, dinamikus kontextuskezelést és hatékony prompt mérnökségi stratégiákat az MCP keretrendszerekben. |
+| [5.1 Integráció az Azure-ral](./mcp-integration/README.md) | Integráció az Azure-ral | Tanuld meg, hogyan integrálhatod MCP szerveredet az Azure-on |
+| [5.2 Multimodális minta](./mcp-multi-modality/README.md) | MCP multimodális minták | Minták hang, kép és multimodális válaszokhoz |
+| [5.3 MCP OAuth2 minta](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 demó | Minimalista Spring Boot alkalmazás, amely bemutatja az OAuth2-t MCP-vel, mind engedélyezési, mind erőforrás-szerverként. Bemutatja a biztonságos tokenkibocsátást, védett végpontokat, Azure Container Apps telepítést és API Management integrációt. |
+| [5.4 Gyökérkontekstuk](./mcp-root-contexts/README.md) | Gyökérkontekstuk | Tudj meg többet a gyökérkontekstukról és azok megvalósításáról |
+| [5.5 Útvonalkezelés](./mcp-routing/README.md) | Útvonalkezelés | Ismerd meg a különböző útvonalkezelési típusokat |
+| [5.6 Mintavételezés](./mcp-sampling/README.md) | Mintavételezés | Tanuld meg, hogyan dolgozz a mintavételezéssel |
+| [5.7 Skálázás](./mcp-scaling/README.md) | Skálázás | Tudj meg többet a skálázásról |
+| [5.8 Biztonság](./mcp-security/README.md) | Biztonság | Biztosítsd MCP szerveredet |
+| [5.9 Webkeresési minta](./web-search-mcp/README.md) | Webkeresési MCP | Python MCP szerver és kliens, amely integrálódik a SerpAPI-val valós idejű webes, hírek, termékkeresés és kérdés-válasz funkciókhoz. Bemutatja a többeszközös koordinációt, külső API integrációt és robusztus hibakezelést. |
+| [5.10 Valós idejű adatfolyam](./mcp-realtimestreaming/README.md) | Adatfolyam | A valós idejű adatfolyam elengedhetetlenné vált a mai adatvezérelt világban, ahol a vállalkozásoknak és alkalmazásoknak azonnali hozzáférésre van szükségük az információkhoz a megfelelő döntések meghozatalához. |
+| [5.11 Valós idejű webkeresés](./mcp-realtimesearch/README.md) | Webkeresés | Hogyan alakítja át az MCP a valós idejű webkeresést azáltal, hogy szabványosított megközelítést biztosít a kontextuskezeléshez AI modellek, keresőmotorok és alkalmazások között. |
+| [5.12 Entra ID hitelesítés Model Context Protocol szerverekhez](./mcp-security-entra/README.md) | Entra ID hitelesítés | A Microsoft Entra ID robusztus, felhőalapú identitás- és hozzáférés-kezelési megoldást kínál, amely segít biztosítani, hogy csak az engedélyezett felhasználók és alkalmazások férjenek hozzá MCP szerveredhez. |
+| [5.13 Azure AI Foundry ügynök integráció](./mcp-foundry-agent-integration/README.md) | Azure AI Foundry integráció | Tanuld meg, hogyan integrálhatod Model Context Protocol szervereidet az Azure AI Foundry ügynökeivel, lehetővé téve az erőteljes eszközkoordinációt és a vállalati AI képességeket szabványosított külső adatforrás-kapcsolatokkal. |
+| [5.14 Kontextusmérnökség](./mcp-contextengineering/README.md) | Kontextusmérnökség | A kontextusmérnökségi technikák jövőbeli lehetőségei MCP szerverekhez, beleértve a kontextusoptimalizálást, a dinamikus kontextuskezelést és a hatékony promptmérnökségi stratégiákat MCP keretrendszerekben. |
 
 ## További hivatkozások
 
-A legfrissebb információkért a fejlett MCP témákról, tekintsd meg:
+A legfrissebb információkért az MCP haladó témáiról lásd:
 - [MCP Dokumentáció](https://modelcontextprotocol.io/)
 - [MCP Specifikáció](https://spec.modelcontextprotocol.io/)
-- [GitHub tárhely](https://github.com/modelcontextprotocol)
+- [GitHub Repository](https://github.com/modelcontextprotocol)
 
 ## Főbb tanulságok
 
-- A többmodalitású MCP megvalósítások az AI képességeit a szövegfeldolgozáson túl is kiterjesztik
-- A skálázhatóság elengedhetetlen a vállalati telepítésekhez, amelyet vízszintes és függőleges skálázással lehet megvalósítani
+- A multimodális MCP megvalósítások kiterjesztik az AI képességeit a szövegfeldolgozáson túlra
+- A skálázhatóság elengedhetetlen a vállalati telepítésekhez, és horizontális és vertikális skálázással kezelhető
 - Átfogó biztonsági intézkedések védik az adatokat és biztosítják a megfelelő hozzáférés-ellenőrzést
-- A vállalati integráció olyan platformokkal, mint az Azure OpenAI és a Microsoft AI Foundry, tovább növeli az MCP képességeit
-- A fejlett MCP megvalósítások előnyösek az optimalizált architektúrák és a gondos erőforrás-kezelés révén
+- A vállalati integráció olyan platformokkal, mint az Azure OpenAI és a Microsoft AI Foundry, növeli az MCP képességeit
+- A haladó MCP megvalósítások optimalizált architektúrákból és gondos erőforrás-kezelésből profitálnak
 
 ## Gyakorlat
 
-Tervezzen egy vállalati szintű MCP megvalósítást egy konkrét felhasználási esetre:
+Tervezd meg egy vállalati szintű MCP megvalósítását egy konkrét felhasználási esetre:
 
-1. Határozd meg a többmodalitás követelményeit az adott esetre
-2. Vázold fel a biztonsági intézkedéseket az érzékeny adatok védelmére
-3. Tervezd meg a skálázható architektúrát, amely képes kezelni a változó terhelést
+1. Határozd meg a felhasználási eseted multimodális követelményeit
+2. Vázold fel az érzékeny adatok védelméhez szükséges biztonsági kontrollokat
+3. Tervezd meg a változó terhelést kezelni képes skálázható architektúrát
 4. Tervezz integrációs pontokat vállalati AI rendszerekkel
-5. Dokumentáld a lehetséges teljesítménybeli szűk keresztmetszeteket és azok kezelési stratégiáit
+5. Dokumentáld a lehetséges teljesítménybeli szűk keresztmetszeteket és azok enyhítési stratégiáit
 
 ## További források
 
-- [Azure OpenAI dokumentáció](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
-- [Microsoft AI Foundry dokumentáció](https://learn.microsoft.com/en-us/ai-services/)
+- [Azure OpenAI Dokumentáció](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
+- [Microsoft AI Foundry Dokumentáció](https://learn.microsoft.com/en-us/ai-services/)
 
 ---
 
 ## Mi következik
 
-- [5.1 MCP Integration](./mcp-integration/README.md)
+- [5.1 MCP Integráció](./mcp-integration/README.md)
 
-**Jogi nyilatkozat**:  
-Ez a dokumentum az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén szakmai, emberi fordítást javaslunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+**Felelősségkizárás**:  
+Ez a dokumentum az [Co-op Translator](https://github.com/Azure/co-op-translator) AI fordítási szolgáltatás segítségével készült. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Kritikus információk esetén javasolt a professzionális, emberi fordítás igénybevétele. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.

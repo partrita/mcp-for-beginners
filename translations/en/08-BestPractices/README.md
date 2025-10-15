@@ -1,21 +1,26 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "80e5c8949af5af0f401fce6f905990aa",
-  "translation_date": "2025-07-17T09:20:53+00:00",
+  "original_hash": "b62150e27d4b7b5797ee41146d176e6b",
+  "translation_date": "2025-08-19T14:08:33+00:00",
   "source_file": "08-BestPractices/README.md",
   "language_code": "en"
 }
 -->
 # MCP Development Best Practices
 
+[![MCP Development Best Practices](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.en.png)](https://youtu.be/W56H9W7x-ao)
+
+_(Click the image above to view the video for this lesson)_
+
 ## Overview
 
-This lesson covers advanced best practices for developing, testing, and deploying MCP servers and features in production environments. As MCP ecosystems become more complex and critical, following established patterns ensures reliability, maintainability, and interoperability. This lesson compiles practical insights from real-world MCP implementations to help you build robust, efficient servers with effective resources, prompts, and tools.
+This lesson covers advanced best practices for developing, testing, and deploying MCP servers and features in production environments. As MCP ecosystems become more complex and critical, adhering to established patterns ensures reliability, maintainability, and interoperability. This lesson compiles practical insights from real-world MCP implementations to help you build robust, efficient servers with effective resources, prompts, and tools.
 
 ## Learning Objectives
 
 By the end of this lesson, you will be able to:
+
 - Apply industry best practices in MCP server and feature design
 - Develop comprehensive testing strategies for MCP servers
 - Design efficient, reusable workflow patterns for complex MCP applications
@@ -24,25 +29,25 @@ By the end of this lesson, you will be able to:
 
 ## MCP Core Principles
 
-Before exploring specific implementation practices, it’s important to understand the core principles that guide effective MCP development:
+Before diving into specific implementation practices, it’s essential to understand the core principles that underpin effective MCP development:
 
-1. **Standardized Communication**: MCP is based on JSON-RPC 2.0, providing a consistent format for requests, responses, and error handling across all implementations.
+1. **Standardized Communication**: MCP is built on JSON-RPC 2.0, ensuring a consistent format for requests, responses, and error handling across all implementations.
 
 2. **User-Centric Design**: Always prioritize user consent, control, and transparency in your MCP implementations.
 
-3. **Security First**: Implement strong security measures including authentication, authorization, validation, and rate limiting.
+3. **Security First**: Implement strong security measures, including authentication, authorization, validation, and rate limiting.
 
-4. **Modular Architecture**: Design MCP servers modularly, with each tool and resource having a clear, focused purpose.
+4. **Modular Architecture**: Design MCP servers with a modular approach, where each tool and resource has a clear, focused purpose.
 
-5. **Stateful Connections**: Utilize MCP’s ability to maintain state across multiple requests for more coherent and context-aware interactions.
+5. **Stateful Connections**: Take advantage of MCP’s ability to maintain state across multiple requests for more coherent and context-aware interactions.
 
 ## Official MCP Best Practices
 
-The following best practices come from the official Model Context Protocol documentation:
+The following best practices are derived from the official Model Context Protocol documentation:
 
 ### Security Best Practices
 
-1. **User Consent and Control**: Always obtain explicit user consent before accessing data or performing operations. Provide clear controls over what data is shared and which actions are authorized.
+1. **User Consent and Control**: Always require explicit user consent before accessing data or performing operations. Provide clear control over what data is shared and which actions are authorized.
 
 2. **Data Privacy**: Only expose user data with explicit consent and protect it with appropriate access controls. Prevent unauthorized data transmission.
 
@@ -52,27 +57,28 @@ The following best practices come from the official Model Context Protocol docum
 
 5. **Authentication**: Require proper authentication before granting access to tools, resources, or sensitive operations using API keys, OAuth tokens, or other secure methods.
 
-6. **Parameter Validation**: Validate all tool invocations to prevent malformed or malicious input from reaching tool implementations.
+6. **Parameter Validation**: Enforce validation for all tool invocations to prevent malformed or malicious input from reaching tool implementations.
 
-7. **Rate Limiting**: Implement rate limiting to prevent abuse and ensure fair use of server resources.
+7. **Rate Limiting**: Implement rate limiting to prevent abuse and ensure fair usage of server resources.
 
 ### Implementation Best Practices
 
 1. **Capability Negotiation**: During connection setup, exchange information about supported features, protocol versions, available tools, and resources.
 
-2. **Tool Design**: Build focused tools that do one thing well, rather than monolithic tools handling multiple concerns.
+2. **Tool Design**: Create focused tools that excel at specific tasks rather than monolithic tools that handle multiple concerns.
 
-3. **Error Handling**: Use standardized error messages and codes to help diagnose issues, handle failures gracefully, and provide actionable feedback.
+3. **Error Handling**: Implement standardized error messages and codes to help diagnose issues, handle failures gracefully, and provide actionable feedback.
 
-4. **Logging**: Set up structured logs for auditing, debugging, and monitoring protocol interactions.
+4. **Logging**: Configure structured logs for auditing, debugging, and monitoring protocol interactions.
 
 5. **Progress Tracking**: For long-running operations, report progress updates to enable responsive user interfaces.
 
-6. **Request Cancellation**: Allow clients to cancel ongoing requests that are no longer needed or are taking too long.
+6. **Request Cancellation**: Allow clients to cancel in-flight requests that are no longer needed or taking too long.
 
 ## Additional References
 
-For the latest information on MCP best practices, see:
+For the most up-to-date information on MCP best practices, refer to:
+
 - [MCP Documentation](https://modelcontextprotocol.io/)
 - [MCP Specification](https://spec.modelcontextprotocol.io/)
 - [GitHub Repository](https://github.com/modelcontextprotocol)
@@ -84,7 +90,7 @@ For the latest information on MCP best practices, see:
 
 #### 1. Single Responsibility Principle
 
-Each MCP tool should have a clear, focused purpose. Instead of creating monolithic tools that try to handle multiple concerns, develop specialized tools that excel at specific tasks.
+Each MCP tool should have a clear, focused purpose. Instead of creating monolithic tools that handle multiple concerns, develop specialized tools that excel at specific tasks.
 
 ```csharp
 // A focused tool that does one thing well
@@ -146,7 +152,7 @@ public class WeatherForecastTool : ITool
 
 #### 2. Consistent Error Handling
 
-Implement robust error handling with clear error messages and appropriate recovery mechanisms.
+Implement robust error handling with informative error messages and appropriate recovery mechanisms.
 
 ```python
 # Python example with comprehensive error handling
@@ -207,7 +213,7 @@ class DataQueryTool:
 
 #### 3. Parameter Validation
 
-Always thoroughly validate parameters to prevent malformed or malicious input.
+Always validate parameters thoroughly to prevent malformed or malicious input.
 
 ```javascript
 // JavaScript/TypeScript example with detailed parameter validation
@@ -496,7 +502,7 @@ describe('WeatherForecastTool', () => {
 
 ### 2. Integration Testing
 
-Test the full flow from client requests to server responses:
+Test the complete flow from client requests to server responses:
 
 ```python
 # Python integration test example
@@ -535,7 +541,7 @@ async def test_mcp_server_integration():
 
 ### 1. Caching Strategies
 
-Implement appropriate caching to reduce latency and resource consumption:
+Implement appropriate caching to reduce latency and resource usage:
 
 ```csharp
 // C# example with caching
@@ -602,6 +608,7 @@ public class CachedWeatherTool : ITool
         };
     }
 }
+```
 
 #### 2. Dependency Injection and Testability
 
@@ -914,37 +921,35 @@ public class CachedDataTool : IMcpTool
         _cache = cache;
     }
     
-    public async Task
-
-ExecuteAsync(ToolRequest request)
-{
-    var query = request.Parameters.GetProperty("query").GetString();
-    
-    // Create cache key based on parameters
-    var cacheKey = $"data_query_{ComputeHash(query)}";
-    
-    // Try to get from cache first
-    if (_cache.TryGetValue(cacheKey, out var cachedResult))
+    public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
     {
-        return new ToolResponse { Result = cachedResult };
+        var query = request.Parameters.GetProperty("query").GetString();
+        
+        // Create cache key based on parameters
+        var cacheKey = $"data_query_{ComputeHash(query)}";
+        
+        // Try to get from cache first
+        if (_cache.TryGetValue(cacheKey, out var cachedResult))
+        {
+            return new ToolResponse { Result = cachedResult };
+        }
+        
+        // Cache miss - perform actual query
+        var result = await _database.QueryAsync(query);
+        
+        // Store in cache with expiration
+        var cacheOptions = new MemoryCacheEntryOptions()
+            .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
+            
+        _cache.Set(cacheKey, JsonSerializer.SerializeToElement(result), cacheOptions);
+        
+        return new ToolResponse { Result = JsonSerializer.SerializeToElement(result) };
     }
     
-    // Cache miss - perform actual query
-    var result = await _database.QueryAsync(query);
-    
-    // Store in cache with expiration
-    var cacheOptions = new MemoryCacheEntryOptions()
-        .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
-        
-    _cache.Set(cacheKey, JsonSerializer.SerializeToElement(result), cacheOptions);
-    
-    return new ToolResponse { Result = JsonSerializer.SerializeToElement(result) };
-}
-
-private string ComputeHash(string input)
-{
-    // Implementation to generate stable hash for cache key
-}
+    private string ComputeHash(string input)
+    {
+        // Implementation to generate stable hash for cache key
+    }
 }
 ```
 
@@ -1193,7 +1198,7 @@ Comprehensive testing ensures that MCP tools function correctly, handle edge cas
 
 #### 1. Test Each Tool in Isolation
 
-Create focused tests for each tool's functionality:
+Create focused tests for each tool’s functionality:
 
 ```csharp
 [Fact]
@@ -1379,24 +1384,23 @@ public async Task DataProcessingWorkflow_CompletesSuccessfully()
     var workflowExecutor = new WorkflowExecutor(toolRegistry);
     
     // Act
-var result = await workflowExecutor.ExecuteWorkflowAsync(new[] {
-    new ToolCall("dataFetch", new { source = "sales2023" }),
-    new ToolCall("dataAnalysis", ctx =>
-        new { 
+    var result = await workflowExecutor.ExecuteWorkflowAsync(new[] {
+        new ToolCall("dataFetch", new { source = "sales2023" }),
+        new ToolCall("dataAnalysis", ctx => new { 
             data = ctx.GetResult("dataFetch"),
             analysis = "trend" 
         }),
-    new ToolCall("dataVisualize", ctx => new {
-        analysisResult = ctx.GetResult("dataAnalysis"),
-        type = "line-chart"
-    })
-});
-
-// Assert
-Assert.NotNull(result);
-Assert.True(result.Success);
-Assert.NotNull(result.GetResult("dataVisualize"));
-Assert.Contains("chartUrl", result.GetResult("dataVisualize").ToString());
+        new ToolCall("dataVisualize", ctx => new {
+            analysisResult = ctx.GetResult("dataAnalysis"),
+            type = "line-chart"
+        })
+    });
+    
+    // Assert
+    Assert.NotNull(result);
+    Assert.True(result.Success);
+    Assert.NotNull(result.GetResult("dataVisualize"));
+    Assert.Contains("chartUrl", result.GetResult("dataVisualize").ToString());
 }
 ```
 
@@ -1667,7 +1671,7 @@ Well-designed MCP workflows improve efficiency, reliability, and maintainability
 
 ### 1. Chain of Tools Pattern
 
-Connect multiple tools in a sequence where each tool's output becomes the input for the next:
+Connect multiple tools in a sequence where each tool’s output becomes the input for the next:
 
 ```python
 # Python Chain of Tools implementation
@@ -1768,61 +1772,7 @@ public class ContentDispatcherTool : IMcpTool
             ("text", "analyze") => "textAnalyzer",
             ("html", _) => "htmlProcessor",
             ("markdown", _) => "markdownProcessor",
-            ("csv", _) =>
-# CSV Processor
-
-This document explains how to use the `csvProcessor` tool to handle CSV files efficiently.
-
-## Features
-
-- Parse CSV files with custom delimiters
-- Handle large files without loading everything into memory
-- Support for quoted fields and escape characters
-- Export processed data to various formats
-
-## Usage
-
-To start processing a CSV file, use the following command:
-
-```bash
-csvProcessor --input @@INLINE_CODE_1@@ --output @@INLINE_CODE_2@@ --delimiter ","
-```
-
-Replace `@@INLINE_CODE_1@@` with the path to your input CSV file and `@@INLINE_CODE_2@@` with the desired output file path.
-
-## Important Notes
-
-- The default delimiter is a comma (,), but you can specify others like semicolon (;) or tab (\t).
-- Quoted fields are supported, so fields containing delimiters or newlines are handled correctly.
-- Large files are processed in chunks to avoid high memory usage.
-
-## Examples
-
-### Parsing a CSV with semicolon delimiter
-
-```bash
-csvProcessor --input data.csv --output result.json --delimiter ";"
-```
-
-### Exporting to JSON format
-
-```bash
-csvProcessor --input data.csv --output result.json --format json
-```
-
-## Troubleshooting
-
-If you encounter issues with malformed CSV files, try enabling the strict mode:
-
-```bash
-csvProcessor --input data.csv --strict
-```
-
-This will cause the processor to report errors instead of attempting to fix them silently.
-
-## Additional Resources
-
-For more detailed information, visit the official documentation at [https://example.com/csvProcessor](https://example.com/csvProcessor).
+            ("csv", _) => "csvProcessor",
             ("code", _) => "codeAnalyzer",
             _ => throw new ToolExecutionException($"No tool available for {contentType}/{operation}")
         };
@@ -1855,11 +1805,11 @@ public class ParallelDataProcessingWorkflow {
     }
     
     public WorkflowResult execute(String datasetId) {
-        // Step 1: Fetch dataset metadata (synchronously)
+        // Step 1: Fetch dataset metadata (synchronous)
         ToolResponse metadataResponse = mcpClient.executeTool("datasetMetadata", 
             Map.of("datasetId", datasetId));
         
-        // Step 2: Start multiple analyses in parallel
+        // Step 2: Launch multiple analyses in parallel
         CompletableFuture<ToolResponse> statisticalAnalysis = CompletableFuture.supplyAsync(() ->
             mcpClient.executeTool("statisticalAnalysis", Map.of(
                 "datasetId", datasetId,
@@ -1881,7 +1831,7 @@ public class ParallelDataProcessingWorkflow {
             ))
         );
         
-        // Wait for all parallel tasks to finish
+        // Wait for all parallel tasks to complete
         CompletableFuture<Void> allAnalyses = CompletableFuture.allOf(
             statisticalAnalysis, correlationAnalysis, outlierDetection
         );
@@ -1899,7 +1849,7 @@ public class ParallelDataProcessingWorkflow {
         ToolResponse summaryResponse = mcpClient.executeTool("reportGenerator", 
             Map.of("analysisResults", combinedResults));
         
-        // Return the complete workflow result
+        // Return complete workflow result
         WorkflowResult result = new WorkflowResult();
         result.setDatasetId(datasetId);
         result.setAnalysisResults(combinedResults);
@@ -1921,7 +1871,7 @@ class ResilientWorkflow:
     
     async def execute_with_fallback(self, primary_tool, fallback_tool, parameters):
         try:
-            # Try the primary tool first
+            # Try primary tool first
             response = await self.client.execute_tool(primary_tool, parameters)
             return {
                 "result": response.result,
@@ -1932,9 +1882,9 @@ class ResilientWorkflow:
             # Log the failure
             logging.warning(f"Primary tool '{primary_tool}' failed: {str(e)}")
             
-            # Fall back to the secondary tool
+            # Fall back to secondary tool
             try:
-                # Parameters might need to be adapted for the fallback tool
+                # Might need to transform parameters for fallback tool
                 fallback_params = self._adapt_parameters(parameters, primary_tool, fallback_tool)
                 
                 response = await self.client.execute_tool(fallback_tool, fallback_params)
@@ -1953,7 +1903,7 @@ class ResilientWorkflow:
     
     def _adapt_parameters(self, params, from_tool, to_tool):
         """Adapt parameters between different tools if needed"""
-        # This implementation depends on the specific tools
+        # This implementation would depend on the specific tools
         # For this example, we'll just return the original parameters
         return params
 
@@ -2039,7 +1989,7 @@ Unit tests verify individual components of your MCP server in isolation.
 
 #### What to Test
 
-1. **Resource Handlers**: Test each resource handler's logic independently
+1. **Resource Handlers**: Test each resource handler’s logic independently
 2. **Tool Implementations**: Verify tool behavior with various inputs
 3. **Prompt Templates**: Ensure prompt templates render correctly
 4. **Schema Validation**: Test parameter validation logic
@@ -2289,10 +2239,10 @@ Automating your tests ensures consistent quality and faster feedback loops.
 
 ### CI/CD Integration
 
-1. **Run Unit Tests on Pull Requests**: Ensure code changes don't break existing functionality
+1. **Run Unit Tests on Pull Requests**: Ensure code changes don’t break existing functionality
 2. **Integration Tests in Staging**: Run integration tests in pre-production environments
-3. **Performance Baselines**: Maintain performance benchmarks to catch regressions
-4. **Security Scans**: Automate security testing as part of the pipeline
+3. **Performance Baselines**: Establish benchmarks to detect performance regressions.
+4. **Security Scans**: Integrate automated security testing into the pipeline.
 
 ### Example CI Pipeline (GitHub Actions)
 
@@ -2335,15 +2285,15 @@ jobs:
 
 ## Testing for Compliance with MCP Specification
 
-Verify your server correctly implements the MCP specification.
+Ensure your server adheres to the MCP specification.
 
 ### Key Compliance Areas
 
-1. **API Endpoints**: Test required endpoints (/resources, /tools, etc.)
-2. **Request/Response Format**: Validate schema compliance
-3. **Error Codes**: Verify correct status codes for various scenarios
-4. **Content Types**: Test handling of different content types
-5. **Authentication Flow**: Verify spec-compliant auth mechanisms
+1. **API Endpoints**: Test mandatory endpoints (/resources, /tools, etc.).
+2. **Request/Response Format**: Validate adherence to the schema.
+3. **Error Codes**: Confirm correct status codes for various scenarios.
+4. **Content Types**: Test handling of different content types.
+5. **Authentication Flow**: Verify authentication mechanisms comply with the specification.
 
 ### Compliance Test Suite
 
@@ -2358,76 +2308,76 @@ public async Task Server_ResourceEndpoint_ReturnsCorrectSchema()
     // Act
     var response = await client.GetAsync("http://localhost:5000/api/resources");
     var content = await response.Content.ReadAsStringAsync();
-    var resources = JsonSerializer.Deserialize
-<ResourceList>
-// Assert
-Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-Assert.NotNull(resources);
-Assert.All(resources.Resources, resource => 
-{
-    Assert.NotNull(resource.Id);
-    Assert.NotNull(resource.Type);
-    // Additional schema validation
-});
+    var resources = JsonSerializer.Deserialize<ResourceList>(content);
+    
+    // Assert
+    Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    Assert.NotNull(resources);
+    Assert.All(resources.Resources, resource => 
+    {
+        Assert.NotNull(resource.Id);
+        Assert.NotNull(resource.Type);
+        // Additional schema validation
+    });
 }
 ```
 
 ## Top 10 Tips for Effective MCP Server Testing
 
-1. **Test Tool Definitions Separately**: Validate schema definitions independently from the tool logic  
-2. **Use Parameterized Tests**: Test tools with a variety of inputs, including edge cases  
-3. **Check Error Responses**: Ensure proper error handling for all possible error scenarios  
-4. **Test Authorization Logic**: Verify correct access control for different user roles  
-5. **Monitor Test Coverage**: Strive for high coverage of critical code paths  
-6. **Test Streaming Responses**: Confirm correct handling of streaming content  
-7. **Simulate Network Issues**: Test behavior under poor network conditions  
-8. **Test Resource Limits**: Verify behavior when quotas or rate limits are reached  
-9. **Automate Regression Tests**: Build a suite that runs on every code change  
-10. **Document Test Cases**: Keep clear documentation of test scenarios  
+1. **Test Tool Definitions Separately**: Validate schema definitions independently from tool logic.
+2. **Use Parameterized Tests**: Test tools with diverse inputs, including edge cases.
+3. **Check Error Responses**: Ensure proper error handling for all potential error conditions.
+4. **Test Authorization Logic**: Verify access control for different user roles.
+5. **Monitor Test Coverage**: Strive for high coverage of critical path code.
+6. **Test Streaming Responses**: Confirm correct handling of streaming content.
+7. **Simulate Network Issues**: Test behavior under poor network conditions.
+8. **Test Resource Limits**: Validate behavior when quotas or rate limits are reached.
+9. **Automate Regression Tests**: Develop a suite that runs with every code change.
+10. **Document Test Cases**: Keep clear documentation of test scenarios.
 
 ## Common Testing Pitfalls
 
-- **Over-reliance on happy path testing**: Make sure to thoroughly test error cases  
-- **Ignoring performance testing**: Identify bottlenecks before they impact production  
-- **Testing in isolation only**: Combine unit, integration, and end-to-end tests  
-- **Incomplete API coverage**: Ensure all endpoints and features are tested  
-- **Inconsistent test environments**: Use containers to guarantee consistent test environments  
+- **Over-reliance on happy path testing**: Ensure thorough testing of error cases.
+- **Ignoring performance testing**: Identify bottlenecks before they impact production.
+- **Testing in isolation only**: Combine unit, integration, and end-to-end tests.
+- **Incomplete API coverage**: Test all endpoints and features comprehensively.
+- **Inconsistent test environments**: Use containers to maintain consistent environments.
 
 ## Conclusion
 
-A comprehensive testing strategy is crucial for building reliable, high-quality MCP servers. By following the best practices and tips outlined in this guide, you can ensure your MCP implementations meet the highest standards of quality, reliability, and performance.
+A robust testing strategy is crucial for building reliable, high-quality MCP servers. By following the best practices and tips in this guide, you can ensure your MCP implementations meet the highest standards of quality, reliability, and performance.
 
 ## Key Takeaways
 
-1. **Tool Design**: Follow the single responsibility principle, use dependency injection, and design for composability  
-2. **Schema Design**: Create clear, well-documented schemas with proper validation constraints  
-3. **Error Handling**: Implement graceful error handling, structured error responses, and retry logic  
-4. **Performance**: Use caching, asynchronous processing, and resource throttling  
-5. **Security**: Apply thorough input validation, authorization checks, and sensitive data handling  
-6. **Testing**: Develop comprehensive unit, integration, and end-to-end tests  
-7. **Workflow Patterns**: Use established patterns like chains, dispatchers, and parallel processing  
+1. **Tool Design**: Adhere to the single responsibility principle, use dependency injection, and design for composability.
+2. **Schema Design**: Develop clear, well-documented schemas with appropriate validation constraints.
+3. **Error Handling**: Implement graceful error handling, structured error responses, and retry logic.
+4. **Performance**: Utilize caching, asynchronous processing, and resource throttling.
+5. **Security**: Apply rigorous input validation, authorization checks, and sensitive data handling.
+6. **Testing**: Build comprehensive unit, integration, and end-to-end tests.
+7. **Workflow Patterns**: Use established patterns like chains, dispatchers, and parallel processing.
 
 ## Exercise
 
 Design an MCP tool and workflow for a document processing system that:
 
-1. Accepts documents in multiple formats (PDF, DOCX, TXT)  
-2. Extracts text and key information from the documents  
-3. Classifies documents by type and content  
-4. Generates a summary of each document  
+1. Accepts documents in multiple formats (PDF, DOCX, TXT).
+2. Extracts text and key information from the documents.
+3. Classifies documents by type and content.
+4. Generates a summary of each document.
 
-Implement the tool schemas, error handling, and a workflow pattern that best fits this scenario. Consider how you would test this implementation.
+Develop the tool schemas, error handling, and a workflow pattern suitable for this scenario. Consider how you would test this implementation.
 
-## Resources
+## Resources 
 
-1. Join the MCP community on the [Azure AI Foundry Discord Community](https://aka.ms/foundrydevs) to stay updated on the latest developments  
-2. Contribute to open-source [MCP projects](https://github.com/modelcontextprotocol)  
-3. Apply MCP principles in your own organization's AI initiatives  
-4. Explore specialized MCP implementations for your industry  
-5. Consider taking advanced courses on specific MCP topics, such as multi-modal integration or enterprise application integration  
-6. Experiment with building your own MCP tools and workflows using the principles learned through the [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)  
+1. Join the MCP community on the [Azure AI Foundry Discord Community](https://aka.ms/foundrydevs) to stay informed about the latest updates.
+2. Contribute to open-source [MCP projects](https://github.com/modelcontextprotocol).
+3. Apply MCP principles in your organization’s AI initiatives.
+4. Explore specialized MCP implementations tailored to your industry.
+5. Consider advanced courses on specific MCP topics, such as multi-modal integration or enterprise application integration.
+6. Experiment with building MCP tools and workflows using the principles covered in the [Hands-on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md).
 
 Next: Best Practices [case studies](../09-CaseStudy/README.md)
 
 **Disclaimer**:  
-This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we aim for accuracy, please note that automated translations may include errors or inaccuracies. The original document in its native language should be regarded as the authoritative source. For critical information, professional human translation is advised. We are not responsible for any misunderstandings or misinterpretations resulting from the use of this translation.

@@ -1,84 +1,88 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a5c1d9e9856024d23da4a65a847c75ac",
-  "translation_date": "2025-07-18T07:20:26+00:00",
+  "original_hash": "d204bc94ea6027d06a703b21b711ca57",
+  "translation_date": "2025-08-19T14:32:22+00:00",
   "source_file": "05-AdvancedTopics/README.md",
   "language_code": "sw"
 }
 -->
-# Mada Zinazokuzwa katika MCP
+# Mada ya Juu katika MCP
 
-Sura hii inashughulikia mfululizo wa mada za juu katika utekelezaji wa Model Context Protocol (MCP), ikiwa ni pamoja na muunganiko wa njia nyingi, upanuzi wa mfumo, mbinu bora za usalama, na muunganiko wa biashara. Mada hizi ni muhimu kwa kujenga programu za MCP zenye nguvu na zinazoweza kutumika katika uzalishaji ambazo zinaweza kukidhi mahitaji ya mifumo ya kisasa ya AI.
+[![MCP ya Juu: Mawakala wa AI Salama, Wenye Uwezo wa Kupanuka, na Multi-modal](../../../translated_images/06.42259eaf91fccfc6d06ef1c126c9db04bbff9e5f60a87b782a2ec2616163142f.sw.png)](https://youtu.be/4yjmGvJzYdY)
+
+_(Bofya picha hapo juu kutazama video ya somo hili)_
+
+Sura hii inashughulikia mada mbalimbali za juu katika utekelezaji wa Model Context Protocol (MCP), ikiwa ni pamoja na ujumuishaji wa multi-modal, uwezo wa kupanuka, mbinu bora za usalama, na ujumuishaji wa biashara. Mada hizi ni muhimu kwa kujenga programu za MCP imara na tayari kwa uzalishaji zinazoweza kukidhi mahitaji ya mifumo ya kisasa ya AI.
 
 ## Muhtasari
 
-Somo hili linachunguza dhana za juu katika utekelezaji wa Model Context Protocol, likilenga muunganiko wa njia nyingi, upanuzi wa mfumo, mbinu bora za usalama, na muunganiko wa biashara. Mada hizi ni muhimu kwa kujenga programu za MCP za kiwango cha uzalishaji zinazoweza kushughulikia mahitaji changamano katika mazingira ya biashara.
+Somo hili linachunguza dhana za juu katika utekelezaji wa Model Context Protocol, likilenga ujumuishaji wa multi-modal, uwezo wa kupanuka, mbinu bora za usalama, na ujumuishaji wa biashara. Mada hizi ni muhimu kwa kujenga programu za MCP za kiwango cha uzalishaji zinazoweza kushughulikia mahitaji magumu katika mazingira ya biashara.
 
 ## Malengo ya Kujifunza
 
 Mwisho wa somo hili, utaweza:
 
-- Kutekeleza uwezo wa njia nyingi ndani ya mifumo ya MCP
-- Kubuni miundo ya MCP inayoweza kupanuka kwa hali za mahitaji makubwa
+- Kutekeleza uwezo wa multi-modal ndani ya mifumo ya MCP
+- Kubuni miundombinu ya MCP inayoweza kupanuka kwa hali za mahitaji makubwa
 - Kutumia mbinu bora za usalama zinazolingana na kanuni za usalama za MCP
-- Kuunganisha MCP na mifumo na mifumo ya AI ya biashara
-- Kuboresha utendaji na kuaminika katika mazingira ya uzalishaji
+- Kujumuisha MCP na mifumo ya AI ya biashara na mifumo mingine
+- Kuboresha utendaji na uaminifu katika mazingira ya uzalishaji
 
 ## Masomo na Miradi ya Mfano
 
 | Kiungo | Kichwa | Maelezo |
-|------|-------|-------------|
-| [5.1 Integration with Azure](./mcp-integration/README.md) | Kuunganisha na Azure | Jifunze jinsi ya kuunganisha MCP Server yako kwenye Azure |
-| [5.2 Multi modal sample](./mcp-multi-modality/README.md) | Sampuli za MCP Multi modal | Sampuli za sauti, picha na majibu ya njia nyingi |
-| [5.3 MCP OAuth2 sample](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 Demo | Programu ndogo ya Spring Boot inayoonyesha OAuth2 na MCP, kama Seva ya Idhini na Rasilimali. Inaonyesha utoaji salama wa tokeni, maeneo yaliyolindwa, usambazaji wa Azure Container Apps, na muunganiko wa Usimamizi wa API. |
-| [5.4 Root Contexts](./mcp-root-contexts/README.md) | Muktadha Msingi | Jifunze zaidi kuhusu muktadha msingi na jinsi ya kuutekeleza |
-| [5.5 Routing](./mcp-routing/README.md) | Upangaji Njia | Jifunze aina tofauti za upangaji njia |
-| [5.6 Sampling](./mcp-sampling/README.md) | Sampuli | Jifunze jinsi ya kufanya kazi na sampuli |
-| [5.7 Scaling](./mcp-scaling/README.md) | Upanuzi | Jifunze kuhusu upanuzi |
-| [5.8 Security](./mcp-security/README.md) | Usalama | Linda MCP Server yako |
-| [5.9 Web Search sample](./web-search-mcp/README.md) | Utafutaji wa Mtandao MCP | Seva na mteja wa MCP wa Python wanaounganisha na SerpAPI kwa utafutaji wa mtandao wa wakati halisi, habari, bidhaa, na maswali na majibu. Inaonyesha usimamizi wa zana nyingi, muunganiko wa API za nje, na usimamizi thabiti wa makosa. |
-| [5.10 Realtime Streaming](./mcp-realtimestreaming/README.md) | Utoaji wa Data wa Wakati Halisi | Utoaji wa data wa wakati halisi umekuwa muhimu katika dunia ya leo inayotegemea data, ambapo biashara na programu zinahitaji upatikanaji wa haraka wa taarifa kwa maamuzi ya wakati muafaka. |
-| [5.11 Realtime Web Search](./mcp-realtimesearch/README.md) | Utafutaji wa Mtandao wa Wakati Halisi | Jinsi MCP inavyobadilisha utafutaji wa mtandao wa wakati halisi kwa kutoa njia iliyosanifishwa ya usimamizi wa muktadha kati ya mifano ya AI, injini za utafutaji, na programu. |
-| [5.12  Entra ID Authentication for Model Context Protocol Servers](./mcp-security-entra/README.md) | Uthibitishaji wa Entra ID | Microsoft Entra ID hutoa suluhisho thabiti la usimamizi wa utambulisho na upatikanaji mtandaoni, kusaidia kuhakikisha kuwa watumiaji na programu zilizoidhinishwa tu ndizo zinaweza kuingiliana na seva yako ya MCP. |
-| [5.13 Azure AI Foundry Agent Integration](./mcp-foundry-agent-integration/README.md) | Muunganiko wa Azure AI Foundry | Jifunze jinsi ya kuunganisha seva za Model Context Protocol na maajenti wa Azure AI Foundry, kuwezesha usimamizi wa zana zenye nguvu na uwezo wa AI wa biashara kwa muunganiko wa vyanzo vya data vya nje vilivyo sanifishwa. |
-| [5.14 Context Engineering](./mcp-contextengineering/README.md) | Uhandisi wa Muktadha | Fursa za baadaye za mbinu za uhandisi wa muktadha kwa seva za MCP, ikiwa ni pamoja na uboreshaji wa muktadha, usimamizi wa muktadha wa mabadiliko, na mikakati ya uhandisi wa maelekezo yenye ufanisi ndani ya mifumo ya MCP. |
+|-------|-------|-------------|
+| [5.1 Ujumuishaji na Azure](./mcp-integration/README.md) | Jumuisha na Azure | Jifunze jinsi ya kujumuisha Seva yako ya MCP kwenye Azure |
+| [5.2 Mfano wa Multi-modal](./mcp-multi-modality/README.md) | Sampuli za MCP Multi-modal | Sampuli za sauti, picha, na majibu ya multi-modal |
+| [5.3 Mfano wa MCP OAuth2](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 Demo | Programu ndogo ya Spring Boot inayoonyesha OAuth2 na MCP, kama Seva ya Uidhinishaji na Seva ya Rasilimali. Inaonyesha utoaji wa tokeni salama, sehemu zilizolindwa, usambazaji wa Azure Container Apps, na ujumuishaji wa Usimamizi wa API. |
+| [5.4 Muktadha wa Mizizi](./mcp-root-contexts/README.md) | Muktadha wa Mizizi | Jifunze zaidi kuhusu muktadha wa mizizi na jinsi ya kuutekeleza |
+| [5.5 Uelekezaji](./mcp-routing/README.md) | Uelekezaji | Jifunze aina tofauti za uelekezaji |
+| [5.6 Sampuli](./mcp-sampling/README.md) | Sampuli | Jifunze jinsi ya kufanya kazi na sampuli |
+| [5.7 Uwezo wa Kupanuka](./mcp-scaling/README.md) | Uwezo wa Kupanuka | Jifunze kuhusu uwezo wa kupanuka |
+| [5.8 Usalama](./mcp-security/README.md) | Usalama | Linda Seva yako ya MCP |
+| [5.9 Mfano wa Utafutaji wa Wavuti](./web-search-mcp/README.md) | Utafutaji wa Wavuti MCP | Seva na mteja wa MCP wa Python unaojumuisha na SerpAPI kwa utafutaji wa wavuti, habari, bidhaa, na maswali na majibu kwa wakati halisi. Inaonyesha uratibu wa zana nyingi, ujumuishaji wa API za nje, na utunzaji wa makosa thabiti. |
+| [5.10 Utiririshaji wa Wakati Halisi](./mcp-realtimestreaming/README.md) | Utiririshaji | Utiririshaji wa data wa wakati halisi umekuwa muhimu katika ulimwengu wa leo unaoendeshwa na data, ambapo biashara na programu zinahitaji ufikiaji wa haraka wa taarifa ili kufanya maamuzi kwa wakati. |
+| [5.11 Utafutaji wa Wavuti wa Wakati Halisi](./mcp-realtimesearch/README.md) | Utafutaji wa Wavuti | Jinsi MCP inavyobadilisha utafutaji wa wavuti wa wakati halisi kwa kutoa mbinu sanifu ya usimamizi wa muktadha kati ya mifumo ya AI, injini za utafutaji, na programu. |
+| [5.12 Uidhinishaji wa Entra ID kwa Seva za Model Context Protocol](./mcp-security-entra/README.md) | Uidhinishaji wa Entra ID | Microsoft Entra ID inatoa suluhisho thabiti la usimamizi wa utambulisho na ufikiaji wa wingu, ikisaidia kuhakikisha kuwa ni watumiaji na programu zilizoidhinishwa pekee zinazoweza kuingiliana na seva yako ya MCP. |
+| [5.13 Ujumuishaji wa Wakala wa Azure AI Foundry](./mcp-foundry-agent-integration/README.md) | Ujumuishaji wa Azure AI Foundry | Jifunze jinsi ya kujumuisha seva za Model Context Protocol na mawakala wa Azure AI Foundry, kuwezesha uratibu wa zana zenye nguvu na uwezo wa AI wa biashara na miunganisho sanifu ya vyanzo vya data vya nje. |
+| [5.14 Uhandisi wa Muktadha](./mcp-contextengineering/README.md) | Uhandisi wa Muktadha | Fursa ya siku zijazo ya mbinu za uhandisi wa muktadha kwa seva za MCP, ikiwa ni pamoja na uboreshaji wa muktadha, usimamizi wa muktadha wa nguvu, na mikakati ya uhandisi bora wa maelekezo ndani ya mifumo ya MCP. |
 
-## Marejeleo Zaidi
+## Marejeleo ya Ziada
 
-Kwa taarifa za kisasa zaidi kuhusu mada za juu za MCP, rejelea:
+Kwa taarifa za hivi karibuni kuhusu mada za juu za MCP, rejelea:
 - [MCP Documentation](https://modelcontextprotocol.io/)
 - [MCP Specification](https://spec.modelcontextprotocol.io/)
 - [GitHub Repository](https://github.com/modelcontextprotocol)
 
-## Muhimu wa Kumbuka
+## Mambo Muhimu ya Kujifunza
 
-- Utekelezaji wa MCP wa njia nyingi unaongeza uwezo wa AI zaidi ya usindikaji wa maandishi
-- Upanuzi wa mfumo ni muhimu kwa usambazaji wa biashara na unaweza kushughulikiwa kupitia upanuzi wa usawa na wima
-- Hatua kamili za usalama hulinda data na kuhakikisha udhibiti sahihi wa upatikanaji
-- Muunganiko wa biashara na majukwaa kama Azure OpenAI na Microsoft AI Foundry huongeza uwezo wa MCP
-- Utekelezaji wa juu wa MCP unafaidika na miundo iliyoboreshwa na usimamizi makini wa rasilimali
+- Utekelezaji wa MCP wa multi-modal huongeza uwezo wa AI zaidi ya usindikaji wa maandishi
+- Uwezo wa kupanuka ni muhimu kwa usambazaji wa biashara na unaweza kushughulikiwa kupitia upanuzi wa usawa na wima
+- Hatua za kina za usalama hulinda data na kuhakikisha udhibiti sahihi wa ufikiaji
+- Ujumuishaji wa biashara na majukwaa kama Azure OpenAI na Microsoft AI Foundry huimarisha uwezo wa MCP
+- Utekelezaji wa MCP wa juu unafaidika na miundombinu iliyoboreshwa na usimamizi makini wa rasilimali
 
-## Zoef
+## Zoezi
 
 Buni utekelezaji wa MCP wa kiwango cha biashara kwa matumizi maalum:
 
-1. Tambua mahitaji ya njia nyingi kwa matumizi yako
+1. Tambua mahitaji ya multi-modal kwa matumizi yako
 2. Eleza udhibiti wa usalama unaohitajika kulinda data nyeti
-3. Buni muundo unaoweza kupanuka unaoshughulikia mzigo unaobadilika
-4. Panga pointi za muunganiko na mifumo ya AI ya biashara
-5. Andika matatizo yanayoweza kuonekana katika utendaji na mikakati ya kuyatatua
+3. Buni miundombinu inayoweza kupanuka inayoweza kushughulikia mzigo tofauti
+4. Panga sehemu za ujumuishaji na mifumo ya AI ya biashara
+5. Andika changamoto za utendaji zinazoweza kutokea na mikakati ya kuzitatua
 
-## Rasilimali Zaidi
+## Rasilimali za Ziada
 
 - [Azure OpenAI Documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
 - [Microsoft AI Foundry Documentation](https://learn.microsoft.com/en-us/ai-services/)
 
 ---
 
-## Nini Kifuatacho
+## Kinachofuata
 
-- [5.1 MCP Integration](./mcp-integration/README.md)
+- [5.1 Ujumuishaji wa MCP](./mcp-integration/README.md)
 
-**Kiarifu cha Kutotegemea**:  
-Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatubebwi dhamana kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, inashauriwa kutumia huduma ya tafsiri ya kitaalamu ya binadamu. Hatutawajibika kwa maelewano mabaya au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

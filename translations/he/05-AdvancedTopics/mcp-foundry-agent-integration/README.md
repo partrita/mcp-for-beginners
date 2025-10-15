@@ -60,7 +60,7 @@ Model Context Protocol הוא דרך סטנדרטית לאפליקציות AI ל
 
 ## מימוש ב-Python
 
-***[!NOTE]*** ניתן להריץ את ה-[מחברת](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb) הזו
+***[!NOTE]*** ניתן להריץ את ה-[מחברת](mcp_support_python.ipynb) הזו
 
 ### 1. התקנת חבילות נדרשות
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## מימוש ב-.NET
 
-***[!NOTE]*** ניתן להריץ את ה-[מחברת](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb) הזו
+***[!NOTE]*** ניתן להריץ את ה-[מחברת](mcp_support_dotnet.ipynb) הזו
 
 ### 1. התקנת חבילות נדרשות
 

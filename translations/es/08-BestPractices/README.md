@@ -1,27 +1,31 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0728873f4271f8c19105619921e830d9",
-  "translation_date": "2025-07-22T08:17:13+00:00",
+  "original_hash": "b62150e27d4b7b5797ee41146d176e6b",
+  "translation_date": "2025-08-11T12:48:35+00:00",
   "source_file": "08-BestPractices/README.md",
   "language_code": "es"
 }
 -->
 # Mejores Prácticas para el Desarrollo de MCP
 
+[![Mejores Prácticas para el Desarrollo de MCP](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.es.png)](https://youtu.be/W56H9W7x-ao)
+
+_(Haz clic en la imagen de arriba para ver el video de esta lección)_
+
 ## Descripción General
 
-Esta lección se centra en las mejores prácticas avanzadas para desarrollar, probar y desplegar servidores y características de MCP en entornos de producción. A medida que los ecosistemas de MCP crecen en complejidad e importancia, seguir patrones establecidos garantiza confiabilidad, mantenibilidad e interoperabilidad. Esta lección consolida la experiencia práctica obtenida de implementaciones reales de MCP para guiarte en la creación de servidores robustos y eficientes con recursos, indicaciones y herramientas efectivas.
+Esta lección se centra en las mejores prácticas avanzadas para desarrollar, probar y desplegar servidores MCP y características en entornos de producción. A medida que los ecosistemas MCP crecen en complejidad e importancia, seguir patrones establecidos garantiza confiabilidad, mantenibilidad e interoperabilidad. Esta lección consolida la sabiduría práctica obtenida de implementaciones reales de MCP para guiarte en la creación de servidores robustos y eficientes con recursos, indicaciones y herramientas efectivas.
 
 ## Objetivos de Aprendizaje
 
-Al finalizar esta lección, serás capaz de:
+Al final de esta lección, serás capaz de:
 
-- Aplicar las mejores prácticas de la industria en el diseño de servidores y características de MCP
+- Aplicar las mejores prácticas de la industria en el diseño de servidores y características MCP
 - Crear estrategias de prueba completas para servidores MCP
-- Diseñar patrones de flujo de trabajo eficientes y reutilizables para aplicaciones complejas de MCP
-- Implementar un manejo adecuado de errores, registro y observabilidad en servidores MCP
-- Optimizar implementaciones de MCP para rendimiento, seguridad y mantenibilidad
+- Diseñar patrones de flujo de trabajo eficientes y reutilizables para aplicaciones MCP complejas
+- Implementar manejo adecuado de errores, registro y observabilidad en servidores MCP
+- Optimizar implementaciones MCP para rendimiento, seguridad y mantenibilidad
 
 ## Principios Fundamentales de MCP
 
@@ -29,13 +33,13 @@ Antes de profundizar en prácticas específicas de implementación, es important
 
 1. **Comunicación Estandarizada**: MCP utiliza JSON-RPC 2.0 como base, proporcionando un formato consistente para solicitudes, respuestas y manejo de errores en todas las implementaciones.
 
-2. **Diseño Centrado en el Usuario**: Siempre prioriza el consentimiento, el control y la transparencia del usuario en tus implementaciones de MCP.
+2. **Diseño Centrado en el Usuario**: Prioriza siempre el consentimiento, control y transparencia del usuario en tus implementaciones MCP.
 
 3. **Seguridad Primero**: Implementa medidas de seguridad robustas, incluyendo autenticación, autorización, validación y limitación de tasas.
 
-4. **Arquitectura Modular**: Diseña tus servidores MCP con un enfoque modular, donde cada herramienta y recurso tenga un propósito claro y definido.
+4. **Arquitectura Modular**: Diseña tus servidores MCP con un enfoque modular, donde cada herramienta y recurso tenga un propósito claro y enfocado.
 
-5. **Conexiones con Estado**: Aprovecha la capacidad de MCP para mantener el estado a lo largo de múltiples solicitudes, logrando interacciones más coherentes y con mayor contexto.
+5. **Conexiones con Estado**: Aprovecha la capacidad de MCP para mantener el estado a través de múltiples solicitudes para interacciones más coherentes y conscientes del contexto.
 
 ## Mejores Prácticas Oficiales de MCP
 
@@ -43,27 +47,27 @@ Las siguientes mejores prácticas se derivan de la documentación oficial del Pr
 
 ### Mejores Prácticas de Seguridad
 
-1. **Consentimiento y Control del Usuario**: Siempre requiere el consentimiento explícito del usuario antes de acceder a datos o realizar operaciones. Proporciona un control claro sobre qué datos se comparten y qué acciones están autorizadas.
+1. **Consentimiento y Control del Usuario**: Siempre requiere el consentimiento explícito del usuario antes de acceder a datos o realizar operaciones. Proporciona control claro sobre qué datos se comparten y qué acciones están autorizadas.
 
-2. **Privacidad de los Datos**: Solo expón datos del usuario con su consentimiento explícito y protégelos con controles de acceso adecuados. Evita transmisiones de datos no autorizadas.
+2. **Privacidad de los Datos**: Solo expón datos de usuario con consentimiento explícito y protégelos con controles de acceso adecuados. Evita transmisiones de datos no autorizadas.
 
-3. **Seguridad de las Herramientas**: Requiere el consentimiento explícito del usuario antes de invocar cualquier herramienta. Asegúrate de que los usuarios comprendan la funcionalidad de cada herramienta y aplica límites de seguridad robustos.
+3. **Seguridad de las Herramientas**: Requiere consentimiento explícito del usuario antes de invocar cualquier herramienta. Asegúrate de que los usuarios comprendan la funcionalidad de cada herramienta y aplica límites de seguridad robustos.
 
-4. **Control de Permisos de Herramientas**: Configura qué herramientas puede usar un modelo durante una sesión, asegurando que solo las herramientas explícitamente autorizadas estén disponibles.
+4. **Control de Permisos de Herramientas**: Configura qué herramientas puede usar un modelo durante una sesión, asegurando que solo las herramientas explícitamente autorizadas sean accesibles.
 
-5. **Autenticación**: Exige una autenticación adecuada antes de otorgar acceso a herramientas, recursos u operaciones sensibles mediante claves API, tokens OAuth u otros métodos seguros.
+5. **Autenticación**: Requiere autenticación adecuada antes de otorgar acceso a herramientas, recursos u operaciones sensibles utilizando claves API, tokens OAuth u otros métodos seguros.
 
 6. **Validación de Parámetros**: Aplica validación para todas las invocaciones de herramientas para evitar que entradas malformadas o maliciosas lleguen a las implementaciones de herramientas.
 
-7. **Limitación de Tasas**: Implementa limitación de tasas para prevenir abusos y garantizar un uso equitativo de los recursos del servidor.
+7. **Limitación de Tasas**: Implementa limitación de tasas para prevenir abusos y garantizar un uso justo de los recursos del servidor.
 
 ### Mejores Prácticas de Implementación
 
-1. **Negociación de Capacidades**: Durante la configuración de la conexión, intercambia información sobre características compatibles, versiones del protocolo, herramientas disponibles y recursos.
+1. **Negociación de Capacidades**: Durante la configuración de la conexión, intercambia información sobre características compatibles, versiones de protocolo, herramientas disponibles y recursos.
 
 2. **Diseño de Herramientas**: Crea herramientas enfocadas que hagan una sola cosa bien, en lugar de herramientas monolíticas que manejen múltiples preocupaciones.
 
-3. **Manejo de Errores**: Implementa mensajes de error y códigos estandarizados para ayudar a diagnosticar problemas, manejar fallos de manera elegante y proporcionar retroalimentación útil.
+3. **Manejo de Errores**: Implementa mensajes de error estandarizados y códigos para ayudar a diagnosticar problemas, manejar fallos de manera elegante y proporcionar retroalimentación accionable.
 
 4. **Registro**: Configura registros estructurados para auditoría, depuración y monitoreo de interacciones del protocolo.
 
@@ -77,7 +81,7 @@ Para obtener la información más actualizada sobre las mejores prácticas de MC
 
 - [Documentación de MCP](https://modelcontextprotocol.io/)
 - [Especificación de MCP](https://spec.modelcontextprotocol.io/)
-- [Repositorio de GitHub](https://github.com/modelcontextprotocol)
+- [Repositorio GitHub](https://github.com/modelcontextprotocol)
 - [Mejores Prácticas de Seguridad](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
 
 ## Ejemplos Prácticos de Implementación
@@ -86,7 +90,7 @@ Para obtener la información más actualizada sobre las mejores prácticas de MC
 
 #### 1. Principio de Responsabilidad Única
 
-Cada herramienta de MCP debe tener un propósito claro y definido. En lugar de crear herramientas monolíticas que intenten manejar múltiples preocupaciones, desarrolla herramientas especializadas que sobresalgan en tareas específicas.
+Cada herramienta MCP debe tener un propósito claro y enfocado. En lugar de crear herramientas monolíticas que intenten manejar múltiples preocupaciones, desarrolla herramientas especializadas que sobresalgan en tareas específicas.
 
 ```csharp
 // A focused tool that does one thing well
@@ -148,7 +152,7 @@ public class WeatherForecastTool : ITool
 
 #### 2. Manejo Consistente de Errores
 
-Implementa un manejo robusto de errores con mensajes informativos y mecanismos de recuperación adecuados.
+Implementa manejo de errores robusto con mensajes de error informativos y mecanismos de recuperación adecuados.
 
 ```python
 # Python example with comprehensive error handling
@@ -537,7 +541,7 @@ async def test_mcp_server_integration():
 
 ### 1. Estrategias de Caché
 
-Implementa estrategias de caché adecuadas para reducir la latencia y el uso de recursos:
+Implementa caché adecuado para reducir la latencia y el uso de recursos:
 
 ```csharp
 // C# example with caching
@@ -604,19 +608,20 @@ public class CachedWeatherTool : ITool
         };
     }
 }
+```
 
-#### 2. Dependency Injection and Testability
+#### 2. Inyección de Dependencias y Capacidad de Pruebas
 
-Design tools to receive their dependencies through constructor injection, making them testable and configurable:
+Diseña herramientas para recibir sus dependencias a través de la inyección de constructores, haciéndolas probables y configurables:
 
 ```java
-// Ejemplo en Java con inyección de dependencias
+// Java example with dependency injection
 public class CurrencyConversionTool implements Tool {
     private final ExchangeRateService exchangeService;
     private final CacheService cacheService;
     private final Logger logger;
     
-    // Dependencias inyectadas a través del constructor
+    // Dependencies injected through constructor
     public CurrencyConversionTool(
             ExchangeRateService exchangeService,
             CacheService cacheService,
@@ -626,51 +631,51 @@ public class CurrencyConversionTool implements Tool {
         this.logger = logger;
     }
     
-    // Implementación de la herramienta
+    // Tool implementation
     // ...
 }
 ```
 
-#### 3. Composable Tools
+#### 3. Herramientas Componibles
 
-Design tools that can be composed together to create more complex workflows:
+Diseña herramientas que puedan combinarse para crear flujos de trabajo más complejos:
 
 ```python
-# Ejemplo en Python mostrando herramientas componibles
+# Python example showing composable tools
 class DataFetchTool(Tool):
     def get_name(self):
         return "dataFetch"
     
-    # Implementación...
+    # Implementation...
 
 class DataAnalysisTool(Tool):
     def get_name(self):
         return "dataAnalysis"
     
-    # Esta herramienta puede usar resultados de la herramienta dataFetch
+    # This tool can use results from the dataFetch tool
     async def execute_async(self, request):
-        # Implementación...
+        # Implementation...
         pass
 
 class DataVisualizationTool(Tool):
     def get_name(self):
         return "dataVisualize"
     
-    # Esta herramienta puede usar resultados de la herramienta dataAnalysis
+    # This tool can use results from the dataAnalysis tool
     async def execute_async(self, request):
-        # Implementación...
+        # Implementation...
         pass
 
-# Estas herramientas pueden usarse de forma independiente o como parte de un flujo de trabajo
+# These tools can be used independently or as part of a workflow
 ```
 
-### Schema Design Best Practices
+### Mejores Prácticas de Diseño de Esquemas
 
-The schema is the contract between the model and your tool. Well-designed schemas lead to better tool usability.
+El esquema es el contrato entre el modelo y tu herramienta. Los esquemas bien diseñados conducen a una mejor usabilidad de las herramientas.
 
-#### 1. Clear Parameter Descriptions
+#### 1. Descripciones Claras de Parámetros
 
-Always include descriptive information for each parameter:
+Incluye siempre información descriptiva para cada parámetro:
 
 ```csharp
 public object GetSchema()
@@ -680,25 +685,25 @@ public object GetSchema()
         properties = new {
             query = new { 
                 type = "string", 
-                description = "Texto de consulta de búsqueda. Usa palabras clave precisas para mejores resultados." 
+                description = "Search query text. Use precise keywords for better results." 
             },
             filters = new {
                 type = "object",
-                description = "Filtros opcionales para acotar los resultados de búsqueda",
+                description = "Optional filters to narrow down search results",
                 properties = new {
                     dateRange = new { 
                         type = "string", 
-                        description = "Rango de fechas en formato YYYY-MM-DD:YYYY-MM-DD" 
+                        description = "Date range in format YYYY-MM-DD:YYYY-MM-DD" 
                     },
                     category = new { 
                         type = "string", 
-                        description = "Nombre de la categoría para filtrar" 
+                        description = "Category name to filter by" 
                     }
                 }
             },
             limit = new { 
                 type = "integer", 
-                description = "Número máximo de resultados a devolver (1-50)",
+                description = "Maximum number of results to return (1-50)",
                 default = 10
             }
         },
@@ -707,9 +712,9 @@ public object GetSchema()
 }
 ```
 
-#### 2. Validation Constraints
+#### 2. Restricciones de Validación
 
-Include validation constraints to prevent invalid inputs:
+Incluye restricciones de validación para evitar entradas inválidas:
 
 ```java
 Map<String, Object> getSchema() {
@@ -718,25 +723,25 @@ Map<String, Object> getSchema() {
     
     Map<String, Object> properties = new HashMap<>();
     
-    // Propiedad de correo electrónico con validación de formato
+    // Email property with format validation
     Map<String, Object> email = new HashMap<>();
     email.put("type", "string");
     email.put("format", "email");
-    email.put("description", "Dirección de correo electrónico del usuario");
+    email.put("description", "User email address");
     
-    // Propiedad de edad con restricciones numéricas
+    // Age property with numeric constraints
     Map<String, Object> age = new HashMap<>();
     age.put("type", "integer");
     age.put("minimum", 13);
     age.put("maximum", 120);
-    age.put("description", "Edad del usuario en años");
+    age.put("description", "User age in years");
     
-    // Propiedad enumerada
+    // Enumerated property
     Map<String, Object> subscription = new HashMap<>();
     subscription.put("type", "string");
     subscription.put("enum", Arrays.asList("free", "basic", "premium"));
     subscription.put("default", "free");
-    subscription.put("description", "Nivel de suscripción");
+    subscription.put("description", "Subscription tier");
     
     properties.put("email", email);
     properties.put("age", age);
@@ -749,17 +754,17 @@ Map<String, Object> getSchema() {
 }
 ```
 
-#### 3. Consistent Return Structures
+#### 3. Estructuras de Respuesta Consistentes
 
-Maintain consistency in your response structures to make it easier for models to interpret results:
+Mantén la consistencia en tus estructuras de respuesta para facilitar la interpretación de resultados por parte de los modelos:
 
 ```python
 async def execute_async(self, request):
     try:
-        # Procesar solicitud
+        # Process request
         results = await self._search_database(request.parameters["query"])
         
-        # Siempre devuelve una estructura consistente
+        # Always return a consistent structure
         return ToolResponse(
             result={
                 "matches": [self._format_item(item) for item in results],
@@ -780,7 +785,7 @@ async def execute_async(self, request):
         )
     
 def _format_item(self, item):
-    """Asegura que cada elemento tenga una estructura consistente"""
+    """Ensures each item has a consistent structure"""
     return {
         "id": item.id,
         "title": item.title,
@@ -790,13 +795,13 @@ def _format_item(self, item):
     }
 ```
 
-### Error Handling
+### Manejo de Errores
 
-Robust error handling is crucial for MCP tools to maintain reliability.
+El manejo robusto de errores es crucial para que las herramientas MCP mantengan su confiabilidad.
 
-#### 1. Graceful Error Handling
+#### 1. Manejo Elegante de Errores
 
-Handle errors at appropriate levels and provide informative messages:
+Maneja errores en niveles apropiados y proporciona mensajes informativos:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -814,39 +819,39 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
         }
         catch (FileNotFoundException)
         {
-            throw new ToolExecutionException($"Archivo no encontrado: {fileId}");
+            throw new ToolExecutionException($"File not found: {fileId}");
         }
         catch (UnauthorizedAccessException)
         {
-            throw new ToolExecutionException("No tienes permiso para acceder a este archivo");
+            throw new ToolExecutionException("You don't have permission to access this file");
         }
         catch (Exception ex) when (ex is IOException || ex is TimeoutException)
         {
-            _logger.LogError(ex, "Error al acceder al archivo {FileId}", fileId);
-            throw new ToolExecutionException("Error al acceder al archivo: El servicio está temporalmente no disponible");
+            _logger.LogError(ex, "Error accessing file {FileId}", fileId);
+            throw new ToolExecutionException("Error accessing file: The service is temporarily unavailable");
         }
     }
     catch (JsonException)
     {
-        throw new ToolExecutionException("Formato de ID de archivo inválido");
+        throw new ToolExecutionException("Invalid file ID format");
     }
     catch (Exception ex)
     {
-        _logger.LogError(ex, "Error inesperado en FileAccessTool");
-        throw new ToolExecutionException("Ocurrió un error inesperado");
+        _logger.LogError(ex, "Unexpected error in FileAccessTool");
+        throw new ToolExecutionException("An unexpected error occurred");
     }
 }
 ```
 
-#### 2. Structured Error Responses
+#### 2. Respuestas de Error Estructuradas
 
-Return structured error information when possible:
+Devuelve información de error estructurada cuando sea posible:
 
 ```java
 @Override
 public ToolResponse execute(ToolRequest request) {
     try {
-        // Implementación
+        // Implementation
     } catch (Exception ex) {
         Map<String, Object> errorResult = new HashMap<>();
         
@@ -864,45 +869,45 @@ public ToolResponse execute(ToolRequest request) {
                 .build();
         }
         
-        // Relanzar otras excepciones como ToolExecutionException
-        throw new ToolExecutionException("La ejecución de la herramienta falló: " + ex.getMessage(), ex);
+        // Re-throw other exceptions as ToolExecutionException
+        throw new ToolExecutionException("Tool execution failed: " + ex.getMessage(), ex);
     }
 }
 ```
 
-#### 3. Retry Logic
+#### 3. Lógica de Reintento
 
-Implement appropriate retry logic for transient failures:
+Implementa lógica de reintento adecuada para fallos transitorios:
 
 ```python
 async def execute_async(self, request):
     max_retries = 3
     retry_count = 0
-    base_delay = 1  # segundos
+    base_delay = 1  # seconds
     
     while retry_count < max_retries:
         try:
-            # Llamar a la API externa
+            # Call external API
             return await self._call_api(request.parameters)
         except TransientError as e:
             retry_count += 1
             if retry_count >= max_retries:
-                raise ToolExecutionException(f"La operación falló después de {max_retries} intentos: {str(e)}")
+                raise ToolExecutionException(f"Operation failed after {max_retries} attempts: {str(e)}")
                 
-            # Retroceso exponencial
+            # Exponential backoff
             delay = base_delay * (2 ** (retry_count - 1))
-            logging.warning(f"Error transitorio, reintentando en {delay}s: {str(e)}")
+            logging.warning(f"Transient error, retrying in {delay}s: {str(e)}")
             await asyncio.sleep(delay)
         except Exception as e:
-            # Error no transitorio, no reintentar
-            raise ToolExecutionException(f"La operación falló: {str(e)}")
+            # Non-transient error, don't retry
+            raise ToolExecutionException(f"Operation failed: {str(e)}")
 ```
 
-### Performance Optimization
+### Optimización del Rendimiento
 
-#### 1. Caching
+#### 1. Caché
 
-Implement caching for expensive operations:
+Implementa caché para operaciones costosas:
 
 ```csharp
 public class CachedDataTool : IMcpTool
@@ -916,42 +921,41 @@ public class CachedDataTool : IMcpTool
         _cache = cache;
     }
     
-    public async Task
-
-ExecuteAsync(ToolRequest request)
-{
-    var query = request.Parameters.GetProperty("query").GetString();
-    
-    // Crear clave de caché basada en los parámetros
-    var cacheKey = $"data_query_{ComputeHash(query)}";
-    
-    // Intentar obtener primero desde la caché
-    if (_cache.TryGetValue(cacheKey, out var cachedResult))
+    public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
     {
-        return new ToolResponse { Result = cachedResult };
+        var query = request.Parameters.GetProperty("query").GetString();
+        
+        // Create cache key based on parameters
+        var cacheKey = $"data_query_{ComputeHash(query)}";
+        
+        // Try to get from cache first
+        if (_cache.TryGetValue(cacheKey, out var cachedResult))
+        {
+            return new ToolResponse { Result = cachedResult };
+        }
+        
+        // Cache miss - perform actual query
+        var result = await _database.QueryAsync(query);
+        
+        // Store in cache with expiration
+        var cacheOptions = new MemoryCacheEntryOptions()
+            .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
+            
+        _cache.Set(cacheKey, JsonSerializer.SerializeToElement(result), cacheOptions);
+        
+        return new ToolResponse { Result = JsonSerializer.SerializeToElement(result) };
     }
     
-    // Caché vacía: realizar la consulta real
-    var result = await _database.QueryAsync(query);
-    
-    // Almacenar en caché con expiración
-    var cacheOptions = new MemoryCacheEntryOptions()
-        .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
-        
-    _cache.Set(cacheKey, JsonSerializer.SerializeToElement(result), cacheOptions);
-    
-    return new ToolResponse { Result = JsonSerializer.SerializeToElement(result) };
-}
-
-private string ComputeHash(string input)
-{
-    // Implementación para generar un hash estable para la clave de caché
+    private string ComputeHash(string input)
+    {
+        // Implementation to generate stable hash for cache key
+    }
 }
 ```
 
-#### 2. Asynchronous Processing
+#### 2. Procesamiento Asíncrono
 
-Use asynchronous programming patterns for I/O-bound operations:
+Utiliza patrones de programación asíncronos para operaciones dependientes de E/S:
 
 ```java
 public class AsyncDocumentProcessingTool implements Tool {
@@ -962,23 +966,23 @@ public class AsyncDocumentProcessingTool implements Tool {
     public ToolResponse execute(ToolRequest request) {
         String documentId = request.getParameters().get("documentId").asText();
         
-        // Para operaciones de larga duración, devolver un ID de procesamiento inmediatamente
+        // For long-running operations, return a processing ID immediately
         String processId = UUID.randomUUID().toString();
         
-        // Iniciar procesamiento asíncrono
+        // Start async processing
         CompletableFuture.runAsync(() -> {
             try {
-                // Realizar operación de larga duración
+                // Perform long-running operation
                 documentService.processDocument(documentId);
                 
-                // Actualizar estado (normalmente se almacenaría en una base de datos)
+                // Update status (would typically be stored in a database)
                 processStatusRepository.updateStatus(processId, "completed");
             } catch (Exception ex) {
                 processStatusRepository.updateStatus(processId, "failed", ex.getMessage());
             }
         }, executorService);
         
-        // Devolver respuesta inmediata con el ID del proceso
+        // Return immediate response with process ID
         Map<String, Object> result = new HashMap<>();
         result.put("processId", processId);
         result.put("status", "processing");
@@ -987,7 +991,7 @@ public class AsyncDocumentProcessingTool implements Tool {
         return new ToolResponse.Builder().setResult(result).build();
     }
     
-    // Herramienta complementaria para verificar el estado
+    // Companion status check tool
     public class ProcessStatusTool implements Tool {
         @Override
         public ToolResponse execute(ToolRequest request) {
@@ -1000,35 +1004,35 @@ public class AsyncDocumentProcessingTool implements Tool {
 }
 ```
 
-#### 3. Resource Throttling
+#### 3. Limitación de Recursos
 
-Implement resource throttling to prevent overload:
+Implementa limitación de recursos para prevenir sobrecargas:
 
 ```python
 class ThrottledApiTool(Tool):
     def __init__(self):
         self.rate_limiter = TokenBucketRateLimiter(
-            tokens_per_second=5,  # Permitir 5 solicitudes por segundo
-            bucket_size=10        # Permitir ráfagas de hasta 10 solicitudes
+            tokens_per_second=5,  # Allow 5 requests per second
+            bucket_size=10        # Allow bursts up to 10 requests
         )
     
     async def execute_async(self, request):
-        # Verificar si podemos proceder o necesitamos esperar
+        # Check if we can proceed or need to wait
         delay = self.rate_limiter.get_delay_time()
         
         if delay > 0:
-            if delay > 2.0:  # Si la espera es demasiado larga
+            if delay > 2.0:  # If wait is too long
                 raise ToolExecutionException(
-                    f"Se excedió el límite de velocidad. Por favor, inténtelo de nuevo en {delay:.1f} segundos."
+                    f"Rate limit exceeded. Please try again in {delay:.1f} seconds."
                 )
             else:
-                # Esperar el tiempo de retraso adecuado
+                # Wait for the appropriate delay time
                 await asyncio.sleep(delay)
         
-        # Consumir un token y proceder con la solicitud
+        # Consume a token and proceed with the request
         self.rate_limiter.consume()
         
-        # Llamar a la API
+        # Call API
         result = await self._call_api(request.parameters)
         return ToolResponse(result=result)
 
@@ -1046,7 +1050,7 @@ class TokenBucketRateLimiter:
             if self.tokens >= 1:
                 return 0
             
-            # Calcular el tiempo hasta que esté disponible el próximo token
+            # Calculate time until next token available
             return (1 - self.tokens) / self.tokens_per_second
     
     async def consume(self):
@@ -1058,86 +1062,86 @@ class TokenBucketRateLimiter:
         now = time.time()
         elapsed = now - self.last_refill
         
-        # Agregar nuevos tokens según el tiempo transcurrido
+        # Add new tokens based on elapsed time
         new_tokens = elapsed * self.tokens_per_second
         self.tokens = min(self.bucket_size, self.tokens + new_tokens)
         self.last_refill = now
 ```
 
-### Security Best Practices
+### Mejores Prácticas de Seguridad
 
-#### 1. Input Validation
+#### 1. Validación de Entradas
 
-Always validate input parameters thoroughly:
+Valida siempre los parámetros de entrada de manera exhaustiva:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 {
-    // Validar que los parámetros existan
+    // Validate parameters exist
     if (!request.Parameters.TryGetProperty("query", out var queryProp))
     {
-        throw new ToolExecutionException("Falta el parámetro requerido: query");
+        throw new ToolExecutionException("Missing required parameter: query");
     }
     
-    // Validar el tipo correcto
+    // Validate correct type
     if (queryProp.ValueKind != JsonValueKind.String)
     {
-        throw new ToolExecutionException("El parámetro query debe ser una cadena");
+        throw new ToolExecutionException("Query parameter must be a string");
     }
     
     var query = queryProp.GetString();
     
-    // Validar el contenido de la cadena
+    // Validate string content
     if (string.IsNullOrWhiteSpace(query))
     {
-        throw new ToolExecutionException("El parámetro query no puede estar vacío");
+        throw new ToolExecutionException("Query parameter cannot be empty");
     }
     
     if (query.Length > 500)
     {
-        throw new ToolExecutionException("El parámetro query excede la longitud máxima de 500 caracteres");
+        throw new ToolExecutionException("Query parameter exceeds maximum length of 500 characters");
     }
     
-    // Verificar ataques de inyección SQL si corresponde
+    // Check for SQL injection attacks if applicable
     if (ContainsSqlInjection(query))
     {
-        throw new ToolExecutionException("Consulta inválida: contiene SQL potencialmente inseguro");
+        throw new ToolExecutionException("Invalid query: contains potentially unsafe SQL");
     }
     
-    // Proceder con la ejecución
+    // Proceed with execution
     // ...
 }
 ```
 
-#### 2. Authorization Checks
+#### 2. Verificaciones de Autorización
 
-Implement proper authorization checks:
+Implementa verificaciones de autorización adecuadas:
 
 ```java
 @Override
 public ToolResponse execute(ToolRequest request) {
-    // Obtener el contexto del usuario desde la solicitud
+    // Get user context from request
     UserContext user = request.getContext().getUserContext();
     
-    // Verificar si el usuario tiene los permisos requeridos
+    // Check if user has required permissions
     if (!authorizationService.hasPermission(user, "documents:read")) {
-        throw new ToolExecutionException("El usuario no tiene permiso para acceder a los documentos");
+        throw new ToolExecutionException("User does not have permission to access documents");
     }
     
-    // Para recursos específicos, verificar acceso a ese recurso
+    // For specific resources, check access to that resource
     String documentId = request.getParameters().get("documentId").asText();
     if (!documentService.canUserAccess(user.getId(), documentId)) {
-        throw new ToolExecutionException("Acceso denegado al documento solicitado");
+        throw new ToolExecutionException("Access denied to the requested document");
     }
     
-    // Proceder con la ejecución de la herramienta
+    // Proceed with tool execution
     // ...
 }
 ```
 
-#### 3. Sensitive Data Handling
+#### 3. Manejo de Datos Sensibles
 
-Handle sensitive data carefully:
+Maneja los datos sensibles con cuidado:
 
 ```python
 class SecureDataTool(Tool):
@@ -1155,56 +1159,56 @@ class SecureDataTool(Tool):
         user_id = request.parameters["userId"]
         include_sensitive = request.parameters.get("includeSensitiveData", False)
         
-        # Obtener datos del usuario
+        # Get user data
         user_data = await self.user_service.get_user_data(user_id)
         
-        # Filtrar campos sensibles a menos que se soliciten explícitamente Y estén autorizados
+        # Filter sensitive fields unless explicitly requested AND authorized
         if not include_sensitive or not self._is_authorized_for_sensitive_data(request):
             user_data = self._redact_sensitive_fields(user_data)
         
         return ToolResponse(result=user_data)
     
     def _is_authorized_for_sensitive_data(self, request):
-        # Verificar nivel de autorización en el contexto de la solicitud
+        # Check authorization level in request context
         auth_level = request.context.get("authorizationLevel")
         return auth_level == "admin"
     
     def _redact_sensitive_fields(self, user_data):
-        # Crear una copia para evitar modificar el original
+        # Create a copy to avoid modifying the original
         redacted = user_data.copy()
         
-        # Redactar campos sensibles específicos
+        # Redact specific sensitive fields
         sensitive_fields = ["ssn", "creditCardNumber", "password"]
         for field in sensitive_fields:
             if field in redacted:
                 redacted[field] = "REDACTED"
         
-        # Redactar datos sensibles anidados
+        # Redact nested sensitive data
         if "financialInfo" in redacted:
             redacted["financialInfo"] = {"available": True, "accessRestricted": True}
         
         return redacted
 ```
 
-## Testing Best Practices for MCP Tools
+## Mejores Prácticas de Pruebas para Herramientas MCP
 
-Comprehensive testing ensures that MCP tools function correctly, handle edge cases, and integrate properly with the rest of the system.
+Las pruebas exhaustivas garantizan que las herramientas MCP funcionen correctamente, manejen casos extremos e integren adecuadamente con el resto del sistema.
 
-### Unit Testing
+### Pruebas Unitarias
 
-#### 1. Test Each Tool in Isolation
+#### 1. Prueba Cada Herramienta de Forma Aislada
 
-Create focused tests for each tool's functionality:
+Crea pruebas enfocadas en la funcionalidad de cada herramienta:
 
 ```csharp
 [Fact]
 public async Task WeatherTool_ValidLocation_ReturnsCorrectForecast()
 {
-    // Preparar
+    // Arrange
     var mockWeatherService = new Mock<IWeatherService>();
     mockWeatherService
         .Setup(s => s.GetForecastAsync("Seattle", 3))
-        .ReturnsAsync(new WeatherForecast(/* datos de prueba */));
+        .ReturnsAsync(new WeatherForecast(/* test data */));
     
     var tool = new WeatherForecastTool(mockWeatherService.Object);
     
@@ -1216,10 +1220,10 @@ public async Task WeatherTool_ValidLocation_ReturnsCorrectForecast()
         })
     );
     
-    // Actuar
+    // Act
     var response = await tool.ExecuteAsync(request);
     
-    // Verificar
+    // Assert
     Assert.NotNull(response);
     var result = JsonSerializer.Deserialize<WeatherForecast>(response.Result);
     Assert.Equal("Seattle", result.Location);
@@ -1229,11 +1233,11 @@ public async Task WeatherTool_ValidLocation_ReturnsCorrectForecast()
 [Fact]
 public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
 {
-    // Preparar
+    // Arrange
     var mockWeatherService = new Mock<IWeatherService>();
     mockWeatherService
         .Setup(s => s.GetForecastAsync("InvalidLocation", It.IsAny<int>()))
-        .ThrowsAsync(new LocationNotFoundException("Ubicación no encontrada"));
+        .ThrowsAsync(new LocationNotFoundException("Location not found"));
     
     var tool = new WeatherForecastTool(mockWeatherService.Object);
     
@@ -1245,36 +1249,36 @@ public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
         })
     );
     
-    // Actuar y verificar
+    // Act & Assert
     var exception = await Assert.ThrowsAsync<ToolExecutionException>(
         () => tool.ExecuteAsync(request)
     );
     
-    Assert.Contains("Ubicación no encontrada", exception.Message);
+    Assert.Contains("Location not found", exception.Message);
 }
 ```
 
-#### 2. Schema Validation Testing
+#### 2. Pruebas de Validación de Esquemas
 
-Test that schemas are valid and properly enforce constraints:
+Prueba que los esquemas sean válidos y que apliquen correctamente las restricciones:
 
 ```java
 @Test
 public void testSchemaValidation() {
-    // Crear instancia de la herramienta
+    // Create tool instance
     SearchTool searchTool = new SearchTool();
     
-    // Obtener esquema
+    // Get schema
     Object schema = searchTool.getSchema();
     
-    // Convertir esquema a JSON para validación
+    // Convert schema to JSON for validation
     String schemaJson = objectMapper.writeValueAsString(schema);
     
-    // Validar que el esquema sea un JSONSchema válido
+    // Validate schema is valid JSONSchema
     JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
     JsonSchema jsonSchema = factory.getJsonSchema(schemaJson);
     
-    // Probar parámetros válidos
+    // Test valid parameters
     JsonNode validParams = objectMapper.createObjectNode()
         .put("query", "test query")
         .put("limit", 5);
@@ -1282,14 +1286,14 @@ public void testSchemaValidation() {
     ProcessingReport validReport = jsonSchema.validate(validParams);
     assertTrue(validReport.isSuccess());
     
-    // Probar parámetro requerido faltante
+    // Test missing required parameter
     JsonNode missingRequired = objectMapper.createObjectNode()
         .put("limit", 5);
         
     ProcessingReport missingReport = jsonSchema.validate(missingRequired);
     assertFalse(missingReport.isSuccess());
     
-    // Probar tipo de parámetro inválido
+    // Test invalid parameter type
     JsonNode invalidType = objectMapper.createObjectNode()
         .put("query", "test")
         .put("limit", "not-a-number");
@@ -1299,21 +1303,21 @@ public void testSchemaValidation() {
 }
 ```
 
-#### 3. Error Handling Tests
+#### 3. Pruebas de Manejo de Errores
 
-Create specific tests for error conditions:
+Crea pruebas específicas para condiciones de error:
 
 ```python
 @pytest.mark.asyncio
 async def test_api_tool_handles_timeout():
-    # Preparar
-    tool = ApiTool(timeout=0.1)  # Tiempo de espera muy corto
+    # Arrange
+    tool = ApiTool(timeout=0.1)  # Very short timeout
     
-    # Simular una solicitud que excederá el tiempo de espera
+    # Mock a request that will time out
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
-            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # Más largo que el tiempo de espera
+            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # Longer than timeout
         )
         
         request = ToolRequest(
@@ -1321,19 +1325,19 @@ async def test_api_tool_handles_timeout():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # Actuar y verificar
+        # Act & Assert
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # Verificar mensaje de excepción
+        # Verify exception message
         assert "timed out" in str(exc_info.value).lower()
 
 @pytest.mark.asyncio
 async def test_api_tool_handles_rate_limiting():
-    # Preparar
+    # Arrange
     tool = ApiTool()
     
-    # Simular una respuesta con límite de velocidad
+    # Mock a rate-limited response
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
@@ -1347,27 +1351,27 @@ async def test_api_tool_handles_rate_limiting():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # Actuar y verificar
+        # Act & Assert
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # Verificar que la excepción contenga información sobre el límite de velocidad
+        # Verify exception contains rate limit information
         error_msg = str(exc_info.value).lower()
         assert "rate limit" in error_msg
         assert "try again" in error_msg
 ```
 
-### Integration Testing
+### Pruebas de Integración
 
-#### 1. Tool Chain Testing
+#### 1. Pruebas de Cadena de Herramientas
 
-Test tools working together in expected combinations:
+Prueba herramientas trabajando juntas en combinaciones esperadas:
 
 ```csharp
 [Fact]
 public async Task DataProcessingWorkflow_CompletesSuccessfully()
 {
-    // Preparar
+    // Arrange
     var dataFetchTool = new DataFetchTool(mockDataService.Object);
     var analysisTools = new DataAnalysisTool(mockAnalysisService.Object);
     var visualizationTool = new DataVisualizationTool(mockVisualizationService.Object);
@@ -1379,112 +1383,1001 @@ public async Task DataProcessingWorkflow_CompletesSuccessfully()
     
     var workflowExecutor = new WorkflowExecutor(toolRegistry);
     
-    // Actuar
-> ("csvProcessor",
-            ("code", _) => "codeProcessor",
-            _ => throw new InvalidOperationException("Unsupported content type or operation")
+    // Act
+    var result = await workflowExecutor.ExecuteWorkflowAsync(new[] {
+        new ToolCall("dataFetch", new { source = "sales2023" }),
+        new ToolCall("dataAnalysis", ctx => new { 
+            data = ctx.GetResult("dataFetch"),
+            analysis = "trend" 
+        }),
+        new ToolCall("dataVisualize", ctx => new {
+            analysisResult = ctx.GetResult("dataAnalysis"),
+            type = "line-chart"
+        })
+    });
+    
+    // Assert
+    Assert.NotNull(result);
+    Assert.True(result.Success);
+    Assert.NotNull(result.GetResult("dataVisualize"));
+    Assert.Contains("chartUrl", result.GetResult("dataVisualize").ToString());
+}
+```
+
+#### 2. Pruebas de Servidor MCP
+
+Prueba el servidor MCP con registro completo de herramientas y ejecución:
+
+```java
+@SpringBootTest
+@AutoConfigureMockMvc
+public class McpServerIntegrationTest {
+    
+    @Autowired
+    private MockMvc mockMvc;
+    
+    @Autowired
+    private ObjectMapper objectMapper;
+    
+    @Test
+    public void testToolDiscovery() throws Exception {
+        // Test the discovery endpoint
+        mockMvc.perform(get("/mcp/tools"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.tools").isArray())
+            .andExpect(jsonPath("$.tools[*].name").value(hasItems(
+                "weatherForecast", "calculator", "documentSearch"
+            )));
+    }
+    
+    @Test
+    public void testToolExecution() throws Exception {
+        // Create tool request
+        Map<String, Object> request = new HashMap<>();
+        request.put("toolName", "calculator");
+        
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("operation", "add");
+        parameters.put("a", 5);
+        parameters.put("b", 7);
+        request.put("parameters", parameters);
+        
+        // Send request and verify response
+        mockMvc.perform(post("/mcp/execute")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(request)))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.result.value").value(12));
+    }
+    
+    @Test
+    public void testToolValidation() throws Exception {
+        // Create invalid tool request
+        Map<String, Object> request = new HashMap<>();
+        request.put("toolName", "calculator");
+        
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("operation", "divide");
+        parameters.put("a", 10);
+        // Missing parameter "b"
+        request.put("parameters", parameters);
+        
+        // Send request and verify error response
+        mockMvc.perform(post("/mcp/execute")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(request)))
+            .andExpect(status().isBadRequest())
+            .andExpect(jsonPath("$.error").exists());
+    }
+}
+```
+
+#### 3. Pruebas de Extremo a Extremo
+
+Prueba flujos completos desde el prompt del modelo hasta la ejecución de herramientas:
+
+```python
+@pytest.mark.asyncio
+async def test_model_interaction_with_tool():
+    # Arrange - Set up MCP client and mock model
+    mcp_client = McpClient(server_url="http://localhost:5000")
+    
+    # Mock model responses
+    mock_model = MockLanguageModel([
+        MockResponse(
+            "What's the weather in Seattle?",
+            tool_calls=[{
+                "tool_name": "weatherForecast",
+                "parameters": {"location": "Seattle", "days": 3}
+            }]
+        ),
+        MockResponse(
+            "Here's the weather forecast for Seattle:\n- Today: 65°F, Partly Cloudy\n- Tomorrow: 68°F, Sunny\n- Day after: 62°F, Rain",
+            tool_calls=[]
+        )
+    ])
+    
+    # Mock weather tool response
+    with aioresponses() as mocked:
+        mocked.post(
+            "http://localhost:5000/mcp/execute",
+            payload={
+                "result": {
+                    "location": "Seattle",
+                    "forecast": [
+                        {"date": "2023-06-01", "temperature": 65, "conditions": "Partly Cloudy"},
+                        {"date": "2023-06-02", "temperature": 68, "conditions": "Sunny"},
+                        {"date": "2023-06-03", "temperature": 62, "conditions": "Rain"}
+                    ]
+                }
+            }
+        )
+        
+        # Act
+        response = await mcp_client.send_prompt(
+            "What's the weather in Seattle?",
+            model=mock_model,
+            allowed_tools=["weatherForecast"]
+        )
+        
+        # Assert
+        assert "Seattle" in response.generated_text
+        assert "65" in response.generated_text
+        assert "Sunny" in response.generated_text
+        assert "Rain" in response.generated_text
+        assert len(response.tool_calls) == 1
+        assert response.tool_calls[0].tool_name == "weatherForecast"
+```
+
+### Pruebas de Rendimiento
+
+#### 1. Pruebas de Carga
+
+Prueba cuántas solicitudes concurrentes puede manejar tu servidor MCP:
+
+```csharp
+[Fact]
+public async Task McpServer_HandlesHighConcurrency()
+{
+    // Arrange
+    var server = new McpServer(
+        name: "TestServer",
+        version: "1.0",
+        maxConcurrentRequests: 100
+    );
+    
+    server.RegisterTool(new FastExecutingTool());
+    await server.StartAsync();
+    
+    var client = new McpClient("http://localhost:5000");
+    
+    // Act
+    var tasks = new List<Task<McpResponse>>();
+    for (int i = 0; i < 1000; i++)
+    {
+        tasks.Add(client.ExecuteToolAsync("fastTool", new { iteration = i }));
+    }
+    
+    var results = await Task.WhenAll(tasks);
+    
+    // Assert
+    Assert.Equal(1000, results.Length);
+    Assert.All(results, r => Assert.NotNull(r));
+}
+```
+
+#### 2. Pruebas de Estrés
+
+Prueba el sistema bajo carga extrema:
+
+```java
+@Test
+public void testServerUnderStress() {
+    int maxUsers = 1000;
+    int rampUpTimeSeconds = 60;
+    int testDurationSeconds = 300;
+    
+    // Set up JMeter for stress testing
+    StandardJMeterEngine jmeter = new StandardJMeterEngine();
+    
+    // Configure JMeter test plan
+    HashTree testPlanTree = new HashTree();
+    
+    // Create test plan, thread group, samplers, etc.
+    TestPlan testPlan = new TestPlan("MCP Server Stress Test");
+    testPlanTree.add(testPlan);
+    
+    ThreadGroup threadGroup = new ThreadGroup();
+    threadGroup.setNumThreads(maxUsers);
+    threadGroup.setRampUp(rampUpTimeSeconds);
+    threadGroup.setScheduler(true);
+    threadGroup.setDuration(testDurationSeconds);
+    
+    testPlanTree.add(threadGroup);
+    
+    // Add HTTP sampler for tool execution
+    HTTPSampler toolExecutionSampler = new HTTPSampler();
+    toolExecutionSampler.setDomain("localhost");
+    toolExecutionSampler.setPort(5000);
+    toolExecutionSampler.setPath("/mcp/execute");
+    toolExecutionSampler.setMethod("POST");
+    toolExecutionSampler.addArgument("toolName", "calculator");
+    toolExecutionSampler.addArgument("parameters", "{\"operation\":\"add\",\"a\":5,\"b\":7}");
+    
+    threadGroup.add(toolExecutionSampler);
+    
+    // Add listeners
+    SummaryReport summaryReport = new SummaryReport();
+    threadGroup.add(summaryReport);
+    
+    // Run test
+    jmeter.configure(testPlanTree);
+    jmeter.run();
+    
+    // Validate results
+    assertEquals(0, summaryReport.getErrorCount());
+    assertTrue(summaryReport.getAverage() < 200); // Average response time < 200ms
+    assertTrue(summaryReport.getPercentile(90.0) < 500); // 90th percentile < 500ms
+}
+```
+
+#### 3. Monitoreo y Perfilado
+
+Configura monitoreo para análisis de rendimiento a largo plazo:
+
+```python
+# Configure monitoring for an MCP server
+def configure_monitoring(server):
+    # Set up Prometheus metrics
+    prometheus_metrics = {
+        "request_count": Counter("mcp_requests_total", "Total MCP requests"),
+        "request_latency": Histogram(
+            "mcp_request_duration_seconds", 
+            "Request duration in seconds",
+            buckets=[0.01, 0.05, 0.1, 0.5, 1.0, 2.5, 5.0, 10.0]
+        ),
+        "tool_execution_count": Counter(
+            "mcp_tool_executions_total", 
+            "Tool execution count",
+            labelnames=["tool_name"]
+        ),
+        "tool_execution_latency": Histogram(
+            "mcp_tool_duration_seconds", 
+            "Tool execution duration in seconds",
+            labelnames=["tool_name"],
+            buckets=[0.01, 0.05, 0.1, 0.5, 1.0, 2.5, 5.0, 10.0]
+        ),
+        "tool_errors": Counter(
+            "mcp_tool_errors_total",
+            "Tool execution errors",
+            labelnames=["tool_name", "error_type"]
+        )
+    }
+    
+    # Add middleware for timing and recording metrics
+    server.add_middleware(PrometheusMiddleware(prometheus_metrics))
+    
+    # Expose metrics endpoint
+    @server.router.get("/metrics")
+    async def metrics():
+        return generate_latest()
+    
+    return server
+```
+
+## Patrones de Diseño de Flujos de Trabajo MCP
+
+Los flujos de trabajo MCP bien diseñados mejoran la eficiencia, confiabilidad y mantenibilidad. Aquí hay patrones clave a seguir:
+
+### 1. Patrón de Cadena de Herramientas
+
+Conecta múltiples herramientas en una secuencia donde la salida de cada herramienta se convierte en la entrada para la siguiente:
+
+```python
+# Python Chain of Tools implementation
+class ChainWorkflow:
+    def __init__(self, tools_chain):
+        self.tools_chain = tools_chain  # List of tool names to execute in sequence
+    
+    async def execute(self, mcp_client, initial_input):
+        current_result = initial_input
+        all_results = {"input": initial_input}
+        
+        for tool_name in self.tools_chain:
+            # Execute each tool in the chain, passing previous result
+            response = await mcp_client.execute_tool(tool_name, current_result)
+            
+            # Store result and use as input for next tool
+            all_results[tool_name] = response.result
+            current_result = response.result
+        
+        return {
+            "final_result": current_result,
+            "all_results": all_results
+        }
+
+# Example usage
+data_processing_chain = ChainWorkflow([
+    "dataFetch",
+    "dataCleaner",
+    "dataAnalyzer",
+    "dataVisualizer"
+])
+
+result = await data_processing_chain.execute(
+    mcp_client,
+    {"source": "sales_database", "table": "transactions"}
+)
+```
+
+### 2. Patrón de Despachador
+
+Utiliza una herramienta central que despache a herramientas especializadas según la entrada:
+
+```csharp
+public class ContentDispatcherTool : IMcpTool
+{
+    private readonly IMcpClient _mcpClient;
+    
+    public ContentDispatcherTool(IMcpClient mcpClient)
+    {
+        _mcpClient = mcpClient;
+    }
+    
+    public string Name => "contentProcessor";
+    public string Description => "Processes content of various types";
+    
+    public object GetSchema()
+    {
+        return new {
+            type = "object",
+            properties = new {
+                content = new { type = "string" },
+                contentType = new { 
+                    type = "string",
+                    enum = new[] { "text", "html", "markdown", "csv", "code" }
+                },
+                operation = new { 
+                    type = "string",
+                    enum = new[] { "summarize", "analyze", "extract", "convert" }
+                }
+            },
+            required = new[] { "content", "contentType", "operation" }
+        };
+    }
+    
+    public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
+    {
+        var content = request.Parameters.GetProperty("content").GetString();
+        var contentType = request.Parameters.GetProperty("contentType").GetString();
+        var operation = request.Parameters.GetProperty("operation").GetString();
+        
+        // Determine which specialized tool to use
+        string targetTool = DetermineTargetTool(contentType, operation);
+        
+        // Forward to the specialized tool
+        var specializedResponse = await _mcpClient.ExecuteToolAsync(
+            targetTool,
+            new { content, options = GetOptionsForTool(targetTool, operation) }
+        );
+        
+        return new ToolResponse { Result = specializedResponse.Result };
+    }
+    
+    private string DetermineTargetTool(string contentType, string operation)
+    {
+        return (contentType, operation) switch
+        {
+            ("text", "summarize") => "textSummarizer",
+            ("text", "analyze") => "textAnalyzer",
+            ("html", _) => "htmlProcessor",
+            ("markdown", _) => "markdownProcessor",
+            ("csv", _) => "csvProcessor",
+            ("code", _) => "codeAnalyzer",
+            _ => throw new ToolExecutionException($"No tool available for {contentType}/{operation}")
         };
     }
     
     private object GetOptionsForTool(string toolName, string operation)
     {
+        // Return appropriate options for each specialized tool
         return toolName switch
         {
-            "textSummarizer" => new { method = "short" },
-            "textAnalyzer" => new { detailLevel = "high" },
-            "htmlProcessor" => new { sanitize = true },
-            "markdownProcessor" => new { render = true },
-            "csvProcessor" => new { delimiter = "," },
-            "codeProcessor" => new { language = "auto" },
-            _ => null
+            "textSummarizer" => new { length = "medium" },
+            "htmlProcessor" => new { cleanUp = true, operation },
+            // Options for other tools...
+            _ => new { }
         };
     }
 }
-"procesadorCSV",
+```
+
+### 3. Patrón de Procesamiento Paralelo
+
+Ejecuta múltiples herramientas simultáneamente para mayor eficiencia:
+
+```java
+public class ParallelDataProcessingWorkflow {
+    private final McpClient mcpClient;
+    
+    public ParallelDataProcessingWorkflow(McpClient mcpClient) {
+        this.mcpClient = mcpClient;
+    }
+    
+    public WorkflowResult execute(String datasetId) {
+        // Step 1: Fetch dataset metadata (synchronous)
+        ToolResponse metadataResponse = mcpClient.executeTool("datasetMetadata", 
+            Map.of("datasetId", datasetId));
+        
+        // Step 2: Launch multiple analyses in parallel
+        CompletableFuture<ToolResponse> statisticalAnalysis = CompletableFuture.supplyAsync(() ->
+            mcpClient.executeTool("statisticalAnalysis", Map.of(
+                "datasetId", datasetId,
+                "type", "comprehensive"
+            ))
+        );
+        
+        CompletableFuture<ToolResponse> correlationAnalysis = CompletableFuture.supplyAsync(() ->
+            mcpClient.executeTool("correlationAnalysis", Map.of(
+                "datasetId", datasetId,
+                "method", "pearson"
+            ))
+        );
+        
+        CompletableFuture<ToolResponse> outlierDetection = CompletableFuture.supplyAsync(() ->
+            mcpClient.executeTool("outlierDetection", Map.of(
+                "datasetId", datasetId,
+                "sensitivity", "medium"
+            ))
+        );
+        
+        // Wait for all parallel tasks to complete
+        CompletableFuture<Void> allAnalyses = CompletableFuture.allOf(
+            statisticalAnalysis, correlationAnalysis, outlierDetection
+        );
+        
+        allAnalyses.join();  // Wait for completion
+        
+        // Step 3: Combine results
+        Map<String, Object> combinedResults = new HashMap<>();
+        combinedResults.put("metadata", metadataResponse.getResult());
+        combinedResults.put("statistics", statisticalAnalysis.join().getResult());
+        combinedResults.put("correlations", correlationAnalysis.join().getResult());
+        combinedResults.put("outliers", outlierDetection.join().getResult());
+        
+        // Step 4: Generate summary report
+        ToolResponse summaryResponse = mcpClient.executeTool("reportGenerator", 
+            Map.of("analysisResults", combinedResults));
+        
+        // Return complete workflow result
+        WorkflowResult result = new WorkflowResult();
+        result.setDatasetId(datasetId);
+        result.setAnalysisResults(combinedResults);
+        result.setSummaryReport(summaryResponse.getResult());
+        
+        return result;
+    }
+}
+```
+
+### 4. Patrón de Recuperación de Errores
+
+Implementa alternativas elegantes para fallos de herramientas:
+
+```python
+class ResilientWorkflow:
+    def __init__(self, mcp_client):
+        self.client = mcp_client
+    
+    async def execute_with_fallback(self, primary_tool, fallback_tool, parameters):
+        try:
+            # Try primary tool first
+            response = await self.client.execute_tool(primary_tool, parameters)
+            return {
+                "result": response.result,
+                "source": "primary",
+                "tool": primary_tool
+            }
+        except ToolExecutionException as e:
+            # Log the failure
+            logging.warning(f"Primary tool '{primary_tool}' failed: {str(e)}")
+            
+            # Fall back to secondary tool
+            try:
+                # Might need to transform parameters for fallback tool
+                fallback_params = self._adapt_parameters(parameters, primary_tool, fallback_tool)
+                
+                response = await self.client.execute_tool(fallback_tool, fallback_params)
+                return {
+                    "result": response.result,
+                    "source": "fallback",
+                    "tool": fallback_tool,
+                    "primaryError": str(e)
+                }
+            except ToolExecutionException as fallback_error:
+                # Both tools failed
+                logging.error(f"Both primary and fallback tools failed. Fallback error: {str(fallback_error)}")
+                raise WorkflowExecutionException(
+                    f"Workflow failed: primary error: {str(e)}; fallback error: {str(fallback_error)}"
+                )
+    
+    def _adapt_parameters(self, params, from_tool, to_tool):
+        """Adapt parameters between different tools if needed"""
+        # This implementation would depend on the specific tools
+        # For this example, we'll just return the original parameters
+        return params
+
+# Example usage
+async def get_weather(workflow, location):
+    return await workflow.execute_with_fallback(
+        "premiumWeatherService",  # Primary (paid) weather API
+        "basicWeatherService",    # Fallback (free) weather API
+        {"location": location}
+    )
+```
+
+### 5. Patrón de Composición de Flujos de Trabajo
+
+Construye flujos de trabajo complejos componiendo otros más simples:
+
+```csharp
+public class CompositeWorkflow : IWorkflow
+{
+    private readonly List<IWorkflow> _workflows;
+    
+    public CompositeWorkflow(IEnumerable<IWorkflow> workflows)
+    {
+        _workflows = new List<IWorkflow>(workflows);
+    }
+    
+    public async Task<WorkflowResult> ExecuteAsync(WorkflowContext context)
+    {
+        var results = new Dictionary<string, object>();
+        
+        foreach (var workflow in _workflows)
+        {
+            var workflowResult = await workflow.ExecuteAsync(context);
+            
+            // Store each workflow's result
+            results[workflow.Name] = workflowResult;
+            
+            // Update context with the result for the next workflow
+            context = context.WithResult(workflow.Name, workflowResult);
+        }
+        
+        return new WorkflowResult(results);
+    }
+    
+    public string Name => "CompositeWorkflow";
+    public string Description => "Executes multiple workflows in sequence";
+}
+
+// Example usage
+var documentWorkflow = new CompositeWorkflow(new IWorkflow[] {
+    new DocumentFetchWorkflow(),
+    new DocumentProcessingWorkflow(),
+    new InsightGenerationWorkflow(),
+    new ReportGenerationWorkflow()
+});
+
+var result = await documentWorkflow.ExecuteAsync(new WorkflowContext {
+    Parameters = new { documentId = "12345" }
+});
+```
+
+# Pruebas de Servidores MCP: Mejores Prácticas y Consejos Principales
+
+## Descripción General
+
+Las pruebas son un aspecto crítico para desarrollar servidores MCP confiables y de alta calidad. Esta guía proporciona mejores prácticas y consejos completos para probar tus servidores MCP a lo largo del ciclo de desarrollo, desde pruebas unitarias hasta pruebas de integración y validación de extremo a extremo.
+
+## Por Qué las Pruebas Son Importantes para los Servidores MCP
+
+Los servidores MCP sirven como middleware crucial entre modelos de IA y aplicaciones cliente. Las pruebas exhaustivas garantizan:
+
+- Confiabilidad en entornos de producción
+- Manejo preciso de solicitudes y respuestas
+- Implementación adecuada de las especificaciones MCP
+- Resiliencia ante fallos y casos extremos
+- Rendimiento consistente bajo diversas cargas
+
+## Pruebas Unitarias para Servidores MCP
+
+### Pruebas Unitarias (Fundamento)
+
+Las pruebas unitarias verifican componentes individuales de tu servidor MCP de forma aislada.
+
+#### Qué Probar
+
+1. **Manejadores de Recursos**: Prueba la lógica de cada manejador de recursos de forma independiente
+2. **Implementaciones de Herramientas**: Verifica el comportamiento de las herramientas con diversas entradas
+3. **Plantillas de Prompts**: Asegúrate de que las plantillas de prompts se rendericen correctamente
+4. **Validación de Esquemas**: Prueba la lógica de validación de parámetros
+5. **Manejo de Errores**: Verifica las respuestas de error para entradas inválidas
+
+#### Mejores Prácticas para Pruebas Unitarias
+
+```csharp
+// Example unit test for a calculator tool in C#
+[Fact]
+public async Task CalculatorTool_Add_ReturnsCorrectSum()
+{
+    // Arrange
+    var calculator = new CalculatorTool();
+    var parameters = new Dictionary<string, object>
+    {
+        ["operation"] = "add",
+        ["a"] = 5,
+        ["b"] = 7
+    };
+    
+    // Act
+    var response = await calculator.ExecuteAsync(parameters);
+    var result = JsonSerializer.Deserialize<CalculationResult>(response.Content[0].ToString());
+    
+    // Assert
+    Assert.Equal(12, result.Value);
+}
+```
+
+```python
+# Example unit test for a calculator tool in Python
+def test_calculator_tool_add():
+    # Arrange
+    calculator = CalculatorTool()
+    parameters = {
+        "operation": "add",
+        "a": 5,
+        "b": 7
+    }
+    
+    # Act
+    response = calculator.execute(parameters)
+    result = json.loads(response.content[0].text)
+    
+    # Assert
+    assert result["value"] == 12
+```
+
+### Pruebas de Integración (Capa Intermedia)
+
+Las pruebas de integración verifican las interacciones entre componentes de tu servidor MCP.
+
+#### Qué Probar
+
+1. **Inicialización del Servidor**: Prueba el inicio del servidor con diversas configuraciones
+2. **Registro de Rutas**: Verifica que todos los endpoints estén registrados correctamente
+3. **Procesamiento de Solicitudes**: Prueba el ciclo completo de solicitud-respuesta
+4. **Propagación de Errores**: Asegúrate de que los errores se manejen adecuadamente entre componentes
+5. **Autenticación y Autorización**: Prueba los mecanismos de seguridad
+
+#### Mejores Prácticas para Pruebas de Integración
+
+```csharp
+// Example integration test for MCP server in C#
+[Fact]
+public async Task Server_ProcessToolRequest_ReturnsValidResponse()
+{
+    // Arrange
+    var server = new McpServer();
+    server.RegisterTool(new CalculatorTool());
+    await server.StartAsync();
+    
+    var request = new McpRequest
+    {
+        Tool = "calculator",
+        Parameters = new Dictionary<string, object>
+        {
+            ["operation"] = "multiply",
+            ["a"] = 6,
+            ["b"] = 7
+        }
+    };
+    
+    // Act
+    var response = await server.ProcessRequestAsync(request);
+    
+    // Assert
+    Assert.NotNull(response);
+    Assert.Equal(McpStatusCodes.Success, response.StatusCode);
+    // Additional assertions for response content
+    
+    // Cleanup
+    await server.StopAsync();
+}
+```
+
+### Pruebas de Extremo a Extremo (Capa Superior)
+
+Las pruebas de extremo a extremo verifican el comportamiento completo del sistema desde el cliente hasta el servidor.
+
+#### Qué Probar
+
+1. **Comunicación Cliente-Servidor**: Prueba ciclos completos de solicitud-respuesta
+2. **SDKs de Clientes Reales**: Prueba con implementaciones reales de clientes
+3. **Rendimiento Bajo Carga**: Verifica el comportamiento con múltiples solicitudes concurrentes
+4. **Recuperación de Errores**: Prueba la recuperación del sistema ante fallos
+5. **Operaciones de Larga Duración**: Verifica el manejo de operaciones de streaming y largas
+
+#### Mejores Prácticas para Pruebas de Extremo a Extremo
+
+```typescript
+// Example E2E test with a client in TypeScript
+describe('MCP Server E2E Tests', () => {
+  let client: McpClient;
+  
+  beforeAll(async () => {
+    // Start server in test environment
+    await startTestServer();
+    client = new McpClient('http://localhost:5000');
+  });
+  
+  afterAll(async () => {
+    await stopTestServer();
+  });
+  
+  test('Client can invoke calculator tool and get correct result', async () => {
+    // Act
+    const response = await client.invokeToolAsync('calculator', {
+      operation: 'divide',
+      a: 20,
+      b: 4
+    });
+    
+    // Assert
+    expect(response.statusCode).toBe(200);
+    expect(response.content[0].text).toContain('5');
+  });
+});
+```
+
+## Estrategias de Simulación para Pruebas MCP
+
+La simulación es esencial para aislar componentes durante las pruebas.
+
+### Componentes a Simular
+
+1. **Modelos de IA Externos**: Simula respuestas de modelos para pruebas predecibles
+2. **Servicios Externos**: Simula dependencias de API (bases de datos, servicios de terceros)
+3. **Servicios de Autenticación**: Simula proveedores de identidad
+4. **Proveedores de Recursos**: Simula manejadores de recursos costosos
+
+### Ejemplo: Simulación de una Respuesta de Modelo de IA
+
+```csharp
+// C# example with Moq
+var mockModel = new Mock<ILanguageModel>();
+mockModel
+    .Setup(m => m.GenerateResponseAsync(
+        It.IsAny<string>(),
+        It.IsAny<McpRequestContext>()))
+    .ReturnsAsync(new ModelResponse { 
+        Text = "Mocked model response",
+        FinishReason = FinishReason.Completed
+    });
+
+var server = new McpServer(modelClient: mockModel.Object);
+```
+
+```python
+# Python example with unittest.mock
+@patch('mcp_server.models.OpenAIModel')
+def test_with_mock_model(mock_model):
+    # Configure mock
+    mock_model.return_value.generate_response.return_value = {
+        "text": "Mocked model response",
+        "finish_reason": "completed"
+    }
+    
+    # Use mock in test
+    server = McpServer(model_client=mock_model)
+    # Continue with test
+```
+
+## Pruebas de Rendimiento
+
+Las pruebas de rendimiento son cruciales para servidores MCP en producción.
+
+### Qué Medir
+
+1. **Latencia**: Tiempo de respuesta para solicitudes
+2. **Rendimiento**: Solicitudes manejadas por segundo
+3. **Uso de Recursos**: Uso de CPU, memoria y red
+4. **Manejo de Concurrencia**: Comportamiento bajo solicitudes paralelas
+5. **Características de Escalabilidad**: Rendimiento a medida que aumenta la carga
+
+### Herramientas para Pruebas de Rendimiento
+
+- **k6**: Herramienta de pruebas de carga de código abierto
+- **JMeter**: Pruebas de rendimiento completas
+- **Locust**: Pruebas de carga basadas en Python
+- **Azure Load Testing**: Pruebas de rendimiento basadas en la nube
+
+### Ejemplo: Prueba Básica de Carga con k6
+
+```javascript
+// k6 script for load testing MCP server
+import http from 'k6/http';
+import { check, sleep } from 'k6';
+
+export const options = {
+  vus: 10,  // 10 virtual users
+  duration: '30s',
+};
+
+export default function () {
+  const payload = JSON.stringify({
+    tool: 'calculator',
+    parameters: {
+      operation: 'add',
+      a: Math.floor(Math.random() * 100),
+      b: Math.floor(Math.random() * 100)
+    }
+  });
+
+  const params = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer test-token'
+    },
+  };
+
+  const res = http.post('http://localhost:5000/api/tools/invoke', payload, params);
+  
+  check(res, {
+    'status is 200': (r) => r.status === 200,
+    'response time < 500ms': (r) => r.timings.duration < 500,
+  });
+  
+  sleep(1);
+}
+```
+
+## Automatización de Pruebas para Servidores MCP
+
+Automatizar tus pruebas garantiza calidad consistente y ciclos de retroalimentación más rápidos.
+
+### Integración CI/CD
+
+1. **Ejecuta Pruebas Unitarias en Pull Requests**: Asegúrate de que los cambios en el código no rompan la funcionalidad existente
+2. **Pruebas de Integración en Staging**: Ejecuta pruebas de integración en entornos preproducción
+3. **Bases de Rendimiento**: Mantén puntos de referencia de rendimiento para detectar regresiones  
+4. **Escaneos de Seguridad**: Automatiza las pruebas de seguridad como parte del pipeline  
+
+### Ejemplo de Pipeline de CI (GitHub Actions)
+
+```yaml
+name: MCP Server Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Runtime
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '8.0.x'
+    
+    - name: Restore dependencies
+      run: dotnet restore
+    
+    - name: Build
+      run: dotnet build --no-restore
+    
+    - name: Unit Tests
+      run: dotnet test --no-build --filter Category=Unit
+    
+    - name: Integration Tests
+      run: dotnet test --no-build --filter Category=Integration
+      
+    - name: Performance Tests
+      run: dotnet run --project tests/PerformanceTests/PerformanceTests.csproj
+```
+
+## Pruebas de Cumplimiento con la Especificación MCP  
+
+Verifica que tu servidor implemente correctamente la especificación MCP.  
+
+### Áreas Clave de Cumplimiento  
+
+1. **Endpoints de API**: Prueba los endpoints requeridos (/resources, /tools, etc.)  
+2. **Formato de Solicitud/Respuesta**: Valida el cumplimiento del esquema  
+3. **Códigos de Error**: Verifica los códigos de estado correctos para varios escenarios  
+4. **Tipos de Contenido**: Prueba el manejo de diferentes tipos de contenido  
+5. **Flujo de Autenticación**: Verifica que los mecanismos de autenticación cumplan con la especificación  
+
+### Suite de Pruebas de Cumplimiento  
+
 ```csharp
 [Fact]
 public async Task Server_ResourceEndpoint_ReturnsCorrectSchema()
 {
-    // Preparar
+    // Arrange
     var client = new HttpClient();
     client.DefaultRequestHeaders.Add("Authorization", "Bearer test-token");
     
-    // Actuar
+    // Act
     var response = await client.GetAsync("http://localhost:5000/api/resources");
     var content = await response.Content.ReadAsStringAsync();
-    var resources = JsonSerializer.Deserialize
-```
-
-(content);
+    var resources = JsonSerializer.Deserialize<ResourceList>(content);
     
-    // Afirmar
+    // Assert
     Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     Assert.NotNull(resources);
     Assert.All(resources.Resources, resource => 
     {
         Assert.NotNull(resource.Id);
         Assert.NotNull(resource.Type);
-        // Validación adicional del esquema
+        // Additional schema validation
     });
 }
-```
+```  
 
-## Los 10 Mejores Consejos para Pruebas Efectivas de Servidores MCP
+## Los 10 Mejores Consejos para Pruebas Efectivas de Servidores MCP  
 
-1. **Prueba las Definiciones de Herramientas por Separado**: Verifica las definiciones de esquema independientemente de la lógica de las herramientas
-2. **Usa Pruebas Parametrizadas**: Prueba las herramientas con una variedad de entradas, incluyendo casos límite
-3. **Verifica Respuestas de Error**: Asegúrate de manejar correctamente todos los posibles errores
-4. **Prueba la Lógica de Autorización**: Garantiza el control de acceso adecuado para diferentes roles de usuario
-5. **Monitorea la Cobertura de Pruebas**: Apunta a una alta cobertura del código crítico
-6. **Prueba Respuestas en Streaming**: Verifica el manejo adecuado de contenido en streaming
-7. **Simula Problemas de Red**: Prueba el comportamiento bajo condiciones de red deficientes
-8. **Prueba Límites de Recursos**: Verifica el comportamiento al alcanzar cuotas o límites de velocidad
-9. **Automatiza Pruebas de Regresión**: Construye un conjunto de pruebas que se ejecute con cada cambio de código
-10. **Documenta los Casos de Prueba**: Mantén una documentación clara de los escenarios de prueba
+1. **Prueba las Definiciones de Herramientas por Separado**: Verifica las definiciones de esquema de forma independiente de la lógica de las herramientas  
+2. **Usa Pruebas Parametrizadas**: Prueba herramientas con una variedad de entradas, incluyendo casos límite  
+3. **Verifica las Respuestas de Error**: Asegúrate de manejar correctamente todas las condiciones de error posibles  
+4. **Prueba la Lógica de Autorización**: Garantiza el control de acceso adecuado para diferentes roles de usuario  
+5. **Monitorea la Cobertura de Pruebas**: Apunta a una alta cobertura del código crítico  
+6. **Prueba Respuestas en Streaming**: Verifica el manejo adecuado de contenido en streaming  
+7. **Simula Problemas de Red**: Prueba el comportamiento bajo condiciones de red deficientes  
+8. **Prueba los Límites de Recursos**: Verifica el comportamiento al alcanzar cuotas o límites de tasa  
+9. **Automatiza las Pruebas de Regresión**: Construye una suite que se ejecute con cada cambio de código  
+10. **Documenta los Casos de Prueba**: Mantén documentación clara de los escenarios de prueba  
 
-## Errores Comunes en las Pruebas
+## Errores Comunes en las Pruebas  
 
-- **Exceso de confianza en pruebas de casos ideales**: Asegúrate de probar los casos de error a fondo
-- **Ignorar las pruebas de rendimiento**: Identifica cuellos de botella antes de que afecten la producción
-- **Probar solo en aislamiento**: Combina pruebas unitarias, de integración y de extremo a extremo
-- **Cobertura incompleta de la API**: Asegúrate de probar todos los endpoints y características
-- **Entornos de prueba inconsistentes**: Usa contenedores para garantizar entornos de prueba consistentes
+- **Exceso de confianza en pruebas de casos ideales**: Asegúrate de probar a fondo los casos de error  
+- **Ignorar las pruebas de rendimiento**: Identifica cuellos de botella antes de que afecten la producción  
+- **Probar solo en aislamiento**: Combina pruebas unitarias, de integración y de extremo a extremo  
+- **Cobertura incompleta de la API**: Asegúrate de que todos los endpoints y características sean probados  
+- **Entornos de prueba inconsistentes**: Usa contenedores para garantizar entornos de prueba consistentes  
 
-## Conclusión
+## Conclusión  
 
-Una estrategia de pruebas integral es esencial para desarrollar servidores MCP confiables y de alta calidad. Al implementar las mejores prácticas y consejos descritos en esta guía, puedes garantizar que tus implementaciones MCP cumplan con los más altos estándares de calidad, confiabilidad y rendimiento.
+Una estrategia de pruebas integral es esencial para desarrollar servidores MCP confiables y de alta calidad. Al implementar las mejores prácticas y consejos descritos en esta guía, puedes garantizar que tus implementaciones MCP cumplan con los más altos estándares de calidad, confiabilidad y rendimiento.  
 
-## Puntos Clave
+## Puntos Clave  
 
-1. **Diseño de Herramientas**: Sigue el principio de responsabilidad única, usa inyección de dependencias y diseña para la composibilidad
-2. **Diseño de Esquemas**: Crea esquemas claros, bien documentados y con restricciones de validación adecuadas
-3. **Manejo de Errores**: Implementa un manejo de errores elegante, respuestas de error estructuradas y lógica de reintento
-4. **Rendimiento**: Usa caché, procesamiento asíncrono y limitación de recursos
-5. **Seguridad**: Aplica validación exhaustiva de entradas, verificaciones de autorización y manejo de datos sensibles
-6. **Pruebas**: Crea pruebas unitarias, de integración y de extremo a extremo completas
-7. **Patrones de Flujo de Trabajo**: Aplica patrones establecidos como cadenas, despachadores y procesamiento paralelo
+1. **Diseño de Herramientas**: Sigue el principio de responsabilidad única, usa inyección de dependencias y diseña para la composibilidad  
+2. **Diseño de Esquemas**: Crea esquemas claros, bien documentados, con restricciones de validación adecuadas  
+3. **Manejo de Errores**: Implementa un manejo de errores elegante, respuestas de error estructuradas y lógica de reintento  
+4. **Rendimiento**: Usa caché, procesamiento asíncrono y limitación de recursos  
+5. **Seguridad**: Aplica validación exhaustiva de entradas, controles de autorización y manejo de datos sensibles  
+6. **Pruebas**: Crea pruebas unitarias, de integración y de extremo a extremo completas  
+7. **Patrones de Flujo de Trabajo**: Aplica patrones establecidos como cadenas, despachadores y procesamiento paralelo  
 
-## Ejercicio
+## Ejercicio  
 
-Diseña una herramienta MCP y un flujo de trabajo para un sistema de procesamiento de documentos que:
+Diseña una herramienta y un flujo de trabajo MCP para un sistema de procesamiento de documentos que:  
 
-1. Acepte documentos en múltiples formatos (PDF, DOCX, TXT)
-2. Extraiga texto e información clave de los documentos
-3. Clasifique los documentos por tipo y contenido
-4. Genere un resumen de cada documento
+1. Acepte documentos en múltiples formatos (PDF, DOCX, TXT)  
+2. Extraiga texto e información clave de los documentos  
+3. Clasifique los documentos por tipo y contenido  
+4. Genere un resumen de cada documento  
 
-Implementa los esquemas de herramientas, manejo de errores y un patrón de flujo de trabajo que se adapte mejor a este escenario. Considera cómo probarías esta implementación.
+Implementa los esquemas de herramientas, el manejo de errores y un patrón de flujo de trabajo que mejor se adapte a este escenario. Considera cómo probarías esta implementación.  
 
-## Recursos 
+## Recursos  
 
-1. Únete a la comunidad MCP en el [Discord de Azure AI Foundry](https://aka.ms/foundrydevs) para mantenerte actualizado sobre los últimos desarrollos 
-2. Contribuye a proyectos de código abierto [MCP](https://github.com/modelcontextprotocol)
-3. Aplica los principios MCP en las iniciativas de IA de tu organización
-4. Explora implementaciones especializadas de MCP para tu industria
-5. Considera tomar cursos avanzados sobre temas específicos de MCP, como integración multimodal o integración de aplicaciones empresariales
+1. Únete a la comunidad MCP en el [Azure AI Foundry Discord Community](https://aka.ms/foundrydevs) para mantenerte al día con los últimos desarrollos  
+2. Contribuye a proyectos de [MCP de código abierto](https://github.com/modelcontextprotocol)  
+3. Aplica los principios MCP en las iniciativas de IA de tu organización  
+4. Explora implementaciones especializadas de MCP para tu industria  
+5. Considera tomar cursos avanzados sobre temas específicos de MCP, como integración multimodal o integración de aplicaciones empresariales  
 6. Experimenta construyendo tus propias herramientas y flujos de trabajo MCP utilizando los principios aprendidos en el [Laboratorio Práctico](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)  
 
-Siguiente: Mejores Prácticas [estudios de caso](../09-CaseStudy/README.md)
+Siguiente: Mejores Prácticas [estudios de caso](../09-CaseStudy/README.md)  
 
 **Descargo de responsabilidad**:  
 Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Aunque nos esforzamos por garantizar la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.

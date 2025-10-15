@@ -60,7 +60,7 @@ Scegli il tuo ambiente di sviluppo preferito:
 
 ## Implementazione Python
 
-***Nota*** Puoi eseguire questo [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb)
+***Nota*** Puoi eseguire questo [notebook](mcp_support_python.ipynb)
 
 ### 1. Installa i Pacchetti Necessari
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## Implementazione .NET
 
-***Nota*** Puoi eseguire questo [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb)
+***Nota*** Puoi eseguire questo [notebook](mcp_support_dotnet.ipynb)
 
 ### 1. Installa i Pacchetti Necessari
 

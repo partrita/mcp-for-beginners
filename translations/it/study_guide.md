@@ -1,19 +1,19 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "e2c6ed897fa98fa08e0146101776c7ff",
-  "translation_date": "2025-07-18T09:43:42+00:00",
+  "original_hash": "af27b0acfae6caa134d9701453884df8",
+  "translation_date": "2025-10-06T22:57:10+00:00",
   "source_file": "study_guide.md",
   "language_code": "it"
 }
 -->
-# Model Context Protocol (MCP) per Principianti - Guida di Studio
+# Protocollo di Contesto Modello (MCP) per Principianti - Guida allo Studio
 
-Questa guida di studio offre una panoramica della struttura e del contenuto del repository per il curriculum "Model Context Protocol (MCP) per Principianti". Usa questa guida per navigare nel repository in modo efficiente e sfruttare al meglio le risorse disponibili.
+Questa guida allo studio offre una panoramica della struttura e dei contenuti del repository per il curriculum "Protocollo di Contesto Modello (MCP) per Principianti". Utilizza questa guida per navigare nel repository in modo efficiente e sfruttare al meglio le risorse disponibili.
 
 ## Panoramica del Repository
 
-Il Model Context Protocol (MCP) è un framework standardizzato per le interazioni tra modelli AI e applicazioni client. Inizialmente creato da Anthropic, MCP è ora mantenuto dalla comunità MCP più ampia tramite l’organizzazione ufficiale su GitHub. Questo repository offre un curriculum completo con esempi pratici di codice in C#, Java, JavaScript, Python e TypeScript, pensato per sviluppatori AI, architetti di sistema e ingegneri del software.
+Il Protocollo di Contesto Modello (MCP) è un framework standardizzato per le interazioni tra modelli di intelligenza artificiale e applicazioni client. Creato inizialmente da Anthropic, MCP è ora mantenuto dalla comunità MCP attraverso l'organizzazione ufficiale su GitHub. Questo repository offre un curriculum completo con esempi pratici di codice in C#, Java, JavaScript, Python e TypeScript, progettato per sviluppatori AI, architetti di sistema e ingegneri software.
 
 ## Mappa Visiva del Curriculum
 
@@ -49,6 +49,8 @@ mindmap
       (HTTP Streaming)
       (AI Toolkit Integration)
       (Testing Frameworks)
+      (Advanced Server Usage)
+      (Simple Auth)
       (Deployment Strategies)
     04. Practical Implementation
       ::icon(fa fa-code)
@@ -100,6 +102,8 @@ mindmap
       (AI Travel Agent)
       (Azure DevOps Integration)
       (Documentation MCP)
+      (GitHub MCP Registry)
+      (VS Code Integration)
       (Real-world Implementations)
     10. Hands-on Workshop
       ::icon(fa fa-laptop)
@@ -108,149 +112,175 @@ mindmap
       (AI Toolkit Integration)
       (Production Deployment)
       (4-Lab Structure)
+    11. Database Integration Labs
+      ::icon(fa fa-database)
+      (PostgreSQL Integration)
+      (Retail Analytics Use Case)
+      (Row Level Security)
+      (Semantic Search)
+      (Production Deployment)
+      (13-Lab Structure)
+      (Hands-on Learning)
 ```
 
 ## Struttura del Repository
 
-Il repository è organizzato in dieci sezioni principali, ognuna focalizzata su diversi aspetti di MCP:
+Il repository è organizzato in undici sezioni principali, ciascuna focalizzata su diversi aspetti del MCP:
 
 1. **Introduzione (00-Introduction/)**
-   - Panoramica del Model Context Protocol
-   - Perché la standardizzazione è importante nelle pipeline AI
-   - Casi d’uso pratici e vantaggi
+   - Panoramica del Protocollo di Contesto Modello
+   - Perché la standardizzazione è importante nei flussi di lavoro AI
+   - Casi d'uso pratici e benefici
 
 2. **Concetti Fondamentali (01-CoreConcepts/)**
    - Architettura client-server
    - Componenti chiave del protocollo
-   - Pattern di messaggistica in MCP
+   - Modelli di messaggistica nel MCP
 
 3. **Sicurezza (02-Security/)**
    - Minacce alla sicurezza nei sistemi basati su MCP
-   - Best practice per proteggere le implementazioni
+   - Migliori pratiche per implementazioni sicure
    - Strategie di autenticazione e autorizzazione
    - **Documentazione Completa sulla Sicurezza**:
-     - MCP Security Best Practices 2025
-     - Guida all’implementazione di Azure Content Safety
-     - Controlli e tecniche di sicurezza MCP
-     - Riferimento rapido alle best practice MCP
+     - Migliori Pratiche di Sicurezza MCP 2025
+     - Guida all'Implementazione di Sicurezza di Azure
+     - Controlli e Tecniche di Sicurezza MCP
+     - Riferimento Rapido alle Migliori Pratiche MCP
    - **Argomenti Chiave sulla Sicurezza**:
-     - Attacchi di prompt injection e tool poisoning
-     - Hijacking di sessione e problemi di confused deputy
-     - Vulnerabilità di token passthrough
-     - Permessi e controllo accessi eccessivi
-     - Sicurezza della supply chain per componenti AI
-     - Integrazione con Microsoft Prompt Shields
+     - Attacchi di iniezione di prompt e avvelenamento degli strumenti
+     - Furto di sessione e problemi di delega confusa
+     - Vulnerabilità di passaggio dei token
+     - Permessi eccessivi e controllo degli accessi
+     - Sicurezza della catena di approvvigionamento per componenti AI
+     - Integrazione di Microsoft Prompt Shields
 
-4. **Primi Passi (03-GettingStarted/)**
-   - Configurazione e setup dell’ambiente
+4. **Iniziare (03-GettingStarted/)**
+   - Configurazione dell'ambiente
    - Creazione di server e client MCP di base
    - Integrazione con applicazioni esistenti
-   - Include sezioni per:
-     - Prima implementazione server
-     - Sviluppo client
-     - Integrazione client LLM
+   - Include sezioni su:
+     - Prima implementazione del server
+     - Sviluppo del client
+     - Integrazione del client LLM
      - Integrazione con VS Code
-     - Server-Sent Events (SSE)
+     - Server Server-Sent Events (SSE)
+     - Uso avanzato del server
      - Streaming HTTP
-     - Integrazione AI Toolkit
-     - Strategie di testing
+     - Integrazione con AI Toolkit
+     - Strategie di test
      - Linee guida per il deployment
 
 5. **Implementazione Pratica (04-PracticalImplementation/)**
-   - Uso degli SDK in diversi linguaggi di programmazione
-   - Tecniche di debug, testing e validazione
-   - Creazione di template di prompt e workflow riutilizzabili
+   - Utilizzo di SDK in diversi linguaggi di programmazione
+   - Tecniche di debug, test e validazione
+   - Creazione di modelli di prompt e flussi di lavoro riutilizzabili
    - Progetti di esempio con implementazioni pratiche
 
 6. **Argomenti Avanzati (05-AdvancedTopics/)**
-   - Tecniche di context engineering
-   - Integrazione con Foundry agent
-   - Workflow AI multimodali
+   - Tecniche di ingegneria del contesto
+   - Integrazione di agenti Foundry
+   - Flussi di lavoro AI multi-modali
    - Demo di autenticazione OAuth2
    - Capacità di ricerca in tempo reale
    - Streaming in tempo reale
-   - Implementazione di root contexts
+   - Implementazione di contesti radice
    - Strategie di routing
-   - Tecniche di sampling
-   - Approcci di scaling
+   - Tecniche di campionamento
+   - Approcci di scalabilità
    - Considerazioni sulla sicurezza
-   - Integrazione sicurezza Entra ID
-   - Integrazione con ricerca web
+   - Integrazione di sicurezza Entra ID
+   - Integrazione della ricerca web
 
 7. **Contributi della Comunità (06-CommunityContributions/)**
    - Come contribuire con codice e documentazione
    - Collaborazione tramite GitHub
    - Miglioramenti e feedback guidati dalla comunità
-   - Uso di vari client MCP (Claude Desktop, Cline, VSCode)
-   - Lavorare con server MCP popolari inclusa generazione di immagini
+   - Utilizzo di vari client MCP (Claude Desktop, Cline, VSCode)
+   - Lavorare con server MCP popolari, inclusa la generazione di immagini
 
-8. **Lezioni dall’Adozione Iniziale (07-LessonsfromEarlyAdoption/)**
+8. **Lezioni dall'Adozione Iniziale (07-LessonsfromEarlyAdoption/)**
    - Implementazioni reali e storie di successo
-   - Costruzione e deployment di soluzioni basate su MCP
+   - Creazione e deployment di soluzioni basate su MCP
    - Tendenze e roadmap futura
-   - **Guida ai Server MCP Microsoft**: Guida completa a 10 server MCP Microsoft pronti per la produzione, tra cui:
-     - Microsoft Learn Docs MCP Server
-     - Azure MCP Server (oltre 15 connettori specializzati)
-     - GitHub MCP Server
-     - Azure DevOps MCP Server
-     - MarkItDown MCP Server
-     - SQL Server MCP Server
-     - Playwright MCP Server
-     - Dev Box MCP Server
-     - Azure AI Foundry MCP Server
-     - Microsoft 365 Agents Toolkit MCP Server
+   - **Guida ai Server MCP di Microsoft**: Guida completa a 10 server MCP Microsoft pronti per la produzione, tra cui:
+     - Server MCP Microsoft Learn Docs
+     - Server MCP Azure (15+ connettori specializzati)
+     - Server MCP GitHub
+     - Server MCP Azure DevOps
+     - Server MCP MarkItDown
+     - Server MCP SQL Server
+     - Server MCP Playwright
+     - Server MCP Dev Box
+     - Server MCP Azure AI Foundry
+     - Server MCP Microsoft 365 Agents Toolkit
 
-9. **Best Practice (08-BestPractices/)**
-   - Ottimizzazione e tuning delle performance
-   - Progettazione di sistemi MCP fault-tolerant
-   - Strategie di testing e resilienza
+9. **Migliori Pratiche (08-BestPractices/)**
+   - Ottimizzazione delle prestazioni
+   - Progettazione di sistemi MCP tolleranti ai guasti
+   - Strategie di test e resilienza
 
-10. **Case Study (09-CaseStudy/)**
-    - Esempio di integrazione con Azure API Management
-    - Esempio di implementazione per agenzia di viaggi
-    - Integrazione Azure DevOps con aggiornamenti YouTube
-    - Esempi di implementazione MCP per documentazione
-    - Esempi di implementazione con documentazione dettagliata
+10. **Studi di Caso (09-CaseStudy/)**
+    - **Sette studi di caso completi** che dimostrano la versatilità del MCP in scenari diversi:
+    - **Agenti di Viaggio AI di Azure**: Orchestrazione multi-agente con Azure OpenAI e AI Search
+    - **Integrazione Azure DevOps**: Automazione dei processi di flusso di lavoro con aggiornamenti di dati YouTube
+    - **Recupero Documentazione in Tempo Reale**: Client console Python con streaming HTTP
+    - **Generatore di Piani di Studio Interattivo**: App web Chainlit con AI conversazionale
+    - **Documentazione In-Editor**: Integrazione VS Code con flussi di lavoro GitHub Copilot
+    - **Gestione API Azure**: Integrazione API aziendale con creazione di server MCP
+    - **Registro MCP GitHub**: Sviluppo dell'ecosistema e piattaforma di integrazione agentica
+    - Esempi di implementazione che spaziano dall'integrazione aziendale, alla produttività degli sviluppatori, allo sviluppo dell'ecosistema
 
 11. **Workshop Pratico (10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/)**
     - Workshop pratico completo che combina MCP con AI Toolkit
-    - Costruzione di applicazioni intelligenti che collegano modelli AI con strumenti reali
-    - Moduli pratici che coprono fondamentali, sviluppo server personalizzato e strategie di deployment in produzione
-    - **Struttura del Lab**:
+    - Creazione di applicazioni intelligenti che collegano modelli AI con strumenti reali
+    - Moduli pratici che coprono i fondamenti, lo sviluppo di server personalizzati e le strategie di deployment in produzione
+    - **Struttura del Laboratorio**:
       - Lab 1: Fondamenti del Server MCP
-      - Lab 2: Sviluppo Avanzato Server MCP
+      - Lab 2: Sviluppo Avanzato del Server MCP
       - Lab 3: Integrazione AI Toolkit
-      - Lab 4: Deployment e Scaling in Produzione
-    - Approccio di apprendimento basato su lab con istruzioni passo passo
+      - Lab 4: Deployment e Scalabilità in Produzione
+    - Approccio di apprendimento basato su laboratori con istruzioni passo-passo
+
+12. **Laboratori di Integrazione Database Server MCP (11-MCPServerHandsOnLabs/)**
+    - **Percorso di apprendimento completo di 13 laboratori** per costruire server MCP pronti per la produzione con integrazione PostgreSQL
+    - **Implementazione di analisi retail reale** utilizzando il caso d'uso Zava Retail
+    - **Modelli aziendali avanzati** inclusi Row Level Security (RLS), ricerca semantica e accesso ai dati multi-tenant
+    - **Struttura Completa del Laboratorio**:
+      - **Laboratori 00-03: Fondamenti** - Introduzione, Architettura, Sicurezza, Configurazione dell'Ambiente
+      - **Laboratori 04-06: Costruzione del Server MCP** - Progettazione del Database, Implementazione del Server MCP, Sviluppo degli Strumenti
+      - **Laboratori 07-09: Funzionalità Avanzate** - Ricerca Semantica, Test & Debugging, Integrazione VS Code
+      - **Laboratori 10-12: Produzione & Migliori Pratiche** - Deployment, Monitoraggio, Ottimizzazione
+    - **Tecnologie Coperte**: Framework FastMCP, PostgreSQL, Azure OpenAI, Azure Container Apps, Application Insights
+    - **Risultati dell'Apprendimento**: Server MCP pronti per la produzione, modelli di integrazione database, analisi AI avanzata, sicurezza aziendale
 
 ## Risorse Aggiuntive
 
 Il repository include risorse di supporto:
 
-- **Cartella Immagini**: Contiene diagrammi e illustrazioni usate nel curriculum
+- **Cartella Immagini**: Contiene diagrammi e illustrazioni utilizzati nel curriculum
 - **Traduzioni**: Supporto multilingue con traduzioni automatiche della documentazione
 - **Risorse Ufficiali MCP**:
-  - [MCP Documentation](https://modelcontextprotocol.io/)
-  - [MCP Specification](https://spec.modelcontextprotocol.io/)
-  - [MCP GitHub Repository](https://github.com/modelcontextprotocol)
+  - [Documentazione MCP](https://modelcontextprotocol.io/)
+  - [Specifiche MCP](https://spec.modelcontextprotocol.io/)
+  - [Repository GitHub MCP](https://github.com/modelcontextprotocol)
 
-## Come Usare Questo Repository
+## Come Utilizzare Questo Repository
 
-1. **Apprendimento Sequenziale**: Segui i capitoli in ordine (da 00 a 10) per un’esperienza di apprendimento strutturata.
-2. **Focus su Linguaggi Specifici**: Se ti interessa un linguaggio di programmazione in particolare, esplora le directory dei sample per implementazioni nel linguaggio preferito.
-3. **Implementazione Pratica**: Inizia dalla sezione "Primi Passi" per configurare l’ambiente e creare il tuo primo server e client MCP.
-4. **Esplorazione Avanzata**: Una volta acquisiti i concetti base, approfondisci gli argomenti avanzati per ampliare le tue conoscenze.
-5. **Coinvolgimento nella Comunità**: Unisciti alla comunità MCP tramite discussioni su GitHub e canali Discord per connetterti con esperti e altri sviluppatori.
+1. **Apprendimento Sequenziale**: Segui i capitoli in ordine (da 00 a 11) per un'esperienza di apprendimento strutturata.
+2. **Focus su Linguaggi Specifici**: Se sei interessato a un linguaggio di programmazione specifico, esplora le directory dei campioni per implementazioni nel tuo linguaggio preferito.
+3. **Implementazione Pratica**: Inizia con la sezione "Iniziare" per configurare il tuo ambiente e creare il tuo primo server e client MCP.
+4. **Esplorazione Avanzata**: Una volta acquisita familiarità con le basi, approfondisci gli argomenti avanzati per espandere le tue conoscenze.
+5. **Coinvolgimento della Comunità**: Unisciti alla comunità MCP tramite discussioni su GitHub e canali Discord per connetterti con esperti e altri sviluppatori.
 
 ## Client e Strumenti MCP
 
 Il curriculum copre vari client e strumenti MCP:
 
 1. **Client Ufficiali**:
-   - Visual Studio Code
+   - Visual Studio Code 
    - MCP in Visual Studio Code
    - Claude Desktop
-   - Claude in VSCode
+   - Claude in VSCode 
    - Claude API
 
 2. **Client della Comunità**:
@@ -267,19 +297,19 @@ Il curriculum copre vari client e strumenti MCP:
 
 ## Server MCP Popolari
 
-Il repository presenta diversi server MCP, tra cui:
+Il repository introduce vari server MCP, tra cui:
 
-1. **Server MCP Ufficiali Microsoft**:
-   - Microsoft Learn Docs MCP Server
-   - Azure MCP Server (oltre 15 connettori specializzati)
-   - GitHub MCP Server
-   - Azure DevOps MCP Server
-   - MarkItDown MCP Server
-   - SQL Server MCP Server
-   - Playwright MCP Server
-   - Dev Box MCP Server
-   - Azure AI Foundry MCP Server
-   - Microsoft 365 Agents Toolkit MCP Server
+1. **Server MCP Ufficiali di Microsoft**:
+   - Server MCP Microsoft Learn Docs
+   - Server MCP Azure (15+ connettori specializzati)
+   - Server MCP GitHub
+   - Server MCP Azure DevOps
+   - Server MCP MarkItDown
+   - Server MCP SQL Server
+   - Server MCP Playwright
+   - Server MCP Dev Box
+   - Server MCP Azure AI Foundry
+   - Server MCP Microsoft 365 Agents Toolkit
 
 2. **Server di Riferimento Ufficiali**:
    - Filesystem
@@ -287,15 +317,15 @@ Il repository presenta diversi server MCP, tra cui:
    - Memory
    - Sequential Thinking
 
-3. **Generazione Immagini**:
+3. **Generazione di Immagini**:
    - Azure OpenAI DALL-E 3
    - Stable Diffusion WebUI
    - Replicate
 
 4. **Strumenti di Sviluppo**:
    - Git MCP
-   - Terminal Control
-   - Code Assistant
+   - Controllo Terminale
+   - Assistente Codice
 
 5. **Server Specializzati**:
    - Salesforce
@@ -304,19 +334,13 @@ Il repository presenta diversi server MCP, tra cui:
 
 ## Contributi
 
-Questo repository accoglie contributi dalla comunità. Consulta la sezione Contributi della Comunità per indicazioni su come contribuire efficacemente all’ecosistema MCP.
+Questo repository accoglie contributi dalla comunità. Consulta la sezione Contributi della Comunità per indicazioni su come contribuire efficacemente all'ecosistema MCP.
 
-## Changelog
+----
 
-| Data | Modifiche |
-|------|-----------|
-| 18 luglio 2025 | - Aggiornata la struttura del repository per includere la Guida ai Server MCP Microsoft<br>- Aggiunta lista completa di 10 server MCP Microsoft pronti per la produzione<br>- Migliorata la sezione Server MCP Popolari con i Server MCP Ufficiali Microsoft<br>- Aggiornata la sezione Case Study con esempi di file reali<br>- Aggiunti dettagli sulla Struttura del Lab per il Workshop Pratico |
-| 16 luglio 2025 | - Aggiornata la struttura del repository per riflettere i contenuti attuali<br>- Aggiunta la sezione Client e Strumenti MCP<br>- Aggiunta la sezione Server MCP Popolari<br>- Aggiornata la Mappa Visiva del Curriculum con tutti gli argomenti attuali<br>- Migliorata la sezione Argomenti Avanzati con tutte le aree specializzate<br>- Aggiornati i Case Study con esempi reali<br>- Chiarita l’origine di MCP come creato da Anthropic |
-| 11 giugno 2025 | - Creazione iniziale della guida di studio<br>- Aggiunta Mappa Visiva del Curriculum<br>- Definita la struttura del repository<br>- Inclusi progetti di esempio e risorse aggiuntive |
+*Questa guida allo studio è stata aggiornata il 6 ottobre 2025 e offre una panoramica del repository alla data indicata. I contenuti del repository potrebbero essere aggiornati dopo questa data.*
 
 ---
 
-*Questa guida di studio è stata aggiornata il 18 luglio 2025 e fornisce una panoramica del repository a quella data. Il contenuto del repository potrebbe essere aggiornato successivamente.*
-
-**Disclaimer**:  
-Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Pur impegnandoci per garantire l’accuratezza, si prega di notare che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa deve essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda la traduzione professionale effettuata da un umano. Non ci assumiamo alcuna responsabilità per eventuali malintesi o interpretazioni errate derivanti dall’uso di questa traduzione.
+**Clausola di esclusione della responsabilità**:  
+Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Sebbene ci impegniamo per garantire l'accuratezza, si prega di notare che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa dovrebbe essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale effettuata da un traduttore umano. Non siamo responsabili per eventuali incomprensioni o interpretazioni errate derivanti dall'uso di questa traduzione.

@@ -60,7 +60,7 @@ Alege mediul de dezvoltare preferat:
 
 ## Implementare Python
 
-***Note*** Poți rula acest [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb)
+***Note*** Poți rula acest [notebook](mcp_support_python.ipynb)
 
 ### 1. Instalarea pachetelor necesare
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## Implementare .NET
 
-***Note*** Poți rula acest [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb)
+***Note*** Poți rula acest [notebook](mcp_support_dotnet.ipynb)
 
 ### 1. Instalarea pachetelor necesare
 

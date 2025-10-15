@@ -1,108 +1,163 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "90bfc6f3be00e34f6124e2a24bf94167",
-  "translation_date": "2025-07-17T08:49:09+00:00",
+  "original_hash": "b2b9e15e78b9d9a2b3ff3e8fd7d1f434",
+  "translation_date": "2025-08-18T16:10:45+00:00",
   "source_file": "02-Security/mcp-best-practices.md",
   "language_code": "fi"
 }
 -->
-# MCP:n turvallisuuden parhaat käytännöt
+# MCP:n turvallisuuden parhaat käytännöt 2025
 
-Työskennellessäsi MCP-palvelimien kanssa noudata näitä turvallisuuden parhaita käytäntöjä suojataksesi tietosi, infrastruktuurisi ja käyttäjäsi:
+Tämä kattava opas esittelee olennaiset turvallisuuden parhaat käytännöt Model Context Protocol (MCP) -järjestelmien toteuttamiseen perustuen uusimpaan **MCP Specification 2025-06-18** -määrittelyyn ja nykyisiin alan standardeihin. Käytännöt käsittelevät sekä perinteisiä turvallisuushuolia että MCP-toteutuksille ainutlaatuisia tekoälyyn liittyviä uhkia.
 
-1. **Syötteen validointi**: Varmista aina syötteiden validointi ja puhdistus estääksesi injektiohyökkäykset ja sekaannusongelmat.
-2. **Käyttöoikeuksien hallinta**: Toteuta asianmukainen tunnistus ja valtuutus MCP-palvelimellesi hienojakoisilla käyttöoikeuksilla.
-3. **Turvallinen viestintä**: Käytä HTTPS/TLS-protokollaa kaikessa MCP-palvelimen viestinnässä ja harkitse lisäsalausta arkaluontoisille tiedoille.
-4. **Nopeusrajoitus**: Ota käyttöön nopeusrajoitus väärinkäytösten, palvelunestohyökkäysten estämiseksi ja resurssien hallitsemiseksi.
-5. **Lokitus ja valvonta**: Seuraa MCP-palvelintasi epäilyttävän toiminnan varalta ja toteuta kattavat auditointilokit.
-6. **Turvallinen tallennus**: Suojaa arkaluontoiset tiedot ja tunnistetiedot asianmukaisella levossa tapahtuvalla salauksella.
-7. **Tokenien hallinta**: Estä tokenien läpivientiin liittyvät haavoittuvuudet validoimalla ja puhdistamalla kaikki mallin syötteet ja tulosteet.
-8. **Istunnon hallinta**: Toteuta turvallinen istunnon käsittely estääksesi istunnon kaappauksen ja kiinnityshyökkäykset.
-9. **Työkalujen suoritusympäristön eristäminen**: Suorita työkalut eristetyissä ympäristöissä estääksesi sivuttaisliikkeet, jos järjestelmä vaarantuu.
-10. **Säännölliset turvallisuustarkastukset**: Tee ajoittain turvallisuusarviointeja MCP-toteutuksillesi ja niiden riippuvuuksille.
-11. **Kehotevalidointi**: Tarkista ja suodata sekä syöte- että tulostekehotteet estääksesi kehotteiden injektointihyökkäykset.
-12. **Tunnistautumisen delegointi**: Käytä vakiintuneita identiteetin tarjoajia sen sijaan, että toteuttaisit oman tunnistautumisen.
-13. **Käyttöoikeuksien rajaus**: Toteuta hienojakoiset käyttöoikeudet jokaiselle työkalulle ja resurssille vähimmän oikeuden periaatteen mukaisesti.
-14. **Datan minimointi**: Paljasta vain kunkin toiminnon kannalta välttämätön vähimmäismäärä tietoa riskipinnan pienentämiseksi.
-15. **Automaattinen haavoittuvuusskannaus**: Skannaa säännöllisesti MCP-palvelimesi ja niiden riippuvuudet tunnetuista haavoittuvuuksista.
+## Keskeiset turvallisuusvaatimukset
 
-## MCP:n turvallisuuden parhaiden käytäntöjen tukiresurssit
+### Pakolliset turvallisuuskontrollit (MUST-vaatimukset)
 
-### Syötteen validointi
-- [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)
-- [Preventing Prompt Injection in MCP](https://modelcontextprotocol.io/docs/guides/security)
-- [Azure Content Safety Implementation](./azure-content-safety-implementation.md)
+1. **Tokenien validointi**: MCP-palvelimet **EIVÄT SAA** hyväksyä tokeneita, joita ei ole nimenomaisesti luotu kyseiselle MCP-palvelimelle.
+2. **Valtuutuksen tarkistaminen**: MCP-palvelimien, jotka toteuttavat valtuutuksen, **TÄYTYY** tarkistaa KAIKKI saapuvat pyynnöt, eikä niiden **TULE** käyttää istuntoja autentikointiin.  
+3. **Käyttäjän suostumus**: MCP-välityspalvelimien, jotka käyttävät staattisia asiakastunnuksia, **TÄYTYY** hankkia käyttäjän nimenomainen suostumus jokaiselle dynaamisesti rekisteröidylle asiakkaalle.
+4. **Turvalliset istuntotunnukset**: MCP-palvelimien **TÄYTYY** käyttää kryptografisesti turvallisia, ei-deterministisiä istuntotunnuksia, jotka on luotu turvallisilla satunnaislukugeneraattoreilla.
 
-### Käyttöoikeuksien hallinta
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [Using Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/)
-- [Azure API Management as Auth Gateway for MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+## Ydinturvallisuuskäytännöt
 
-### Turvallinen viestintä
-- [Transport Layer Security (TLS) Best Practices](https://learn.microsoft.com/security/engineering/solving-tls)
-- [MCP Transport Security Guidelines](https://modelcontextprotocol.io/docs/concepts/transports)
-- [End-to-End Encryption for AI Workloads](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption)
+### 1. Syötteiden validointi ja puhdistus
+- **Kattava syötteiden validointi**: Validoi ja puhdista kaikki syötteet injektiohyökkäysten, "confused deputy" -ongelmien ja kehotepohjaisten injektioiden estämiseksi.
+- **Parametrien skeeman valvonta**: Toteuta tiukka JSON-skeeman validointi kaikille työkalujen parametreille ja API-syötteille.
+- **Sisällön suodatus**: Käytä Microsoft Prompt Shields -ratkaisua ja Azure Content Safety -palvelua haitallisen sisällön suodattamiseen kehotteista ja vastauksista.
+- **Tulosteiden puhdistus**: Validoi ja puhdista kaikki mallin tuottamat tulosteet ennen niiden esittämistä käyttäjille tai jatkokäsittelyyn.
 
-### Nopeusrajoitus
-- [API Rate Limiting Patterns](https://learn.microsoft.com/azure/architecture/patterns/rate-limiting-pattern)
-- [Implementing Token Bucket Rate Limiting](https://konghq.com/blog/engineering/how-to-design-a-scalable-rate-limiting-algorithm)
-- [Rate Limiting in Azure API Management](https://learn.microsoft.com/azure/api-management/rate-limit-policy)
+### 2. Autentikoinnin ja valtuutuksen huippuosaaminen  
+- **Ulkoiset identiteettipalvelut**: Delegoi autentikointi vakiintuneille identiteettipalveluille (Microsoft Entra ID, OAuth 2.1 -palveluntarjoajat) sen sijaan, että toteuttaisit oman autentikoinnin.
+- **Hienojakoiset käyttöoikeudet**: Toteuta työkalukohtaiset käyttöoikeudet vähimmän oikeuden periaatteen mukaisesti.
+- **Tokenien elinkaaren hallinta**: Käytä lyhytikäisiä käyttöoikeustokeneita, joissa on turvallinen kierto ja asianmukainen kohdevalidointi.
+- **Monivaiheinen tunnistautuminen**: Edellytä MFA:ta kaikessa hallinnollisessa käytössä ja arkaluontoisissa toiminnoissa.
 
-### Lokitus ja valvonta
-- [Centralized Logging for AI Systems](https://learn.microsoft.com/azure/architecture/example-scenario/logging/centralized-logging)
-- [Audit Logging Best Practices](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
-- [Azure Monitor for AI Workloads](https://learn.microsoft.com/azure/azure-monitor/overview)
+### 3. Turvalliset viestintäprotokollat
+- **Kuljetuskerroksen turvallisuus**: Käytä HTTPS/TLS 1.3 -protokollaa kaikessa MCP-viestinnässä ja varmista sertifikaattien oikeellisuus.
+- **Päästä päähän -salaus**: Toteuta lisäsalauskerroksia erittäin arkaluontoisille tiedoille siirron ja säilytyksen aikana.
+- **Sertifikaattien hallinta**: Ylläpidä sertifikaattien elinkaaren hallintaa automatisoiduilla uusintaprosesseilla.
+- **Protokollaversion valvonta**: Käytä nykyistä MCP-protokollaversiota (2025-06-18) ja varmista oikea version neuvottelu.
 
-### Turvallinen tallennus
-- [Azure Key Vault for Credential Storage](https://learn.microsoft.com/azure/key-vault/general/basic-concepts)
-- [Encrypting Sensitive Data at Rest](https://learn.microsoft.com/security/engineering/data-encryption-at-rest)
-- [Use Secure Token Storage and Encrypt Tokens](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
+### 4. Kehittynyt kuormanhallinta ja resurssien suojaus
+- **Monitasoinen kuormanhallinta**: Toteuta kuormanhallinta käyttäjä-, istunto-, työkalu- ja resurssitasoilla väärinkäytön estämiseksi.
+- **Mukautuva kuormanhallinta**: Käytä koneoppimiseen perustuvaa kuormanhallintaa, joka mukautuu käyttökuvioihin ja uhkaindikaattoreihin.
+- **Resurssikiintiöiden hallinta**: Aseta sopivat rajat laskentateholle, muistin käytölle ja suoritusaikaan.
+- **DDoS-suojaus**: Ota käyttöön kattavat DDoS-suojaus- ja liikenteen analysointijärjestelmät.
 
-### Tokenien hallinta
-- [JWT Best Practices (RFC 8725)](https://datatracker.ietf.org/doc/html/rfc8725)
-- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
-- [Best Practices for Token Validation and Lifetime](https://learn.microsoft.com/entra/identity-platform/access-tokens)
+### 5. Kattava lokitus ja valvonta
+- **Rakenteellinen auditointilokitus**: Toteuta yksityiskohtaiset, haettavat lokit kaikille MCP-toiminnoille, työkalujen suorituksille ja turvallisuustapahtumille.
+- **Reaaliaikainen turvallisuusvalvonta**: Käytä SIEM-järjestelmiä, joissa on tekoälypohjainen poikkeamien havaitseminen MCP-työkuormille.
+- **Tietosuojayhteensopiva lokitus**: Kirjaa turvallisuustapahtumat noudattaen tietosuojavaatimuksia ja -säädöksiä.
+- **Tapahtumavasteen integrointi**: Liitä lokitusjärjestelmät automatisoituihin tapahtumavasteen työnkulkuihin.
 
-### Istunnon hallinta
-- [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
-- [MCP Session Handling Guidelines](https://modelcontextprotocol.io/docs/guides/security)
-- [Secure Session Design Patterns](https://learn.microsoft.com/security/engineering/session-security)
+### 6. Parannetut turvalliset tallennuskäytännöt
+- **Laitteistopohjaiset turvallisuusmoduulit**: Käytä HSM-pohjaista avainten tallennusta (Azure Key Vault, AWS CloudHSM) kriittisiin kryptografisiin toimintoihin.
+- **Salausavainten hallinta**: Toteuta asianmukainen avainten kierto, erottelu ja käyttöoikeuksien hallinta.
+- **Salaisuuksien hallinta**: Säilytä kaikki API-avaimet, tokenit ja tunnistetiedot omistetuissa salaisuuksien hallintajärjestelmissä.
+- **Tietojen luokittelu**: Luokittele tiedot herkkyystason mukaan ja sovella asianmukaisia suojaustoimenpiteitä.
 
-### Työkalujen suoritusympäristön eristäminen
-- [Container Security Best Practices](https://learn.microsoft.com/azure/container-instances/container-instances-image-security)
-- [Implementing Process Isolation](https://learn.microsoft.com/windows/security/threat-protection/security-policy-settings/user-rights-assignment)
-- [Resource Limits for Containerized Applications](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+### 7. Kehittynyt tokenien hallinta
+- **Tokenien läpiviennin estäminen**: Kiellä nimenomaisesti tokenien läpivientimallit, jotka ohittavat turvallisuuskontrollit.
+- **Kohdevalidointi**: Varmista aina, että tokenin kohdeväitteet vastaavat MCP-palvelimen identiteettiä.
+- **Väitteisiin perustuva valtuutus**: Toteuta hienojakoinen valtuutus tokenin väitteiden ja käyttäjäominaisuuksien perusteella.
+- **Tokenien sitominen**: Sido tokenit tiettyihin istuntoihin, käyttäjiin tai laitteisiin tarpeen mukaan.
 
-### Säännölliset turvallisuustarkastukset
-- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl)
-- [OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/)
-- [Security Code Review Guidelines](https://owasp.org/www-pdf-archive/OWASP_Code_Review_Guide_v2.pdf)
+### 8. Turvallinen istuntohallinta
+- **Kryptografiset istuntotunnukset**: Luo istuntotunnukset kryptografisesti turvallisilla satunnaislukugeneraattoreilla (ei ennustettavia sekvenssejä).
+- **Käyttäjäkohtainen sitominen**: Sido istuntotunnukset käyttäjäkohtaisiin tietoihin turvallisilla formaateilla, kuten `<user_id>:<session_id>`.
+- **Istuntojen elinkaaren hallinta**: Toteuta asianmukainen istuntojen vanhentuminen, kierto ja mitätöinti.
+- **Istuntojen turvallisuusotsikot**: Käytä sopivia HTTP-turvallisuusotsikoita istuntojen suojaamiseen.
 
-### Kehotevalidointi
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
-- [Azure Content Safety for AI](https://learn.microsoft.com/azure/ai-services/content-safety/)
-- [Preventing Prompt Injection](https://github.com/microsoft/prompt-shield-js)
+### 9. Tekoälyyn liittyvät turvallisuuskontrollit
+- **Kehotepohjaisten injektioiden torjunta**: Käytä Microsoft Prompt Shields -ratkaisua, jossa on korostus-, rajaus- ja datamerkintätekniikoita.
+- **Työkalujen myrkyttämisen estäminen**: Validoi työkalujen metatiedot, seuraa dynaamisia muutoksia ja varmista työkalujen eheys.
+- **Mallin tulosteiden validointi**: Tarkista mallin tulosteet mahdollisen tietovuodon, haitallisen sisällön tai turvallisuuspolitiikan rikkomusten varalta.
+- **Kontekstin suojaus**: Toteuta kontrollit, jotka estävät kontekstin manipuloinnin ja myrkyttämisen.
 
-### Tunnistautumisen delegointi
-- [Microsoft Entra ID Integration](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow)
-- [OAuth 2.0 for MCP Services](https://learn.microsoft.com/security/engineering/solving-oauth)
-- [MCP Security Controls 2025](./mcp-security-controls-2025.md)
+### 10. Työkalujen suorittamisen turvallisuus
+- **Suoritusympäristön eristäminen**: Suorita työkalut kontitetuissa, eristetyissä ympäristöissä, joissa on resurssirajoitukset.
+- **Oikeuksien erottelu**: Suorita työkalut vähimmäisoikeuksilla ja erillisillä palvelutileillä.
+- **Verkkoeristys**: Toteuta verkon segmentointi työkalujen suoritusympäristöille.
+- **Suorituksen valvonta**: Valvo työkalujen suorittamista poikkeavan käyttäytymisen, resurssien käytön ja turvallisuusrikkomusten varalta.
 
-### Käyttöoikeuksien rajaus
-- [Secure Least-Privileged Access](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
-- [Role-Based Access Control (RBAC) Design](https://learn.microsoft.com/azure/role-based-access-control/overview)
-- [Tool-specific Authorization in MCP](https://modelcontextprotocol.io/docs/guides/best-practices)
+### 11. Jatkuva turvallisuuden validointi
+- **Automaattinen turvallisuustestaus**: Integroi turvallisuustestaus CI/CD-putkiin työkaluilla, kuten GitHub Advanced Security.
+- **Haavoittuvuuksien hallinta**: Skannaa säännöllisesti kaikki riippuvuudet, mukaan lukien tekoälymallit ja ulkoiset palvelut.
+- **Tunkeutumistestaus**: Suorita säännöllisiä turvallisuusarviointeja, jotka kohdistuvat erityisesti MCP-toteutuksiin.
+- **Turvallisuuskoodin tarkistukset**: Toteuta pakolliset turvallisuustarkistukset kaikille MCP:hen liittyville koodimuutoksille.
 
-### Datan minimointi
-- [Data Protection by Design](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments)
-- [AI Data Privacy Best Practices](https://learn.microsoft.com/legal/cognitive-services/openai/data-privacy)
-- [Implementing Privacy-enhancing Technologies](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/)
+### 12. Tekoälyn toimitusketjun turvallisuus
+- **Komponenttien tarkistus**: Varmista kaikkien tekoälykomponenttien (mallit, upotukset, API:t) alkuperä, eheys ja turvallisuus.
+- **Riippuvuuksien hallinta**: Pidä ajan tasalla olevat inventaariot kaikista ohjelmisto- ja tekoälyriippuvuuksista haavoittuvuuksien seurannalla.
+- **Luotetut arkistot**: Käytä varmennettuja, luotettuja lähteitä kaikille tekoälymalleille, kirjastoille ja työkaluille.
+- **Toimitusketjun valvonta**: Seuraa jatkuvasti tekoälypalveluntarjoajien ja mallivarastojen kompromisseja.
 
-### Automaattinen haavoittuvuusskannaus
-- [GitHub Advanced Security](https://github.com/security/advanced-security)
-- [DevSecOps Pipeline Implementation](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline)
-- [Continuous Security Validation](https://www.microsoft.com/security/blog/2022/04/05/step-by-step-building-a-more-efficient-devsecops-environment/)
+## Kehittyneet turvallisuusmallit
+
+### Zero Trust -arkkitehtuuri MCP:lle
+- **Älä koskaan luota, varmista aina**: Toteuta jatkuva validointi kaikille MCP-osapuolille.
+- **Mikrosegmentointi**: Eristä MCP-komponentit hienojakoisilla verkko- ja identiteettikontrolleilla.
+- **Ehdollinen pääsy**: Toteuta riskiperusteiset pääsynvalvontakontrollit, jotka mukautuvat kontekstiin ja käyttäytymiseen.
+- **Jatkuva riskinarviointi**: Arvioi turvallisuusasemaa dynaamisesti nykyisten uhkaindikaattorien perusteella.
+
+### Tietosuojaa säilyttävä tekoälyn toteutus
+- **Tietojen minimointi**: Paljasta vain vähimmäismäärä tietoja jokaisessa MCP-toiminnossa.
+- **Differentiaalinen tietosuoja**: Käytä tietosuojaa säilyttäviä tekniikoita arkaluontoisten tietojen käsittelyssä.
+- **Homomorfinen salaus**: Käytä kehittyneitä salausmenetelmiä turvalliseen laskentaan salatuilla tiedoilla.
+- **Hajautettu oppiminen**: Toteuta hajautettuja oppimismenetelmiä, jotka säilyttävät tietojen paikallisuuden ja yksityisyyden.
+
+### Tekoälyjärjestelmien tapahtumavaste
+- **Tekoälyyn liittyvät tapahtumamenettelyt**: Kehitä tapahtumavasteen menettelytapoja, jotka on räätälöity tekoälyyn ja MCP:hen liittyviin uhkiin.
+- **Automaattinen vaste**: Toteuta automaattinen eristäminen ja korjaus yleisille tekoälyyn liittyville turvallisuustapahtumille.  
+- **Oikeuslääketieteelliset valmiudet**: Ylläpidä valmiutta tekoälyjärjestelmien kompromissien ja tietomurtojen tutkintaan.
+- **Palautusmenettelyt**: Määritä menettelyt tekoälymallien myrkyttämisestä, kehotepohjaisista injektiohyökkäyksistä ja palvelukompromisseista toipumiseen.
+
+## Toteutusresurssit ja standardit
+
+### Virallinen MCP-dokumentaatio
+- [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) - Nykyinen MCP-protokollan määrittely
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) - Virallinen turvallisuusohjeistus
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization) - Autentikointi- ja valtuutusmallit
+- [MCP Transport Security](https://modelcontextprotocol.io/specification/2025-06-18/transports/) - Kuljetuskerroksen turvallisuusvaatimukset
+
+### Microsoftin turvallisuusratkaisut
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - Kehotepohjaisten injektioiden kehittynyt torjunta
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/) - Kattava tekoälyn sisällön suodatus
+- [Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow) - Yritysten identiteetin ja pääsyn hallinta
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts) - Turvallinen salaisuuksien ja tunnistetietojen hallinta
+- [GitHub Advanced Security](https://github.com/security/advanced-security) - Toimitusketjun ja koodin turvallisuusskannaus
+
+### Turvallisuusstandardit ja -kehykset
+- [OAuth 2.1 Security Best Practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics) - Nykyiset OAuth-turvallisuusohjeet
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Verkkosovellusten turvallisuusriskit
+- [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559) - Tekoälyyn liittyvät turvallisuusriskit
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) - Kattava tekoälyn riskienhallinta
+- [ISO 27001:2022](https://www.iso.org/standard/27001) - Tietoturvan hallintajärjestelmät
+
+### Toteutusoppaat ja -ohjeet
+- [Azure API Management as MCP Auth Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) - Yritysten autentikointimallit
+- [Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/) - Identiteettipalvelun integrointi
+- [Secure Token Storage Implementation](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2) - Tokenien hallinnan parhaat käytännöt
+- [End-to-End Encryption for AI](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption) - Kehittyneet salausmallit
+
+### Kehittyneet turvallisuusresurssit
+- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl) - Turvallisen kehityksen käytännöt
+- [AI Red Team Guidance](https://learn.microsoft.com/security/ai-red-team/) - Tekoälyyn liittyvä turvallisuustestaus
+- [Threat Modeling for AI Systems](https://learn.microsoft.com/security/adoption/approach/threats-ai) - Tekoälyn uhkamallinnusmenetelmä
+- [Privacy Engineering for AI](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/) - Tietosuojaa säilyttävät tekoälytekniikat
+
+### Sääntely ja hallinnointi
+- [GDPR Compliance for AI](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments) - Tietosuojayhteensopivuus tekoälyjärjestelmissä
+- [AI Governance Framework](https://learn.microsoft.com/azure/architecture/guide/responsible-ai/responsible-ai-overview) - Vastuullisen tekoälyn toteutus
+- [SOC 2 for AI Services](https://learn.microsoft.com/compliance/regulatory/offering-soc) - Turvallisuuskontrollit tekoälypalveluntarjoajille
+-
+- **Työkalujen kehittäminen**: Kehitä ja jaa turvallisuustyökaluja ja -kirjastoja MCP-ekosysteemiä varten
+
+---
+
+*Tämä asiakirja heijastaa MCP:n turvallisuuden parhaita käytäntöjä 18. elokuuta 2025 tilanteen mukaan, perustuen MCP-määritykseen 2025-06-18. Turvallisuuskäytäntöjä tulisi tarkistaa ja päivittää säännöllisesti protokollan ja uhkakentän kehittyessä.*
 
 **Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.

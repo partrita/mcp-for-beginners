@@ -136,4 +136,4 @@ The takeaways from this chapter is the following:
 
 ## What's Next
 
-- Next: [Creating an SSE Server](../05-sse-server/README.md)
+- Next: [Creating a stdio Server](../05-stdio-server/README.md)

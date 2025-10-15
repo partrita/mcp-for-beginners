@@ -1,36 +1,36 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "73240f845b99df9401fffd21c09a5f7b",
-  "translation_date": "2025-07-17T07:39:10+00:00",
+  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
+  "translation_date": "2025-08-18T17:13:38+00:00",
   "source_file": "05-AdvancedTopics/mcp-integration/README.md",
   "language_code": "vi"
 }
 -->
 # Tích hợp Doanh nghiệp
 
-Khi xây dựng các MCP Server trong bối cảnh doanh nghiệp, bạn thường cần tích hợp với các nền tảng và dịch vụ AI hiện có. Phần này hướng dẫn cách tích hợp MCP với các hệ thống doanh nghiệp như Azure OpenAI và Microsoft AI Foundry, giúp khai thác các khả năng AI tiên tiến và điều phối công cụ.
+Khi xây dựng các máy chủ MCP trong bối cảnh doanh nghiệp, bạn thường cần tích hợp với các nền tảng và dịch vụ AI hiện có. Phần này hướng dẫn cách tích hợp MCP với các hệ thống doanh nghiệp như Azure OpenAI và Microsoft AI Foundry, giúp kích hoạt các khả năng AI tiên tiến và điều phối công cụ.
 
 ## Giới thiệu
 
-Trong bài học này, bạn sẽ học cách tích hợp Model Context Protocol (MCP) với các hệ thống AI doanh nghiệp, tập trung vào Azure OpenAI và Microsoft AI Foundry. Những tích hợp này cho phép bạn tận dụng các mô hình và công cụ AI mạnh mẽ đồng thời giữ được tính linh hoạt và khả năng mở rộng của MCP.
+Trong bài học này, bạn sẽ học cách tích hợp Giao thức Ngữ cảnh Mô hình (MCP) với các hệ thống AI doanh nghiệp, tập trung vào Azure OpenAI và Microsoft AI Foundry. Những tích hợp này cho phép bạn tận dụng các mô hình và công cụ AI mạnh mẽ đồng thời duy trì tính linh hoạt và khả năng mở rộng của MCP.
 
 ## Mục tiêu học tập
 
-Sau bài học này, bạn sẽ có thể:
+Sau khi hoàn thành bài học này, bạn sẽ có thể:
 
 - Tích hợp MCP với Azure OpenAI để sử dụng các khả năng AI của nó.
 - Triển khai điều phối công cụ MCP với Azure OpenAI.
-- Kết hợp MCP với Microsoft AI Foundry để có các khả năng tác nhân AI nâng cao.
+- Kết hợp MCP với Microsoft AI Foundry để có các khả năng tác nhân AI tiên tiến.
 - Tận dụng Azure Machine Learning (ML) để thực thi các pipeline ML và đăng ký mô hình dưới dạng công cụ MCP.
 
 ## Tích hợp Azure OpenAI
 
-Azure OpenAI cung cấp quyền truy cập vào các mô hình AI mạnh mẽ như GPT-4 và các mô hình khác. Việc tích hợp MCP với Azure OpenAI cho phép bạn sử dụng các mô hình này trong khi vẫn giữ được tính linh hoạt của việc điều phối công cụ trong MCP.
+Azure OpenAI cung cấp quyền truy cập vào các mô hình AI mạnh mẽ như GPT-4 và các mô hình khác. Tích hợp MCP với Azure OpenAI cho phép bạn sử dụng các mô hình này đồng thời duy trì tính linh hoạt của điều phối công cụ MCP.
 
 ### Triển khai C#
 
-Trong đoạn mã này, chúng tôi minh họa cách tích hợp MCP với Azure OpenAI sử dụng Azure OpenAI SDK.
+Trong đoạn mã dưới đây, chúng tôi minh họa cách tích hợp MCP với Azure OpenAI bằng Azure OpenAI SDK.
 
 ```csharp
 // .NET Azure OpenAI Integration
@@ -94,19 +94,19 @@ namespace EnterpriseIntegration
 }
 ```
 
-Trong đoạn mã trên, chúng ta đã:
+Trong đoạn mã trên, chúng tôi đã:
 
-- Cấu hình client Azure OpenAI với endpoint, tên triển khai và khóa API.
-- Tạo phương thức `GetCompletionWithToolsAsync` để lấy kết quả hoàn thành có hỗ trợ công cụ.
+- Cấu hình client Azure OpenAI với endpoint, tên triển khai và API key.
+- Tạo một phương thức `GetCompletionWithToolsAsync` để lấy kết quả với hỗ trợ công cụ.
 - Xử lý các cuộc gọi công cụ trong phản hồi.
 
-Bạn được khuyến khích triển khai logic xử lý công cụ thực tế dựa trên cấu hình MCP server cụ thể của bạn.
+Bạn được khuyến khích triển khai logic xử lý công cụ thực tế dựa trên thiết lập máy chủ MCP cụ thể của mình.
 
 ## Tích hợp Microsoft AI Foundry
 
-Azure AI Foundry cung cấp nền tảng để xây dựng và triển khai các tác nhân AI. Việc tích hợp MCP với AI Foundry cho phép bạn tận dụng các khả năng của nó trong khi vẫn giữ được tính linh hoạt của MCP.
+Azure AI Foundry cung cấp một nền tảng để xây dựng và triển khai các tác nhân AI. Tích hợp MCP với AI Foundry cho phép bạn tận dụng các khả năng của nó đồng thời duy trì tính linh hoạt của MCP.
 
-Trong đoạn mã dưới đây, chúng ta phát triển một tích hợp Agent xử lý các yêu cầu và xử lý các cuộc gọi công cụ sử dụng MCP.
+Trong đoạn mã dưới đây, chúng tôi phát triển một tích hợp Tác nhân xử lý các yêu cầu và xử lý các cuộc gọi công cụ bằng MCP.
 
 ### Triển khai Java
 
@@ -166,15 +166,15 @@ public class AIFoundryMcpBridge {
 }
 ```
 
-Trong đoạn mã trên, chúng ta đã:
+Trong đoạn mã trên, chúng tôi đã:
 
-- Tạo lớp `AIFoundryMcpBridge` tích hợp cả AI Foundry và MCP.
-- Triển khai phương thức `processAgentRequest` để xử lý yêu cầu từ tác nhân AI Foundry.
-- Xử lý các cuộc gọi công cụ bằng cách thực thi chúng qua client MCP và gửi kết quả trở lại tác nhân AI Foundry.
+- Tạo một lớp `AIFoundryMcpBridge` tích hợp với cả AI Foundry và MCP.
+- Triển khai một phương thức `processAgentRequest` để xử lý yêu cầu của tác nhân AI Foundry.
+- Xử lý các cuộc gọi công cụ bằng cách thực thi chúng thông qua client MCP và gửi kết quả trở lại tác nhân AI Foundry.
 
 ## Tích hợp MCP với Azure ML
 
-Việc tích hợp MCP với Azure Machine Learning (ML) cho phép bạn tận dụng các khả năng ML mạnh mẽ của Azure trong khi vẫn giữ được tính linh hoạt của MCP. Tích hợp này có thể được sử dụng để thực thi các pipeline ML, đăng ký mô hình dưới dạng công cụ và quản lý tài nguyên tính toán.
+Tích hợp MCP với Azure Machine Learning (ML) cho phép bạn tận dụng các khả năng ML mạnh mẽ của Azure đồng thời duy trì tính linh hoạt của MCP. Tích hợp này có thể được sử dụng để thực thi các pipeline ML, đăng ký mô hình dưới dạng công cụ và quản lý tài nguyên tính toán.
 
 ### Triển khai Python
 
@@ -300,17 +300,17 @@ class EnterpriseAiIntegration:
         return mapping.get(ml_type, "string")
 ```
 
-Trong đoạn mã trên, chúng ta đã:
+Trong đoạn mã trên, chúng tôi đã:
 
-- Tạo lớp `EnterpriseAiIntegration` tích hợp MCP với Azure ML.
-- Triển khai phương thức `execute_ml_pipeline` xử lý dữ liệu đầu vào sử dụng các công cụ MCP và gửi pipeline ML đến Azure ML.
-- Triển khai phương thức `register_ml_model_as_tool` đăng ký mô hình Azure ML dưới dạng công cụ MCP, bao gồm tạo môi trường triển khai và tài nguyên tính toán cần thiết.
-- Ánh xạ các kiểu dữ liệu Azure ML sang kiểu JSON schema để đăng ký công cụ.
-- Sử dụng lập trình bất đồng bộ để xử lý các thao tác có thể mất thời gian như thực thi pipeline ML và đăng ký mô hình.
+- Tạo một lớp `EnterpriseAiIntegration` tích hợp MCP với Azure ML.
+- Triển khai một phương thức `execute_ml_pipeline` để xử lý dữ liệu đầu vào bằng các công cụ MCP và gửi một pipeline ML đến Azure ML.
+- Triển khai một phương thức `register_ml_model_as_tool` để đăng ký một mô hình Azure ML dưới dạng công cụ MCP, bao gồm việc tạo môi trường triển khai và tài nguyên tính toán cần thiết.
+- Ánh xạ các kiểu dữ liệu Azure ML sang các kiểu JSON schema để đăng ký công cụ.
+- Sử dụng lập trình bất đồng bộ để xử lý các hoạt động có thể kéo dài như thực thi pipeline ML và đăng ký mô hình.
 
 ## Tiếp theo
 
 - [5.2 Đa phương thức](../mcp-multi-modality/README.md)
 
-**Tuyên bố từ chối trách nhiệm**:  
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ gốc của nó nên được coi là nguồn chính xác và đáng tin cậy. Đối với các thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp do con người thực hiện. Chúng tôi không chịu trách nhiệm về bất kỳ sự hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
+**Tuyên bố miễn trừ trách nhiệm**:  
+Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ bản địa nên được coi là nguồn tham khảo chính thức. Đối với các thông tin quan trọng, chúng tôi khuyến nghị sử dụng dịch vụ dịch thuật chuyên nghiệp từ con người. Chúng tôi không chịu trách nhiệm cho bất kỳ sự hiểu lầm hoặc diễn giải sai nào phát sinh từ việc sử dụng bản dịch này.

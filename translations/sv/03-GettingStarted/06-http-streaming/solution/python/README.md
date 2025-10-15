@@ -1,30 +1,30 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4c4da5949611d91b06d8a5d450aae8d6",
-  "translation_date": "2025-07-13T21:20:12+00:00",
+  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
+  "translation_date": "2025-08-18T14:59:34+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
   "language_code": "sv"
 }
 -->
 # Köra detta exempel
 
-Så här kör du den klassiska HTTP-streamingservern och klienten, samt MCP-streamingservern och klienten med Python.
+Så här kör du den klassiska HTTP-strömningsservern och klienten, samt MCP-strömningsservern och klienten med Python.
 
 ### Översikt
 
-- Du kommer att sätta upp en MCP-server som strömmar progressnotiser till klienten medan den bearbetar objekt.
-- Klienten visar varje notis i realtid.
+- Du kommer att sätta upp en MCP-server som strömmar framstegsnotifikationer till klienten medan den bearbetar objekt.
+- Klienten kommer att visa varje notifikation i realtid.
 - Denna guide täcker förutsättningar, installation, körning och felsökning.
 
 ### Förutsättningar
 
 - Python 3.9 eller nyare
-- Pythonpaketet `mcp` (installera med `pip install mcp`)
+- Python-paketet `mcp` (installera med `pip install mcp`)
 
-### Installation & Uppstart
+### Installation & Inställning
 
-1. Klona repot eller ladda ner lösningsfilerna.
+1. Klona arkivet eller ladda ner lösningsfilerna.
 
    ```pwsh
    git clone https://github.com/microsoft/mcp-for-beginners
@@ -42,7 +42,7 @@ Så här kör du den klassiska HTTP-streamingservern och klienten, samt MCP-stre
 1. **Installera nödvändiga beroenden:**
 
    ```pwsh
-   pip install "mcp[cli]"
+   pip install "mcp[cli]" fastapi requests
    ```
 
 ### Filer
@@ -50,15 +50,15 @@ Så här kör du den klassiska HTTP-streamingservern och klienten, samt MCP-stre
 - **Server:** [server.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/server.py)
 - **Klient:** [client.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/client.py)
 
-### Köra den klassiska HTTP-streamingservern
+### Köra den klassiska HTTP-strömningsservern
 
-1. Gå till lösningsmappen:
+1. Navigera till lösningskatalogen:
 
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    ```
 
-2. Starta den klassiska HTTP-streamingservern:
+2. Starta den klassiska HTTP-strömningsservern:
 
    ```pwsh
    python server.py
@@ -71,16 +71,16 @@ Så här kör du den klassiska HTTP-streamingservern och klienten, samt MCP-stre
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### Köra den klassiska HTTP-streamingklienten
+### Köra den klassiska HTTP-strömningsklienten
 
-1. Öppna en ny terminal (aktivera samma virtuella miljö och mapp):
+1. Öppna en ny terminal (aktivera samma virtuella miljö och katalog):
 
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py
    ```
 
-2. Du bör se strömmade meddelanden skrivas ut i följd:
+2. Du bör se strömmade meddelanden som skrivs ut sekventiellt:
 
    ```text
    Running classic HTTP streaming client...
@@ -93,13 +93,13 @@ Så här kör du den klassiska HTTP-streamingservern och klienten, samt MCP-stre
    --- Stream Ended ---
    ```
 
-### Köra MCP-streamingservern
+### Köra MCP-strömningsservern
 
-1. Gå till lösningsmappen:
+1. Navigera till lösningskatalogen:
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    ```
-2. Starta MCP-servern med transporten streamable-http:
+2. Starta MCP-servern med transporten "streamable-http":
    ```pwsh
    python server.py mcp
    ```
@@ -109,14 +109,14 @@ Så här kör du den klassiska HTTP-streamingservern och klienten, samt MCP-stre
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### Köra MCP-streamingklienten
+### Köra MCP-strömningsklienten
 
-1. Öppna en ny terminal (aktivera samma virtuella miljö och mapp):
+1. Öppna en ny terminal (aktivera samma virtuella miljö och katalog):
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py mcp
    ```
-2. Du bör se notiser skrivas ut i realtid medan servern bearbetar varje objekt:
+2. Du bör se notifikationer som skrivs ut i realtid medan servern bearbetar varje objekt:
    ```
    Running MCP client...
    Starting client...
@@ -132,20 +132,20 @@ Så här kör du den klassiska HTTP-streamingservern och klienten, samt MCP-stre
 ### Viktiga implementeringssteg
 
 1. **Skapa MCP-servern med FastMCP.**
-2. **Definiera ett verktyg som bearbetar en lista och skickar notiser med `ctx.info()` eller `ctx.log()`.**
+2. **Definiera ett verktyg som bearbetar en lista och skickar notifikationer med `ctx.info()` eller `ctx.log()`.**
 3. **Kör servern med `transport="streamable-http"`.**
-4. **Implementera en klient med en meddelandehanterare som visar notiser när de kommer.**
+4. **Implementera en klient med en meddelandehanterare för att visa notifikationer när de anländer.**
 
-### Genomgång av koden
-- Servern använder asynkrona funktioner och MCP-konteksten för att skicka progressuppdateringar.
-- Klienten implementerar en asynkron meddelandehanterare som skriver ut notiser och slutresultatet.
+### Kodgenomgång
+- Servern använder asynkrona funktioner och MCP-kontexten för att skicka framstegsuppdateringar.
+- Klienten implementerar en asynkron meddelandehanterare för att skriva ut notifikationer och slutresultatet.
 
 ### Tips & Felsökning
 
 - Använd `async/await` för icke-blockerande operationer.
-- Hantera alltid undantag i både server och klient för stabilitet.
-- Testa med flera klienter för att se realtidsuppdateringar.
-- Om du stöter på fel, kontrollera din Python-version och att alla beroenden är installerade.
+- Hantera alltid undantag i både server och klient för att säkerställa robusthet.
+- Testa med flera klienter för att observera uppdateringar i realtid.
+- Om du stöter på fel, kontrollera din Python-version och säkerställ att alla beroenden är installerade.
 
 **Ansvarsfriskrivning**:  
-Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, vänligen observera att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess modersmål bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för eventuella missförstånd eller feltolkningar som uppstår vid användning av denna översättning.
+Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, bör det noteras att automatiserade översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess originalspråk bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för eventuella missförstånd eller feltolkningar som uppstår vid användning av denna översättning.

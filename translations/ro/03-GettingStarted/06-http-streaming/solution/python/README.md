@@ -1,26 +1,26 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4c4da5949611d91b06d8a5d450aae8d6",
-  "translation_date": "2025-07-13T21:22:22+00:00",
+  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
+  "translation_date": "2025-08-19T16:37:28+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
   "language_code": "ro"
 }
 -->
 # Rularea acestui exemplu
 
-Iată cum să rulezi serverul și clientul clasic de streaming HTTP, precum și serverul și clientul MCP de streaming folosind Python.
+Iată cum să rulezi serverul și clientul clasic de streaming HTTP, precum și serverul și clientul MCP de streaming utilizând Python.
 
 ### Prezentare generală
 
 - Vei configura un server MCP care transmite notificări de progres către client pe măsură ce procesează elementele.
 - Clientul va afișa fiecare notificare în timp real.
-- Acest ghid acoperă cerințele, configurarea, rularea și depanarea.
+- Acest ghid acoperă cerințele preliminare, configurarea, rularea și depanarea.
 
-### Cerințe
+### Cerințe preliminare
 
 - Python 3.9 sau o versiune mai nouă
-- Pachetul Python `mcp` (instalează cu `pip install mcp`)
+- Pachetul Python `mcp` (instalează-l cu `pip install mcp`)
 
 ### Instalare și configurare
 
@@ -42,7 +42,7 @@ Iată cum să rulezi serverul și clientul clasic de streaming HTTP, precum și 
 1. **Instalează dependențele necesare:**
 
    ```pwsh
-   pip install "mcp[cli]"
+   pip install "mcp[cli]" fastapi requests
    ```
 
 ### Fișiere
@@ -52,7 +52,7 @@ Iată cum să rulezi serverul și clientul clasic de streaming HTTP, precum și 
 
 ### Rularea serverului clasic de streaming HTTP
 
-1. Navighează în directorul soluției:
+1. Navighează la directorul soluției:
 
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
@@ -73,7 +73,7 @@ Iată cum să rulezi serverul și clientul clasic de streaming HTTP, precum și 
 
 ### Rularea clientului clasic de streaming HTTP
 
-1. Deschide un terminal nou (activează același mediu virtual și director):
+1. Deschide un nou terminal (activează același mediu virtual și director):
 
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
@@ -95,7 +95,7 @@ Iată cum să rulezi serverul și clientul clasic de streaming HTTP, precum și 
 
 ### Rularea serverului MCP de streaming
 
-1. Navighează în directorul soluției:
+1. Navighează la directorul soluției:
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    ```
@@ -111,7 +111,7 @@ Iată cum să rulezi serverul și clientul clasic de streaming HTTP, precum și 
 
 ### Rularea clientului MCP de streaming
 
-1. Deschide un terminal nou (activează același mediu virtual și director):
+1. Deschide un nou terminal (activează același mediu virtual și director):
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py mcp
@@ -129,23 +129,23 @@ Iată cum să rulezi serverul și clientul clasic de streaming HTTP, precum și 
    Tool result: meta=None content=[TextContent(type='text', text='Processed files: file_1.txt, file_2.txt, file_3.txt | Message: hello from client')]
    ```
 
-### Pași cheie în implementare
+### Pași cheie de implementare
 
-1. **Creează serverul MCP folosind FastMCP.**
-2. **Definește un tool care procesează o listă și trimite notificări folosind `ctx.info()` sau `ctx.log()`.**
+1. **Creează serverul MCP utilizând FastMCP.**
+2. **Definește un instrument care procesează o listă și trimite notificări utilizând `ctx.info()` sau `ctx.log()`.**
 3. **Rulează serverul cu `transport="streamable-http"`.**
 4. **Implementează un client cu un handler de mesaje pentru a afișa notificările pe măsură ce sosesc.**
 
-### Parcurgerea codului
-- Serverul folosește funcții async și contextul MCP pentru a trimite actualizări de progres.
-- Clientul implementează un handler async de mesaje pentru a afișa notificările și rezultatul final.
+### Prezentare a codului
+- Serverul utilizează funcții asincrone și contextul MCP pentru a trimite actualizări de progres.
+- Clientul implementează un handler de mesaje asincron pentru a afișa notificările și rezultatul final.
 
 ### Sfaturi și depanare
 
-- Folosește `async/await` pentru operațiuni non-blocante.
-- Gestionează întotdeauna excepțiile atât pe server, cât și pe client pentru robustețe.
+- Utilizează `async/await` pentru operațiuni non-blocante.
+- Gestionează întotdeauna excepțiile atât în server, cât și în client pentru a asigura robustețea.
 - Testează cu mai mulți clienți pentru a observa actualizările în timp real.
 - Dacă întâmpini erori, verifică versiunea de Python și asigură-te că toate dependențele sunt instalate.
 
-**Declinare de responsabilitate**:  
-Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim pentru acuratețe, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă trebuie considerat sursa autorizată. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm răspunderea pentru eventualele neînțelegeri sau interpretări greșite rezultate din utilizarea acestei traduceri.
+**Declinarea responsabilității**:  
+Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși depunem eforturi pentru a asigura acuratețea, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa natală ar trebui considerat sursa autoritară. Pentru informații critice, se recomandă traducerea umană realizată de profesioniști. Nu ne asumăm răspunderea pentru eventualele neînțelegeri sau interpretări greșite care pot apărea din utilizarea acestei traduceri.

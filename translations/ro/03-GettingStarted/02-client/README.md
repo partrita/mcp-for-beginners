@@ -1,42 +1,42 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "8da8a0fd44d58fab5979d0f2914a1f37",
-  "translation_date": "2025-07-17T11:17:23+00:00",
+  "original_hash": "94c80ae71fb9971e9b57b51ab0912121",
+  "translation_date": "2025-08-19T16:37:48+00:00",
   "source_file": "03-GettingStarted/02-client/README.md",
   "language_code": "ro"
 }
 -->
 # Crearea unui client
 
-Clienții sunt aplicații personalizate sau scripturi care comunică direct cu un MCP Server pentru a solicita resurse, unelte și prompturi. Spre deosebire de utilizarea instrumentului inspector, care oferă o interfață grafică pentru interacțiunea cu serverul, scrierea propriului client permite interacțiuni programatice și automate. Acest lucru le permite dezvoltatorilor să integreze capabilitățile MCP în propriile fluxuri de lucru, să automatizeze sarcini și să construiască soluții personalizate adaptate nevoilor specifice.
+Clienții sunt aplicații personalizate sau scripturi care comunică direct cu un server MCP pentru a solicita resurse, unelte și prompturi. Spre deosebire de utilizarea instrumentului inspector, care oferă o interfață grafică pentru interacțiunea cu serverul, scrierea propriului client permite interacțiuni programatice și automatizate. Acest lucru le permite dezvoltatorilor să integreze capabilitățile MCP în propriile fluxuri de lucru, să automatizeze sarcini și să construiască soluții personalizate adaptate nevoilor specifice.
 
 ## Prezentare generală
 
-Această lecție introduce conceptul de clienți în cadrul ecosistemului Model Context Protocol (MCP). Vei învăța cum să scrii propriul client și să îl conectezi la un MCP Server.
+Această lecție introduce conceptul de clienți în ecosistemul Model Context Protocol (MCP). Vei învăța cum să scrii propriul client și să-l conectezi la un server MCP.
 
 ## Obiective de învățare
 
-La finalul acestei lecții, vei putea:
+Până la sfârșitul acestei lecții, vei putea:
 
 - Înțelege ce poate face un client.
 - Scrie propriul client.
-- Conecta și testa clientul cu un server MCP pentru a te asigura că funcționează conform așteptărilor.
+- Conecta și testa clientul cu un server MCP pentru a te asigura că acesta funcționează conform așteptărilor.
 
 ## Ce implică scrierea unui client?
 
 Pentru a scrie un client, va trebui să faci următoarele:
 
-- **Importă bibliotecile corecte**. Vei folosi aceeași bibliotecă ca înainte, doar că cu alte construcții.
-- **Instanțiază un client**. Aceasta va implica crearea unei instanțe de client și conectarea acesteia la metoda de transport aleasă.
-- **Decide ce resurse să listezi**. Serverul tău MCP vine cu resurse, unelte și prompturi, trebuie să decizi care dintre ele să fie listate.
-- **Integrează clientul într-o aplicație gazdă**. Odată ce știi capabilitățile serverului, trebuie să integrezi clientul în aplicația gazdă astfel încât, dacă un utilizator tastează un prompt sau o altă comandă, să fie invocată funcționalitatea corespunzătoare a serverului.
+- **Importă bibliotecile corecte**. Vei folosi aceeași bibliotecă ca înainte, doar construcții diferite.
+- **Instanțiază un client**. Acest lucru va implica crearea unei instanțe de client și conectarea acesteia la metoda de transport aleasă.
+- **Decide ce resurse să listezi**. Serverul MCP vine cu resurse, unelte și prompturi, iar tu trebuie să decizi pe care să le listezi.
+- **Integrează clientul într-o aplicație gazdă**. Odată ce cunoști capabilitățile serverului, trebuie să integrezi acest client în aplicația gazdă astfel încât, dacă un utilizator introduce un prompt sau o altă comandă, funcționalitatea corespunzătoare a serverului să fie invocată.
 
-Acum că am înțeles la nivel general ce urmează să facem, să vedem un exemplu.
+Acum că înțelegem la un nivel general ce urmează să facem, să analizăm un exemplu.
 
 ### Un exemplu de client
 
-Să aruncăm o privire la acest exemplu de client:
+Să aruncăm o privire asupra acestui exemplu de client:
 
 ### TypeScript
 
@@ -86,39 +86,39 @@ const result = await client.callTool({
 });
 ```
 
-În codul de mai sus am:
+În codul precedent am:
 
-- Importat bibliotecile
-- Creat o instanță de client și conectat-o folosind stdio ca transport.
+- Importat bibliotecile.
+- Creat o instanță de client și am conectat-o folosind stdio pentru transport.
 - Listat prompturi, resurse și unelte și le-am invocat pe toate.
 
-Iată-l, un client care poate comunica cu un MCP Server.
+Iată-l, un client care poate comunica cu un server MCP.
 
-Să luăm timpul necesar în următoarea secțiune de exerciții pentru a analiza fiecare fragment de cod și a explica ce se întâmplă.
+Să ne alocăm timp în secțiunea următoare de exerciții pentru a descompune fiecare fragment de cod și a explica ce se întâmplă.
 
 ## Exercițiu: Scrierea unui client
 
-Așa cum am spus mai sus, să luăm timpul necesar pentru a explica codul, și, desigur, poți să codezi alături dacă dorești.
+Așa cum am spus mai sus, să ne alocăm timp pentru a explica codul, și, desigur, poți scrie codul în paralel dacă dorești.
 
 ### -1- Importarea bibliotecilor
 
-Să importăm bibliotecile de care avem nevoie, vom avea nevoie de referințe la un client și la protocolul de transport ales, stdio. stdio este un protocol pentru lucruri care rulează pe mașina ta locală. SSE este un alt protocol de transport pe care îl vom arăta în capitolele viitoare, dar acesta este cealaltă opțiune. Pentru moment, să continuăm cu stdio.
+Să importăm bibliotecile de care avem nevoie. Vom avea nevoie de referințe la un client și la protocolul de transport ales, stdio. stdio este un protocol pentru lucruri care rulează pe mașina ta locală. SSE este un alt protocol de transport pe care îl vom prezenta în capitolele viitoare, dar acesta este cealaltă opțiune. Deocamdată, să continuăm cu stdio.
 
-### TypeScript
+#### TypeScript
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 ```
 
-### Python
+#### Python
 
 ```python
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 ```
 
-### .NET
+#### .NET
 
 ```csharp
 using Microsoft.Extensions.AI;
@@ -128,9 +128,9 @@ using ModelContextProtocol.Client;
 using ModelContextProtocol.Protocol.Transport;
 ```
 
-### Java
+#### Java
 
-Pentru Java, vei crea un client care se conectează la MCP server din exercițiul anterior. Folosind aceeași structură de proiect Java Spring Boot din [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), creează o nouă clasă Java numită `SDKClient` în folderul `src/main/java/com/microsoft/mcp/sample/client/` și adaugă următoarele importuri:
+Pentru Java, vei crea un client care se conectează la serverul MCP din exercițiul anterior. Folosind aceeași structură de proiect Java Spring Boot din [Introducere în MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), creează o nouă clasă Java numită `SDKClient` în folderul `src/main/java/com/microsoft/mcp/sample/client/` și adaugă următoarele importuri:
 
 ```java
 import java.util.Map;
@@ -143,13 +143,41 @@ import io.modelcontextprotocol.spec.McpSchema.CallToolResult;
 import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 ```
 
+#### Rust
+
+Va trebui să adaugi următoarele dependențe în fișierul tău `Cargo.toml`.
+
+```toml
+[package]
+name = "calculator-client"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rmcp = { version = "0.5.0", features = ["client", "transport-child-process"] }
+serde_json = "1.0.141"
+tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
+```
+
+De acolo, poți importa bibliotecile necesare în codul clientului.
+
+```rust
+use rmcp::{
+    RmcpError,
+    model::CallToolRequestParam,
+    service::ServiceExt,
+    transport::{ConfigureCommandExt, TokioChildProcess},
+};
+use tokio::process::Command;
+```
+
 Să trecem la instanțiere.
 
-### -2- Instanțierea clientului și a transportului
+### -2- Instanțierea clientului și transportului
 
-Va trebui să creăm o instanță a transportului și una a clientului:
+Va trebui să creăm o instanță a transportului și una a clientului nostru:
 
-### TypeScript
+#### TypeScript
 
 ```typescript
 const transport = new StdioClientTransport({
@@ -167,9 +195,9 @@ const client = new Client(
 await client.connect(transport);
 ```
 
-În codul de mai sus am:
+În codul precedent am:
 
-- Creat o instanță de transport stdio. Observă cum specifică comanda și argumentele pentru a găsi și porni serverul, deoarece asta va trebui să facem când creăm clientul.
+- Creat o instanță de transport stdio. Observă cum specifică comanda și argumentele pentru a găsi și porni serverul, deoarece acesta este un lucru pe care va trebui să-l facem pe măsură ce creăm clientul.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -194,7 +222,7 @@ await client.connect(transport);
     await client.connect(transport);
     ```
 
-### Python
+#### Python
 
 ```python
 from mcp import ClientSession, StdioServerParameters, types
@@ -223,14 +251,14 @@ if __name__ == "__main__":
     asyncio.run(run())
 ```
 
-În codul de mai sus am:
+În codul precedent am:
 
-- Importat bibliotecile necesare
-- Instanțiat un obiect de parametri pentru server, pe care îl vom folosi pentru a rula serverul astfel încât să ne putem conecta la el cu clientul.
-- Definit o metodă `run` care la rândul ei apelează `stdio_client` care pornește o sesiune de client.
-- Creat un punct de intrare unde oferim metoda `run` către `asyncio.run`.
+- Importat bibliotecile necesare.
+- Instanțiat un obiect de parametri ai serverului, deoarece îl vom folosi pentru a rula serverul astfel încât să ne putem conecta la el cu clientul nostru.
+- Definit o metodă `run` care, la rândul său, apelează `stdio_client`, care pornește o sesiune de client.
+- Creat un punct de intrare unde oferim metoda `run` lui `asyncio.run`.
 
-### .NET
+#### .NET
 
 ```dotnet
 using Microsoft.Extensions.AI;
@@ -257,14 +285,14 @@ var clientTransport = new StdioClientTransport(new()
 await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
 ```
 
-În codul de mai sus am:
+În codul precedent am:
 
 - Importat bibliotecile necesare.
-- Creat un transport stdio și un client `mcpClient`. Acesta din urmă este ceea ce vom folosi pentru a lista și invoca funcționalități pe MCP Server.
+- Creat un transport stdio și un client `mcpClient`. Acesta din urmă este ceva ce vom folosi pentru a lista și invoca funcționalități pe serverul MCP.
 
-Notă, în "Arguments", poți indica fie către *.csproj*, fie către executabil.
+Notă: În "Arguments", poți indica fie fișierul *.csproj*, fie executabilul.
 
-### Java
+#### Java
 
 ```java
 public class SDKClient {
@@ -289,18 +317,50 @@ public class SDKClient {
 }
 ```
 
-În codul de mai sus am:
+În codul precedent am:
 
-- Creat o metodă main care configurează un transport SSE indicând către `http://localhost:8080` unde va rula MCP serverul nostru.
-- Creat o clasă client care primește transportul ca parametru în constructor.
-- În metoda `run`, creăm un client MCP sincron folosind transportul și inițializăm conexiunea.
-- Folosit transportul SSE (Server-Sent Events) care este potrivit pentru comunicarea bazată pe HTTP cu serverele MCP Java Spring Boot.
+- Creat o metodă principală care configurează un transport SSE indicând către `http://localhost:8080`, unde serverul nostru MCP va rula.
+- Creat o clasă client care ia transportul ca parametru al constructorului.
+- În metoda `run`, am creat un client MCP sincron folosind transportul și am inițializat conexiunea.
+- Folosit transportul SSE (Server-Sent Events), care este potrivit pentru comunicarea bazată pe HTTP cu serverele MCP Java Spring Boot.
+
+#### Rust
+
+Acest client Rust presupune că serverul este un proiect frate numit "calculator-server" în același director. Codul de mai jos va porni serverul și se va conecta la el.
+
+```rust
+async fn main() -> Result<(), RmcpError> {
+    // Assume the server is a sibling project named "calculator-server" in the same directory
+    let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .expect("failed to locate workspace root")
+        .join("calculator-server");
+
+    let client = ()
+        .serve(
+            TokioChildProcess::new(Command::new("cargo").configure(|cmd| {
+                cmd.arg("run").current_dir(server_dir);
+            }))
+            .map_err(RmcpError::transport_creation::<TokioChildProcess>)?,
+        )
+        .await?;
+
+    // TODO: Initialize
+
+    // TODO: List tools
+
+    // TODO: Call add tool with arguments = {"a": 3, "b": 2}
+
+    client.cancel().await?;
+    Ok(())
+}
+```
 
 ### -3- Listarea funcționalităților serverului
 
-Acum avem un client care se poate conecta dacă programul este rulat. Totuși, nu listează efectiv funcționalitățile, așa că să facem asta acum:
+Acum avem un client care se poate conecta dacă programul este rulat. Totuși, acesta nu listează efectiv funcționalitățile, așa că să facem asta în continuare:
 
-### TypeScript
+#### TypeScript
 
 ```typescript
 // List prompts
@@ -313,7 +373,7 @@ const resources = await client.listResources();
 const tools = await client.listTools();
 ```
 
-### Python
+#### Python
 
 ```python
 # List available resources
@@ -329,9 +389,9 @@ for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Aici listăm resursele disponibile, `list_resources()` și uneltele, `list_tools` și le afișăm.
+Aici listăm resursele disponibile, `list_resources()` și uneltele, `list_tools`, și le afișăm.
 
-### .NET
+#### .NET
 
 ```dotnet
 foreach (var tool in await client.ListToolsAsync())
@@ -340,9 +400,9 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-Mai sus este un exemplu cum putem lista uneltele de pe server. Pentru fiecare unealtă, afișăm numele acesteia.
+Mai sus este un exemplu despre cum putem lista uneltele de pe server. Pentru fiecare unealtă, afișăm apoi numele acesteia.
 
-### Java
+#### Java
 
 ```java
 // List and demonstrate tools
@@ -353,19 +413,33 @@ System.out.println("Available Tools = " + toolsList);
 client.ping();
 ```
 
-În codul de mai sus am:
+În codul precedent am:
 
-- Apelat `listTools()` pentru a obține toate uneltele disponibile de pe MCP server.
+- Apelat `listTools()` pentru a obține toate uneltele disponibile de pe serverul MCP.
 - Folosit `ping()` pentru a verifica dacă conexiunea la server funcționează.
-- `ListToolsResult` conține informații despre toate uneltele, inclusiv numele, descrierile și schemele de input.
+- `ListToolsResult` conține informații despre toate uneltele, inclusiv numele, descrierile și schemele de intrare ale acestora.
 
-Perfect, acum am capturat toate funcționalitățile. Acum întrebarea este când le folosim? Ei bine, acest client este destul de simplu, simplu în sensul că va trebui să apelăm explicit funcționalitățile când le dorim. În capitolul următor vom crea un client mai avansat care are acces la propriul model lingvistic mare, LLM. Pentru moment, să vedem cum putem invoca funcționalitățile de pe server:
+Minunat, acum am capturat toate funcționalitățile. Întrebarea este: când le folosim? Ei bine, acest client este destul de simplu, în sensul că va trebui să apelăm explicit funcționalitățile atunci când le dorim. În capitolul următor, vom crea un client mai avansat care are acces la propriul model de limbaj mare (LLM). Deocamdată, să vedem cum putem invoca funcționalitățile de pe server:
+
+#### Rust
+
+În funcția principală, după inițializarea clientului, putem inițializa serverul și lista câteva dintre funcționalitățile sale.
+
+```rust
+// Initialize
+let server_info = client.peer_info();
+println!("Server info: {:?}", server_info);
+
+// List tools
+let tools = client.list_tools(Default::default()).await?;
+println!("Available tools: {:?}", tools);
+```
 
 ### -4- Invocarea funcționalităților
 
-Pentru a invoca funcționalitățile trebuie să ne asigurăm că specificăm argumentele corecte și, în unele cazuri, numele a ceea ce încercăm să invocăm.
+Pentru a invoca funcționalitățile, trebuie să ne asigurăm că specificăm argumentele corecte și, în unele cazuri, numele a ceea ce încercăm să invocăm.
 
-### TypeScript
+#### TypeScript
 
 ```typescript
 
@@ -391,9 +465,9 @@ const promptResult = await client.getPrompt({
 })
 ```
 
-În codul de mai sus am:
+În codul precedent am:
 
-- Citit o resursă, apelăm resursa prin `readResource()` specificând `uri`. Iată cum arată cel mai probabil pe partea de server:
+- Citit o resursă, apelând resursa cu `readResource()` specificând `uri`. Iată cum ar arăta cel mai probabil pe partea de server:
 
     ```typescript
     server.resource(
@@ -410,7 +484,7 @@ const promptResult = await client.getPrompt({
 
     Valoarea noastră `uri` `file://example.txt` corespunde cu `file://{name}` pe server. `example.txt` va fi mapat la `name`.
 
-- Apelat o unealtă, o apelăm specificând `name` și `arguments` astfel:
+- Apelat o unealtă, specificând `name` și `arguments` astfel:
 
     ```typescript
     const result = await client.callTool({
@@ -421,7 +495,7 @@ const promptResult = await client.getPrompt({
     });
     ```
 
-- Obținut un prompt, pentru a obține un prompt, apelezi `getPrompt()` cu `name` și `arguments`. Codul serverului arată astfel:
+- Obținut un prompt, apelând `getPrompt()` cu `name` și `arguments`. Codul serverului arată astfel:
 
     ```typescript
     server.prompt(
@@ -439,7 +513,7 @@ const promptResult = await client.getPrompt({
     );
     ```
 
-    iar codul clientului rezultat arată astfel pentru a corespunde cu ce este declarat pe server:
+    și codul clientului rezultat arată astfel pentru a se potrivi cu ceea ce este declarat pe server:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -450,7 +524,7 @@ const promptResult = await client.getPrompt({
     })
     ```
 
-### Python
+#### Python
 
 ```python
 # Read a resource
@@ -463,12 +537,12 @@ result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
 ```
 
-În codul de mai sus am:
+În codul precedent am:
 
 - Apelat o resursă numită `greeting` folosind `read_resource`.
 - Invocat o unealtă numită `add` folosind `call_tool`.
 
-### .NET
+#### .NET
 
 1. Să adăugăm cod pentru a apela o unealtă:
 
@@ -479,14 +553,14 @@ print(result.content)
       cancellationToken:CancellationToken.None);
   ```
 
-1. Pentru a afișa rezultatul, iată un cod care face asta:
+1. Pentru a afișa rezultatul, iată un cod care să gestioneze acest lucru:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
   // Sum 4
   ```
 
-### Java
+#### Java
 
 ```java
 // Call various calculator tools
@@ -506,30 +580,45 @@ CallToolResult resultHelp = client.callTool(new CallToolRequest("help", Map.of()
 System.out.println("Help = " + resultHelp);
 ```
 
-În codul de mai sus am:
+În codul precedent am:
 
 - Apelat mai multe unelte de calculator folosind metoda `callTool()` cu obiecte `CallToolRequest`.
-- Fiecare apel specifică numele uneltei și un `Map` de argumente necesare de acea unealtă.
-- Uneltele serverului așteaptă nume specifice de parametri (ca "a", "b" pentru operații matematice).
+- Fiecare apel de unealtă specifică numele uneltei și un `Map` de argumente necesare pentru acea unealtă.
+- Uneltele serverului așteaptă nume de parametri specifici (cum ar fi "a", "b" pentru operațiuni matematice).
 - Rezultatele sunt returnate ca obiecte `CallToolResult` care conțin răspunsul de la server.
+
+#### Rust
+
+```rust
+// Call add tool with arguments = {"a": 3, "b": 2}
+let a = 3;
+let b = 2;
+let tool_result = client
+    .call_tool(CallToolRequestParam {
+        name: "add".into(),
+        arguments: serde_json::json!({ "a": a, "b": b }).as_object().cloned(),
+    })
+    .await?;
+println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
+```
 
 ### -5- Rularea clientului
 
 Pentru a rula clientul, tastează următoarea comandă în terminal:
 
-### TypeScript
+#### TypeScript
 
 Adaugă următoarea intrare în secțiunea "scripts" din *package.json*:
 
 ```json
-"client": "tsx && node build/client.js"
+"client": "tsc && node build/client.js"
 ```
 
 ```sh
 npm run client
 ```
 
-### Python
+#### Python
 
 Apelează clientul cu următoarea comandă:
 
@@ -537,15 +626,15 @@ Apelează clientul cu următoarea comandă:
 python client.py
 ```
 
-### .NET
+#### .NET
 
 ```sh
 dotnet run
 ```
 
-### Java
+#### Java
 
-Mai întâi, asigură-te că MCP serverul tău rulează pe `http://localhost:8080`. Apoi rulează clientul:
+Mai întâi, asigură-te că serverul MCP rulează pe `http://localhost:8080`. Apoi rulează clientul:
 
 ```bash
 # Build you project
@@ -555,7 +644,7 @@ Mai întâi, asigură-te că MCP serverul tău rulează pe `http://localhost:808
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Alternativ, poți rula proiectul complet al clientului furnizat în folderul soluției `03-GettingStarted\02-client\solution\java`:
+Alternativ, poți rula proiectul complet al clientului furnizat în folderul de soluții `03-GettingStarted\02-client\solution\java`:
 
 ```bash
 # Navigate to the solution directory
@@ -566,11 +655,18 @@ cd 03-GettingStarted/02-client/solution/java
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
 
-## Tema
+#### Rust
 
-În această temă, vei folosi ce ai învățat pentru a crea un client, dar vei crea un client propriu.
+```bash
+cargo fmt
+cargo run
+```
 
-Iată un server pe care îl poți folosi și la care trebuie să apelezi prin codul clientului tău, vezi dacă poți adăuga mai multe funcționalități serverului pentru a-l face mai interesant.
+## Temă
+
+În această temă, vei folosi ceea ce ai învățat pentru a crea un client propriu.
+
+Iată un server pe care îl poți folosi și pe care trebuie să-l apelezi prin codul clientului tău. Vezi dacă poți adăuga mai multe funcționalități serverului pentru a-l face mai interesant.
 
 ### TypeScript
 
@@ -674,19 +770,23 @@ public static class CalculatorTool
 }
 ```
 
-Vezi acest proiect pentru a vedea cum poți [adăuga prompturi și resurse](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
+Vezi acest proiect pentru a învăța cum să [adaugi prompturi și resurse](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
 
-De asemenea, verifică acest link pentru cum să invoci [prompturi și resurse](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+De asemenea, verifică acest link pentru a învăța cum să invoci [prompturi și resurse](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+
+### Rust
+
+În [secțiunea anterioară](../../../../03-GettingStarted/01-first-server), ai învățat cum să creezi un server MCP simplu cu Rust. Poți continua să construiești pe acesta sau să verifici acest link pentru mai multe exemple de servere MCP bazate pe Rust: [Exemple de servere MCP](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## Soluție
 
-Folderul **solution** conține implementări complete, gata de rulare, ale clienților care demonstrează toate conceptele acoperite în acest tutorial. Fiecare soluție include atât codul clientului, cât și al serverului, organizate în proiecte separate, autonome.
+Folderul **solution** conține implementări complete, gata de rulare, ale clienților care demonstrează toate conceptele acoperite în acest tutorial. Fiecare soluție include cod pentru client și server organizat în proiecte separate și independente.
 
 ### 📁 Structura soluției
 
 Directorul soluției este organizat pe limbaje de programare:
 
-```
+```text
 solution/
 ├── typescript/          # TypeScript client with npm/Node.js setup
 │   ├── package.json     # Dependencies and scripts
@@ -695,7 +795,7 @@ solution/
 ├── java/                # Java Spring Boot client project
 │   ├── pom.xml          # Maven configuration
 │   ├── src/             # Java source files
-│   └── mvnw            # Maven wrapper
+│   └── mvnw             # Maven wrapper
 ├── python/              # Python client implementation
 │   ├── client.py        # Main client code
 │   ├── server.py        # Compatible server
@@ -704,6 +804,11 @@ solution/
 │   ├── dotnet.csproj    # Project configuration
 │   ├── Program.cs       # Main client code
 │   └── dotnet.sln       # Solution file
+├── rust/                # Rust client implementation
+|  ├── Cargo.lock        # Cargo lock file
+|  ├── Cargo.toml        # Project configuration and dependencies
+|  ├── src               # Source code
+|  │   └── main.rs       # Main client code
 └── server/              # Additional .NET server implementation
     ├── Program.cs       # Server code
     └── server.csproj    # Server project file
@@ -713,15 +818,16 @@ solution/
 
 Fiecare soluție specifică limbajului oferă:
 
-- **Implementare completă a clientului** cu toate funcționalitățile din tutorial
-- **Structură de proiect funcțională** cu dependențe și configurări corecte
-- **Scripturi de build și rulare** pentru configurare și execuție ușoară
-- **README detaliat** cu instrucțiuni specifice limbajului
-- **Exemple de tratare a erorilor** și procesare a rezultatelor
+- **Implementare completă a clientului** cu toate funcționalitățile din tutorial.
+- **Structură de proiect funcțională** cu dependențe și configurații corecte.
+- **Scripturi de construire și rulare** pentru configurare și execuție ușoară.
+- **README detaliat** cu instrucțiuni specifice limbajului.
+- **Exemple de gestionare a erorilor** și procesare a rezultatelor.
 
 ### 📖 Utilizarea soluțiilor
 
-1. **Navighează în folderul limbajului preferat**:
+1. **Navighează la folderul limbajului preferat**:
+
    ```bash
    cd solution/typescript/    # For TypeScript
    cd solution/java/          # For Java
@@ -729,12 +835,13 @@ Fiecare soluție specifică limbajului oferă:
    cd solution/dotnet/        # For .NET
    ```
 
-2. **Urmărește instrucțiunile din README** din fiecare folder pentru:
-   - Instalarea dependențelor
-   - Construirea proiectului
-   - Rularea clientului
+2. **Urmează instrucțiunile din README** din fiecare folder pentru:
+   - Instalarea dependențelor.
+   - Construirea proiectului.
+   - Rularea clientului.
 
-3. **Exemplu de output** pe care ar trebui să îl vezi:
+3. **Exemplu de ieșire** pe care ar trebui să-l vezi:
+
    ```text
    Prompt: Please review this code: console.log("hello");
    Resource template: file
@@ -745,67 +852,70 @@ Pentru documentație completă și instrucțiuni pas cu pas, vezi: **[📖 Docum
 
 ## 🎯 Exemple complete
 
-Am furnizat implementări complete, funcționale ale clienților pentru toate limbajele de programare acoperite în acest tutorial. Aceste exemple demonstrează funcționalitatea completă descrisă mai sus și pot fi folosite ca implementări de referință sau puncte de plecare pentru propriile proiecte.
+Am furnizat implementări complete și funcționale ale clienților pentru toate limbajele de programare acoperite în acest tutorial. Aceste exemple demonstrează funcționalitatea completă descrisă mai sus și pot fi utilizate ca implementări de referință sau puncte de plecare pentru propriile proiecte.
 
 ### Exemple complete disponibile
 
-| Limbaj  | Fișier                          | Descriere                                                      |
-|---------|--------------------------------|----------------------------------------------------------------|
-| **Java**| [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java)       | Client Java complet folosind transport SSE cu tratare completă a erorilor |
-| **C#**  | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs)       | Client C# complet folosind transport stdio cu pornire automată a serverului |
+| Limbaj | Fișier | Descriere |
+|--------|--------|-----------|
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Client Java complet folosind transport SSE cu gestionare cuprinzătoare a erorilor |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Client C# complet folosind transport stdio cu pornire automată a serverului |
 | **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Client TypeScript complet cu suport complet pentru protocolul MCP |
-| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py)     | Client Python complet folosind pattern-uri async/await          |
-
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Client Python complet folosind modele async/await |
+| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Client Rust complet folosind Tokio pentru operațiuni asincrone |
 Fiecare exemplu complet include:
 
-- ✅ **Stabilirea conexiunii** și tratarea erorilor
-- ✅ **Descoperirea serverului** (unelte, resurse, prompturi unde este cazul)
-- ✅ **Operații calculator** (adunare, scădere, înmulțire, împărțire, ajutor)
-- ✅ **Procesarea rezultatelor** și afișare formatată
-- ✅ **Tratare completă a erorilor**
+- ✅ **Stabilirea conexiunii** și gestionarea erorilor
+- ✅ **Descoperirea serverului** (unelte, resurse, sugestii unde este cazul)
+- ✅ **Operațiuni ale calculatorului** (adunare, scădere, înmulțire, împărțire, ajutor)
+- ✅ **Procesarea rezultatelor** și afișarea formatată
+- ✅ **Gestionarea completă a erorilor**
 - ✅ **Cod curat, documentat** cu comentarii pas cu pas
 
-### Începe cu exemplele complete
+### Începeți cu exemple complete
 
-1. **Alege limbajul preferat** din tabelul de mai sus
-2. **Studiază fișierul exemplu complet** pentru a înțelege implementarea completă
-3. **Rulează exemplul** urmând instrucțiunile din [`complete_examples.md`](./complete_examples.md)
-4. **Modifică și extinde** exemplul pentru cazul tău specific
+1. **Alegeți limba preferată** din tabelul de mai sus
+2. **Revizuiți fișierul de exemplu complet** pentru a înțelege implementarea integrală
+3. **Rulați exemplul** urmând instrucțiunile din [`complete_examples.md`](./complete_examples.md)
+4. **Modificați și extindeți** exemplul pentru cazul dumneavoastră specific
 
-Pentru documentație detaliată despre rulare și personalizare, vezi: **[📖 Documentația exemplelor complete](./complete_examples.md)**
+Pentru documentație detaliată despre rularea și personalizarea acestor exemple, consultați: **[📖 Documentația Exemplului Complet](./complete_examples.md)**
 
-### 💡 Soluție vs. Exemple complete
+### 💡 Soluție vs. Exemple Complete
 
-| **Folder Soluție**          | **Exemple Complete**          |
-|----------------------------|------------------------------|
+| **Folder Soluție** | **Exemple Complete** |
+|--------------------|--------------------- |
 | Structură completă de proiect cu fișiere de build | Implementări într-un singur fișier |
-| Gata de rulare cu dependențe | Exemple de cod concentrate    |
-| Configurare asemănătoare mediului de producție | Referință educațională          |
-| Instrumente specifice limbajului | Comparare cross-limbaj         |
-Ambele abordări sunt valoroase - folosește **folderul solution** pentru proiecte complete și **exemplele complete** pentru învățare și referință.  
-## Aspecte esențiale
+| Gata de rulat cu toate dependențele | Exemple de cod concentrate |
+| Configurație asemănătoare producției | Referință educațională |
+| Unelte specifice limbajului | Comparație între limbaje |
 
-Aspectele esențiale ale acestui capitol despre clienți sunt următoarele:
+Ambele abordări sunt valoroase - utilizați **folderul soluție** pentru proiecte complete și **exemplele complete** pentru învățare și referință.
 
-- Pot fi folosiți atât pentru a descoperi, cât și pentru a invoca funcționalități pe server.  
-- Pot porni un server în timp ce se pornesc singuri (așa cum este în acest capitol), dar clienții se pot conecta și la servere deja pornite.  
-- Sunt o metodă excelentă de a testa capabilitățile serverului, alături de alternative precum Inspector, așa cum a fost descris în capitolul anterior.  
+## Concluzii Cheie
 
-## Resurse suplimentare
+Concluziile cheie pentru acest capitol despre clienți sunt următoarele:
 
-- [Building clients in MCP](https://modelcontextprotocol.io/quickstart/client)
+- Pot fi folosiți atât pentru a descoperi, cât și pentru a invoca funcționalități pe server.
+- Pot porni un server în timp ce se inițiază (ca în acest capitol), dar clienții se pot conecta și la servere deja pornite.
+- Reprezintă o modalitate excelentă de a testa capabilitățile serverului, alături de alternative precum Inspectorul, descris în capitolul anterior.
+
+## Resurse Suplimentare
+
+- [Construirea clienților în MCP](https://modelcontextprotocol.io/quickstart/client)
 
 ## Exemple
 
-- [Java Calculator](../samples/java/calculator/README.md)  
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript Calculator](../samples/javascript/README.md)  
-- [TypeScript Calculator](../samples/typescript/README.md)  
-- [Python Calculator](../../../../03-GettingStarted/samples/python)  
+- [Calculator Java](../samples/java/calculator/README.md)
+- [Calculator .Net](../../../../03-GettingStarted/samples/csharp)
+- [Calculator JavaScript](../samples/javascript/README.md)
+- [Calculator TypeScript](../samples/typescript/README.md)
+- [Calculator Python](../../../../03-GettingStarted/samples/python)
+- [Calculator Rust](../../../../03-GettingStarted/samples/rust)
 
-## Ce urmează
+## Ce Urmează
 
-- Următorul: [Creating a client with an LLM](../03-llm-client/README.md)
+- Următorul: [Crearea unui client cu un LLM](../03-llm-client/README.md)
 
-**Declinare de responsabilitate**:  
-Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim pentru acuratețe, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă trebuie considerat sursa autorizată. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm răspunderea pentru eventualele neînțelegeri sau interpretări greșite rezultate din utilizarea acestei traduceri.
+**Declinarea responsabilității**:  
+Acest document a fost tradus utilizând serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși depunem eforturi pentru a asigura acuratețea, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă ar trebui considerat sursa autoritară. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm răspunderea pentru eventualele neînțelegeri sau interpretări greșite care pot apărea din utilizarea acestei traduceri.

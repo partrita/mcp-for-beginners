@@ -60,7 +60,7 @@ Model Context Protocol је стандардизован начин за AI ап
 
 ## Python имплементација
 
-***Note*** Можете покренути овај [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb)
+***Note*** Можете покренути овај [notebook](mcp_support_python.ipynb)
 
 ### 1. Инсталирање потребних пакета
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET имплементација
 
-***Note*** Можете покренути овај [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb)
+***Note*** Можете покренути овај [notebook](mcp_support_dotnet.ipynb)
 
 ### 1. Инсталирање потребних пакета
 

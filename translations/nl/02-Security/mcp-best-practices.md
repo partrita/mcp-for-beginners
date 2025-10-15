@@ -1,108 +1,188 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "90bfc6f3be00e34f6124e2a24bf94167",
-  "translation_date": "2025-07-17T08:49:31+00:00",
+  "original_hash": "b2b9e15e78b9d9a2b3ff3e8fd7d1f434",
+  "translation_date": "2025-08-18T16:32:04+00:00",
   "source_file": "02-Security/mcp-best-practices.md",
   "language_code": "nl"
 }
 -->
-# MCP Security Best Practices
+# MCP Beveiligingsrichtlijnen 2025
 
-Wanneer je werkt met MCP-servers, volg dan deze beveiligingsrichtlijnen om je data, infrastructuur en gebruikers te beschermen:
+Deze uitgebreide gids beschrijft essentiële beveiligingsrichtlijnen voor het implementeren van Model Context Protocol (MCP)-systemen op basis van de nieuwste **MCP Specificatie 2025-06-18** en huidige industriestandaarden. De richtlijnen behandelen zowel traditionele beveiligingskwesties als AI-specifieke bedreigingen die uniek zijn voor MCP-implementaties.
 
-1. **Inputvalidatie**: Valideer en reinig altijd invoer om injectieaanvallen en confused deputy-problemen te voorkomen.  
-2. **Toegangscontrole**: Implementeer correcte authenticatie en autorisatie voor je MCP-server met fijnmazige permissies.  
-3. **Veilige communicatie**: Gebruik HTTPS/TLS voor alle communicatie met je MCP-server en overweeg extra versleuteling voor gevoelige gegevens.  
-4. **Rate limiting**: Voer rate limiting in om misbruik, DoS-aanvallen en overmatig gebruik van resources te voorkomen.  
-5. **Logging en monitoring**: Houd je MCP-server in de gaten op verdachte activiteiten en implementeer uitgebreide auditlogs.  
-6. **Veilige opslag**: Bescherm gevoelige data en inloggegevens met passende versleuteling in rust.  
-7. **Tokenbeheer**: Voorkom token passthrough-kwetsbaarheden door alle modelinvoer en -uitvoer te valideren en te reinigen.  
-8. **Sessiebeheer**: Zorg voor veilige sessieafhandeling om sessiekaping en sessiefixatie te voorkomen.  
-9. **Sandboxing van tooluitvoering**: Voer tools uit in geïsoleerde omgevingen om laterale beweging bij compromittering te voorkomen.  
-10. **Regelmatige beveiligingsaudits**: Voer periodieke beveiligingsreviews uit van je MCP-implementaties en afhankelijkheden.  
-11. **Promptvalidatie**: Scan en filter zowel invoer- als uitvoerprompts om promptinjectie-aanvallen te voorkomen.  
-12. **Authenticatie-delegatie**: Gebruik gevestigde identity providers in plaats van zelf aangepaste authenticatie te implementeren.  
-13. **Permissies afbakenen**: Implementeer gedetailleerde permissies voor elke tool en resource volgens het principe van minste rechten.  
-14. **Dataminimalisatie**: Maak alleen de minimaal benodigde data beschikbaar voor elke operatie om het risico te beperken.  
-15. **Geautomatiseerde kwetsbaarheidsscans**: Scan regelmatig je MCP-servers en afhankelijkheden op bekende kwetsbaarheden.
+## Kritieke Beveiligingseisen
 
-## Ondersteunende bronnen voor MCP Security Best Practices
+### Verplichte Beveiligingsmaatregelen (MUST-eisen)
 
-### Inputvalidatie
-- [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)  
-- [Preventing Prompt Injection in MCP](https://modelcontextprotocol.io/docs/guides/security)  
-- [Azure Content Safety Implementation](./azure-content-safety-implementation.md)  
+1. **Tokenvalidatie**: MCP-servers **MOGEN GEEN** tokens accepteren die niet expliciet zijn uitgegeven voor de MCP-server zelf.
+2. **Autorisatieverificatie**: MCP-servers die autorisatie implementeren **MOETEN** ALLE inkomende verzoeken verifiëren en **MOGEN GEEN** sessies gebruiken voor authenticatie.  
+3. **Gebruikersinstemming**: MCP-proxyservers die statische client-ID's gebruiken **MOETEN** expliciete gebruikersinstemming verkrijgen voor elke dynamisch geregistreerde client.
+4. **Veilige sessie-ID's**: MCP-servers **MOETEN** cryptografisch veilige, niet-deterministische sessie-ID's gebruiken die zijn gegenereerd met veilige willekeurige getalgeneratoren.
 
-### Toegangscontrole
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/draft/basic/authorization)  
-- [Using Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/)  
-- [Azure API Management as Auth Gateway for MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)  
+## Kernbeveiligingspraktijken
 
-### Veilige communicatie
-- [Transport Layer Security (TLS) Best Practices](https://learn.microsoft.com/security/engineering/solving-tls)  
-- [MCP Transport Security Guidelines](https://modelcontextprotocol.io/docs/concepts/transports)  
-- [End-to-End Encryption for AI Workloads](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption)  
+### 1. Validatie en Sanering van Invoer
+- **Uitgebreide Invoervalidatie**: Valideer en saneer alle invoer om injectieaanvallen, confused deputy-problemen en promptinjectie-kwetsbaarheden te voorkomen.
+- **Parameter Schema Handhaving**: Implementeer strikte JSON-schema-validatie voor alle toolparameters en API-invoer.
+- **Inhoudsfiltering**: Gebruik Microsoft Prompt Shields en Azure Content Safety om schadelijke inhoud in prompts en reacties te filteren.
+- **Uitvoersanering**: Valideer en saneer alle modeluitvoer voordat deze aan gebruikers of downstreamsystemen wordt gepresenteerd.
 
-### Rate limiting
-- [API Rate Limiting Patterns](https://learn.microsoft.com/azure/architecture/patterns/rate-limiting-pattern)  
-- [Implementing Token Bucket Rate Limiting](https://konghq.com/blog/engineering/how-to-design-a-scalable-rate-limiting-algorithm)  
-- [Rate Limiting in Azure API Management](https://learn.microsoft.com/azure/api-management/rate-limit-policy)  
+### 2. Uitmuntendheid in Authenticatie en Autorisatie  
+- **Externe Identiteitsproviders**: Besteed authenticatie uit aan gevestigde identiteitsproviders (Microsoft Entra ID, OAuth 2.1-providers) in plaats van zelf authenticatie te implementeren.
+- **Fijnmazige Machtigingen**: Implementeer gedetailleerde, tool-specifieke machtigingen volgens het principe van minimale rechten.
+- **Tokenlevenscyclusbeheer**: Gebruik kortdurende toegangstokens met veilige rotatie en juiste validatie van de doelgroep.
+- **Multi-factor Authenticatie**: Vereis MFA voor alle administratieve toegang en gevoelige operaties.
 
-### Logging en monitoring
-- [Centralized Logging for AI Systems](https://learn.microsoft.com/azure/architecture/example-scenario/logging/centralized-logging)  
-- [Audit Logging Best Practices](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)  
-- [Azure Monitor for AI Workloads](https://learn.microsoft.com/azure/azure-monitor/overview)  
+### 3. Veilige Communicatieprotocollen
+- **Transportlaagbeveiliging**: Gebruik HTTPS/TLS 1.3 voor alle MCP-communicatie met juiste certificaatvalidatie.
+- **End-to-End Encryptie**: Implementeer extra encryptielagen voor zeer gevoelige gegevens tijdens transport en opslag.
+- **Certificaatbeheer**: Onderhoud een correct certificaatlevenscyclusbeheer met geautomatiseerde verlengingsprocessen.
+- **Protocolversie Handhaving**: Gebruik de huidige MCP-protocolversie (2025-06-18) met correcte versieonderhandeling.
 
-### Veilige opslag
-- [Azure Key Vault for Credential Storage](https://learn.microsoft.com/azure/key-vault/general/basic-concepts)  
-- [Encrypting Sensitive Data at Rest](https://learn.microsoft.com/security/engineering/data-encryption-at-rest)  
-- [Use Secure Token Storage and Encrypt Tokens](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)  
+### 4. Geavanceerde Rate Limiting & Resourcebescherming
+- **Meerdere lagen Rate Limiting**: Implementeer rate limiting op gebruikers-, sessie-, tool- en resource-niveau om misbruik te voorkomen.
+- **Adaptieve Rate Limiting**: Gebruik machine learning-gebaseerde rate limiting die zich aanpast aan gebruikspatronen en dreigingsindicatoren.
+- **Resourcequotabeheer**: Stel passende limieten in voor computermiddelen, geheugengebruik en uitvoeringstijd.
+- **DDoS-bescherming**: Zet uitgebreide DDoS-bescherming en verkeersanalysesystemen in.
 
-### Tokenbeheer
-- [JWT Best Practices (RFC 8725)](https://datatracker.ietf.org/doc/html/rfc8725)  
-- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
-- [Best Practices for Token Validation and Lifetime](https://learn.microsoft.com/entra/identity-platform/access-tokens)  
+### 5. Uitgebreide Logging & Monitoring
+- **Gestructureerde Audit Logging**: Implementeer gedetailleerde, doorzoekbare logs voor alle MCP-operaties, toolexecuties en beveiligingsevenementen.
+- **Realtime Beveiligingsmonitoring**: Zet SIEM-systemen in met AI-gestuurde anomaliedetectie voor MCP-werkbelastingen.
+- **Privacy-compliant Logging**: Log beveiligingsevenementen met respect voor gegevensprivacyvereisten en regelgeving.
+- **Incidentrespons Integratie**: Verbind logsystemen met geautomatiseerde incidentrespons-workflows.
 
-### Sessiebeheer
-- [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)  
-- [MCP Session Handling Guidelines](https://modelcontextprotocol.io/docs/guides/security)  
-- [Secure Session Design Patterns](https://learn.microsoft.com/security/engineering/session-security)  
+### 6. Verbeterde Veilige Opslagpraktijken
+- **Hardware Security Modules**: Gebruik HSM-ondersteunde sleutelopslag (Azure Key Vault, AWS CloudHSM) voor kritieke cryptografische operaties.
+- **Encryptiesleutelbeheer**: Implementeer correcte sleutelrotatie, scheiding en toegangscontrole voor encryptiesleutels.
+- **Geheimenbeheer**: Sla alle API-sleutels, tokens en referenties op in speciale geheimenbeheersystemen.
+- **Gegevensclassificatie**: Classificeer gegevens op basis van gevoeligheidsniveaus en pas passende beschermingsmaatregelen toe.
 
-### Sandboxing van tooluitvoering
-- [Container Security Best Practices](https://learn.microsoft.com/azure/container-instances/container-instances-image-security)  
-- [Implementing Process Isolation](https://learn.microsoft.com/windows/security/threat-protection/security-policy-settings/user-rights-assignment)  
-- [Resource Limits for Containerized Applications](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)  
+### 7. Geavanceerd Tokenbeheer
+- **Token Passthrough Preventie**: Verbied expliciet token passthrough-patronen die beveiligingsmaatregelen omzeilen.
+- **Doelgroepvalidatie**: Controleer altijd of token-doelgroepclaims overeenkomen met de beoogde MCP-serveridentiteit.
+- **Claims-gebaseerde Autorisatie**: Implementeer gedetailleerde autorisatie op basis van tokenclaims en gebruikerskenmerken.
+- **Tokenbinding**: Bind tokens aan specifieke sessies, gebruikers of apparaten waar nodig.
 
-### Regelmatige beveiligingsaudits
-- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl)  
-- [OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/)  
-- [Security Code Review Guidelines](https://owasp.org/www-pdf-archive/OWASP_Code_Review_Guide_v2.pdf)  
+### 8. Veilige Sessiebeheer
+- **Cryptografische Sessie-ID's**: Genereer sessie-ID's met cryptografisch veilige willekeurige getalgeneratoren (geen voorspelbare reeksen).
+- **Gebruikersspecifieke Binding**: Bind sessie-ID's aan gebruikersspecifieke informatie met veilige formaten zoals `<user_id>:<session_id>`.
+- **Sessielevencyclusbeheer**: Implementeer correcte sessieverloop, rotatie en ongeldigverklaring.
+- **Sessiebeveiligingsheaders**: Gebruik geschikte HTTP-beveiligingsheaders voor sessiebescherming.
 
-### Promptvalidatie
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)  
-- [Azure Content Safety for AI](https://learn.microsoft.com/azure/ai-services/content-safety/)  
-- [Preventing Prompt Injection](https://github.com/microsoft/prompt-shield-js)  
+### 9. AI-specifieke Beveiligingsmaatregelen
+- **Promptinjectie Verdediging**: Zet Microsoft Prompt Shields in met spotlighting, delimiters en datamarking-technieken.
+- **Toolvergiftiging Preventie**: Valideer toolmetadata, monitor dynamische wijzigingen en verifieer toolintegriteit.
+- **Modeluitvoer Validatie**: Scan modeluitvoer op mogelijke gegevenslekken, schadelijke inhoud of schendingen van beveiligingsbeleid.
+- **Contextvenster Bescherming**: Implementeer controles om contextvenstervergiftiging en manipulatieaanvallen te voorkomen.
 
-### Authenticatie-delegatie
-- [Microsoft Entra ID Integration](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow)  
-- [OAuth 2.0 for MCP Services](https://learn.microsoft.com/security/engineering/solving-oauth)  
-- [MCP Security Controls 2025](./mcp-security-controls-2025.md)  
+### 10. Tooluitvoeringsbeveiliging
+- **Uitvoeringssandboxing**: Voer tooluitvoeringen uit in gecontaineriseerde, geïsoleerde omgevingen met resourcebeperkingen.
+- **Scheiding van Privileges**: Voer tools uit met minimale vereiste privileges en gescheiden serviceaccounts.
+- **Netwerkisolatie**: Implementeer netwerksegmentatie voor tooluitvoeringsomgevingen.
+- **Uitvoeringsmonitoring**: Monitor tooluitvoeringen op afwijkend gedrag, resourcegebruik en beveiligingsschendingen.
 
-### Permissies afbakenen
-- [Secure Least-Privileged Access](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)  
-- [Role-Based Access Control (RBAC) Design](https://learn.microsoft.com/azure/role-based-access-control/overview)  
-- [Tool-specific Authorization in MCP](https://modelcontextprotocol.io/docs/guides/best-practices)  
+### 11. Continue Beveiligingsvalidatie
+- **Geautomatiseerde Beveiligingstests**: Integreer beveiligingstests in CI/CD-pijplijnen met tools zoals GitHub Advanced Security.
+- **Kwetsbaarheidsbeheer**: Scan regelmatig alle afhankelijkheden, inclusief AI-modellen en externe services.
+- **Penetratietests**: Voer regelmatig beveiligingsbeoordelingen uit die specifiek gericht zijn op MCP-implementaties.
+- **Beveiligingscode Reviews**: Implementeer verplichte beveiligingsreviews voor alle MCP-gerelateerde codewijzigingen.
 
-### Dataminimalisatie
-- [Data Protection by Design](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments)  
-- [AI Data Privacy Best Practices](https://learn.microsoft.com/legal/cognitive-services/openai/data-privacy)  
-- [Implementing Privacy-enhancing Technologies](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/)  
+### 12. Leveringsketenbeveiliging voor AI
+- **Componentverificatie**: Verifieer herkomst, integriteit en beveiliging van alle AI-componenten (modellen, embeddings, API's).
+- **Afhankelijkheidsbeheer**: Onderhoud actuele inventarissen van alle software- en AI-afhankelijkheden met kwetsbaarheidstracking.
+- **Vertrouwde Repositories**: Gebruik geverifieerde, vertrouwde bronnen voor alle AI-modellen, bibliotheken en tools.
+- **Leveringsketenmonitoring**: Monitor continu op compromissen bij AI-serviceproviders en modelrepositories.
 
-### Geautomatiseerde kwetsbaarheidsscans
-- [GitHub Advanced Security](https://github.com/security/advanced-security)  
-- [DevSecOps Pipeline Implementation](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline)  
-- [Continuous Security Validation](https://www.microsoft.com/security/blog/2022/04/05/step-by-step-building-a-more-efficient-devsecops-environment/)
+## Geavanceerde Beveiligingspatronen
+
+### Zero Trust Architectuur voor MCP
+- **Nooit Vertrouwen, Altijd Verifiëren**: Implementeer continue verificatie voor alle MCP-deelnemers.
+- **Micro-segmentatie**: Isoleer MCP-componenten met gedetailleerde netwerk- en identiteitscontroles.
+- **Voorwaardelijke Toegang**: Implementeer risicogebaseerde toegangscontroles die zich aanpassen aan context en gedrag.
+- **Continue Risicobeoordeling**: Evalueer dynamisch de beveiligingsstatus op basis van actuele dreigingsindicatoren.
+
+### Privacybeschermende AI-implementatie
+- **Gegevensminimalisatie**: Stel alleen de minimaal noodzakelijke gegevens bloot voor elke MCP-operatie.
+- **Differentiële Privacy**: Implementeer privacybeschermende technieken voor gevoelige gegevensverwerking.
+- **Homomorfe Encryptie**: Gebruik geavanceerde encryptietechnieken voor veilige berekeningen op versleutelde gegevens.
+- **Federatief Leren**: Implementeer gedistribueerde leerbenaderingen die gegevenslokaliteit en privacy behouden.
+
+### Incidentrespons voor AI-systemen
+- **AI-specifieke Incidentprocedures**: Ontwikkel incidentresponsprocedures die zijn afgestemd op AI- en MCP-specifieke bedreigingen.
+- **Geautomatiseerde Respons**: Implementeer geautomatiseerde containment en herstel voor veelvoorkomende AI-beveiligingsincidenten.  
+- **Forensische Capaciteiten**: Zorg voor forensische gereedheid bij compromissen van AI-systemen en datalekken.
+- **Herstelprocedures**: Stel procedures op voor herstel na AI-modelvergiftiging, promptinjectie-aanvallen en servicecompromissen.
+
+## Implementatiebronnen & Standaarden
+
+### Officiële MCP Documentatie
+- [MCP Specificatie 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) - Huidige MCP-protocolspecificatie
+- [MCP Beveiligingsrichtlijnen](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) - Officiële beveiligingsrichtlijnen
+- [MCP Autorisatiespecificatie](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization) - Authenticatie- en autorisatiepatronen
+- [MCP Transportbeveiliging](https://modelcontextprotocol.io/specification/2025-06-18/transports/) - Transportlaagbeveiligingseisen
+
+### Microsoft Beveiligingsoplossingen
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - Geavanceerde bescherming tegen promptinjectie
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/) - Uitgebreide AI-inhoudsfiltering
+- [Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow) - Identiteits- en toegangsbeheer voor ondernemingen
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts) - Veilige opslag van geheimen en referenties
+- [GitHub Advanced Security](https://github.com/security/advanced-security) - Leveringsketen- en codebeveiligingsscanning
+
+### Beveiligingsstandaarden & Frameworks
+- [OAuth 2.1 Beveiligingsrichtlijnen](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics) - Huidige OAuth-beveiligingsrichtlijnen
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Webapplicatiebeveiligingsrisico's
+- [OWASP Top 10 voor LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559) - AI-specifieke beveiligingsrisico's
+- [NIST AI Risicobeheer Framework](https://www.nist.gov/itl/ai-risk-management-framework) - Uitgebreid AI-risicobeheer
+- [ISO 27001:2022](https://www.iso.org/standard/27001) - Beheersystemen voor informatiebeveiliging
+
+### Implementatiegidsen & Tutorials
+- [Azure API Management als MCP Auth Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) - Authenticatiepatronen voor ondernemingen
+- [Microsoft Entra ID met MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/) - Integratie van identiteitsproviders
+- [Implementatie van Veilige Tokenopslag](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2) - Beste praktijken voor tokenbeheer
+- [End-to-End Encryptie voor AI](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption) - Geavanceerde encryptiepatronen
+
+### Geavanceerde Beveiligingsbronnen
+- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl) - Praktijken voor veilige ontwikkeling
+- [AI Red Team Richtlijnen](https://learn.microsoft.com/security/ai-red-team/) - AI-specifieke beveiligingstests
+- [Dreigingsmodellering voor AI-systemen](https://learn.microsoft.com/security/adoption/approach/threats-ai) - Methodologie voor dreigingsmodellering van AI
+- [Privacy Engineering voor AI](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/) - Privacybeschermende AI-technieken
+
+### Naleving & Governance
+- [GDPR Naleving voor AI](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments) - Privacy-naleving in AI-systemen
+- [AI Governance Framework](https://learn.microsoft.com/azure/architecture/guide/responsible-ai/responsible-ai-overview) - Verantwoordelijke AI-implementatie
+- [SOC 2 voor AI-diensten](https://learn.microsoft.com/compliance/regulatory/offering-soc) - Beveiligingscontroles voor AI-serviceproviders
+- [HIPAA Naleving voor AI](https://learn.microsoft.com/compliance/regulatory/offering-hipaa-hitech) - AI-nalevingseisen voor de gezondheidszorg
+
+### DevSecOps & Automatisering
+- [DevSecOps Pijplijn voor AI](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline) - Veilige AI-ontwikkelingspijplijnen
+- [Geautomatiseerde Beveiligingstests](https://learn.microsoft.com/security/engineering/devsecops) - Continue beveiligingsvalidatie
+- [Infrastructure as Code Beveiliging](https://learn.microsoft.com/security/engineering/infrastructure-security) - Veilige infrastructuurimplementatie
+- [Containerbeveiliging voor AI](https://learn.microsoft.com/azure/container-instances/container-instances-image-security) - Beveiliging van AI-werkbelastingen in containers
+
+### Monitoring & Incidentrespons  
+- [Azure Monitor voor AI-werkbelastingen](https://learn.microsoft.com/azure/azure-monitor/overview) - Uitgebreide monitoringsoplossingen
+- [AI Beveiligingsincidentrespons](https://learn.microsoft.com/security/compass/incident-response-playbooks) - AI-specifieke incidentprocedures
+- [SIEM voor AI-systemen](https://learn.microsoft.com/azure/sentinel/overview) - Security Information and Event Management
+- [Dreigingsinformatie voor AI](https://learn.microsoft.com/security/compass/security-operations-videos-and-decks#threat-intelligence) - Bronnen voor AI-dreigingsinformatie
+
+## 🔄 Continue Verbetering
+
+### Blijf Op de Hoogte van Evoluerende Standaarden
+- **MCP Specificatie Updates**: Houd officiële MCP-specificatiewijzigingen en beveiligingsadviezen in de gaten.
+- **Dreigingsinformatie**: Abonneer op AI-beveiligingsdreigingsfeeds en kwetsbaarheidsdatabases.  
+- **Communitybetrokkenheid**: Neem deel aan MCP-beveiligingscommunitydiscussies en werkgroepen.
+- **Regelmatige Beoordeling**: Voer driemaandelijkse beoordelingen van de beveiligingsstatus uit en werk praktijken dienovereenkomstig bij.
+
+### Bijdragen aan MCP Beveiliging
+- **Beveiligingsonderzoek**: Draag bij aan MCP-beveiligingsonderzoek en programma's voor kwetsbaarheidsmeldingen.
+- **Delen van Beste Praktijken**: Deel beveiligingsimplementaties en geleerde lessen met de community.
+- **Standaardontwikkeling**: Neem deel aan de ontwikkeling van MCP-specificaties en het creëren van beveiligingsstandaarden.
+- **Ontwikkeling van tools**: Ontwikkel en deel beveiligingstools en bibliotheken voor het MCP-ecosysteem
+
+---
+
+*Dit document weerspiegelt de beste beveiligingspraktijken voor MCP vanaf 18 augustus 2025, gebaseerd op MCP Specificatie 2025-06-18. Beveiligingspraktijken moeten regelmatig worden herzien en bijgewerkt naarmate het protocol en het dreigingslandschap zich ontwikkelen.*
 
 **Disclaimer**:  
-Dit document is vertaald met behulp van de AI-vertalingsdienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u er rekening mee te houden dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet als de gezaghebbende bron worden beschouwd. Voor cruciale informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+Dit document is vertaald met behulp van de AI-vertalingsservice [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we ons best doen voor nauwkeurigheid, dient u zich ervan bewust te zijn dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor kritieke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.

@@ -1,49 +1,49 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "5762e8e74dd99d8b7dbb31e69a82561e",
-  "translation_date": "2025-07-16T23:03:09+00:00",
+  "original_hash": "fd169ca3071b81b5ee282e194bc823df",
+  "translation_date": "2025-09-15T20:23:25+00:00",
   "source_file": "05-AdvancedTopics/mcp-contextengineering/README.md",
   "language_code": "pl"
 }
 -->
-# Inżynieria kontekstu: Nowe podejście w ekosystemie MCP
+# Inżynieria kontekstu: Nowa koncepcja w ekosystemie MCP
 
 ## Przegląd
 
-Inżynieria kontekstu to nowatorska koncepcja w obszarze sztucznej inteligencji, która bada, jak informacje są strukturyzowane, przekazywane i utrzymywane podczas interakcji między klientami a usługami AI. W miarę rozwoju ekosystemu Model Context Protocol (MCP) rośnie znaczenie efektywnego zarządzania kontekstem. Ten moduł wprowadza pojęcie inżynierii kontekstu i omawia jej potencjalne zastosowania w implementacjach MCP.
+Inżynieria kontekstu to nowa koncepcja w przestrzeni AI, która bada, jak informacje są strukturyzowane, dostarczane i utrzymywane podczas interakcji między klientami a usługami AI. W miarę rozwoju ekosystemu Model Context Protocol (MCP), zrozumienie, jak skutecznie zarządzać kontekstem, staje się coraz ważniejsze. Ten moduł wprowadza koncepcję inżynierii kontekstu i bada jej potencjalne zastosowania w implementacjach MCP.
 
 ## Cele nauki
 
-Po ukończeniu tego modułu będziesz potrafił:
+Po ukończeniu tego modułu będziesz w stanie:
 
 - Zrozumieć nową koncepcję inżynierii kontekstu i jej potencjalną rolę w aplikacjach MCP
-- Zidentyfikować kluczowe wyzwania w zarządzaniu kontekstem, które adresuje protokół MCP
+- Zidentyfikować kluczowe wyzwania w zarządzaniu kontekstem, które projekt MCP stara się rozwiązać
 - Poznać techniki poprawy wydajności modeli poprzez lepsze zarządzanie kontekstem
-- Rozważyć metody mierzenia i oceny skuteczności kontekstu
-- Zastosować te nowe koncepcje, aby ulepszyć doświadczenia AI w ramach MCP
+- Rozważyć podejścia do mierzenia i oceny skuteczności kontekstu
+- Zastosować te nowe koncepcje, aby poprawić doświadczenia AI w ramach MCP
 
 ## Wprowadzenie do inżynierii kontekstu
 
-Inżynieria kontekstu to rozwijająca się dziedzina skupiająca się na świadomym projektowaniu i zarządzaniu przepływem informacji między użytkownikami, aplikacjami a modelami AI. W przeciwieństwie do ugruntowanych dziedzin, takich jak prompt engineering, inżynieria kontekstu jest wciąż definiowana przez praktyków, którzy starają się rozwiązać unikalne wyzwania związane z dostarczaniem modelom AI właściwych informacji we właściwym czasie.
+Inżynieria kontekstu to nowa dziedzina skupiona na celowym projektowaniu i zarządzaniu przepływem informacji między użytkownikami, aplikacjami i modelami AI. W przeciwieństwie do bardziej ugruntowanych dziedzin, takich jak inżynieria promptów, inżynieria kontekstu wciąż jest definiowana przez praktyków, którzy starają się rozwiązać unikalne wyzwania związane z dostarczaniem modelom AI odpowiednich informacji w odpowiednim czasie.
 
-Wraz z rozwojem dużych modeli językowych (LLM) rośnie znaczenie kontekstu. Jakość, trafność i struktura dostarczanego kontekstu mają bezpośredni wpływ na wyniki modelu. Inżynieria kontekstu bada tę zależność i dąży do opracowania zasad efektywnego zarządzania kontekstem.
+W miarę rozwoju dużych modeli językowych (LLM), znaczenie kontekstu staje się coraz bardziej widoczne. Jakość, trafność i struktura dostarczanego kontekstu bezpośrednio wpływają na wyniki modeli. Inżynieria kontekstu bada tę zależność i dąży do opracowania zasad skutecznego zarządzania kontekstem.
 
-> „W 2025 roku modele są niezwykle inteligentne. Ale nawet najbystrzejszy człowiek nie poradzi sobie skutecznie bez kontekstu tego, o co jest proszony... 'Inżynieria kontekstu' to kolejny poziom prompt engineering. Chodzi o automatyzację tego w dynamicznym systemie.” — Walden Yan, Cognition AI
+> "W 2025 roku dostępne modele są niezwykle inteligentne. Ale nawet najbystrzejszy człowiek nie będzie w stanie skutecznie wykonywać swojej pracy bez kontekstu tego, o co go prosimy... 'Inżynieria kontekstu' to kolejny poziom inżynierii promptów. Chodzi o automatyzację tego procesu w dynamicznym systemie." — Walden Yan, Cognition AI
 
 Inżynieria kontekstu może obejmować:
 
-1. **Wybór kontekstu**: Określanie, które informacje są istotne dla danego zadania
-2. **Strukturyzacja kontekstu**: Organizowanie informacji, aby maksymalizować zrozumienie przez model
-3. **Dostarczanie kontekstu**: Optymalizacja sposobu i momentu przekazywania informacji do modeli
+1. **Wybór kontekstu**: Określenie, które informacje są istotne dla danego zadania
+2. **Strukturyzowanie kontekstu**: Organizowanie informacji w sposób maksymalizujący zrozumienie przez model
+3. **Dostarczanie kontekstu**: Optymalizacja sposobu i momentu przesyłania informacji do modeli
 4. **Utrzymanie kontekstu**: Zarządzanie stanem i ewolucją kontekstu w czasie
-5. **Ocena kontekstu**: Pomiar i poprawa skuteczności kontekstu
+5. **Ocena kontekstu**: Mierzenie i poprawa skuteczności kontekstu
 
-Te obszary są szczególnie istotne dla ekosystemu MCP, który oferuje ustandaryzowany sposób dostarczania kontekstu do LLM.
+Te obszary są szczególnie istotne dla ekosystemu MCP, który zapewnia ustandaryzowany sposób dostarczania kontekstu do LLM.
 
 ## Perspektywa podróży kontekstu
 
-Jednym ze sposobów wizualizacji inżynierii kontekstu jest śledzenie drogi, jaką pokonują informacje w systemie MCP:
+Jednym ze sposobów wizualizacji inżynierii kontekstu jest prześledzenie podróży informacji przez system MCP:
 
 ```mermaid
 graph LR
@@ -62,21 +62,21 @@ graph LR
 
 ### Kluczowe etapy podróży kontekstu:
 
-1. **Wejście użytkownika**: Surowe dane od użytkownika (tekst, obrazy, dokumenty)
-2. **Złożenie kontekstu**: Łączenie danych użytkownika z kontekstem systemowym, historią rozmowy i innymi pobranymi informacjami
-3. **Przetwarzanie modelu**: Model AI przetwarza złożony kontekst
-4. **Generowanie odpowiedzi**: Model tworzy odpowiedzi na podstawie dostarczonego kontekstu
+1. **Dane wejściowe użytkownika**: Surowe informacje od użytkownika (tekst, obrazy, dokumenty)
+2. **Składanie kontekstu**: Łączenie danych wejściowych użytkownika z kontekstem systemowym, historią rozmowy i innymi pozyskanymi informacjami
+3. **Przetwarzanie przez model**: Model AI przetwarza złożony kontekst
+4. **Generowanie odpowiedzi**: Model generuje wyniki na podstawie dostarczonego kontekstu
 5. **Zarządzanie stanem**: System aktualizuje swój wewnętrzny stan na podstawie interakcji
 
-Ta perspektywa podkreśla dynamiczny charakter kontekstu w systemach AI i stawia ważne pytania o najlepsze sposoby zarządzania informacją na każdym etapie.
+Ta perspektywa podkreśla dynamiczny charakter kontekstu w systemach AI i stawia ważne pytania o to, jak najlepiej zarządzać informacjami na każdym etapie.
 
-## Wschodzące zasady inżynierii kontekstu
+## Nowe zasady w inżynierii kontekstu
 
-W miarę kształtowania się dziedziny inżynierii kontekstu, praktycy zaczynają formułować wstępne zasady, które mogą pomóc w podejmowaniu decyzji dotyczących implementacji MCP:
+W miarę kształtowania się dziedziny inżynierii kontekstu, praktycy zaczynają wypracowywać wstępne zasady, które mogą pomóc w podejmowaniu decyzji dotyczących implementacji MCP:
 
-### Zasada 1: Udostępniaj kontekst w całości
+### Zasada 1: Udostępniaj kontekst w pełni
 
-Kontekst powinien być udostępniany w pełni między wszystkimi komponentami systemu, a nie rozproszony między różnymi agentami czy procesami. Gdy kontekst jest podzielony, decyzje podejmowane w jednej części systemu mogą być sprzeczne z tymi w innych.
+Kontekst powinien być w pełni udostępniany między wszystkimi komponentami systemu, a nie fragmentowany między różnymi agentami lub procesami. Gdy kontekst jest rozproszony, decyzje podejmowane w jednej części systemu mogą być sprzeczne z decyzjami podejmowanymi gdzie indziej.
 
 ```mermaid
 graph TD
@@ -100,79 +100,74 @@ graph TD
     style D1 fill:#D7BDE2,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-W aplikacjach MCP sugeruje to projektowanie systemów, w których kontekst płynie płynnie przez cały pipeline, zamiast być podzielony na segmenty.
+W aplikacjach MCP oznacza to projektowanie systemów, w których kontekst płynie płynnie przez cały pipeline, zamiast być podzielonym na części.
 
-### Zasada 2: Uznaj, że działania niosą ukryte decyzje
+### Zasada 2: Uznaj, że działania niosą za sobą decyzje
 
-Każde działanie modelu zawiera ukryte decyzje dotyczące interpretacji kontekstu. Gdy różne komponenty operują na różnych kontekstach, te ukryte decyzje mogą się ze sobą kłócić, prowadząc do niespójnych wyników.
+Każde działanie modelu zawiera w sobie decyzje dotyczące interpretacji kontekstu. Gdy różne komponenty działają na różnych kontekstach, te decyzje mogą być sprzeczne, prowadząc do niespójnych wyników.
 
-Ta zasada ma istotne konsekwencje dla aplikacji MCP:
-- Preferuj liniowe przetwarzanie złożonych zadań zamiast równoległego wykonywania z fragmentarycznym kontekstem
-- Zapewnij, aby wszystkie punkty decyzyjne miały dostęp do tych samych informacji kontekstowych
-- Projektuj systemy tak, aby kolejne kroki widziały pełny kontekst wcześniejszych decyzji
+Ta zasada ma ważne implikacje dla aplikacji MCP:
+- Preferuj liniowe przetwarzanie złożonych zadań zamiast równoległego wykonywania z fragmentowanym kontekstem
+- Upewnij się, że wszystkie punkty decyzyjne mają dostęp do tych samych informacji kontekstowych
+- Projektuj systemy, w których późniejsze etapy mogą zobaczyć pełny kontekst wcześniejszych decyzji
 
 ### Zasada 3: Równoważ głębokość kontekstu z ograniczeniami okna
 
-W miarę jak rozmowy i procesy się wydłużają, okna kontekstowe w końcu się przepełniają. Efektywna inżynieria kontekstu bada sposoby radzenia sobie z napięciem między pełnym kontekstem a ograniczeniami technicznymi.
+W miarę wydłużania się rozmów i procesów, okna kontekstowe ostatecznie się przepełniają. Skuteczna inżynieria kontekstu bada podejścia do zarządzania napięciem między pełnym kontekstem a ograniczeniami technicznymi.
 
 Potencjalne podejścia obejmują:
-- Kompresję kontekstu, która zachowuje istotne informacje przy zmniejszeniu liczby tokenów
-- Stopniowe ładowanie kontekstu w zależności od aktualnych potrzeb
-- Streszczanie wcześniejszych interakcji przy zachowaniu kluczowych decyzji i faktów
+- Kompresję kontekstu, która zachowuje istotne informacje przy jednoczesnym zmniejszeniu liczby tokenów
+- Progresywne ładowanie kontekstu w zależności od jego znaczenia dla bieżących potrzeb
+- Podsumowanie wcześniejszych interakcji przy jednoczesnym zachowaniu kluczowych decyzji i faktów
 
-## Wyzwania kontekstu i projekt protokołu MCP
+## Wyzwania związane z kontekstem a projekt MCP
 
-Model Context Protocol (MCP) został zaprojektowany z uwzględnieniem unikalnych wyzwań zarządzania kontekstem. Zrozumienie tych wyzwań pomaga wyjaśnić kluczowe aspekty projektu protokołu MCP:
+Model Context Protocol (MCP) został zaprojektowany z uwzględnieniem unikalnych wyzwań związanych z zarządzaniem kontekstem. Zrozumienie tych wyzwań pomaga wyjaśnić kluczowe aspekty projektu MCP:
 
 ### Wyzwanie 1: Ograniczenia okna kontekstowego
+Większość modeli AI ma stałe rozmiary okien kontekstowych, ograniczając ilość informacji, które mogą przetworzyć jednocześnie.
 
-Większość modeli AI ma stały rozmiar okna kontekstowego, co ogranicza ilość informacji, które mogą przetworzyć jednocześnie.
-
-**Odpowiedź MCP:**  
-- Protokół wspiera strukturalny, oparty na zasobach kontekst, który można efektywnie odwoływać  
-- Zasoby mogą być paginowane i ładowane stopniowo
+**Odpowiedź projektu MCP:** 
+- Protokół wspiera strukturalny, zasobowy kontekst, który może być efektywnie odwoływany
+- Zasoby mogą być stronicowane i ładowane progresywnie
 
 ### Wyzwanie 2: Określenie trafności
+Określenie, które informacje są najbardziej istotne do uwzględnienia w kontekście, jest trudne.
 
-Trudno jest ustalić, które informacje są najbardziej istotne do uwzględnienia w kontekście.
+**Odpowiedź projektu MCP:**
+- Elastyczne narzędzia umożliwiają dynamiczne pozyskiwanie informacji w zależności od potrzeb
+- Strukturalne prompty umożliwiają spójne organizowanie kontekstu
 
-**Odpowiedź MCP:**  
-- Elastyczne narzędzia umożliwiają dynamiczne pobieranie informacji w zależności od potrzeb  
-- Strukturalne prompt’y zapewniają spójną organizację kontekstu
+### Wyzwanie 3: Trwałość kontekstu
+Zarządzanie stanem w różnych interakcjach wymaga starannego śledzenia kontekstu.
 
-### Wyzwanie 3: Utrzymanie kontekstu
+**Odpowiedź projektu MCP:**
+- Ustandaryzowane zarządzanie sesjami
+- Jasno zdefiniowane wzorce interakcji dla ewolucji kontekstu
 
-Zarządzanie stanem w trakcie interakcji wymaga dokładnego śledzenia kontekstu.
+### Wyzwanie 4: Kontekst wielomodalny
+Różne typy danych (tekst, obrazy, dane strukturalne) wymagają różnego traktowania.
 
-**Odpowiedź MCP:**  
-- Ustandaryzowane zarządzanie sesjami  
-- Jasno określone wzorce interakcji dla ewolucji kontekstu
-
-### Wyzwanie 4: Kontekst multimodalny
-
-Różne typy danych (tekst, obrazy, dane strukturalne) wymagają odmiennego podejścia.
-
-**Odpowiedź MCP:**  
-- Projekt protokołu uwzględnia różne typy treści  
-- Ustandaryzowana reprezentacja informacji multimodalnych
+**Odpowiedź projektu MCP:**
+- Projekt protokołu uwzględnia różne typy treści
+- Ustandaryzowana reprezentacja informacji wielomodalnych
 
 ### Wyzwanie 5: Bezpieczeństwo i prywatność
+Kontekst często zawiera wrażliwe informacje, które muszą być chronione.
 
-Kontekst często zawiera wrażliwe dane, które muszą być chronione.
+**Odpowiedź projektu MCP:**
+- Jasne granice między odpowiedzialnością klienta a serwera
+- Opcje lokalnego przetwarzania w celu minimalizacji ekspozycji danych
 
-**Odpowiedź MCP:**  
-- Jasne granice odpowiedzialności między klientem a serwerem  
-- Opcje lokalnego przetwarzania minimalizujące ekspozycję danych
-
-Zrozumienie tych wyzwań i sposobów ich rozwiązania przez MCP stanowi podstawę do eksploracji bardziej zaawansowanych technik inżynierii kontekstu.
+Zrozumienie tych wyzwań i sposobu, w jaki MCP je rozwiązuje, stanowi podstawę do eksploracji bardziej zaawansowanych technik inżynierii kontekstu.
 
 ## Nowe podejścia w inżynierii kontekstu
 
-W miarę rozwoju dziedziny pojawia się kilka obiecujących podejść. Reprezentują one aktualne przemyślenia, a nie ustalone praktyki, i prawdopodobnie będą ewoluować wraz z doświadczeniem w implementacjach MCP.
+W miarę rozwoju dziedziny inżynierii kontekstu pojawiają się obiecujące podejścia. Reprezentują one aktualne myślenie, a nie ustalone najlepsze praktyki, i prawdopodobnie będą ewoluować wraz z doświadczeniami z implementacjami MCP.
 
-### 1. Jednowątkowe, liniowe przetwarzanie
+### 1. Liniowe przetwarzanie jednokierunkowe
 
-W przeciwieństwie do architektur wieloagentowych, które rozdzielają kontekst, niektórzy praktycy zauważają, że jednowątkowe, liniowe przetwarzanie daje bardziej spójne wyniki. Zgodne jest to z zasadą utrzymania jednolitego kontekstu.
+W przeciwieństwie do architektur wieloagentowych, które rozdzielają kontekst, niektórzy praktycy odkrywają, że liniowe przetwarzanie jednokierunkowe daje bardziej spójne wyniki. To podejście jest zgodne z zasadą utrzymania jednolitego kontekstu.
 
 ```mermaid
 graph TD
@@ -188,11 +183,11 @@ graph TD
     style E fill:#D2B4DE,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-Choć podejście to może wydawać się mniej efektywne niż przetwarzanie równoległe, często daje bardziej spójne i wiarygodne rezultaty, ponieważ każdy krok opiera się na pełnym zrozumieniu wcześniejszych decyzji.
+Choć podejście to może wydawać się mniej efektywne niż przetwarzanie równoległe, często daje bardziej spójne i wiarygodne wyniki, ponieważ każdy krok opiera się na pełnym zrozumieniu wcześniejszych decyzji.
 
-### 2. Dzielenie i priorytetyzacja kontekstu
+### 2. Fragmentacja i priorytetyzacja kontekstu
 
-Dzielimy duże konteksty na mniejsze części i wybieramy najważniejsze.
+Dzielenie dużych kontekstów na mniejsze części i priorytetyzowanie tego, co najważniejsze.
 
 ```python
 # Conceptual Example: Context Chunking and Prioritization
@@ -213,11 +208,11 @@ def process_with_chunked_context(documents, query):
     return generate_response(context, query)
 ```
 
-Powyższa koncepcja pokazuje, jak można podzielić duże dokumenty na mniejsze fragmenty i wybrać tylko najbardziej istotne części do kontekstu. To podejście pomaga działać w ramach ograniczeń okna kontekstowego, jednocześnie korzystając z dużych baz wiedzy.
+Powyższa koncepcja ilustruje, jak można podzielić duże dokumenty na mniejsze części i wybrać tylko najbardziej istotne fragmenty do kontekstu. Podejście to może pomóc w pracy w ramach ograniczeń okna kontekstowego, jednocześnie wykorzystując duże bazy wiedzy.
 
-### 3. Stopniowe ładowanie kontekstu
+### 3. Progresywne ładowanie kontekstu
 
-Ładowanie kontekstu w miarę potrzeb, a nie wszystko naraz.
+Ładowanie kontekstu progresywnie, w miarę potrzeb, zamiast od razu.
 
 ```mermaid
 sequenceDiagram
@@ -242,11 +237,11 @@ sequenceDiagram
     App->>User: Answer
 ```
 
-Stopniowe ładowanie kontekstu zaczyna się od minimalnej ilości informacji i rozszerza je tylko wtedy, gdy jest to konieczne. Może to znacznie zmniejszyć zużycie tokenów przy prostych zapytaniach, zachowując jednocześnie zdolność do obsługi złożonych pytań.
+Progresywne ładowanie kontekstu zaczyna się od minimalnego kontekstu i rozszerza go tylko wtedy, gdy jest to konieczne. Może to znacznie zmniejszyć zużycie tokenów dla prostych zapytań, jednocześnie zachowując zdolność do obsługi złożonych pytań.
 
-### 4. Kompresja i streszczanie kontekstu
+### 4. Kompresja i podsumowanie kontekstu
 
-Zmniejszanie rozmiaru kontekstu przy zachowaniu kluczowych informacji.
+Zmniejszanie rozmiaru kontekstu przy jednoczesnym zachowaniu istotnych informacji.
 
 ```mermaid
 graph TD
@@ -262,105 +257,95 @@ graph TD
     style E fill:#F9E79F,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-Kompresja kontekstu skupia się na:  
-- Usuwaniu informacji zbędnych lub powtarzających się  
-- Streszczaniu długich treści  
-- Wyodrębnianiu kluczowych faktów i szczegółów  
-- Zachowaniu krytycznych elementów kontekstu  
+Kompresja kontekstu koncentruje się na:
+- Usuwaniu redundantnych informacji
+- Podsumowywaniu długich treści
+- Wyodrębnianiu kluczowych faktów i szczegółów
+- Zachowaniu istotnych elementów kontekstu
 - Optymalizacji pod kątem efektywności tokenów
 
-To podejście jest szczególnie przydatne do utrzymania długich rozmów w ramach okien kontekstowych lub efektywnego przetwarzania dużych dokumentów. Niektórzy praktycy używają specjalistycznych modeli dedykowanych kompresji i streszczaniu historii rozmów.
+Podejście to może być szczególnie wartościowe w utrzymywaniu długich rozmów w ramach okien kontekstowych lub w efektywnym przetwarzaniu dużych dokumentów. Niektórzy praktycy używają specjalistycznych modeli specjalnie do kompresji kontekstu i podsumowywania historii rozmów.
 
-## Rozważania eksploracyjne w inżynierii kontekstu
+## Eksploracyjne rozważania dotyczące inżynierii kontekstu
 
-Podczas eksploracji inżynierii kontekstu warto mieć na uwadze kilka kwestii przy pracy z implementacjami MCP. Nie są to sztywne wytyczne, lecz obszary do eksperymentów, które mogą przynieść korzyści w konkretnych zastosowaniach.
+Podczas eksploracji nowej dziedziny inżynierii kontekstu warto wziąć pod uwagę kilka kwestii przy pracy z implementacjami MCP. Nie są to ustalone najlepsze praktyki, lecz obszary eksploracji, które mogą przynieść poprawę w konkretnym przypadku użycia.
 
-### Określ cele kontekstu
+### Rozważ swoje cele dotyczące kontekstu
 
-Przed wdrożeniem złożonych rozwiązań zarządzania kontekstem jasno określ, co chcesz osiągnąć:  
-- Jakie konkretne informacje model musi mieć, aby odnieść sukces?  
-- Które informacje są niezbędne, a które dodatkowe?  
-- Jakie masz ograniczenia wydajnościowe (opóźnienia, limity tokenów, koszty)?
+Przed wdrożeniem złożonych rozwiązań zarządzania kontekstem jasno określ, co chcesz osiągnąć:
+- Jakie konkretne informacje są potrzebne modelowi, aby odnieść sukces?
+- Które informacje są niezbędne, a które dodatkowe?
+- Jakie są Twoje ograniczenia wydajnościowe (opóźnienia, limity tokenów, koszty)?
 
-### Eksploruj podejścia warstwowe
+### Eksploruj podejścia warstwowe do kontekstu
 
-Niektórzy praktycy odnoszą sukces, organizując kontekst w warstwy koncepcyjne:  
-- **Warstwa rdzeniowa**: Informacje niezbędne zawsze dla modelu  
-- **Warstwa sytuacyjna**: Kontekst specyficzny dla bieżącej interakcji  
-- **Warstwa wspierająca**: Dodatkowe informacje, które mogą być pomocne  
-- **Warstwa awaryjna**: Informacje dostępne tylko w razie potrzeby
+Niektórzy praktycy odnoszą sukcesy z kontekstem zorganizowanym w warstwy koncepcyjne:
+- **Warstwa podstawowa**: Niezbędne informacje, które model zawsze potrzebuje
+- **Warstwa sytuacyjna**: Kontekst specyficzny dla bieżącej interakcji
+- **Warstwa wspierająca**: Dodatkowe informacje, które mogą być pomocne
+- **Warstwa zapasowa**: Informacje dostępne tylko w razie potrzeby
 
-### Badaj strategie pobierania
+### Zbadaj strategie pozyskiwania informacji
 
-Skuteczność kontekstu często zależy od sposobu pozyskiwania informacji:  
-- Wyszukiwanie semantyczne i embeddingi do znajdowania konceptualnie istotnych danych  
-- Wyszukiwanie oparte na słowach kluczowych dla konkretnych faktów  
-- Podejścia hybrydowe łączące różne metody pobierania  
-- Filtrowanie metadanych w celu zawężenia zakresu według kategorii, dat czy źródeł
+Skuteczność Twojego kontekstu często zależy od sposobu pozyskiwania informacji:
+- Wyszukiwanie semantyczne i osadzenia do znajdowania koncepcyjnie istotnych informacji
+- Wyszukiwanie oparte na słowach kluczowych dla konkretnych szczegółów faktograficznych
+- Podejścia hybrydowe łączące różne metody pozyskiwania
+- Filtrowanie metadanych w celu zawężenia zakresu na podstawie kategorii, dat lub źródeł
 
-### Eksperymentuj ze spójnością kontekstu
+### Eksperymentuj z koherencją kontekstu
 
-Struktura i przepływ kontekstu mogą wpływać na zrozumienie modelu:  
-- Grupowanie powiązanych informacji  
-- Stosowanie spójnego formatowania i organizacji  
-- Utrzymywanie logicznego lub chronologicznego porządku tam, gdzie to stosowne  
+Struktura i przepływ Twojego kontekstu mogą wpływać na zrozumienie przez model:
+- Grupowanie powiązanych informacji razem
+- Używanie spójnego formatowania i organizacji
+- Utrzymywanie logicznego lub chronologicznego porządku tam, gdzie to właściwe
 - Unikanie sprzecznych informacji
 
 ### Rozważ kompromisy architektur wieloagentowych
 
-Chociaż architektury wieloagentowe są popularne w wielu frameworkach AI, niosą ze sobą poważne wyzwania w zarządzaniu kontekstem:  
-- Fragmentacja kontekstu może prowadzić do niespójnych decyzji między agentami  
-- Przetwarzanie równoległe może wprowadzać konflikty trudne do pogodzenia  
-- Koszty komunikacji między agentami mogą niwelować zyski wydajnościowe  
-- Zarządzanie stanem jest bardziej skomplikowane, aby utrzymać spójność
+Choć architektury wieloagentowe są popularne w wielu frameworkach AI, wiążą się z istotnymi wyzwaniami dla zarządzania kontekstem:
+- Fragmentacja kontekstu może prowadzić do niespójnych decyzji między agentami
+- Przetwarzanie równoległe może wprowadzać konflikty trudne do rozwiązania
+- Koszty komunikacji między agentami mogą niwelować korzyści wydajnościowe
+- Złożone zarządzanie stanem jest wymagane do utrzymania spójności
 
-W wielu przypadkach podejście z jednym agentem i kompleksowym zarządzaniem kontekstem może dawać bardziej wiarygodne wyniki niż wiele wyspecjalizowanych agentów z fragmentarycznym kontekstem.
+W wielu przypadkach podejście jednokierunkowe z kompleksowym zarządzaniem kontekstem może dawać bardziej wiarygodne wyniki niż wiele wyspecjalizowanych agentów z fragmentowanym kontekstem.
 
 ### Opracuj metody oceny
 
-Aby poprawiać inżynierię kontekstu w czasie, rozważ, jak będziesz mierzyć sukces:  
-- Testy A/B różnych struktur kontekstu  
-- Monitorowanie zużycia tokenów i czasu odpowiedzi  
-- Śledzenie satysfakcji użytkowników i wskaźników realizacji zadań  
-- Analiza przypadków, gdy strategie kontekstowe zawodzą
+Aby poprawić inżynierię kontekstu w czasie, rozważ, jak będziesz mierzyć sukces:
+- Testy A/B różnych struktur kontekstu
+- Monitorowanie zużycia tokenów i czasów odpowiedzi
+- Śledzenie satysfakcji użytkowników i wskaźników realizacji zadań
+- Analiza przypadków, w których strategie kontekstu zawodzą
 
-Te rozważania to aktywne obszary eksploracji w dziedzinie inżynierii kontekstu. W miarę dojrzewania dziedziny prawdopodobnie pojawią się bardziej jednoznaczne wzorce i praktyki.
+Te rozważania reprezentują aktywne obszary eksploracji w przestrzeni inżynierii kontekstu. W miarę dojrzewania dziedziny prawdopodobnie pojawią się bardziej definitywne wzorce i praktyki.
 
-## Mierzenie skuteczności kontekstu: rozwijające się ramy
+## Mierzenie skuteczności kontekstu: Ewoluujące ramy
 
-Wraz z pojawieniem się inżynierii kontekstu praktycy zaczynają badać, jak mierzyć jej skuteczność. Nie istnieje jeszcze ustalony framework, ale rozważane są różne metryki, które mogą pomóc w przyszłych pracach.
+W miarę rozwoju koncepcji inżynierii kontekstu praktycy zaczynają badać, jak można mierzyć jej skuteczność. Nie istnieją jeszcze ustalone ramy, ale rozważane są różne metryki, które mogą pomóc w kierowaniu przyszłymi pracami.
 
 ### Potencjalne wymiary pomiaru
 
-#### 1. Efektywność wejścia
+#### 1. Rozważania dotyczące efektywności wejścia
 
-- **Stosunek kontekstu do odpowiedzi**: Ile kontekstu jest potrzebne w stosunku do rozmiaru odpowiedzi?  
-- **Wykorzystanie tokenów**: Jaki procent tokenów kontekstowych wpływa na odpowiedź?  
+- **Stosunek kontekstu do odpowiedzi**: Ile kontekstu jest potrzebne w stosunku do rozmiaru odpowiedzi?
+- **Wykorzystanie tokenów**: Jaki procent dostarczonych tokenów kontekstu wpływa na odpowiedź?
 - **Redukcja kontekstu**: Jak skutecznie można skompresować surowe informacje?
 
-#### 2. Wydajność
+#### 2. Rozważania dotyczące wydajności
 
-- **Wpływ na opóźnienia**: Jak zarządzanie kontekstem wpływa na czas odpowiedzi?  
-- **Ekonomia tokenów**: Czy optymalizujemy zużycie tokenów?  
-- **Precyzja pobierania**: Jak trafne są pobierane informacje?  
-- **Wykorzystanie zasobów**: Jakie zasoby obliczeniowe są potrzebne?
+- **Wpływ na opóźnienia**: Jak zarządzanie kontekstem wpływa na czas odpowiedzi?
+- **Ekonomia tokenów**: Czy optymalizujemy efektywne wykorzystanie tokenów?
+- **Precyzja pozyskiwania**: Jak trafne są pozyskane informacje?
+- **Wykorzystanie zasobów**: Jakie zasoby obliczeniowe są wymagane?
 
-#### 3. Jakość
+#### 3. Rozważania dotyczące jakości
 
-- **Trafność odpowiedzi**: Jak dobrze odpowiedź odpowiada na zapytanie?  
-- **Dokładność faktograficzna**: Czy zarządzanie kontekstem poprawia poprawność faktów?  
-- **Spójność**: Czy odpowiedzi są spójne dla podobnych zapytań?  
-- **Wskaźnik halucynacji**: Czy lepszy kontekst zmniejsza błędy modelu?
-
-#### 4. Doświadczenie użytkownika
-
-- **Wskaźnik pytań uzupełniających**: Jak często użytkownicy potrzebują wyjaśnień?  
-- **Realizacja zadań**: Czy użytkownicy skutecznie osiągają cele?  
-- **Wskaźniki satysfakcji**: Jak użytkownicy oceniają swoje doświadczenia?
-
-### Eksploracyjne podejścia do pomiaru
-
-Podczas
+- **Trafność odpowiedzi**: Jak dobrze odpowiedź odpowiada na zapytanie?
+- **Dokładność faktograficzna**: Czy zarządzanie kontekstem poprawia poprawność faktograficzną?
+- **Spójność**: Czy odpowiedzi są spójne w podobnych zapytaniach?
+- **Częstotliwość hal
 - [Model Context Protocol Website](https://modelcontextprotocol.io/)
 - [Model Context Protocol Specification](https://github.com/modelcontextprotocol/modelcontextprotocol)
 - [MCP Documentation](https://modelcontextprotocol.io/docs)
@@ -369,26 +354,29 @@ Podczas
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
 - [MCP Inspector](https://github.com/modelcontextprotocol/inspector) - Narzędzie do wizualnego testowania serwerów MCP
 
-### Artykuły o Inżynierii Kontekstu
-- [Don't Build Multi-Agents: Principles of Context Engineering](https://cognition.ai/blog/dont-build-multi-agents) - Wnioski Waldena Yana na temat zasad inżynierii kontekstu
-- [A Practical Guide to Building Agents](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) - Przewodnik OpenAI po skutecznym projektowaniu agentów
-- [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) - Podejście Anthropic do tworzenia agentów
+### Artykuły o inżynierii kontekstowej
+- [Nie twórz multi-agentów: Zasady inżynierii kontekstowej](https://cognition.ai/blog/dont-build-multi-agents) - Spostrzeżenia Waldena Yana na temat zasad inżynierii kontekstowej
+- [Praktyczny przewodnik po budowaniu agentów](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) - Przewodnik OpenAI dotyczący efektywnego projektowania agentów
+- [Budowanie efektywnych agentów](https://www.anthropic.com/engineering/building-effective-agents) - Podejście Anthropic do rozwoju agentów
 
-### Powiązane Badania
-- [Dynamic Retrieval Augmentation for Large Language Models](https://arxiv.org/abs/2310.01487) - Badania nad dynamicznymi metodami wyszukiwania
-- [Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172) - Ważne badania nad wzorcami przetwarzania kontekstu
+### Powiązane badania
+- [Dynamic Retrieval Augmentation for Large Language Models](https://arxiv.org/abs/2310.01487) - Badania nad dynamicznymi podejściami do wyszukiwania
+- [Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172) - Ważne badania dotyczące wzorców przetwarzania kontekstu
 - [Hierarchical Text-Conditioned Image Generation with CLIP Latents](https://arxiv.org/abs/2204.06125) - Artykuł o DALL-E 2 z wnioskami na temat strukturyzacji kontekstu
-- [Exploring the Role of Context in Large Language Model Architectures](https://aclanthology.org/2023.findings-emnlp.124/) - Najnowsze badania nad obsługą kontekstu
-- [Multi-Agent Collaboration: A Survey](https://arxiv.org/abs/2304.03442) - Badania nad systemami wieloagentowymi i ich wyzwaniami
+- [Exploring the Role of Context in Large Language Model Architectures](https://aclanthology.org/2023.findings-emnlp.124/) - Najnowsze badania dotyczące obsługi kontekstu
+- [Multi-Agent Collaboration: A Survey](https://arxiv.org/abs/2304.03442) - Badania nad systemami multi-agentowymi i ich wyzwaniami
 
-### Dodatkowe Zasoby
-- [Context Window Optimization Techniques](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/context-window)
-- [Advanced RAG Techniques](https://www.microsoft.com/en-us/research/blog/retrieval-augmented-generation-rag-and-frontier-models/)
-- [Semantic Kernel Documentation](https://github.com/microsoft/semantic-kernel)
+### Dodatkowe zasoby
+- [Techniki optymalizacji okna kontekstowego](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/context-window)
+- [Zaawansowane techniki RAG](https://www.microsoft.com/en-us/research/blog/retrieval-augmented-generation-rag-and-frontier-models/)
+- [Dokumentacja Semantic Kernel](https://github.com/microsoft/semantic-kernel)
 - [AI Toolkit for Context Management](https://github.com/microsoft/aitoolkit)
 
 ## Co dalej
-- [6. Community Contributions](../../06-CommunityContributions/README.md)
+
+- [5.15 MCP Custom Transport](../mcp-transport/README.md)
+
+---
 
 **Zastrzeżenie**:  
-Niniejszy dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mimo że dążymy do dokładności, prosimy mieć na uwadze, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w języku źródłowym powinien być uznawany za źródło autorytatywne. W przypadku informacji o kluczowym znaczeniu zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby zapewnić poprawność tłumaczenia, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za wiarygodne źródło. W przypadku informacji o kluczowym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.

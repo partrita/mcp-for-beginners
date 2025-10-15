@@ -1,17 +1,17 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a05fb941810e539147fec53aaadbb6fd",
-  "translation_date": "2025-07-14T06:40:19+00:00",
+  "original_hash": "6ef6015d29b95f1cab97fb88a045a991",
+  "translation_date": "2025-09-05T10:58:59+00:00",
   "source_file": "09-CaseStudy/docs-mcp/solution/python/README.md",
   "language_code": "tr"
 }
 -->
-# Chainlit & Microsoft Learn Docs MCP ile Çalışma Planı Oluşturucu
+# Chainlit ve Microsoft Learn Docs MCP ile Çalışma Planı Oluşturucu
 
-## Gereksinimler
+## Ön Koşullar
 
-- Python 3.8 veya üzeri
+- Python 3.8 veya daha üstü
 - pip (Python paket yöneticisi)
 - Microsoft Learn Docs MCP sunucusuna bağlanmak için internet erişimi
 
@@ -26,29 +26,29 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## Kullanım
 
-### Senaryo 1: Docs MCP’ye Basit Sorgu
-Docs MCP sunucusuna bağlanan, bir sorgu gönderen ve sonucu yazdıran komut satırı istemcisi.
+### Senaryo 1: Docs MCP'ye Basit Sorgu
+Docs MCP sunucusuna bağlanan, bir sorgu gönderen ve sonucu yazdıran bir komut satırı istemcisi.
 
 1. Scripti çalıştırın:
    ```bash
    python scenario1.py
    ```
-2. İstekte dokümantasyon sorunuz girin.
+2. İstemde dokümantasyon sorularınızı girin.
 
 ### Senaryo 2: Çalışma Planı Oluşturucu (Chainlit Web Uygulaması)
-Kullanıcıların herhangi bir teknik konu için kişiselleştirilmiş, haftalık çalışma planı oluşturmasına olanak tanıyan web tabanlı arayüz (Chainlit kullanılarak).
+Kullanıcıların herhangi bir teknik konu için kişiselleştirilmiş, haftalık bir çalışma planı oluşturmasına olanak tanıyan Chainlit tabanlı bir web arayüzü.
 
 1. Chainlit uygulamasını başlatın:
    ```bash
    chainlit run scenario2.py
    ```
-2. Terminalde verilen yerel URL’yi (örneğin http://localhost:8000) tarayıcınızda açın.
-3. Sohbet penceresine çalışma konunuzu ve çalışmak istediğiniz hafta sayısını girin (örneğin, "AI-900 sertifikası, 8 hafta").
-4. Uygulama, ilgili Microsoft Learn dokümantasyonuna bağlantılar içeren haftalık çalışma planını yanıt olarak verecektir.
+2. Terminalinizde sağlanan yerel URL'yi (ör. http://localhost:8000) tarayıcınızda açın.
+3. Sohbet penceresine çalışma konunuzu ve çalışmak istediğiniz hafta sayısını girin (ör. "AI-900 sertifikası, 8 hafta").
+4. Uygulama, ilgili Microsoft Learn dokümantasyon bağlantılarını içeren haftalık bir çalışma planı ile yanıt verecektir.
 
 **Gerekli Ortam Değişkenleri:**
 
-Senaryo 2’yi (Azure OpenAI ile Chainlit web uygulaması) kullanmak için, `python` dizininde `.env` dosyasına aşağıdaki ortam değişkenlerini eklemelisiniz:
+Senaryo 2'yi (Azure OpenAI ile Chainlit web uygulaması) kullanmak için, `python` dizininde bir `.env` dosyasına aşağıdaki ortam değişkenlerini eklemeniz gerekir:
 
 ```
 AZURE_OPENAI_CHAT_DEPLOYMENT_NAME=
@@ -59,50 +59,53 @@ AZURE_OPENAI_API_VERSION=
 
 Uygulamayı çalıştırmadan önce bu değerleri Azure OpenAI kaynak bilgilerinizle doldurun.
 
-> **İpucu:** Kendi modellerinizi kolayca [Azure AI Foundry](https://ai.azure.com/) kullanarak dağıtabilirsiniz.
+> [!TIP]
+> [Azure AI Foundry](https://ai.azure.com/) kullanarak kendi modellerinizi kolayca dağıtabilirsiniz.
 
-### Senaryo 3: VS Code İçinde MCP Sunucusu ile Dokümanlar
+### Senaryo 3: VS Code'da MCP Sunucusu ile Editör İçi Dokümantasyon
 
-Tarayıcı sekmeleri arasında geçiş yapmak yerine, Microsoft Learn Docs’u doğrudan VS Code’a MCP sunucusu ile getirebilirsiniz. Bu sayede:
-- Kodlama ortamınızı terk etmeden VS Code içinde doküman arayabilir ve okuyabilirsiniz.
-- Dokümantasyona referans verip, bağlantıları doğrudan README veya kurs dosyalarınıza ekleyebilirsiniz.
-- GitHub Copilot ve MCP’yi birlikte kullanarak kesintisiz, yapay zekâ destekli dokümantasyon akışı sağlayabilirsiniz.
+Tarayıcı sekmeleri arasında geçiş yapmak yerine, Microsoft Learn Docs'u doğrudan VS Code'a getirebilirsiniz. Bu, aşağıdakileri yapmanıza olanak tanır:
+- Kodlama ortamınızı terk etmeden VS Code içinde doküman arama ve okuma.
+- Dokümantasyon referansları ekleme ve bağlantıları doğrudan README veya kurs dosyalarınıza yerleştirme.
+- GitHub Copilot ve MCP'yi birlikte kullanarak kesintisiz, yapay zeka destekli bir dokümantasyon iş akışı oluşturma.
 
-**Örnek Kullanım Durumları:**
-- Bir kurs veya proje dokümantasyonu yazarken README’ye hızlıca referans bağlantıları eklemek.
-- Copilot ile kod üretirken MCP ile ilgili dokümanları anında bulup alıntılamak.
-- Editörünüzde odaklanarak verimliliği artırmak.
+**Örnek Kullanım Senaryoları:**
+- Bir kurs veya proje dokümantasyonu yazarken README'ye hızlıca referans bağlantıları ekleme.
+- Kod oluşturmak için Copilot'u kullanma ve ilgili dokümanları bulup alıntı yapmak için MCP'yi kullanma.
+- Editörünüzde odaklanmış kalma ve üretkenliği artırma.
 
 > [!IMPORTANT]
-> Çalışma alanınızda geçerli bir [`mcp.json`](../../../../../../09-CaseStudy/docs-mcp/solution/scenario3/mcp.json) yapılandırmasının olduğundan emin olun (konum `.vscode/mcp.json`).
+> Çalışma alanınızda geçerli bir [`mcp.json`](../../../../../../09-CaseStudy/docs-mcp/solution/scenario3/mcp.json) yapılandırması olduğundan emin olun (konum: `.vscode/mcp.json`).
 
-## Neden Senaryo 2 için Chainlit?
+## Senaryo 2 için Neden Chainlit?
 
-Chainlit, sohbet tabanlı web uygulamaları oluşturmak için modern ve açık kaynaklı bir çerçevedir. Microsoft Learn Docs MCP sunucusu gibi arka uç servislerine bağlanan sohbet arayüzleri oluşturmayı kolaylaştırır. Bu proje, kişiselleştirilmiş çalışma planlarını gerçek zamanlı ve etkileşimli şekilde oluşturmak için Chainlit’i kullanır. Chainlit sayesinde, üretkenliği ve öğrenmeyi artıran sohbet tabanlı araçları hızlıca geliştirebilir ve dağıtabilirsiniz.
+Chainlit, konuşma tabanlı web uygulamaları oluşturmak için modern bir açık kaynak çerçevesidir. Microsoft Learn Docs MCP sunucusu gibi arka uç hizmetlerine bağlanan sohbet tabanlı kullanıcı arayüzleri oluşturmayı kolaylaştırır. Bu proje, gerçek zamanlı olarak kişiselleştirilmiş çalışma planları oluşturmanın basit ve etkileşimli bir yolunu sağlamak için Chainlit'i kullanır. Chainlit sayesinde, üretkenliği ve öğrenmeyi artıran sohbet tabanlı araçları hızlıca oluşturabilir ve dağıtabilirsiniz.
 
-## Bu Ne Yapar?
+## Bu Uygulama Ne Yapar?
 
-Bu uygulama, kullanıcıların sadece bir konu ve süre girerek kişiselleştirilmiş bir çalışma planı oluşturmasını sağlar. Girdiğiniz bilgiyi analiz eder, Microsoft Learn Docs MCP sunucusuna ilgili içerik için sorgu gönderir ve sonuçları yapılandırılmış, haftalık plan halinde düzenler. Her haftanın önerileri sohbet penceresinde gösterilir, böylece ilerlemenizi kolayca takip edebilirsiniz. En güncel ve ilgili öğrenme kaynaklarını her zaman almanızı sağlar.
+Bu uygulama, kullanıcıların yalnızca bir konu ve süre girerek kişiselleştirilmiş bir çalışma planı oluşturmasına olanak tanır. Uygulama, girdinizi analiz eder, Microsoft Learn Docs MCP sunucusundan ilgili içerikleri sorgular ve sonuçları yapılandırılmış, haftalık bir plana dönüştürür. Her haftanın önerileri sohbet penceresinde görüntülenir, bu da takip etmeyi ve ilerlemenizi izlemeyi kolaylaştırır. En güncel ve en alakalı öğrenme kaynaklarını almanızı sağlamak için entegrasyon yapılmıştır.
 
 ## Örnek Sorgular
 
-Uygulamanın yanıtlarını görmek için sohbet penceresine şu sorguları deneyin:
+Uygulamanın nasıl yanıt verdiğini görmek için sohbet penceresinde şu sorguları deneyin:
 
 - `AI-900 sertifikası, 8 hafta`
 - `Azure Functions öğren, 4 hafta`
 - `Azure DevOps, 6 hafta`
-- `Azure’da veri mühendisliği, 10 hafta`
+- `Azure'da veri mühendisliği, 10 hafta`
 - `Microsoft güvenlik temelleri, 5 hafta`
 - `Power Platform, 7 hafta`
-- `Azure AI servisleri, 12 hafta`
+- `Azure AI hizmetleri, 12 hafta`
 - `Bulut mimarisi, 9 hafta`
 
-Bu örnekler, uygulamanın farklı öğrenme hedefleri ve süreleri için ne kadar esnek olduğunu gösterir.
+Bu örnekler, uygulamanın farklı öğrenme hedefleri ve zaman dilimleri için esnekliğini göstermektedir.
 
-## Kaynaklar
+## Referanslar
 
 - [Chainlit Dokümantasyonu](https://docs.chainlit.io/)
 - [MCP Dokümantasyonu](https://github.com/MicrosoftDocs/mcp)
 
+---
+
 **Feragatname**:  
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu oluşabilecek yanlış anlamalar veya yorum hatalarından sorumlu değiliz.
+Bu belge, [Co-op Translator](https://github.com/Azure/co-op-translator) adlı yapay zeka çeviri hizmeti kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel bir insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlama veya yanlış yorumlamalardan sorumlu değiliz.

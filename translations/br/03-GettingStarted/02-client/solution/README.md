@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "accc66cf3ff6a24b00f6ac0e1235644b",
-  "translation_date": "2025-07-13T18:24:35+00:00",
+  "original_hash": "4d5e8e6f105e4f6e6953c0c14c99b394",
+  "translation_date": "2025-08-18T17:17:17+00:00",
   "source_file": "03-GettingStarted/02-client/solution/README.md",
   "language_code": "br"
 }
@@ -13,6 +13,7 @@ Aqui estão as soluções para cada runtime:
 - [Python](./python/README.md)
 - [.NET](../../../../../03-GettingStarted/02-client/solution/dotnet)
 - [Java](./java/README.md)
+- [Rust](../../../../../03-GettingStarted/02-client/solution/rust)
 
 **Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte oficial. Para informações críticas, recomenda-se a tradução profissional feita por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações equivocadas decorrentes do uso desta tradução.

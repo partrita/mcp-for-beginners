@@ -1,90 +1,96 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "80e5c8949af5af0f401fce6f905990aa",
-  "translation_date": "2025-07-17T11:10:49+00:00",
+  "original_hash": "b62150e27d4b7b5797ee41146d176e6b",
+  "translation_date": "2025-08-19T16:24:26+00:00",
   "source_file": "08-BestPractices/README.md",
   "language_code": "ro"
 }
 -->
-# Cele mai bune practici pentru dezvoltarea MCP
+# Cele Mai Bune Practici pentru Dezvoltarea MCP
 
-## Prezentare generală
+[![Cele Mai Bune Practici pentru Dezvoltarea MCP](../../../translated_images/09.d0f6d86c9d72134ccf5a8d8c8650a0557e519936661fc894cad72d73522227cb.ro.png)](https://youtu.be/W56H9W7x-ao)
 
-Această lecție se concentrează pe cele mai avansate practici pentru dezvoltarea, testarea și implementarea serverelor și funcționalităților MCP în medii de producție. Pe măsură ce ecosistemele MCP devin tot mai complexe și importante, respectarea unor modele bine stabilite asigură fiabilitate, ușurință în întreținere și interoperabilitate. Lecția reunește experiența practică acumulată din implementări reale MCP pentru a te ghida în crearea unor servere robuste și eficiente, cu resurse, prompturi și unelte bine concepute.
+_(Faceți clic pe imaginea de mai sus pentru a viziona videoclipul acestei lecții)_
 
-## Obiective de învățare
+## Prezentare Generală
 
-La finalul acestei lecții vei putea:
-- Aplica cele mai bune practici din industrie în proiectarea serverelor și funcționalităților MCP
-- Elabora strategii complete de testare pentru serverele MCP
-- Concepe modele eficiente și reutilizabile de workflow pentru aplicații MCP complexe
+Această lecție se concentrează pe cele mai bune practici avansate pentru dezvoltarea, testarea și implementarea serverelor și funcțiilor MCP în medii de producție. Pe măsură ce ecosistemele MCP devin mai complexe și mai importante, urmarea unor modele consacrate asigură fiabilitate, mentenabilitate și interoperabilitate. Lecția consolidează înțelepciunea practică dobândită din implementări reale MCP pentru a vă ghida în crearea de servere robuste și eficiente, cu resurse, prompturi și instrumente eficiente.
+
+## Obiectivele Învățării
+
+Până la finalul acestei lecții, veți putea:
+
+- Aplica cele mai bune practici din industrie în proiectarea serverelor și funcțiilor MCP
+- Crea strategii de testare cuprinzătoare pentru serverele MCP
+- Proiecta modele de flux de lucru eficiente și reutilizabile pentru aplicații MCP complexe
 - Implementa gestionarea corectă a erorilor, logarea și observabilitatea în serverele MCP
-- Optimiza implementările MCP pentru performanță, securitate și ușurință în întreținere
+- Optimiza implementările MCP pentru performanță, securitate și mentenabilitate
 
-## Principiile de bază MCP
+## Principiile de Bază ale MCP
 
-Înainte de a intra în detalii despre practici specifice de implementare, este important să înțelegi principiile fundamentale care ghidează dezvoltarea eficientă MCP:
+Înainte de a intra în detalii despre practicile de implementare, este important să înțelegem principiile de bază care ghidează dezvoltarea eficientă MCP:
 
-1. **Comunicare standardizată**: MCP folosește JSON-RPC 2.0 ca bază, oferind un format consecvent pentru cereri, răspunsuri și gestionarea erorilor în toate implementările.
+1. **Comunicare Standardizată**: MCP folosește JSON-RPC 2.0 ca fundație, oferind un format consistent pentru cereri, răspunsuri și gestionarea erorilor în toate implementările.
 
-2. **Design centrat pe utilizator**: Prioritizează întotdeauna consimțământul, controlul și transparența pentru utilizatori în implementările MCP.
+2. **Design Centrat pe Utilizator**: Prioritizați întotdeauna consimțământul, controlul și transparența utilizatorului în implementările MCP.
 
-3. **Securitate pe primul loc**: Aplică măsuri robuste de securitate, inclusiv autentificare, autorizare, validare și limitare a ratei.
+3. **Securitate pe Primul Loc**: Implementați măsuri de securitate robuste, inclusiv autentificare, autorizare, validare și limitarea ratei.
 
-4. **Arhitectură modulară**: Proiectează serverele MCP cu o abordare modulară, unde fiecare unealtă și resursă are un scop clar și bine definit.
+4. **Arhitectură Modulară**: Proiectați serverele MCP cu o abordare modulară, unde fiecare instrument și resursă are un scop clar și bine definit.
 
-5. **Conexiuni cu stare**: Folosește capacitatea MCP de a menține starea pe parcursul mai multor cereri pentru interacțiuni mai coerente și conștiente de context.
+5. **Conexiuni cu Stare**: Profitați de capacitatea MCP de a menține starea între mai multe cereri pentru interacțiuni mai coerente și conștiente de context.
 
-## Cele mai bune practici oficiale MCP
+## Cele Mai Bune Practici Oficiale MCP
 
-Următoarele bune practici sunt extrase din documentația oficială a Model Context Protocol:
+Următoarele bune practici sunt derivate din documentația oficială a Model Context Protocol:
 
-### Cele mai bune practici de securitate
+### Cele Mai Bune Practici de Securitate
 
-1. **Consimțământul și controlul utilizatorului**: Solicită întotdeauna consimțământ explicit înainte de a accesa date sau de a efectua operațiuni. Oferă control clar asupra datelor partajate și acțiunilor autorizate.
+1. **Consimțământul și Controlul Utilizatorului**: Solicitați întotdeauna consimțământul explicit al utilizatorului înainte de a accesa date sau de a efectua operațiuni. Oferiți control clar asupra datelor partajate și acțiunilor autorizate.
 
-2. **Confidențialitatea datelor**: Expune datele utilizatorului doar cu consimțământ explicit și protejează-le cu controale adecvate de acces. Previne transmiterea neautorizată a datelor.
+2. **Confidențialitatea Datelor**: Expuneți datele utilizatorului doar cu consimțământ explicit și protejați-le cu controale de acces adecvate. Preveniți transmiterea neautorizată a datelor.
 
-3. **Siguranța uneltelor**: Solicită consimțământ explicit înainte de a apela orice unealtă. Asigură-te că utilizatorii înțeleg funcționalitatea fiecărei unelte și aplică limite de securitate stricte.
+3. **Siguranța Instrumentelor**: Solicitați consimțământul explicit al utilizatorului înainte de a invoca orice instrument. Asigurați-vă că utilizatorii înțeleg funcționalitatea fiecărui instrument și aplicați limite de securitate robuste.
 
-4. **Controlul permisiunilor uneltelor**: Configurează ce unelte poate folosi un model în timpul unei sesiuni, asigurând acces doar la cele autorizate explicit.
+4. **Controlul Permisiunilor Instrumentelor**: Configurați ce instrumente poate utiliza un model în timpul unei sesiuni, asigurându-vă că doar instrumentele autorizate explicit sunt accesibile.
 
-5. **Autentificare**: Cere autentificare corectă înainte de a acorda acces la unelte, resurse sau operațiuni sensibile, folosind chei API, token-uri OAuth sau alte metode sigure.
+5. **Autentificare**: Solicitați autentificare adecvată înainte de a acorda acces la instrumente, resurse sau operațiuni sensibile, utilizând chei API, token-uri OAuth sau alte metode sigure de autentificare.
 
-6. **Validarea parametrilor**: Aplică validarea pentru toate invocările uneltelor pentru a preveni intrări incorecte sau malițioase.
+6. **Validarea Parametrilor**: Aplicați validarea pentru toate invocările de instrumente pentru a preveni intrările defectuoase sau malițioase.
 
-7. **Limitarea ratei**: Implementează limitarea ratei pentru a preveni abuzul și a asigura utilizarea echitabilă a resurselor serverului.
+7. **Limitarea Ratei**: Implementați limitarea ratei pentru a preveni abuzurile și pentru a asigura utilizarea echitabilă a resurselor serverului.
 
-### Cele mai bune practici de implementare
+### Cele Mai Bune Practici de Implementare
 
-1. **Negocierea capabilităților**: La stabilirea conexiunii, schimbă informații despre funcționalitățile suportate, versiunile protocolului, uneltele și resursele disponibile.
+1. **Negocierea Capacităților**: În timpul configurării conexiunii, schimbați informații despre funcțiile suportate, versiunile protocolului, instrumentele și resursele disponibile.
 
-2. **Proiectarea uneltelor**: Creează unelte specializate care să facă bine un singur lucru, în loc de unelte monolitice care gestionează mai multe aspecte.
+2. **Proiectarea Instrumentelor**: Creați instrumente specializate care fac un singur lucru bine, în loc de instrumente monolitice care gestionează mai multe preocupări.
 
-3. **Gestionarea erorilor**: Implementează mesaje și coduri de eroare standardizate pentru a ajuta la diagnosticarea problemelor, a gestiona eșecurile elegant și a oferi feedback util.
+3. **Gestionarea Erorilor**: Implementați mesaje de eroare și coduri standardizate pentru a ajuta la diagnosticarea problemelor, gestionarea eșecurilor cu grație și oferirea de feedback acționabil.
 
-4. **Logare**: Configurează loguri structurate pentru audit, depanare și monitorizarea interacțiunilor protocolului.
+4. **Logare**: Configurați loguri structurate pentru auditare, depanare și monitorizarea interacțiunilor protocolului.
 
-5. **Urmărirea progresului**: Pentru operațiuni de durată, raportează actualizări de progres pentru a permite interfețe responsive.
+5. **Urmărirea Progresului**: Pentru operațiuni de lungă durată, raportați actualizări de progres pentru a permite interfețe de utilizator mai receptive.
 
-6. **Anularea cererilor**: Permite clienților să anuleze cererile în curs care nu mai sunt necesare sau durează prea mult.
+6. **Anularea Cererilor**: Permiteți clienților să anuleze cererile în curs care nu mai sunt necesare sau care durează prea mult.
 
-## Referințe suplimentare
+## Referințe Suplimentare
 
-Pentru cele mai recente informații despre cele mai bune practici MCP, consultă:
-- [MCP Documentation](https://modelcontextprotocol.io/)
-- [MCP Specification](https://spec.modelcontextprotocol.io/)
-- [GitHub Repository](https://github.com/modelcontextprotocol)
-- [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
+Pentru cele mai recente informații despre cele mai bune practici MCP, consultați:
 
-## Exemple practice de implementare
+- [Documentația MCP](https://modelcontextprotocol.io/)
+- [Specificația MCP](https://spec.modelcontextprotocol.io/)
+- [Repository GitHub](https://github.com/modelcontextprotocol)
+- [Cele Mai Bune Practici de Securitate](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
 
-### Cele mai bune practici pentru proiectarea uneltelor
+## Exemple Practice de Implementare
 
-#### 1. Principiul responsabilității unice
+### Cele Mai Bune Practici pentru Proiectarea Instrumentelor
 
-Fiecare unealtă MCP ar trebui să aibă un scop clar și bine definit. În loc să creezi unelte monolitice care încearcă să gestioneze mai multe aspecte, dezvoltă unelte specializate care excelează în sarcini specifice.
+#### 1. Principiul Responsabilității Unice
+
+Fiecare instrument MCP ar trebui să aibă un scop clar și bine definit. În loc să creați instrumente monolitice care încearcă să gestioneze mai multe preocupări, dezvoltați instrumente specializate care excelează în sarcini specifice.
 
 ```csharp
 // A focused tool that does one thing well
@@ -144,9 +150,9 @@ public class WeatherForecastTool : ITool
 }
 ```
 
-#### 2. Gestionarea consecventă a erorilor
+#### 2. Gestionarea Consistentă a Erorilor
 
-Implementează o gestionare robustă a erorilor cu mesaje informative și mecanisme adecvate de recuperare.
+Implementați gestionarea robustă a erorilor cu mesaje informative și mecanisme adecvate de recuperare.
 
 ```python
 # Python example with comprehensive error handling
@@ -205,9 +211,9 @@ class DataQueryTool:
         pass
 ```
 
-#### 3. Validarea parametrilor
+#### 3. Validarea Parametrilor
 
-Validează întotdeauna parametrii temeinic pentru a preveni intrări incorecte sau malițioase.
+Validați întotdeauna parametrii în mod riguros pentru a preveni intrările defectuoase sau malițioase.
 
 ```javascript
 // JavaScript/TypeScript example with detailed parameter validation
@@ -290,9 +296,9 @@ class FileOperationTool {
 }
 ```
 
-### Exemple de implementare a securității
+### Exemple de Implementare a Securității
 
-#### 1. Autentificare și autorizare
+#### 1. Autentificare și Autorizare
 
 ```java
 // Java example with authentication and authorization
@@ -358,7 +364,7 @@ public class SecureDataAccessTool implements Tool {
 }
 ```
 
-#### 2. Limitarea ratei
+#### 2. Limitarea Ratei
 
 ```csharp
 // C# rate limiting implementation
@@ -434,11 +440,11 @@ public class RateLimitingMiddleware
 }
 ```
 
-## Cele mai bune practici pentru testare
+## Cele Mai Bune Practici de Testare
 
-### 1. Testarea unitară a uneltelor MCP
+### 1. Testarea Unităților pentru Instrumentele MCP
 
-Testează întotdeauna uneltele izolat, simulând dependențele externe:
+Testați întotdeauna instrumentele în izolare, simulând dependențele externe:
 
 ```typescript
 // TypeScript example of a tool unit test
@@ -494,9 +500,9 @@ describe('WeatherForecastTool', () => {
 });
 ```
 
-### 2. Testarea integrată
+### 2. Testarea Integrării
 
-Testează fluxul complet de la cererile clientului până la răspunsurile serverului:
+Testați fluxul complet de la cererile clientului la răspunsurile serverului:
 
 ```python
 # Python integration test example
@@ -531,11 +537,11 @@ async def test_mcp_server_integration():
         await server.stop()
 ```
 
-## Optimizarea performanței
+## Optimizarea Performanței
 
-### 1. Strategii de caching
+### 1. Strategii de Cache
 
-Implementează caching adecvat pentru a reduce latența și consumul de resurse:
+Implementați cache-ul adecvat pentru a reduce latența și utilizarea resurselor:
 
 ```csharp
 // C# example with caching
@@ -602,19 +608,20 @@ public class CachedWeatherTool : ITool
         };
     }
 }
+```
 
-#### 2. Dependency Injection and Testability
+#### 2. Injecția Dependențelor și Testabilitatea
 
-Design tools to receive their dependencies through constructor injection, making them testable and configurable:
+Proiectați instrumentele astfel încât să primească dependențele prin injecția constructorului, făcându-le testabile și configurabile:
 
 ```java
-// Exemplu Java cu injecție de dependențe
+// Java example with dependency injection
 public class CurrencyConversionTool implements Tool {
     private final ExchangeRateService exchangeService;
     private final CacheService cacheService;
     private final Logger logger;
     
-    // Dependențe injectate prin constructor
+    // Dependencies injected through constructor
     public CurrencyConversionTool(
             ExchangeRateService exchangeService,
             CacheService cacheService,
@@ -624,51 +631,51 @@ public class CurrencyConversionTool implements Tool {
         this.logger = logger;
     }
     
-    // Implementarea uneltei
+    // Tool implementation
     // ...
 }
 ```
 
-#### 3. Composable Tools
+#### 3. Instrumente Compozabile
 
-Design tools that can be composed together to create more complex workflows:
+Proiectați instrumente care pot fi compuse împreună pentru a crea fluxuri de lucru mai complexe:
 
 ```python
-# Exemplu Python care arată unelte compozabile
+# Python example showing composable tools
 class DataFetchTool(Tool):
     def get_name(self):
         return "dataFetch"
     
-    # Implementare...
+    # Implementation...
 
 class DataAnalysisTool(Tool):
     def get_name(self):
         return "dataAnalysis"
     
-    # Această unealtă poate folosi rezultatele uneltei dataFetch
+    # This tool can use results from the dataFetch tool
     async def execute_async(self, request):
-        # Implementare...
+        # Implementation...
         pass
 
 class DataVisualizationTool(Tool):
     def get_name(self):
         return "dataVisualize"
     
-    # Această unealtă poate folosi rezultatele uneltei dataAnalysis
+    # This tool can use results from the dataAnalysis tool
     async def execute_async(self, request):
-        # Implementare...
+        # Implementation...
         pass
 
-# Aceste unelte pot fi folosite independent sau ca parte a unui workflow
+# These tools can be used independently or as part of a workflow
 ```
 
-### Schema Design Best Practices
+### Cele Mai Bune Practici pentru Proiectarea Schemelor
 
-The schema is the contract between the model and your tool. Well-designed schemas lead to better tool usability.
+Schema este contractul dintre model și instrumentul dvs. Schemele bine proiectate duc la o utilizare mai bună a instrumentelor.
 
-#### 1. Clear Parameter Descriptions
+#### 1. Descrieri Clare ale Parametrilor
 
-Always include descriptive information for each parameter:
+Includeți întotdeauna informații descriptive pentru fiecare parametru:
 
 ```csharp
 public object GetSchema()
@@ -678,25 +685,25 @@ public object GetSchema()
         properties = new {
             query = new { 
                 type = "string", 
-                description = "Textul interogării de căutare. Folosește cuvinte cheie precise pentru rezultate mai bune." 
+                description = "Search query text. Use precise keywords for better results." 
             },
             filters = new {
                 type = "object",
-                description = "Filtre opționale pentru a restrânge rezultatele căutării",
+                description = "Optional filters to narrow down search results",
                 properties = new {
                     dateRange = new { 
                         type = "string", 
-                        description = "Intervalul de date în format YYYY-MM-DD:YYYY-MM-DD" 
+                        description = "Date range in format YYYY-MM-DD:YYYY-MM-DD" 
                     },
                     category = new { 
                         type = "string", 
-                        description = "Numele categoriei după care se filtrează" 
+                        description = "Category name to filter by" 
                     }
                 }
             },
             limit = new { 
                 type = "integer", 
-                description = "Numărul maxim de rezultate returnate (1-50)",
+                description = "Maximum number of results to return (1-50)",
                 default = 10
             }
         },
@@ -705,9 +712,9 @@ public object GetSchema()
 }
 ```
 
-#### 2. Validation Constraints
+#### 2. Constrângeri de Validare
 
-Include validation constraints to prevent invalid inputs:
+Includeți constrângeri de validare pentru a preveni intrările invalide:
 
 ```java
 Map<String, Object> getSchema() {
@@ -716,25 +723,25 @@ Map<String, Object> getSchema() {
     
     Map<String, Object> properties = new HashMap<>();
     
-    // Proprietatea email cu validare de format
+    // Email property with format validation
     Map<String, Object> email = new HashMap<>();
     email.put("type", "string");
     email.put("format", "email");
-    email.put("description", "Adresa de email a utilizatorului");
+    email.put("description", "User email address");
     
-    // Proprietatea vârstă cu constrângeri numerice
+    // Age property with numeric constraints
     Map<String, Object> age = new HashMap<>();
     age.put("type", "integer");
     age.put("minimum", 13);
     age.put("maximum", 120);
-    age.put("description", "Vârsta utilizatorului în ani");
+    age.put("description", "User age in years");
     
-    // Proprietate enumerată
+    // Enumerated property
     Map<String, Object> subscription = new HashMap<>();
     subscription.put("type", "string");
     subscription.put("enum", Arrays.asList("free", "basic", "premium"));
     subscription.put("default", "free");
-    subscription.put("description", "Nivelul abonamentului");
+    subscription.put("description", "Subscription tier");
     
     properties.put("email", email);
     properties.put("age", age);
@@ -747,17 +754,17 @@ Map<String, Object> getSchema() {
 }
 ```
 
-#### 3. Consistent Return Structures
+#### 3. Structuri de Răspuns Consistente
 
-Maintain consistency in your response structures to make it easier for models to interpret results:
+Mențineți consistența în structurile de răspuns pentru a facilita interpretarea rezultatelor de către modele:
 
 ```python
 async def execute_async(self, request):
     try:
-        # Procesează cererea
+        # Process request
         results = await self._search_database(request.parameters["query"])
         
-        # Returnează întotdeauna o structură consistentă
+        # Always return a consistent structure
         return ToolResponse(
             result={
                 "matches": [self._format_item(item) for item in results],
@@ -778,7 +785,7 @@ async def execute_async(self, request):
         )
     
 def _format_item(self, item):
-    """Asigură o structură consistentă pentru fiecare element"""
+    """Ensures each item has a consistent structure"""
     return {
         "id": item.id,
         "title": item.title,
@@ -788,13 +795,13 @@ def _format_item(self, item):
     }
 ```
 
-### Error Handling
+### Gestionarea Erorilor
 
-Robust error handling is crucial for MCP tools to maintain reliability.
+Gestionarea robustă a erorilor este crucială pentru ca instrumentele MCP să rămână fiabile.
 
-#### 1. Graceful Error Handling
+#### 1. Gestionarea Grațioasă a Erorilor
 
-Handle errors at appropriate levels and provide informative messages:
+Gestionați erorile la niveluri adecvate și oferiți mesaje informative:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
@@ -812,39 +819,39 @@ public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
         }
         catch (FileNotFoundException)
         {
-            throw new ToolExecutionException($"Fișierul nu a fost găsit: {fileId}");
+            throw new ToolExecutionException($"File not found: {fileId}");
         }
         catch (UnauthorizedAccessException)
         {
-            throw new ToolExecutionException("Nu ai permisiunea de a accesa acest fișier");
+            throw new ToolExecutionException("You don't have permission to access this file");
         }
         catch (Exception ex) when (ex is IOException || ex is TimeoutException)
         {
-            _logger.LogError(ex, "Eroare la accesarea fișierului {FileId}", fileId);
-            throw new ToolExecutionException("Eroare la accesarea fișierului: Serviciul este temporar indisponibil");
+            _logger.LogError(ex, "Error accessing file {FileId}", fileId);
+            throw new ToolExecutionException("Error accessing file: The service is temporarily unavailable");
         }
     }
     catch (JsonException)
     {
-        throw new ToolExecutionException("Format invalid pentru ID-ul fișierului");
+        throw new ToolExecutionException("Invalid file ID format");
     }
     catch (Exception ex)
     {
-        _logger.LogError(ex, "Eroare neașteptată în FileAccessTool");
-        throw new ToolExecutionException("A apărut o eroare neașteptată");
+        _logger.LogError(ex, "Unexpected error in FileAccessTool");
+        throw new ToolExecutionException("An unexpected error occurred");
     }
 }
 ```
 
-#### 2. Structured Error Responses
+#### 2. Răspunsuri Structurate la Erori
 
-Return structured error information when possible:
+Returnați informații structurate despre erori, atunci când este posibil:
 
 ```java
 @Override
 public ToolResponse execute(ToolRequest request) {
     try {
-        // Implementare
+        // Implementation
     } catch (Exception ex) {
         Map<String, Object> errorResult = new HashMap<>();
         
@@ -862,45 +869,45 @@ public ToolResponse execute(ToolRequest request) {
                 .build();
         }
         
-        // Re-aruncă alte excepții ca ToolExecutionException
-        throw new ToolExecutionException("Executarea uneltei a eșuat: " + ex.getMessage(), ex);
+        // Re-throw other exceptions as ToolExecutionException
+        throw new ToolExecutionException("Tool execution failed: " + ex.getMessage(), ex);
     }
 }
 ```
 
-#### 3. Retry Logic
+#### 3. Logica de Retry
 
-Implement appropriate retry logic for transient failures:
+Implementați logica de retry adecvată pentru eșecurile tranzitorii:
 
 ```python
 async def execute_async(self, request):
     max_retries = 3
     retry_count = 0
-    base_delay = 1  # secunde
+    base_delay = 1  # seconds
     
     while retry_count < max_retries:
         try:
-            # Apelează API-ul extern
+            # Call external API
             return await self._call_api(request.parameters)
         except TransientError as e:
             retry_count += 1
             if retry_count >= max_retries:
-                raise ToolExecutionException(f"Operațiunea a eșuat după {max_retries} încercări: {str(e)}")
+                raise ToolExecutionException(f"Operation failed after {max_retries} attempts: {str(e)}")
                 
-            # Backoff exponențial
+            # Exponential backoff
             delay = base_delay * (2 ** (retry_count - 1))
-            logging.warning(f"Eroare tranzitorie, se reîncearcă în {delay}s: {str(e)}")
+            logging.warning(f"Transient error, retrying in {delay}s: {str(e)}")
             await asyncio.sleep(delay)
         except Exception as e:
-            # Eroare non-tranzitorie, nu se reîncearcă
-            raise ToolExecutionException(f"Operațiunea a eșuat: {str(e)}")
+            # Non-transient error, don't retry
+            raise ToolExecutionException(f"Operation failed: {str(e)}")
 ```
 
-### Performance Optimization
+### Optimizarea Performanței
 
-#### 1. Caching
+#### 1. Cache
 
-Implement caching for expensive operations:
+Implementați cache pentru operațiuni costisitoare:
 
 ```csharp
 public class CachedDataTool : IMcpTool
@@ -914,43 +921,41 @@ public class CachedDataTool : IMcpTool
         _cache = cache;
     }
     
-    public async Task
-
-ExecuteAsync(ToolRequest request)
-{
-    var query = request.Parameters.GetProperty("query").GetString();
-    
-    // Creează cheia cache-ului bazată pe parametri
-    var cacheKey = $"data_query_{ComputeHash(query)}";
-    
-    // Încearcă să obții rezultatul din cache mai întâi
-    if (_cache.TryGetValue(cacheKey, out var cachedResult))
+    public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
     {
-        return new ToolResponse { Result = cachedResult };
+        var query = request.Parameters.GetProperty("query").GetString();
+        
+        // Create cache key based on parameters
+        var cacheKey = $"data_query_{ComputeHash(query)}";
+        
+        // Try to get from cache first
+        if (_cache.TryGetValue(cacheKey, out var cachedResult))
+        {
+            return new ToolResponse { Result = cachedResult };
+        }
+        
+        // Cache miss - perform actual query
+        var result = await _database.QueryAsync(query);
+        
+        // Store in cache with expiration
+        var cacheOptions = new MemoryCacheEntryOptions()
+            .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
+            
+        _cache.Set(cacheKey, JsonSerializer.SerializeToElement(result), cacheOptions);
+        
+        return new ToolResponse { Result = JsonSerializer.SerializeToElement(result) };
     }
     
-    // Cache miss - execută interogarea efectivă
-    var result = await _database.QueryAsync(query);
-    
-    // Stochează în cache cu expirare
-    var cacheOptions = new MemoryCacheEntryOptions()
-        .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
-        
-    _cache.Set(cacheKey, JsonSerializer.SerializeToElement(result), cacheOptions);
-    
-    return new ToolResponse { Result = JsonSerializer.SerializeToElement(result) };
-}
-
-private string ComputeHash(string input)
-{
-    // Implementare pentru generarea unui hash stabil pentru cheia cache-ului
-}
+    private string ComputeHash(string input)
+    {
+        // Implementation to generate stable hash for cache key
+    }
 }
 ```
 
-#### 2. Asynchronous Processing
+#### 2. Procesare Asincronă
 
-Use asynchronous programming patterns for I/O-bound operations:
+Utilizați modele de programare asincronă pentru operațiuni legate de I/O:
 
 ```java
 public class AsyncDocumentProcessingTool implements Tool {
@@ -961,23 +966,23 @@ public class AsyncDocumentProcessingTool implements Tool {
     public ToolResponse execute(ToolRequest request) {
         String documentId = request.getParameters().get("documentId").asText();
         
-        // Pentru operațiuni de durată lungă, returnează imediat un ID de procesare
+        // For long-running operations, return a processing ID immediately
         String processId = UUID.randomUUID().toString();
         
-        // Pornește procesarea asincronă
+        // Start async processing
         CompletableFuture.runAsync(() -> {
             try {
-                // Execută operațiunea de durată lungă
+                // Perform long-running operation
                 documentService.processDocument(documentId);
                 
-                // Actualizează statusul (de obicei stocat într-o bază de date)
+                // Update status (would typically be stored in a database)
                 processStatusRepository.updateStatus(processId, "completed");
             } catch (Exception ex) {
                 processStatusRepository.updateStatus(processId, "failed", ex.getMessage());
             }
         }, executorService);
         
-        // Returnează răspuns imediat cu ID-ul procesului
+        // Return immediate response with process ID
         Map<String, Object> result = new HashMap<>();
         result.put("processId", processId);
         result.put("status", "processing");
@@ -986,7 +991,7 @@ public class AsyncDocumentProcessingTool implements Tool {
         return new ToolResponse.Builder().setResult(result).build();
     }
     
-    // Unealtă companion pentru verificarea statusului
+    // Companion status check tool
     public class ProcessStatusTool implements Tool {
         @Override
         public ToolResponse execute(ToolRequest request) {
@@ -999,35 +1004,35 @@ public class AsyncDocumentProcessingTool implements Tool {
 }
 ```
 
-#### 3. Resource Throttling
+#### 3. Limitarea Resurselor
 
-Implement resource throttling to prevent overload:
+Implementați limitarea resurselor pentru a preveni supraîncărcarea:
 
 ```python
 class ThrottledApiTool(Tool):
     def __init__(self):
         self.rate_limiter = TokenBucketRateLimiter(
-            tokens_per_second=5,  # Permite 5 cereri pe secundă
-            bucket_size=10        # Permite explozii de până la 10 cereri
+            tokens_per_second=5,  # Allow 5 requests per second
+            bucket_size=10        # Allow bursts up to 10 requests
         )
     
     async def execute_async(self, request):
-        # Verifică dacă putem continua sau trebuie să așteptăm
+        # Check if we can proceed or need to wait
         delay = self.rate_limiter.get_delay_time()
         
         if delay > 0:
-            if delay > 2.0:  # Dacă așteptarea este prea lungă
+            if delay > 2.0:  # If wait is too long
                 raise ToolExecutionException(
-                    f"Limita de rată a fost depășită. Te rugăm să încerci din nou în {delay:.1f} secunde."
+                    f"Rate limit exceeded. Please try again in {delay:.1f} seconds."
                 )
             else:
-                # Așteaptă timpul corespunzător
+                # Wait for the appropriate delay time
                 await asyncio.sleep(delay)
         
-        # Consumă un token și continuă cu cererea
+        # Consume a token and proceed with the request
         self.rate_limiter.consume()
         
-        # Apelează API-ul
+        # Call API
         result = await self._call_api(request.parameters)
         return ToolResponse(result=result)
 
@@ -1045,7 +1050,7 @@ class TokenBucketRateLimiter:
             if self.tokens >= 1:
                 return 0
             
-            # Calculează timpul până când va fi disponibil următorul token
+            # Calculate time until next token available
             return (1 - self.tokens) / self.tokens_per_second
     
     async def consume(self):
@@ -1057,86 +1062,86 @@ class TokenBucketRateLimiter:
         now = time.time()
         elapsed = now - self.last_refill
         
-        # Adaugă token-uri noi în funcție de timpul trecut
+        # Add new tokens based on elapsed time
         new_tokens = elapsed * self.tokens_per_second
         self.tokens = min(self.bucket_size, self.tokens + new_tokens)
         self.last_refill = now
 ```
 
-### Security Best Practices
+### Cele Mai Bune Practici de Securitate
 
-#### 1. Input Validation
+#### 1. Validarea Intrărilor
 
-Always validate input parameters thoroughly:
+Validați întotdeauna parametrii de intrare în mod riguros:
 
 ```csharp
 public async Task<ToolResponse> ExecuteAsync(ToolRequest request)
 {
-    // Verifică dacă parametrii există
+    // Validate parameters exist
     if (!request.Parameters.TryGetProperty("query", out var queryProp))
     {
-        throw new ToolExecutionException("Lipsește parametrul obligatoriu: query");
+        throw new ToolExecutionException("Missing required parameter: query");
     }
     
-    // Verifică tipul corect
+    // Validate correct type
     if (queryProp.ValueKind != JsonValueKind.String)
     {
-        throw new ToolExecutionException("Parametrul query trebuie să fie un șir de caractere");
+        throw new ToolExecutionException("Query parameter must be a string");
     }
     
     var query = queryProp.GetString();
     
-    // Verifică conținutul șirului
+    // Validate string content
     if (string.IsNullOrWhiteSpace(query))
     {
-        throw new ToolExecutionException("Parametrul query nu poate fi gol");
+        throw new ToolExecutionException("Query parameter cannot be empty");
     }
     
     if (query.Length > 500)
     {
-        throw new ToolExecutionException("Parametrul query depășește lungimea maximă de 500 de caractere");
+        throw new ToolExecutionException("Query parameter exceeds maximum length of 500 characters");
     }
     
-    // Verifică atacuri de tip SQL injection, dacă este cazul
+    // Check for SQL injection attacks if applicable
     if (ContainsSqlInjection(query))
     {
-        throw new ToolExecutionException("Interogare invalidă: conține SQL potențial nesigur");
+        throw new ToolExecutionException("Invalid query: contains potentially unsafe SQL");
     }
     
-    // Continuă cu execuția
+    // Proceed with execution
     // ...
 }
 ```
 
-#### 2. Authorization Checks
+#### 2. Verificări de Autorizare
 
-Implement proper authorization checks:
+Implementați verificări adecvate de autorizare:
 
 ```java
 @Override
 public ToolResponse execute(ToolRequest request) {
-    // Obține contextul utilizatorului din cerere
+    // Get user context from request
     UserContext user = request.getContext().getUserContext();
     
-    // Verifică dacă utilizatorul are permisiunile necesare
+    // Check if user has required permissions
     if (!authorizationService.hasPermission(user, "documents:read")) {
-        throw new ToolExecutionException("Utilizatorul nu are permisiunea de a accesa documentele");
+        throw new ToolExecutionException("User does not have permission to access documents");
     }
     
-    // Pentru resurse specifice, verifică accesul la acea resursă
+    // For specific resources, check access to that resource
     String documentId = request.getParameters().get("documentId").asText();
     if (!documentService.canUserAccess(user.getId(), documentId)) {
-        throw new ToolExecutionException("Acces refuzat la documentul solicitat");
+        throw new ToolExecutionException("Access denied to the requested document");
     }
     
-    // Continuă cu execuția uneltei
+    // Proceed with tool execution
     // ...
 }
 ```
 
-#### 3. Sensitive Data Handling
+#### 3. Gestionarea Datelor Sensibile
 
-Handle sensitive data carefully:
+Gestionați cu atenție datele sensibile:
 
 ```python
 class SecureDataTool(Tool):
@@ -1154,56 +1159,56 @@ class SecureDataTool(Tool):
         user_id = request.parameters["userId"]
         include_sensitive = request.parameters.get("includeSensitiveData", False)
         
-        # Obține datele utilizatorului
+        # Get user data
         user_data = await self.user_service.get_user_data(user_id)
         
-        # Filtrează câmpurile sensibile dacă nu sunt cerute explicit ȘI autorizat
+        # Filter sensitive fields unless explicitly requested AND authorized
         if not include_sensitive or not self._is_authorized_for_sensitive_data(request):
             user_data = self._redact_sensitive_fields(user_data)
         
         return ToolResponse(result=user_data)
     
     def _is_authorized_for_sensitive_data(self, request):
-        # Verifică nivelul de autorizare din contextul cererii
+        # Check authorization level in request context
         auth_level = request.context.get("authorizationLevel")
         return auth_level == "admin"
     
     def _redact_sensitive_fields(self, user_data):
-        # Creează o copie pentru a nu modifica originalul
+        # Create a copy to avoid modifying the original
         redacted = user_data.copy()
         
-        # Redactează câmpurile sensibile specifice
+        # Redact specific sensitive fields
         sensitive_fields = ["ssn", "creditCardNumber", "password"]
         for field in sensitive_fields:
             if field in redacted:
                 redacted[field] = "REDACTED"
         
-        # Redactează datele sensibile imbricate
+        # Redact nested sensitive data
         if "financialInfo" in redacted:
             redacted["financialInfo"] = {"available": True, "accessRestricted": True}
         
         return redacted
 ```
 
-## Testing Best Practices for MCP Tools
+## Cele Mai Bune Practici de Testare pentru Instrumentele MCP
 
-Comprehensive testing ensures that MCP tools function correctly, handle edge cases, and integrate properly with the rest of the system.
+Testarea cuprinzătoare asigură că instrumentele MCP funcționează corect, gestionează cazurile limită și se integrează corespunzător cu restul sistemului.
 
-### Unit Testing
+### Testarea Unităților
 
-#### 1. Test Each Tool in Isolation
+#### 1. Testați Fiecare Instrument în Izolare
 
-Create focused tests for each tool's functionality:
+Creați teste concentrate pentru funcționalitatea fiecărui instrument:
 
 ```csharp
 [Fact]
 public async Task WeatherTool_ValidLocation_ReturnsCorrectForecast()
 {
-    // Aranjează
+    // Arrange
     var mockWeatherService = new Mock<IWeatherService>();
     mockWeatherService
         .Setup(s => s.GetForecastAsync("Seattle", 3))
-        .ReturnsAsync(new WeatherForecast(/* date de test */));
+        .ReturnsAsync(new WeatherForecast(/* test data */));
     
     var tool = new WeatherForecastTool(mockWeatherService.Object);
     
@@ -1215,10 +1220,10 @@ public async Task WeatherTool_ValidLocation_ReturnsCorrectForecast()
         })
     );
     
-    // Acționează
+    // Act
     var response = await tool.ExecuteAsync(request);
     
-    // Verifică
+    // Assert
     Assert.NotNull(response);
     var result = JsonSerializer.Deserialize<WeatherForecast>(response.Result);
     Assert.Equal("Seattle", result.Location);
@@ -1228,11 +1233,11 @@ public async Task WeatherTool_ValidLocation_ReturnsCorrectForecast()
 [Fact]
 public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
 {
-    // Aranjează
+    // Arrange
     var mockWeatherService = new Mock<IWeatherService>();
     mockWeatherService
         .Setup(s => s.GetForecastAsync("InvalidLocation", It.IsAny<int>()))
-        .ThrowsAsync(new LocationNotFoundException("Locația nu a fost găsită"));
+        .ThrowsAsync(new LocationNotFoundException("Location not found"));
     
     var tool = new WeatherForecastTool(mockWeatherService.Object);
     
@@ -1244,36 +1249,36 @@ public async Task WeatherTool_InvalidLocation_ThrowsToolExecutionException()
         })
     );
     
-    // Acționează & Verifică
+    // Act & Assert
     var exception = await Assert.ThrowsAsync<ToolExecutionException>(
         () => tool.ExecuteAsync(request)
     );
     
-    Assert.Contains("Locația nu a fost găsită", exception.Message);
+    Assert.Contains("Location not found", exception.Message);
 }
 ```
 
-#### 2. Schema Validation Testing
+#### 2. Testarea Validării Schemelor
 
-Test that schemas are valid and properly enforce constraints:
+Testați că schemele sunt valide și aplică corect constrângerile:
 
 ```java
 @Test
 public void testSchemaValidation() {
-    // Creează o instanță a uneltei
+    // Create tool instance
     SearchTool searchTool = new SearchTool();
     
-    // Obține schema
+    // Get schema
     Object schema = searchTool.getSchema();
     
-    // Convertește schema în JSON pentru validare
+    // Convert schema to JSON for validation
     String schemaJson = objectMapper.writeValueAsString(schema);
     
-    // Validează că schema este un JSONSchema valid
+    // Validate schema is valid JSONSchema
     JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
     JsonSchema jsonSchema = factory.getJsonSchema(schemaJson);
     
-    // Testează parametri valizi
+    // Test valid parameters
     JsonNode validParams = objectMapper.createObjectNode()
         .put("query", "test query")
         .put("limit", 5);
@@ -1281,14 +1286,14 @@ public void testSchemaValidation() {
     ProcessingReport validReport = jsonSchema.validate(validParams);
     assertTrue(validReport.isSuccess());
     
-    // Testează lipsa parametrului obligatoriu
+    // Test missing required parameter
     JsonNode missingRequired = objectMapper.createObjectNode()
         .put("limit", 5);
         
     ProcessingReport missingReport = jsonSchema.validate(missingRequired);
     assertFalse(missingReport.isSuccess());
     
-    // Testează tipul invalid al parametrului
+    // Test invalid parameter type
     JsonNode invalidType = objectMapper.createObjectNode()
         .put("query", "test")
         .put("limit", "not-a-number");
@@ -1298,21 +1303,21 @@ public void testSchemaValidation() {
 }
 ```
 
-#### 3. Error Handling Tests
+#### 3. Teste pentru Gestionarea Erorilor
 
-Create specific tests for error conditions:
+Creați teste specifice pentru condițiile de eroare:
 
 ```python
 @pytest.mark.asyncio
 async def test_api_tool_handles_timeout():
-    # Aranjează
-    tool = ApiTool(timeout=0.1)  # Timeout foarte scurt
+    # Arrange
+    tool = ApiTool(timeout=0.1)  # Very short timeout
     
-    # Simulează o cerere care va expira
+    # Mock a request that will time out
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
-            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # Mai lung decât timeout-ul
+            callback=lambda *args, **kwargs: asyncio.sleep(0.5)  # Longer than timeout
         )
         
         request = ToolRequest(
@@ -1320,19 +1325,19 @@ async def test_api_tool_handles_timeout():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # Acționează & Verifică
+        # Act & Assert
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # Verifică mesajul excepției
+        # Verify exception message
         assert "timed out" in str(exc_info.value).lower()
 
 @pytest.mark.asyncio
 async def test_api_tool_handles_rate_limiting():
-    # Aranjează
+    # Arrange
     tool = ApiTool()
     
-    # Simulează un răspuns cu limitare de rată
+    # Mock a rate-limited response
     with aioresponses() as mocked:
         mocked.get(
             "https://api.example.com/data",
@@ -1346,27 +1351,27 @@ async def test_api_tool_handles_rate_limiting():
             parameters={"url": "https://api.example.com/data"}
         )
         
-        # Acționează & Verifică
+        # Act & Assert
         with pytest.raises(ToolExecutionException) as exc_info:
             await tool.execute_async(request)
         
-        # Verifică că excepția conține informații despre limitarea ratei
+        # Verify exception contains rate limit information
         error_msg = str(exc_info.value).lower()
         assert "rate limit" in error_msg
         assert "try again" in error_msg
 ```
 
-### Integration Testing
+### Testarea Integrării
 
-#### 1. Tool Chain Testing
+#### 1. Testarea Lanțului de Instrumente
 
-Test tools working together in expected combinations:
+Testați instrumentele care funcționează împreună în combinații așteptate:
 
 ```csharp
 [Fact]
 public async Task DataProcessingWorkflow_CompletesSuccessfully()
 {
-    // Aranjează
+    // Arrange
     var dataFetchTool = new DataFetchTool(mockDataService.Object);
     var analysisTools = new DataAnalysisTool(mockAnalysisService.Object);
     var visualizationTool = new DataVisualizationTool(mockVisualizationService.Object);
@@ -1378,31 +1383,30 @@ public async Task DataProcessingWorkflow_CompletesSuccessfully()
     
     var workflowExecutor = new WorkflowExecutor(toolRegistry);
     
-    // Acționează
-var result = await workflowExecutor.ExecuteWorkflowAsync(new[] {
-    new ToolCall("dataFetch", new { source = "sales2023" }),
-    new ToolCall("dataAnalysis", ctx =>
-        new { 
+    // Act
+    var result = await workflowExecutor.ExecuteWorkflowAsync(new[] {
+        new ToolCall("dataFetch", new { source = "sales2023" }),
+        new ToolCall("dataAnalysis", ctx => new { 
             data = ctx.GetResult("dataFetch"),
             analysis = "trend" 
         }),
-    new ToolCall("dataVisualize", ctx => new {
-        analysisResult = ctx.GetResult("dataAnalysis"),
-        type = "line-chart"
-    })
-});
-
-// Assert
-Assert.NotNull(result);
-Assert.True(result.Success);
-Assert.NotNull(result.GetResult("dataVisualize"));
-Assert.Contains("chartUrl", result.GetResult("dataVisualize").ToString());
+        new ToolCall("dataVisualize", ctx => new {
+            analysisResult = ctx.GetResult("dataAnalysis"),
+            type = "line-chart"
+        })
+    });
+    
+    // Assert
+    Assert.NotNull(result);
+    Assert.True(result.Success);
+    Assert.NotNull(result.GetResult("dataVisualize"));
+    Assert.Contains("chartUrl", result.GetResult("dataVisualize").ToString());
 }
 ```
 
-#### 2. MCP Server Testing
+#### 2. Testarea Serverului MCP
 
-Test the MCP server with full tool registration and execution:
+Testați serverul MCP cu înregistrarea completă a instrumentelor și execuția acestora:
 
 ```java
 @SpringBootTest
@@ -1417,7 +1421,7 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolDiscovery() throws Exception {
-        // Testează endpoint-ul de descoperire
+        // Test the discovery endpoint
         mockMvc.perform(get("/mcp/tools"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.tools").isArray())
@@ -1428,7 +1432,7 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolExecution() throws Exception {
-        // Creează cererea pentru tool
+        // Create tool request
         Map<String, Object> request = new HashMap<>();
         request.put("toolName", "calculator");
         
@@ -1438,7 +1442,7 @@ public class McpServerIntegrationTest {
         parameters.put("b", 7);
         request.put("parameters", parameters);
         
-        // Trimite cererea și verifică răspunsul
+        // Send request and verify response
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1448,17 +1452,17 @@ public class McpServerIntegrationTest {
     
     @Test
     public void testToolValidation() throws Exception {
-        // Creează o cerere invalidă pentru tool
+        // Create invalid tool request
         Map<String, Object> request = new HashMap<>();
         request.put("toolName", "calculator");
         
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("operation", "divide");
         parameters.put("a", 10);
-        // Lipsă parametrul "b"
+        // Missing parameter "b"
         request.put("parameters", parameters);
         
-        // Trimite cererea și verifică răspunsul de eroare
+        // Send request and verify error response
         mockMvc.perform(post("/mcp/execute")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
@@ -1468,32 +1472,32 @@ public class McpServerIntegrationTest {
 }
 ```
 
-#### 3. End-to-End Testing
+#### 3. Testarea End-to-End
 
-Test complete workflows from model prompt to tool execution:
+Testați fluxurile complete de la promptul modelului la execuția instrumentului:
 
 ```python
 @pytest.mark.asyncio
 async def test_model_interaction_with_tool():
-    # Aranjează - Configurează clientul MCP și modelul mock
+    # Arrange - Set up MCP client and mock model
     mcp_client = McpClient(server_url="http://localhost:5000")
     
-    # Răspunsuri mock pentru model
+    # Mock model responses
     mock_model = MockLanguageModel([
         MockResponse(
-            "Care este vremea în Seattle?",
+            "What's the weather in Seattle?",
             tool_calls=[{
                 "tool_name": "weatherForecast",
                 "parameters": {"location": "Seattle", "days": 3}
             }]
         ),
         MockResponse(
-            "Iată prognoza meteo pentru Seattle:\n- Azi: 65°F, Parțial înnorat\n- Mâine: 68°F, Senin\n- Peste două zile: 62°F, Ploaie",
+            "Here's the weather forecast for Seattle:\n- Today: 65°F, Partly Cloudy\n- Tomorrow: 68°F, Sunny\n- Day after: 62°F, Rain",
             tool_calls=[]
         )
     ])
     
-    # Răspuns mock pentru tool-ul meteo
+    # Mock weather tool response
     with aioresponses() as mocked:
         mocked.post(
             "http://localhost:5000/mcp/execute",
@@ -1501,41 +1505,41 @@ async def test_model_interaction_with_tool():
                 "result": {
                     "location": "Seattle",
                     "forecast": [
-                        {"date": "2023-06-01", "temperature": 65, "conditions": "Parțial înnorat"},
-                        {"date": "2023-06-02", "temperature": 68, "conditions": "Senin"},
-                        {"date": "2023-06-03", "temperature": 62, "conditions": "Ploaie"}
+                        {"date": "2023-06-01", "temperature": 65, "conditions": "Partly Cloudy"},
+                        {"date": "2023-06-02", "temperature": 68, "conditions": "Sunny"},
+                        {"date": "2023-06-03", "temperature": 62, "conditions": "Rain"}
                     ]
                 }
             }
         )
         
-        # Acționează
+        # Act
         response = await mcp_client.send_prompt(
-            "Care este vremea în Seattle?",
+            "What's the weather in Seattle?",
             model=mock_model,
             allowed_tools=["weatherForecast"]
         )
         
-        # Verifică
+        # Assert
         assert "Seattle" in response.generated_text
         assert "65" in response.generated_text
-        assert "Senin" in response.generated_text
-        assert "Ploaie" in response.generated_text
+        assert "Sunny" in response.generated_text
+        assert "Rain" in response.generated_text
         assert len(response.tool_calls) == 1
         assert response.tool_calls[0].tool_name == "weatherForecast"
 ```
 
-### Performance Testing
+### Testarea Performanței
 
-#### 1. Load Testing
+#### 1. Testarea Sarcinii
 
-Test how many concurrent requests your MCP server can handle:
+Testați câte cereri simultane poate gestiona serverul MCP:
 
 ```csharp
 [Fact]
 public async Task McpServer_HandlesHighConcurrency()
 {
-    // Aranjează
+    // Arrange
     var server = new McpServer(
         name: "TestServer",
         version: "1.0",
@@ -1547,7 +1551,7 @@ public async Task McpServer_HandlesHighConcurrency()
     
     var client = new McpClient("http://localhost:5000");
     
-    // Acționează
+    // Act
     var tasks = new List<Task<McpResponse>>();
     for (int i = 0; i < 1000; i++)
     {
@@ -1556,15 +1560,15 @@ public async Task McpServer_HandlesHighConcurrency()
     
     var results = await Task.WhenAll(tasks);
     
-    // Verifică
+    // Assert
     Assert.Equal(1000, results.Length);
     Assert.All(results, r => Assert.NotNull(r));
 }
 ```
 
-#### 2. Stress Testing
+#### 2. Testarea de Stres
 
-Test the system under extreme load:
+Testați sistemul sub sarcină extremă:
 
 ```java
 @Test
@@ -1573,14 +1577,14 @@ public void testServerUnderStress() {
     int rampUpTimeSeconds = 60;
     int testDurationSeconds = 300;
     
-    // Configurează JMeter pentru testare de stres
+    // Set up JMeter for stress testing
     StandardJMeterEngine jmeter = new StandardJMeterEngine();
     
-    // Configurează planul de test JMeter
+    // Configure JMeter test plan
     HashTree testPlanTree = new HashTree();
     
-    // Creează planul de test, grupul de thread-uri, sampler-ele etc.
-    TestPlan testPlan = new TestPlan("Test de stres MCP Server");
+    // Create test plan, thread group, samplers, etc.
+    TestPlan testPlan = new TestPlan("MCP Server Stress Test");
     testPlanTree.add(testPlan);
     
     ThreadGroup threadGroup = new ThreadGroup();
@@ -1591,7 +1595,7 @@ public void testServerUnderStress() {
     
     testPlanTree.add(threadGroup);
     
-    // Adaugă HTTP sampler pentru execuția tool-ului
+    // Add HTTP sampler for tool execution
     HTTPSampler toolExecutionSampler = new HTTPSampler();
     toolExecutionSampler.setDomain("localhost");
     toolExecutionSampler.setPort(5000);
@@ -1602,58 +1606,58 @@ public void testServerUnderStress() {
     
     threadGroup.add(toolExecutionSampler);
     
-    // Adaugă ascultători
+    // Add listeners
     SummaryReport summaryReport = new SummaryReport();
     threadGroup.add(summaryReport);
     
-    // Rulează testul
+    // Run test
     jmeter.configure(testPlanTree);
     jmeter.run();
     
-    // Validează rezultatele
+    // Validate results
     assertEquals(0, summaryReport.getErrorCount());
-    assertTrue(summaryReport.getAverage() < 200); // Timp mediu de răspuns < 200ms
-    assertTrue(summaryReport.getPercentile(90.0) < 500); // Percentila 90 < 500ms
+    assertTrue(summaryReport.getAverage() < 200); // Average response time < 200ms
+    assertTrue(summaryReport.getPercentile(90.0) < 500); // 90th percentile < 500ms
 }
 ```
 
-#### 3. Monitoring and Profiling
+#### 3. Monitorizare și Profilare
 
-Set up monitoring for long-term performance analysis:
+Configurați monitorizarea pentru analiza performanței pe termen lung:
 
 ```python
-# Configurează monitorizarea pentru un server MCP
+# Configure monitoring for an MCP server
 def configure_monitoring(server):
-    # Configurează metricile Prometheus
+    # Set up Prometheus metrics
     prometheus_metrics = {
-        "request_count": Counter("mcp_requests_total", "Numărul total de cereri MCP"),
+        "request_count": Counter("mcp_requests_total", "Total MCP requests"),
         "request_latency": Histogram(
             "mcp_request_duration_seconds", 
-            "Durata cererii în secunde",
+            "Request duration in seconds",
             buckets=[0.01, 0.05, 0.1, 0.5, 1.0, 2.5, 5.0, 10.0]
         ),
         "tool_execution_count": Counter(
             "mcp_tool_executions_total", 
-            "Numărul de execuții ale tool-urilor",
+            "Tool execution count",
             labelnames=["tool_name"]
         ),
         "tool_execution_latency": Histogram(
             "mcp_tool_duration_seconds", 
-            "Durata execuției tool-ului în secunde",
+            "Tool execution duration in seconds",
             labelnames=["tool_name"],
             buckets=[0.01, 0.05, 0.1, 0.5, 1.0, 2.5, 5.0, 10.0]
         ),
         "tool_errors": Counter(
             "mcp_tool_errors_total",
-            "Erori la execuția tool-ului",
+            "Tool execution errors",
             labelnames=["tool_name", "error_type"]
         )
     }
     
-    # Adaugă middleware pentru măsurarea timpului și înregistrarea metricilor
+    # Add middleware for timing and recording metrics
     server.add_middleware(PrometheusMiddleware(prometheus_metrics))
     
-    # Expune endpoint-ul pentru metrici
+    # Expose metrics endpoint
     @server.router.get("/metrics")
     async def metrics():
         return generate_latest()
@@ -1661,29 +1665,29 @@ def configure_monitoring(server):
     return server
 ```
 
-## MCP Workflow Design Patterns
+## Modele de Design pentru Fluxurile MCP
 
-Well-designed MCP workflows improve efficiency, reliability, and maintainability. Here are key patterns to follow:
+Fluxurile MCP bine proiectate îmbunătățesc eficiența, fiabilitatea și mentenabilitatea. Iată câteva modele cheie de urmat:
 
-### 1. Chain of Tools Pattern
+### 1. Modelul Lanțului de Instrumente
 
-Connect multiple tools in a sequence where each tool's output becomes the input for the next:
+Conectați mai multe instrumente într-o secvență în care ieșirea fiecărui instrument devine intrarea pentru următorul:
 
 ```python
-# Implementarea lanțului de tool-uri în Python
+# Python Chain of Tools implementation
 class ChainWorkflow:
     def __init__(self, tools_chain):
-        self.tools_chain = tools_chain  # Listă de nume de tool-uri care se execută în secvență
+        self.tools_chain = tools_chain  # List of tool names to execute in sequence
     
     async def execute(self, mcp_client, initial_input):
         current_result = initial_input
         all_results = {"input": initial_input}
         
         for tool_name in self.tools_chain:
-            # Execută fiecare tool din lanț, trecând rezultatul anterior
+            # Execute each tool in the chain, passing previous result
             response = await mcp_client.execute_tool(tool_name, current_result)
             
-            # Stochează rezultatul și îl folosește ca input pentru următorul tool
+            # Store result and use as input for next tool
             all_results[tool_name] = response.result
             current_result = response.result
         
@@ -1692,7 +1696,7 @@ class ChainWorkflow:
             "all_results": all_results
         }
 
-# Exemplu de utilizare
+# Example usage
 data_processing_chain = ChainWorkflow([
     "dataFetch",
     "dataCleaner",
@@ -1706,9 +1710,9 @@ result = await data_processing_chain.execute(
 )
 ```
 
-### 2. Dispatcher Pattern
+### 2. Modelul Dispatcher
 
-Use a central tool that dispatches to specialized tools based on input:
+Utilizați un instrument central care distribuie către instrumente specializate pe baza intrării:
 
 ```csharp
 public class ContentDispatcherTool : IMcpTool
@@ -1721,7 +1725,7 @@ public class ContentDispatcherTool : IMcpTool
     }
     
     public string Name => "contentProcessor";
-    public string Description => "Procesează conținut de diferite tipuri";
+    public string Description => "Processes content of various types";
     
     public object GetSchema()
     {
@@ -1748,10 +1752,10 @@ public class ContentDispatcherTool : IMcpTool
         var contentType = request.Parameters.GetProperty("contentType").GetString();
         var operation = request.Parameters.GetProperty("operation").GetString();
         
-        // Determină care tool specializat să folosească
+        // Determine which specialized tool to use
         string targetTool = DetermineTargetTool(contentType, operation);
         
-        // Redirecționează către tool-ul specializat
+        // Forward to the specialized tool
         var specializedResponse = await _mcpClient.ExecuteToolAsync(
             targetTool,
             new { content, options = GetOptionsForTool(targetTool, operation) }
@@ -1768,73 +1772,29 @@ public class ContentDispatcherTool : IMcpTool
             ("text", "analyze") => "textAnalyzer",
             ("html", _) => "htmlProcessor",
             ("markdown", _) => "markdownProcessor",
-            ("csv", _) =>
-# Procesator CSV
-
-Acest ghid explică cum să folosești `csvProcessor` pentru a manipula fișiere CSV în mod eficient.
-
-## Funcționalități principale
-
-- Citirea fișierelor CSV cu diferite delimitatoare
-- Filtrarea și sortarea datelor
-- Exportul datelor procesate în formate multiple
-
-## Exemplu de utilizare
-
-```python
-# Importă modulul csvProcessor
-from csvProcessor import CSVReader
-
-# Creează un obiect CSVReader
-reader = CSVReader('date.csv', delimiter=',')
-
-# Citește toate rândurile
-rows = reader.read_all()
-
-# Filtrează rândurile unde coloana 'vârstă' este mai mare de 30
-filtered_rows = [row for row in rows if int(row['vârstă']) > 30]
-
-# Sortează rândurile după coloana 'nume'
-sorted_rows = sorted(filtered_rows, key=lambda x: x['nume'])
-
-# Exportă rezultatul într-un nou fișier CSV
-reader.write('date_filtrate.csv', sorted_rows)
-```
-
-## Sfaturi utile
-
-[!TIP] Folosește parametrul `delimiter` pentru a specifica caracterul care separă valorile în fișierul CSV.
-
-[!IMPORTANT] Asigură-te că toate fișierele CSV au același format pentru a evita erorile la citire.
-
-## Probleme comune
-
-- [!WARNING] Dacă întâmpini erori legate de codificare, verifică dacă fișierul CSV este salvat în UTF-8.
-- [!CAUTION] Nu modifica manual fișierele CSV în timp ce sunt procesate pentru a preveni coruperea datelor.
-
-Pentru mai multe detalii, consultă documentația oficială sau contactează echipa de suport.
+            ("csv", _) => "csvProcessor",
             ("code", _) => "codeAnalyzer",
-            _ => throw new ToolExecutionException($"Nu există un instrument disponibil pentru {contentType}/{operation}")
+            _ => throw new ToolExecutionException($"No tool available for {contentType}/{operation}")
         };
     }
     
     private object GetOptionsForTool(string toolName, string operation)
     {
-        // Returnează opțiunile potrivite pentru fiecare instrument specializat
+        // Return appropriate options for each specialized tool
         return toolName switch
         {
             "textSummarizer" => new { length = "medium" },
             "htmlProcessor" => new { cleanUp = true, operation },
-            // Opțiuni pentru alte instrumente...
+            // Options for other tools...
             _ => new { }
         };
     }
 }
 ```
 
-### 3. Parallel Processing Pattern
+### 3. Modelul Procesării Paralele
 
-Execute multiple tools simultaneously for efficiency:
+Executați mai multe instrumente simultan pentru eficiență:
 
 ```java
 public class ParallelDataProcessingWorkflow {
@@ -1845,11 +1805,11 @@ public class ParallelDataProcessingWorkflow {
     }
     
     public WorkflowResult execute(String datasetId) {
-        // Pasul 1: Preia metadatele setului de date (sincron)
+        // Step 1: Fetch dataset metadata (synchronous)
         ToolResponse metadataResponse = mcpClient.executeTool("datasetMetadata", 
             Map.of("datasetId", datasetId));
         
-        // Pasul 2: Lansează mai multe analize în paralel
+        // Step 2: Launch multiple analyses in parallel
         CompletableFuture<ToolResponse> statisticalAnalysis = CompletableFuture.supplyAsync(() ->
             mcpClient.executeTool("statisticalAnalysis", Map.of(
                 "datasetId", datasetId,
@@ -1871,25 +1831,25 @@ public class ParallelDataProcessingWorkflow {
             ))
         );
         
-        // Așteaptă finalizarea tuturor sarcinilor paralele
+        // Wait for all parallel tasks to complete
         CompletableFuture<Void> allAnalyses = CompletableFuture.allOf(
             statisticalAnalysis, correlationAnalysis, outlierDetection
         );
         
-        allAnalyses.join();  // Așteaptă finalizarea
+        allAnalyses.join();  // Wait for completion
         
-        // Pasul 3: Combină rezultatele
+        // Step 3: Combine results
         Map<String, Object> combinedResults = new HashMap<>();
         combinedResults.put("metadata", metadataResponse.getResult());
         combinedResults.put("statistics", statisticalAnalysis.join().getResult());
         combinedResults.put("correlations", correlationAnalysis.join().getResult());
         combinedResults.put("outliers", outlierDetection.join().getResult());
         
-        // Pasul 4: Generează raportul sumar
+        // Step 4: Generate summary report
         ToolResponse summaryResponse = mcpClient.executeTool("reportGenerator", 
             Map.of("analysisResults", combinedResults));
         
-        // Returnează rezultatul complet al fluxului de lucru
+        // Return complete workflow result
         WorkflowResult result = new WorkflowResult();
         result.setDatasetId(datasetId);
         result.setAnalysisResults(combinedResults);
@@ -1900,9 +1860,9 @@ public class ParallelDataProcessingWorkflow {
 }
 ```
 
-### 4. Error Recovery Pattern
+### 4. Modelul de Recuperare a Erorilor
 
-Implement graceful fallbacks for tool failures:
+Implementați soluții de rezervă grațioase pentru eșecurile instrumentelor:
 
 ```python
 class ResilientWorkflow:
@@ -1911,7 +1871,7 @@ class ResilientWorkflow:
     
     async def execute_with_fallback(self, primary_tool, fallback_tool, parameters):
         try:
-            # Încearcă mai întâi instrumentul principal
+            # Try primary tool first
             response = await self.client.execute_tool(primary_tool, parameters)
             return {
                 "result": response.result,
@@ -1919,12 +1879,12 @@ class ResilientWorkflow:
                 "tool": primary_tool
             }
         except ToolExecutionException as e:
-            # Înregistrează eșecul
-            logging.warning(f"Instrumentul principal '{primary_tool}' a eșuat: {str(e)}")
+            # Log the failure
+            logging.warning(f"Primary tool '{primary_tool}' failed: {str(e)}")
             
-            # Revine la instrumentul secundar
+            # Fall back to secondary tool
             try:
-                # Poate fi necesară transformarea parametrilor pentru instrumentul de rezervă
+                # Might need to transform parameters for fallback tool
                 fallback_params = self._adapt_parameters(parameters, primary_tool, fallback_tool)
                 
                 response = await self.client.execute_tool(fallback_tool, fallback_params)
@@ -1935,30 +1895,30 @@ class ResilientWorkflow:
                     "primaryError": str(e)
                 }
             except ToolExecutionException as fallback_error:
-                # Ambele instrumente au eșuat
-                logging.error(f"Atât instrumentul principal, cât și cel de rezervă au eșuat. Eroare fallback: {str(fallback_error)}")
+                # Both tools failed
+                logging.error(f"Both primary and fallback tools failed. Fallback error: {str(fallback_error)}")
                 raise WorkflowExecutionException(
-                    f"Fluxul de lucru a eșuat: eroare principală: {str(e)}; eroare fallback: {str(fallback_error)}"
+                    f"Workflow failed: primary error: {str(e)}; fallback error: {str(fallback_error)}"
                 )
     
     def _adapt_parameters(self, params, from_tool, to_tool):
-        """Adaptează parametrii între diferite instrumente dacă este necesar"""
-        # Această implementare depinde de instrumentele specifice
-        # Pentru acest exemplu, vom returna pur și simplu parametrii originali
+        """Adapt parameters between different tools if needed"""
+        # This implementation would depend on the specific tools
+        # For this example, we'll just return the original parameters
         return params
 
-# Exemplu de utilizare
+# Example usage
 async def get_weather(workflow, location):
     return await workflow.execute_with_fallback(
-        "premiumWeatherService",  # API meteo principal (plătit)
-        "basicWeatherService",    # API meteo de rezervă (gratuit)
+        "premiumWeatherService",  # Primary (paid) weather API
+        "basicWeatherService",    # Fallback (free) weather API
         {"location": location}
     )
 ```
 
-### 5. Workflow Composition Pattern
+### 5. Modelul de Compoziție a Fluxurilor
 
-Build complex workflows by composing simpler ones:
+Construiți fluxuri complexe prin compunerea unora mai simple:
 
 ```csharp
 public class CompositeWorkflow : IWorkflow
@@ -1978,10 +1938,10 @@ public class CompositeWorkflow : IWorkflow
         {
             var workflowResult = await workflow.ExecuteAsync(context);
             
-            // Stochează rezultatul fiecărui flux de lucru
+            // Store each workflow's result
             results[workflow.Name] = workflowResult;
             
-            // Actualizează contextul cu rezultatul pentru următorul flux de lucru
+            // Update context with the result for the next workflow
             context = context.WithResult(workflow.Name, workflowResult);
         }
         
@@ -1989,10 +1949,10 @@ public class CompositeWorkflow : IWorkflow
     }
     
     public string Name => "CompositeWorkflow";
-    public string Description => "Execută mai multe fluxuri de lucru în secvență";
+    public string Description => "Executes multiple workflows in sequence";
 }
 
-// Exemplu de utilizare
+// Example usage
 var documentWorkflow = new CompositeWorkflow(new IWorkflow[] {
     new DocumentFetchWorkflow(),
     new DocumentProcessingWorkflow(),
@@ -2005,44 +1965,44 @@ var result = await documentWorkflow.ExecuteAsync(new WorkflowContext {
 });
 ```
 
-# Testing MCP Servers: Best Practices and Top Tips
+# Testarea Serverelor MCP: Cele Mai Bune Practici și Sfaturi de Top
 
-## Overview
+## Prezentare Generală
 
-Testing is a critical aspect of developing reliable, high-quality MCP servers. This guide provides comprehensive best practices and tips for testing your MCP servers throughout the development lifecycle, from unit tests to integration tests and end-to-end validation.
+Testarea este un aspect critic al dezvoltării serverelor MCP fiabile și de înaltă calitate. Acest ghid oferă cele mai bune practici și sfaturi pentru testarea serverelor MCP pe parcursul ciclului de dezvoltare, de la teste unitare la teste de integrare și validare end-to-end.
 
-## Why Testing Matters for MCP Servers
+## De ce Este Importantă Testarea pentru Serverele MCP
 
-MCP servers serve as crucial middleware between AI models and client applications. Thorough testing ensures:
+Serverele MCP servesc drept middleware esențial între modelele AI și aplicațiile client. Testarea riguroasă asigură:
 
-- Reliability in production environments
-- Accurate handling of requests and responses
-- Proper implementation of MCP specifications
-- Resilience against failures and edge cases
-- Consistent performance under various loads
+- Fiabilitate în medii de producție
+- Gestionarea corectă a cererilor și răspunsurilor
+- Implementarea corectă a specificațiilor MCP
+- Rezistență la eșecuri și cazuri limită
+- Performanță consistentă sub diverse sarcini
 
-## Unit Testing for MCP Servers
+## Testarea Unităților pentru Serverele MCP
 
-### Unit Testing (Foundation)
+### Testarea Unităților (Fundație)
 
-Unit tests verify individual components of your MCP server in isolation.
+Testele unitare verifică componentele individuale ale serverului MCP în izolare.
 
-#### What to Test
+#### Ce să Testați
 
-1. **Resource Handlers**: Test each resource handler's logic independently
-2. **Tool Implementations**: Verify tool behavior with various inputs
-3. **Prompt Templates**: Ensure prompt templates render correctly
-4. **Schema Validation**: Test parameter validation logic
-5. **Error Handling**: Verify error responses for invalid inputs
+1. **Handler-ele Resurselor**: Testați logica fiecărui handler de resurse independent
+2. **Implementările Instrumentelor**: Verificați comportamentul instrumentelor cu diverse intrări
+3. **Șabloanele de Prompturi**: Asigurați-vă că șabloanele de prompturi se redau corect
+4. **Validarea Schemelor**: Testați logica de validare a parametrilor
+5. **Gestionarea Erorilor**: Verificați răspunsurile de eroare pentru intrări invalide
 
-#### Best Practices for Unit Testing
+#### Cele Mai Bune Practici pentru Testarea Unităților
 
 ```csharp
-// Exemplu de test unitar pentru un instrument calculator în C#
+// Example unit test for a calculator tool in C#
 [Fact]
 public async Task CalculatorTool_Add_ReturnsCorrectSum()
 {
-    // Aranjare
+    // Arrange
     var calculator = new CalculatorTool();
     var parameters = new Dictionary<string, object>
     {
@@ -2051,19 +2011,19 @@ public async Task CalculatorTool_Add_ReturnsCorrectSum()
         ["b"] = 7
     };
     
-    // Acțiune
+    // Act
     var response = await calculator.ExecuteAsync(parameters);
     var result = JsonSerializer.Deserialize<CalculationResult>(response.Content[0].ToString());
     
-    // Verificare
+    // Assert
     Assert.Equal(12, result.Value);
 }
 ```
 
 ```python
-# Exemplu de test unitar pentru un instrument calculator în Python
+# Example unit test for a calculator tool in Python
 def test_calculator_tool_add():
-    # Aranjare
+    # Arrange
     calculator = CalculatorTool()
     parameters = {
         "operation": "add",
@@ -2071,34 +2031,34 @@ def test_calculator_tool_add():
         "b": 7
     }
     
-    # Acțiune
+    # Act
     response = calculator.execute(parameters)
     result = json.loads(response.content[0].text)
     
-    # Verificare
+    # Assert
     assert result["value"] == 12
 ```
 
-### Integration Testing (Middle Layer)
+### Testarea Integrării (Stratul Intermediar)
 
-Integration tests verify interactions between components of your MCP server.
+Testele de integrare verifică interacțiunile dintre componentele serverului MCP.
 
-#### What to Test
+#### Ce să Testați
 
-1. **Server Initialization**: Test server startup with various configurations
-2. **Route Registration**: Verify all endpoints are correctly registered
-3. **Request Processing**: Test the full request-response cycle
-4. **Error Propagation**: Ensure errors are properly handled across components
-5. **Authentication & Authorization**: Test security mechanisms
+1. **Inițializarea Serverului**: Testați pornirea serverului cu diverse configurații
+2. **Înregistrarea Rutelor**: Verificați că toate endpoint-urile sunt înregistrate corect
+3. **Procesarea Cererilor**: Testați ciclul complet cerere-răspuns
+4. **Propagarea Erorilor**: Asigurați-vă că erorile sunt gestionate corect între componente
+5. **Autentificare și Autorizare**: Testați mecanismele de securitate
 
-#### Best Practices for Integration Testing
+#### Cele Mai Bune Practici pentru Testarea Integrării
 
 ```csharp
-// Exemplu de test de integrare pentru serverul MCP în C#
+// Example integration test for MCP server in C#
 [Fact]
 public async Task Server_ProcessToolRequest_ReturnsValidResponse()
 {
-    // Aranjare
+    // Arrange
     var server = new McpServer();
     server.RegisterTool(new CalculatorTool());
     await server.StartAsync();
@@ -2114,40 +2074,40 @@ public async Task Server_ProcessToolRequest_ReturnsValidResponse()
         }
     };
     
-    // Acțiune
+    // Act
     var response = await server.ProcessRequestAsync(request);
     
-    // Verificare
+    // Assert
     Assert.NotNull(response);
     Assert.Equal(McpStatusCodes.Success, response.StatusCode);
-    // Verificări suplimentare pentru conținutul răspunsului
+    // Additional assertions for response content
     
-    // Curățare
+    // Cleanup
     await server.StopAsync();
 }
 ```
 
-### End-to-End Testing (Top Layer)
+### Testarea End-to-End (Stratul Superior)
 
-End-to-end tests verify the complete system behavior from client to server.
+Testele end-to-end verifică comportamentul complet al sistemului, de la client la server.
 
-#### What to Test
+#### Ce să Testați
 
-1. **Client-Server Communication**: Test complete request-response cycles
-2. **Real Client SDKs**: Test with actual client implementations
-3. **Performance Under Load**: Verify behavior with multiple concurrent requests
-4. **Error Recovery**: Test system recovery from failures
-5. **Long-Running Operations**: Verify handling of streaming and long operations
+1. **Comunicarea Client-Server**: Testați ciclurile complete cerere-răspuns
+2. **SDK-uri Client Reale**: Testați cu implementări reale ale clienților
+3. **Performanța Sub Sarcină**: Verificați comportamentul cu cereri multiple simultane
+4. **Recuperarea Erorilor**: Testați recuperarea sistemului din eșecuri
+5. **Operațiuni de Lungă Durată**: Verificați gestionarea streaming-ului și a operațiunilor lungi
 
-#### Best Practices for E2E Testing
+#### Cele Mai Bune Practici pentru Testarea E2E
 
 ```typescript
-// Exemplu de test E2E cu un client în TypeScript
-describe('Teste E2E pentru MCP Server', () => {
+// Example E2E test with a client in TypeScript
+describe('MCP Server E2E Tests', () => {
   let client: McpClient;
   
   beforeAll(async () => {
-    // Pornește serverul în mediul de testare
+    // Start server in test environment
     await startTestServer();
     client = new McpClient('http://localhost:5000');
   });
@@ -2156,36 +2116,36 @@ describe('Teste E2E pentru MCP Server', () => {
     await stopTestServer();
   });
   
-  test('Clientul poate apela instrumentul calculator și obține rezultatul corect', async () => {
-    // Acțiune
+  test('Client can invoke calculator tool and get correct result', async () => {
+    // Act
     const response = await client.invokeToolAsync('calculator', {
       operation: 'divide',
       a: 20,
       b: 4
     });
     
-    // Verificare
+    // Assert
     expect(response.statusCode).toBe(200);
     expect(response.content[0].text).toContain('5');
   });
 });
 ```
 
-## Mocking Strategies for MCP Testing
+## Strategii de Mocking pentru Testarea MCP
 
-Mocking is essential for isolating components during testing.
+Mocking-ul este esențial pentru izolarea componentelor în timpul testării.
 
-### Components to Mock
+### Componente de Mock-uit
 
-1. **External AI Models**: Mock model responses for predictable testing
-2. **External Services**: Mock API dependencies (databases, third-party services)
-3. **Authentication Services**: Mock identity providers
-4. **Resource Providers**: Mock expensive resource handlers
+1. **Modele AI Externe**: Mock-uiți răspunsurile modelelor pentru testare predictibilă
+2. **Servicii Externe**: Mock-uiți dependențele API (baze de date, servicii terțe)
+3. **Servicii de Autentificare**: Mock-uiți furnizorii de identitate
+4. **Furnizorii de Resurse**: Mock-uiți handler-ele de resurse costisitoare
 
-### Example: Mocking an AI Model Response
+### Exemplu: Mock-uirea unui Răspuns al Modelului AI
 
 ```csharp
-// Exemplu C# cu Moq
+// C# example with Moq
 var mockModel = new Mock<ILanguageModel>();
 mockModel
     .Setup(m => m.GenerateResponseAsync(
@@ -2200,91 +2160,39 @@ var server = new McpServer(modelClient: mockModel.Object);
 ```
 
 ```python
-# Exemplu Python cu unittest.mock
+# Python example with unittest.mock
 @patch('mcp_server.models.OpenAIModel')
 def test_with_mock_model(mock_model):
-    # Configurează mock-ul
+    # Configure mock
     mock_model.return_value.generate_response.return_value = {
         "text": "Mocked model response",
         "finish_reason": "completed"
     }
     
-    # Folosește mock-ul în test
+    # Use mock in test
     server = McpServer(model_client=mock_model)
-    # Continuă cu testul
+    # Continue with test
 ```
 
-## Performance Testing
+## Testarea Performanței
 
-Performance testing is crucial for production MCP servers.
+Testarea performanței este crucială pentru serverele MCP în producție.
 
-### What to Measure
+### Ce să Măsurați
 
-1. **Latency**: Response time for requests
-2. **Throughput**: Requests handled per second
-3. **Resource Utilization**: CPU, memory, network usage
-4. **Concurrency Handling**: Behavior under parallel requests
-5. **Scaling Characteristics**: Performance as load increases
+1. **Latența**: Timpul de răspuns pentru cereri
+2. **Debit**: Cereri gestionate pe secundă
+3. **Utilizarea Resurselor**: CPU, memorie, utilizarea rețelei
+4. **Gestionarea Concurenței**: Comportamentul sub cereri paralele
+5. **Caracteristicile de Scalare**: Performanța pe măsură ce sarcina crește
 
-### Tools for Performance Testing
+### Instrumente pentru Testarea Performanței
 
-- **k6**: Open-source load testing tool
-- **JMeter**: Comprehensive performance testing
-- **Locust**: Python-based load testing
-- **Azure Load Testing**: Cloud-based performance testing
+- **k6**: Instrument open
+3. **Repere de performanță**: Menține reperele de performanță pentru a identifica regresiile
+4. **Scanări de securitate**: Automatizează testarea securității ca parte a pipeline-ului
 
-### Example: Basic Load Test with k6
-
-```javascript
-// Script k6 pentru testarea încărcării serverului MCP
-import http from 'k6/http';
-import { check, sleep } from 'k6';
-
-export const options = {
-  vus: 10,  // 10 utilizatori virtuali
-  duration: '30s',
-};
-
-export default function () {
-  const payload = JSON.stringify({
-    tool: 'calculator',
-    parameters: {
-      operation: 'add',
-      a: Math.floor(Math.random() * 100),
-      b: Math.floor(Math.random() * 100)
-    }
-  });
-
-  const params = {
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer test-token'
-    },
-  };
-
-  const res = http.post('http://localhost:5000/api/tools/invoke', payload, params);
-  
-  check(res, {
-    'status este 200': (r) => r.status === 200,
-    'timpul de răspuns < 500ms': (r) => r.timings.duration < 500,
-  });
-  
-  sleep(1);
-}
-```
-
-## Test Automation for MCP Servers
-
-Automating your tests ensures consistent quality and faster feedback loops.
-
-### CI/CD Integration
-
-1. **Run Unit Tests on Pull Requests**: Ensure code changes don't break existing functionality
-2. **Integration Tests in Staging**: Run integration tests in pre-production environments
-3. **Performance Baselines**: Maintain performance benchmarks to catch regressions
-4. **Security Scans**: Automate security testing as part of the pipeline
-
-### Example CI Pipeline (GitHub Actions)
+### Exemplu de pipeline CI (GitHub Actions)
 
 ```yaml
 name: MCP Server Tests
@@ -2323,101 +2231,101 @@ jobs:
       run: dotnet run --project tests/PerformanceTests/PerformanceTests.csproj
 ```
 
-## Testing for Compliance with MCP Specification
+## Testarea conformității cu specificația MCP
 
-Verify your server correctly implements the MCP specification.
+Verifică dacă serverul tău implementează corect specificația MCP.
 
-### Key Compliance Areas
+### Zone cheie de conformitate
 
-1. **API Endpoints**: Test required endpoints (/resources, /tools, etc.)
-2. **Request/Response Format**: Validate schema compliance
-3. **Error Codes**: Verify correct status codes for various scenarios
-4. **Content Types**: Test handling of different content types
-5. **Authentication Flow**: Verify spec-compliant auth mechanisms
+1. **Puncte de acces API**: Testează punctele de acces necesare (/resources, /tools, etc.)
+2. **Formatul cererii/răspunsului**: Validează conformitatea cu schema
+3. **Coduri de eroare**: Verifică codurile de stare corecte pentru diverse scenarii
+4. **Tipuri de conținut**: Testează gestionarea diferitelor tipuri de conținut
+5. **Fluxul de autentificare**: Verifică mecanismele de autentificare conforme cu specificația
 
-### Compliance Test Suite
+### Suită de teste pentru conformitate
 
 ```csharp
 [Fact]
 public async Task Server_ResourceEndpoint_ReturnsCorrectSchema()
 {
-    // Aranjare
+    // Arrange
     var client = new HttpClient();
     client.DefaultRequestHeaders.Add("Authorization", "Bearer test-token");
     
-    // Acțiune
+    // Act
     var response = await client.GetAsync("http://localhost:5000/api/resources");
     var content = await response.Content.ReadAsStringAsync();
-    var resources = JsonSerializer.Deserialize
-
-// Assert
-Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-Assert.NotNull(resources);
-Assert.All(resources.Resources, resource => 
-{
-    Assert.NotNull(resource.Id);
-    Assert.NotNull(resource.Type);
-    // Validare suplimentară a schemei
-});
+    var resources = JsonSerializer.Deserialize<ResourceList>(content);
+    
+    // Assert
+    Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    Assert.NotNull(resources);
+    Assert.All(resources.Resources, resource => 
+    {
+        Assert.NotNull(resource.Id);
+        Assert.NotNull(resource.Type);
+        // Additional schema validation
+    });
 }
 ```
 
 ## Top 10 sfaturi pentru testarea eficientă a serverului MCP
 
-1. **Testează definițiile uneltelor separat**: Verifică definițiile schemei independent de logica uneltei
-2. **Folosește teste parametrizate**: Testează uneltele cu o varietate de intrări, inclusiv cazuri limită
-3. **Verifică răspunsurile de eroare**: Asigură-te că gestionarea erorilor este corectă pentru toate condițiile posibile
-4. **Testează logica de autorizare**: Confirmă controlul adecvat al accesului pentru diferite roluri de utilizatori
-5. **Monitorizează acoperirea testelor**: Țintește o acoperire ridicată a codului din căile critice
-6. **Testează răspunsurile în streaming**: Verifică gestionarea corectă a conținutului în streaming
-7. **Simulează probleme de rețea**: Testează comportamentul în condiții de rețea deficitară
+1. **Testează definițiile instrumentelor separat**: Verifică definițiile schemelor independent de logica instrumentelor
+2. **Folosește teste parametrizate**: Testează instrumentele cu o varietate de intrări, inclusiv cazuri limită
+3. **Verifică răspunsurile de eroare**: Asigură-te că toate condițiile de eroare sunt gestionate corect
+4. **Testează logica de autorizare**: Asigură controlul adecvat al accesului pentru diferite roluri de utilizator
+5. **Monitorizează acoperirea testelor**: Vizează o acoperire ridicată a codului critic
+6. **Testează răspunsurile de streaming**: Verifică gestionarea corectă a conținutului de streaming
+7. **Simulează probleme de rețea**: Testează comportamentul în condiții de rețea slabă
 8. **Testează limitele resurselor**: Verifică comportamentul la atingerea cotelor sau limitelor de rată
-9. **Automatizează testele de regresie**: Construiește o suită care să ruleze la fiecare modificare a codului
-10. **Documentează cazurile de test**: Menține o documentație clară a scenariilor de testare
+9. **Automatizează testele de regresie**: Construiește o suită care rulează la fiecare modificare de cod
+10. **Documentează cazurile de testare**: Menține o documentație clară a scenariilor de testare
 
 ## Capcane comune în testare
 
-- **Dependența excesivă de testarea căii fericite**: Asigură-te că testezi temeinic și cazurile de eroare
+- **Dependință excesivă de testarea scenariilor pozitive**: Asigură-te că testezi temeinic cazurile de eroare
 - **Ignorarea testării performanței**: Identifică blocajele înainte să afecteze producția
-- **Testarea doar în izolare**: Combină teste unitare, de integrare și end-to-end
-- **Acoperire incompletă a API-ului**: Asigură-te că toate endpoint-urile și funcționalitățile sunt testate
-- **Mediile de testare inconsistente**: Folosește containere pentru a garanta medii de testare uniforme
+- **Testarea doar în izolare**: Combină testele unitare, de integrare și E2E
+- **Acoperire incompletă a API-ului**: Asigură-te că toate punctele de acces și funcțiile sunt testate
+- **Medii de testare inconsistente**: Folosește containere pentru a asigura medii de testare consistente
 
 ## Concluzie
 
-O strategie de testare cuprinzătoare este esențială pentru dezvoltarea unor servere MCP fiabile și de înaltă calitate. Implementând cele mai bune practici și sfaturi prezentate în acest ghid, poți asigura că implementările MCP respectă cele mai înalte standarde de calitate, fiabilitate și performanță.
+O strategie de testare cuprinzătoare este esențială pentru dezvoltarea serverelor MCP fiabile și de înaltă calitate. Prin implementarea celor mai bune practici și sfaturi prezentate în acest ghid, poți asigura că implementările MCP respectă cele mai înalte standarde de calitate, fiabilitate și performanță.
 
-## Aspecte cheie de reținut
+## Idei principale
 
-1. **Designul uneltelor**: Urmează principiul responsabilității unice, folosește injecția de dependențe și proiectează pentru compozabilitate
-2. **Designul schemei**: Creează scheme clare, bine documentate, cu constrângeri de validare adecvate
-3. **Gestionarea erorilor**: Implementează o gestionare elegantă a erorilor, răspunsuri structurate și logică de retry
-4. **Performanța**: Folosește caching, procesare asincronă și limitarea resurselor
-5. **Securitatea**: Aplică validare riguroasă a intrărilor, verificări de autorizare și gestionarea datelor sensibile
-6. **Testarea**: Creează teste unitare, de integrare și end-to-end cuprinzătoare
-7. **Modele de workflow**: Aplică modele consacrate precum lanțuri, dispatcheri și procesare paralelă
+1. **Designul instrumentelor**: Urmează principiul responsabilității unice, folosește injecția de dependențe și proiectează pentru compozabilitate
+2. **Designul schemelor**: Creează scheme clare, bine documentate, cu constrângeri de validare adecvate
+3. **Gestionarea erorilor**: Implementează gestionarea grațioasă a erorilor, răspunsuri structurate la erori și logică de retry
+4. **Performanță**: Folosește caching, procesare asincronă și limitarea resurselor
+5. **Securitate**: Aplică validarea riguroasă a intrărilor, verificări de autorizare și gestionarea datelor sensibile
+6. **Testare**: Creează teste unitare, de integrare și end-to-end cuprinzătoare
+7. **Modele de flux de lucru**: Aplică modele consacrate precum lanțuri, dispeceri și procesare paralelă
 
 ## Exercițiu
 
-Proiectează o unealtă MCP și un workflow pentru un sistem de procesare a documentelor care:
+Proiectează un instrument MCP și un flux de lucru pentru un sistem de procesare a documentelor care:
 
 1. Acceptă documente în mai multe formate (PDF, DOCX, TXT)
-2. Extrage text și informații cheie din documente
+2. Extrage textul și informațiile cheie din documente
 3. Clasifică documentele după tip și conținut
-4. Generează un rezumat pentru fiecare document
+4. Generează un rezumat al fiecărui document
 
-Implementează schemele uneltei, gestionarea erorilor și un model de workflow care se potrivește cel mai bine acestui scenariu. Gândește-te cum ai testa această implementare.
+Implementează schemele instrumentului, gestionarea erorilor și un model de flux de lucru care se potrivește cel mai bine acestui scenariu. Ia în considerare cum ai testa această implementare.
 
-## Resurse
+## Resurse 
 
-1. Alătură-te comunității MCP pe [Azure AI Foundry Discord Community](https://aka.ms/foundrydevs) pentru a fi la curent cu ultimele noutăți
+1. Alătură-te comunității MCP pe [Azure AI Foundry Discord Community](https://aka.ms/foundrydevs) pentru a fi la curent cu cele mai recente dezvoltări
 2. Contribuie la proiectele open-source [MCP](https://github.com/modelcontextprotocol)
 3. Aplică principiile MCP în inițiativele AI ale organizației tale
 4. Explorează implementări MCP specializate pentru industria ta
-5. Ia în considerare cursuri avansate pe subiecte MCP specifice, cum ar fi integrarea multi-modală sau integrarea aplicațiilor enterprise
-6. Experimentează construind propriile unelte și workflow-uri MCP folosind principiile învățate prin [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
+5. Ia în considerare cursuri avansate pe subiecte specifice MCP, cum ar fi integrarea multi-modală sau integrarea aplicațiilor enterprise
+6. Experimentează construirea propriilor instrumente și fluxuri MCP folosind principiile învățate prin [Hands on Lab](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)  
 
-Următorul: Studii de caz cu cele mai bune practici [case studies](../09-CaseStudy/README.md)
+Next: Best Practices [case studies](../09-CaseStudy/README.md)
 
-**Declinare de responsabilitate**:  
-Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim pentru acuratețe, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă trebuie considerat sursa autorizată. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm răspunderea pentru eventualele neînțelegeri sau interpretări greșite rezultate din utilizarea acestei traduceri.
+**Declinarea responsabilității**:  
+Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși depunem eforturi pentru a asigura acuratețea, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă ar trebui considerat sursa autoritară. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm răspunderea pentru eventualele neînțelegeri sau interpretări greșite care pot apărea din utilizarea acestei traduceri.

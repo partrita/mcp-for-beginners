@@ -1,13 +1,13 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4eb6a48c54555c64b33c763fba3f2842",
-  "translation_date": "2025-07-13T21:04:11+00:00",
+  "original_hash": "dde4e32e4b55ef4962c411b39d2340a7",
+  "translation_date": "2025-09-03T16:06:21+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/dotnet/README.md",
   "language_code": "it"
 }
 -->
-# Esecuzione di questo esempio
+# Eseguire questo esempio
 
 ## -1- Installa le dipendenze
 
@@ -23,9 +23,9 @@ dotnet run
 
 ## -3- Testa l'esempio
 
-Apri un terminale separato prima di eseguire il comando qui sotto (assicurati che il server sia ancora in esecuzione).
+Avvia un terminale separato prima di eseguire il comando seguente (assicurati che il server sia ancora in esecuzione).
 
-Con il server attivo in un terminale, apri un altro terminale ed esegui il seguente comando:
+Con il server in esecuzione in un terminale, apri un altro terminale ed esegui il seguente comando:
 
 ```bash
 npx @modelcontextprotocol/inspector http://localhost:3001
@@ -35,10 +35,10 @@ Questo dovrebbe avviare un server web con un'interfaccia visiva che ti permette 
 
 > Assicurati che **Streamable HTTP** sia selezionato come tipo di trasporto e che l'URL sia `http://localhost:3001/mcp`.
 
-Una volta connesso il server:
+Una volta che il server è connesso:
 
-- prova a elencare gli strumenti e a eseguire `add`, con argomenti 2 e 4, dovresti vedere 6 come risultato.
-- vai su resources e resource template e chiama "greeting", inserisci un nome e vedrai un saluto con il nome che hai fornito.
+- prova a elencare gli strumenti e a eseguire `add`, con argomenti 2 e 4, dovresti vedere 6 nel risultato.
+- vai alle risorse e al modello di risorsa e chiama "greeting", inserisci un nome e dovresti vedere un saluto con il nome che hai fornito.
 
 ### Test in modalità CLI
 
@@ -100,9 +100,11 @@ Dovresti vedere il seguente output:
 }
 ```
 
-> ![!TIP]
-> Di solito è molto più veloce eseguire l'inspector in modalità CLI che nel browser.
+> [!TIP]
+> Di solito è molto più veloce eseguire l'inspector in modalità CLI rispetto al browser.
 > Leggi di più sull'inspector [qui](https://github.com/modelcontextprotocol/inspector).
 
+---
+
 **Disclaimer**:  
-Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Pur impegnandoci per garantire accuratezza, si prega di notare che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa deve essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale effettuata da un umano. Non ci assumiamo alcuna responsabilità per eventuali malintesi o interpretazioni errate derivanti dall’uso di questa traduzione.
+Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Sebbene ci impegniamo per garantire l'accuratezza, si prega di notare che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa dovrebbe essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale effettuata da un traduttore umano. Non siamo responsabili per eventuali incomprensioni o interpretazioni errate derivanti dall'uso di questa traduzione.

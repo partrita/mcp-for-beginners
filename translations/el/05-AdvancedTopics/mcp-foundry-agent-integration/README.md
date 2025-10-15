@@ -60,7 +60,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## Python Implementation
 
-***Note*** Μπορείτε να εκτελέσετε αυτό το [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb)
+***Note*** Μπορείτε να εκτελέσετε αυτό το [notebook](mcp_support_python.ipynb)
 
 ### 1. Εγκατάσταση Απαραίτητων Πακέτων
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET Implementation
 
-***Note*** Μπορείτε να εκτελέσετε αυτό το [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb)
+***Note*** Μπορείτε να εκτελέσετε αυτό το [notebook](mcp_support_dotnet.ipynb)
 
 ### 1. Εγκατάσταση Απαραίτητων Πακέτων
 

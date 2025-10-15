@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "f58f01197da8a381d70c98317b7e1f1d",
-  "translation_date": "2025-07-13T17:46:18+00:00",
+  "original_hash": "4117a42f3e7baae859515f7b8b911e56",
+  "translation_date": "2025-08-19T17:54:52+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/README.md",
   "language_code": "hr"
 }
@@ -13,6 +13,7 @@ Evo rješenja za svaki runtime:
 - [Python](./python/README.md)
 - [.NET](./dotnet/README.md)
 - [Java](./java/README.md)
+- [Rust](./rust/README.md)
 
 **Odricanje od odgovornosti**:  
-Ovaj dokument je preveden korištenjem AI usluge za prevođenje [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati službenim i autoritativnim izvorom. Za kritične informacije preporučuje se profesionalni ljudski prijevod. Ne snosimo odgovornost za bilo kakva nesporazuma ili pogrešna tumačenja koja proizlaze iz korištenja ovog prijevoda.
+Ovaj dokument je preveden korištenjem AI usluge za prevođenje [Co-op Translator](https://github.com/Azure/co-op-translator). Iako nastojimo osigurati točnost, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati mjerodavnim izvorom. Za ključne informacije preporučuje se profesionalni prijevod od strane stručnjaka. Ne preuzimamo odgovornost za bilo kakve nesporazume ili pogrešne interpretacije proizašle iz korištenja ovog prijevoda.

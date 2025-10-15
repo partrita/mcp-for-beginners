@@ -1,191 +1,203 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "bb1ab5c924f58cf75ef1732d474f008a",
-  "translation_date": "2025-07-14T17:18:25+00:00",
+  "original_hash": "83efa75a69bc831277263a6f1ae53669",
+  "translation_date": "2025-08-18T16:46:31+00:00",
   "source_file": "04-PracticalImplementation/README.md",
   "language_code": "he"
 }
 -->
 # יישום מעשי
 
-היישום המעשי הוא המקום שבו כוחו של Model Context Protocol (MCP) הופך למוחשי. בעוד שהבנת התיאוריה והארכיטקטורה שמאחורי MCP חשובה, הערך האמיתי מתגלה כאשר מיישמים את המושגים האלה לבניית, בדיקה ופריסה של פתרונות שפועלים בעולם האמיתי. פרק זה גשר בין הידע התיאורטי לפיתוח מעשי, ומנחה אותך בתהליך של הבאת יישומים מבוססי MCP לחיים.
+[![איך לבנות, לבדוק ולפרוס אפליקציות MCP עם כלים ותהליכי עבודה אמיתיים](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.he.png)](https://youtu.be/vCN9-mKBDfQ)
 
-בין אם אתה מפתח עוזרים חכמים, משלב AI בתהליכי עבודה עסקיים, או בונה כלים מותאמים לעיבוד נתונים, MCP מספק בסיס גמיש. העיצוב הבלתי תלוי בשפה וה-SDKs הרשמיים לשפות תכנות פופולריות הופכים אותו לנגיש למגוון רחב של מפתחים. באמצעות ניצול ה-SDKs האלה, תוכל במהירות ליצור אב-טיפוס, לחזור על הפיתוח ולהרחיב את הפתרונות שלך בפלטפורמות וסביבות שונות.
+_(לחצו על התמונה למעלה לצפייה בסרטון של השיעור הזה)_
 
-בקטעים הבאים תמצא דוגמאות מעשיות, קוד לדוגמה ואסטרטגיות פריסה שמדגימות כיצד ליישם MCP ב-C#, Java, TypeScript, JavaScript ו-Python. תלמד גם כיצד לנפות שגיאות ולבדוק את שרתי ה-MCP שלך, לנהל APIs ולפרוס פתרונות לענן באמצעות Azure. המשאבים המעשים האלה נועדו להאיץ את הלמידה שלך ולעזור לך לבנות בביטחון יישומים יציבים ומוכנים לייצור מבוססי MCP.
+היישום המעשי הוא המקום שבו הכוח של Model Context Protocol (MCP) הופך למוחשי. בעוד שהבנת התיאוריה והארכיטקטורה שמאחורי MCP היא חשובה, הערך האמיתי מתגלה כאשר מיישמים את הקונספטים הללו כדי לבנות, לבדוק ולפרוס פתרונות שמטפלים בבעיות אמיתיות. פרק זה מגשר על הפער בין ידע תיאורטי לפיתוח מעשי, ומנחה אתכם בתהליך של הפיכת אפליקציות מבוססות MCP למציאות.
+
+בין אם אתם מפתחים עוזרים חכמים, משלבים AI בתהליכי עבודה עסקיים, או בונים כלים מותאמים אישית לעיבוד נתונים, MCP מספק בסיס גמיש. העיצוב שלו שאינו תלוי בשפה ו-SDKs הרשמיים לשפות תכנות פופולריות הופכים אותו לנגיש למגוון רחב של מפתחים. באמצעות ה-SDKs הללו, תוכלו ליצור אבטיפוס במהירות, לשפר ולשדרג את הפתרונות שלכם על פני פלטפורמות וסביבות שונות.
+
+בקטעים הבאים תמצאו דוגמאות מעשיות, קוד לדוגמה ואסטרטגיות פריסה שמדגימות כיצד ליישם MCP ב-C#, Java עם Spring, TypeScript, JavaScript ו-Python. תלמדו גם כיצד לנפות באגים ולבדוק את שרתי MCP, לנהל APIs ולפרוס פתרונות לענן באמצעות Azure. המשאבים המעשיים הללו נועדו להאיץ את הלמידה שלכם ולעזור לכם לבנות אפליקציות MCP חזקות ומוכנות לייצור בביטחון.
 
 ## סקירה כללית
 
-השיעור הזה מתמקד בהיבטים מעשיים של יישום MCP בשפות תכנות שונות. נחקור כיצד להשתמש ב-SDKs של MCP ב-C#, Java, TypeScript, JavaScript ו-Python כדי לבנות יישומים יציבים, לנפות שגיאות ולבדוק שרתי MCP, וליצור משאבים, פרומפטים וכלים לשימוש חוזר.
+שיעור זה מתמקד בהיבטים המעשיים של יישום MCP בשפות תכנות שונות. נחקור כיצד להשתמש ב-SDKs של MCP ב-C#, Java עם Spring, TypeScript, JavaScript ו-Python כדי לבנות אפליקציות חזקות, לנפות באגים ולבדוק שרתי MCP, וליצור משאבים, פקודות וכלים לשימוש חוזר.
 
-## מטרות הלמידה
+## מטרות למידה
 
-בסיום השיעור תוכל:
+בסיום השיעור הזה, תוכלו:
+
 - ליישם פתרונות MCP באמצעות SDKs רשמיים בשפות תכנות שונות
-- לנפות שגיאות ולבדוק שרתי MCP באופן שיטתי
-- ליצור ולהשתמש בתכונות שרת (משאבים, פרומפטים וכלים)
-- לתכנן תהליכי עבודה יעילים ב-MCP למשימות מורכבות
-- לאופטם יישומי MCP לביצועים ואמינות
+- לנפות באגים ולבדוק שרתי MCP באופן שיטתי
+- ליצור ולהשתמש בתכונות שרת (משאבים, פקודות וכלים)
+- לעצב תהליכי עבודה יעילים של MCP למשימות מורכבות
+- לייעל יישומי MCP לביצועים ואמינות
 
 ## משאבי SDK רשמיים
 
-Model Context Protocol מציע SDKs רשמיים למספר שפות:
+פרוטוקול Model Context מציע SDKs רשמיים למספר שפות:
 
 - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) 
+- [Java עם Spring SDK](https://github.com/modelcontextprotocol/java-sdk) **הערה:** דורש תלות ב-[Project Reactor](https://projectreactor.io). (ראו [דיון issue 246](https://github.com/orgs/modelcontextprotocol/discussions/246).)
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk)
 
 ## עבודה עם SDKs של MCP
 
-קטע זה מספק דוגמאות מעשיות ליישום MCP בשפות תכנות שונות. ניתן למצוא קוד לדוגמה בתיקיית `samples` הממוינת לפי שפה.
+חלק זה מספק דוגמאות מעשיות ליישום MCP בשפות תכנות שונות. תוכלו למצוא קוד לדוגמה בתיקיית `samples` המאורגנת לפי שפה.
 
 ### דוגמאות זמינות
 
 הריפוזיטורי כולל [יישומים לדוגמה](../../../04-PracticalImplementation/samples) בשפות הבאות:
 
 - [C#](./samples/csharp/README.md)
-- [Java](./samples/java/containerapp/README.md)
+- [Java עם Spring](./samples/java/containerapp/README.md)
 - [TypeScript](./samples/typescript/README.md)
 - [JavaScript](./samples/javascript/README.md)
 - [Python](./samples/python/README.md)
 
-כל דוגמה מדגימה מושגי מפתח ודפוסי יישום של MCP עבור השפה והאקוסיסטם הספציפיים.
+כל דוגמה מדגימה מושגי MCP מרכזיים ודפוסי יישום עבור אותה שפה ואקוסיסטמה.
 
-## תכונות מרכזיות של השרת
+## תכונות שרת מרכזיות
 
 שרתי MCP יכולים ליישם כל שילוב של התכונות הבאות:
 
-### משאבים  
-משאבים מספקים הקשר ונתונים לשימוש המשתמש או מודל ה-AI:  
-- מאגרי מסמכים  
-- בסיסי ידע  
-- מקורות נתונים מובנים  
-- מערכות קבצים  
+### משאבים
 
-### פרומפטים  
-פרומפטים הם תבניות הודעות ותהליכי עבודה למשתמשים:  
-- תבניות שיחה מוגדרות מראש  
-- דפוסי אינטראקציה מודרכים  
-- מבני דיאלוג מיוחדים  
+משאבים מספקים הקשר ונתונים לשימוש המשתמש או מודל ה-AI:
 
-### כלים  
-כלים הם פונקציות שהמודל יכול לבצע:  
-- כלי עיבוד נתונים  
-- אינטגרציות עם API חיצוניים  
-- יכולות חישוביות  
-- פונקציונליות חיפוש  
+- מאגרי מסמכים
+- בסיסי ידע
+- מקורות נתונים מובנים
+- מערכות קבצים
 
-## דוגמאות יישום: C#
+### פקודות
 
-ריפוזיטורי ה-SDK הרשמי של C# מכיל מספר דוגמאות שמדגימות היבטים שונים של MCP:
+פקודות הן הודעות ותהליכים מובנים למשתמשים:
 
-- **לקוח MCP בסיסי**: דוגמה פשוטה שמראה כיצד ליצור לקוח MCP ולהפעיל כלים  
-- **שרת MCP בסיסי**: יישום שרת מינימלי עם רישום כלים בסיסי  
-- **שרת MCP מתקדם**: שרת מלא עם רישום כלים, אימות וטיפול בשגיאות  
-- **אינטגרציה עם ASP.NET**: דוגמאות המראות אינטגרציה עם ASP.NET Core  
-- **דפוסי יישום כלים**: דפוסים שונים ליישום כלים ברמות מורכבות שונות  
+- תבניות שיחה מוגדרות מראש
+- דפוסי אינטראקציה מודרכים
+- מבני דיאלוג מיוחדים
 
-ה-SDK של MCP ב-C# נמצא בבטא ו-APIs עשויים להשתנות. נעדכן את הבלוג באופן שוטף ככל שה-SDK יתפתח.
+### כלים
 
-### תכונות מרכזיות  
+כלים הם פונקציות שהמודל יכול לבצע:
+
+- כלי עיבוד נתונים
+- אינטגרציות API חיצוניות
+- יכולות חישוביות
+- פונקציות חיפוש
+
+## יישומים לדוגמה: יישום ב-C#
+
+הריפוזיטורי הרשמי של C# SDK מכיל מספר יישומים לדוגמה המדגימים היבטים שונים של MCP:
+
+- **לקוח MCP בסיסי**: דוגמה פשוטה שמראה כיצד ליצור לקוח MCP ולהפעיל כלים
+- **שרת MCP בסיסי**: יישום שרת מינימלי עם רישום כלים בסיסי
+- **שרת MCP מתקדם**: שרת מלא עם רישום כלים, אימות וטיפול בשגיאות
+- **אינטגרציה עם ASP.NET**: דוגמאות המדגימות אינטגרציה עם ASP.NET Core
+- **דפוסי יישום כלים**: דפוסים שונים ליישום כלים ברמות מורכבות שונות
+
+SDK ה-C# של MCP נמצא בגרסת תצוגה מקדימה וייתכן שה-APIs ישתנו. נעדכן את הבלוג הזה באופן שוטף ככל שה-SDK יתפתח.
+
+### תכונות מרכזיות
+
 - [C# MCP Nuget ModelContextProtocol](https://www.nuget.org/packages/ModelContextProtocol)
-
 - בניית [שרת MCP ראשון](https://devblogs.microsoft.com/dotnet/build-a-model-context-protocol-mcp-server-in-csharp/).
 
-למשאבי יישום מלאים ב-C#, בקר ב-[ריפוזיטורי הדוגמאות הרשמי של C#](https://github.com/modelcontextprotocol/csharp-sdk)
+ליישומים מלאים ב-C#, בקרו ב-[ריפוזיטורי הדוגמאות הרשמי של C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
 
-## דוגמת יישום: Java
+## יישום לדוגמה: יישום ב-Java עם Spring
 
-ה-SDK של Java מציע אפשרויות יישום MCP חזקות עם תכונות ברמת ארגונית.
-
-### תכונות מרכזיות
-
-- אינטגרציה עם Spring Framework  
-- בטיחות טיפוס חזקה  
-- תמיכה בתכנות ריאקטיבי  
-- טיפול שגיאות מקיף  
-
-לדוגמה מלאה של יישום Java, ראה [דוגמת Java](samples/java/containerapp/README.md) בתיקיית הדוגמאות.
-
-## דוגמת יישום: JavaScript
-
-ה-SDK של JavaScript מספק גישה קלה וגמישה ליישום MCP.
+SDK של Java עם Spring מציע אפשרויות יישום MCP חזקות עם תכונות ברמה ארגונית.
 
 ### תכונות מרכזיות
 
-- תמיכה ב-Node.js ודפדפן  
-- API מבוסס Promise  
-- אינטגרציה פשוטה עם Express ומסגרות נוספות  
-- תמיכה ב-WebSocket לזרימה  
+- אינטגרציה עם Spring Framework
+- בטיחות סוגים חזקה
+- תמיכה בתכנות ריאקטיבי
+- טיפול מקיף בשגיאות
 
-לדוגמה מלאה של יישום JavaScript, ראה [דוגמת JavaScript](samples/javascript/README.md) בתיקיית הדוגמאות.
+ליישום מלא ב-Java עם Spring, ראו [דוגמת Java עם Spring](samples/java/containerapp/README.md) בתיקיית הדוגמאות.
 
-## דוגמת יישום: Python
+## יישום לדוגמה: יישום ב-JavaScript
 
-ה-SDK של Python מציע גישה פייתונית ליישום MCP עם אינטגרציות מצוינות למסגרות ML.
+SDK של JavaScript מספק גישה קלה וגמישה ליישום MCP.
 
 ### תכונות מרכזיות
 
-- תמיכה ב-async/await עם asyncio  
-- אינטגרציה עם FastAPI  
-- רישום כלים פשוט  
-- אינטגרציה טבעית עם ספריות ML פופולריות  
+- תמיכה ב-Node.js ודפדפנים
+- API מבוסס הבטחות
+- אינטגרציה קלה עם Express ומסגרות אחרות
+- תמיכה ב-WebSocket להזרמה
 
-לדוגמה מלאה של יישום Python, ראה [דוגמת Python](samples/python/README.md) בתיקיית הדוגמאות.
+ליישום מלא ב-JavaScript, ראו [דוגמת JavaScript](samples/javascript/README.md) בתיקיית הדוגמאות.
+
+## יישום לדוגמה: יישום ב-Python
+
+SDK של Python מציע גישה פייתונית ליישום MCP עם אינטגרציות מצוינות למסגרות ML.
+
+### תכונות מרכזיות
+
+- תמיכה ב-Async/await עם asyncio
+- אינטגרציה עם FastAPI
+- רישום כלים פשוט
+- אינטגרציה טבעית עם ספריות ML פופולריות
+
+ליישום מלא ב-Python, ראו [דוגמת Python](samples/python/README.md) בתיקיית הדוגמאות.
 
 ## ניהול API
 
-Azure API Management היא פתרון מצוין לאבטחת שרתי MCP. הרעיון הוא למקם מופע Azure API Management מול שרת ה-MCP שלך ולתת לו לנהל תכונות שאתה צפוי להזדקק להן כמו:
+Azure API Management הוא פתרון מצוין לאבטחת שרתי MCP. הרעיון הוא לשים מופע של Azure API Management לפני שרת ה-MCP שלכם ולתת לו לטפל בתכונות שאתם עשויים לרצות כמו:
 
-- הגבלת קצב  
-- ניהול טוקנים  
-- ניטור  
-- איזון עומסים  
-- אבטחה  
+- הגבלת קצב
+- ניהול אסימונים
+- ניטור
+- איזון עומסים
+- אבטחה
 
 ### דוגמת Azure
 
 הנה דוגמת Azure שעושה בדיוק את זה, כלומר [יצירת שרת MCP ואבטחתו עם Azure API Management](https://github.com/Azure-Samples/remote-mcp-apim-functions-python).
 
-ראה כיצד מתבצע תהליך האישור בתמונה הבאה:
+ראו כיצד מתבצע תהליך האימות בתמונה הבאה:
 
-![APIM-MCP](https://github.com/Azure-Samples/remote-mcp-apim-functions-python/blob/main/mcp-client-authorization.gif?raw=true) 
+![APIM-MCP](https://github.com/Azure-Samples/remote-mcp-apim-functions-python/blob/main/mcp-client-authorization.gif?raw=true)
 
-בתמונה שלמעלה מתרחשים הדברים הבאים:
+בתמונה הקודמת, מתרחש התהליך הבא:
 
-- אימות/הרשאה מתבצעים באמצעות Microsoft Entra.  
-- Azure API Management פועל כשער ומשתמש במדיניות לניהול והכוונת התעבורה.  
-- Azure Monitor רושם את כל הבקשות לניתוח נוסף.  
+- אימות/אישור מתבצע באמצעות Microsoft Entra.
+- Azure API Management פועל כשער ומשתמש במדיניות לניהול תעבורה.
+- Azure Monitor מתעד את כל הבקשות לניתוח נוסף.
 
-#### תהליך ההרשאה
+#### תהליך האישור
 
-בוא נבחן את תהליך ההרשאה ביתר פירוט:
+בואו נבחן את תהליך האישור בפירוט:
 
 ![Sequence Diagram](https://github.com/Azure-Samples/remote-mcp-apim-functions-python/blob/main/infra/app/apim-oauth/diagrams/images/mcp-client-auth.png?raw=true)
 
-#### מפרט הרשאת MCP
+#### מפרט האישור של MCP
 
-למידע נוסף על [מפרט ההרשאה של MCP](https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization#2-10-third-party-authorization-flow)
+למדו עוד על [מפרט האישור של MCP](https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization#2-10-third-party-authorization-flow)
 
 ## פריסת שרת MCP מרוחק ל-Azure
 
-בוא נראה אם נוכל לפרוס את הדוגמה שהזכרנו קודם:
+בואו נראה אם נוכל לפרוס את הדוגמה שהזכרנו קודם:
 
-1. שכפל את הריפוזיטורי
+1. שיבטו את הריפוזיטורי
 
     ```bash
     git clone https://github.com/Azure-Samples/remote-mcp-apim-functions-python.git
     cd remote-mcp-apim-functions-python
     ```
 
-1. רישום ספק המשאבים `Microsoft.App`.  
-    * אם אתה משתמש ב-Azure CLI, הרץ `az provider register --namespace Microsoft.App --wait`.  
-    * אם אתה משתמש ב-Azure PowerShell, הרץ `Register-AzResourceProvider -ProviderNamespace Microsoft.App`. לאחר מכן הרץ `(Get-AzResourceProvider -ProviderNamespace Microsoft.App).RegistrationState` לאחר זמן מה כדי לבדוק אם הרישום הושלם.  
+1. רשמו את ספק המשאבים `Microsoft.App`.
 
-2. הרץ את הפקודה [azd](https://aka.ms/azd) כדי להקצות את שירות ניהול ה-API, אפליקציית הפונקציות (עם הקוד) וכל שאר המשאבים הנדרשים ב-Azure
+   - אם אתם משתמשים ב-Azure CLI, הריצו `az provider register --namespace Microsoft.App --wait`.
+   - אם אתם משתמשים ב-Azure PowerShell, הריצו `Register-AzResourceProvider -ProviderNamespace Microsoft.App`. לאחר מכן הריצו `(Get-AzResourceProvider -ProviderNamespace Microsoft.App).RegistrationState` לאחר זמן מה כדי לבדוק אם הרישום הושלם.
+
+1. הריצו את הפקודה הזו של [azd](https://aka.ms/azd) כדי להקצות את שירות ניהול ה-API, אפליקציית הפונקציות (עם קוד) וכל משאבי Azure הנדרשים
 
     ```shell
     azd up
@@ -193,80 +205,79 @@ Azure API Management היא פתרון מצוין לאבטחת שרתי MCP. ה�
 
     פקודה זו אמורה לפרוס את כל משאבי הענן ב-Azure
 
-### בדיקת השרת שלך עם MCP Inspector
+### בדיקת השרת שלכם עם MCP Inspector
 
-1. בחלון טרמינל חדש, התקן והרץ את MCP Inspector
+1. ב**חלון טרמינל חדש**, התקינו והריצו את MCP Inspector
 
     ```shell
     npx @modelcontextprotocol/inspector
     ```
 
-    תראה ממשק דומה ל:
+    אתם אמורים לראות ממשק דומה ל:
 
-    ![Connect to Node inspector](/03-GettingStarted/01-first-server/assets/connect.png) 
+    ![Connect to Node inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.he.png)
 
-1. לחץ עם CTRL כדי לטעון את אפליקציית הווב של MCP Inspector מה-URL שמוצג על ידי האפליקציה (למשל http://127.0.0.1:6274/#resources)  
-1. הגדר את סוג ההעברה ל-`SSE`  
-1. הגדר את ה-URL לנקודת הקצה SSE של ניהול ה-API שלך שמוצגת לאחר `azd up` ולחץ **Connect**:
+1. לחצו על CTRL כדי לטעון את אפליקציית ה-MCP Inspector מה-URL שמוצג על ידי האפליקציה (לדוגמה [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
+1. הגדירו את סוג התעבורה ל-`SSE`
+1. הגדירו את ה-URL לנקודת הקצה של SSE של ניהול ה-API שלכם שמוצגת לאחר `azd up` ו**התחברו**:
 
     ```shell
     https://<apim-servicename-from-azd-output>.azure-api.net/mcp/sse
     ```
 
-5. **רשימת כלים**. לחץ על כלי ו**הרץ את הכלי**.  
+1. **רשימת כלים**. לחצו על כלי ו**הריצו כלי**.
 
-אם כל השלבים בוצעו בהצלחה, כעת אתה מחובר לשרת MCP והצלחת להפעיל כלי.
+אם כל השלבים עבדו, אתם אמורים להיות מחוברים לשרת MCP והצלחתם לקרוא לכלי.
 
 ## שרתי MCP ל-Azure
 
-[Remote-mcp-functions](https://github.com/Azure-Samples/remote-mcp-functions-dotnet): אוסף ריפוזיטוריים זה הוא תבנית התחלה מהירה לבניית ופריסת שרתי MCP מרוחקים מותאמים אישית באמצעות Azure Functions עם Python, C# .NET או Node/TypeScript.
+[Remote-mcp-functions](https://github.com/Azure-Samples/remote-mcp-functions-dotnet): סט זה של ריפוזיטוריז הוא תבנית התחלה מהירה לבניית ופריסת שרתי MCP מותאמים אישית באמצעות Azure Functions עם Python, C# .NET או Node/TypeScript.
 
 הדוגמאות מספקות פתרון מלא שמאפשר למפתחים:
 
-- בנייה והרצה מקומית: פיתוח וניפוי שגיאות של שרת MCP במכונה מקומית  
-- פריסה ל-Azure: פריסה פשוטה לענן באמצעות פקודת azd up  
-- חיבור מלקוחות: חיבור לשרת MCP מלקוחות שונים כולל מצב סוכן Copilot ב-VS Code וכלי MCP Inspector  
+- לבנות ולהריץ מקומית: לפתח ולנפות באגים בשרת MCP במחשב מקומי
+- לפרוס ל-Azure: לפרוס בקלות לענן עם פקודת azd up פשוטה
+- להתחבר מלקוחות: להתחבר לשרת MCP מלקוחות שונים כולל מצב סוכן של VS Code וכלי MCP Inspector
 
-### תכונות מרכזיות:
+### תכונות מרכזיות
 
-- אבטחה כברירת מחדל: שרת MCP מאובטח באמצעות מפתחות ו-HTTPS  
-- אפשרויות אימות: תומך ב-OAuth באמצעות אימות מובנה ו/או ניהול API  
-- בידוד רשת: מאפשר בידוד רשת באמצעות Azure Virtual Networks (VNET)  
-- ארכיטקטורה ללא שרת: משתמש ב-Azure Functions לביצוע סקלאבילי ומונחה אירועים  
-- פיתוח מקומי: תמיכה מקיפה בפיתוח וניפוי שגיאות מקומי  
-- פריסה פשוטה: תהליך פריסה חלק ל-Azure  
+- אבטחה בעיצוב: שרת MCP מאובטח באמצעות מפתחות ו-HTTPS
+- אפשרויות אימות: תומך ב-OAuth באמצעות אימות מובנה ו/או ניהול API
+- בידוד רשת: מאפשר בידוד רשת באמצעות Azure Virtual Networks (VNET)
+- ארכיטקטורה ללא שרת: מנצל את Azure Functions לביצוע ניתן להרחבה ומבוסס אירועים
+- פיתוח מקומי: תמיכה מקיפה בפיתוח וניפוי באגים מקומיים
+- פריסה פשוטה: תהליך פריסה פשוט ל-Azure
 
-הריפוזיטורי כולל את כל קבצי התצורה, קוד המקור והגדרות התשתית הדרושים כדי להתחיל במהירות עם יישום שרת MCP מוכן לייצור.
+הריפוזיטורי כולל את כל קבצי הקונפיגורציה, קוד המקור והגדרות התשתית הדרושים כדי להתחיל במהירות עם יישום שרת MCP מוכן לייצור.
 
-- [Azure Remote MCP Functions Python](https://github.com/Azure-Samples/remote-mcp-functions-python) - דוגמת יישום MCP באמצעות Azure Functions עם Python
+- [Azure Remote MCP Functions Python](https://github.com/Azure-Samples/remote-mcp-functions-python) - יישום לדוגמה של MCP באמצעות Azure Functions עם Python
 
-- [Azure Remote MCP Functions .NET](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) - דוגמת יישום MCP באמצעות Azure Functions עם C# .NET
+- [Azure Remote MCP Functions .NET](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) - יישום לדוגמה של MCP באמצעות Azure Functions עם C# .NET
 
-- [Azure Remote MCP Functions Node/Typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) - דוגמת יישום MCP באמצעות Azure Functions עם Node/TypeScript.
+- [Azure Remote MCP Functions Node/Typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) - יישום לדוגמה של MCP באמצעות Azure Functions עם Node/TypeScript.
 
 ## נקודות מפתח
 
-- SDKs של MCP מספקים כלים ספציפיים לשפה ליישום פתרונות MCP יציבים  
-- תהליך ניפוי השגיאות והבדיקה קריטי ליישומים אמינים  
-- תבניות פרומפט לשימוש חוזר מאפשרות אינטראקציות AI עקביות  
-- תהליכי עבודה מתוכננים היטב יכולים לתזמר משימות מורכבות באמצעות כלים מרובים  
-- יישום פתרונות MCP דורש התייחסות לאבטחה, ביצועים וטיפול בשגיאות  
+- SDKs של MCP מספקים כלים ייעודיים לשפות ליישום פתרונות MCP חזקים
+- תהליך ניפוי הבאגים והבדיקות הוא קריטי ליישומי MCP אמינים
+- תבניות פקודות לשימוש חוזר מאפשרות אינטראקציות עקביות עם AI
+- תהליכי עבודה מעוצבים היטב יכולים לתזמר משימות מורכבות באמצעות כלים מרובים
+- יישום פתרונות MCP דורש התחשבות באבטחה, ביצועים וטיפול בשגיאות
 
 ## תרגיל
 
-עצב תהליך עבודה מעשי ב-MCP שמתמודד עם בעיה אמיתית בתחום שלך:
+עצבו תהליך עבודה מעשי של MCP שמטפל בבעיה אמיתית בתחום שלכם:
 
-1. זהה 3-4 כלים שיהיו שימושיים לפתרון הבעיה  
-2. צור דיאגרמת תהליך עבודה שמראה כיצד הכלים האלה מתקשרים  
-3. יישם גרסה בסיסית של אחד הכלים בשפת התכנות המועדפת עליך  
-4. צור תבנית פרומפט שתעזור למודל להשתמש בכלי שלך בצורה יעילה  
+1. זהו 3-4 כלים שיכולים להיות שימושיים לפתרון הבעיה
+2. צרו דיאגרמת תהליך עבודה שמראה כיצד הכלים הללו מתקשרים
+3. יישמו גרסה בסיסית של אחד הכלים בשפה המועדפת עליכם
+4. צרו תבנית פקודה שתעזור למודל להשתמש בכלי שלכם בצורה יעילה
 
 ## משאבים נוספים
-
 
 ---
 
 הבא: [נושאים מתקדמים](../05-AdvancedTopics/README.md)
 
 **כתב ויתור**:  
-מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש לקחת בחשבון כי תרגומים אוטומטיים עלולים להכיל שגיאות או אי-דיוקים. יש להתייחס למסמך המקורי בשפת המקור כמקור הסמכותי. למידע קריטי מומלץ להשתמש בתרגום מקצועי על ידי מתרגם אנושי. אנו לא נושאים באחריות לכל אי-הבנה או פרשנות שגויה הנובעת משימוש בתרגום זה.
+מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש להיות מודעים לכך שתרגומים אוטומטיים עשויים להכיל שגיאות או אי דיוקים. המסמך המקורי בשפתו המקורית צריך להיחשב כמקור הסמכותי. עבור מידע קריטי, מומלץ להשתמש בתרגום מקצועי על ידי אדם. איננו נושאים באחריות לאי הבנות או לפרשנויות שגויות הנובעות משימוש בתרגום זה.

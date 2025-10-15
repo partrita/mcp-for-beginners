@@ -1,23 +1,27 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "20064351f7e0fa904e96b057ed742df3",
-  "translation_date": "2025-07-22T07:33:52+00:00",
+  "original_hash": "83efa75a69bc831277263a6f1ae53669",
+  "translation_date": "2025-08-11T10:09:32+00:00",
   "source_file": "04-PracticalImplementation/README.md",
   "language_code": "fr"
 }
 -->
 # Mise en œuvre pratique
 
-La mise en œuvre pratique est le moment où la puissance du protocole Model Context Protocol (MCP) devient concrète. Bien que comprendre la théorie et l'architecture derrière MCP soit important, la véritable valeur réside dans l'application de ces concepts pour concevoir, tester et déployer des solutions qui répondent à des problèmes réels. Ce chapitre comble le fossé entre les connaissances conceptuelles et le développement pratique, en vous guidant dans le processus de création d'applications basées sur MCP.
+[![Comment construire, tester et déployer des applications MCP avec des outils et des workflows réels](../../../translated_images/05.64bea204e25ca891e3dd8b8f960d2170b9a000d8364305f57db3ec4a2c049a9a.fr.png)](https://youtu.be/vCN9-mKBDfQ)
 
-Que vous développiez des assistants intelligents, intégriez l'IA dans des flux de travail professionnels ou construisiez des outils personnalisés pour le traitement des données, MCP offre une base flexible. Son design indépendant du langage et ses SDK officiels pour les langages de programmation populaires le rendent accessible à un large éventail de développeurs. En exploitant ces SDK, vous pouvez rapidement prototyper, itérer et étendre vos solutions sur différentes plateformes et environnements.
+_(Cliquez sur l'image ci-dessus pour visionner la vidéo de cette leçon)_
 
-Dans les sections suivantes, vous trouverez des exemples pratiques, du code d'exemple et des stratégies de déploiement qui montrent comment implémenter MCP en C#, Java, TypeScript, JavaScript et Python. Vous apprendrez également à déboguer et tester vos serveurs MCP, gérer les API et déployer des solutions dans le cloud avec Azure. Ces ressources pratiques sont conçues pour accélérer votre apprentissage et vous aider à créer des applications MCP robustes et prêtes pour la production.
+La mise en œuvre pratique est le moment où la puissance du Model Context Protocol (MCP) devient concrète. Bien que comprendre la théorie et l'architecture derrière MCP soit important, la véritable valeur réside dans l'application de ces concepts pour concevoir, tester et déployer des solutions qui répondent à des problèmes réels. Ce chapitre comble le fossé entre les connaissances conceptuelles et le développement pratique, en vous guidant dans le processus de création d'applications basées sur MCP.
+
+Que vous développiez des assistants intelligents, intégriez l'IA dans des workflows métier ou construisiez des outils personnalisés pour le traitement des données, MCP offre une base flexible. Son design indépendant du langage et ses SDK officiels pour les langages de programmation populaires le rendent accessible à un large éventail de développeurs. En exploitant ces SDK, vous pouvez rapidement prototyper, itérer et déployer vos solutions sur différentes plateformes et environnements.
+
+Dans les sections suivantes, vous trouverez des exemples pratiques, du code d'exemple et des stratégies de déploiement qui montrent comment implémenter MCP en C#, Java avec Spring, TypeScript, JavaScript et Python. Vous apprendrez également à déboguer et tester vos serveurs MCP, gérer les API et déployer des solutions dans le cloud avec Azure. Ces ressources pratiques sont conçues pour accélérer votre apprentissage et vous aider à créer des applications MCP robustes et prêtes pour la production.
 
 ## Aperçu
 
-Cette leçon se concentre sur les aspects pratiques de l'implémentation de MCP dans plusieurs langages de programmation. Nous explorerons comment utiliser les SDK MCP en C#, Java, TypeScript, JavaScript et Python pour construire des applications robustes, déboguer et tester des serveurs MCP, et créer des ressources, des invites et des outils réutilisables.
+Cette leçon se concentre sur les aspects pratiques de l'implémentation de MCP dans plusieurs langages de programmation. Nous explorerons comment utiliser les SDK MCP en C#, Java avec Spring, TypeScript, JavaScript et Python pour construire des applications robustes, déboguer et tester des serveurs MCP, et créer des ressources, des invites et des outils réutilisables.
 
 ## Objectifs d'apprentissage
 
@@ -26,36 +30,36 @@ Cette leçon se concentre sur les aspects pratiques de l'implémentation de MCP 
 - Implémenter des solutions MCP en utilisant les SDK officiels dans divers langages de programmation
 - Déboguer et tester systématiquement les serveurs MCP
 - Créer et utiliser des fonctionnalités de serveur (Ressources, Invites et Outils)
-- Concevoir des flux de travail MCP efficaces pour des tâches complexes
+- Concevoir des workflows MCP efficaces pour des tâches complexes
 - Optimiser les implémentations MCP pour la performance et la fiabilité
 
 ## Ressources SDK officielles
 
-Le protocole Model Context Protocol propose des SDK officiels pour plusieurs langages :
+Le Model Context Protocol propose des SDK officiels pour plusieurs langages :
 
 - [SDK C#](https://github.com/modelcontextprotocol/csharp-sdk)
-- [SDK Java](https://github.com/modelcontextprotocol/java-sdk) 
+- [SDK Java avec Spring](https://github.com/modelcontextprotocol/java-sdk) **Remarque :** nécessite une dépendance à [Project Reactor](https://projectreactor.io). (Voir [discussion issue 246](https://github.com/orgs/modelcontextprotocol/discussions/246).)
 - [SDK TypeScript](https://github.com/modelcontextprotocol/typescript-sdk)
 - [SDK Python](https://github.com/modelcontextprotocol/python-sdk)
 - [SDK Kotlin](https://github.com/modelcontextprotocol/kotlin-sdk)
 
 ## Travailler avec les SDK MCP
 
-Cette section fournit des exemples pratiques d'implémentation de MCP dans plusieurs langages de programmation. Vous pouvez trouver du code d'exemple dans le répertoire `samples`, organisé par langage.
+Cette section fournit des exemples pratiques d'implémentation de MCP dans plusieurs langages de programmation. Vous pouvez trouver du code d'exemple dans le répertoire `samples` organisé par langage.
 
 ### Exemples disponibles
 
 Le dépôt inclut [des implémentations d'exemple](../../../04-PracticalImplementation/samples) dans les langages suivants :
 
 - [C#](./samples/csharp/README.md)
-- [Java](./samples/java/containerapp/README.md)
+- [Java avec Spring](./samples/java/containerapp/README.md)
 - [TypeScript](./samples/typescript/README.md)
 - [JavaScript](./samples/javascript/README.md)
 - [Python](./samples/python/README.md)
 
-Chaque exemple illustre les concepts clés de MCP et les modèles d'implémentation pour ce langage et cet écosystème spécifiques.
+Chaque exemple démontre des concepts clés de MCP et des modèles d'implémentation spécifiques à ce langage et écosystème.
 
-## Fonctionnalités principales des serveurs
+## Fonctionnalités principales du serveur
 
 Les serveurs MCP peuvent implémenter une combinaison des fonctionnalités suivantes :
 
@@ -70,7 +74,7 @@ Les ressources fournissent un contexte et des données à utiliser par l'utilisa
 
 ### Invites
 
-Les invites sont des messages et des flux de travail prédéfinis pour les utilisateurs :
+Les invites sont des messages et workflows prédéfinis pour les utilisateurs :
 
 - Modèles de conversation prédéfinis
 - Modèles d'interaction guidée
@@ -87,15 +91,15 @@ Les outils sont des fonctions que le modèle d'IA peut exécuter :
 
 ## Implémentations d'exemple : Implémentation en C#
 
-Le dépôt officiel du SDK C# contient plusieurs implémentations d'exemple illustrant différents aspects de MCP :
+Le dépôt officiel du SDK C# contient plusieurs implémentations d'exemple démontrant différents aspects de MCP :
 
 - **Client MCP basique** : Exemple simple montrant comment créer un client MCP et appeler des outils
 - **Serveur MCP basique** : Implémentation minimale de serveur avec enregistrement d'outils basique
 - **Serveur MCP avancé** : Serveur complet avec enregistrement d'outils, authentification et gestion des erreurs
-- **Intégration ASP.NET** : Exemples montrant l'intégration avec ASP.NET Core
+- **Intégration ASP.NET** : Exemples démontrant l'intégration avec ASP.NET Core
 - **Modèles d'implémentation d'outils** : Divers modèles pour implémenter des outils avec différents niveaux de complexité
 
-Le SDK MCP C# est en version préliminaire et les API peuvent évoluer. Nous mettrons continuellement à jour ce blog au fur et à mesure de l'évolution du SDK.
+Le SDK MCP C# est en aperçu et les API peuvent évoluer. Nous mettrons continuellement à jour ce blog au fur et à mesure que le SDK évolue.
 
 ### Fonctionnalités clés
 
@@ -104,18 +108,18 @@ Le SDK MCP C# est en version préliminaire et les API peuvent évoluer. Nous met
 
 Pour des exemples complets d'implémentation en C#, visitez le [dépôt officiel des exemples du SDK C#](https://github.com/modelcontextprotocol/csharp-sdk)
 
-## Implémentation d'exemple : Implémentation en Java
+## Implémentation d'exemple : Implémentation en Java avec Spring
 
-Le SDK Java offre des options robustes d'implémentation MCP avec des fonctionnalités de niveau entreprise.
+Le SDK Java avec Spring offre des options d'implémentation MCP robustes avec des fonctionnalités de niveau entreprise.
 
 ### Fonctionnalités clés
 
 - Intégration avec le framework Spring
-- Sécurité forte des types
+- Forte sécurité des types
 - Support de la programmation réactive
 - Gestion complète des erreurs
 
-Pour un exemple complet d'implémentation en Java, consultez [l'exemple Java](samples/java/containerapp/README.md) dans le répertoire des exemples.
+Pour un exemple complet d'implémentation en Java avec Spring, consultez [l'exemple Java avec Spring](samples/java/containerapp/README.md) dans le répertoire des exemples.
 
 ## Implémentation d'exemple : Implémentation en JavaScript
 
@@ -132,22 +136,22 @@ Pour un exemple complet d'implémentation en JavaScript, consultez [l'exemple Ja
 
 ## Implémentation d'exemple : Implémentation en Python
 
-Le SDK Python offre une approche Pythonique de l'implémentation MCP avec d'excellentes intégrations aux frameworks de ML.
+Le SDK Python offre une approche Pythonique de l'implémentation MCP avec d'excellentes intégrations aux frameworks ML.
 
 ### Fonctionnalités clés
 
 - Support async/await avec asyncio
 - Intégration avec FastAPI
-- Enregistrement simple des outils
-- Intégration native avec les bibliothèques de ML populaires
+- Enregistrement d'outils simple
+- Intégration native avec les bibliothèques ML populaires
 
 Pour un exemple complet d'implémentation en Python, consultez [l'exemple Python](samples/python/README.md) dans le répertoire des exemples.
 
 ## Gestion des API
 
-Azure API Management est une excellente solution pour sécuriser les serveurs MCP. L'idée est de placer une instance Azure API Management devant votre serveur MCP et de lui permettre de gérer des fonctionnalités que vous êtes susceptible de vouloir, telles que :
+Azure API Management est une excellente solution pour sécuriser les serveurs MCP. L'idée est de placer une instance Azure API Management devant votre serveur MCP et de lui permettre de gérer des fonctionnalités que vous êtes susceptible de vouloir, comme :
 
-- Limitation du débit
+- Limitation de débit
 - Gestion des jetons
 - Surveillance
 - Équilibrage de charge
@@ -163,7 +167,7 @@ Voyez comment le flux d'autorisation se déroule dans l'image ci-dessous :
 
 Dans l'image précédente, les étapes suivantes ont lieu :
 
-- L'authentification/l'autorisation se fait via Microsoft Entra.
+- L'authentification/autorisation se fait via Microsoft Entra.
 - Azure API Management agit comme une passerelle et utilise des politiques pour diriger et gérer le trafic.
 - Azure Monitor journalise toutes les requêtes pour une analyse ultérieure.
 
@@ -213,15 +217,15 @@ Voyons si nous pouvons déployer l'exemple mentionné précédemment :
 
     ![Connecter à Node inspector](../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.fr.png)
 
-1. CTRL cliquez pour charger l'application web MCP Inspector à partir de l'URL affichée par l'application (par exemple [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
+1. CTRL cliquez pour charger l'application web MCP Inspector depuis l'URL affichée par l'application (par exemple [http://127.0.0.1:6274/#resources](http://127.0.0.1:6274/#resources))
 1. Définissez le type de transport sur `SSE`
-1. Définissez l'URL sur votre point de terminaison SSE de gestion des API affiché après `azd up` et **Connectez-vous** :
+1. Définissez l'URL sur votre point de terminaison SSE API Management en cours d'exécution affiché après `azd up` et **Connectez-vous** :
 
     ```shell
     https://<apim-servicename-from-azd-output>.azure-api.net/mcp/sse
     ```
 
-1. **Lister les outils**. Cliquez sur un outil et **Exécutez l'outil**.  
+1. **Lister les outils**. Cliquez sur un outil et **Exécutez l'outil**.
 
 Si toutes les étapes ont fonctionné, vous devriez maintenant être connecté au serveur MCP et avoir pu appeler un outil.
 
@@ -233,13 +237,13 @@ Les exemples fournissent une solution complète permettant aux développeurs de 
 
 - Construire et exécuter localement : Développer et déboguer un serveur MCP sur une machine locale
 - Déployer sur Azure : Déployer facilement dans le cloud avec une simple commande azd up
-- Se connecter depuis des clients : Se connecter au serveur MCP depuis divers clients, y compris le mode agent de VS Code Copilot et l'outil MCP Inspector
+- Se connecter depuis des clients : Se connecter au serveur MCP depuis divers clients, y compris le mode agent de Copilot dans VS Code et l'outil MCP Inspector
 
 ### Fonctionnalités clés
 
 - Sécurité par conception : Le serveur MCP est sécurisé à l'aide de clés et HTTPS
 - Options d'authentification : Prend en charge OAuth avec authentification intégrée et/ou gestion des API
-- Isolation réseau : Permet l'isolation réseau en utilisant les réseaux virtuels Azure (VNET)
+- Isolation réseau : Permet l'isolation réseau en utilisant des réseaux virtuels Azure (VNET)
 - Architecture sans serveur : Exploite Azure Functions pour une exécution évolutive et basée sur les événements
 - Développement local : Support complet pour le développement et le débogage local
 - Déploiement simple : Processus de déploiement simplifié vers Azure
@@ -257,15 +261,15 @@ Le dépôt inclut tous les fichiers de configuration nécessaires, le code sourc
 - Les SDK MCP fournissent des outils spécifiques au langage pour implémenter des solutions MCP robustes
 - Le processus de débogage et de test est essentiel pour des applications MCP fiables
 - Les modèles d'invites réutilisables permettent des interactions cohérentes avec l'IA
-- Des flux de travail bien conçus peuvent orchestrer des tâches complexes en utilisant plusieurs outils
+- Des workflows bien conçus peuvent orchestrer des tâches complexes en utilisant plusieurs outils
 - L'implémentation de solutions MCP nécessite une prise en compte de la sécurité, des performances et de la gestion des erreurs
 
 ## Exercice
 
-Concevez un flux de travail MCP pratique qui répond à un problème réel dans votre domaine :
+Concevez un workflow MCP pratique qui répond à un problème réel dans votre domaine :
 
 1. Identifiez 3-4 outils qui seraient utiles pour résoudre ce problème
-2. Créez un diagramme de flux montrant comment ces outils interagissent
+2. Créez un diagramme de workflow montrant comment ces outils interagissent
 3. Implémentez une version basique de l'un des outils en utilisant votre langage préféré
 4. Créez un modèle d'invite qui aiderait le modèle à utiliser efficacement votre outil
 

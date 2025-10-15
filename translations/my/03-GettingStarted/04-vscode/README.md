@@ -1,85 +1,85 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "8ea28e5e566edd5969337fd0b191ba3f",
-  "translation_date": "2025-07-17T12:48:22+00:00",
+  "original_hash": "d940b5e0af75e3a3a4d1c3179120d1d9",
+  "translation_date": "2025-08-26T18:28:16+00:00",
   "source_file": "03-GettingStarted/04-vscode/README.md",
   "language_code": "my"
 }
 -->
-# GitHub Copilot Agent mode မှာ server တစ်ခုကို အသုံးပြုခြင်း
+# GitHub Copilot Agent Mode မှ Server ကို အသုံးပြုခြင်း
 
-Visual Studio Code နဲ့ GitHub Copilot ဟာ client အနေနဲ့ MCP Server ကို အသုံးပြုနိုင်ပါတယ်။ ဘာကြောင့် ဒီလိုလုပ်ချင်တာလဲဆိုတော့ MCP Server ရဲ့ feature တွေကို IDE ထဲကနေ တိုက်ရိုက်အသုံးပြုနိုင်တာပါ။ ဥပမာ GitHub ရဲ့ MCP server ကို ထည့်လိုက်ရင် terminal မှာ command တွေ ရိုက်ထည့်စရာမလိုပဲ prompt တွေဖြင့် GitHub ကို ထိန်းချုပ်နိုင်မှာဖြစ်ပါတယ်။ ဒါမှမဟုတ် developer အတွေ့အကြုံကို တိုးတက်စေမယ့် ဘာမှန်းမသိတဲ့ feature တွေကို သဘာဝဘာသာစကားနဲ့ ထိန်းချုပ်နိုင်တာကို စဉ်းစားကြည့်ပါ။ အခုတော့ အောင်မြင်မှုကို မြင်လာပြီနော်?
+Visual Studio Code နှင့် GitHub Copilot သည် client အဖြစ်လုပ်ဆောင်ပြီး MCP Server ကို အသုံးပြုနိုင်ပါသည်။ ဒါကို ဘာကြောင့် လိုအပ်လဲလို့ မေးမိနိုင်ပါတယ်။ အကြောင်းကတော့ MCP Server ရဲ့ feature တွေကို IDE အတွင်းမှာ အသုံးပြုနိုင်မယ်ဆိုတာပါ။ GitHub ရဲ့ MCP Server ကို ထည့်သွင်းလိုက်တာနဲ့ GitHub ကို terminal မှာ command ရိုက်မယ့်အစား prompt တွေကို အသုံးပြုပြီး ထိန်းချုပ်နိုင်ပါမယ်။ ဒါမှမဟုတ် developer experience ကို တိုးတက်စေမယ့် feature တွေကို သဘာဝဘာသာစကားနဲ့ ထိန်းချုပ်နိုင်မယ့် အခြေအနေကို စဉ်းစားကြည့်ပါ။ အခုတော့ အကျိုးကျေးဇူးကို မြင်လာပါပြီဟုတ်?
 
-## အနှစ်ချုပ်
+## အကျဉ်းချုပ်
 
-ဒီသင်ခန်းစာမှာ Visual Studio Code နဲ့ GitHub Copilot ရဲ့ Agent mode ကို MCP Server အတွက် client အနေနဲ့ ဘယ်လိုအသုံးပြုရမလဲ ဆိုတာကို ဖော်ပြထားပါတယ်။
+ဒီသင်ခန်းစာမှာ Visual Studio Code နှင့် GitHub Copilot ရဲ့ Agent mode ကို MCP Server ရဲ့ client အဖြစ် အသုံးပြုနည်းကို လေ့လာပါမယ်။
 
-## သင်ယူရမယ့် ရည်မှန်းချက်များ
+## သင်ယူရမည့် ရည်မှန်းချက်များ
 
-ဒီသင်ခန်းစာပြီးဆုံးတဲ့အချိန်မှာ သင်မှာ အောက်ပါအရာတွေကို လုပ်နိုင်ပါလိမ့်မယ်-
+ဒီသင်ခန်းစာပြီးဆုံးချိန်မှာ သင်တတ်မြောက်ထားမည့်အရာများမှာ:
 
-- Visual Studio Code မှတဆင့် MCP Server ကို အသုံးပြုနိုင်မယ်။
-- GitHub Copilot မှတဆင့် tools စသည့် လုပ်ဆောင်ချက်တွေကို ပြေးနိုင်မယ်။
-- Visual Studio Code ကို သင့် MCP Server ကို ရှာဖွေပြီး စီမံခန့်ခွဲဖို့ ပြင်ဆင်နိုင်မယ်။
+- Visual Studio Code မှ MCP Server ကို အသုံးပြုနိုင်ခြင်း။
+- GitHub Copilot မှ tools တို့ကို run လုပ်နိုင်ခြင်း။
+- MCP Server ကို ရှာဖွေပြီး ထိန်းချုပ်ရန် Visual Studio Code ကို configure လုပ်နိုင်ခြင်း။
 
 ## အသုံးပြုနည်း
 
-သင့် MCP server ကို နှစ်မျိုးနည်းလမ်းနဲ့ ထိန်းချုပ်နိုင်ပါတယ်-
+MCP Server ကို ထိန်းချုပ်ရန် နည်းလမ်းနှစ်မျိုးရှိပါတယ်:
 
-- User interface, ဒီအပိုင်းကို ဒီအခန်းမှာ နောက်ပိုင်းမှာ ပြသပါမယ်။
-- Terminal, `code` executable ကို အသုံးပြုပြီး terminal မှာ ထိန်းချုပ်နိုင်ပါတယ်-
+- User interface, ဒီနည်းလမ်းကို နောက်ပိုင်း chapter မှာ ပြသပါမယ်။
+- Terminal, `code` executable ကို အသုံးပြုပြီး terminal မှာ ထိန်းချုပ်နိုင်ပါတယ်:
 
-  သင့် user profile ထဲ MCP server တစ်ခု ထည့်ရန် --add-mcp command line option ကို အသုံးပြုပြီး JSON server configuration ကို {\"name\":\"server-name\",\"command\":...} ပုံစံနဲ့ ပေးပါ။
+  MCP Server ကို user profile မှာ ထည့်သွင်းရန် `--add-mcp` command line option ကို အသုံးပြုပြီး JSON server configuration ကို {\"name\":\"server-name\",\"command\":...} အဖြစ်ပေးရပါမယ်။
 
   ```
   code --add-mcp "{\"name\":\"my-server\",\"command\": \"uvx\",\"args\": [\"mcp-server-fetch\"]}"
   ```
 
-### ပုံရိပ်များ
+### Screenshots
 
-![Visual Studio Code မှာ MCP server ကို လမ်းညွှန်ပြီး ပြင်ဆင်ခြင်း](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.my.png)
+![Visual Studio Code မှ MCP server configuration ကို လမ်းညွှန်ပေးခြင်း](../../../../translated_images/chat-mode-agent.729a22473f822216dd1e723aaee1f7d4a2ede571ee0948037a2d9357a63b9d0b.my.png)
 ![Agent session တစ်ခုစီအတွက် tool ရွေးချယ်ခြင်း](../../../../translated_images/agent-mode-select-tools.522c7ba5df0848f8f0d1e439c2e96159431bc620cb39ccf3f5dc611412fd0006.my.png)
-![MCP ဖွံ့ဖြိုးတိုးတက်မှုအတွင်း အမှားများကို လွယ်ကူစွာ debug လုပ်ခြင်း](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.my.png)
+![MCP development အတွင်း error များကို အလွယ်တကူ debug လုပ်နိုင်ခြင်း](../../../../translated_images/mcp-list-servers.fce89eefe3f30032bed8952e110ab9d82fadf043fcfa071f7d40cf93fb1ea9e9.my.png)
 
-နောက်ပိုင်းအပိုင်းတွေမှာ visual interface ကို ဘယ်လိုအသုံးပြုရမလဲ ဆိုတာကို ပိုမိုဆွေးနွေးကြမယ်။
+နောက်ပိုင်း section တွေမှာ visual interface ကို ဘယ်လိုအသုံးပြုမလဲ ဆွေးနွေးကြပါစို့။
 
-## နည်းလမ်း
+## လုပ်ဆောင်ရန်နည်းလမ်း
 
-အထက်တန်းအဆင့်မှာ ဒီလို လုပ်ဆောင်ရမယ်-
+အထွေထွေ high level မှာ လုပ်ဆောင်ရန်နည်းလမ်းမှာ:
 
-- MCP Server ကို ရှာဖွေရန် ဖိုင်တစ်ခုကို ပြင်ဆင်ပါ။
-- ထို server ကို စတင်/ချိတ်ဆက်ပြီး ၎င်းရဲ့ လုပ်ဆောင်ချက်များကို ပြပါ။
-- GitHub Copilot Chat interface မှတဆင့် ထိုလုပ်ဆောင်ချက်များကို အသုံးပြုပါ။
+- MCP Server ကို ရှာဖွေဖို့ ဖိုင်တစ်ခုကို configure လုပ်ပါ။
+- Server ကို စတင်/ချိတ်ဆက်ပြီး အဲဒီ server ရဲ့ capabilities တွေကို list လုပ်ပါ။
+- GitHub Copilot Chat interface မှာ အဲဒီ capabilities တွေကို အသုံးပြုပါ။
 
-အိုကေ၊ လမ်းကြောင်းကို နားလည်သွားပြီဆိုတော့ Visual Studio Code မှတဆင့် MCP Server ကို အသုံးပြုကြည့်ရအောင်။
+အိုကေ၊ အခုတော့ flow ကို နားလည်သွားပြီဆိုရင် Visual Studio Code မှ MCP Server ကို အသုံးပြုဖို့ လေ့ကျင့်ခန်းတစ်ခုလုပ်ကြည့်ပါ။
 
-## လေ့ကျင့်ခန်း: server တစ်ခုကို အသုံးပြုခြင်း
+## လေ့ကျင့်ခန်း: Server ကို အသုံးပြုခြင်း
 
-ဒီလေ့ကျင့်ခန်းမှာ Visual Studio Code ကို သင့် MCP server ကို ရှာဖွေဖို့ ပြင်ဆင်ပြီး GitHub Copilot Chat interface မှတဆင့် အသုံးပြုနိုင်အောင် လုပ်ပါမယ်။
+ဒီလေ့ကျင့်ခန်းမှာ Visual Studio Code ကို configure လုပ်ပြီး GitHub Copilot Chat interface မှ MCP Server ကို အသုံးပြုနိုင်အောင် လုပ်ဆောင်ပါမယ်။
 
-### -0- အစပိုင်း၊ MCP Server ရှာဖွေရန် ဖွင့်ပါ
+### -0- Prestep, MCP Server discovery ကို enable လုပ်ပါ
 
-MCP Servers ရှာဖွေရန် ဖွင့်ထားဖို့ လိုအပ်နိုင်ပါတယ်။
+MCP Server discovery ကို enable လုပ်ရန် လိုအပ်နိုင်ပါတယ်။
 
-1. Visual Studio Code မှာ `File -> Preferences -> Settings` ကို သွားပါ။
+1. Visual Studio Code မှ `File -> Preferences -> Settings` ကို သွားပါ။
 
-1. "MCP" ကို ရှာပြီး settings.json ဖိုင်ထဲမှာ `chat.mcp.discovery.enabled` ကို ဖွင့်ပါ။
+1. "MCP" ကို ရှာဖွေပြီး `chat.mcp.discovery.enabled` ကို settings.json ဖိုင်မှာ enable လုပ်ပါ။
 
-### -1- config ဖိုင် ဖန်တီးခြင်း
+### -1- Config ဖိုင်တစ်ခု ဖန်တီးပါ
 
-သင့် project root မှာ config ဖိုင်တစ်ခု ဖန်တီးပါ၊ MCP.json ဆိုတဲ့ ဖိုင်တစ်ခုကို .vscode ဆိုတဲ့ folder ထဲမှာ ထည့်ရပါမယ်။ ဒီလိုပုံစံမျိုး ဖြစ်သင့်ပါတယ်-
+Project root မှာ config ဖိုင်တစ်ခု ဖန်တီးပါ။ MCP.json ဆိုတဲ့ ဖိုင်တစ်ခုကို .vscode folder အတွင်းမှာ ထည့်သွင်းရပါမယ်။ အဲဒီဖိုင်ရဲ့ အကြောင်းအရာက ဒီလိုဖြစ်ရပါမယ်:
 
 ```text
 .vscode
 |-- mcp.json
 ```
 
-နောက်တစ်ခုက server entry ကို ဘယ်လိုထည့်ရမလဲ ကြည့်ကြရအောင်။
+နောက်တစ်ဆင့်မှာ server entry ကို ဘယ်လိုထည့်မလဲ ကြည့်ပါမယ်။
 
-### -2- server ကို ပြင်ဆင်ခြင်း
+### -2- Server ကို configure လုပ်ပါ
 
-*mcp.json* ထဲမှာ အောက်ပါအကြောင်းအရာကို ထည့်ပါ-
+*mcp.json* ဖိုင်မှာ အောက်ပါအကြောင်းအရာကို ထည့်သွင်းပါ:
 
 ```json
 {
@@ -95,43 +95,43 @@ MCP Servers ရှာဖွေရန် ဖွင့်ထားဖို့ လ
 }
 ```
 
-အထက်မှာ Node.js နဲ့ server တစ်ခု စတင်ဖို့ ရိုးရှင်းတဲ့ ဥပမာတစ်ခုပါ၊ အခြား runtime တွေအတွက်တော့ `command` နဲ့ `args` ကို သင့်တော်တဲ့ server စတင် command နဲ့ ပြောင်းပါ။
+Node.js မှ server ကို စတင်ရန် အထက်ပါ ဥပမာက ရိုးရှင်းတဲ့ ဥပမာတစ်ခုဖြစ်ပါတယ်။ အခြား runtime များအတွက် server ကို စတင်ရန် `command` နှင့် `args` ကို သင့်တော်တဲ့အတိုင်း ပြောင်းလဲပါ။
 
-### -3- server ကို စတင်ခြင်း
+### -3- Server ကို စတင်ပါ
 
-Entry ထည့်ပြီးသွားပြီဆို server ကို စတင်ကြည့်ရအောင်-
+Entry ကို ထည့်သွင်းပြီးပြီဆိုရင် Server ကို စတင်ပါ:
 
-1. *mcp.json* ထဲမှာ သင့် entry ကို ရှာပြီး "play" icon ကို ရှာပါ-
+1. *mcp.json* ဖိုင်မှာ သင့် entry ကို ရှာဖွေပြီး "play" icon ကို ရှာပါ:
 
-  ![Visual Studio Code မှာ server စတင်ခြင်း](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.my.png)  
+  ![Visual Studio Code မှ Server ကို စတင်ခြင်း](../../../../translated_images/vscode-start-server.8e3c986612e3555de47e5b1e37b2f3020457eeb6a206568570fd74a17e3796ad.my.png)  
 
-1. "play" icon ကို နှိပ်လိုက်ပါ၊ GitHub Copilot Chat မှာ tools icon ရဲ့ အရေအတွက် တိုးလာတာကို တွေ့ရပါမယ်။ tools icon ကို နှိပ်လိုက်ရင် မှတ်ပုံတင်ထားတဲ့ tools စာရင်းကို မြင်ရပါမယ်။ GitHub Copilot ကို context အနေနဲ့ အသုံးပြုချင်တဲ့ tool တွေကို စစ်/မစစ်နိုင်ပါတယ်-
+1. "play" icon ကို click လုပ်ပါ။ GitHub Copilot Chat မှ tools icon ရဲ့ available tools အရေအတွက် တိုးလာတာကို တွေ့ရပါမယ်။ tools icon ကို click လုပ်ပါက registered tools များရဲ့ စာရင်းကို တွေ့ရပါမယ်။ GitHub Copilot ကို context အဖြစ် အသုံးပြုစေချင်/မချင် tools တစ်ခုချင်းစီကို check/uncheck လုပ်နိုင်ပါတယ်:
 
-  ![Visual Studio Code မှာ server စတင်ခြင်း](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.my.png)
+  ![Visual Studio Code မှ Server ကို စတင်ခြင်း](../../../../translated_images/vscode-tool.0b3bbea2fb7d8c26ddf573cad15ef654e55302a323267d8ee6bd742fe7df7fed.my.png)
 
-1. tool တစ်ခုကို ပြေးရန်၊ သင့် tool တစ်ခုရဲ့ ဖော်ပြချက်နဲ့ ကိုက်ညီမယ့် prompt တစ်ခု ရိုက်ထည့်ပါ၊ ဥပမာ "add 22 to 1" ဆိုတဲ့ prompt လိုမျိုး-
+1. Tool တစ်ခုကို run လုပ်ရန် prompt တစ်ခုကို ရိုက်ပါ။ ဥပမာအားဖြင့် "add 22 to 1" ဆိုတဲ့ prompt ကို ရိုက်ပါ:
 
-  ![GitHub Copilot မှ tool တစ်ခုကို ပြေးခြင်း](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.my.png)
+  ![GitHub Copilot မှ Tool ကို run လုပ်ခြင်း](../../../../translated_images/vscode-agent.d5a0e0b897331060518fe3f13907677ef52b879db98c64d68a38338608f3751e.my.png)
 
-  ၂၃ ဆိုတဲ့ အဖြေကို မြင်ရပါမယ်။
+  23 ဆိုတဲ့ response ကို တွေ့ရပါမယ်။
 
-## လုပ်ငန်းတာဝန်
+## လုပ်ဆောင်ရန်
 
-သင့် *mcp.json* ဖိုင်ထဲ server entry တစ်ခု ထည့်ပြီး server ကို စတင်/ရပ်တန့်နိုင်မှုကို စမ်းကြည့်ပါ။ GitHub Copilot Chat interface မှတဆင့် server ရဲ့ tools တွေနဲ့ ဆက်သွယ်နိုင်မှုကိုလည်း သေချာစစ်ဆေးပါ။
+*mcp.json* ဖိုင်မှာ server entry တစ်ခုကို ထည့်သွင်းပြီး Server ကို start/stop လုပ်နိုင်ပါစေ။ GitHub Copilot Chat interface မှ Server ရဲ့ tools တွေနဲ့ ဆက်သွယ်နိုင်ပါစေ။
 
 ## ဖြေရှင်းချက်
 
 [Solution](./solution/README.md)
 
-## အဓိက သင်ခန်းစာများ
+## အဓိက Takeaways
 
-ဒီအခန်းကနေ သင်ယူရမယ့် အချက်တွေကတော့-
+ဒီ chapter ရဲ့ အဓိက takeaways တွေက:
 
-- Visual Studio Code က MCP Servers အများကြီးနဲ့ tools တွေကို အသုံးပြုခွင့်ပေးတဲ့ client အကောင်းဆုံးတစ်ခုဖြစ်ပါတယ်။
-- GitHub Copilot Chat interface က server တွေနဲ့ ဆက်သွယ်ရာမှာ အသုံးပြုတဲ့ နည်းလမ်းဖြစ်ပါတယ်။
-- *mcp.json* ဖိုင်ထဲ server entry ပြင်ဆင်တဲ့အခါ API key စသည့် user input တွေကို prompt ပေးပြီး MCP Server ကို ပေးပို့နိုင်ပါတယ်။
+- Visual Studio Code သည် MCP Server များနှင့် tools များကို အသုံးပြုနိုင်တဲ့ client အလွန်ကောင်းတစ်ခုဖြစ်သည်။
+- GitHub Copilot Chat interface သည် Server များနှင့် ဆက်သွယ်ရန် အသုံးပြုသည်။
+- API key များလိုအပ်သောအခါ user ကို prompt လုပ်ပြီး MCP Server ကို configure လုပ်ရာမှာ *mcp.json* ဖိုင်တွင် ထည့်သွင်းနိုင်သည်။
 
-## နမူနာများ
+## Samples
 
 - [Java Calculator](../samples/java/calculator/README.md)
 - [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
@@ -139,13 +139,15 @@ Entry ထည့်ပြီးသွားပြီဆို server ကို �
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../../../../03-GettingStarted/samples/python)
 
-## အပိုဆောင်း အရင်းအမြစ်များ
+## အပိုဆောင်း ရင်းမြစ်များ
 
 - [Visual Studio docs](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
 
 ## နောက်တစ်ဆင့်
 
-- နောက်တစ်ဆင့်: [SSE Server တစ်ခု ဖန်တီးခြင်း](../05-sse-server/README.md)
+- နောက်တစ်ဆင့်: [Creating a stdio Server](../05-stdio-server/README.md)
 
-**အကြောင်းကြားချက်**  
-ဤစာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ဖြင့် ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှန်ကန်မှုအတွက် ကြိုးစားသော်လည်း အလိုအလျောက် ဘာသာပြန်ခြင်းတွင် အမှားများ သို့မဟုတ် မှားယွင်းချက်များ ပါဝင်နိုင်ကြောင်း သတိပြုပါရန် မေတ္တာရပ်ခံအပ်ပါသည်။ မူရင်းစာတမ်းကို မိမိဘာသာစကားဖြင့်သာ တရားဝင်အရင်းအမြစ်အဖြစ် ယူဆသင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူ့ဘာသာပြန်ပညာရှင်မှ ဘာသာပြန်ခြင်းကို အကြံပြုပါသည်။ ဤဘာသာပြန်ချက်ကို အသုံးပြုရာမှ ဖြစ်ပေါ်လာနိုင်သည့် နားလည်မှုမှားယွင်းမှုများအတွက် ကျွန်ုပ်တို့သည် တာဝန်မယူပါ။
+---
+
+**ဝက်ဘ်ဆိုက်မှတ်ချက်**:  
+ဤစာရွက်စာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ကို အသုံးပြု၍ ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှန်ကန်မှုအတွက် ကြိုးစားနေသော်လည်း၊ အလိုအလျောက်ဘာသာပြန်ခြင်းတွင် အမှားများ သို့မဟုတ် မမှန်ကန်မှုများ ပါဝင်နိုင်ကြောင်း သတိပြုပါ။ မူလဘာသာစကားဖြင့် ရေးသားထားသော စာရွက်စာတမ်းကို အာဏာတည်သော ရင်းမြစ်အဖြစ် သတ်မှတ်သင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူ့ဘာသာပြန်ပညာရှင်များကို အသုံးပြုရန် အကြံပြုပါသည်။ ဤဘာသာပြန်ကို အသုံးပြုခြင်းမှ ဖြစ်ပေါ်လာသော နားလည်မှုမှားများ သို့မဟုတ် အဓိပ္ပာယ်မှားများအတွက် ကျွန်ုပ်တို့သည် တာဝန်မယူပါ။

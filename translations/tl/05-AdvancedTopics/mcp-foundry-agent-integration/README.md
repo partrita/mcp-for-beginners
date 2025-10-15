@@ -60,7 +60,7 @@ Pumili ng iyong nais na development environment:
 
 ## Python Implementation
 
-***Note*** Maaari mong patakbuhin ang [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb)
+***Note*** Maaari mong patakbuhin ang [notebook](mcp_support_python.ipynb)
 
 ### 1. I-install ang Mga Kinakailangang Package
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET Implementation
 
-***Note*** Maaari mong patakbuhin ang [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb)
+***Note*** Maaari mong patakbuhin ang [notebook](mcp_support_dotnet.ipynb)
 
 ### 1. I-install ang Mga Kinakailangang Package
 

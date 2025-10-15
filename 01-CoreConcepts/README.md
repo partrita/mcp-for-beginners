@@ -1,16 +1,32 @@
-# 📖 MCP Core Concepts: Mastering the Model Context Protocol for AI Integration
+# MCP Core Concepts: Mastering the Model Context Protocol for AI Integration
 
 [![MCP Core Concepts](../images/video-thumbnails/02.png)](https://youtu.be/earDzWGtE84)
 
 _(Click the image above to view video of this lesson)_
 
-The [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol) is a powerful, standardized framework that optimizes communication between Large Language Models (LLMs) and external tools, applications, and data sources. This SEO-optimized guide will walk you through the core concepts of MCP, ensuring you understand its client-server architecture, essential components, communication mechanics, and implementation best practices.
+The [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol) is a powerful, standardized framework that optimizes communication between Large Language Models (LLMs) and external tools, applications, and data sources. 
+This guide will walk you through the core concepts of MCP. You will learn about its client-server architecture, essential components, communication mechanics, and implementation best practices.
+
+- **Explicit User Consent**: All data access and operations require explicit user approval before execution. Users must clearly understand what data will be accessed and what actions will be performed, with granular control over permissions and authorizations.
+
+- **Data Privacy Protection**: User data is only exposed with explicit consent and must be protected by robust access controls throughout the entire interaction lifecycle. Implementations must prevent unauthorized data transmission and maintain strict privacy boundaries.
+
+- **Tool Execution Safety**: Every tool invocation requires explicit user consent with clear understanding of the tool's functionality, parameters, and potential impact. Robust security boundaries must prevent unintended, unsafe, or malicious tool execution.
+
+- **Transport Layer Security**: All communication channels should use appropriate encryption and authentication mechanisms. Remote connections should implement secure transport protocols and proper credential management.
+
+#### Implementation Guidelines:
+
+- **Permission Management**: Implement fine-grained permission systems that allow users to control which servers, tools, and resources are accessible
+- **Authentication & Authorization**: Use secure authentication methods (OAuth, API keys) with proper token management and expiration  
+- **Input Validation**: Validate all parameters and data inputs according to defined schemas to prevent injection attacks
+- **Audit Logging**: Maintain comprehensive logs of all operations for security monitoring and compliance
 
 ## Overview
 
 This lesson explores the fundamental architecture and components that make up the Model Context Protocol (MCP) ecosystem. You'll learn about the client-server architecture, key components, and communication mechanisms that power MCP interactions.
 
-## 👩‍🎓 Key Learning Objectives
+## Key Learning Objectives
 
 By the end of this lesson, you will:
 
@@ -20,7 +36,7 @@ By the end of this lesson, you will:
 - Learn how information flows within the MCP ecosystem.
 - Gain practical insights through code examples in .NET, Java, Python, and JavaScript.
 
-## 🔎 MCP Architecture: A Deeper Look
+## MCP Architecture: A Deeper Look
 
 The MCP ecosystem is built on a client-server model. This modular structure allows AI applications to interact with tools, databases, APIs, and contextual resources efficiently. Let's break down this architecture into its core components.
 
@@ -29,7 +45,7 @@ At its core, MCP follows a client-server architecture where a host application c
 ```mermaid
 flowchart LR
     subgraph "Your Computer"
-        Host["Host with MCP VScode, IDEs, Tools)"]
+        Host["Host with MCP (Visual Studio, VS Code, IDEs, Tools)"]
         S1["MCP Server A"]
         S2["MCP Server B"]
         S3["MCP Server C"]
@@ -50,112 +66,154 @@ flowchart LR
 - **Local Data Sources**: Your computer's files, databases, and services that MCP servers can securely access
 - **Remote Services**: External systems available over the internet that MCP servers can connect to through APIs.
 
-The MCP Protocol is an evolving standard you can see the latest updates to the [protocol specification](https://modelcontextprotocol.io/specification/2025-06-18/)
+The MCP Protocol is an evolving standard using date-based versioning (YYYY-MM-DD format). The current protocol version is **2025-06-18**. You can see the latest updates to the [protocol specification](https://modelcontextprotocol.io/specification/2025-06-18/)
 
 ### 1. Hosts
 
-In the Model Context Protocol (MCP), Hosts play a crucial role as the primary interface through which users interact with the protocol. Hosts are applications or environments that initiate connections with MCP servers to access data, tools, and prompts. Examples of Hosts include integrated development environments (IDEs) like Visual Studio Code, AI tools like Claude Desktop, or custom-built agents designed for specific tasks
+In the Model Context Protocol (MCP), **Hosts** are AI applications that serve as the primary interface through which users interact with the protocol. Hosts coordinate and manage connections to multiple MCP servers by creating dedicated MCP clients for each server connection. Examples of Hosts include:
 
-**Hosts** are LLM applications that initiate connections. They:
+- **AI Applications**: Claude Desktop, Visual Studio Code, Claude Code
+- **Development Environments**: IDEs and code editors with MCP integration  
+- **Custom Applications**: Purpose-built AI agents and tools
 
-- Execute or interact with AI models to generate responses.
-- Initiate connections with MCP servers.
-- Manage the conversation flow and user interface.
-- Control permission and security constraints.
-- Handle user consent for data sharing and tool execution.
+**Hosts** are applications that coordinate AI model interactions. They:
+
+- **Orchestrate AI Models**: Execute or interact with LLMs to generate responses and coordinate AI workflows
+- **Manage Client Connections**: Create and maintain one MCP client per MCP server connection
+- **Control User Interface**: Handle conversation flow, user interactions, and response presentation  
+- **Enforce Security**: Control permissions, security constraints, and authentication
+- **Handle User Consent**: Manage user approval for data sharing and tool execution
 
 
 ### 2. Clients
 
-Clients are essential components that facilitate the interaction between Hosts and MCP servers. Clients act as intermediaries, enabling Hosts to access and utilize the functionalities provided by MCP servers. They play a crucial role in ensuring smooth communication and efficient data exchange within the MCP architecture
+**Clients** are essential components that maintain dedicated one-to-one connections between Hosts and MCP servers. Each MCP client is instantiated by the Host to connect to a specific MCP server, ensuring organized and secure communication channels. Multiple clients enable Hosts to connect to multiple servers simultaneously.
 
-**Clients** are connectors within the host application. They:
+**Clients** are connector components within the host application. They:
 
-- Send requests to servers with prompts/instructions.
-- Negotiate capabilities with servers.
-- Manage tool execution requests from models.
-- Process and display responses to users.
+- **Protocol Communication**: Send JSON-RPC 2.0 requests to servers with prompts and instructions
+- **Capability Negotiation**: Negotiate supported features and protocol versions with servers during initialization
+- **Tool Execution**: Manage tool execution requests from models and process responses
+- **Real-time Updates**: Handle notifications and real-time updates from servers
+- **Response Processing**: Process and format server responses for display to users
 
 ### 3. Servers
 
-Servers are responsible for handling requests from MCP clients and providing appropriate responses. They manage various operations such as data retrieval, tool execution, and prompt generation. Servers ensure that the communication between clients and Hosts is efficient and reliable, maintaining the integrity of the interaction process
+**Servers** are programs that provide context, tools, and capabilities to MCP clients. They can execute locally (same machine as the Host) or remotely (on external platforms), and are responsible for handling client requests and providing structured responses. Servers expose specific functionality through the standardized Model Context Protocol.
 
 **Servers** are services that provide context and capabilities. They:
 
-- Register available features (resources, prompts, tools)
-- Receive and execute tool calls from the client
-- Provide contextual information to enhance model responses
-- Return outputs back to the client
-- Maintain state across interactions when needed
+- **Feature Registration**: Register and expose available primitives (resources, prompts, tools) to clients
+- **Request Processing**: Receive and execute tool calls, resource requests, and prompt requests from clients
+- **Context Provision**: Provide contextual information and data to enhance model responses
+- **State Management**: Maintain session state and handle stateful interactions when needed
+- **Real-time Notifications**: Send notifications about capability changes and updates to connected clients
 
-Servers can be developed by anyone to extend model capabilities with specialized functionality.
+Servers can be developed by anyone to extend model capabilities with specialized functionality, and they support both local and remote deployment scenarios.
 
-### 4. Server Features
+### 4. Server Primitives
 
-Servers in the Model Context Protocol (MCP) provide fundamental building blocks that enable rich interactions between clients, hosts, and language models. These features are designed to enhance the capabilities of MCP by offering structured context, tools, and prompts.
+Servers in the Model Context Protocol (MCP) provide three core **primitives** that define the fundamental building blocks for rich interactions between clients, hosts, and language models. These primitives specify the types of contextual information and actions available through the protocol.
 
-MCP servers can offer any of the following features:
+MCP servers can expose any combination of the following three core primitives:
 
-#### 📑 Resources 
+#### Resources 
 
-Resources in the Model Context Protocol (MCP) encompass various types of context and data that can be utilized by users or AI models. These include:
+**Resources** are data sources that provide contextual information to AI applications. They represent static or dynamic content that can enhance model understanding and decision-making:
 
-- **Contextual Data**: Information and context that users or AI models can leverage for decision-making and task execution.
-- **Knowledge Bases and Document Repositories**: Collections of structured and unstructured data, such as articles, manuals, and research papers, that provide valuable insights and information.
-- **Local Files and Databases**: Data stored locally on devices or within databases, accessible for processing and analysis.
-- **APIs and Web Services**: External interfaces and services that offer additional data and functionalities, enabling integration with various online resources and tools.
+- **Contextual Data**: Structured information and context for AI model consumption
+- **Knowledge Bases**: Document repositories, articles, manuals, and research papers
+- **Local Data Sources**: Files, databases, and local system information  
+- **External Data**: API responses, web services, and remote system data
+- **Dynamic Content**: Real-time data that updates based on external conditions
 
-An example of a resource can be a database schema or a file that can be accessed like so:
+Resources are identified by URIs and support discovery through `resources/list` and retrieval through `resources/read` methods:
 
 ```text
-file://log.txt
-database://schema
+file://documents/project-spec.md
+database://production/users/schema
+api://weather/current
 ```
 
-### 🤖 Prompts
-Prompts in the Model Context Protocol (MCP) include various pre-defined templates and interaction patterns designed to streamline user workflows and enhance communication. These include:
+#### Prompts
 
-- **Templated Messages and Workflows**: Pre-structured messages and processes that guide users through specific tasks and interactions.
-- **Pre-defined Interaction Patterns**: Standardized sequences of actions and responses that facilitate consistent and efficient communication.
-- **Specialized Conversation Templates**: Customizable templates tailored for specific types of conversations, ensuring relevant and contextually appropriate interactions.
+**Prompts** are reusable templates that help structure interactions with language models. They provide standardized interaction patterns and templated workflows:
 
-A prompt template can look like so:
+- **Template-based Interactions**: Pre-structured messages and conversation starters
+- **Workflow Templates**: Standardized sequences for common tasks and interactions
+- **Few-shot Examples**: Example-based templates for model instruction
+- **System Prompts**: Foundational prompts that define model behavior and context
+- **Dynamic Templates**: Parameterized prompts that adapt to specific contexts
+
+Prompts support variable substitution and can be discovered via `prompts/list` and retrieved with `prompts/get`:
 
 ```markdown
-Generate a product slogan based on the following {{product}} with the following {{keywords}}
+Generate a {{task_type}} for {{product}} targeting {{audience}} with the following requirements: {{requirements}}
 ```
 
-#### ⛏️ Tools
+#### Tools
 
-Tools in the Model Context Protocol (MCP) are functions that the AI model can execute to perform specific tasks. These tools are designed to enhance the capabilities of the AI model by providing structured and reliable operations. Key aspects include:
+**Tools** are executable functions that AI models can invoke to perform specific actions. They represent the "verbs" of the MCP ecosystem, enabling models to interact with external systems:
 
-- **Functions for the AI model to execute**: Tools are executable functions that the AI model can invoke to carry out various tasks.
-- **Unique Name and Description**: Each tool has a distinct name and a detailed description that explains its purpose and functionality.
-- **Parameters and Outputs**: Tools accept specific parameters and return structured outputs, ensuring consistent and predictable results.
-- **Discrete Functions**: Tools perform discrete functions such as web searches, calculations, and database queries.
+- **Executable Functions**: Discrete operations that models can invoke with specific parameters
+- **External System Integration**: API calls, database queries, file operations, calculations
+- **Unique Identity**: Each tool has a distinct name, description, and parameter schema
+- **Structured I/O**: Tools accept validated parameters and return structured, typed responses
+- **Action Capabilities**: Enable models to perform real-world actions and retrieve live data
 
-An example tool could look like so:
+Tools are defined with JSON Schema for parameter validation and discovered through `tools/list` and executed via `tools/call`:
 
 ```typescript
 server.tool(
-  "GetProducts",
+  "search_products", 
   {
-    pageSize: z.string().optional(),
-    pageCount: z.string().optional()
-  }, () => {
-    // return results from API
+    query: z.string().describe("Search query for products"),
+    category: z.string().optional().describe("Product category filter"),
+    max_results: z.number().default(10).describe("Maximum results to return")
+  }, 
+  async (params) => {
+    // Execute search and return structured results
+    return await productService.search(params);
   }
-)
+);
 ```
 
-## Client Features
-In the Model Context Protocol (MCP), clients offer several key features to servers, enhancing the overall functionality and interaction within the protocol. One of the notable features is Sampling.
+## Client Primitives
 
-### 👉 Sampling
+In the Model Context Protocol (MCP), **clients** can expose primitives that enable servers to request additional capabilities from the host application. These client-side primitives allow for richer, more interactive server implementations that can access AI model capabilities and user interactions.
 
-- **Server-Initiated Agentic Behaviors**: Clients enable servers to initiate specific actions or behaviors autonomously, enhancing the dynamic capabilities of the system.
-- **Recursive LLM Interactions**: This feature allows for recursive interactions with large language models (LLMs), enabling more complex and iterative processing of tasks.
-- **Requesting Additional Model Completions**: Servers can request additional completions from the model, ensuring that the responses are thorough and contextually relevant.
+### Sampling
+
+**Sampling** allows servers to request language model completions from the client's AI application. This primitive enables servers to access LLM capabilities without embedding their own model dependencies:
+
+- **Model-Independent Access**: Servers can request completions without including LLM SDKs or managing model access
+- **Server-Initiated AI**: Enables servers to autonomously generate content using the client's AI model
+- **Recursive LLM Interactions**: Supports complex scenarios where servers need AI assistance for processing
+- **Dynamic Content Generation**: Allows servers to create contextual responses using the host's model
+
+Sampling is initiated through the `sampling/complete` method, where servers send completion requests to clients.
+
+### Elicitation  
+
+**Elicitation** enables servers to request additional information or confirmation from users through the client interface:
+
+- **User Input Requests**: Servers can ask for additional information when needed for tool execution
+- **Confirmation Dialogs**: Request user approval for sensitive or impactful operations
+- **Interactive Workflows**: Enable servers to create step-by-step user interactions
+- **Dynamic Parameter Collection**: Gather missing or optional parameters during tool execution
+
+Elicitation requests are made using the `elicitation/request` method to collect user input through the client's interface.
+
+### Logging
+
+**Logging** allows servers to send structured log messages to clients for debugging, monitoring, and operational visibility:
+
+- **Debugging Support**: Enable servers to provide detailed execution logs for troubleshooting
+- **Operational Monitoring**: Send status updates and performance metrics to clients
+- **Error Reporting**: Provide detailed error context and diagnostic information
+- **Audit Trails**: Create comprehensive logs of server operations and decisions
+
+Logging messages are sent to clients to provide transparency into server operations and facilitate debugging.
 
 ## Information Flow in MCP
 
@@ -185,35 +243,53 @@ The Model Context Protocol (MCP) defines a structured flow of information betwee
 
 This flow enables MCP to support advanced, interactive, and context-aware AI applications by seamlessly connecting models with external tools and data sources.
 
-## Protocol Details
+## Protocol Architecture & Layers
 
-MCP (Model Context Protocol) is built on top of [JSON-RPC 2.0](https://www.jsonrpc.org/), providing a standardized, language-agnostic message format for communication between hosts, clients, and servers. This foundation enables reliable, structured, and extensible interactions across diverse platforms and programming languages.
+MCP consists of two distinct architectural layers that work together to provide a complete communication framework:
 
-### Key Protocol Features
+### Data Layer
 
-MCP extends JSON-RPC 2.0 with additional conventions for tool invocation, resource access, and prompt management. It supports multiple transport layers (STDIO, WebSocket, SSE) and enables secure, extensible, and language-agnostic communication between components.
+The **Data Layer** implements the core MCP protocol using **JSON-RPC 2.0** as its foundation. This layer defines the message structure, semantics, and interaction patterns:
 
-#### 🧢 Base Protocol
+#### Core Components:
 
-- **JSON-RPC Message Format**: All requests and responses use the JSON-RPC 2.0 specification, ensuring consistent structure for method calls, parameters, results, and error handling.
-- **Stateful Connections**: MCP sessions maintain state across multiple requests, supporting ongoing conversations, context accumulation, and resource management.
-- **Capability Negotiation**: During connection setup, clients and servers exchange information about supported features, protocol versions, available tools, and resources. This ensures both sides understand each other's capabilities and can adapt accordingly.
+- **JSON-RPC 2.0 Protocol**: All communication uses standardized JSON-RPC 2.0 message format for method calls, responses, and notifications
+- **Lifecycle Management**: Handles connection initialization, capability negotiation, and session termination between clients and servers
+- **Server Primitives**: Enables servers to provide core functionality through tools, resources, and prompts
+- **Client Primitives**: Enables servers to request sampling from LLMs, elicit user input, and send log messages
+- **Real-time Notifications**: Supports asynchronous notifications for dynamic updates without polling
 
-#### ➕ Additional Utilities
+#### Key Features:
 
-Below are some additional utilities and protocol extensions that MCP provides to enhance developer experience and enable advanced scenarios:
+- **Protocol Version Negotiation**: Uses date-based versioning (YYYY-MM-DD) to ensure compatibility
+- **Capability Discovery**: Clients and servers exchange supported feature information during initialization
+- **Stateful Sessions**: Maintains connection state across multiple interactions for context continuity
 
-- **Configuration Options**: MCP allows dynamic configuration of session parameters, such as tool permissions, resource access, and model settings, tailored to each interaction.
-- **Progress Tracking**: Long-running operations can report progress updates, enabling responsive user interfaces and better user experience during complex tasks.
-- **Request Cancellation**: Clients can cancel in-flight requests, allowing users to interrupt operations that are no longer needed or taking too long.
-- **Error Reporting**: Standardized error messages and codes help diagnose issues, handle failures gracefully, and provide actionable feedback to users and developers.
-- **Logging**: Both clients and servers can emit structured logs for auditing, debugging, and monitoring protocol interactions.
+### Transport Layer
 
-By leveraging these protocol features, MCP ensures robust, secure, and flexible communication between language models and external tools or data sources.
+The **Transport Layer** manages communication channels, message framing, and authentication between MCP participants:
 
-### 🔐 Security Considerations
+#### Supported Transport Mechanisms:
 
-MCP implementations should adhere to several key security principles to ensure safe and trustworthy interactions:
+1. **STDIO Transport**:
+   - Uses standard input/output streams for direct process communication
+   - Optimal for local processes on the same machine with no network overhead
+   - Commonly used for local MCP server implementations
+
+2. **Streamable HTTP Transport**:
+   - Uses HTTP POST for client-to-server messages  
+   - Optional Server-Sent Events (SSE) for server-to-client streaming
+   - Enables remote server communication across networks
+   - Supports standard HTTP authentication (bearer tokens, API keys, custom headers)
+   - MCP recommends OAuth for secure token-based authentication
+
+#### Transport Abstraction:
+
+The transport layer abstracts communication details from the data layer, enabling the same JSON-RPC 2.0 message format across all transport mechanisms. This abstraction allows applications to switch between local and remote servers seamlessly.
+
+### Security Considerations
+
+MCP implementations must adhere to several critical security principles to ensure safe, trustworthy, and secure interactions across all protocol operations:
 
 - **User Consent and Control**: Users must provide explicit consent before any data is accessed or operations are performed. They should have clear control over what data is shared and which actions are authorized, supported by intuitive user interfaces for reviewing and approving activities.
 
@@ -221,7 +297,7 @@ MCP implementations should adhere to several key security principles to ensure s
 
 - **Tool Safety**: Before invoking any tool, explicit user consent is required. Users should have a clear understanding of each tool’s functionality, and robust security boundaries must be enforced to prevent unintended or unsafe tool execution.
 
-By following these principles, MCP ensures that user trust, privacy, and safety are maintained across all protocol interactions.
+By following these security principles, MCP ensures user trust, privacy, and safety are maintained across all protocol interactions while enabling powerful AI integrations.
 
 ## Code Examples: Key Components
 
@@ -370,13 +446,18 @@ class WeatherData {
 
 ### Python Example: Building an MCP Server
 
-In this example we show how to build an MCP server in Python. You're also shown two different ways to create tools.
+This example uses fastmcp, so please ensure you install it first:
+
+```python
+pip install fastmcp
+```
+Code Sample:
 
 ```python
 #!/usr/bin/env python3
 import asyncio
-from mcp.server.fastmcp import FastMCP
-from mcp.server.transports.stdio import serve_stdio
+from fastmcp import FastMCP
+from fastmcp.transports.stdio import serve_stdio
 
 # Create a FastMCP server
 mcp = FastMCP(
@@ -387,8 +468,6 @@ mcp = FastMCP(
 @mcp.tool()
 def get_weather(location: str) -> dict:
     """Gets current weather for a location."""
-    # This would normally call a weather API
-    # Simplified for demonstration
     return {
         "temperature": 72.5,
         "conditions": "Sunny",
@@ -400,8 +479,6 @@ class WeatherTools:
     @mcp.tool()
     def forecast(self, location: str, days: int = 1) -> dict:
         """Gets weather forecast for a location for the specified number of days."""
-        # This would normally call a weather API forecast endpoint
-        # Simplified for demonstration
         return {
             "location": location,
             "forecast": [
@@ -410,10 +487,10 @@ class WeatherTools:
             ]
         }
 
-# Instantiate the class to register its tools
+# Register class tools
 weather_tools = WeatherTools()
 
-# Start the server using stdio transport
+# Start the server
 if __name__ == "__main__":
     asyncio.run(serve_stdio(mcp))
 ```
@@ -525,44 +602,56 @@ MCP includes several built-in concepts and mechanisms for managing security and 
 
 By combining these mechanisms, MCP provides a secure foundation for integrating language models with external tools and data sources, while giving users and developers fine-grained control over access and usage.
 
-## Protocol Messages
+## Protocol Messages & Communication Flow
 
-MCP communication uses structured JSON messages to facilitate clear and reliable interactions between clients, servers, and models. The main message types include:
+MCP communication uses structured **JSON-RPC 2.0** messages to facilitate clear and reliable interactions between hosts, clients, and servers. The protocol defines specific message patterns for different types of operations:
 
-- **Client Request**  
-  Sent from the client to the server, this message typically includes:
-  - The user's prompt or command
-  - Conversation history for context
-  - Tool configuration and permissions
-  - Any additional metadata or session information
+### Core Message Types:
 
-- **Model Response**  
-  Returned by the model (via the client), this message contains:
-  - Generated text or completion based on the prompt and context
-  - Optional tool call instructions if the model determines a tool should be invoked
-  - References to resources or additional context as needed
+#### **Initialization Messages**
+- **`initialize` Request**: Establishes connection and negotiates protocol version and capabilities
+- **`initialize` Response**: Confirms supported features and server information  
+- **`notifications/initialized`**: Signals that initialization is complete and the session is ready
 
-- **Tool Request**  
-  Sent from the client to the server when a tool needs to be executed. This message includes:
-  - The name of the tool to invoke
-  - Parameters required by the tool (validated against the tool's schema)
-  - Contextual information or identifiers for tracking the request
+#### **Discovery Messages**
+- **`tools/list` Request**: Discovers available tools from the server
+- **`resources/list` Request**: Lists available resources (data sources)
+- **`prompts/list` Request**: Retrieves available prompt templates
 
-- **Tool Response**  
-  Returned by the server after executing a tool. This message provides:
-  - The results of the tool execution (structured data or content)
-  - Any errors or status information if the tool call failed
-  - Optionally, additional metadata or logs related to the execution
+#### **Execution Messages**  
+- **`tools/call` Request**: Executes a specific tool with provided parameters
+- **`resources/read` Request**: Retrieves content from a specific resource
+- **`prompts/get` Request**: Fetches a prompt template with optional parameters
 
-These structured messages ensure that each step in the MCP workflow is explicit, traceable, and extensible, supporting advanced scenarios such as multi-turn conversations, tool chaining, and robust error handling.
+#### **Client-side Messages**
+- **`sampling/complete` Request**: Server requests LLM completion from the client
+- **`elicitation/request`**: Server requests user input through the client interface
+- **Logging Messages**: Server sends structured log messages to the client
+
+#### **Notification Messages**
+- **`notifications/tools/list_changed`**: Server notifies client of tool changes
+- **`notifications/resources/list_changed`**: Server notifies client of resource changes  
+- **`notifications/prompts/list_changed`**: Server notifies client of prompt changes
+
+### Message Structure:
+
+All MCP messages follow JSON-RPC 2.0 format with:
+- **Request Messages**: Include `id`, `method`, and optional `params`
+- **Response Messages**: Include `id` and either `result` or `error`  
+- **Notification Messages**: Include `method` and optional `params` (no `id` or response expected)
+
+This structured communication ensures reliable, traceable, and extensible interactions supporting advanced scenarios like real-time updates, tool chaining, and robust error handling.
 
 ## Key Takeaways
 
-- MCP uses a client-server architecture to connect models with external capabilities
-- The ecosystem consists of clients, hosts, servers, tools, and data sources
-- Communication can happen through STDIO, SSE, or WebSockets
-- Tools are the fundamental units of functionality exposed to models
-- Structured communication protocols ensure consistent interactions
+- **Architecture**: MCP uses a client-server architecture where hosts manage multiple client connections to servers
+- **Participants**: The ecosystem includes hosts (AI applications), clients (protocol connectors), and servers (capability providers)
+- **Transport Mechanisms**: Communication supports STDIO (local) and Streamable HTTP with optional SSE (remote)
+- **Core Primitives**: Servers expose tools (executable functions), resources (data sources), and prompts (templates)
+- **Client Primitives**: Servers can request sampling (LLM completions), elicitation (user input), and logging from clients
+- **Protocol Foundation**: Built on JSON-RPC 2.0 with date-based versioning (current: 2025-06-18)
+- **Real-time Capabilities**: Supports notifications for dynamic updates and real-time synchronization
+- **Security First**: Explicit user consent, data privacy protection, and secure transport are core requirements
 
 ## Exercise
 

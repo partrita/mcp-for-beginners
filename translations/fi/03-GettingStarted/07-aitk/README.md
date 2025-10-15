@@ -1,32 +1,32 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "8248e3491f5245ee6ab48ef724a4f65a",
-  "translation_date": "2025-07-13T21:36:19+00:00",
+  "original_hash": "98bcd044860716da5819e31c152813b7",
+  "translation_date": "2025-08-18T16:15:49+00:00",
   "source_file": "03-GettingStarted/07-aitk/README.md",
   "language_code": "fi"
 }
 -->
-# Palvelimen käyttäminen AI Toolkit -laajennuksesta Visual Studio Codeen
+# AI Toolkit -palvelimen käyttäminen Visual Studio Code -laajennuksessa
 
-Kun rakennat tekoälyagenttia, kyse ei ole pelkästään älykkäiden vastausten tuottamisesta, vaan myös siitä, että agentillasi on kyky toimia. Tässä astuu kuvaan Model Context Protocol (MCP). MCP helpottaa agenttien pääsyä ulkoisiin työkaluihin ja palveluihin yhtenäisellä tavalla. Voit ajatella sitä kuin liittäisit agenttisi työkalupakkiin, jota se *todella* osaa käyttää.
+Kun rakennat tekoälyagenttia, kyse ei ole pelkästään älykkäiden vastausten tuottamisesta; kyse on myös agentin kyvystä toimia. Tässä kohtaa Model Context Protocol (MCP) astuu kuvaan. MCP mahdollistaa agenttien pääsyn ulkoisiin työkaluihin ja palveluihin yhtenäisellä tavalla. Voit ajatella sen kuin liittäisit agenttisi työkalupakkiin, jota se *oikeasti* voi käyttää.
 
-Oletetaan, että yhdistät agentin laskin-MCP-palvelimeesi. Yhtäkkiä agenttisi voi suorittaa matemaattisia laskutoimituksia pelkän kehotteen, kuten ”Paljonko on 47 kertaa 89?”, perusteella – ilman, että sinun tarvitsee kovakoodata logiikkaa tai rakentaa omia rajapintoja.
+Oletetaan, että yhdistät agentin laskin-MCP-palvelimeen. Yhtäkkiä agenttisi voi suorittaa matemaattisia operaatioita pelkän kehotteen, kuten "Mikä on 47 kertaa 89?", avulla—ilman, että sinun tarvitsee kovakoodata logiikkaa tai rakentaa mukautettuja API:ita.
 
 ## Yleiskatsaus
 
-Tässä oppitunnissa käydään läpi, miten yhdistät laskin-MCP-palvelimen agenttiin [AI Toolkit](https://aka.ms/AIToolkit) -laajennuksella Visual Studio Codessa, jolloin agenttisi voi suorittaa matemaattisia operaatioita, kuten yhteenlaskua, vähennystä, kertolaskua ja jakolaskua luonnollisen kielen avulla.
+Tässä osiossa käsitellään, kuinka yhdistää laskin-MCP-palvelin agenttiin [AI Toolkit](https://aka.ms/AIToolkit) -laajennuksen avulla Visual Studio Codessa, jolloin agentti voi suorittaa matemaattisia operaatioita, kuten yhteen-, vähennys-, kerto- ja jakolaskuja luonnollisen kielen avulla.
 
-AI Toolkit on tehokas Visual Studio Code -laajennus, joka helpottaa agenttien kehittämistä. AI-insinöörit voivat helposti rakentaa tekoälysovelluksia kehittämällä ja testaamalla generatiivisia malleja paikallisesti tai pilvessä. Laajennus tukee suurinta osaa nykyisistä generatiivisista malleista.
+AI Toolkit on tehokas laajennus Visual Studio Codeen, joka tehostaa agenttien kehitystä. Tekoälyinsinöörit voivat helposti rakentaa tekoälysovelluksia kehittämällä ja testaamalla generatiivisia tekoälymalleja—paikallisesti tai pilvessä. Laajennus tukee useimpia nykyään saatavilla olevia generatiivisia malleja.
 
-*Huom*: AI Toolkit tukee tällä hetkellä Pythonia ja TypeScriptiä.
+*Huomio*: AI Toolkit tukee tällä hetkellä Pythonia ja TypeScriptiä.
 
 ## Oppimistavoitteet
 
-Tämän oppitunnin jälkeen osaat:
+Tämän osion lopussa osaat:
 
 - Käyttää MCP-palvelinta AI Toolkitin kautta.
-- Määrittää agentin asetukset siten, että se löytää ja hyödyntää MCP-palvelimen tarjoamia työkaluja.
+- Määrittää agentin konfiguraation, jotta se voi löytää ja hyödyntää MCP-palvelimen tarjoamia työkaluja.
 - Käyttää MCP-työkaluja luonnollisen kielen avulla.
 
 ## Lähestymistapa
@@ -34,11 +34,11 @@ Tämän oppitunnin jälkeen osaat:
 Näin etenemme yleisellä tasolla:
 
 - Luo agentti ja määritä sen järjestelmäkehotus.
-- Luo MCP-palvelin, jossa on laskintyökalut.
+- Luo MCP-palvelin laskintyökaluilla.
 - Yhdistä Agent Builder MCP-palvelimeen.
-- Testaa agentin työkalujen kutsumista luonnollisen kielen avulla.
+- Testaa agentin työkalujen käyttöä luonnollisen kielen avulla.
 
-Hienoa, kun ymmärrämme kokonaisuuden, määritetään tekoälyagentti hyödyntämään ulkoisia työkaluja MCP:n kautta ja laajennetaan sen kykyjä!
+Hienoa, nyt kun ymmärrämme prosessin, konfiguroidaan tekoälyagentti hyödyntämään ulkoisia työkaluja MCP:n avulla ja parannetaan sen kyvykkyyksiä!
 
 ## Esivaatimukset
 
@@ -47,67 +47,70 @@ Hienoa, kun ymmärrämme kokonaisuuden, määritetään tekoälyagentti hyödynt
 
 ## Harjoitus: Palvelimen käyttäminen
 
-Tässä harjoituksessa rakennat, ajat ja parannat tekoälyagenttia MCP-palvelimen työkaluilla Visual Studio Codessa AI Toolkitin avulla.
+> [!WARNING]
+> Huomio macOS-käyttäjille. Tutkimme parhaillaan ongelmaa, joka vaikuttaa riippuvuuksien asennukseen macOS:ssä. Tämän vuoksi macOS-käyttäjät eivät tällä hetkellä voi suorittaa tätä opetusohjelmaa loppuun. Päivitämme ohjeet heti, kun korjaus on saatavilla. Kiitos kärsivällisyydestä ja ymmärryksestä!
 
-### -0- Esivaihe, lisää OpenAI GPT-4o -malli My Models -listaan
+Tässä harjoituksessa rakennat, suoritat ja parannat tekoälyagenttia MCP-palvelimen työkalujen avulla Visual Studio Codessa AI Toolkitin kautta.
 
-Harjoitus hyödyntää **GPT-4o** -mallia. Malli tulee lisätä **My Models** -listaan ennen agentin luomista.
+### -0- Esivaihe: Lisää OpenAI GPT-4o -malli My Models -osioon
 
-![Kuvakaappaus mallin valintanäkymästä Visual Studio Coden AI Toolkit -laajennuksessa. Otsikkona "Find the right model for your AI Solution" ja alaotsikkona kehotus löytää, testata ja ottaa käyttöön AI-malleja. Alla ”Popular Models” -osiossa kuusi mallikorttia: DeepSeek-R1 (GitHub-hosted), OpenAI GPT-4o, OpenAI GPT-4.1, OpenAI o1, Phi 4 Mini (CPU - Small, Fast) ja DeepSeek-R1 (Ollama-hosted). Jokaisessa kortissa on vaihtoehdot ”Add” ja ”Try in Playground”.](../../../../translated_images/aitk-model-catalog.2acd38953bb9c119aa629fe74ef34cc56e4eed35e7f5acba7cd0a59e614ab335.fi.png)
+Harjoituksessa käytetään **GPT-4o**-mallia. Malli tulee lisätä **My Models** -osioon ennen agentin luomista.
 
-1. Avaa **AI Toolkit** -laajennus **Activity Bar** -palkista.
-2. Valitse **Catalog**-osiosta **Models** avataksesi **Model Catalog** -näkymän uudessa editorin välilehdessä.
-3. Kirjoita **Model Catalog** -hakupalkkiin **OpenAI GPT-4o**.
-4. Klikkaa **+ Add** lisätäksesi mallin **My Models** -listalle. Varmista, että valittu malli on **Hosted by GitHub**.
-5. Tarkista **Activity Bar** -palkista, että **OpenAI GPT-4o** näkyy listassa.
+![Kuvakaappaus Visual Studio Coden AI Toolkit -laajennuksen mallivalintaliittymästä. Otsikko kuuluu "Find the right model for your AI Solution" ja alaotsikko kehottaa käyttäjiä löytämään, testaamaan ja ottamaan käyttöön tekoälymalleja. Alla "Popular Models" -osiossa näkyy kuusi mallikorttia: DeepSeek-R1 (GitHub-hosted), OpenAI GPT-4o, OpenAI GPT-4.1, OpenAI o1, Phi 4 Mini (CPU - Small, Fast) ja DeepSeek-R1 (Ollama-hosted). Jokaisessa kortissa on vaihtoehdot "Add" mallin lisäämiseksi tai "Try in Playground"](../../../../translated_images/aitk-model-catalog.2acd38953bb9c119aa629fe74ef34cc56e4eed35e7f5acba7cd0a59e614ab335.fi.png)
+
+1. Avaa **AI Toolkit** -laajennus **Activity Bar** -valikosta.
+1. Valitse **Catalog**-osiossa **Models**, jolloin **Model Catalog** avautuu uuteen editorivälilehteen.
+1. Kirjoita **Model Catalog** -hakupalkkiin **OpenAI GPT-4o**.
+1. Klikkaa **+ Add** lisätäksesi mallin **My Models** -osioon. Varmista, että olet valinnut mallin, joka on **Hosted by GitHub**.
+1. Vahvista **Activity Bar** -valikossa, että **OpenAI GPT-4o**-malli näkyy listassa.
 
 ### -1- Luo agentti
 
-**Agent (Prompt) Builder** mahdollistaa omien tekoälypohjaisten agenttien luomisen ja räätälöinnin. Tässä osiossa luot uuden agentin ja määrität sille mallin keskustelun moottoriksi.
+**Agent (Prompt) Builder** mahdollistaa oman tekoälyagentin luomisen ja muokkaamisen. Tässä osiossa luot uuden agentin ja määrität mallin keskustelun voimanlähteeksi.
 
-![Kuvakaappaus "Calculator Agent" -rakentajasta AI Toolkit -laajennuksessa Visual Studio Codessa. Vasemmassa paneelissa valittuna malli "OpenAI GPT-4o (via GitHub)". Järjestelmäkehotus: "You are a professor in university teaching math." Käyttäjäkehotus: "Explain to me the Fourier equation in simple terms." Lisävalintoina painikkeet työkalujen lisäämiseen, MCP Serverin käyttöönottoon ja rakenteellisen tulosteen valintaan. Alhaalla sininen ”Run” -painike. Oikeassa paneelissa "Get Started with Examples" -osiossa kolme esimerkkitoimijaa: Web Developer (MCP Server, Second-Grade Simplifier, Dream Interpreter) lyhyine kuvauksineen.](../../../../translated_images/aitk-agent-builder.901e3a2960c3e4774b29a23024ff5bec2d4232f57fae2a418b2aaae80f81c05f.fi.png)
+![Kuvakaappaus "Calculator Agent" -rakennusliittymästä Visual Studio Coden AI Toolkit -laajennuksessa. Vasemmassa paneelissa valittu malli on "OpenAI GPT-4o (via GitHub)." Järjestelmäkehotus kuuluu "You are a professor in university teaching math," ja käyttäjäkehotus sanoo "Explain to me the Fourier equation in simple terms." Lisäasetuksiin kuuluu painikkeet työkalujen lisäämiseksi, MCP-palvelimen aktivoimiseksi ja rakenteellisen tulostuksen valitsemiseksi. Alhaalla on sininen "Run"-painike. Oikeassa paneelissa "Get Started with Examples" -osiossa on kolme esimerkkiaagenttia: Web Developer (MCP Serverin kanssa), Second-Grade Simplifier ja Dream Interpreter, joista jokaisella on lyhyt kuvaus niiden toiminnoista.](../../../../translated_images/aitk-agent-builder.901e3a2960c3e4774b29a23024ff5bec2d4232f57fae2a418b2aaae80f81c05f.fi.png)
 
-1. Avaa **AI Toolkit** -laajennus **Activity Bar** -palkista.
-2. Valitse **Tools**-osiosta **Agent (Prompt) Builder** avataksesi sen uudessa editorin välilehdessä.
-3. Klikkaa **+ New Agent** -painiketta. Laajennus käynnistää asennusvelhon **Command Palette** -ikkunassa.
-4. Anna nimeksi **Calculator Agent** ja paina **Enter**.
-5. Valitse **Agent (Prompt) Builder** -näkymässä **Model**-kenttään **OpenAI GPT-4o (via GitHub)** -malli.
+1. Avaa **AI Toolkit** -laajennus **Activity Bar** -valikosta.
+1. Valitse **Tools**-osiossa **Agent (Prompt) Builder**, jolloin **Agent (Prompt) Builder** avautuu uuteen editorivälilehteen.
+1. Klikkaa **+ New Agent** -painiketta. Laajennus käynnistää asennusvelhon **Command Palette** -valikon kautta.
+1. Kirjoita nimeksi **Calculator Agent** ja paina **Enter**.
+1. Valitse **Agent (Prompt) Builder** -osiossa **Model**-kenttään **OpenAI GPT-4o (via GitHub)** -malli.
 
 ### -2- Luo agentille järjestelmäkehotus
 
-Kun agentin runko on luotu, on aika määrittää sen persoonallisuus ja tarkoitus. Tässä osiossa käytät **Generate system prompt** -toimintoa kuvaamaan agentin haluttua käyttäytymistä – tässä tapauksessa laskinagenttia – ja annat mallin kirjoittaa järjestelmäkehotuksen puolestasi.
+Kun agentti on alustettu, on aika määrittää sen persoonallisuus ja tarkoitus. Tässä osiossa käytät **Generate system prompt** -ominaisuutta kuvaamaan agentin aiottua käyttäytymistä—tässä tapauksessa laskinagentti—ja annat mallin kirjoittaa järjestelmäkehotuksen puolestasi.
 
-![Kuvakaappaus "Calculator Agent" -näkymästä AI Toolkitissa Visual Studio Codessa, jossa avoinna modaalinen ikkuna nimeltä "Generate a prompt." Ikkunassa kerrotaan, että kehotepohja voidaan luoda jakamalla perustiedot, ja tekstikentässä on esimerkkikehote: "You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result." Alhaalla painikkeet "Close" ja "Generate". Taustalla näkyy osittain agentin asetukset, mukaan lukien valittu malli "OpenAI GPT-4o (via GitHub)" ja kentät system- ja user-promptille.](../../../../translated_images/aitk-generate-prompt.ba9e69d3d2bbe2a26444d0c78775540b14196061eee32c2054e9ee68c4f51f3a.fi.png)
+![Kuvakaappaus "Calculator Agent" -liittymästä Visual Studio Coden AI Toolkit -laajennuksessa, jossa avoinna oleva modaalinen ikkuna on otsikoitu "Generate a prompt." Modaalinen ikkuna selittää, että kehotemalli voidaan luoda jakamalla perustiedot, ja sisältää tekstikentän, jossa on esimerkkijärjestelmäkehotus: "You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result." Tekstikentän alla on "Close" ja "Generate" -painikkeet. Taustalla näkyy osa agentin konfiguraatiosta, mukaan lukien valittu malli "OpenAI GPT-4o (via GitHub)" ja kentät järjestelmä- ja käyttäjäkehotuksille.](../../../../translated_images/aitk-generate-prompt.ba9e69d3d2bbe2a26444d0c78775540b14196061eee32c2054e9ee68c4f51f3a.fi.png)
 
-1. **Prompts**-osiossa klikkaa **Generate system prompt** -painiketta. Tämä avaa kehoterakentajan, joka hyödyntää tekoälyä järjestelmäkehotuksen luomiseen.
-2. Kirjoita **Generate a prompt** -ikkunaan: `You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result.`
-3. Klikkaa **Generate**. Näytön oikeaan alakulmaan ilmestyy ilmoitus, että järjestelmäkehotus luodaan. Kun luonti on valmis, kehotus näkyy **System prompt** -kentässä **Agent (Prompt) Builder** -näkymässä.
-4. Tarkista **System prompt** ja muokkaa tarvittaessa.
+1. **Prompts**-osiossa klikkaa **Generate system prompt** -painiketta. Tämä avaa kehotuksen luontityökalun, joka hyödyntää tekoälyä järjestelmäkehotuksen luomiseen agentille.
+1. **Generate a prompt** -ikkunassa kirjoita seuraava: `Olet avulias ja tehokas matematiikka-avustaja. Kun sinulle annetaan tehtävä, joka sisältää peruslaskutoimituksia, vastaat oikealla tuloksella.`
+1. Klikkaa **Generate**-painiketta. Ilmoitus ilmestyy oikeaan alakulmaan vahvistaen, että järjestelmäkehotusta luodaan. Kun kehotuksen luonti on valmis, kehotus ilmestyy **System prompt** -kenttään **Agent (Prompt) Builder** -osiossa.
+1. Tarkista **System prompt** ja muokkaa tarvittaessa.
 
 ### -3- Luo MCP-palvelin
 
-Nyt kun olet määrittänyt agentin järjestelmäkehotuksen – joka ohjaa sen käyttäytymistä ja vastauksia – on aika varustaa agentti käytännön taidoilla. Tässä osiossa luot laskin-MCP-palvelimen, jossa on työkalut yhteenlaskuun, vähennykseen, kertolaskuun ja jakolaskuun. Tämä palvelin mahdollistaa agentin suorittaa reaaliaikaisia matemaattisia laskutoimituksia luonnollisen kielen kehotteiden perusteella.
+Nyt kun olet määrittänyt agentin järjestelmäkehotuksen—ohjaten sen käyttäytymistä ja vastauksia—on aika varustaa agentti käytännön kyvyillä. Tässä osiossa luot laskin-MCP-palvelimen, jossa on työkaluja yhteen-, vähennys-, kerto- ja jakolaskujen suorittamiseen. Tämä palvelin mahdollistaa agentin suorittaa reaaliaikaisia matemaattisia operaatioita luonnollisen kielen kehotusten perusteella.
 
-![Kuvakaappaus Calculator Agent -näkymän alaosasta AI Toolkit -laajennuksessa Visual Studio Codessa. Näkyvissä laajennettavat valikot ”Tools” ja ”Structure output”, sekä alasvetovalikko ”Choose output format” asetettuna ”text”. Oikealla painike ”+ MCP Server” MCP-palvelimen lisäämiseen. Kuvakekuvake näkyy Tools-osiossa.](../../../../translated_images/aitk-add-mcp-server.9742cfddfe808353c0caf9cc0a7ed3e80e13abf4d2ebde315c81c3cb02a2a449.fi.png)
+!["Kuvakaappaus Calculator Agent -liittymän alaosasta Visual Studio Coden AI Toolkit -laajennuksessa. Näytetään laajennettavat valikot “Tools” ja “Structure output,” sekä pudotusvalikko “Choose output format,” joka on asetettu “text.” Oikealla on painike “+ MCP Server” Model Context Protocol -palvelimen lisäämiseksi. Kuvakepaikkamerkki näkyy Tools-osan yläpuolella.](../../../../translated_images/aitk-add-mcp-server.9742cfddfe808353c0caf9cc0a7ed3e80e13abf4d2ebde315c81c3cb02a2a449.fi.png)
 
-AI Toolkit sisältää valmiita malleja, jotka helpottavat oman MCP-palvelimen luomista. Käytämme Python-mallia laskin-MCP-palvelimen luomiseen.
+AI Toolkit sisältää mallipohjia MCP-palvelimen luomisen helpottamiseksi. Käytämme Python-mallipohjaa laskin-MCP-palvelimen luomiseen.
 
-*Huom*: AI Toolkit tukee tällä hetkellä Pythonia ja TypeScriptiä.
+*Huomio*: AI Toolkit tukee tällä hetkellä Pythonia ja TypeScriptiä.
 
-1. **Agent (Prompt) Builder** -näkymän **Tools**-osiossa klikkaa **+ MCP Server** -painiketta. Laajennus käynnistää asennusvelhon **Command Palette** -ikkunassa.
-2. Valitse **+ Add Server**.
-3. Valitse **Create a New MCP Server**.
-4. Valitse malliksi **python-weather**.
-5. Valitse **Default folder** MCP-palvelinmallin tallennuskohteeksi.
-6. Anna palvelimelle nimi: **Calculator**
-7. Uusi Visual Studio Code -ikkuna avautuu. Valitse **Yes, I trust the authors**.
-8. Avaa terminaali (**Terminal** > **New Terminal**) ja luo virtuaaliympäristö: `python -m venv .venv`
-9. Aktivoi virtuaaliympäristö terminaalissa:
-    1. Windows: `.venv\Scripts\activate`
-    2. macOS/Linux: `source venv/bin/activate`
-10. Asenna riippuvuudet terminaalissa: `pip install -e .[dev]`
-11. **Explorer**-näkymässä laajenna **src**-hakemisto ja avaa **server.py** editorissa.
-12. Korvaa **server.py** -tiedoston sisältö seuraavalla ja tallenna:
+1. **Tools**-osiossa **Agent (Prompt) Builder** -liittymässä klikkaa **+ MCP Server** -painiketta. Laajennus käynnistää asennusvelhon **Command Palette** -valikon kautta.
+1. Valitse **+ Add Server**.
+1. Valitse **Create a New MCP Server**.
+1. Valitse mallipohjaksi **python-weather**.
+1. Valitse **Default folder** tallentaaksesi MCP-palvelimen mallipohjan.
+1. Kirjoita palvelimen nimeksi: **Calculator**
+1. Uusi Visual Studio Code -ikkuna avautuu. Valitse **Yes, I trust the authors**.
+1. Käytä terminaalia (**Terminal** > **New Terminal**) ja luo virtuaaliympäristö: `python -m venv .venv`
+1. Aktivoi virtuaaliympäristö terminaalin kautta:
+    1. Windows - `.venv\Scripts\activate`
+    1. macOS/Linux - `source .venv/bin/activate`
+1. Asenna riippuvuudet terminaalin kautta: `pip install -e .[dev]`
+1. **Activity Bar** -valikon **Explorer**-näkymässä laajenna **src**-hakemisto ja valitse **server.py** avataksesi tiedoston editorissa.
+1. Korvaa **server.py**-tiedoston sisältö seuraavalla ja tallenna:
 
     ```python
     """
@@ -150,48 +153,49 @@ AI Toolkit sisältää valmiita malleja, jotka helpottavat oman MCP-palvelimen l
         return a / b
     ```
 
-### -4- Aja agentti laskin-MCP-palvelimen kanssa
+### -4- Suorita agentti laskin-MCP-palvelimen kanssa
 
-Nyt kun agentillasi on työkalut, on aika käyttää niitä! Tässä osiossa lähetät kehotteita agentille testataksesi ja varmistaaksesi, että agentti hyödyntää oikeaa työkalua laskin-MCP-palvelimelta.
+Nyt kun agentillasi on työkaluja, on aika käyttää niitä! Tässä osiossa lähetät kehotuksia agentille testataksesi ja validoidaksesi, käyttääkö agentti laskin-MCP-palvelimen asianmukaista työkalua.
 
-![Kuvakaappaus Calculator Agent -näkymästä AI Toolkit -laajennuksessa Visual Studio Codessa. Vasemmassa paneelissa “Tools”-osiossa lisättynä MCP-palvelin nimeltä local-server-calculator_server, jossa neljä työkalua: add, subtract, multiply ja divide. Neljä työkalua on aktiivisena. Alla on suljettu ”Structure output” -osio ja sininen ”Run” -painike. Oikeassa paneelissa ”Model Response” -osiossa agentti kutsuu multiply- ja subtract-työkaluja syötteillä {"a": 3, "b": 25} ja {"a": 75, "b": 20}. Lopullinen ”Tool Response” on 75.0. Alhaalla näkyy ”View Code” -painike.](../../../../translated_images/aitk-agent-response-with-tools.e7c781869dc8041a25f9903ed4f7e8e0c7e13d7d94f6786a6c51b1e172f56866.fi.png)
+![Kuvakaappaus Calculator Agent -liittymästä Visual Studio Coden AI Toolkit -laajennuksessa. Vasemmassa paneelissa “Tools”-osiossa on lisätty MCP-palvelin nimeltä local-server-calculator_server, jossa on neljä käytettävissä olevaa työkalua: add, subtract, multiply ja divide. Merkintä näyttää, että neljä työkalua on aktiivisia. Alla on supistettu “Structure output” -osio ja sininen “Run”-painike. Oikeassa paneelissa “Model Response” -osiossa agentti käyttää multiply- ja subtract-työkaluja syötteillä {"a": 3, "b": 25} ja {"a": 75, "b": 20}. Lopullinen “Tool Response” näytetään arvona 75.0. Alhaalla näkyy “View Code” -painike.](../../../../translated_images/aitk-agent-response-with-tools.e7c781869dc8041a25f9903ed4f7e8e0c7e13d7d94f6786a6c51b1e172f56866.fi.png)
 
-Ajetaan laskin-MCP-palvelin paikallisella kehityskoneellasi **Agent Builderin** kautta MCP-asiakkaana.
+Suoritat laskin-MCP-palvelimen paikallisella kehityskoneellasi **Agent Builder** -liittymän kautta MCP-asiakkaana.
 
-1. Paina `F5` käynnistääksesi MCP-palvelimen debuggaustilan. **Agent (Prompt) Builder** avautuu uuteen editorin välilehteen. Palvelimen tila näkyy terminaalissa.
-2. Kirjoita **User prompt** -kenttään **Agent (Prompt) Builderissa** seuraava kehotus: `I bought 3 items priced at $25 each, and then used a $20 discount. How much did I pay?`
-3. Klikkaa **Run**-painiketta luodaksesi agentin vastauksen.
-4. Tarkista agentin vastaus. Mallin pitäisi päätellä, että maksoit **55 dollaria**.
-5. Tässä mitä tapahtuu:
-    - Agentti valitsee **multiply** ja **subtract** -työkalut laskutoimituksen avuksi.
-    - Työkaluille annetaan arvot `a` ja `b` vastaavasti.
-    - Kunkin työkalun vastaus näkyy **Tool Response** -kentässä.
-    - Mallin lopullinen vastaus näkyy **Model Response** -kentässä.
-6. Lähetä lisää kehotteita testataksesi agenttia. Voit muokata nykyistä kehotetta klikkaamalla **User prompt** -kenttää ja korvaamalla sen.
-7. Kun olet valmis, voit lopettaa palvelimen terminaalissa painamalla **CTRL/CMD+C**.
+1. Paina `F5` käynnistääksesi MCP-palvelimen virheenkorjauksen. **Agent (Prompt) Builder** avautuu uuteen editorivälilehteen. Palvelimen tila näkyy terminaalissa.
+1. **Agent (Prompt) Builder** -liittymän **User prompt** -kenttään kirjoita seuraava kehotus: `Ostin 3 tuotetta, joiden hinta oli $25 kappaleelta, ja käytin $20 alennuksen. Kuinka paljon maksoin?`
+1. Klikkaa **Run**-painiketta luodaksesi agentin vastauksen.
+1. Tarkista agentin tuotos. Mallin pitäisi päätellä, että maksoit **$55**.
+1. Tässä on yhteenveto siitä, mitä pitäisi tapahtua:
+    - Agentti valitsee **multiply**- ja **subtract**-työkalut laskennan avuksi.
+    - Vastaavat `a`- ja `b`-arvot määritetään **multiply**-työkalulle.
+    - Vastaavat `a`- ja `b`-arvot määritetään **subtract**-työkalulle.
+    - Jokaisen työkalun vastaus annetaan vastaavassa **Tool Response** -osiossa.
+    - Lopullinen tuotos mallilta annetaan lopullisessa **Model Response** -osiossa.
+1. Lähetä lisää kehotuksia testataksesi agenttia edelleen. Voit muokata olemassa olevaa kehotusta **User prompt** -kentässä klikkaamalla kenttää ja korvaamalla nykyisen kehotuksen.
+1. Kun olet valmis testaamaan agenttia, voit pysäyttää palvelimen terminaalin kautta painamalla **CTRL/CMD+C** lopettaaksesi.
 
 ## Tehtävä
 
-Kokeile lisätä uusi työkaluerä **server.py** -tiedostoon (esim. neliöjuuren laskeminen). Lähetä agentille kehotteita, jotka vaativat uuden tai olemassa olevan työkalun käyttöä. Muista käynnistää palvelin uudelleen, jotta uudet työkalut latautuvat.
+Kokeile lisätä uusi työkalu **server.py**-tiedostoon (esim. palauttaa luvun neliöjuuri). Lähetä lisäkehotuksia, jotka vaativat agenttia käyttämään uutta työkalua (tai olemassa olevia työkaluja). Muista käynnistää palvelin uudelleen ladataksesi uudet työkalut.
 
 ## Ratkaisu
 
-[Solution](./solution/README.md)
+[Ratkaisu](./solution/README.md)
 
-## Tärkeimmät opit
+## Keskeiset opit
 
-Tämän luvun tärkeimmät opit ovat:
+Tämän osion keskeiset opit ovat seuraavat:
 
 - AI Toolkit -laajennus on erinomainen asiakas, joka mahdollistaa MCP-palvelimien ja niiden työkalujen käytön.
-- MCP-palvelimiin voi lisätä uusia työkaluja, jolloin agentin kyvyt laajenevat muuttuvien tarpeiden mukaan.
-- AI Toolkit sisältää malleja (esim. Python MCP -palvelinmallit), jotka helpottavat omien työkalujen luomista.
+- Voit lisätä uusia työkaluja MCP-palvelimiin, laajentaen agentin kyvykkyyksiä vastaamaan kehittyviä tarpeita.
+- AI Toolkit sisältää mallipohjia (esim. Python MCP-palvelinmallipohjat), jotka yksinkertaistavat mukautettujen työkalujen luomista.
 
 ## Lisäresurssit
 
-- [AI Toolkit docs](https://aka.ms/AIToolkit/doc)
+- [AI Toolkit -dokumentaatio](https://aka.ms/AIToolkit/doc)
 
 ## Mitä seuraavaksi
-- Seuraava: [Testing & Debugging](../08-testing/README.md)
+- Seuraava: [Testaus ja virheenkorjaus](../08-testing/README.md)
 
 **Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.

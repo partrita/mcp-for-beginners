@@ -1,108 +1,151 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "90bfc6f3be00e34f6124e2a24bf94167",
-  "translation_date": "2025-07-17T01:52:19+00:00",
+  "original_hash": "b2b9e15e78b9d9a2b3ff3e8fd7d1f434",
+  "translation_date": "2025-08-18T15:06:40+00:00",
   "source_file": "02-Security/mcp-best-practices.md",
   "language_code": "bn"
 }
 -->
-# MCP সিকিউরিটি সেরা অনুশীলনসমূহ
+# MCP নিরাপত্তা সেরা অনুশীলন ২০২৫
 
-MCP সার্ভার নিয়ে কাজ করার সময়, আপনার ডেটা, অবকাঠামো এবং ব্যবহারকারীদের সুরক্ষিত রাখতে নিম্নলিখিত সিকিউরিটি সেরা অনুশীলনগুলো অনুসরণ করুন:
+এই বিস্তৃত গাইডটি **MCP Specification 2025-06-18** এবং বর্তমান শিল্প মানের উপর ভিত্তি করে Model Context Protocol (MCP) সিস্টেম বাস্তবায়নের জন্য প্রয়োজনীয় নিরাপত্তা সেরা অনুশীলনগুলি তুলে ধরে। এই অনুশীলনগুলি ঐতিহ্যবাহী নিরাপত্তা উদ্বেগ এবং MCP স্থাপনার জন্য অনন্য AI-নির্দিষ্ট হুমকিগুলিকে সমাধান করে।
 
-1. **ইনপুট যাচাই**: ইনজেকশন আক্রমণ এবং বিভ্রান্ত ডেপুটি সমস্যাগুলো প্রতিরোধ করতে সবসময় ইনপুট যাচাই ও স্যানিটাইজ করুন।
-2. **অ্যাক্সেস নিয়ন্ত্রণ**: আপনার MCP সার্ভারের জন্য সঠিক প্রমাণীকরণ এবং অনুমোদন প্রয়োগ করুন, সূক্ষ্ম-গ্রেনুলার পারমিশন সহ।
-3. **নিরাপদ যোগাযোগ**: MCP সার্ভারের সাথে সব যোগাযোগে HTTPS/TLS ব্যবহার করুন এবং সংবেদনশীল ডেটার জন্য অতিরিক্ত এনক্রিপশন বিবেচনা করুন।
-4. **রেট সীমাবদ্ধকরণ**: অপব্যবহার, DoS আক্রমণ প্রতিরোধ এবং রিসোর্স ব্যবহারের নিয়ন্ত্রণের জন্য রেট সীমাবদ্ধকরণ প্রয়োগ করুন।
-5. **লগিং এবং মনিটরিং**: সন্দেহজনক কার্যকলাপ পর্যবেক্ষণ করুন এবং বিস্তৃত অডিট ট্রেইল বাস্তবায়ন করুন।
-6. **নিরাপদ সংরক্ষণ**: সংবেদনশীল ডেটা এবং ক্রেডেনশিয়াল সঠিক এনক্রিপশন দিয়ে সুরক্ষিত রাখুন।
-7. **টোকেন ব্যবস্থাপনা**: টোকেন পাসথ্রু দুর্বলতা প্রতিরোধ করতে সব মডেল ইনপুট এবং আউটপুট যাচাই ও স্যানিটাইজ করুন।
-8. **সেশন ব্যবস্থাপনা**: সেশন হাইজ্যাকিং এবং ফিক্সেশন আক্রমণ প্রতিরোধে নিরাপদ সেশন হ্যান্ডলিং প্রয়োগ করুন।
-9. **টুল এক্সিকিউশন স্যান্ডবক্সিং**: যদি কোনো কম্প্রোমাইজ হয়, তাহলে পার্শ্ববর্তী গতিবিধি রোধ করতে টুল এক্সিকিউশনগুলো আলাদা পরিবেশে চালান।
-10. **নিয়মিত সিকিউরিটি অডিট**: আপনার MCP ইমপ্লিমেন্টেশন এবং ডিপেন্ডেন্সিগুলোর সময়ে সময়ে সিকিউরিটি পর্যালোচনা করুন।
-11. **প্রম্পট যাচাই**: প্রম্পট ইনজেকশন আক্রমণ প্রতিরোধে ইনপুট এবং আউটপুট প্রম্পট উভয়ই স্ক্যান এবং ফিল্টার করুন।
-12. **প্রমাণীকরণ ডেলিগেশন**: কাস্টম প্রমাণীকরণ তৈরি করার পরিবর্তে প্রতিষ্ঠিত আইডেন্টিটি প্রোভাইডার ব্যবহার করুন।
-13. **পারমিশন স্কোপিং**: প্রতিটি টুল এবং রিসোর্সের জন্য সর্বনিম্ন প্রিভিলেজ নীতিমালা অনুসারে সূক্ষ্ম পারমিশন প্রয়োগ করুন।
-14. **ডেটা মিনিমাইজেশন**: প্রতিটি অপারেশনের জন্য প্রয়োজনীয় সর্বনিম্ন ডেটা প্রকাশ করুন যাতে ঝুঁকি কমে।
-15. **স্বয়ংক্রিয় দুর্বলতা স্ক্যানিং**: আপনার MCP সার্ভার এবং ডিপেন্ডেন্সিগুলো নিয়মিত পরিচিত দুর্বলতার জন্য স্ক্যান করুন।
+## গুরুত্বপূর্ণ নিরাপত্তা প্রয়োজনীয়তা
 
-## MCP সিকিউরিটির সেরা অনুশীলনের জন্য সহায়ক সম্পদসমূহ
+### বাধ্যতামূলক নিরাপত্তা নিয়ন্ত্রণ (MUST প্রয়োজনীয়তা)
 
-### ইনপুট যাচাই
-- [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)
-- [Preventing Prompt Injection in MCP](https://modelcontextprotocol.io/docs/guides/security)
-- [Azure Content Safety Implementation](./azure-content-safety-implementation.md)
+1. **টোকেন যাচাইকরণ**: MCP সার্ভারগুলি **MUST NOT** এমন কোনো টোকেন গ্রহণ করবে না যা MCP সার্ভারের জন্য স্পষ্টভাবে ইস্যু করা হয়নি।
+2. **অনুমোদন যাচাইকরণ**: MCP সার্ভারগুলি অনুমোদন বাস্তবায়ন করলে **MUST** সমস্ত ইনবাউন্ড অনুরোধ যাচাই করতে হবে এবং **MUST NOT** সেশন ব্যবহার করে প্রমাণীকরণ করতে হবে।  
+3. **ব্যবহারকারীর সম্মতি**: MCP প্রক্সি সার্ভারগুলি স্থির ক্লায়েন্ট আইডি ব্যবহার করলে **MUST** প্রতিটি গতিশীলভাবে নিবন্ধিত ক্লায়েন্টের জন্য স্পষ্ট ব্যবহারকারীর সম্মতি পেতে হবে।
+4. **নিরাপদ সেশন আইডি**: MCP সার্ভারগুলি **MUST** ক্রিপ্টোগ্রাফিকভাবে নিরাপদ, অ-নির্ধারিত সেশন আইডি ব্যবহার করবে যা নিরাপদ র্যান্ডম নম্বর জেনারেটর দিয়ে তৈরি।
 
-### অ্যাক্সেস নিয়ন্ত্রণ
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [Using Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/)
-- [Azure API Management as Auth Gateway for MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+## মূল নিরাপত্তা অনুশীলন
 
-### নিরাপদ যোগাযোগ
-- [Transport Layer Security (TLS) Best Practices](https://learn.microsoft.com/security/engineering/solving-tls)
-- [MCP Transport Security Guidelines](https://modelcontextprotocol.io/docs/concepts/transports)
-- [End-to-End Encryption for AI Workloads](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption)
+### ১. ইনপুট যাচাইকরণ ও স্যানিটাইজেশন
+- **বিস্তৃত ইনপুট যাচাইকরণ**: ইনজেকশন আক্রমণ, বিভ্রান্ত ডেপুটি সমস্যা এবং প্রম্পট ইনজেকশন দুর্বলতা প্রতিরোধ করতে সমস্ত ইনপুট যাচাই এবং স্যানিটাইজ করুন।
+- **প্যারামিটার স্কিমা প্রয়োগ**: সমস্ত টুল প্যারামিটার এবং API ইনপুটের জন্য কঠোর JSON স্কিমা যাচাইকরণ বাস্তবায়ন করুন।
+- **কন্টেন্ট ফিল্টারিং**: প্রম্পট এবং প্রতিক্রিয়াগুলিতে ক্ষতিকারক বিষয়বস্তু ফিল্টার করতে Microsoft Prompt Shields এবং Azure Content Safety ব্যবহার করুন।
+- **আউটপুট স্যানিটাইজেশন**: ব্যবহারকারী বা ডাউনস্ট্রিম সিস্টেমে উপস্থাপনের আগে সমস্ত মডেল আউটপুট যাচাই এবং স্যানিটাইজ করুন।
 
-### রেট সীমাবদ্ধকরণ
-- [API Rate Limiting Patterns](https://learn.microsoft.com/azure/architecture/patterns/rate-limiting-pattern)
-- [Implementing Token Bucket Rate Limiting](https://konghq.com/blog/engineering/how-to-design-a-scalable-rate-limiting-algorithm)
-- [Rate Limiting in Azure API Management](https://learn.microsoft.com/azure/api-management/rate-limit-policy)
+### ২. প্রমাণীকরণ ও অনুমোদনের উৎকর্ষতা  
+- **বাহ্যিক পরিচয় প্রদানকারী**: কাস্টম প্রমাণীকরণ বাস্তবায়নের পরিবর্তে প্রতিষ্ঠিত পরিচয় প্রদানকারীদের (Microsoft Entra ID, OAuth 2.1 প্রদানকারী) কাছে প্রমাণীকরণ অর্পণ করুন।
+- **সূক্ষ্ম-গ্রানুলার অনুমতি**: সর্বনিম্ন বিশেষাধিকার নীতির অনুসরণ করে টুল-নির্দিষ্ট অনুমতি বাস্তবায়ন করুন।
+- **টোকেন লাইফসাইকেল ম্যানেজমেন্ট**: নিরাপদ রোটেশন এবং সঠিক শ্রোতা যাচাইকরণ সহ স্বল্প-মেয়াদী অ্যাক্সেস টোকেন ব্যবহার করুন।
+- **মাল্টি-ফ্যাক্টর প্রমাণীকরণ**: সমস্ত প্রশাসনিক অ্যাক্সেস এবং সংবেদনশীল অপারেশনের জন্য MFA প্রয়োজন।
 
-### লগিং এবং মনিটরিং
-- [Centralized Logging for AI Systems](https://learn.microsoft.com/azure/architecture/example-scenario/logging/centralized-logging)
-- [Audit Logging Best Practices](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
-- [Azure Monitor for AI Workloads](https://learn.microsoft.com/azure/azure-monitor/overview)
+### ৩. নিরাপদ যোগাযোগ প্রোটোকল
+- **ট্রান্সপোর্ট লেয়ার সিকিউরিটি**: সঠিক সার্টিফিকেট যাচাইকরণ সহ সমস্ত MCP যোগাযোগের জন্য HTTPS/TLS 1.3 ব্যবহার করুন।
+- **এন্ড-টু-এন্ড এনক্রিপশন**: অত্যন্ত সংবেদনশীল ডেটার জন্য অতিরিক্ত এনক্রিপশন স্তর বাস্তবায়ন করুন, ট্রানজিট এবং রেস্ট উভয় ক্ষেত্রেই।
+- **সার্টিফিকেট ম্যানেজমেন্ট**: স্বয়ংক্রিয় নবায়ন প্রক্রিয়ার সাথে সঠিক সার্টিফিকেট লাইফসাইকেল ম্যানেজমেন্ট বজায় রাখুন।
+- **প্রোটোকল সংস্করণ প্রয়োগ**: সঠিক সংস্করণ আলোচনার সাথে বর্তমান MCP প্রোটোকল সংস্করণ (2025-06-18) ব্যবহার করুন।
 
-### নিরাপদ সংরক্ষণ
-- [Azure Key Vault for Credential Storage](https://learn.microsoft.com/azure/key-vault/general/basic-concepts)
-- [Encrypting Sensitive Data at Rest](https://learn.microsoft.com/security/engineering/data-encryption-at-rest)
-- [Use Secure Token Storage and Encrypt Tokens](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
+### ৪. উন্নত রেট লিমিটিং ও রিসোর্স সুরক্ষা
+- **মাল্টি-লেয়ার রেট লিমিটিং**: অপব্যবহার প্রতিরোধ করতে ব্যবহারকারী, সেশন, টুল এবং রিসোর্স স্তরে রেট লিমিটিং বাস্তবায়ন করুন।
+- **অ্যাডাপটিভ রেট লিমিটিং**: ব্যবহার প্যাটার্ন এবং হুমকি সূচকের সাথে খাপ খাইয়ে নেওয়া মেশিন লার্নিং-ভিত্তিক রেট লিমিটিং ব্যবহার করুন।
+- **রিসোর্স কোটার ব্যবস্থাপনা**: গণনামূলক রিসোর্স, মেমরি ব্যবহার এবং এক্সিকিউশন সময়ের জন্য যথাযথ সীমা নির্ধারণ করুন।
+- **DDoS সুরক্ষা**: ব্যাপক DDoS সুরক্ষা এবং ট্রাফিক বিশ্লেষণ ব্যবস্থা স্থাপন করুন।
 
-### টোকেন ব্যবস্থাপনা
-- [JWT Best Practices (RFC 8725)](https://datatracker.ietf.org/doc/html/rfc8725)
-- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
-- [Best Practices for Token Validation and Lifetime](https://learn.microsoft.com/entra/identity-platform/access-tokens)
+### ৫. বিস্তৃত লগিং ও মনিটরিং
+- **স্ট্রাকচারড অডিট লগিং**: সমস্ত MCP অপারেশন, টুল এক্সিকিউশন এবং নিরাপত্তা ইভেন্টের জন্য বিস্তারিত, অনুসন্ধানযোগ্য লগ বাস্তবায়ন করুন।
+- **রিয়েল-টাইম নিরাপত্তা মনিটরিং**: MCP ওয়ার্কলোডের জন্য AI-চালিত অস্বাভাবিকতা সনাক্তকরণ সহ SIEM সিস্টেম স্থাপন করুন।
+- **গোপনীয়তা-সম্মত লগিং**: ডেটা গোপনীয়তা প্রয়োজনীয়তা এবং নিয়মাবলী সম্মান করে নিরাপত্তা ইভেন্ট লগ করুন।
+- **ইনসিডেন্ট রেসপন্স ইন্টিগ্রেশন**: লগিং সিস্টেমগুলিকে স্বয়ংক্রিয় ইনসিডেন্ট রেসপন্স ওয়ার্কফ্লোতে সংযুক্ত করুন।
 
-### সেশন ব্যবস্থাপনা
-- [OWASP Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
-- [MCP Session Handling Guidelines](https://modelcontextprotocol.io/docs/guides/security)
-- [Secure Session Design Patterns](https://learn.microsoft.com/security/engineering/session-security)
+### ৬. উন্নত নিরাপদ স্টোরেজ অনুশীলন
+- **হার্ডওয়্যার সিকিউরিটি মডিউল**: গুরুত্বপূর্ণ ক্রিপ্টোগ্রাফিক অপারেশনের জন্য HSM-সমর্থিত কী স্টোরেজ (Azure Key Vault, AWS CloudHSM) ব্যবহার করুন।
+- **এনক্রিপশন কী ম্যানেজমেন্ট**: এনক্রিপশন কীগুলির জন্য সঠিক কী রোটেশন, বিভাজন এবং অ্যাক্সেস নিয়ন্ত্রণ বাস্তবায়ন করুন।
+- **সিক্রেটস ম্যানেজমেন্ট**: সমস্ত API কী, টোকেন এবং শংসাপত্র নিবেদিত সিক্রেট ম্যানেজমেন্ট সিস্টেমে সংরক্ষণ করুন।
+- **ডেটা শ্রেণীবিন্যাস**: সংবেদনশীলতার স্তরের উপর ভিত্তি করে ডেটা শ্রেণীবিন্যাস করুন এবং উপযুক্ত সুরক্ষা ব্যবস্থা প্রয়োগ করুন।
 
-### টুল এক্সিকিউশন স্যান্ডবক্সিং
-- [Container Security Best Practices](https://learn.microsoft.com/azure/container-instances/container-instances-image-security)
-- [Implementing Process Isolation](https://learn.microsoft.com/windows/security/threat-protection/security-policy-settings/user-rights-assignment)
-- [Resource Limits for Containerized Applications](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+### ৭. উন্নত টোকেন ব্যবস্থাপনা
+- **টোকেন পাসথ্রু প্রতিরোধ**: নিরাপত্তা নিয়ন্ত্রণ বাইপাস করে এমন টোকেন পাসথ্রু প্যাটার্ন স্পষ্টভাবে নিষিদ্ধ করুন।
+- **শ্রোতা যাচাইকরণ**: সর্বদা যাচাই করুন যে টোকেনের শ্রোতা দাবিগুলি উদ্দেশ্যপ্রাপ্ত MCP সার্ভারের পরিচয়ের সাথে মিলে যায়।
+- **ক্লেইম-ভিত্তিক অনুমোদন**: টোকেন ক্লেইম এবং ব্যবহারকারীর বৈশিষ্ট্যের উপর ভিত্তি করে সূক্ষ্ম-গ্রানুলার অনুমোদন বাস্তবায়ন করুন।
+- **টোকেন বাইন্ডিং**: যেখানে প্রয়োজন সেখানে টোকেন নির্দিষ্ট সেশন, ব্যবহারকারী বা ডিভাইসের সাথে বাইন্ড করুন।
 
-### নিয়মিত সিকিউরিটি অডিট
-- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl)
-- [OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/)
-- [Security Code Review Guidelines](https://owasp.org/www-pdf-archive/OWASP_Code_Review_Guide_v2.pdf)
+### ৮. নিরাপদ সেশন ব্যবস্থাপনা
+- **ক্রিপ্টোগ্রাফিক সেশন আইডি**: ক্রিপ্টোগ্রাফিকভাবে নিরাপদ র্যান্ডম নম্বর জেনারেটর ব্যবহার করে সেশন আইডি তৈরি করুন (পূর্বানুমানযোগ্য সিকোয়েন্স নয়)।
+- **ব্যবহারকারী-নির্দিষ্ট বাইন্ডিং**: `<user_id>:<session_id>` এর মতো নিরাপদ ফরম্যাট ব্যবহার করে সেশন আইডিগুলিকে ব্যবহারকারী-নির্দিষ্ট তথ্যের সাথে বাইন্ড করুন।
+- **সেশন লাইফসাইকেল নিয়ন্ত্রণ**: সেশন মেয়াদোত্তীর্ণ, রোটেশন এবং অবৈধকরণ প্রক্রিয়া সঠিকভাবে বাস্তবায়ন করুন।
+- **সেশন নিরাপত্তা হেডার**: সেশন সুরক্ষার জন্য উপযুক্ত HTTP নিরাপত্তা হেডার ব্যবহার করুন।
 
-### প্রম্পট যাচাই
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
-- [Azure Content Safety for AI](https://learn.microsoft.com/azure/ai-services/content-safety/)
-- [Preventing Prompt Injection](https://github.com/microsoft/prompt-shield-js)
+### ৯. AI-নির্দিষ্ট নিরাপত্তা নিয়ন্ত্রণ
+- **প্রম্পট ইনজেকশন প্রতিরক্ষা**: Microsoft Prompt Shields ব্যবহার করুন, স্পটলাইটিং, ডেলিমিটার এবং ডেটামার্কিং কৌশল সহ।
+- **টুল বিষক্রিয়া প্রতিরোধ**: টুল মেটাডেটা যাচাই করুন, গতিশীল পরিবর্তনের জন্য পর্যবেক্ষণ করুন এবং টুলের অখণ্ডতা যাচাই করুন।
+- **মডেল আউটপুট যাচাইকরণ**: সম্ভাব্য ডেটা লিকেজ, ক্ষতিকারক বিষয়বস্তু বা নিরাপত্তা নীতি লঙ্ঘনের জন্য মডেল আউটপুট স্ক্যান করুন।
+- **কনটেক্সট উইন্ডো সুরক্ষা**: কনটেক্সট উইন্ডো বিষক্রিয়া এবং ম্যানিপুলেশন আক্রমণ প্রতিরোধের জন্য নিয়ন্ত্রণ বাস্তবায়ন করুন।
 
-### প্রমাণীকরণ ডেলিগেশন
-- [Microsoft Entra ID Integration](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow)
-- [OAuth 2.0 for MCP Services](https://learn.microsoft.com/security/engineering/solving-oauth)
-- [MCP Security Controls 2025](./mcp-security-controls-2025.md)
+### ১০. টুল এক্সিকিউশন নিরাপত্তা
+- **এক্সিকিউশন স্যান্ডবক্সিং**: টুল এক্সিকিউশনগুলি কন্টেইনারাইজড, বিচ্ছিন্ন পরিবেশে চালান, রিসোর্স সীমা সহ।
+- **প্রিভিলেজ বিভাজন**: টুলগুলি ন্যূনতম প্রয়োজনীয় প্রিভিলেজ সহ এবং পৃথক সার্ভিস অ্যাকাউন্ট দিয়ে চালান।
+- **নেটওয়ার্ক বিচ্ছিন্নতা**: টুল এক্সিকিউশন পরিবেশের জন্য নেটওয়ার্ক সেগমেন্টেশন বাস্তবায়ন করুন।
+- **এক্সিকিউশন মনিটরিং**: টুল এক্সিকিউশন অস্বাভাবিক আচরণ, রিসোর্স ব্যবহার এবং নিরাপত্তা লঙ্ঘনের জন্য পর্যবেক্ষণ করুন।
 
-### পারমিশন স্কোপিং
-- [Secure Least-Privileged Access](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
-- [Role-Based Access Control (RBAC) Design](https://learn.microsoft.com/azure/role-based-access-control/overview)
-- [Tool-specific Authorization in MCP](https://modelcontextprotocol.io/docs/guides/best-practices)
+### ১১. ক্রমাগত নিরাপত্তা যাচাইকরণ
+- **স্বয়ংক্রিয় নিরাপত্তা পরীক্ষা**: GitHub Advanced Security-এর মতো টুল দিয়ে CI/CD পাইপলাইনে নিরাপত্তা পরীক্ষা সংহত করুন।
+- **দুর্বলতা ব্যবস্থাপনা**: সমস্ত নির্ভরতা, AI মডেল এবং বাহ্যিক পরিষেবাগুলি নিয়মিত স্ক্যান করুন।
+- **পেনিট্রেশন টেস্টিং**: MCP বাস্তবায়নকে লক্ষ্য করে নিয়মিত নিরাপত্তা মূল্যায়ন পরিচালনা করুন।
+- **নিরাপত্তা কোড পর্যালোচনা**: সমস্ত MCP-সম্পর্কিত কোড পরিবর্তনের জন্য বাধ্যতামূলক নিরাপত্তা পর্যালোচনা বাস্তবায়ন করুন।
 
-### ডেটা মিনিমাইজেশন
-- [Data Protection by Design](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments)
-- [AI Data Privacy Best Practices](https://learn.microsoft.com/legal/cognitive-services/openai/data-privacy)
-- [Implementing Privacy-enhancing Technologies](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/)
+### ১২. AI-এর জন্য সরবরাহ চেইন নিরাপত্তা
+- **উপাদান যাচাইকরণ**: সমস্ত AI উপাদান (মডেল, এম্বেডিং, API) এর উত্স, অখণ্ডতা এবং নিরাপত্তা যাচাই করুন।
+- **নির্ভরতা ব্যবস্থাপনা**: দুর্বলতা ট্র্যাকিং সহ সমস্ত সফটওয়্যার এবং AI নির্ভরতার বর্তমান তালিকা বজায় রাখুন।
+- **বিশ্বস্ত রিপোজিটরি**: সমস্ত AI মডেল, লাইব্রেরি এবং টুলের জন্য যাচাইকৃত, বিশ্বস্ত উৎস ব্যবহার করুন।
+- **সরবরাহ চেইন পর্যবেক্ষণ**: AI পরিষেবা প্রদানকারী এবং মডেল রিপোজিটরিতে আপসের জন্য ক্রমাগত পর্যবেক্ষণ করুন।
 
-### স্বয়ংক্রিয় দুর্বলতা স্ক্যানিং
-- [GitHub Advanced Security](https://github.com/security/advanced-security)
-- [DevSecOps Pipeline Implementation](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline)
-- [Continuous Security Validation](https://www.microsoft.com/security/blog/2022/04/05/step-by-step-building-a-more-efficient-devsecops-environment/)
+## উন্নত নিরাপত্তা প্যাটার্ন
+
+### MCP-এর জন্য জিরো ট্রাস্ট আর্কিটেকচার
+- **কখনো বিশ্বাস করবেন না, সর্বদা যাচাই করুন**: সমস্ত MCP অংশগ্রহণকারীর জন্য ক্রমাগত যাচাইকরণ বাস্তবায়ন করুন।
+- **মাইক্রো-সেগমেন্টেশন**: গ্রানুলার নেটওয়ার্ক এবং পরিচয় নিয়ন্ত্রণ সহ MCP উপাদানগুলি বিচ্ছিন্ন করুন।
+- **শর্তসাপেক্ষ অ্যাক্সেস**: ঝুঁকি-ভিত্তিক অ্যাক্সেস নিয়ন্ত্রণ বাস্তবায়ন করুন যা প্রসঙ্গ এবং আচরণের সাথে খাপ খায়।
+- **ক্রমাগত ঝুঁকি মূল্যায়ন**: বর্তমান হুমকি সূচকের উপর ভিত্তি করে নিরাপত্তা অবস্থান গতিশীলভাবে মূল্যায়ন করুন।
+
+### গোপনীয়তা-সংরক্ষণকারী AI বাস্তবায়ন
+- **ডেটা মিনিমাইজেশন**: প্রতিটি MCP অপারেশনের জন্য ন্যূনতম প্রয়োজনীয় ডেটা প্রকাশ করুন।
+- **ডিফারেনশিয়াল প্রাইভেসি**: সংবেদনশীল ডেটা প্রক্রিয়াকরণের জন্য গোপনীয়তা-সংরক্ষণকারী কৌশল বাস্তবায়ন করুন।
+- **হোমোমরফিক এনক্রিপশন**: এনক্রিপ্ট করা ডেটার উপর নিরাপদ গণনার জন্য উন্নত এনক্রিপশন কৌশল ব্যবহার করুন।
+- **ফেডারেটেড লার্নিং**: ডেটা লোকালিটি এবং গোপনীয়তা সংরক্ষণকারী বিতরণকৃত লার্নিং পদ্ধতি বাস্তবায়ন করুন।
+
+### AI সিস্টেমের জন্য ইনসিডেন্ট রেসপন্স
+- **AI-নির্দিষ্ট ইনসিডেন্ট পদ্ধতি**: AI এবং MCP-নির্দিষ্ট হুমকির জন্য উপযোগী ইনসিডেন্ট রেসপন্স পদ্ধতি তৈরি করুন।
+- **স্বয়ংক্রিয় প্রতিক্রিয়া**: সাধারণ AI নিরাপত্তা ঘটনাগুলির জন্য স্বয়ংক্রিয় ধারণ এবং সংশোধন বাস্তবায়ন করুন।  
+- **ফরেনসিক সক্ষমতা**: AI সিস্টেম আপস এবং ডেটা লঙ্ঘনের জন্য ফরেনসিক প্রস্তুতি বজায় রাখুন।
+- **পুনরুদ্ধার পদ্ধতি**: AI মডেল বিষক্রিয়া, প্রম্পট ইনজেকশন আক্রমণ এবং পরিষেবা আপস থেকে পুনরুদ্ধারের জন্য পদ্ধতি স্থাপন করুন।
+
+## বাস্তবায়ন সম্পদ ও মান
+
+### অফিসিয়াল MCP ডকুমেন্টেশন
+- [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) - বর্তমান MCP প্রোটোকল স্পেসিফিকেশন
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) - অফিসিয়াল নিরাপত্তা নির্দেশিকা
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization) - প্রমাণীকরণ এবং অনুমোদন প্যাটার্ন
+- [MCP Transport Security](https://modelcontextprotocol.io/specification/2025-06-18/transports/) - ট্রান্সপোর্ট লেয়ার নিরাপত্তার প্রয়োজনীয়তা
+
+### Microsoft নিরাপত্তা সমাধান
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - উন্নত প্রম্পট ইনজেকশন সুরক্ষা
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/) - ব্যাপক AI বিষয়বস্তু ফিল্টারিং
+- [Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow) - এন্টারপ্রাইজ পরিচয় এবং অ্যাক্সেস ব্যবস্থাপনা
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts) - নিরাপদ সিক্রেট এবং শংসাপত্র ব্যবস্থাপনা
+- [GitHub Advanced Security](https://github.com/security/advanced-security) - সরবরাহ চেইন এবং কোড নিরাপত্তা স্ক্যানিং
+
+### নিরাপত্তা মান ও কাঠামো
+- [OAuth 2.1 Security Best Practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics) - বর্তমান OAuth নিরাপত্তা নির্দেশিকা
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - ওয়েব অ্যাপ্লিকেশন নিরাপত্তা ঝুঁকি
+- [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559) - AI-নির্দিষ্ট নিরাপত্তা ঝুঁকি
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) - ব্যাপক AI ঝুঁকি ব্যবস্থাপনা
+- [ISO 27001:2022](https://www.iso.org/standard/27001) - তথ্য নিরাপত্তা ব্যবস্থাপনা ব্যবস্থা
+
+### বাস্তবায়ন গাইড ও টিউটোরিয়াল
+- [Azure API Management as MCP Auth Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) - এন্টারপ্রাইজ প্রমাণীকরণ প্যাটার্ন
+- [Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/) - পরিচয় প্রদানকারী সংহতকরণ
+- [Secure Token Storage Implementation](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2) - টোকেন ব্যবস্থাপনার সেরা অনুশীলন
+- [End-to-End Encryption for AI](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end
+- **টুল উন্নয়ন**: MCP ইকোসিস্টেমের জন্য নিরাপত্তা টুল এবং লাইব্রেরি তৈরি এবং শেয়ার করুন
+
+---
+
+*এই ডকুমেন্টটি MCP নিরাপত্তার সেরা অনুশীলনকে ১৮ আগস্ট, ২০২৫ তারিখে MCP স্পেসিফিকেশন ২০২৫-০৬-১৮ এর ভিত্তিতে প্রতিফলিত করে। প্রোটোকল এবং হুমকির পরিবেশ পরিবর্তনের সাথে সাথে নিরাপত্তার অনুশীলন নিয়মিতভাবে পর্যালোচনা এবং আপডেট করা উচিত।*
 
 **অস্বীকৃতি**:  
-এই নথিটি AI অনুবাদ সেবা [Co-op Translator](https://github.com/Azure/co-op-translator) ব্যবহার করে অনূদিত হয়েছে। আমরা যথাসাধ্য সঠিকতার চেষ্টা করি, তবে স্বয়ংক্রিয় অনুবাদে ত্রুটি বা অসঙ্গতি থাকতে পারে। মূল নথিটি তার নিজস্ব ভাষায়ই কর্তৃত্বপূর্ণ উৎস হিসেবে বিবেচিত হওয়া উচিত। গুরুত্বপূর্ণ তথ্যের জন্য পেশাদার মানব অনুবাদ গ্রহণ করার পরামর্শ দেওয়া হয়। এই অনুবাদের ব্যবহারে সৃষ্ট কোনো ভুল বোঝাবুঝি বা ভুল ব্যাখ্যার জন্য আমরা দায়ী নই।
+এই নথিটি AI অনুবাদ পরিষেবা [Co-op Translator](https://github.com/Azure/co-op-translator) ব্যবহার করে অনুবাদ করা হয়েছে। আমরা যথাসম্ভব সঠিক অনুবাদ প্রদানের চেষ্টা করি, তবে অনুগ্রহ করে মনে রাখবেন যে স্বয়ংক্রিয় অনুবাদে ত্রুটি বা অসঙ্গতি থাকতে পারে। মূল ভাষায় থাকা নথিটিকে প্রামাণিক উৎস হিসেবে বিবেচনা করা উচিত। গুরুত্বপূর্ণ তথ্যের জন্য, পেশাদার মানব অনুবাদ সুপারিশ করা হয়। এই অনুবাদ ব্যবহারের ফলে কোনো ভুল বোঝাবুঝি বা ভুল ব্যাখ্যা হলে আমরা তার জন্য দায়বদ্ধ থাকব না।

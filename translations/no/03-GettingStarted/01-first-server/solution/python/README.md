@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "d0f0d7012325b286e4a717791b23ae7e",
-  "translation_date": "2025-07-13T18:00:40+00:00",
+  "original_hash": "d4c162484df410632550a4a357d40341",
+  "translation_date": "2025-09-03T16:10:37+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/python/README.md",
   "language_code": "no"
 }
@@ -20,7 +20,7 @@ python -m venv venv
 ## -1- Aktiver det virtuelle miljøet
 
 ```bash
-venv\Scrips\activate
+venv\Scripts\activate
 ```
 
 ## -2- Installer avhengighetene
@@ -31,14 +31,13 @@ pip install "mcp[cli]"
 
 ## -3- Kjør eksempelet
 
-
 ```bash
 mcp run server.py
 ```
 
 ## -4- Test eksempelet
 
-Med serveren kjørende i ett terminalvindu, åpne et nytt terminalvindu og kjør følgende kommando:
+Med serveren kjørende i én terminal, åpne en annen terminal og kjør følgende kommando:
 
 ```bash
 mcp dev server.py
@@ -46,15 +45,15 @@ mcp dev server.py
 
 Dette skal starte en webserver med et visuelt grensesnitt som lar deg teste eksempelet.
 
-Når serveren er tilkoblet:
+Når serveren er koblet til:
 
-- prøv å liste opp verktøy og kjør `add` med argumentene 2 og 4, du skal se 6 som resultat.
+- prøv å liste verktøy og kjør `add`, med argumentene 2 og 4, du bør se 6 som resultat.
 
-- gå til resources og resource template og kall get_greeting, skriv inn et navn og du skal se en hilsen med navnet du oppga.
+- gå til ressurser og ressursmal og kall get_greeting, skriv inn et navn, og du bør se en hilsen med navnet du oppga.
 
 ### Testing i CLI-modus
 
-Inspektøren du kjørte er egentlig en Node.js-app, og `mcp dev` er et wrapper rundt den.
+Inspektøren du kjørte er faktisk en Node.js-app, og `mcp dev` er en innpakning rundt den.
 
 Du kan starte den direkte i CLI-modus ved å kjøre følgende kommando:
 
@@ -62,7 +61,7 @@ Du kan starte den direkte i CLI-modus ved å kjøre følgende kommando:
 npx @modelcontextprotocol/inspector --cli mcp run server.py --method tools/list
 ```
 
-Dette vil liste opp alle verktøyene som er tilgjengelige på serveren. Du skal se følgende output:
+Dette vil liste alle verktøyene som er tilgjengelige på serveren. Du bør se følgende utdata:
 
 ```text
 {
@@ -93,13 +92,13 @@ Dette vil liste opp alle verktøyene som er tilgjengelige på serveren. Du skal 
 }
 ```
 
-For å kalle et verktøy, skriv:
+For å bruke et verktøy, skriv:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli mcp run server.py --method tools/call --tool-name add --tool-arg a=1 --tool-arg b=2
 ```
 
-Du skal se følgende output:
+Du bør se følgende utdata:
 
 ```text
 {
@@ -113,9 +112,11 @@ Du skal se følgende output:
 }
 ```
 
-> ![!TIP]
-> Det går som regel mye raskere å kjøre inspektøren i CLI-modus enn i nettleseren.
+> [!TIP]
+> Det er vanligvis mye raskere å kjøre inspektøren i CLI-modus enn i nettleseren.
 > Les mer om inspektøren [her](https://github.com/modelcontextprotocol/inspector).
 
+---
+
 **Ansvarsfraskrivelse**:  
-Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vennligst vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på originalspråket skal anses som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
+Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vær oppmerksom på at automatiserte oversettelser kan inneholde feil eller unøyaktigheter. Det originale dokumentet på sitt opprinnelige språk bør anses som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.

@@ -1,108 +1,179 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "90bfc6f3be00e34f6124e2a24bf94167",
-  "translation_date": "2025-07-17T01:54:20+00:00",
+  "original_hash": "b2b9e15e78b9d9a2b3ff3e8fd7d1f434",
+  "translation_date": "2025-08-18T17:56:02+00:00",
   "source_file": "02-Security/mcp-best-practices.md",
   "language_code": "tr"
 }
 -->
-# MCP Güvenlik En İyi Uygulamaları
+# MCP Güvenlik En İyi Uygulamaları 2025
 
-MCP sunucularıyla çalışırken, verilerinizi, altyapınızı ve kullanıcılarınızı korumak için aşağıdaki güvenlik en iyi uygulamalarını takip edin:
+Bu kapsamlı rehber, **MCP Specification 2025-06-18** ve mevcut endüstri standartlarına dayalı olarak Model Context Protocol (MCP) sistemlerini uygulamak için gerekli güvenlik en iyi uygulamalarını özetlemektedir. Bu uygulamalar, hem geleneksel güvenlik endişelerini hem de MCP dağıtımlarına özgü yapay zeka tehditlerini ele alır.
 
-1. **Girdi Doğrulama**: Enjeksiyon saldırılarını ve karışıklık sorunlarını önlemek için girdileri her zaman doğrulayın ve temizleyin.
-2. **Erişim Kontrolü**: MCP sunucunuz için ince ayrıntılı izinlerle uygun kimlik doğrulama ve yetkilendirme uygulayın.
-3. **Güvenli İletişim**: MCP sunucunuzla tüm iletişimlerde HTTPS/TLS kullanın ve hassas veriler için ek şifreleme eklemeyi düşünün.
-4. **Hız Sınırlandırma**: Kötüye kullanımı, DoS saldırılarını önlemek ve kaynak tüketimini yönetmek için hız sınırlandırma uygulayın.
-5. **Kayıt Tutma ve İzleme**: MCP sunucunuzu şüpheli faaliyetlere karşı izleyin ve kapsamlı denetim kayıtları oluşturun.
-6. **Güvenli Depolama**: Hassas verileri ve kimlik bilgilerini uygun şekilde şifreleyerek koruyun.
-7. **Token Yönetimi**: Tüm model girdilerini ve çıktıları doğrulayarak ve temizleyerek token geçişi açıklarını önleyin.
-8. **Oturum Yönetimi**: Oturum kaçırma ve sabitleme saldırılarını önlemek için güvenli oturum yönetimi uygulayın.
-9. **Araç Çalıştırma İzolasyonu**: Araç çalıştırmalarını izole ortamlarda yaparak ele geçirilme durumunda yan hareketleri engelleyin.
-10. **Düzenli Güvenlik Denetimleri**: MCP uygulamalarınızı ve bağımlılıklarını periyodik olarak güvenlik açısından gözden geçirin.
-11. **İstem Doğrulama**: İstem enjeksiyonu saldırılarını önlemek için hem giriş hem de çıkış istemlerini tarayın ve filtreleyin.
-12. **Kimlik Doğrulama Yetkilendirmesi**: Özel kimlik doğrulama uygulamak yerine yerleşik kimlik sağlayıcıları kullanın.
-13. **İzin Kapsamı**: En az ayrıcalık prensiplerine uygun olarak her araç ve kaynak için ayrıntılı izinler uygulayın.
-14. **Veri Azaltma**: Risk yüzeyini azaltmak için her işlem için yalnızca gerekli minimum veriyi açığa çıkarın.
-15. **Otomatik Güvenlik Açığı Taraması**: MCP sunucularınızı ve bağımlılıklarını düzenli olarak bilinen güvenlik açıklarına karşı tarayın.
+## Kritik Güvenlik Gereksinimleri
 
-## MCP Güvenlik En İyi Uygulamaları İçin Destekleyici Kaynaklar
+### Zorunlu Güvenlik Kontrolleri (MUST Gereksinimleri)
 
-### Girdi Doğrulama
-- [OWASP Girdi Doğrulama Hile Sayfası](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)
-- [MCP’de İstem Enjeksiyonunu Önleme](https://modelcontextprotocol.io/docs/guides/security)
-- [Azure İçerik Güvenliği Uygulaması](./azure-content-safety-implementation.md)
+1. **Token Doğrulama**: MCP sunucuları, kendileri için açıkça verilmemiş tokenları **KABUL ETMEMELİDİR**.
+2. **Yetkilendirme Doğrulaması**: Yetkilendirme uygulayan MCP sunucuları, gelen tüm istekleri doğrulamalı ve kimlik doğrulama için oturumları **KULLANMAMALIDIR**.
+3. **Kullanıcı Onayı**: Statik istemci kimlikleri kullanan MCP proxy sunucuları, her dinamik olarak kaydedilen istemci için açık kullanıcı onayı almalıdır.
+4. **Güvenli Oturum Kimlikleri**: MCP sunucuları, güvenli rastgele sayı üreteçleriyle oluşturulan kriptografik olarak güvenli, belirlenemez oturum kimlikleri kullanmalıdır.
 
-### Erişim Kontrolü
-- [MCP Yetkilendirme Spesifikasyonu](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [MCP Sunucularında Microsoft Entra ID Kullanımı](https://den.dev/blog/mcp-server-auth-entra-id-session/)
-- [MCP için Azure API Yönetimi Yetkilendirme Geçidi](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+## Temel Güvenlik Uygulamaları
 
-### Güvenli İletişim
-- [Taşıma Katmanı Güvenliği (TLS) En İyi Uygulamaları](https://learn.microsoft.com/security/engineering/solving-tls)
-- [MCP Taşıma Güvenliği Kılavuzu](https://modelcontextprotocol.io/docs/concepts/transports)
-- [Yapay Zeka İş Yükleri için Uçtan Uca Şifreleme](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption)
+### 1. Girdi Doğrulama ve Temizleme
+- **Kapsamlı Girdi Doğrulama**: Enjeksiyon saldırılarını, karışık vekil problemlerini ve istem enjeksiyonu açıklarını önlemek için tüm girdileri doğrulayın ve temizleyin.
+- **Parametre Şema Uygulaması**: Tüm araç parametreleri ve API girdileri için sıkı JSON şema doğrulaması uygulayın.
+- **İçerik Filtreleme**: İstem ve yanıtlarındaki kötü niyetli içeriği filtrelemek için Microsoft Prompt Shields ve Azure Content Safety kullanın.
+- **Çıktı Temizleme**: Kullanıcılara veya alt sistemlere sunmadan önce tüm model çıktısını doğrulayın ve temizleyin.
 
-### Hız Sınırlandırma
-- [API Hız Sınırlandırma Modelleri](https://learn.microsoft.com/azure/architecture/patterns/rate-limiting-pattern)
-- [Token Bucket Hız Sınırlandırma Uygulaması](https://konghq.com/blog/engineering/how-to-design-a-scalable-rate-limiting-algorithm)
-- [Azure API Yönetiminde Hız Sınırlandırma](https://learn.microsoft.com/azure/api-management/rate-limit-policy)
+### 2. Kimlik Doğrulama ve Yetkilendirme Mükemmelliği  
+- **Harici Kimlik Sağlayıcılar**: Özel kimlik doğrulama uygulamak yerine Microsoft Entra ID, OAuth 2.1 sağlayıcıları gibi tanınmış kimlik sağlayıcılara yetki verin.
+- **İnce Ayrıntılı İzinler**: En az ayrıcalık ilkesine uygun olarak araç bazında ayrıntılı izinler uygulayın.
+- **Token Yaşam Döngüsü Yönetimi**: Güvenli döngü ve uygun hedef doğrulama ile kısa ömürlü erişim tokenları kullanın.
+- **Çok Faktörlü Kimlik Doğrulama**: Tüm yönetim erişimi ve hassas işlemler için MFA gerektirir.
 
-### Kayıt Tutma ve İzleme
-- [Yapay Zeka Sistemleri için Merkezi Kayıt Tutma](https://learn.microsoft.com/azure/architecture/example-scenario/logging/centralized-logging)
-- [Denetim Kaydı En İyi Uygulamaları](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
-- [Yapay Zeka İş Yükleri için Azure Monitor](https://learn.microsoft.com/azure/azure-monitor/overview)
+### 3. Güvenli İletişim Protokolleri
+- **Taşıma Katmanı Güvenliği**: Tüm MCP iletişimleri için doğru sertifika doğrulaması ile HTTPS/TLS 1.3 kullanın.
+- **Uçtan Uca Şifreleme**: Transit ve bekleyen çok hassas veriler için ek şifreleme katmanları uygulayın.
+- **Sertifika Yönetimi**: Otomatik yenileme süreçleri ile uygun sertifika yaşam döngüsü yönetimini sürdürün.
+- **Protokol Sürüm Uygulaması**: Doğru sürüm müzakeresi ile mevcut MCP protokol sürümünü (2025-06-18) kullanın.
 
-### Güvenli Depolama
-- [Kimlik Bilgileri Depolama için Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts)
-- [Hassas Verilerin Diskte Şifrelenmesi](https://learn.microsoft.com/security/engineering/data-encryption-at-rest)
-- [Güvenli Token Depolama ve Token Şifreleme](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
+### 4. Gelişmiş Hız Sınırlama ve Kaynak Koruma
+- **Çok Katmanlı Hız Sınırlama**: Kötüye kullanımı önlemek için kullanıcı, oturum, araç ve kaynak seviyelerinde hız sınırlama uygulayın.
+- **Uyarlanabilir Hız Sınırlama**: Kullanım modellerine ve tehdit göstergelerine uyum sağlayan makine öğrenimi tabanlı hız sınırlama kullanın.
+- **Kaynak Kota Yönetimi**: Hesaplama kaynakları, bellek kullanımı ve yürütme süresi için uygun sınırlar belirleyin.
+- **DDoS Koruması**: Kapsamlı DDoS koruma ve trafik analiz sistemleri dağıtın.
 
-### Token Yönetimi
-- [JWT En İyi Uygulamaları (RFC 8725)](https://datatracker.ietf.org/doc/html/rfc8725)
-- [OAuth 2.0 Güvenlik En İyi Uygulamaları (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
-- [Token Doğrulama ve Ömür Yönetimi En İyi Uygulamaları](https://learn.microsoft.com/entra/identity-platform/access-tokens)
+### 5. Kapsamlı Günlükleme ve İzleme
+- **Yapılandırılmış Denetim Günlüğü**: Tüm MCP işlemleri, araç yürütmeleri ve güvenlik olayları için ayrıntılı, aranabilir günlükler uygulayın.
+- **Gerçek Zamanlı Güvenlik İzleme**: MCP iş yükleri için AI destekli anomali algılama ile SIEM sistemleri dağıtın.
+- **Gizlilik Uyumluluğu Günlüğü**: Veri gizliliği gereksinimlerine ve düzenlemelerine saygı göstererek güvenlik olaylarını kaydedin.
+- **Olay Yanıtı Entegrasyonu**: Günlükleme sistemlerini otomatik olay yanıtı iş akışlarına bağlayın.
 
-### Oturum Yönetimi
-- [OWASP Oturum Yönetimi Hile Sayfası](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
-- [MCP Oturum Yönetimi Kılavuzu](https://modelcontextprotocol.io/docs/guides/security)
-- [Güvenli Oturum Tasarım Modelleri](https://learn.microsoft.com/security/engineering/session-security)
+### 6. Gelişmiş Güvenli Depolama Uygulamaları
+- **Donanım Güvenlik Modülleri**: Kritik kriptografik işlemler için HSM destekli anahtar depolama (Azure Key Vault, AWS CloudHSM) kullanın.
+- **Şifreleme Anahtar Yönetimi**: Şifreleme anahtarları için uygun anahtar döndürme, ayrım ve erişim kontrolleri uygulayın.
+- **Gizli Bilgi Yönetimi**: Tüm API anahtarlarını, tokenları ve kimlik bilgilerini özel gizli bilgi yönetim sistemlerinde saklayın.
+- **Veri Sınıflandırması**: Verileri hassasiyet seviyelerine göre sınıflandırın ve uygun koruma önlemleri uygulayın.
 
-### Araç Çalıştırma İzolasyonu
-- [Konteyner Güvenliği En İyi Uygulamaları](https://learn.microsoft.com/azure/container-instances/container-instances-image-security)
-- [Süreç İzolasyonu Uygulaması](https://learn.microsoft.com/windows/security/threat-protection/security-policy-settings/user-rights-assignment)
-- [Konteyner Uygulamaları için Kaynak Sınırları](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+### 7. Gelişmiş Token Yönetimi
+- **Token Geçişini Önleme**: Güvenlik kontrollerini atlayan token geçişi modellerini açıkça yasaklayın.
+- **Hedef Doğrulama**: Token hedef iddialarının MCP sunucu kimliğiyle eşleştiğini her zaman doğrulayın.
+- **İddia Tabanlı Yetkilendirme**: Token iddialarına ve kullanıcı özelliklerine dayalı ayrıntılı yetkilendirme uygulayın.
+- **Token Bağlama**: Tokenları uygun olduğunda belirli oturumlara, kullanıcılara veya cihazlara bağlayın.
 
-### Düzenli Güvenlik Denetimleri
-- [Microsoft Güvenlik Geliştirme Yaşam Döngüsü](https://www.microsoft.com/sdl)
-- [OWASP Uygulama Güvenliği Doğrulama Standardı](https://owasp.org/www-project-application-security-verification-standard/)
-- [Güvenlik Kod İnceleme Kılavuzu](https://owasp.org/www-pdf-archive/OWASP_Code_Review_Guide_v2.pdf)
+### 8. Güvenli Oturum Yönetimi
+- **Kriptografik Oturum Kimlikleri**: Tahmin edilebilir diziler yerine kriptografik olarak güvenli rastgele sayı üreteçleri kullanarak oturum kimlikleri oluşturun.
+- **Kullanıcıya Özgü Bağlama**: Oturum kimliklerini `<user_id>:<session_id>` gibi güvenli formatlar kullanarak kullanıcıya özgü bilgilere bağlayın.
+- **Oturum Yaşam Döngüsü Kontrolleri**: Uygun oturum süresi dolma, döndürme ve geçersiz kılma mekanizmaları uygulayın.
+- **Oturum Güvenlik Başlıkları**: Oturum koruması için uygun HTTP güvenlik başlıklarını kullanın.
 
-### İstem Doğrulama
-- [Microsoft İstem Kalkanları](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
-- [Yapay Zeka için Azure İçerik Güvenliği](https://learn.microsoft.com/azure/ai-services/content-safety/)
-- [İstem Enjeksiyonunu Önleme](https://github.com/microsoft/prompt-shield-js)
+### 9. Yapay Zeka Özel Güvenlik Kontrolleri
+- **İstem Enjeksiyonu Savunması**: Microsoft Prompt Shields ile spot ışığı, sınırlayıcılar ve veri işaretleme tekniklerini dağıtın.
+- **Araç Zehirlenmesini Önleme**: Araç meta verilerini doğrulayın, dinamik değişiklikleri izleyin ve araç bütünlüğünü doğrulayın.
+- **Model Çıktı Doğrulaması**: Model çıktısını veri sızıntısı, zararlı içerik veya güvenlik politikası ihlalleri açısından tarayın.
+- **Bağlam Penceresi Koruması**: Bağlam penceresi zehirlenmesini ve manipülasyon saldırılarını önlemek için kontroller uygulayın.
 
-### Kimlik Doğrulama Yetkilendirmesi
-- [Microsoft Entra ID Entegrasyonu](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow)
-- [MCP Hizmetleri için OAuth 2.0](https://learn.microsoft.com/security/engineering/solving-oauth)
-- [MCP Güvenlik Kontrolleri 2025](./mcp-security-controls-2025.md)
+### 10. Araç Yürütme Güvenliği
+- **Yürütme Sandboxing**: Araç yürütmelerini kaynak sınırlarıyla konteynerize edilmiş, izole edilmiş ortamlarda çalıştırın.
+- **Ayrıcalık Ayrımı**: Araçları minimum gerekli ayrıcalıklarla ve ayrı hizmet hesaplarıyla çalıştırın.
+- **Ağ İzolasyonu**: Araç yürütme ortamları için ağ segmentasyonu uygulayın.
+- **Yürütme İzleme**: Araç yürütmesini anormal davranış, kaynak kullanımı ve güvenlik ihlalleri açısından izleyin.
 
-### İzin Kapsamı
-- [Güvenli En Az Ayrıcalıklı Erişim](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
-- [Rol Tabanlı Erişim Kontrolü (RBAC) Tasarımı](https://learn.microsoft.com/azure/role-based-access-control/overview)
-- [MCP’de Araç Bazlı Yetkilendirme](https://modelcontextprotocol.io/docs/guides/best-practices)
+### 11. Sürekli Güvenlik Doğrulaması
+- **Otomatik Güvenlik Testi**: GitHub Advanced Security gibi araçlarla güvenlik testini CI/CD hatlarına entegre edin.
+- **Güvenlik Açığı Yönetimi**: AI modelleri ve harici hizmetler dahil tüm bağımlılıkları düzenli olarak tarayın.
+- **Penetrasyon Testi**: Özellikle MCP uygulamalarını hedef alan düzenli güvenlik değerlendirmeleri yapın.
+- **Güvenlik Kod İncelemeleri**: MCP ile ilgili tüm kod değişiklikleri için zorunlu güvenlik incelemeleri uygulayın.
 
-### Veri Azaltma
-- [Tasarım Yoluyla Veri Koruma](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments)
-- [Yapay Zeka Veri Gizliliği En İyi Uygulamaları](https://learn.microsoft.com/legal/cognitive-services/openai/data-privacy)
-- [Gizliliği Artıran Teknolojilerin Uygulanması](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/)
+### 12. Yapay Zeka için Tedarik Zinciri Güvenliği
+- **Bileşen Doğrulaması**: Tüm yapay zeka bileşenlerinin (modeller, gömüler, API'ler) kökenini, bütünlüğünü ve güvenliğini doğrulayın.
+- **Bağımlılık Yönetimi**: Güvenlik açığı takibi ile tüm yazılım ve yapay zeka bağımlılıklarının güncel envanterlerini tutun.
+- **Güvenilir Depolar**: Tüm yapay zeka modelleri, kütüphaneleri ve araçları için doğrulanmış, güvenilir kaynaklar kullanın.
+- **Tedarik Zinciri İzleme**: Yapay zeka hizmet sağlayıcılarında ve model depolarında meydana gelen ihlalleri sürekli izleyin.
 
-### Otomatik Güvenlik Açığı Taraması
-- [GitHub Gelişmiş Güvenlik](https://github.com/security/advanced-security)
-- [DevSecOps Pipeline Uygulaması](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline)
-- [Sürekli Güvenlik Doğrulaması](https://www.microsoft.com/security/blog/2022/04/05/step-by-step-building-a-more-efficient-devsecops-environment/)
+## Gelişmiş Güvenlik Modelleri
+
+### MCP için Sıfır Güven Mimarisi
+- **Asla Güvenme, Her Zaman Doğrula**: Tüm MCP katılımcıları için sürekli doğrulama uygulayın.
+- **Mikro Segmentasyon**: MCP bileşenlerini ayrıntılı ağ ve kimlik kontrolleriyle izole edin.
+- **Koşullu Erişim**: Bağlama ve davranışa uyum sağlayan risk tabanlı erişim kontrolleri uygulayın.
+- **Sürekli Risk Değerlendirmesi**: Mevcut tehdit göstergelerine dayalı olarak güvenlik duruşunu dinamik olarak değerlendirin.
+
+### Gizliliği Koruyan Yapay Zeka Uygulaması
+- **Veri Minimizasyonu**: Her MCP işlemi için yalnızca gerekli minimum veriyi açığa çıkarın.
+- **Diferansiyel Gizlilik**: Hassas veri işleme için gizliliği koruyan teknikler uygulayın.
+- **Homomorfik Şifreleme**: Şifrelenmiş veriler üzerinde güvenli hesaplama için gelişmiş şifreleme teknikleri kullanın.
+- **Federated Learning**: Veri yerelliğini ve gizliliğini koruyan dağıtılmış öğrenme yaklaşımlarını uygulayın.
+
+### Yapay Zeka Sistemleri için Olay Yanıtı
+- **Yapay Zeka Özel Olay Prosedürleri**: Yapay zeka ve MCP'ye özgü tehditlere yönelik olay yanıt prosedürleri geliştirin.
+- **Otomatik Yanıt**: Yaygın yapay zeka güvenlik olayları için otomatik sınırlama ve iyileştirme uygulayın.
+- **Adli Yetkinlikler**: Yapay zeka sistem ihlalleri ve veri sızıntıları için adli hazırlık sağlayın.
+- **Kurtarma Prosedürleri**: Yapay zeka model zehirlenmesi, istem enjeksiyonu saldırıları ve hizmet ihlallerinden kurtulma prosedürleri oluşturun.
+
+## Uygulama Kaynakları ve Standartlar
+
+### Resmi MCP Belgeleri
+- [MCP Specification 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) - Mevcut MCP protokol spesifikasyonu
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) - Resmi güvenlik rehberi
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization) - Kimlik doğrulama ve yetkilendirme modelleri
+- [MCP Transport Security](https://modelcontextprotocol.io/specification/2025-06-18/transports/) - Taşıma katmanı güvenlik gereksinimleri
+
+### Microsoft Güvenlik Çözümleri
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - Gelişmiş istem enjeksiyonu koruması
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/) - Kapsamlı yapay zeka içerik filtreleme
+- [Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow) - Kurumsal kimlik ve erişim yönetimi
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts) - Güvenli gizli bilgi ve kimlik bilgisi yönetimi
+- [GitHub Advanced Security](https://github.com/security/advanced-security) - Tedarik zinciri ve kod güvenliği taraması
+
+### Güvenlik Standartları ve Çerçeveler
+- [OAuth 2.1 Security Best Practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics) - Mevcut OAuth güvenlik rehberi
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Web uygulaması güvenlik riskleri
+- [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559) - Yapay zeka özel güvenlik riskleri
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) - Kapsamlı yapay zeka risk yönetimi
+- [ISO 27001:2022](https://www.iso.org/standard/27001) - Bilgi güvenliği yönetim sistemleri
+
+### Uygulama Rehberleri ve Eğitimler
+- [Azure API Management as MCP Auth Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) - Kurumsal kimlik doğrulama modelleri
+- [Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/) - Kimlik sağlayıcı entegrasyonu
+- [Secure Token Storage Implementation](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2) - Token yönetimi en iyi uygulamaları
+- [End-to-End Encryption for AI](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption) - Gelişmiş şifreleme modelleri
+
+### Gelişmiş Güvenlik Kaynakları
+- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl) - Güvenli geliştirme uygulamaları
+- [AI Red Team Guidance](https://learn.microsoft.com/security/ai-red-team/) - Yapay zeka özel güvenlik testi
+- [Threat Modeling for AI Systems](https://learn.microsoft.com/security/adoption/approach/threats-ai) - Yapay zeka tehdit modelleme metodolojisi
+- [Privacy Engineering for AI](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/) - Gizliliği koruyan yapay zeka teknikleri
+
+### Uyumluluk ve Yönetim
+- [GDPR Compliance for AI](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments) - Yapay zeka sistemlerinde gizlilik uyumluluğu
+- [AI Governance Framework](https://learn.microsoft.com/azure/architecture/guide/responsible-ai/responsible-ai-overview) - Sorumlu yapay zeka uygulaması
+- [SOC 2 for AI Services](https://learn.microsoft.com/compliance/regulatory/offering-soc) - Yapay zeka hizmet sağlayıcıları için güvenlik kontrolleri
+- [HIPAA Compliance for AI](https://learn.microsoft.com/compliance/regulatory/offering-hipaa-hitech) - Sağlık yapay zeka uyumluluk gereksinimleri
+
+### DevSecOps ve Otomasyon
+- [DevSecOps Pipeline for AI](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline) - Güvenli yapay zeka geliştirme hatları
+- [Automated Security Testing](https://learn.microsoft.com/security/engineering/devsecops) - Sürekli güvenlik doğrulaması
+- [Infrastructure as Code Security](https://learn.microsoft.com/security/engineering/infrastructure-security) - Güvenli altyapı dağıtımı
+- [Container Security for AI](https://learn.microsoft.com/azure/container-instances/container-instances-image-security) - Yapay zeka iş yükü konteynerizasyon güvenliği
+
+### İzleme ve Olay Yanıtı  
+- [Azure Monitor for AI Workloads](https://learn.microsoft.com/azure/azure-monitor/overview) - Kapsamlı izleme çözümleri
+- [AI Security Incident Response](https://learn.microsoft.com/security/compass/incident-response-playbooks) - Yapay zeka özel olay prosedürleri
+- [SIEM for AI Systems](https://learn.microsoft.com/azure/sentinel/overview) - Güvenlik bilgi ve olay yönetimi
+- [Threat Intelligence for AI](https://learn.microsoft.com/security/compass/security-operations-videos-and-decks#threat-intelligence) - Yapay zeka tehdit istihbaratı kaynakları
+
+## 🔄 Sürekli İyileştirme
+
+###
+- **Araç Geliştirme**: MCP ekosistemi için güvenlik araçları ve kütüphaneleri geliştirin ve paylaşın
+
+---
+
+*Bu belge, 18 Ağustos 2025 itibarıyla MCP Spesifikasyonu 2025-06-18'e dayanan MCP güvenlik en iyi uygulamalarını yansıtmaktadır. Protokol ve tehdit ortamı geliştikçe güvenlik uygulamaları düzenli olarak gözden geçirilmeli ve güncellenmelidir.*
 
 **Feragatname**:  
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba gösterilse de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu oluşabilecek yanlış anlamalar veya yorum hatalarından sorumlu değiliz.
+Bu belge, [Co-op Translator](https://github.com/Azure/co-op-translator) adlı yapay zeka çeviri hizmeti kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belgenin kendi dilindeki hali, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalar için sorumluluk kabul etmiyoruz.

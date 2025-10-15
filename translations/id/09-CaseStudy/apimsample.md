@@ -1,76 +1,76 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "36de9fae488d6de554d969fe8e0801a8",
-  "translation_date": "2025-07-14T05:34:46+00:00",
+  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
+  "translation_date": "2025-08-18T17:29:06+00:00",
   "source_file": "09-CaseStudy/apimsample.md",
   "language_code": "id"
 }
 -->
-# Studi Kasus: Mengekspos REST API di API Management sebagai server MCP
+# Studi Kasus: Mengekspos REST API di API Management sebagai Server MCP
 
 Azure API Management adalah layanan yang menyediakan Gateway di atas Endpoint API Anda. Cara kerjanya adalah Azure API Management bertindak seperti proxy di depan API Anda dan dapat memutuskan apa yang harus dilakukan dengan permintaan yang masuk.
 
-Dengan menggunakannya, Anda menambahkan berbagai fitur seperti:
+Dengan menggunakannya, Anda dapat menambahkan berbagai fitur seperti:
 
-- **Keamanan**, Anda dapat menggunakan segala sesuatu mulai dari API keys, JWT hingga managed identity.
-- **Pembatasan laju (rate limiting)**, fitur hebat yang memungkinkan Anda menentukan berapa banyak panggilan yang diperbolehkan dalam satuan waktu tertentu. Ini membantu memastikan semua pengguna mendapatkan pengalaman yang baik dan juga agar layanan Anda tidak kewalahan dengan permintaan.
-- **Skalabilitas & Load balancing**. Anda dapat mengatur beberapa endpoint untuk menyeimbangkan beban dan juga menentukan cara "load balance".
-- **Fitur AI seperti semantic caching**, batas token dan pemantauan token, dan lainnya. Fitur-fitur ini meningkatkan responsivitas sekaligus membantu Anda mengontrol pengeluaran token. [Baca lebih lanjut di sini](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities).
+- **Keamanan**, Anda dapat menggunakan segala sesuatu mulai dari kunci API, JWT hingga identitas terkelola.
+- **Pembatasan tingkat**, fitur hebat yang memungkinkan Anda memutuskan berapa banyak panggilan yang dapat diterima dalam satuan waktu tertentu. Ini membantu memastikan semua pengguna mendapatkan pengalaman yang baik dan juga layanan Anda tidak kewalahan dengan permintaan.
+- **Skalabilitas & Load balancing**. Anda dapat mengatur sejumlah endpoint untuk menyeimbangkan beban dan juga memutuskan bagaimana "load balancing" dilakukan.
+- **Fitur AI seperti caching semantik**, batas token, pemantauan token, dan lainnya. Fitur-fitur ini sangat baik untuk meningkatkan responsivitas serta membantu Anda memantau penggunaan token. [Baca lebih lanjut di sini](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities).
 
 ## Mengapa MCP + Azure API Management?
 
-Model Context Protocol dengan cepat menjadi standar untuk aplikasi AI agentik dan cara mengekspos alat serta data secara konsisten. Azure API Management adalah pilihan alami saat Anda perlu "mengelola" API. Server MCP sering terintegrasi dengan API lain untuk menyelesaikan permintaan ke sebuah alat, misalnya. Oleh karena itu, menggabungkan Azure API Management dan MCP sangat masuk akal.
+Model Context Protocol (MCP) dengan cepat menjadi standar untuk aplikasi AI agentik dan cara mengekspos alat serta data secara konsisten. Azure API Management adalah pilihan alami ketika Anda perlu "mengelola" API. Server MCP sering kali terintegrasi dengan API lain untuk menyelesaikan permintaan ke alat tertentu. Oleh karena itu, menggabungkan Azure API Management dan MCP sangat masuk akal.
 
 ## Gambaran Umum
 
-Dalam kasus penggunaan ini, kita akan belajar cara mengekspos endpoint API sebagai Server MCP. Dengan melakukan ini, kita dapat dengan mudah menjadikan endpoint ini bagian dari aplikasi agentik sekaligus memanfaatkan fitur dari Azure API Management.
+Dalam kasus penggunaan ini, kita akan belajar mengekspos endpoint API sebagai Server MCP. Dengan melakukan ini, kita dapat dengan mudah menjadikan endpoint ini bagian dari aplikasi agentik sambil memanfaatkan fitur-fitur dari Azure API Management.
 
 ## Fitur Utama
 
-- Anda memilih metode endpoint yang ingin diekspos sebagai alat.
-- Fitur tambahan yang Anda dapatkan bergantung pada konfigurasi di bagian kebijakan (policy) untuk API Anda. Namun di sini kami akan menunjukkan cara menambahkan pembatasan laju.
+- Anda dapat memilih metode endpoint yang ingin diekspos sebagai alat.
+- Fitur tambahan yang Anda dapatkan bergantung pada apa yang Anda konfigurasikan di bagian kebijakan untuk API Anda. Namun, di sini kami akan menunjukkan cara menambahkan pembatasan tingkat.
 
-## Langkah Awal: impor API
+## Langkah Awal: Mengimpor API
 
-Jika Anda sudah memiliki API di Azure API Management, bagus, Anda bisa melewati langkah ini. Jika belum, lihat tautan ini, [mengimpor API ke Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
+Jika Anda sudah memiliki API di Azure API Management, Anda dapat melewati langkah ini. Jika belum, lihat tautan ini, [mengimpor API ke Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
 
 ## Mengekspos API sebagai Server MCP
 
 Untuk mengekspos endpoint API, ikuti langkah-langkah berikut:
 
-1. Buka Azure Portal dan alamat berikut <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp>  
+1. Buka Azure Portal di alamat berikut <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp>. 
    Arahkan ke instance API Management Anda.
 
-1. Di menu sebelah kiri, pilih APIs > MCP Servers > + Create new MCP Server.
+1. Di menu sebelah kiri, pilih **APIs > MCP Servers > + Create new MCP Server**.
 
-1. Pada bagian API, pilih REST API yang ingin diekspos sebagai server MCP.
+1. Pada API, pilih REST API yang akan diekspos sebagai server MCP.
 
-1. Pilih satu atau lebih Operasi API yang ingin diekspos sebagai alat. Anda bisa memilih semua operasi atau hanya operasi tertentu.
+1. Pilih satu atau lebih Operasi API untuk diekspos sebagai alat. Anda dapat memilih semua operasi atau hanya operasi tertentu.
 
     ![Pilih metode untuk diekspos](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
 
 1. Pilih **Create**.
 
-1. Arahkan ke menu **APIs** dan **MCP Servers**, Anda akan melihat seperti berikut:
+1. Arahkan ke opsi menu **APIs** dan **MCP Servers**, Anda akan melihat tampilan berikut:
 
-    ![Lihat MCP Server di panel utama](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
+    ![Lihat Server MCP di panel utama](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
 
-    Server MCP telah dibuat dan operasi API diekspos sebagai alat. Server MCP terdaftar di panel MCP Servers. Kolom URL menunjukkan endpoint server MCP yang dapat Anda panggil untuk pengujian atau dalam aplikasi klien.
+    Server MCP telah dibuat dan operasi API telah diekspos sebagai alat. Server MCP terdaftar di panel MCP Servers. Kolom URL menunjukkan endpoint server MCP yang dapat Anda panggil untuk pengujian atau dalam aplikasi klien.
 
-## Opsional: Konfigurasi kebijakan
+## Opsional: Mengonfigurasi Kebijakan
 
-Azure API Management memiliki konsep inti kebijakan (policies) di mana Anda mengatur aturan berbeda untuk endpoint Anda, misalnya pembatasan laju atau semantic caching. Kebijakan ini ditulis dalam format XML.
+Azure API Management memiliki konsep inti kebijakan di mana Anda dapat mengatur berbagai aturan untuk endpoint Anda, seperti pembatasan tingkat atau caching semantik. Kebijakan ini ditulis dalam format XML.
 
-Berikut cara mengatur kebijakan untuk membatasi laju Server MCP Anda:
+Berikut cara mengatur kebijakan untuk membatasi tingkat panggilan ke Server MCP Anda:
 
-1. Di portal, di bawah APIs, pilih **MCP Servers**.
+1. Di portal, di bawah **APIs**, pilih **MCP Servers**.
 
-1. Pilih server MCP yang sudah Anda buat.
+1. Pilih server MCP yang telah Anda buat.
 
 1. Di menu sebelah kiri, di bawah MCP, pilih **Policies**.
 
-1. Di editor kebijakan, tambahkan atau edit kebijakan yang ingin diterapkan pada alat server MCP. Kebijakan didefinisikan dalam format XML. Misalnya, Anda bisa menambahkan kebijakan untuk membatasi panggilan ke alat server MCP (dalam contoh ini, 5 panggilan per 30 detik per alamat IP klien). Berikut XML yang akan menyebabkan pembatasan laju:
+1. Di editor kebijakan, tambahkan atau edit kebijakan yang ingin Anda terapkan pada alat server MCP. Kebijakan didefinisikan dalam format XML. Sebagai contoh, Anda dapat menambahkan kebijakan untuk membatasi panggilan ke alat server MCP (dalam contoh ini, 5 panggilan per 30 detik per alamat IP klien). Berikut XML yang akan menyebabkan pembatasan tingkat:
 
     ```xml
      <rate-limit-by-key calls="5" 
@@ -80,29 +80,29 @@ Berikut cara mengatur kebijakan untuk membatasi laju Server MCP Anda:
     />
     ```
 
-    Berikut gambar editor kebijakan:
+    Berikut adalah gambar editor kebijakan:
 
     ![Editor kebijakan](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
- 
-## Coba Jalankan
 
-Mari pastikan Server MCP kita berfungsi sesuai harapan.
+## Mencoba Server MCP
 
-Untuk ini, kita akan menggunakan Visual Studio Code dan GitHub Copilot dengan mode Agent. Kita akan menambahkan server MCP ke *mcp.json*. Dengan begitu, Visual Studio Code akan bertindak sebagai klien dengan kemampuan agentik dan pengguna akhir dapat mengetik prompt dan berinteraksi dengan server tersebut.
+Mari kita pastikan Server MCP kita berfungsi sebagaimana mestinya.
+
+Untuk ini, kita akan menggunakan Visual Studio Code dan GitHub Copilot dalam mode Agen. Kita akan menambahkan server MCP ke file *mcp.json*. Dengan melakukan ini, Visual Studio Code akan bertindak sebagai klien dengan kemampuan agentik, dan pengguna akhir dapat mengetikkan prompt dan berinteraksi dengan server tersebut.
 
 Berikut cara menambahkan server MCP di Visual Studio Code:
 
-1. Gunakan perintah MCP: **Add Server dari Command Palette**.
+1. Gunakan perintah **MCP: Add Server** dari Command Palette.
 
-1. Saat diminta, pilih tipe server: **HTTP (HTTP atau Server Sent Events)**.
+1. Saat diminta, pilih jenis server: **HTTP (HTTP atau Server Sent Events)**.
 
-1. Masukkan URL server MCP di API Management. Contoh: **https://<apim-service-name>.azure-api.net/<api-name>-mcp/sse** (untuk endpoint SSE) atau **https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp** (untuk endpoint MCP), perhatikan perbedaan transportnya adalah `/sse` atau `/mcp`.
+1. Masukkan URL server MCP di API Management. Contoh: **https://<apim-service-name>.azure-api.net/<api-name>-mcp/sse** (untuk endpoint SSE) atau **https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp** (untuk endpoint MCP), perhatikan perbedaan transportasi adalah `/sse` atau `/mcp`.
 
-1. Masukkan ID server sesuai pilihan Anda. Ini bukan nilai penting tapi membantu Anda mengingat instance server ini.
+1. Masukkan ID server pilihan Anda. Nilai ini tidak terlalu penting tetapi akan membantu Anda mengingat instance server ini.
 
-1. Pilih apakah konfigurasi disimpan ke pengaturan workspace atau pengaturan pengguna.
+1. Pilih apakah akan menyimpan konfigurasi ke pengaturan workspace atau pengaturan pengguna.
 
-  - **Workspace settings** - Konfigurasi server disimpan ke file .vscode/mcp.json yang hanya tersedia di workspace saat ini.
+  - **Pengaturan workspace** - Konfigurasi server disimpan ke file .vscode/mcp.json yang hanya tersedia di workspace saat ini.
 
     *mcp.json*
 
@@ -115,7 +115,7 @@ Berikut cara menambahkan server MCP di Visual Studio Code:
     }
     ```
 
-    atau jika Anda memilih streaming HTTP sebagai transport, akan sedikit berbeda:
+    atau jika Anda memilih HTTP streaming sebagai transportasi, akan sedikit berbeda:
 
     ```json
     "servers": {
@@ -126,17 +126,17 @@ Berikut cara menambahkan server MCP di Visual Studio Code:
     }
     ```
 
-  - **User settings** - Konfigurasi server ditambahkan ke file *settings.json* global Anda dan tersedia di semua workspace. Konfigurasinya mirip seperti berikut:
+  - **Pengaturan pengguna** - Konfigurasi server ditambahkan ke file *settings.json* global Anda dan tersedia di semua workspace. Konfigurasinya terlihat seperti berikut:
 
     ![Pengaturan pengguna](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
 
-1. Anda juga perlu menambahkan konfigurasi header untuk memastikan autentikasi yang benar ke Azure API Management. Header yang digunakan bernama **Ocp-Apim-Subscription-Key**.
+1. Anda juga perlu menambahkan konfigurasi header untuk memastikan autentikasi ke Azure API Management. Header ini disebut **Ocp-Apim-Subscription-Key**.
 
     - Berikut cara menambahkannya ke pengaturan:
 
-    ![Menambahkan header untuk autentikasi](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), ini akan memunculkan prompt untuk memasukkan nilai API key yang bisa Anda temukan di Azure Portal untuk instance Azure API Management Anda.
+    ![Menambahkan header untuk autentikasi](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), ini akan memunculkan prompt untuk meminta nilai kunci API yang dapat Anda temukan di Azure Portal untuk instance Azure API Management Anda.
 
-   - Untuk menambahkannya ke *mcp.json*, Anda bisa menambahkannya seperti ini:
+   - Untuk menambahkannya ke *mcp.json*, Anda dapat menambahkannya seperti ini:
 
     ```json
     "inputs": [
@@ -158,45 +158,44 @@ Berikut cara menambahkan server MCP di Visual Studio Code:
     }
     ```
 
-### Gunakan mode Agent
+### Menggunakan Mode Agen
 
-Sekarang kita sudah siap baik di pengaturan atau di *.vscode/mcp.json*. Mari coba jalankan.
+Sekarang kita sudah siap di pengaturan atau di *.vscode/mcp.json*. Mari kita coba.
 
-Seharusnya ada ikon Tools seperti ini, di mana alat yang diekspos dari server Anda terdaftar:
+Harus ada ikon Tools seperti ini, di mana alat yang diekspos dari server Anda terdaftar:
 
 ![Alat dari server](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
 
-1. Klik ikon tools dan Anda akan melihat daftar alat seperti ini:
+1. Klik ikon alat dan Anda akan melihat daftar alat seperti ini:
 
     ![Alat](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/select-tools-visual-studio-code.png)
 
-1. Masukkan prompt di chat untuk memanggil alat tersebut. Misalnya, jika Anda memilih alat untuk mendapatkan informasi tentang pesanan, Anda bisa bertanya kepada agen tentang pesanan tersebut. Berikut contoh prompt:
+1. Masukkan prompt di chat untuk memanggil alat. Sebagai contoh, jika Anda memilih alat untuk mendapatkan informasi tentang pesanan, Anda dapat meminta agen tentang pesanan. Berikut contoh prompt:
 
     ```text
     get information from order 2
     ```
 
-    Anda sekarang akan melihat ikon tools yang meminta Anda untuk melanjutkan memanggil alat. Pilih untuk melanjutkan menjalankan alat, Anda akan melihat output seperti ini:
+    Anda sekarang akan melihat ikon alat yang meminta Anda untuk melanjutkan memanggil alat. Pilih untuk melanjutkan menjalankan alat, Anda sekarang akan melihat output seperti ini:
 
     ![Hasil dari prompt](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
 
-    **apa yang Anda lihat di atas tergantung alat yang Anda siapkan, tapi idenya adalah Anda mendapatkan respons teks seperti di atas**
-
+    **Apa yang Anda lihat di atas tergantung pada alat yang telah Anda atur, tetapi idenya adalah Anda mendapatkan respons tekstual seperti di atas.**
 
 ## Referensi
 
-Berikut cara Anda bisa belajar lebih lanjut:
+Berikut cara Anda dapat mempelajari lebih lanjut:
 
 - [Tutorial tentang Azure API Management dan MCP](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server)
-- [Contoh Python: Amankan server MCP jarak jauh menggunakan Azure API Management (eksperimental)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
+- [Contoh Python: Mengamankan server MCP jarak jauh menggunakan Azure API Management (eksperimental)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
 
 - [Lab otorisasi klien MCP](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
 
-- [Gunakan ekstensi Azure API Management untuk VS Code untuk mengimpor dan mengelola API](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
+- [Menggunakan ekstensi Azure API Management untuk VS Code untuk mengimpor dan mengelola API](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
 
-- [Daftarkan dan temukan server MCP jarak jauh di Azure API Center](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
-- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Repo hebat yang menunjukkan banyak kemampuan AI dengan Azure API Management
-- [Workshop AI Gateway](https://azure-samples.github.io/AI-Gateway/) Berisi workshop menggunakan Azure Portal, cara yang bagus untuk mulai mengevaluasi kemampuan AI.
+- [Mendaftarkan dan menemukan server MCP jarak jauh di Azure API Center](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
+- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Repositori hebat yang menunjukkan banyak kemampuan AI dengan Azure API Management
+- [Workshop AI Gateway](https://azure-samples.github.io/AI-Gateway/) Berisi workshop menggunakan Azure Portal, yang merupakan cara hebat untuk mulai mengevaluasi kemampuan AI.
 
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk akurasi, harap diketahui bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sah. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang salah yang timbul dari penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan layanan penerjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk memberikan hasil yang akurat, harap diperhatikan bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang berwenang. Untuk informasi yang bersifat kritis, disarankan menggunakan jasa penerjemahan manusia profesional. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.

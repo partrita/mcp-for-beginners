@@ -1,28 +1,30 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "affcf199a44f60283a289dcb69dc144e",
-  "translation_date": "2025-07-17T13:35:05+00:00",
+  "original_hash": "8358c13b5b6877e475674697cdc1a904",
+  "translation_date": "2025-08-19T14:45:11+00:00",
   "source_file": "03-GettingStarted/02-client/complete_examples.md",
   "language_code": "sw"
 }
 -->
-# Mifano Kamili ya Mteja wa MCP
+# Mifano Kamili za Wateja wa MCP
 
-Kabrasha hili lina mifano kamili, inayofanya kazi ya wateja wa MCP katika lugha mbalimbali za programu. Kila mteja unaonyesha utendaji kamili ulioelezwa katika mafunzo makuu ya README.md.
+Hili jalada lina mifano kamili na inayofanya kazi ya wateja wa MCP katika lugha mbalimbali za programu. Kila mteja anaonyesha utendaji wote ulioelezwa katika mafunzo ya README.md kuu.
 
-## Wateja Wanaopatikana
+## Wateja Waliopo
 
 ### 1. Mteja wa Java (`client_example_java.java`)
-- **Usafirishaji**: SSE (Matukio Yanayotumwa na Server) kupitia HTTP
-- **Server Lengwa**: `http://localhost:8080`
-- **Sifa**: 
+
+- **Usafirishaji**: SSE (Matukio Yanayotumwa na Seva) kupitia HTTP
+- **Seva Lengwa**: `http://localhost:8080`
+- **Vipengele**:
   - Kuanzisha muunganisho na ping
   - Orodha ya zana
-  - Operesheni za kalkuleta (ongeza, toa, zidisha, gawanya, msaada)
-  - Kushughulikia makosa na kutoa matokeo
+  - Operesheni za kikokotoo (kujumlisha, kutoa, kuzidisha, kugawa, msaada)
+  - Kushughulikia makosa na uchimbaji wa matokeo
 
-**Ili kuendesha:**
+**Kukimbia:**
+
 ```bash
 # Ensure your MCP server is running on localhost:8080
 javac client_example_java.java
@@ -30,31 +32,35 @@ java client_example_java
 ```
 
 ### 2. Mteja wa C# (`client_example_csharp.cs`)
-- **Usafirishaji**: Stdio (Ingizo/Tokeo la Kawaida)
-- **Server Lengwa**: Server ya MCP ya .NET ya ndani kupitia dotnet run
-- **Sifa**:
-  - Kuanzisha server moja kwa moja kupitia usafirishaji wa stdio
+
+- **Usafirishaji**: Stdio (Ingizo/Toleo la Kawaida)
+- **Seva Lengwa**: Seva ya MCP ya .NET ya ndani kupitia dotnet run
+- **Vipengele**:
+  - Kuanza seva kiotomatiki kupitia usafirishaji wa stdio
   - Orodha ya zana na rasilimali
-  - Operesheni za kalkuleta
+  - Operesheni za kikokotoo
   - Kuchambua matokeo ya JSON
   - Kushughulikia makosa kwa kina
 
-**Ili kuendesha:**
+**Kukimbia:**
+
 ```bash
 dotnet run
 ```
 
 ### 3. Mteja wa TypeScript (`client_example_typescript.ts`)
-- **Usafirishaji**: Stdio (Ingizo/Tokeo la Kawaida)
-- **Server Lengwa**: Server ya MCP ya Node.js ya ndani
-- **Sifa**:
+
+- **Usafirishaji**: Stdio (Ingizo/Toleo la Kawaida)
+- **Seva Lengwa**: Seva ya MCP ya Node.js ya ndani
+- **Vipengele**:
   - Msaada kamili wa itifaki ya MCP
   - Operesheni za zana, rasilimali, na maelekezo
-  - Operesheni za kalkuleta
+  - Operesheni za kikokotoo
   - Kusoma rasilimali na kutekeleza maelekezo
   - Kushughulikia makosa kwa nguvu
 
-**Ili kuendesha:**
+**Kukimbia:**
+
 ```bash
 # First compile TypeScript (if needed)
 npm run build
@@ -66,97 +72,100 @@ node client_example_typescript.js
 ```
 
 ### 4. Mteja wa Python (`client_example_python.py`)
-- **Usafirishaji**: Stdio (Ingizo/Tokeo la Kawaida)  
-- **Server Lengwa**: Server ya MCP ya Python ya ndani
-- **Sifa**:
-  - Mfano wa async/await kwa operesheni
-  - Ugunduzi wa zana na rasilimali
-  - Kupima operesheni za kalkuleta
-  - Kusoma maudhui ya rasilimali
-  - Muundo wa darasa
 
-**Ili kuendesha:**
+- **Usafirishaji**: Stdio (Ingizo/Toleo la Kawaida)  
+- **Seva Lengwa**: Seva ya MCP ya Python ya ndani
+- **Vipengele**:
+  - Muundo wa async/await kwa operesheni
+  - Kugundua zana na rasilimali
+  - Kupima operesheni za kikokotoo
+  - Kusoma maudhui ya rasilimali
+  - Mpangilio wa msingi wa darasa
+
+**Kukimbia:**
+
 ```bash
 python client_example_python.py
 ```
 
-## Sifa Zaidi Zinazopatikana Kwenye Wateja Wote
+## Vipengele vya Kawaida Kati ya Wateja Wote
 
 Kila utekelezaji wa mteja unaonyesha:
 
 1. **Usimamizi wa Muunganisho**
-   - Kuanzisha muunganisho na server ya MCP
+   - Kuanzisha muunganisho na seva ya MCP
    - Kushughulikia makosa ya muunganisho
-   - Usafishaji sahihi na usimamizi wa rasilimali
+   - Usimamizi sahihi wa rasilimali na kusafisha
 
-2. **Ugunduzi wa Server**
-   - Orodha ya zana zinazopatikana
-   - Orodha ya rasilimali zinazopatikana (ambapo zinasaidiwa)
-   - Orodha ya maelekezo yanayopatikana (ambapo zinasaidiwa)
+2. **Ugunduzi wa Seva**
+   - Kuorodhesha zana zinazopatikana
+   - Kuorodhesha rasilimali zinazopatikana (ikiwa zinasaidiwa)
+   - Kuorodhesha maelekezo yanayopatikana (ikiwa yanasaidiwa)
 
-3. **Kuitisha Zana**
-   - Operesheni za msingi za kalkuleta (ongeza, toa, zidisha, gawanya)
-   - Amri ya msaada kwa taarifa za server
-   - Kupitisha hoja kwa usahihi na kushughulikia matokeo
+3. **Utekelezaji wa Zana**
+   - Operesheni za msingi za kikokotoo (kujumlisha, kutoa, kuzidisha, kugawa)
+   - Amri ya msaada kwa taarifa za seva
+   - Uwasilishaji sahihi wa hoja na kushughulikia matokeo
 
 4. **Kushughulikia Makosa**
    - Makosa ya muunganisho
    - Makosa ya utekelezaji wa zana
-   - Kushindwa kwa heshima na mrejesho kwa mtumiaji
+   - Kushindwa kwa neema na maoni kwa mtumiaji
 
 5. **Usindikaji wa Matokeo**
-   - Kutoa maudhui ya maandishi kutoka kwa majibu
-   - Kuandaa matokeo kwa usomaji rahisi
-   - Kushughulikia aina tofauti za majibu
+   - Kuchimba maudhui ya maandishi kutoka kwa majibu
+   - Kuweka muundo wa matokeo kwa usomaji rahisi
+   - Kushughulikia miundo tofauti ya majibu
 
-## Mahitaji Kabla ya Kuendesha
+## Mahitaji
 
-Kabla ya kuendesha wateja hawa, hakikisha umefanya:
+Kabla ya kukimbia wateja hawa, hakikisha una:
 
-1. **Server husika ya MCP inafanya kazi** (kutoka `../01-first-server/`)
-2. **Maktaba zinazohitajika zimewekwa** kwa lugha uliyochagua
-3. **Muunganisho wa mtandao uko sawa** (kwa usafirishaji wa HTTP)
+1. **Seva ya MCP inayolingana inayoendesha** (kutoka `../01-first-server/`)
+2. **Vitegemezi vinavyohitajika vimesakinishwa** kwa lugha uliyochagua
+3. **Muunganisho sahihi wa mtandao** (kwa usafirishaji unaotegemea HTTP)
 
 ## Tofauti Muhimu Kati ya Utekelezaji
 
-| Lugha      | Usafirishaji | Kuanzisha Server | Mfano wa Async | Maktaba Muhimu |
-|------------|--------------|------------------|---------------|----------------|
-| Java       | SSE/HTTP     | Nje             | Synchronous   | WebFlux, MCP SDK |
-| C#         | Stdio        | Moja kwa moja    | Async/Await   | .NET MCP SDK   |
-| TypeScript | Stdio        | Moja kwa moja    | Async/Await   | Node MCP SDK   |
-| Python     | Stdio        | Moja kwa moja    | AsyncIO       | Python MCP SDK |
+| Lugha       | Usafirishaji | Kuanza Seva   | Muundo wa Async | Maktaba Muhimu       |
+|-------------|-------------|---------------|-----------------|---------------------|
+| Java        | SSE/HTTP    | Nje           | Synkroni        | WebFlux, MCP SDK    |
+| C#          | Stdio       | Kiotomatiki   | Async/Await     | .NET MCP SDK        |
+| TypeScript  | Stdio       | Kiotomatiki   | Async/Await     | Node MCP SDK        |
+| Python      | Stdio       | Kiotomatiki   | AsyncIO         | Python MCP SDK      |
+| Rust        | Stdio       | Kiotomatiki   | Async/Await     | Rust MCP SDK, Tokio |
 
 ## Hatua Zifuatazo
 
 Baada ya kuchunguza mifano hii ya wateja:
 
-1. **Badilisha wateja** kuongeza sifa mpya au operesheni
-2. **Tengeneza server yako mwenyewe** na uiteste na wateja hawa
+1. **Badilisha wateja** ili kuongeza vipengele au operesheni mpya
+2. **Unda seva yako mwenyewe** na uijaribu na wateja hawa
 3. **Jaribu usafirishaji tofauti** (SSE dhidi ya Stdio)
-4. **Jenga programu tata zaidi** inayojumuisha utendaji wa MCP
+4. **Jenga programu ngumu zaidi** inayojumuisha utendaji wa MCP
 
-## Utatuzi wa Matatizo
+## Kutatua Tatizo
 
 ### Masuala ya Kawaida
 
-1. **Muunganisho umekataliwa**: Hakikisha server ya MCP inafanya kazi kwenye bandari/ njia inayotarajiwa
-2. **Moduli haipatikani**: Sakinisha MCP SDK inayohitajika kwa lugha yako
+1. **Muunganisho umekataliwa**: Hakikisha seva ya MCP inaendesha kwenye bandari/njia inayotarajiwa
+2. **Moduli haikupatikana**: Sakinisha MCP SDK inayohitajika kwa lugha yako
 3. **Ruhusa imekataliwa**: Angalia ruhusa za faili kwa usafirishaji wa stdio
-4. **Zana haipatikani**: Hakikisha server inatekeleza zana zinazotarajiwa
+4. **Zana haikupatikana**: Thibitisha seva inatekeleza zana zinazotarajiwa
 
-### Vidokezo vya Kurekebisha
+### Vidokezo vya Urekebishaji
 
 1. **Washa ufuatiliaji wa kina** katika MCP SDK yako
-2. **Angalia kumbukumbu za server** kwa ujumbe wa makosa
-3. **Thibitisha majina na saini za zana** zilingane kati ya mteja na server
-4. **Jaribu kwanza na MCP Inspector** kuthibitisha utendaji wa server
+2. **Angalia kumbukumbu za seva** kwa ujumbe wa makosa
+3. **Thibitisha majina ya zana na saini** yanalingana kati ya mteja na seva
+4. **Jaribu na MCP Inspector** kwanza ili kuthibitisha utendaji wa seva
 
 ## Nyaraka Zinazohusiana
 
 - [Mafunzo Makuu ya Mteja](./README.md)
-- [Mifano ya Server ya MCP](../../../../03-GettingStarted/01-first-server)
-- [MCP na Uunganisho wa LLM](../../../../03-GettingStarted/03-llm-client)
+- [Mifano ya Seva ya MCP](../../../../03-GettingStarted/01-first-server)
+- [MCP na Muunganisho wa LLM](../../../../03-GettingStarted/03-llm-client)
 - [Nyaraka Rasmi za MCP](https://modelcontextprotocol.io/)
 
-**Kiarifu cha Kutotegemea**:  
-Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatubebei dhamana kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+**Kanusho**:  
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, inashauriwa kutumia tafsiri ya kitaalamu ya binadamu. Hatutawajibika kwa maelewano mabaya au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.

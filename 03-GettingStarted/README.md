@@ -14,7 +14,7 @@ This section consists of several lessons:
 
 - **4 Consuming a server GitHub Copilot Agent mode in Visual Studio Code**. Here, we're looking at running our MCP Server from within Visual Studio Code, [to the lesson](04-vscode/README.md)
 
-- **5 Consuming from a SSE (Server Sent Events)** SSE is a standard for server-to-client streaming, allowing servers to push real-time updates to clients over HTTP [to the lesson](05-sse-server/README.md)
+- **5 stdio Transport Server** stdio transport is the recommended standard for MCP server-to-client communication in the current specification, providing secure subprocess-based communication [to the lesson](05-stdio-server/README.md)
 
 - **6 HTTP Streaming with MCP (Streamable HTTP)**. Learn about modern HTTP streaming, progress notifications, and how to implement scalable, real-time MCP servers and clients using Streamable HTTP. [to the lesson](06-http-streaming/README.md)
 
@@ -24,6 +24,9 @@ This section consists of several lessons:
 
 - **9 Deployment**. This chapter will look at different ways of deploying your MCP solutions, [to the lesson](09-deployment/README.md)
 
+- **10 Advanced server usage**. This chapter covers advanced server usage, [to the lesson](./10-advanced/README.md)
+
+- **11 Auth**. This chapter covers how to add simple auth, from Basic Auth to using JWT and RBAC. You're encouraged to start here and then look at Advanced Topics in Chapter 5 and perform additional security hardening via recommendations in Chapter 2, [to the lesson](./11-simple-auth/README.md)
 
 The Model Context Protocol (MCP) is an open protocol that standardizes how applications provide context to LLMs. Think of MCP like a USB-C port for AI applications - it provides a standardized way to connect AI models to different data sources and tools.
 

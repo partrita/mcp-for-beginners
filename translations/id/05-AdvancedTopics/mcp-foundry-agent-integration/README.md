@@ -60,7 +60,7 @@ Pilih lingkungan pengembangan yang Anda sukai:
 
 ## Implementasi Python
 
-***Note*** Anda dapat menjalankan [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb) ini
+***Note*** Anda dapat menjalankan [notebook](mcp_support_python.ipynb) ini
 
 ### 1. Instal Paket yang Dibutuhkan
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## Implementasi .NET
 
-***Note*** Anda dapat menjalankan [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb) ini
+***Note*** Anda dapat menjalankan [notebook](mcp_support_dotnet.ipynb) ini
 
 ### 1. Instal Paket yang Dibutuhkan
 

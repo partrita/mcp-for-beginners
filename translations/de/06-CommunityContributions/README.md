@@ -1,40 +1,44 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "8a92e2552cf3d4613f0fb4846c13d56d",
-  "translation_date": "2025-07-22T08:24:58+00:00",
+  "original_hash": "fcf1e12b62102bf7d16b78deb2b163b7",
+  "translation_date": "2025-07-29T00:54:39+00:00",
   "source_file": "06-CommunityContributions/README.md",
   "language_code": "de"
 }
 -->
 # Community und Beiträge
 
+[![Wie man zu MCP beiträgt: Tools, Dokumentation, Code und mehr](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.de.png)](https://youtu.be/v1pvCYAWpRE)
+
+_(Klicken Sie auf das Bild oben, um das Video zu dieser Lektion anzusehen)_
+
 ## Überblick
 
-Diese Lektion konzentriert sich darauf, wie man mit der MCP-Community interagiert, zum MCP-Ökosystem beiträgt und bewährte Praktiken für kollaborative Entwicklung befolgt. Das Verständnis, wie man an Open-Source-MCP-Projekten teilnimmt, ist entscheidend für diejenigen, die die Zukunft dieser Technologie mitgestalten möchten.
+Diese Lektion konzentriert sich darauf, wie man sich in der MCP-Community engagiert, zum MCP-Ökosystem beiträgt und bewährte Praktiken für kollaborative Entwicklung befolgt. Zu verstehen, wie man an Open-Source-MCP-Projekten teilnimmt, ist entscheidend für diejenigen, die die Zukunft dieser Technologie mitgestalten möchten.
 
 ## Lernziele
 
-Am Ende dieser Lektion wirst du in der Lage sein:
+Am Ende dieser Lektion werden Sie in der Lage sein:
 
 - Die Struktur der MCP-Community und des Ökosystems zu verstehen
-- Effektiv an MCP-Community-Foren und Diskussionen teilzunehmen
+- Effektiv an Foren und Diskussionen der MCP-Community teilzunehmen
 - Zu Open-Source-Repositories von MCP beizutragen
-- Eigene MCP-Tools und Server zu erstellen und zu teilen
+- Eigene MCP-Tools und -Server zu erstellen und zu teilen
 - Bewährte Praktiken für MCP-Entwicklung und Zusammenarbeit zu befolgen
 - Community-Ressourcen und Frameworks für die MCP-Entwicklung zu entdecken
 
 ## Das MCP-Community-Ökosystem
 
-Das MCP-Ökosystem besteht aus verschiedenen Komponenten und Teilnehmern, die zusammenarbeiten, um das Protokoll voranzutreiben.
+Das MCP-Ökosystem besteht aus verschiedenen Komponenten und Teilnehmern, die zusammenarbeiten, um das Protokoll voranzubringen.
 
 ### Wichtige Community-Komponenten
 
-1. **Core-Protokoll-Pflege**: Die offizielle [Model Context Protocol GitHub-Organisation](https://github.com/modelcontextprotocol) pflegt die Kern-MCP-Spezifikationen und Referenzimplementierungen.
-2. **Tool-Entwickler**: Einzelpersonen und Teams, die MCP-Tools und Server erstellen.
+1. **Kernprotokoll-Wartungsteam**: Die offizielle [Model Context Protocol GitHub-Organisation](https://github.com/modelcontextprotocol) pflegt die MCP-Spezifikationen und Referenzimplementierungen.
+2. **Tool-Entwickler**: Einzelpersonen und Teams, die MCP-Tools und -Server erstellen.
 3. **Integrationsanbieter**: Unternehmen, die MCP in ihre Produkte und Dienstleistungen integrieren.
-4. **Endnutzer**: Entwickler und Organisationen, die MCP in ihren Anwendungen verwenden.
-5. **Beitragende**: Community-Mitglieder, die Code, Dokumentation oder andere Ressourcen beitragen.
+4. **Endbenutzer**: Entwickler und Organisationen, die MCP in ihren Anwendungen nutzen.
+5. **Beitragende**: Community-Mitglieder, die Code, Dokumentation oder andere Ressourcen beisteuern.
 
 ### Community-Ressourcen
 
@@ -51,8 +55,8 @@ Das MCP-Ökosystem besteht aus verschiedenen Komponenten und Teilnehmern, die zu
 - [MCP-Clients](https://modelcontextprotocol.io/clients) - Liste von Clients, die MCP-Integrationen unterstützen
 - [Community-MCP-Server](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - Wachsende Liste von Community-entwickelten MCP-Servern
 - [Awesome MCP Servers](https://github.com/wong2/awesome-mcp-servers) - Kuratierte Liste von MCP-Servern
-- [PulseMCP](https://www.pulsemcp.com/) - Community-Hub & Newsletter zur Entdeckung von MCP-Ressourcen
-- [Discord-Server](https://discord.gg/jHEGxQu2a5) - Vernetze dich mit MCP-Entwicklern
+- [PulseMCP](https://www.pulsemcp.com/) - Community-Hub & Newsletter für MCP-Ressourcen
+- [Discord-Server](https://discord.gg/jHEGxQu2a5) - Vernetzen Sie sich mit MCP-Entwicklern
 - Sprachspezifische SDK-Implementierungen
 - Blogbeiträge und Tutorials
 
@@ -66,11 +70,11 @@ Das MCP-Ökosystem begrüßt verschiedene Arten von Beiträgen:
    - Verbesserungen des Kernprotokolls
    - Fehlerbehebungen
    - Implementierungen von Tools und Servern
-   - Client-/Server-Bibliotheken in verschiedenen Sprachen
+   - Client-/Server-Bibliotheken in verschiedenen Programmiersprachen
 
 2. **Dokumentation**:
    - Verbesserung bestehender Dokumentation
-   - Erstellung von Tutorials und Leitfäden
+   - Erstellung von Tutorials und Anleitungen
    - Übersetzung von Dokumentation
    - Erstellung von Beispielen und Musteranwendungen
 
@@ -80,18 +84,18 @@ Das MCP-Ökosystem begrüßt verschiedene Arten von Beiträgen:
    - Organisation von Community-Events
    - Mentoring neuer Beitragender
 
-### Beitrag zum Kernprotokoll
+### Beitragsprozess: Kernprotokoll
 
-Um zum Kern-MCP-Protokoll oder zu offiziellen Implementierungen beizutragen, befolge diese Prinzipien aus den [offiziellen Beitragsrichtlinien](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
+Um zum Kernprotokoll oder zu offiziellen Implementierungen von MCP beizutragen, folgen Sie diesen Prinzipien aus den [offiziellen Beitragsrichtlinien](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
 
-1. **Einfachheit und Minimalismus**: Die MCP-Spezifikation setzt hohe Standards für das Hinzufügen neuer Konzepte. Es ist einfacher, Dinge zu einer Spezifikation hinzuzufügen, als sie zu entfernen.
+1. **Einfachheit und Minimalismus**: Die MCP-Spezifikation setzt hohe Maßstäbe für das Hinzufügen neuer Konzepte. Es ist einfacher, etwas zu einer Spezifikation hinzuzufügen, als es zu entfernen.
 
 2. **Konkreter Ansatz**: Änderungen an der Spezifikation sollten auf spezifischen Implementierungsherausforderungen basieren, nicht auf spekulativen Ideen.
 
 3. **Phasen eines Vorschlags**:
    - Definieren: Den Problemraum erkunden und validieren, dass andere MCP-Nutzer ein ähnliches Problem haben.
-   - Prototyp: Eine Beispiel-Lösung erstellen und deren praktische Anwendung demonstrieren.
-   - Schreiben: Basierend auf dem Prototyp einen Spezifikationsvorschlag verfassen.
+   - Prototyp: Eine Beispiel-Lösung entwickeln und deren praktische Anwendung demonstrieren.
+   - Schreiben: Basierend auf dem Prototyp einen Spezifikationsvorschlag erstellen.
 
 ### Entwicklungsumgebung einrichten
 
@@ -311,12 +315,12 @@ class CsvProcessingTool(Tool):
 
 Um erfolgreich zu MCP-Projekten beizutragen:
 
-1. **Klein anfangen**: Beginne mit Dokumentation, Fehlerbehebungen oder kleinen Verbesserungen.
-2. **Style Guide befolgen**: Halte dich an den Coding-Stil und die Konventionen des Projekts.
-3. **Tests schreiben**: Füge Unit-Tests für deine Code-Beiträge hinzu.
-4. **Arbeit dokumentieren**: Füge klare Dokumentation für neue Funktionen oder Änderungen hinzu.
-5. **Gezielte PRs einreichen**: Halte Pull Requests auf ein einzelnes Problem oder eine Funktion fokussiert.
-6. **Feedback annehmen**: Sei offen für Rückmeldungen zu deinen Beiträgen.
+1. **Klein anfangen**: Beginnen Sie mit Dokumentation, Fehlerbehebungen oder kleinen Verbesserungen.
+2. **Styleguide befolgen**: Halten Sie sich an den Coding-Stil und die Konventionen des Projekts.
+3. **Tests schreiben**: Fügen Sie Unit-Tests für Ihre Code-Beiträge hinzu.
+4. **Arbeit dokumentieren**: Fügen Sie klare Dokumentation für neue Funktionen oder Änderungen hinzu.
+5. **Gezielte PRs einreichen**: Halten Sie Pull Requests auf ein einzelnes Problem oder eine Funktion fokussiert.
+6. **Feedback annehmen**: Reagieren Sie auf Feedback zu Ihren Beiträgen.
 
 ### Beispiel-Workflow für Beiträge
 
@@ -348,7 +352,7 @@ git push origin feature/my-contribution
 
 Eine der wertvollsten Möglichkeiten, zum MCP-Ökosystem beizutragen, ist die Erstellung und das Teilen von benutzerdefinierten MCP-Servern. Die Community hat bereits Hunderte von Servern für verschiedene Dienste und Anwendungsfälle entwickelt.
 
-### MCP-Server-Entwicklungs-Frameworks
+### MCP-Server-Entwicklungsframeworks
 
 Mehrere Frameworks stehen zur Verfügung, um die Entwicklung von MCP-Servern zu vereinfachen:
 
@@ -361,14 +365,14 @@ Mehrere Frameworks stehen zur Verfügung, um die Entwicklung von MCP-Servern zu 
    - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk)
 
 2. **Community-Frameworks**:
-   - [MCP-Framework](https://mcp-framework.com/) - Elegante und schnelle Entwicklung von MCP-Servern in TypeScript
+   - [MCP-Framework](https://mcp-framework.com/) - MCP-Server mit Eleganz und Geschwindigkeit in TypeScript erstellen
    - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - Annotation-gesteuerte MCP-Server mit Java
    - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - Java-Framework für MCP-Server
    - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - Starterprojekt für MCP-Server mit Next.js
 
 ### Entwickeln von teilbaren Tools
 
-#### .NET-Beispiel: Erstellen eines teilbaren Tool-Pakets
+#### .NET-Beispiel: Ein teilbares Tool-Paket erstellen
 
 ```csharp
 // Create a new .NET library project
@@ -474,7 +478,7 @@ namespace McpFinanceTools
 // dotnet nuget push bin/Release/McpFinanceTools.1.0.0.nupkg -s https://api.nuget.org/v3/index.json -k YOUR_API_KEY
 ```
 
-#### Java-Beispiel: Erstellen eines Maven-Pakets für Tools
+#### Java-Beispiel: Ein Maven-Paket für Tools erstellen
 
 ```java
 // pom.xml configuration for a shareable MCP tool package
@@ -575,7 +579,7 @@ public class WeatherForecastTool implements Tool {
 // mvn deploy
 ```
 
-#### Python-Beispiel: Veröffentlichen eines PyPI-Pakets
+#### Python-Beispiel: Ein PyPI-Paket veröffentlichen
 
 ```python
 # Directory structure for a PyPI package:
@@ -691,31 +695,31 @@ Beim Teilen von MCP-Tools mit der Community:
 
 2. **Fehlerbehandlung**:
    - Robuste Fehlerbehandlung implementieren
-   - Hilfreiche Fehlermeldungen bereitstellen
-   - Randfälle elegant handhaben
+   - Nützliche Fehlermeldungen bereitstellen
+   - Randfälle elegant behandeln
 
 3. **Leistungsüberlegungen**:
-   - Optimierung für Geschwindigkeit und Ressourcennutzung
-   - Caching bei Bedarf implementieren
+   - Sowohl Geschwindigkeit als auch Ressourcennutzung optimieren
+   - Caching implementieren, wenn angebracht
    - Skalierbarkeit berücksichtigen
 
 4. **Sicherheit**:
    - Sichere API-Schlüssel und Authentifizierung verwenden
    - Eingaben validieren und bereinigen
-   - Rate-Limiting für externe API-Aufrufe implementieren
+   - Ratenbegrenzung für externe API-Aufrufe implementieren
 
 5. **Tests**:
-   - Umfassende Testabdeckung einschließen
-   - Tests mit verschiedenen Eingabetypen und Randfällen durchführen
+   - Umfassende Testabdeckung sicherstellen
+   - Mit verschiedenen Eingabetypen und Randfällen testen
    - Testverfahren dokumentieren
 
-## Zusammenarbeit und Best Practices in der Community
+## Community-Zusammenarbeit und Best Practices
 
-Effektive Zusammenarbeit ist entscheidend für ein florierendes MCP-Ökosystem.
+Effektive Zusammenarbeit ist der Schlüssel zu einem florierenden MCP-Ökosystem.
 
 ### Kommunikationskanäle
 
-- GitHub-Issues und Diskussionen
+- GitHub-Issues und -Diskussionen
 - Microsoft Tech Community
 - Discord- und Slack-Kanäle
 - Stack Overflow (Tag: `model-context-protocol` oder `mcp`)
@@ -734,10 +738,10 @@ Beim Überprüfen von MCP-Beiträgen:
 
 Bei der Entwicklung für MCP:
 
-1. **Protokollversionierung**: Halte dich an die MCP-Protokollversion, die dein Tool unterstützt.
-2. **Client-Kompatibilität**: Berücksichtige Abwärtskompatibilität.
-3. **Server-Kompatibilität**: Befolge die Implementierungsrichtlinien für Server.
-4. **Breaking Changes**: Dokumentiere alle Breaking Changes klar.
+1. **Protokollversionierung**: Halten Sie sich an die MCP-Protokollversion, die Ihr Tool unterstützt.
+2. **Client-Kompatibilität**: Berücksichtigen Sie Abwärtskompatibilität.
+3. **Server-Kompatibilität**: Befolgen Sie die Richtlinien für Serverimplementierungen.
+4. **Breaking Changes**: Dokumentieren Sie alle Breaking Changes klar.
 
 ## Beispiel-Community-Projekt: MCP-Tool-Registry
 
@@ -824,17 +828,17 @@ async def delete_tool(tool_name: str):
 
 - Die MCP-Community ist vielfältig und begrüßt verschiedene Arten von Beiträgen.
 - Beiträge zu MCP können von Verbesserungen des Kernprotokolls bis hin zu benutzerdefinierten Tools reichen.
-- Das Befolgen von Beitragsrichtlinien erhöht die Chancen, dass dein PR akzeptiert wird.
+- Das Befolgen von Beitragsrichtlinien erhöht die Wahrscheinlichkeit, dass Ihr PR akzeptiert wird.
 - Die Erstellung und das Teilen von MCP-Tools ist eine wertvolle Möglichkeit, das Ökosystem zu verbessern.
-- Zusammenarbeit in der Community ist entscheidend für das Wachstum und die Verbesserung von MCP.
+- Community-Zusammenarbeit ist entscheidend für das Wachstum und die Verbesserung von MCP.
 
 ## Übung
 
-1. Identifiziere einen Bereich im MCP-Ökosystem, in dem du basierend auf deinen Fähigkeiten und Interessen einen Beitrag leisten könntest.
-2. Forke das MCP-Repository und richte eine lokale Entwicklungsumgebung ein.
-3. Erstelle eine kleine Verbesserung, Fehlerbehebung oder ein Tool, das der Community zugutekommt.
-4. Dokumentiere deinen Beitrag mit geeigneten Tests und Dokumentation.
-5. Reiche einen Pull Request im entsprechenden Repository ein.
+1. Identifizieren Sie einen Bereich im MCP-Ökosystem, in dem Sie basierend auf Ihren Fähigkeiten und Interessen einen Beitrag leisten könnten.
+2. Forken Sie das MCP-Repository und richten Sie eine lokale Entwicklungsumgebung ein.
+3. Erstellen Sie eine kleine Verbesserung, Fehlerbehebung oder ein Tool, das der Community zugutekommt.
+4. Dokumentieren Sie Ihren Beitrag mit entsprechenden Tests und Dokumentation.
+5. Reichen Sie einen Pull Request im entsprechenden Repository ein.
 
 ## Zusätzliche Ressourcen
 

@@ -1,45 +1,45 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "004572534b5c86f847fac76bcbb76e89",
-  "translation_date": "2025-07-22T08:46:38+00:00",
+  "original_hash": "ec11ee93f31fdadd94facd3e3d22f9e6",
+  "translation_date": "2025-09-09T21:25:11+00:00",
   "source_file": "03-GettingStarted/01-first-server/README.md",
   "language_code": "fa"
 }
 -->
 # شروع کار با MCP
 
-به اولین قدم‌های شما با پروتکل مدل کانتکست (MCP) خوش آمدید! چه تازه‌کار باشید و چه بخواهید دانش خود را در MCP عمیق‌تر کنید، این راهنما شما را از مراحل ضروری تنظیم و توسعه عبور می‌دهد. در اینجا خواهید آموخت که چگونه MCP یکپارچگی بی‌نقصی بین مدل‌های هوش مصنوعی و اپلیکیشن‌ها ایجاد می‌کند و چگونه محیط خود را برای ساخت و آزمایش راه‌حل‌های مبتنی بر MCP آماده کنید.
+به اولین قدم‌های شما با پروتکل مدل کانتکست (MCP) خوش آمدید! چه تازه‌کار باشید و چه بخواهید دانش خود را در MCP عمیق‌تر کنید، این راهنما شما را در فرآیند تنظیم و توسعه ضروری راهنمایی می‌کند. شما خواهید آموخت که چگونه MCP یکپارچگی بی‌نقصی بین مدل‌های هوش مصنوعی و برنامه‌ها ایجاد می‌کند و چگونه محیط خود را برای ساخت و آزمایش راه‌حل‌های مبتنی بر MCP آماده کنید.
 
-> خلاصه: اگر اپلیکیشن‌های هوش مصنوعی می‌سازید، می‌دانید که می‌توانید ابزارها و منابع دیگری را به مدل زبان بزرگ (LLM) اضافه کنید تا آن را هوشمندتر کنید. اما اگر این ابزارها و منابع را روی یک سرور قرار دهید، قابلیت‌های اپلیکیشن و سرور می‌توانند توسط هر کلاینتی با یا بدون LLM استفاده شوند.
+> خلاصه: اگر برنامه‌های هوش مصنوعی می‌سازید، می‌دانید که می‌توانید ابزارها و منابع دیگری را به مدل زبان بزرگ (LLM) اضافه کنید تا آن را آگاه‌تر کنید. اما اگر این ابزارها و منابع را روی یک سرور قرار دهید، قابلیت‌های برنامه و سرور می‌توانند توسط هر کلاینتی با یا بدون LLM استفاده شوند.
 
 ## نمای کلی
 
-این درس راهنمای عملی برای تنظیم محیط‌های MCP و ساخت اولین اپلیکیشن‌های MCP شما ارائه می‌دهد. شما یاد خواهید گرفت که چگونه ابزارها و فریم‌ورک‌های لازم را تنظیم کنید، سرورهای پایه MCP بسازید، اپلیکیشن‌های میزبان ایجاد کنید و پیاده‌سازی‌های خود را آزمایش کنید.
+این درس راهنمای عملی برای تنظیم محیط‌های MCP و ساخت اولین برنامه‌های MCP شما ارائه می‌دهد. شما یاد خواهید گرفت که چگونه ابزارها و چارچوب‌های لازم را تنظیم کنید، سرورهای پایه MCP بسازید، برنامه‌های میزبان ایجاد کنید و پیاده‌سازی‌های خود را آزمایش کنید.
 
-پروتکل مدل کانتکست (MCP) یک پروتکل باز است که استانداردی برای نحوه ارائه کانتکست به LLM‌ها توسط اپلیکیشن‌ها فراهم می‌کند. MCP را مانند یک پورت USB-C برای اپلیکیشن‌های هوش مصنوعی تصور کنید - راهی استاندارد برای اتصال مدل‌های هوش مصنوعی به منابع داده و ابزارهای مختلف ارائه می‌دهد.
+پروتکل مدل کانتکست (MCP) یک پروتکل باز است که استانداردی برای نحوه ارائه کانتکست توسط برنامه‌ها به LLM‌ها فراهم می‌کند. MCP را مانند یک پورت USB-C برای برنامه‌های هوش مصنوعی تصور کنید - روشی استاندارد برای اتصال مدل‌های هوش مصنوعی به منابع داده و ابزارهای مختلف ارائه می‌دهد.
 
-## اهداف یادگیری
+## اهداف آموزشی
 
 تا پایان این درس، شما قادر خواهید بود:
 
-- محیط‌های توسعه برای MCP را در زبان‌های C#، Java، Python، TypeScript و JavaScript تنظیم کنید
+- محیط‌های توسعه برای MCP را در زبان‌های C#، Java، Python، TypeScript و Rust تنظیم کنید
 - سرورهای پایه MCP با ویژگی‌های سفارشی (منابع، پرامپت‌ها و ابزارها) بسازید و مستقر کنید
-- اپلیکیشن‌های میزبان ایجاد کنید که به سرورهای MCP متصل شوند
+- برنامه‌های میزبان ایجاد کنید که به سرورهای MCP متصل شوند
 - پیاده‌سازی‌های MCP را آزمایش و اشکال‌زدایی کنید
 
 ## تنظیم محیط MCP شما
 
-قبل از شروع کار با MCP، مهم است که محیط توسعه خود را آماده کنید و جریان کاری پایه را درک کنید. این بخش شما را از مراحل اولیه تنظیم عبور می‌دهد تا شروعی روان با MCP داشته باشید.
+قبل از شروع کار با MCP، مهم است که محیط توسعه خود را آماده کنید و جریان کاری پایه را درک کنید. این بخش شما را در مراحل اولیه تنظیم راهنمایی می‌کند تا شروعی روان با MCP داشته باشید.
 
 ### پیش‌نیازها
 
 قبل از ورود به توسعه MCP، مطمئن شوید که موارد زیر را دارید:
 
-- **محیط توسعه**: برای زبان انتخابی شما (C#، Java، Python، TypeScript یا JavaScript)
+- **محیط توسعه**: برای زبان انتخابی شما (C#، Java، Python، TypeScript یا Rust)
 - **IDE/ویرایشگر**: Visual Studio، Visual Studio Code، IntelliJ، Eclipse، PyCharm یا هر ویرایشگر کد مدرن
-- **مدیران بسته**: NuGet، Maven/Gradle، pip یا npm/yarn
-- **کلیدهای API**: برای هر سرویس هوش مصنوعی که قصد دارید در اپلیکیشن‌های میزبان خود استفاده کنید
+- **مدیر بسته‌ها**: NuGet، Maven/Gradle، pip، npm/yarn یا Cargo
+- **کلیدهای API**: برای هر سرویس هوش مصنوعی که قصد دارید در برنامه‌های میزبان خود استفاده کنید
 
 ## ساختار پایه سرور MCP
 
@@ -53,45 +53,86 @@ CO_OP_TRANSLATOR_METADATA:
 در اینجا یک مثال ساده در TypeScript آورده شده است:
 
 ```typescript
-import { Server, Tool, Resource } from "@modelcontextprotocol/typescript-server-sdk";
+import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
 
-// Create a new MCP server
-const server = new Server({
-  port: 3000,
-  name: "Example MCP Server",
+// Create an MCP server
+const server = new McpServer({
+  name: "Demo",
   version: "1.0.0"
 });
 
-// Register a tool
-server.registerTool({
-  name: "calculator",
-  description: "Performs basic calculations",
-  parameters: {
-    expression: {
-      type: "string",
-      description: "The math expression to evaluate"
-    }
-  },
-  handler: async (params) => {
-    const result = eval(params.expression);
-    return { result };
-  }
-});
+// Add an addition tool
+server.tool("add",
+  { a: z.number(), b: z.number() },
+  async ({ a, b }) => ({
+    content: [{ type: "text", text: String(a + b) }]
+  })
+);
 
-// Start the server
-server.start();
+// Add a dynamic greeting resource
+server.resource(
+  "file",
+  // The 'list' parameter controls how the resource lists available files. Setting it to undefined disables listing for this resource.
+  new ResourceTemplate("file://{path}", { list: undefined }),
+  async (uri, { path }) => ({
+    contents: [{
+      uri: uri.href,
+      text: `File, ${path}!`
+    }]
+  })
+);
+
+// Add a file resource that reads the file contents
+server.resource(
+  "file",
+  new ResourceTemplate("file://{path}", { list: undefined }),
+  async (uri, { path }) => {
+    let text;
+    try {
+      text = await fs.readFile(path, "utf8");
+    } catch (err) {
+      text = `Error reading file: ${err.message}`;
+    }
+    return {
+      contents: [{
+        uri: uri.href,
+        text
+      }]
+    };
+  }
+);
+
+server.prompt(
+  "review-code",
+  { code: z.string() },
+  ({ code }) => ({
+    messages: [{
+      role: "user",
+      content: {
+        type: "text",
+        text: `Please review this code:\n\n${code}`
+      }
+    }]
+  })
+);
+
+// Start receiving messages on stdin and sending messages on stdout
+const transport = new StdioServerTransport();
+await server.connect(transport);
 ```
 
 در کد بالا ما:
 
 - کلاس‌های لازم را از SDK TypeScript MCP وارد کردیم.
-- یک نمونه سرور MCP جدید ایجاد و پیکربندی کردیم.
+- یک نمونه جدید از سرور MCP ایجاد و پیکربندی کردیم.
 - یک ابزار سفارشی (`calculator`) با یک تابع هندلر ثبت کردیم.
 - سرور را برای گوش دادن به درخواست‌های MCP راه‌اندازی کردیم.
 
 ## آزمایش و اشکال‌زدایی
 
-قبل از شروع آزمایش سرور MCP خود، مهم است که ابزارهای موجود و بهترین روش‌ها برای اشکال‌زدایی را درک کنید. آزمایش مؤثر تضمین می‌کند که سرور شما همان‌طور که انتظار می‌رود رفتار می‌کند و به شما کمک می‌کند مشکلات را سریعاً شناسایی و حل کنید. بخش زیر رویکردهای توصیه‌شده برای اعتبارسنجی پیاده‌سازی MCP شما را شرح می‌دهد.
+قبل از شروع آزمایش سرور MCP خود، مهم است که ابزارهای موجود و بهترین روش‌ها برای اشکال‌زدایی را درک کنید. آزمایش مؤثر تضمین می‌کند که سرور شما همان‌طور که انتظار می‌رود رفتار می‌کند و به شما کمک می‌کند مشکلات را سریعاً شناسایی و حل کنید. بخش زیر روش‌های پیشنهادی برای اعتبارسنجی پیاده‌سازی MCP شما را شرح می‌دهد.
 
 MCP ابزارهایی برای کمک به آزمایش و اشکال‌زدایی سرورهای شما ارائه می‌دهد:
 
@@ -104,36 +145,36 @@ MCP ابزارهایی برای کمک به آزمایش و اشکال‌زدا�
 
 1. **کشف قابلیت‌های سرور**: منابع، ابزارها و پرامپت‌های موجود را به‌طور خودکار شناسایی کنید
 2. **آزمایش اجرای ابزار**: پارامترهای مختلف را امتحان کنید و پاسخ‌ها را در زمان واقعی مشاهده کنید
-3. **مشاهده متادیتای سرور**: اطلاعات سرور، اسکیماها و تنظیمات را بررسی کنید
+3. **مشاهده متاداده‌های سرور**: اطلاعات سرور، شِماها و تنظیمات را بررسی کنید
 
 ```bash
 # ex TypeScript, installing and running MCP Inspector
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-با اجرای دستورات بالا، MCP Inspector یک رابط وب محلی در مرورگر شما راه‌اندازی می‌کند. شما می‌توانید داشبوردی را مشاهده کنید که سرورهای MCP ثبت‌شده شما، ابزارها، منابع و پرامپت‌های موجود را نمایش می‌دهد. این رابط به شما امکان می‌دهد اجرای ابزارها را به‌صورت تعاملی آزمایش کنید، متادیتای سرور را بررسی کنید و پاسخ‌های زمان واقعی را مشاهده کنید، که این کار اعتبارسنجی و اشکال‌زدایی پیاده‌سازی‌های سرور MCP شما را آسان‌تر می‌کند.
+با اجرای دستورات بالا، MCP Inspector یک رابط وب محلی در مرورگر شما راه‌اندازی می‌کند. شما می‌توانید داشبوردی را مشاهده کنید که سرورهای MCP ثبت‌شده شما، ابزارها، منابع و پرامپت‌های موجود آن‌ها را نمایش می‌دهد. این رابط به شما امکان می‌دهد اجرای ابزارها را به‌صورت تعاملی آزمایش کنید، متاداده‌های سرور را بررسی کنید و پاسخ‌های زمان واقعی را مشاهده کنید، که این کار اعتبارسنجی و اشکال‌زدایی پیاده‌سازی‌های سرور MCP شما را آسان‌تر می‌کند.
 
-در اینجا یک تصویر از آنچه ممکن است مشاهده کنید آورده شده است:
+در اینجا یک تصویر از ظاهر آن آورده شده است:
 
-![](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.fa.png)
+![اتصال سرور MCP Inspector](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.fa.png)
 
 ## مشکلات رایج تنظیم و راه‌حل‌ها
 
 | مشکل | راه‌حل ممکن |
 |------|------------|
-| اتصال رد شد | بررسی کنید که آیا سرور در حال اجرا است و پورت صحیح است |
+| اتصال رد شد | بررسی کنید که سرور در حال اجرا است و پورت صحیح است |
 | خطاهای اجرای ابزار | اعتبارسنجی پارامترها و مدیریت خطا را بررسی کنید |
 | شکست‌های احراز هویت | کلیدهای API و مجوزها را تأیید کنید |
-| خطاهای اعتبارسنجی اسکیما | مطمئن شوید که پارامترها با اسکیما تعریف‌شده مطابقت دارند |
+| خطاهای اعتبارسنجی شِما | مطمئن شوید که پارامترها با شِمای تعریف‌شده مطابقت دارند |
 | سرور راه‌اندازی نمی‌شود | بررسی کنید که آیا تضاد پورت یا وابستگی‌های گم‌شده وجود دارد |
-| خطاهای CORS | هدرهای CORS مناسب را برای درخواست‌های بین‌منشأ تنظیم کنید |
+| خطاهای CORS | هدرهای CORS مناسب را برای درخواست‌های بین‌منطقه‌ای تنظیم کنید |
 | مشکلات احراز هویت | اعتبار توکن و مجوزها را تأیید کنید |
 
 ## توسعه محلی
 
 برای توسعه و آزمایش محلی، می‌توانید سرورهای MCP را مستقیماً روی دستگاه خود اجرا کنید:
 
-1. **فرآیند سرور را شروع کنید**: اپلیکیشن سرور MCP خود را اجرا کنید
+1. **فرآیند سرور را راه‌اندازی کنید**: برنامه سرور MCP خود را اجرا کنید
 2. **پیکربندی شبکه**: مطمئن شوید که سرور روی پورت مورد انتظار قابل دسترسی است
 3. **اتصال کلاینت‌ها**: از URL‌های اتصال محلی مانند `http://localhost:3000` استفاده کنید
 
@@ -147,19 +188,19 @@ npm run start
 
 ما [مفاهیم اصلی](/01-CoreConcepts/README.md) را در درس قبلی پوشش دادیم، اکنون زمان آن است که آن دانش را به کار ببریم.
 
-### قابلیت‌های سرور
+### سرور چه کاری می‌تواند انجام دهد؟
 
-قبل از شروع کدنویسی، بیایید یادآوری کنیم که یک سرور چه کاری می‌تواند انجام دهد:
+قبل از شروع کدنویسی، بیایید یادآوری کنیم که سرور چه کاری می‌تواند انجام دهد:
 
 یک سرور MCP می‌تواند به‌عنوان مثال:
 
-- به فایل‌ها و پایگاه‌های داده محلی دسترسی داشته باشد
+- به فایل‌ها و پایگاه‌های داده محلی دسترسی پیدا کند
 - به API‌های راه دور متصل شود
 - محاسبات انجام دهد
-- با ابزارها و سرویس‌های دیگر یکپارچه شود
+- با ابزارها و خدمات دیگر یکپارچه شود
 - یک رابط کاربری برای تعامل فراهم کند
 
-عالی، حالا که می‌دانیم چه کاری می‌توانیم انجام دهیم، بیایید کدنویسی را شروع کنیم.
+عالی، حالا که می‌دانیم چه کاری می‌توانیم برای آن انجام دهیم، بیایید کدنویسی را شروع کنیم.
 
 ## تمرین: ایجاد یک سرور
 
@@ -323,9 +364,17 @@ rm -rf src/test/java
 </project>
 ```
 
+#### Rust
+
+```sh
+mkdir calculator-server
+cd calculator-server
+cargo init
+```
+
 ### -2- افزودن وابستگی‌ها
 
-اکنون که پروژه خود را ایجاد کرده‌اید، بیایید وابستگی‌ها را اضافه کنیم:
+حالا که پروژه خود را ایجاد کرده‌اید، بیایید وابستگی‌ها را اضافه کنیم:
 
 #### TypeScript
 
@@ -352,6 +401,14 @@ pip install "mcp[cli]"
 ```bash
 cd calculator-server
 ./mvnw clean install -DskipTests
+```
+
+#### Rust
+
+```sh
+cargo add rmcp --features server,transport-io
+cargo add serde
+cargo add tokio --features rt-multi-thread
 ```
 
 ### -3- ایجاد فایل‌های پروژه
@@ -433,6 +490,10 @@ dotnet add package Microsoft.Extensions.Hosting
 
 برای پروژه‌های Spring Boot Java، ساختار پروژه به‌طور خودکار ایجاد می‌شود.
 
+#### Rust
+
+برای Rust، یک فایل *src/main.rs* به‌طور پیش‌فرض هنگام اجرای `cargo init` ایجاد می‌شود. فایل را باز کنید و کد پیش‌فرض را حذف کنید.
+
 ### -4- ایجاد کد سرور
 
 #### TypeScript
@@ -451,7 +512,7 @@ const server = new McpServer({
 });
 ```
 
-اکنون یک سرور دارید، اما کار زیادی انجام نمی‌دهد، بیایید این را اصلاح کنیم.
+حالا شما یک سرور دارید، اما کار زیادی انجام نمی‌دهد، بیایید این را اصلاح کنیم.
 
 #### Python
 
@@ -490,7 +551,7 @@ await builder.Build().RunAsync();
 
 #### Java
 
-برای Java، اجزای اصلی سرور را ایجاد کنید. ابتدا کلاس اصلی اپلیکیشن را تغییر دهید:
+برای Java، اجزای اصلی سرور را ایجاد کنید. ابتدا کلاس اصلی برنامه را تغییر دهید:
 
 *src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*:
 
@@ -768,9 +829,80 @@ Calculator MCP Server v1.0
 Spring Boot MCP Application
 ```
 
-### -5- افزودن ابزار و منبع
+#### Rust
 
-یک ابزار و منبع اضافه کنید با افزودن کد زیر:
+کد زیر را به بالای فایل *src/main.rs* اضافه کنید. این کتابخانه‌ها و ماژول‌های لازم برای سرور MCP شما را وارد می‌کند.
+
+```rust
+use rmcp::{
+    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    model::{ServerCapabilities, ServerInfo},
+    schemars, tool, tool_handler, tool_router,
+    transport::stdio,
+    ServerHandler, ServiceExt,
+};
+use std::error::Error;
+```
+
+سرور ماشین‌حساب یک سرور ساده خواهد بود که می‌تواند دو عدد را با هم جمع کند. بیایید یک ساختار برای نمایش درخواست ماشین‌حساب ایجاد کنیم.
+
+```rust
+#[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
+pub struct CalculatorRequest {
+    pub a: f64,
+    pub b: f64,
+}
+```
+
+سپس، یک ساختار برای نمایش سرور ماشین‌حساب ایجاد کنید. این ساختار ابزار روتر را نگه می‌دارد، که برای ثبت ابزارها استفاده می‌شود.
+
+```rust
+#[derive(Debug, Clone)]
+pub struct Calculator {
+    tool_router: ToolRouter<Self>,
+}
+```
+
+حالا می‌توانیم ساختار `Calculator` را پیاده‌سازی کنیم تا یک نمونه جدید از سرور ایجاد کنیم و هندلر سرور را برای ارائه اطلاعات سرور پیاده‌سازی کنیم.
+
+```rust
+#[tool_router]
+impl Calculator {
+    pub fn new() -> Self {
+        Self {
+            tool_router: Self::tool_router(),
+        }
+    }
+}
+
+#[tool_handler]
+impl ServerHandler for Calculator {
+    fn get_info(&self) -> ServerInfo {
+        ServerInfo {
+            instructions: Some("A simple calculator tool".into()),
+            capabilities: ServerCapabilities::builder().enable_tools().build(),
+            ..Default::default()
+        }
+    }
+}
+```
+
+در نهایت، باید تابع اصلی را برای راه‌اندازی سرور پیاده‌سازی کنیم. این تابع یک نمونه از ساختار `Calculator` ایجاد می‌کند و آن را از طریق ورودی/خروجی استاندارد ارائه می‌دهد.
+
+```rust
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let service = Calculator::new().serve(stdio()).await?;
+    service.waiting().await?;
+    Ok(())
+}
+```
+
+سرور اکنون تنظیم شده است تا اطلاعات پایه‌ای درباره خود ارائه دهد. در مرحله بعد، یک ابزار برای انجام جمع اضافه خواهیم کرد.
+
+### -5- افزودن یک ابزار و یک منبع
+
+یک ابزار و یک منبع اضافه کنید با افزودن کد زیر:
 
 #### TypeScript
 
@@ -805,7 +937,7 @@ server.resource(
 }
 ```
 
-منبع شما از طریق یک رشته "greeting" قابل دسترسی است و پارامتر `name` را می‌گیرد و پاسخی مشابه ابزار تولید می‌کند:
+منبع شما از طریق یک رشته "greeting" قابل دسترسی است و یک پارامتر `name` می‌گیرد و پاسخی مشابه ابزار تولید می‌کند:
 
 ```typescript
 {
@@ -853,9 +985,23 @@ public static class CalculatorTool
 
 ابزارها قبلاً در مرحله قبلی ایجاد شده‌اند.
 
+#### Rust
+
+یک ابزار جدید داخل بلوک `impl Calculator` اضافه کنید:
+
+```rust
+#[tool(description = "Adds a and b")]
+async fn add(
+    &self,
+    Parameters(CalculatorRequest { a, b }): Parameters<CalculatorRequest>,
+) -> String {
+    (a + b).to_string()
+}
+```
+
 ### -6- کد نهایی
 
-بیایید آخرین کدی که نیاز داریم اضافه کنیم تا سرور بتواند شروع به کار کند:
+بیایید آخرین کدی که نیاز داریم را اضافه کنیم تا سرور بتواند راه‌اندازی شود:
 
 #### TypeScript
 
@@ -967,7 +1113,7 @@ public static class CalculatorTool
 
 #### Java
 
-کلاس اصلی اپلیکیشن شما باید به این شکل کامل باشد:
+کلاس اصلی برنامه کامل شما باید به این شکل باشد:
 
 ```java
 // McpServerApplication.java
@@ -994,9 +1140,70 @@ public class McpServerApplication {
 }
 ```
 
+#### Rust
+
+کد نهایی برای سرور Rust باید به این شکل باشد:
+
+```rust
+use rmcp::{
+    ServerHandler, ServiceExt,
+    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    model::{ServerCapabilities, ServerInfo},
+    schemars, tool, tool_handler, tool_router,
+    transport::stdio,
+};
+use std::error::Error;
+
+#[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
+pub struct CalculatorRequest {
+    pub a: f64,
+    pub b: f64,
+}
+
+#[derive(Debug, Clone)]
+pub struct Calculator {
+    tool_router: ToolRouter<Self>,
+}
+
+#[tool_router]
+impl Calculator {
+    pub fn new() -> Self {
+        Self {
+            tool_router: Self::tool_router(),
+        }
+    }
+    
+    #[tool(description = "Adds a and b")]
+    async fn add(
+        &self,
+        Parameters(CalculatorRequest { a, b }): Parameters<CalculatorRequest>,
+    ) -> String {
+        (a + b).to_string()
+    }
+}
+
+#[tool_handler]
+impl ServerHandler for Calculator {
+    fn get_info(&self) -> ServerInfo {
+        ServerInfo {
+            instructions: Some("A simple calculator tool".into()),
+            capabilities: ServerCapabilities::builder().enable_tools().build(),
+            ..Default::default()
+        }
+    }
+}
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let service = Calculator::new().serve(stdio()).await?;
+    service.waiting().await?;
+    Ok(())
+}
+```
+
 ### -7- آزمایش سرور
 
-سرور را با دستور زیر شروع کنید:
+سرور را با دستور زیر راه‌اندازی کنید:
 
 #### TypeScript
 
@@ -1028,12 +1235,21 @@ dotnet run
 java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 ```
 
+#### Rust
+
+دستورات زیر را برای فرمت و اجرای سرور اجرا کنید:
+
+```sh
+cargo fmt
+cargo run
+```
+
 ### -8- اجرا با استفاده از Inspector
 
-Inspector یک ابزار عالی است که می‌تواند سرور شما را راه‌اندازی کند و به شما امکان تعامل با آن را می‌دهد تا بتوانید آزمایش کنید که آیا کار می‌کند یا خیر. بیایید آن را راه‌اندازی کنیم:
+Inspector یک ابزار عالی است که می‌تواند سرور شما را راه‌اندازی کند و به شما امکان تعامل با آن را می‌دهد تا بتوانید مطمئن شوید که کار می‌کند. بیایید آن را راه‌اندازی کنیم:
 
 > [!NOTE]
-> ممکن است در قسمت "command" متفاوت به نظر برسد زیرا شامل دستور اجرای سرور با runtime خاص شما است.
+> ممکن است در قسمت "command" متفاوت به نظر برسد زیرا شامل دستور اجرای سرور با زمان اجرای خاص شما است.
 
 #### TypeScript
 
@@ -1041,9 +1257,9 @@ Inspector یک ابزار عالی است که می‌تواند سرور شما
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-یا آن را به *package.json* خود اضافه کنید مانند این: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` و سپس `npm run inspect` را اجرا کنید.
+یا آن را به فایل *package.json* خود اضافه کنید مانند این: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` و سپس `npm run inspector` را اجرا کنید.
 
-Python یک ابزار Node.js به نام inspector را بسته‌بندی می‌کند. امکان فراخوانی این ابزار به این صورت وجود دارد:
+Python یک ابزار Node.js به نام inspector را بسته‌بندی می‌کند. امکان فراخوانی این ابزار به این شکل وجود دارد:
 
 ```sh
 mcp dev server.py
@@ -1055,8 +1271,8 @@ mcp dev server.py
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-اگر از ابزاری یا IDE استفاده می‌کنید که به شما امکان پیکربندی دستورات و آرگومان‌ها برای اجرای اسکریپت‌ها را می‌دهد، 
-مطمئن شوید که `python` را در قسمت `Command` و `server.py` را به‌عنوان `Arguments` تنظیم کنید. این تضمین می‌کند که اسکریپت به‌درستی اجرا می‌شود.
+اگر از ابزاری یا IDE‌ای استفاده می‌کنید که به شما امکان پیکربندی دستورات و آرگومان‌ها برای اجرای اسکریپت‌ها را می‌دهد، 
+مطمئن شوید که `python` را در قسمت `Command` و `server.py` را به‌عنوان `Arguments` تنظیم کنید. این تضمین می‌کند که اسکریپت به‌درستی اجرا شود.
 
 #### .NET
 
@@ -1081,79 +1297,89 @@ npx @modelcontextprotocol/inspector
 1. "SSE" را به‌عنوان نوع انتقال انتخاب کنید
 2. URL را به: `http://localhost:8080/sse` تنظیم کنید
 3. روی "Connect" کلیک کنید
+![اتصال](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.fa.png)
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.fa.png)
-
-**اکنون به سرور متصل شده‌اید**
-**بخش آزمایش سرور Java اکنون کامل شده است**
+**شما اکنون به سرور متصل شده‌اید**  
+**بخش آزمایش سرور جاوا اکنون کامل شده است**
 
 بخش بعدی درباره تعامل با سرور است.
 
 شما باید رابط کاربری زیر را مشاهده کنید:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.fa.png)
+![اتصال](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.fa.png)
 
-1. با انتخاب دکمه Connect به سرور متصل شوید.
-  پس از اتصال به سرور، باید اکنون موارد زیر را مشاهده کنید:
+1. با انتخاب دکمه "اتصال" به سرور متصل شوید.  
+   پس از اتصال به سرور، باید تصویر زیر را مشاهده کنید:
 
-  ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.fa.png)
+   ![متصل شده](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.fa.png)
 
-1. "Tools" و "listTools" را انتخاب کنید، باید "Add" ظاهر شود، "Add" را انتخاب کنید و مقادیر پارامترها را پر کنید.
+1. گزینه "ابزارها" و سپس "listTools" را انتخاب کنید. باید گزینه "افزودن" ظاهر شود. گزینه "افزودن" را انتخاب کنید و مقادیر پارامترها را وارد کنید.
 
-  باید پاسخ زیر را مشاهده کنید، یعنی نتیجه‌ای از ابزار "add":
+   شما باید پاسخ زیر را مشاهده کنید، یعنی نتیجه‌ای از ابزار "افزودن":
 
-  ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.fa.png)
+   ![نتیجه اجرای افزودن](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.fa.png)
 
-تبریک می‌گوییم، شما موفق شدید اولین سرور خود را ایجاد و اجرا کنید!
+تبریک! شما موفق شدید اولین سرور خود را ایجاد و اجرا کنید!
+
+#### Rust
+
+برای اجرای سرور Rust با MCP Inspector CLI، از دستور زیر استفاده کنید:
+
+```sh
+npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-name add --tool-arg a=1 b=2
+```
 
 ### SDKهای رسمی
 
 MCP SDKهای رسمی برای زبان‌های مختلف ارائه می‌دهد:
 
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - نگهداری‌شده با همکاری Microsoft
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - نگهداری‌شده با همکاری Spring AI
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - پیاده‌سازی رسمی TypeScript
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - پیاده‌سازی رسمی Python
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - نگهداری شده با همکاری Microsoft  
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - نگهداری شده با همکاری Spring AI  
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - پیاده‌سازی رسمی TypeScript  
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - پیاده‌سازی رسمی Python  
 - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - پیاده‌سازی رسمی Kotlin  
 - [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - نگهداری شده با همکاری Loopwork AI  
 - [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - پیاده‌سازی رسمی Rust  
 
-## نکات کلیدی  
+## نکات کلیدی
 
-- راه‌اندازی محیط توسعه MCP با استفاده از SDKهای مخصوص زبان بسیار ساده است  
-- ساخت سرورهای MCP شامل ایجاد و ثبت ابزارها با طرح‌های مشخص است  
-- آزمایش و اشکال‌زدایی برای پیاده‌سازی‌های قابل اعتماد MCP ضروری است  
+- راه‌اندازی محیط توسعه MCP با SDKهای زبان‌های مختلف ساده است.  
+- ساخت سرورهای MCP شامل ایجاد و ثبت ابزارها با طرح‌های مشخص است.  
+- آزمایش و اشکال‌زدایی برای پیاده‌سازی‌های قابل اعتماد MCP ضروری است.  
 
-## نمونه‌ها  
+## نمونه‌ها
 
-- [Java Calculator](../samples/java/calculator/README.md)  
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript Calculator](../samples/javascript/README.md)  
-- [TypeScript Calculator](../samples/typescript/README.md)  
-- [Python Calculator](../../../../03-GettingStarted/samples/python)  
+- [ماشین حساب جاوا](../samples/java/calculator/README.md)  
+- [ماشین حساب .Net](../../../../03-GettingStarted/samples/csharp)  
+- [ماشین حساب JavaScript](../samples/javascript/README.md)  
+- [ماشین حساب TypeScript](../samples/typescript/README.md)  
+- [ماشین حساب Python](../../../../03-GettingStarted/samples/python)  
+- [ماشین حساب Rust](../../../../03-GettingStarted/samples/rust)  
 
-## تکلیف  
+## تکلیف
 
-یک سرور MCP ساده با ابزاری به انتخاب خود ایجاد کنید:  
+یک سرور MCP ساده با ابزاری به انتخاب خود ایجاد کنید:
 
-1. ابزار را در زبان مورد نظر خود (.NET، Java، Python یا JavaScript) پیاده‌سازی کنید.  
-2. پارامترهای ورودی و مقادیر بازگشتی را تعریف کنید.  
+1. ابزار را در زبان مورد نظر خود (.NET، Java، Python، TypeScript یا Rust) پیاده‌سازی کنید.  
+2. پارامترهای ورودی و مقادیر خروجی را تعریف کنید.  
 3. ابزار بازرس را اجرا کنید تا مطمئن شوید سرور به درستی کار می‌کند.  
 4. پیاده‌سازی را با ورودی‌های مختلف آزمایش کنید.  
 
-## راه‌حل  
+## راه‌حل
 
-[راه‌حل](./solution/README.md)  
+[راه‌حل](./solution/README.md)
 
-## منابع اضافی  
+## منابع اضافی
 
-- [ساخت عوامل با استفاده از Model Context Protocol در Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
+- [ساخت عوامل با Model Context Protocol در Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
 - [MCP از راه دور با Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)  
 - [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)  
 
-## مرحله بعد  
+## مرحله بعدی
 
 بعدی: [شروع کار با کلاینت‌های MCP](../02-client/README.md)  
+
+---
 
 **سلب مسئولیت**:  
 این سند با استفاده از سرویس ترجمه هوش مصنوعی [Co-op Translator](https://github.com/Azure/co-op-translator) ترجمه شده است. در حالی که ما تلاش می‌کنیم دقت را حفظ کنیم، لطفاً توجه داشته باشید که ترجمه‌های خودکار ممکن است شامل خطاها یا نادرستی‌ها باشند. سند اصلی به زبان اصلی آن باید به عنوان منبع معتبر در نظر گرفته شود. برای اطلاعات حساس، توصیه می‌شود از ترجمه حرفه‌ای انسانی استفاده کنید. ما مسئولیتی در قبال سوء تفاهم‌ها یا تفسیرهای نادرست ناشی از استفاده از این ترجمه نداریم.

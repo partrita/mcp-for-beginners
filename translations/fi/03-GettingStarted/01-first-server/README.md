@@ -1,141 +1,182 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "fa635ae747c9b4d5c2f61c6c46cb695f",
-  "translation_date": "2025-07-17T18:51:31+00:00",
+  "original_hash": "ec11ee93f31fdadd94facd3e3d22f9e6",
+  "translation_date": "2025-09-09T21:58:54+00:00",
   "source_file": "03-GettingStarted/01-first-server/README.md",
   "language_code": "fi"
 }
 -->
-# MCP:n Aloittaminen
+# Aloittaminen MCP:n kanssa
 
-Tervetuloa ensimmäisille askelillesi Model Context Protocolin (MCP) parissa! Olitpa sitten uusi MCP:n käyttäjä tai haluat syventää osaamistasi, tämä opas ohjaa sinut olennaisen asennuksen ja kehitysprosessin läpi. Opit, miten MCP mahdollistaa saumattoman integraation AI-mallien ja sovellusten välillä, ja miten saat nopeasti ympäristösi valmiiksi MCP-pohjaisten ratkaisujen rakentamiseen ja testaamiseen.
+Tervetuloa ensimmäisiin askeliin Model Context Protocolin (MCP) parissa! Olitpa sitten uusi MCP:n käyttäjä tai haluat syventää ymmärrystäsi, tämä opas johdattaa sinut olennaisten asennus- ja kehitysprosessien läpi. Opit, kuinka MCP mahdollistaa saumattoman integraation tekoälymallien ja sovellusten välillä, sekä kuinka saat ympäristösi nopeasti valmiiksi MCP-pohjaisten ratkaisujen rakentamista ja testaamista varten.
 
-> TLDR; Jos rakennat AI-sovelluksia, tiedät, että voit lisätä työkaluja ja muita resursseja LLM:ääsi (laajaa kielimallia) varten, jotta LLM olisi tietävämpi. Jos kuitenkin sijoitat nämä työkalut ja resurssit palvelimelle, sovelluksen ja palvelimen ominaisuuksia voi käyttää mikä tahansa asiakas, jolla on tai ei ole LLM:ää.
+> TLDR; Jos rakennat tekoälysovelluksia, tiedät, että voit lisätä työkaluja ja muita resursseja LLM:ään (laaja kielimalli), jotta LLM:stä tulee tietoisempi. Mutta jos sijoitat nämä työkalut ja resurssit palvelimelle, sovelluksen ja palvelimen ominaisuuksia voi käyttää mikä tahansa asiakas, LLM:llä tai ilman.
 
 ## Yleiskatsaus
 
-Tässä oppitunnissa saat käytännön ohjeita MCP-ympäristöjen pystyttämiseen ja ensimmäisten MCP-sovellusten rakentamiseen. Opit asentamaan tarvittavat työkalut ja kehykset, rakentamaan perus MCP-palvelimia, luomaan isäntäsovelluksia ja testaamaan toteutuksiasi.
+Tämä osio tarjoaa käytännön ohjeita MCP-ympäristöjen asennukseen ja ensimmäisten MCP-sovellusten rakentamiseen. Opit, kuinka asennat tarvittavat työkalut ja kehykset, rakennat perus-MCP-palvelimia, luot isäntäsovelluksia ja testaat toteutuksiasi.
 
-Model Context Protocol (MCP) on avoin protokolla, joka standardisoi, miten sovellukset tarjoavat kontekstia LLM:ille. Ajattele MCP:tä kuin USB-C-porttina AI-sovelluksille – se tarjoaa standardoidun tavan yhdistää AI-mallit erilaisiin tietolähteisiin ja työkaluihin.
+Model Context Protocol (MCP) on avoin protokolla, joka standardoi, kuinka sovellukset tarjoavat kontekstia LLM:ille. Ajattele MCP:tä kuin USB-C-porttia tekoälysovelluksille – se tarjoaa standardoidun tavan yhdistää tekoälymallit eri tietolähteisiin ja työkaluihin.
 
 ## Oppimistavoitteet
 
-Tämän oppitunnin jälkeen osaat:
+Tämän osion lopussa osaat:
 
-- Pystyttää kehitysympäristöt MCP:lle C#:ssa, Javassa, Pythonissa, TypeScriptissä ja JavaScriptissä
-- Rakentaa ja ottaa käyttöön perus MCP-palvelimia, joissa on räätälöityjä ominaisuuksia (resurssit, kehotteet ja työkalut)
-- Luoda isäntäsovelluksia, jotka yhdistävät MCP-palvelimiin
-- Testata ja virheenkorjata MCP-toteutuksia
+- Asentaa MCP-kehitysympäristöt C#:lle, Javalle, Pythonille, TypeScriptille ja Rustille
+- Rakentaa ja ottaa käyttöön perus-MCP-palvelimia mukautetuilla ominaisuuksilla (resurssit, kehotteet ja työkalut)
+- Luoda isäntäsovelluksia, jotka yhdistyvät MCP-palvelimiin
+- Testata ja debugata MCP-toteutuksia
 
-## MCP-ympäristön Pystyttäminen
+## MCP-ympäristön asennus
 
-Ennen kuin aloitat MCP:n parissa työskentelyn, on tärkeää valmistella kehitysympäristösi ja ymmärtää perus työnkulku. Tässä osiossa käydään läpi alkuasetukset, jotta MCP:n kanssa aloittaminen sujuu mutkattomasti.
+Ennen kuin aloitat MCP:n parissa työskentelyn, on tärkeää valmistella kehitysympäristösi ja ymmärtää perusprosessit. Tämä osio opastaa sinut alkuasennuksen vaiheiden läpi, jotta MCP:n käyttö sujuu vaivattomasti.
 
 ### Esivaatimukset
 
-Ennen MCP-kehitykseen ryhtymistä varmista, että sinulla on:
+Ennen MCP-kehityksen aloittamista varmista, että sinulla on:
 
-- **Kehitysympäristö**: Valitsemallesi kielelle (C#, Java, Python, TypeScript tai JavaScript)
-- **IDE/Editori**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm tai mikä tahansa nykyaikainen koodieditori
-- **Paketinhallintaohjelmat**: NuGet, Maven/Gradle, pip tai npm/yarn
+- **Kehitysympäristö**: Valitsemallesi kielelle (C#, Java, Python, TypeScript tai Rust)
+- **IDE/editori**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm tai mikä tahansa moderni koodieditori
+- **Paketinhallinta**: NuGet, Maven/Gradle, pip, npm/yarn tai Cargo
 - **API-avaimet**: Kaikille AI-palveluille, joita aiot käyttää isäntäsovelluksissasi
 
-## Perusrakenne MCP-palvelimelle
+## Perus-MCP-palvelimen rakenne
 
-MCP-palvelin sisältää tyypillisesti:
+Tyypillinen MCP-palvelin sisältää:
 
-- **Palvelimen asetukset**: Portin, autentikoinnin ja muut asetukset
-- **Resurssit**: Data ja konteksti, jotka ovat LLM:ien käytettävissä
+- **Palvelimen konfiguraatio**: Portin, autentikoinnin ja muiden asetusten määrittäminen
+- **Resurssit**: Data ja konteksti, jotka ovat LLM:ien saatavilla
 - **Työkalut**: Toiminnallisuudet, joita mallit voivat kutsua
-- **Kehotteet**: Mallipohjat tekstin luomiseen tai jäsentämiseen
+- **Kehotteet**: Mallipohjat tekstin tuottamiseen tai jäsentämiseen
 
 Tässä yksinkertaistettu esimerkki TypeScriptillä:
 
 ```typescript
-import { Server, Tool, Resource } from "@modelcontextprotocol/typescript-server-sdk";
+import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
 
-// Create a new MCP server
-const server = new Server({
-  port: 3000,
-  name: "Example MCP Server",
+// Create an MCP server
+const server = new McpServer({
+  name: "Demo",
   version: "1.0.0"
 });
 
-// Register a tool
-server.registerTool({
-  name: "calculator",
-  description: "Performs basic calculations",
-  parameters: {
-    expression: {
-      type: "string",
-      description: "The math expression to evaluate"
-    }
-  },
-  handler: async (params) => {
-    const result = eval(params.expression);
-    return { result };
-  }
-});
+// Add an addition tool
+server.tool("add",
+  { a: z.number(), b: z.number() },
+  async ({ a, b }) => ({
+    content: [{ type: "text", text: String(a + b) }]
+  })
+);
 
-// Start the server
-server.start();
+// Add a dynamic greeting resource
+server.resource(
+  "file",
+  // The 'list' parameter controls how the resource lists available files. Setting it to undefined disables listing for this resource.
+  new ResourceTemplate("file://{path}", { list: undefined }),
+  async (uri, { path }) => ({
+    contents: [{
+      uri: uri.href,
+      text: `File, ${path}!`
+    }]
+  })
+);
+
+// Add a file resource that reads the file contents
+server.resource(
+  "file",
+  new ResourceTemplate("file://{path}", { list: undefined }),
+  async (uri, { path }) => {
+    let text;
+    try {
+      text = await fs.readFile(path, "utf8");
+    } catch (err) {
+      text = `Error reading file: ${err.message}`;
+    }
+    return {
+      contents: [{
+        uri: uri.href,
+        text
+      }]
+    };
+  }
+);
+
+server.prompt(
+  "review-code",
+  { code: z.string() },
+  ({ code }) => ({
+    messages: [{
+      role: "user",
+      content: {
+        type: "text",
+        text: `Please review this code:\n\n${code}`
+      }
+    }]
+  })
+);
+
+// Start receiving messages on stdin and sending messages on stdout
+const transport = new StdioServerTransport();
+await server.connect(transport);
 ```
 
-Edellisessä koodissa me:
+Edellisessä koodissa:
 
-- Tuomme tarvittavat luokat MCP TypeScript SDK:sta.
-- Luomme ja konfiguroimme uuden MCP-palvelininstanssin.
-- Rekisteröimme räätälöidyn työkalun (`calculator`) käsittelijäfunktion kanssa.
-- Käynnistämme palvelimen kuuntelemaan saapuvia MCP-pyyntöjä.
+- Tuodaan tarvittavat luokat MCP TypeScript SDK:sta.
+- Luodaan ja konfiguroidaan uusi MCP-palvelininstanssi.
+- Rekisteröidään mukautettu työkalu (`calculator`) käsittelyfunktiolla.
+- Käynnistetään palvelin kuuntelemaan saapuvia MCP-pyyntöjä.
 
-## Testaus ja Virheenkorjaus
+## Testaus ja debuggaus
 
-Ennen MCP-palvelimesi testaamista on tärkeää ymmärtää käytettävissä olevat työkalut ja parhaat käytännöt virheenkorjaukseen. Tehokas testaus varmistaa, että palvelimesi toimii odotetusti ja auttaa sinua nopeasti tunnistamaan ja korjaamaan ongelmat. Seuraavassa osiossa esitellään suositellut menetelmät MCP-toteutuksesi validointiin.
+Ennen MCP-palvelimen testaamista on tärkeää ymmärtää käytettävissä olevat työkalut ja parhaat käytännöt debuggaamiseen. Tehokas testaus varmistaa, että palvelimesi toimii odotetusti, ja auttaa sinua tunnistamaan ja ratkaisemaan ongelmat nopeasti. Seuraava osio esittelee suositeltuja lähestymistapoja MCP-toteutuksen validointiin.
 
-MCP tarjoaa työkaluja palvelimien testaamiseen ja virheenkorjaukseen:
+MCP tarjoaa työkaluja palvelimien testaamiseen ja debuggaamiseen:
 
-- **Inspector-työkalu**, tämä graafinen käyttöliittymä mahdollistaa yhteyden palvelimeesi ja työkalujen, kehotteiden sekä resurssien testaamisen.
-- **curl**, voit myös yhdistää palvelimeesi komentorivityökalulla kuten curl tai muilla asiakasohjelmilla, jotka pystyvät luomaan ja suorittamaan HTTP-komentoja.
+- **Inspector-työkalu**, graafinen käyttöliittymä, jonka avulla voit yhdistää palvelimeesi ja testata työkaluja, kehotteita ja resursseja.
+- **curl**, voit myös yhdistää palvelimeesi komentorivityökalulla, kuten curlilla, tai muilla HTTP-komentoja tukevilla asiakkailla.
 
-### MCP Inspectorin Käyttö
+### MCP Inspectorin käyttö
 
-[MCP Inspector](https://github.com/modelcontextprotocol/inspector) on visuaalinen testausväline, joka auttaa sinua:
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector) on visuaalinen testityökalu, joka auttaa sinua:
 
-1. **Palvelimen ominaisuuksien löytämisessä**: Havaitsee automaattisesti käytettävissä olevat resurssit, työkalut ja kehotteet
-2. **Työkalujen suorittamisen testaamisessa**: Kokeile eri parametreja ja näe vastaukset reaaliajassa
-3. **Palvelimen metatietojen tarkastelussa**: Tutki palvelimen tietoja, skeemoja ja asetuksia
+1. **Palvelimen ominaisuuksien tunnistaminen**: Havaitse automaattisesti käytettävissä olevat resurssit, työkalut ja kehotteet
+2. **Työkalujen suorittamisen testaus**: Kokeile eri parametreja ja näe vastaukset reaaliajassa
+3. **Palvelimen metadatan tarkastelu**: Tutki palvelimen tietoja, skeemoja ja konfiguraatioita
 
 ```bash
 # ex TypeScript, installing and running MCP Inspector
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Kun suoritat yllä olevat komennot, MCP Inspector käynnistää paikallisen web-käyttöliittymän selaimessasi. Näet kojelaudan, joka näyttää rekisteröidyt MCP-palvelimesi, niiden käytettävissä olevat työkalut, resurssit ja kehotteet. Käyttöliittymä mahdollistaa työkalujen suorittamisen interaktiivisen testauksen, palvelimen metatietojen tarkastelun ja reaaliaikaisten vastausten seuraamisen, mikä helpottaa MCP-palvelintoteutustesi validointia ja virheenkorjausta.
+Kun suoritat yllä olevat komennot, MCP Inspector käynnistää paikallisen verkkokäyttöliittymän selaimessasi. Näet kojelaudan, joka näyttää rekisteröidyt MCP-palvelimesi, niiden käytettävissä olevat työkalut, resurssit ja kehotteet. Käyttöliittymä mahdollistaa työkalujen interaktiivisen testauksen, palvelimen metadatan tarkastelun ja reaaliaikaisten vastausten näkemisen, mikä helpottaa MCP-palvelimen toteutusten validointia ja debuggausta.
 
-Tässä on kuvakaappaus miltä se voi näyttää:
+Tässä esimerkkikuva siitä, miltä se voi näyttää:
 
-![](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.fi.png)
+![MCP Inspector palvelinyhteys](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.fi.png)
 
-## Yleisiä Asennusongelmia ja Ratkaisuja
+## Yleiset asennusongelmat ja ratkaisut
 
-| Ongelma | Mahdollinen Ratkaisu |
+| Ongelma | Mahdollinen ratkaisu |
 |---------|----------------------|
-| Yhteys evätty | Tarkista, että palvelin on käynnissä ja portti on oikea |
-| Työkalun suoritusvirheet | Tarkista parametrien validointi ja virheenkäsittely |
-| Autentikointivirheet | Varmista API-avaimet ja käyttöoikeudet |
-| Skeeman validointivirheet | Varmista, että parametrit vastaavat määriteltyä skeemaa |
-| Palvelin ei käynnisty | Tarkista porttien yhteensopivuus ja puuttuvat riippuvuudet |
-| CORS-virheet | Määritä oikeat CORS-otsikot ristiin alkuperäisten pyyntöjen sallimiseksi |
-| Autentikointiongelmat | Tarkista tokenin voimassaolo ja käyttöoikeudet |
+| Yhteys evätty | Tarkista, että palvelin on käynnissä ja portti on oikein |
+| Työkalujen suoritusvirheet | Tarkista parametrien validointi ja virheenkäsittely |
+| Autentikointivirheet | Varmista API-avainten ja käyttöoikeuksien oikeellisuus |
+| Skeemavalidointivirheet | Varmista, että parametrit vastaavat määriteltyä skeemaa |
+| Palvelin ei käynnisty | Tarkista porttikonfliktit tai puuttuvat riippuvuudet |
+| CORS-virheet | Määritä oikeat CORS-otsikot ristiin lähtevien pyyntöjen tueksi |
+| Autentikointiongelmat | Varmista tokenin voimassaolo ja käyttöoikeudet |
 
-## Paikallinen Kehitys
+## Paikallinen kehitys
 
-Paikalliseen kehitykseen ja testaukseen voit ajaa MCP-palvelimia suoraan omalla koneellasi:
+Paikallista kehitystä ja testausta varten voit ajaa MCP-palvelimia suoraan koneellasi:
 
-1. **Käynnistä palvelinprosessi**: Suorita MCP-palvelinsovelluksesi
-2. **Verkkoasetukset**: Varmista, että palvelin on saavutettavissa odotetulla portilla
-3. **Yhdistä asiakkaat**: Käytä paikallisia URL-osoitteita kuten `http://localhost:3000`
+1. **Käynnistä palvelinprosessi**: Suorita MCP-palvelinsovellus
+2. **Verkkoasetusten konfigurointi**: Varmista, että palvelin on saavutettavissa odotetussa portissa
+3. **Yhdistä asiakkaat**: Käytä paikallisia yhteys-URL-osoitteita, kuten `http://localhost:3000`
 
 ```bash
 # Example: Running a TypeScript MCP server locally
@@ -143,48 +184,45 @@ npm run start
 # Server running at http://localhost:3000
 ```
 
-## Ensimmäisen MCP-palvelimen Rakentaminen
+## Ensimmäisen MCP-palvelimen rakentaminen
 
-Olemme käsitelleet [Peruskäsitteitä](/01-CoreConcepts/README.md) aiemmassa oppitunnissa, nyt on aika laittaa tieto käytäntöön.
+Olemme käsitelleet [Peruskäsitteet](/01-CoreConcepts/README.md) aiemmassa osiossa, nyt on aika soveltaa tätä tietoa käytännössä.
 
 ### Mitä palvelin voi tehdä
 
-Ennen kuin aloitamme koodin kirjoittamisen, muistutetaan mitä palvelin voi tehdä:
+Ennen kuin aloitamme koodauksen, muistutetaan itseämme siitä, mitä palvelin voi tehdä:
 
 MCP-palvelin voi esimerkiksi:
 
-- Käyttää paikallisia tiedostoja ja tietokantoja
-- Yhdistää etä-API:hin
-- Suorittaa laskutoimituksia
+- Päästä käsiksi paikallisiin tiedostoihin ja tietokantoihin
+- Yhdistyä etä-API:hin
+- Suorittaa laskelmia
 - Integroitua muihin työkaluihin ja palveluihin
 - Tarjota käyttöliittymän vuorovaikutukseen
 
-Hienoa, nyt kun tiedämme mitä voimme tehdä, aloitetaan koodaus.
+Hienoa, nyt kun tiedämme, mitä voimme tehdä, aloitetaan koodaus.
 
-## Harjoitus: Palvelimen Luominen
+## Harjoitus: Palvelimen luominen
 
-Palvelimen luomiseksi sinun tulee tehdä seuraavat vaiheet:
+Palvelimen luomiseksi sinun tulee noudattaa seuraavia vaiheita:
 
 - Asenna MCP SDK.
-- Luo projekti ja rakenna projektin rakenne.
+- Luo projekti ja määritä projektirakenne.
 - Kirjoita palvelinkoodi.
 - Testaa palvelin.
 
-### -1- SDK:n Asennus
+### -1- Luo projekti
 
-Tämä vaihtelee hieman valitun ajoympäristön mukaan, joten valitse alla olevista ajoympäristöistä:
-
-> [!NOTE]
-> Pythonissa luomme ensin projektirakenteen ja asennamme sitten riippuvuudet.
-
-### TypeScript
+#### TypeScript
 
 ```sh
-npm install @modelcontextprotocol/sdk zod
-npm install -D @types/node typescript
+# Create project directory and initialize npm project
+mkdir calculator-server
+cd calculator-server
+npm init -y
 ```
 
-### Python
+#### Python
 
 ```sh
 # Create project dir
@@ -194,16 +232,16 @@ cd calculator-server
 code .
 ```
 
-### .NET
+#### .NET
 
 ```sh
 dotnet new console -n McpCalculatorServer
 cd McpCalculatorServer
 ```
 
-### Java
+#### Java
 
-Javassa luo Spring Boot -projekti:
+Javalle luo Spring Boot -projekti:
 
 ```bash
 curl https://start.spring.io/starter.zip \
@@ -226,7 +264,7 @@ cd calculator-server
 rm -rf src/test/java
 ```
 
-Lisää seuraava täydellinen konfiguraatio *pom.xml*-tiedostoosi:
+Lisää seuraava täydellinen konfiguraatio *pom.xml*-tiedostoon:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -326,18 +364,30 @@ Lisää seuraava täydellinen konfiguraatio *pom.xml*-tiedostoosi:
 </project>
 ```
 
-### -2- Luo projekti
-
-Nyt kun SDK on asennettu, luodaan projekti:
-
-### TypeScript
+#### Rust
 
 ```sh
-mkdir src
-npm install -y
+mkdir calculator-server
+cd calculator-server
+cargo init
 ```
 
-### Python
+### -2- Lisää riippuvuudet
+
+Nyt kun projektisi on luotu, lisätään seuraavaksi riippuvuudet:
+
+#### TypeScript
+
+```sh
+# If not already installed, install TypeScript globally
+npm install typescript -g
+
+# Install the MCP SDK and Zod for schema validation
+npm install @modelcontextprotocol/sdk zod
+npm install -D @types/node typescript
+```
+
+#### Python
 
 ```sh
 # Create a virtual env and install dependencies
@@ -346,31 +396,49 @@ venv\Scripts\activate
 pip install "mcp[cli]"
 ```
 
-### Java
+#### Java
 
 ```bash
 cd calculator-server
 ./mvnw clean install -DskipTests
 ```
 
+#### Rust
+
+```sh
+cargo add rmcp --features server,transport-io
+cargo add serde
+cargo add tokio --features rt-multi-thread
+```
+
 ### -3- Luo projektitiedostot
 
-### TypeScript
+#### TypeScript
 
-Luo *package.json* seuraavalla sisällöllä:
+Avaa *package.json*-tiedosto ja korvaa sisältö seuraavalla varmistaaksesi, että voit rakentaa ja ajaa palvelimen:
 
 ```json
 {
-   "type": "module",
-   "bin": {
-     "weather": "./build/index.js"
-   },
-   "scripts": {
-     "build": "tsc && node build/index.js"
-   },
-   "files": [
-     "build"
-   ]
+  "name": "calculator-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "tsc && node ./build/index.js",
+    "build": "tsc && node ./build/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "A simple calculator server using Model Context Protocol",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.16.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.14",
+    "typescript": "^5.8.3"
+  }
 }
 ```
 
@@ -394,7 +462,14 @@ Luo *tsconfig.json* seuraavalla sisällöllä:
 }
 ```
 
-### Python
+Luo hakemisto lähdekoodillesi:
+
+```sh
+mkdir src
+touch src/index.ts
+```
+
+#### Python
 
 Luo tiedosto *server.py*
 
@@ -402,7 +477,7 @@ Luo tiedosto *server.py*
 touch server.py
 ```
 
-### .NET
+#### .NET
 
 Asenna tarvittavat NuGet-paketit:
 
@@ -411,13 +486,17 @@ dotnet add package ModelContextProtocol --prerelease
 dotnet add package Microsoft.Extensions.Hosting
 ```
 
-### Java
+#### Java
 
-Java Spring Boot -projekteissa projektirakenne luodaan automaattisesti.
+Java Spring Boot -projektien rakenne luodaan automaattisesti.
 
-### -4- Kirjoita palvelinkoodi
+#### Rust
 
-### TypeScript
+Rustille *src/main.rs*-tiedosto luodaan oletuksena, kun suoritat `cargo init`. Avaa tiedosto ja poista oletuskoodi.
+
+### -4- Luo palvelinkoodi
+
+#### TypeScript
 
 Luo tiedosto *index.ts* ja lisää seuraava koodi:
 
@@ -428,14 +507,14 @@ import { z } from "zod";
  
 // Create an MCP server
 const server = new McpServer({
-  name: "Demo",
+  name: "Calculator MCP Server",
   version: "1.0.0"
 });
 ```
 
-Nyt sinulla on palvelin, mutta se ei tee vielä paljoa, korjataan se.
+Nyt sinulla on palvelin, mutta se ei tee paljoa, korjataan se.
 
-### Python
+#### Python
 
 ```python
 # server.py
@@ -445,7 +524,7 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP("Demo")
 ```
 
-### .NET
+#### .NET
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -470,9 +549,9 @@ await builder.Build().RunAsync();
 // add features
 ```
 
-### Java
+#### Java
 
-Javassa luo ydinkomponentit palvelimelle. Muokkaa ensin pääsovellusluokkaa:
+Javalle luo ydinkomponentit palvelimelle. Muokkaa ensin pääsovellusluokkaa:
 
 *src/main/java/com/microsoft/mcp/sample/server/McpServerApplication.java*:
 
@@ -646,7 +725,7 @@ public class CalculatorService {
 }
 ```
 
-**Valinnaiset komponentit tuotantovalmiiseen palveluun:**
+**Valinnaiset komponentit tuotantovalmiille palvelulle:**
 
 Luo käynnistyskonfiguraatio *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
 
@@ -673,7 +752,7 @@ public class StartupConfig {
 }
 ```
 
-Luo terveystarkastelija *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
+Luo terveyskontrolleri *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.controller;
@@ -736,7 +815,7 @@ public class GlobalExceptionHandler {
 }
 ```
 
-Luo oma banneri *src/main/resources/banner.txt*:
+Luo mukautettu banneri *src/main/resources/banner.txt*:
 
 ```text
 _____      _            _       _             
@@ -750,16 +829,86 @@ Calculator MCP Server v1.0
 Spring Boot MCP Application
 ```
 
-</details>
+#### Rust
+
+Lisää seuraava koodi *src/main.rs*-tiedoston alkuun. Tämä tuo tarvittavat kirjastot ja moduulit MCP-palvelimelle.
+
+```rust
+use rmcp::{
+    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    model::{ServerCapabilities, ServerInfo},
+    schemars, tool, tool_handler, tool_router,
+    transport::stdio,
+    ServerHandler, ServiceExt,
+};
+use std::error::Error;
+```
+
+Laskinpalvelin on yksinkertainen, joka voi lisätä kaksi lukua yhteen. Luodaan rakenne laskinpyynnön edustamiseksi.
+
+```rust
+#[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
+pub struct CalculatorRequest {
+    pub a: f64,
+    pub b: f64,
+}
+```
+
+Seuraavaksi luodaan rakenne laskinpalvelimen edustamiseksi. Tämä rakenne sisältää työkalureitittimen, jota käytetään työkalujen rekisteröintiin.
+
+```rust
+#[derive(Debug, Clone)]
+pub struct Calculator {
+    tool_router: ToolRouter<Self>,
+}
+```
+
+Nyt voimme toteuttaa `Calculator`-rakenteen uuden palvelininstanssin luomiseksi ja palvelimen käsittelijän toteuttamiseksi palvelintietojen tarjoamiseksi.
+
+```rust
+#[tool_router]
+impl Calculator {
+    pub fn new() -> Self {
+        Self {
+            tool_router: Self::tool_router(),
+        }
+    }
+}
+
+#[tool_handler]
+impl ServerHandler for Calculator {
+    fn get_info(&self) -> ServerInfo {
+        ServerInfo {
+            instructions: Some("A simple calculator tool".into()),
+            capabilities: ServerCapabilities::builder().enable_tools().build(),
+            ..Default::default()
+        }
+    }
+}
+```
+
+Lopuksi meidän täytyy toteuttaa pääfunktio palvelimen käynnistämiseksi. Tämä funktio luo `Calculator`-rakenteen instanssin ja palvelee sitä standarditulon/-lähdön kautta.
+
+```rust
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let service = Calculator::new().serve(stdio()).await?;
+    service.waiting().await?;
+    Ok(())
+}
+```
+
+Palvelin on nyt asetettu tarjoamaan perustietoja itsestään. Seuraavaksi lisätään työkalu laskutoimitusten suorittamiseen.
 
 ### -5- Työkalun ja resurssin lisääminen
 
 Lisää työkalu ja resurssi lisäämällä seuraava koodi:
 
-### TypeScript
+#### TypeScript
 
 ```typescript
-  server.tool("add",
+server.tool(
+  "add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
     content: [{ type: "text", text: String(a + b) }]
@@ -788,7 +937,7 @@ Työkalusi ottaa parametrit `a` ja `b` ja suorittaa funktion, joka tuottaa vasta
 }
 ```
 
-Resurssiisi pääsee käsiksi merkkijonon "greeting" kautta, se ottaa parametrin `name` ja tuottaa vastaavanlaisen vastauksen kuin työkalu:
+Resurssisi on käytettävissä merkkijonon "greeting" kautta ja ottaa parametrin `name`, tuottaen samanlaisen vastauksen kuin työkalu:
 
 ```typescript
 {
@@ -797,7 +946,7 @@ Resurssiisi pääsee käsiksi merkkijonon "greeting" kautta, se ottaa parametrin
 }
 ```
 
-### Python
+#### Python
 
 ```python
 # Add an addition tool
@@ -816,12 +965,12 @@ def get_greeting(name: str) -> str:
 
 Edellisessä koodissa olemme:
 
-- Määritelleet työkalun `add`, joka ottaa parametrit `a` ja `p`, molemmat kokonaislukuja.
+- Määrittäneet työkalun `add`, joka ottaa parametrit `a` ja `p`, molemmat kokonaislukuja.
 - Luoneet resurssin nimeltä `greeting`, joka ottaa parametrin `name`.
 
-### .NET
+#### .NET
 
-Lisää tämä Program.cs-tiedostoosi:
+Lisää tämä Program.cs-tiedostoon:
 
 ```csharp
 [McpServerToolType]
@@ -832,15 +981,29 @@ public static class CalculatorTool
 }
 ```
 
-### Java
+#### Java
 
 Työkalut on jo luotu edellisessä vaiheessa.
 
+#### Rust
+
+Lisää uusi työkalu `impl Calculator`-lohkon sisälle:
+
+```rust
+#[tool(description = "Adds a and b")]
+async fn add(
+    &self,
+    Parameters(CalculatorRequest { a, b }): Parameters<CalculatorRequest>,
+) -> String {
+    (a + b).to_string()
+}
+```
+
 ### -6- Lopullinen koodi
 
-Lisätään viimeiset koodit, jotta palvelin voi käynnistyä:
+Lisätään viimeinen koodi, jota tarvitsemme palvelimen käynnistämiseksi:
 
-### TypeScript
+#### TypeScript
 
 ```typescript
 // Start receiving messages on stdin and sending messages on stdout
@@ -848,7 +1011,7 @@ const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
 
-Tässä koko koodi:
+Tässä on koko koodi:
 
 ```typescript
 // index.ts
@@ -858,12 +1021,13 @@ import { z } from "zod";
 
 // Create an MCP server
 const server = new McpServer({
-  name: "Demo",
+  name: "Calculator MCP Server",
   version: "1.0.0"
 });
 
 // Add an addition tool
-server.tool("add",
+server.tool(
+  "add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
     content: [{ type: "text", text: String(a + b) }]
@@ -884,10 +1048,10 @@ server.resource(
 
 // Start receiving messages on stdin and sending messages on stdout
 const transport = new StdioServerTransport();
-await server.connect(transport);
+server.connect(transport);
 ```
 
-### Python
+#### Python
 
 ```python
 # server.py
@@ -915,7 +1079,7 @@ if __name__ == "__main__":
     mcp.run()
 ```
 
-### .NET
+#### .NET
 
 Luo Program.cs-tiedosto seuraavalla sisällöllä:
 
@@ -947,9 +1111,9 @@ public static class CalculatorTool
 }
 ```
 
-### Java
+#### Java
 
-Täydellisen pääsovellusluokkasi tulisi näyttää tältä:
+Pääsovellusluokkasi täydellinen koodi näyttää tältä:
 
 ```java
 // McpServerApplication.java
@@ -976,25 +1140,86 @@ public class McpServerApplication {
 }
 ```
 
+#### Rust
+
+Rust-palvelimen lopullinen koodi näyttää tältä:
+
+```rust
+use rmcp::{
+    ServerHandler, ServiceExt,
+    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    model::{ServerCapabilities, ServerInfo},
+    schemars, tool, tool_handler, tool_router,
+    transport::stdio,
+};
+use std::error::Error;
+
+#[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
+pub struct CalculatorRequest {
+    pub a: f64,
+    pub b: f64,
+}
+
+#[derive(Debug, Clone)]
+pub struct Calculator {
+    tool_router: ToolRouter<Self>,
+}
+
+#[tool_router]
+impl Calculator {
+    pub fn new() -> Self {
+        Self {
+            tool_router: Self::tool_router(),
+        }
+    }
+    
+    #[tool(description = "Adds a and b")]
+    async fn add(
+        &self,
+        Parameters(CalculatorRequest { a, b }): Parameters<CalculatorRequest>,
+    ) -> String {
+        (a + b).to_string()
+    }
+}
+
+#[tool_handler]
+impl ServerHandler for Calculator {
+    fn get_info(&self) -> ServerInfo {
+        ServerInfo {
+            instructions: Some("A simple calculator tool".into()),
+            capabilities: ServerCapabilities::builder().enable_tools().build(),
+            ..Default::default()
+        }
+    }
+}
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let service = Calculator::new().serve(stdio()).await?;
+    service.waiting().await?;
+    Ok(())
+}
+```
+
 ### -7- Testaa palvelin
 
 Käynnistä palvelin seuraavalla komennolla:
 
-### TypeScript
+#### TypeScript
 
 ```sh
 npm run build
 ```
 
-### Python
+#### Python
 
 ```sh
 mcp run server.py
 ```
 
-> MCP Inspectorin käyttämiseksi käytä komentoa `mcp dev server.py`, joka käynnistää Inspectorin automaattisesti ja tarjoaa tarvittavan proxy-istuntotunnuksen. Jos käytät `mcp run server.py`, sinun täytyy käynnistää Inspector manuaalisesti ja määrittää yhteys.
+> MCP Inspectorin käyttöön käytä `mcp dev server.py`, joka käynnistää automaattisesti Inspectorin ja tarjoaa tarvittavan proxy-istuntotunnuksen. Jos käytät `mcp run server.py`, sinun täytyy käynnistää Inspector manuaalisesti ja konfiguroida yhteys.
 
-### .NET
+#### .NET
 
 Varmista, että olet projektihakemistossasi:
 
@@ -1003,27 +1228,36 @@ cd McpCalculatorServer
 dotnet run
 ```
 
-### Java
+#### Java
 
 ```bash
 ./mvnw clean install -DskipTests
 java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 ```
 
-### -8- Käynnistä inspectorin avulla
+#### Rust
 
-Inspector on erinomainen työkalu, joka voi käynnistää palvelimesi ja antaa sinun olla vuorovaikutuksessa sen kanssa, jotta voit testata sen toimivuuden. Käynnistetään se:
+Suorita seuraavat komennot palvelimen muotoiluun ja käynnistämiseen:
+
+```sh
+cargo fmt
+cargo run
+```
+
+### -8- Käynnistä Inspectorin avulla
+
+Inspector on loistava työkalu, joka voi käynnistää palvelimesi ja antaa sinun olla vuorovaikutuksessa sen kanssa, jotta voit testata sen toimivuutta. Käynnistetään se:
 
 > [!NOTE]
-> Komento-kenttä saattaa näyttää erilaiselta, koska se sisältää palvelimen käynnistyskomennon juuri sinun ajoympäristöllesi.
+> "command"-kenttä voi näyttää erilaiselta, koska se sisältää komennon palvelimen käynnistämiseen tietyn ajonaikaisen ympäristön kanssa.
 
-### TypeScript
+#### TypeScript
 
 ```sh
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-tai lisää se *package.json* -tiedostoosi näin: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` ja suorita sitten `npm run inspect`
+tai lisää se *package.json*-tiedostoon näin: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` ja suorita `npm run inspector`
 
 Python käyttää Node.js-työkalua nimeltä inspector. Työkalua voi kutsua näin:
 
@@ -1031,15 +1265,16 @@ Python käyttää Node.js-työkalua nimeltä inspector. Työkalua voi kutsua nä
 mcp dev server.py
 ```
 
-Kuitenkin se ei toteuta kaikkia työkalun tarjoamia metodeja, joten suosittelemme ajamaan Node.js-työkalun suoraan näin:
+Kuitenkin, se ei toteuta kaikkia työkalun käytettävissä olevia metodeja, joten suositellaan Node.js-työkalun suoraa käyttöä alla:
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-Jos käytät työkalua tai IDE:tä, joka sallii komentojen ja argumenttien määrittämisen skriptien ajamiseen, varmista että `Command`-kenttään on asetettu `python` ja `Arguments`-kenttään `server.py`. Näin skripti toimii oikein.
+Jos käytät työkalua tai IDE:tä, joka sallii komennon ja argumenttien konfiguroinnin skriptien suorittamiseen, 
+aseta `python` `Command`-kenttään ja `server.py` `Arguments`-kenttään. Tämä varmistaa, että skripti suoritetaan oikein.
 
-### .NET
+#### .NET
 
 Varmista, että olet projektihakemistossasi:
 
@@ -1048,62 +1283,69 @@ cd McpCalculatorServer
 npx @modelcontextprotocol/inspector dotnet run
 ```
 
-### Java
+#### Java
 
-Varmista, että laskinpalvelimesi on käynnissä
-Käynnistä inspector:
+Varmista, että laskinpalvelimesi on käynnissä.
+Suorita sitten Inspector:
 
 ```cmd
 npx @modelcontextprotocol/inspector
 ```
 
-Inspectorin web-käyttöliittymässä:
+Inspectorin verkkokäyttöliittymässä:
 
-1. Valitse "SSE" siirtotavaksi
-2. Aseta URL:ksi: `http://localhost:8080/sse`
+1. Valitse "SSE" kuljetustyypiksi
+2. Aseta URL-osoitteeksi: `http://localhost:8080/sse`
 3. Klikkaa "Connect"
+![Yhdistä](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.fi.png)
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.fi.png)
-
-**Olet nyt yhteydessä palvelimeen**  
+**Olet nyt yhdistänyt palvelimeen**
 **Java-palvelimen testausosio on nyt valmis**
 
-Seuraava osio käsittelee vuorovaikutusta palvelimen kanssa.
+Seuraavassa osiossa käsitellään palvelimen kanssa vuorovaikuttamista.
 
-Näet seuraavan käyttöliittymän:
+Sinun pitäisi nähdä seuraava käyttöliittymä:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.fi.png)
+![Yhdistä](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.fi.png)
 
-1. Yhdistä palvelimeen valitsemalla Connect-painike  
-   Kun olet yhdistänyt palvelimeen, näet seuraavaa:
+1. Yhdistä palvelimeen valitsemalla Yhdistä-painike  
+   Kun olet yhdistänyt palvelimeen, sinun pitäisi nyt nähdä seuraava:
 
-   ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.fi.png)
+   ![Yhdistetty](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.fi.png)
 
-2. Valitse "Tools" ja "listTools", näet "Add" -työkalun, valitse "Add" ja täytä parametrien arvot.
+1. Valitse "Työkalut" ja "listTools", sinun pitäisi nähdä "Lisää" ilmestyvän. Valitse "Lisää" ja täytä parametrien arvot.
 
-   Näet seuraavan vastauksen, eli "add"-työkalun tuloksen:
+   Sinun pitäisi nähdä seuraava vastaus, eli tulos "lisää"-työkalusta:
 
-   ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.fi.png)
+   ![Lisää-työkalun tulos](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.fi.png)
 
-Onneksi olkoon, olet onnistuneesti luonut ja käynnistänyt ensimmäisen palvelimesi!
+Onnittelut, olet onnistunut luomaan ja suorittamaan ensimmäisen palvelimesi!
+
+#### Rust
+
+Rust-palvelimen suorittamiseksi MCP Inspector CLI:n avulla käytä seuraavaa komentoa:
+
+```sh
+npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-name add --tool-arg a=1 b=2
+```
 
 ### Viralliset SDK:t
 
-MCP tarjoaa viralliset SDK:t useille kielille:
+MCP tarjoaa virallisia SDK:ita useille kielille:
 
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) – Ylläpidetään yhteistyössä Microsoftin kanssa
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) – Ylläpidetään yhteistyössä Spring AI:n kanssa
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) – Virallinen TypeScript-toteutus
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) – Virallinen Python-toteutus
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Ylläpidetään yhteistyössä Microsoftin kanssa
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Ylläpidetään yhteistyössä Spring AI:n kanssa
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Virallinen TypeScript-toteutus
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Virallinen Python-toteutus
 - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Virallinen Kotlin-toteutus
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Ylläpidetty yhteistyössä Loopwork AI:n kanssa
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Ylläpidetään yhteistyössä Loopwork AI:n kanssa
 - [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Virallinen Rust-toteutus
 
-## Keskeiset opit
+## Keskeiset huomiot
 
-- MCP-kehitysympäristön pystyttäminen on helppoa kielikohtaisten SDK:iden avulla
-- MCP-palvelimien rakentaminen tarkoittaa työkalujen luomista ja rekisteröintiä selkeillä skeemoilla
-- Testaus ja virheenkorjaus ovat välttämättömiä luotettaville MCP-toteutuksille
+- MCP-kehitysympäristön asettaminen on helppoa kielikohtaisten SDK:iden avulla
+- MCP-palvelimien rakentaminen sisältää työkalujen luomisen ja rekisteröinnin selkeillä skeemoilla
+- Testaus ja virheenkorjaus ovat olennaisia luotettavien MCP-toteutusten kannalta
 
 ## Esimerkit
 
@@ -1112,14 +1354,15 @@ MCP tarjoaa viralliset SDK:t useille kielille:
 - [JavaScript-laskin](../samples/javascript/README.md)
 - [TypeScript-laskin](../samples/typescript/README.md)
 - [Python-laskin](../../../../03-GettingStarted/samples/python)
+- [Rust-laskin](../../../../03-GettingStarted/samples/rust)
 
 ## Tehtävä
 
 Luo yksinkertainen MCP-palvelin valitsemallasi työkalulla:
 
-1. Toteuta työkalu haluamallasi kielellä (.NET, Java, Python tai JavaScript).
-2. Määrittele syöteparametrit ja palautusarvot.
-3. Käynnistä inspector-työkalu varmistaaksesi, että palvelin toimii odotetusti.
+1. Toteuta työkalu haluamallasi kielellä (.NET, Java, Python, TypeScript tai Rust).
+2. Määritä syöteparametrit ja palautusarvot.
+3. Suorita tarkastustyökalu varmistaaksesi, että palvelin toimii odotetusti.
 4. Testaa toteutus erilaisilla syötteillä.
 
 ## Ratkaisu
@@ -1128,13 +1371,15 @@ Luo yksinkertainen MCP-palvelin valitsemallasi työkalulla:
 
 ## Lisäresurssit
 
-- [Build Agents using Model Context Protocol on Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
-- [Remote MCP with Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
+- [Rakenna agentteja Model Context Protocolin avulla Azurella](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [Etä-MCP Azure Container Appsilla (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
 - [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
 ## Mitä seuraavaksi
 
-Seuraavaksi: [Getting Started with MCP Clients](../02-client/README.md)
+Seuraavaksi: [MCP-asiakkaiden käytön aloittaminen](../02-client/README.md)
+
+---
 
 **Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.

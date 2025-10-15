@@ -1,19 +1,19 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a05fb941810e539147fec53aaadbb6fd",
-  "translation_date": "2025-07-14T06:38:02+00:00",
+  "original_hash": "6ef6015d29b95f1cab97fb88a045a991",
+  "translation_date": "2025-09-05T10:30:33+00:00",
   "source_file": "09-CaseStudy/docs-mcp/solution/python/README.md",
   "language_code": "ja"
 }
 -->
-# Chainlit と Microsoft Learn Docs MCP を使った学習計画ジェネレーター
+# ChainlitとMicrosoft Learn Docs MCPを使った学習計画ジェネレーター
 
 ## 前提条件
 
-- Python 3.8 以上
-- pip（Python パッケージマネージャー）
-- Microsoft Learn Docs MCP サーバーに接続するためのインターネット接続
+- Python 3.8以上
+- pip（Pythonパッケージマネージャー）
+- Microsoft Learn Docs MCPサーバーに接続するためのインターネットアクセス
 
 ## インストール
 
@@ -24,10 +24,10 @@ CO_OP_TRANSLATOR_METADATA:
    pip install -r requirements.txt
    ```
 
-## 使い方
+## 使用方法
 
-### シナリオ 1: Docs MCP へのシンプルなクエリ
-Docs MCP サーバーに接続し、クエリを送信して結果を表示するコマンドラインクライアントです。
+### シナリオ1: Docs MCPへの簡単なクエリ
+Docs MCPサーバーに接続し、クエリを送信して結果を表示するコマンドラインクライアント。
 
 1. スクリプトを実行します：
    ```bash
@@ -35,20 +35,20 @@ Docs MCP サーバーに接続し、クエリを送信して結果を表示す�
    ```
 2. プロンプトでドキュメントに関する質問を入力します。
 
-### シナリオ 2: 学習計画ジェネレーター（Chainlit Web アプリ）
-Chainlit を使ったウェブインターフェースで、任意の技術トピックに対して週ごとのパーソナライズされた学習計画を作成できます。
+### シナリオ2: 学習計画ジェネレーター（Chainlit Webアプリ）
+Chainlitを使用したウェブベースのインターフェイスで、技術的なトピックに基づいた個別の週ごとの学習計画を生成できます。
 
-1. Chainlit アプリを起動します：
+1. Chainlitアプリを起動します：
    ```bash
    chainlit run scenario2.py
    ```
-2. ターミナルに表示されるローカル URL（例: http://localhost:8000）をブラウザで開きます。
-3. チャットウィンドウに学習したいトピックと期間（例：「AI-900 certification, 8 weeks」）を入力します。
-4. アプリが週ごとの学習計画を返し、関連する Microsoft Learn のドキュメントへのリンクも表示します。
+2. ターミナルに表示されるローカルURL（例: http://localhost:8000）をブラウザで開きます。
+3. チャットウィンドウで学習トピックと学習期間（例: "AI-900認定試験、8週間"）を入力します。
+4. アプリが週ごとの学習計画を返し、関連するMicrosoft Learnドキュメントへのリンクを含めて表示します。
 
-**必要な環境変数：**
+**必要な環境変数:**
 
-シナリオ 2（Azure OpenAI を使った Chainlit Web アプリ）を利用するには、`python` ディレクトリ内の `.env` ファイルに以下の環境変数を設定してください：
+シナリオ2（Azure OpenAIを使用したChainlit Webアプリ）を利用するには、以下の環境変数を`python`ディレクトリ内の`.env`ファイルに設定する必要があります：
 
 ```
 AZURE_OPENAI_CHAT_DEPLOYMENT_NAME=
@@ -57,52 +57,55 @@ AZURE_OPENAI_ENDPOINT=
 AZURE_OPENAI_API_VERSION=
 ```
 
-アプリを実行する前に、Azure OpenAI リソースの詳細を入力してください。
+これらの値をAzure OpenAIリソースの詳細で埋めた後、アプリを実行してください。
 
-> **Tip:** [Azure AI Foundry](https://ai.azure.com/) を使えば、自分のモデルを簡単にデプロイできます。
+> [!TIP]
+> [Azure AI Foundry](https://ai.azure.com/)を使用して、独自のモデルを簡単にデプロイできます。
 
-### シナリオ 3: VS Code 内で MCP サーバーを使ったドキュメント参照
+### シナリオ3: VS CodeでMCPサーバーを使ったドキュメント参照
 
-ブラウザのタブを切り替える代わりに、Microsoft Learn Docs を VS Code 内に直接取り込めます。これにより以下が可能です：
-- VS Code 内でドキュメントを検索・閲覧し、コーディング環境を離れずに作業できる。
-- ドキュメントを参照しながら README やコースファイルにリンクを直接挿入できる。
-- GitHub Copilot と MCP を組み合わせて、AI を活用したシームレスなドキュメントワークフローを実現。
+ブラウザタブを切り替えることなく、Microsoft Learn Docsを直接VS Codeに取り込むことができます。これにより以下が可能になります：
+- コーディング環境を離れることなく、VS Code内でドキュメントを検索・閲覧。
+- ドキュメントを参照し、リンクをREADMEやコースファイルに直接挿入。
+- GitHub CopilotとMCPを組み合わせて、AIを活用したドキュメントワークフローを実現。
 
-**利用例：**
-- コースやプロジェクトのドキュメント作成中に README に参照リンクを素早く追加。
-- Copilot でコードを生成しつつ、MCP で関連ドキュメントを即座に検索・引用。
-- エディター内に集中し、生産性を向上。
+**使用例:**
+- コースやプロジェクトドキュメントを作成中に、READMEに参照リンクを素早く追加。
+- Copilotでコードを生成し、MCPで関連するドキュメントを即座に検索・引用。
+- エディタ内で集中力を維持し、生産性を向上。
 
 > [!IMPORTANT]
-> ワークスペースに有効な [`mcp.json`](../../../../../../09-CaseStudy/docs-mcp/solution/scenario3/mcp.json) 設定ファイルがあることを確認してください（場所は `.vscode/mcp.json`）。
+> ワークスペースに有効な[`mcp.json`](../../../../../../09-CaseStudy/docs-mcp/solution/scenario3/mcp.json)構成ファイルが必要です（場所は`.vscode/mcp.json`）。
 
-## なぜシナリオ 2 に Chainlit を使うのか？
+## シナリオ2にChainlitを選んだ理由
 
-Chainlit は会話型ウェブアプリケーションを構築するための最新のオープンソースフレームワークです。Microsoft Learn Docs MCP サーバーのようなバックエンドサービスと連携したチャットベースのユーザーインターフェースを簡単に作成できます。このプロジェクトでは、Chainlit を使ってリアルタイムでパーソナライズされた学習計画を生成するシンプルでインタラクティブな方法を提供しています。Chainlit を活用することで、生産性と学習効果を高めるチャットツールを素早く構築・展開できます。
+Chainlitは、会話型ウェブアプリケーションを構築するための最新のオープンソースフレームワークです。Microsoft Learn Docs MCPサーバーなどのバックエンドサービスに接続するチャットベースのユーザーインターフェイスを簡単に作成できます。このプロジェクトではChainlitを使用して、リアルタイムで個別の学習計画を生成するシンプルでインタラクティブな方法を提供しています。Chainlitを活用することで、生産性と学習を向上させるチャットベースのツールを迅速に構築・デプロイできます。
 
 ## このアプリの機能
 
-このアプリは、トピックと期間を入力するだけでパーソナライズされた学習計画を作成します。入力内容を解析し、Microsoft Learn Docs MCP サーバーに関連コンテンツを問い合わせ、週ごとに整理された計画を作成します。各週の推奨内容はチャットで表示され、進捗を簡単に追跡できます。常に最新かつ関連性の高い学習リソースを提供することが保証されています。
+ユーザーがトピックと期間を入力するだけで、個別の学習計画を作成できます。アプリは入力内容を解析し、Microsoft Learn Docs MCPサーバーに関連コンテンツをクエリし、結果を週ごとの計画に整理します。各週の推奨事項はチャット内に表示され、進捗を簡単に追跡できます。この統合により、最新で最も関連性の高い学習リソースを常に取得できます。
 
 ## サンプルクエリ
 
-チャットウィンドウで以下のクエリを試して、アプリの応答を確認してみてください：
+チャットウィンドウで以下のクエリを試して、アプリの応答を確認してください：
 
-- `AI-900 certification, 8 weeks`
-- `Learn Azure Functions, 4 weeks`
-- `Azure DevOps, 6 weeks`
-- `Data engineering on Azure, 10 weeks`
-- `Microsoft security fundamentals, 5 weeks`
-- `Power Platform, 7 weeks`
-- `Azure AI services, 12 weeks`
-- `Cloud architecture, 9 weeks`
+- `AI-900認定試験、8週間`
+- `Azure Functionsを学ぶ、4週間`
+- `Azure DevOps、6週間`
+- `Azureでのデータエンジニアリング、10週間`
+- `Microsoftセキュリティ基礎、5週間`
+- `Power Platform、7週間`
+- `Azure AIサービス、12週間`
+- `クラウドアーキテクチャ、9週間`
 
-これらの例は、さまざまな学習目標や期間に対応できる柔軟性を示しています。
+これらの例は、さまざまな学習目標や期間に対するアプリの柔軟性を示しています。
 
 ## 参考資料
 
 - [Chainlit Documentation](https://docs.chainlit.io/)
 - [MCP Documentation](https://github.com/MicrosoftDocs/mcp)
 
-**免責事項**：  
-本書類はAI翻訳サービス「[Co-op Translator](https://github.com/Azure/co-op-translator)」を使用して翻訳されました。正確性を期しておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。原文の言語による文書が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じた誤解や誤訳について、当方は一切の責任を負いかねます。
+---
+
+**免責事項**:  
+この文書は、AI翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を期すよう努めておりますが、自動翻訳には誤りや不正確さが含まれる可能性があります。元の言語で記載された原文が正式な情報源と見なされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用に起因する誤解や誤認について、当社は一切の責任を負いません。

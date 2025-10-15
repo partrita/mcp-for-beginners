@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "affcf199a44f60283a289dcb69dc144e",
-  "translation_date": "2025-07-17T13:35:56+00:00",
+  "original_hash": "8358c13b5b6877e475674697cdc1a904",
+  "translation_date": "2025-08-19T16:13:33+00:00",
   "source_file": "03-GettingStarted/02-client/complete_examples.md",
   "language_code": "sk"
 }
@@ -14,15 +14,17 @@ Tento adresár obsahuje kompletné, funkčné príklady MCP klientov v rôznych 
 ## Dostupní klienti
 
 ### 1. Java klient (`client_example_java.java`)
+
 - **Transport**: SSE (Server-Sent Events) cez HTTP
 - **Cieľový server**: `http://localhost:8080`
-- **Funkcie**: 
-  - Nadviazanie spojenia a ping
+- **Funkcie**:
+  - Zriadenie spojenia a ping
   - Zoznam nástrojov
   - Operácie kalkulačky (sčítanie, odčítanie, násobenie, delenie, pomoc)
   - Spracovanie chýb a extrakcia výsledkov
 
 **Spustenie:**
+
 ```bash
 # Ensure your MCP server is running on localhost:8080
 javac client_example_java.java
@@ -30,31 +32,35 @@ java client_example_java
 ```
 
 ### 2. C# klient (`client_example_csharp.cs`)
-- **Transport**: Stdio (štandardný vstup/výstup)
+
+- **Transport**: Stdio (Štandardný vstup/výstup)
 - **Cieľový server**: Lokálny .NET MCP server cez dotnet run
 - **Funkcie**:
   - Automatické spustenie servera cez stdio transport
   - Zoznam nástrojov a zdrojov
   - Operácie kalkulačky
-  - Parsovanie JSON výsledkov
+  - Parsovanie výsledkov vo formáte JSON
   - Komplexné spracovanie chýb
 
 **Spustenie:**
+
 ```bash
 dotnet run
 ```
 
 ### 3. TypeScript klient (`client_example_typescript.ts`)
-- **Transport**: Stdio (štandardný vstup/výstup)
+
+- **Transport**: Stdio (Štandardný vstup/výstup)
 - **Cieľový server**: Lokálny Node.js MCP server
 - **Funkcie**:
   - Plná podpora MCP protokolu
   - Operácie s nástrojmi, zdrojmi a promptmi
   - Operácie kalkulačky
   - Čítanie zdrojov a vykonávanie promptov
-  - Spoľahlivé spracovanie chýb
+  - Robustné spracovanie chýb
 
 **Spustenie:**
+
 ```bash
 # First compile TypeScript (if needed)
 npm run build
@@ -66,35 +72,37 @@ node client_example_typescript.js
 ```
 
 ### 4. Python klient (`client_example_python.py`)
-- **Transport**: Stdio (štandardný vstup/výstup)  
+
+- **Transport**: Stdio (Štandardný vstup/výstup)  
 - **Cieľový server**: Lokálny Python MCP server
 - **Funkcie**:
-  - Použitie async/await pre operácie
+  - Vzor async/await pre operácie
   - Objavovanie nástrojov a zdrojov
   - Testovanie operácií kalkulačky
   - Čítanie obsahu zdrojov
-  - Organizácia v triedach
+  - Organizácia na báze tried
 
 **Spustenie:**
+
 ```bash
 python client_example_python.py
 ```
 
-## Spoločné vlastnosti všetkých klientov
+## Spoločné funkcie pre všetkých klientov
 
 Každá implementácia klienta demonštruje:
 
 1. **Správa spojenia**
-   - Nadviazanie spojenia s MCP serverom
-   - Riešenie chýb spojenia
-   - Správne uvoľnenie zdrojov a čistenie
+   - Zriadenie spojenia s MCP serverom
+   - Spracovanie chýb spojenia
+   - Správne ukončenie a správa zdrojov
 
 2. **Objavovanie servera**
    - Zoznam dostupných nástrojov
    - Zoznam dostupných zdrojov (ak je podporované)
    - Zoznam dostupných promptov (ak je podporované)
 
-3. **Volanie nástrojov**
+3. **Vykonávanie nástrojov**
    - Základné operácie kalkulačky (sčítanie, odčítanie, násobenie, delenie)
    - Príkaz pomoc pre informácie o serveri
    - Správne odovzdávanie argumentov a spracovanie výsledkov
@@ -106,57 +114,58 @@ Každá implementácia klienta demonštruje:
 
 5. **Spracovanie výsledkov**
    - Extrakcia textového obsahu z odpovedí
-   - Formátovanie výstupu pre lepšiu čitateľnosť
-   - Riešenie rôznych formátov odpovedí
+   - Formátovanie výstupu pre čitateľnosť
+   - Spracovanie rôznych formátov odpovedí
 
 ## Predpoklady
 
 Pred spustením týchto klientov sa uistite, že máte:
 
-1. **Bežiaci príslušný MCP server** (z `../01-first-server/`)
-2. **Nainštalované potrebné závislosti** pre váš vybraný jazyk
-3. **Správne sieťové pripojenie** (pre HTTP transporty)
+1. **Spustený príslušný MCP server** (z `../01-first-server/`)
+2. **Nainštalované požadované závislosti** pre zvolený jazyk
+3. **Správne sieťové pripojenie** (pre transporty založené na HTTP)
 
 ## Kľúčové rozdiely medzi implementáciami
 
-| Jazyk      | Transport | Spustenie servera | Asynchrónny model | Kľúčové knižnice |
-|------------|-----------|-------------------|-------------------|------------------|
-| Java       | SSE/HTTP  | Externé           | Synchrónny        | WebFlux, MCP SDK |
-| C#         | Stdio     | Automatické       | Async/Await       | .NET MCP SDK     |
-| TypeScript | Stdio     | Automatické       | Async/Await       | Node MCP SDK     |
-| Python     | Stdio     | Automatické       | AsyncIO           | Python MCP SDK   |
+| Jazyk      | Transport | Spustenie servera | Async model | Kľúčové knižnice       |
+|------------|-----------|-------------------|-------------|------------------------|
+| Java       | SSE/HTTP  | Externé           | Sync        | WebFlux, MCP SDK       |
+| C#         | Stdio     | Automatické       | Async/Await | .NET MCP SDK           |
+| TypeScript | Stdio     | Automatické       | Async/Await | Node MCP SDK           |
+| Python     | Stdio     | Automatické       | AsyncIO     | Python MCP SDK         |
+| Rust       | Stdio     | Automatické       | Async/Await | Rust MCP SDK, Tokio    |
 
 ## Ďalšie kroky
 
 Po preskúmaní týchto príkladov klientov:
 
-1. **Upravte klientov** a pridajte nové funkcie alebo operácie
-2. **Vytvorte si vlastný server** a otestujte ho s týmito klientmi
+1. **Upravte klientov** na pridanie nových funkcií alebo operácií
+2. **Vytvorte vlastný server** a otestujte ho s týmito klientmi
 3. **Experimentujte s rôznymi transportmi** (SSE vs. Stdio)
-4. **Vytvorte zložitejšiu aplikáciu**, ktorá integruje MCP funkcionalitu
+4. **Vytvorte komplexnejšiu aplikáciu**, ktorá integruje MCP funkcionalitu
 
 ## Riešenie problémov
 
 ### Bežné problémy
 
-1. **Pripojenie odmietnuté**: Skontrolujte, či MCP server beží na očakávanom porte/ceste
-2. **Modul nenájdený**: Nainštalujte potrebný MCP SDK pre váš jazyk
-3. **Prístup zamietnutý**: Skontrolujte oprávnenia súborov pre stdio transport
-4. **Nástroj nenájdený**: Overte, či server implementuje očakávané nástroje
+1. **Spojenie odmietnuté**: Uistite sa, že MCP server beží na očakávanom porte/ceste
+2. **Modul nenájdený**: Nainštalujte požadovaný MCP SDK pre váš jazyk
+3. **Prístup odmietnutý**: Skontrolujte oprávnenia súborov pre stdio transport
+4. **Nástroj nenájdený**: Overte, že server implementuje očakávané nástroje
 
 ### Tipy na ladenie
 
-1. **Zapnite podrobné logovanie** vo vašom MCP SDK
+1. **Povoľte podrobné logovanie** vo vašom MCP SDK
 2. **Skontrolujte logy servera** pre chybové hlásenia
-3. **Overte názvy a podpisy nástrojov**, či zodpovedajú medzi klientom a serverom
-4. **Najskôr otestujte s MCP Inspectorom** na overenie funkčnosti servera
+3. **Overte názvy a podpisy nástrojov**, či sa zhodujú medzi klientom a serverom
+4. **Najskôr otestujte s MCP Inspector**, aby ste overili funkcionalitu servera
 
 ## Súvisiaca dokumentácia
 
 - [Hlavný návod pre klienta](./README.md)
 - [Príklady MCP serverov](../../../../03-GettingStarted/01-first-server)
 - [MCP s integráciou LLM](../../../../03-GettingStarted/03-llm-client)
-- [Oficiálna MCP dokumentácia](https://modelcontextprotocol.io/)
+- [Oficiálna dokumentácia MCP](https://modelcontextprotocol.io/)
 
-**Zrieknutie sa zodpovednosti**:  
-Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Aj keď sa snažíme o presnosť, prosím, majte na pamäti, že automatizované preklady môžu obsahovať chyby alebo nepresnosti. Originálny dokument v jeho pôvodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nie sme zodpovední za akékoľvek nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.
+**Upozornenie**:  
+Tento dokument bol preložený pomocou služby na automatický preklad [Co-op Translator](https://github.com/Azure/co-op-translator). Hoci sa snažíme o presnosť, upozorňujeme, že automatické preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho pôvodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre dôležité informácie odporúčame profesionálny ľudský preklad. Nezodpovedáme za žiadne nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.

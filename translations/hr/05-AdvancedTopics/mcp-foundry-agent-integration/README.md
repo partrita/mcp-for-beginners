@@ -60,7 +60,7 @@ Odaberite željeno razvojno okruženje:
 
 ## Python implementacija
 
-***Note*** Možete pokrenuti ovaj [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb)
+***Note*** Možete pokrenuti ovaj [notebook](mcp_support_python.ipynb)
 
 ### 1. Instalirajte potrebne pakete
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET implementacija
 
-***Note*** Možete pokrenuti ovaj [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb)
+***Note*** Možete pokrenuti ovaj [notebook](mcp_support_dotnet.ipynb)
 
 ### 1. Instalirajte potrebne pakete
 

@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "9c61ceb0227f07a85c9e809d3914f965",
-  "translation_date": "2025-07-22T08:36:33+00:00",
+  "original_hash": "1b000fd6e1b04c047578bfc5d07d54eb",
+  "translation_date": "2025-07-29T01:03:38+00:00",
   "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md",
   "language_code": "de"
 }
@@ -17,7 +17,11 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## 🎯 Überblick
 
-Willkommen zum **Model Context Protocol (MCP) Workshop**! Dieser umfassende Praxis-Workshop kombiniert zwei bahnbrechende Technologien, um die Entwicklung von KI-Anwendungen zu revolutionieren:
+[![KI-Agenten in VS Code erstellen: 4 praktische Labs mit MCP und AI Toolkit](../../../translated_images/11.0f6db6a0fb6068856d0468590a120ffe35dbccc49b93dc88b2003f306c81493a.de.png)](https://youtu.be/r34Csn3rkeQ)
+
+_(Klicken Sie auf das Bild oben, um das Video dieser Lektion anzusehen)_
+
+Willkommen zum **Model Context Protocol (MCP) Workshop**! Dieser umfassende praktische Workshop kombiniert zwei bahnbrechende Technologien, um die Entwicklung von KI-Anwendungen zu revolutionieren:
 
 - **🔗 Model Context Protocol (MCP)**: Ein offener Standard für nahtlose Integration von KI-Tools
 - **🛠️ AI Toolkit für Visual Studio Code (AITK)**: Microsofts leistungsstarke Erweiterung für die KI-Entwicklung
@@ -30,7 +34,7 @@ Am Ende dieses Workshops beherrschen Sie die Kunst, intelligente Anwendungen zu 
 
 ### 🔌 Model Context Protocol (MCP)
 
-MCP ist das **„USB-C für KI“** – ein universeller Standard, der KI-Modelle mit externen Tools und Datenquellen verbindet.
+MCP ist das **"USB-C für KI"** - ein universeller Standard, der KI-Modelle mit externen Tools und Datenquellen verbindet.
 
 **✨ Hauptmerkmale:**
 
@@ -96,11 +100,11 @@ Microsofts führende Erweiterung für die KI-Entwicklung, die VS Code in ein KI-
 - 🐍 Konfiguration und Nutzung des neuesten MCP Python SDK (v1.9.3)
 - 🔍 Einrichtung und Nutzung des MCP Inspectors für Debugging
 - 🛠️ Erstellung eines Wetter-MCP-Servers mit professionellen Debugging-Workflows
-- 🧪 Debugging von MCP-Servern in Agent Builder- und Inspector-Umgebungen
+- 🧪 Debugging von MCP-Servern in sowohl Agent Builder als auch Inspector-Umgebungen
 
 **🎯 Lernziel**: Entwicklung und Debugging benutzerdefinierter MCP-Server mit modernen Tools
 
-### [🐙 Modul 4: Praktische MCP-Entwicklung – Benutzerdefinierter GitHub Clone Server](./lab4/README.md)
+### [🐙 Modul 4: Praktische MCP-Entwicklung - Benutzerdefinierter GitHub Clone Server](./lab4/README.md)
 
 **Dauer**: 30 Minuten
 
@@ -108,21 +112,21 @@ Microsofts führende Erweiterung für die KI-Entwicklung, die VS Code in ein KI-
 - 🔄 Implementierung intelligenter Repository-Klonung mit Validierung und Fehlerbehandlung
 - 📁 Erstellung intelligenter Verzeichnisverwaltung und VS Code-Integration
 - 🤖 Nutzung des GitHub Copilot Agent Mode mit benutzerdefinierten MCP-Tools
-- 🛡️ Anwendung von produktionsreifer Zuverlässigkeit und plattformübergreifender Kompatibilität
+- 🛡️ Anwendung produktionsreifer Zuverlässigkeit und plattformübergreifender Kompatibilität
 
 **🎯 Lernziel**: Bereitstellung eines produktionsreifen MCP-Servers, der reale Entwicklungs-Workflows optimiert
 
 ## 💡 Anwendungen & Auswirkungen in der Praxis
 
-### 🏢 Einsatzmöglichkeiten im Unternehmen
+### 🏢 Einsatzmöglichkeiten in Unternehmen
 
 #### 🔄 DevOps-Automatisierung
 
 Transformieren Sie Ihren Entwicklungs-Workflow mit intelligenter Automatisierung:
 
-- **Intelligente Repository-Verwaltung**: KI-gesteuerte Code-Überprüfung und Merge-Entscheidungen
+- **Intelligente Repository-Verwaltung**: KI-gestützte Code-Review- und Merge-Entscheidungen
 - **Intelligente CI/CD**: Automatische Optimierung von Pipelines basierend auf Codeänderungen
-- **Problem-Triage**: Automatische Klassifizierung und Zuweisung von Fehlern
+- **Problemeinstufung**: Automatische Klassifizierung und Zuweisung von Fehlern
 
 #### 🧪 Revolution der Qualitätssicherung
 
@@ -132,7 +136,7 @@ Verbessern Sie Tests mit KI-gestützter Automatisierung:
 - **Visuelles Regressionstesten**: KI-gestützte Erkennung von UI-Änderungen
 - **Leistungsüberwachung**: Proaktive Identifizierung und Lösung von Problemen
 
-#### 📊 Intelligenz für Datenpipelines
+#### 📊 Intelligenz in Datenpipelines
 
 Erstellen Sie intelligentere Datenverarbeitungs-Workflows:
 
@@ -157,7 +161,7 @@ Schaffen Sie außergewöhnliche Kundeninteraktionen:
 | **Betriebssystem** | Windows 10+, macOS 10.15+, Linux | Jedes moderne Betriebssystem |
 | **Visual Studio Code** | Neueste stabile Version | Erforderlich für AITK |
 | **Node.js** | v18.0+ und npm | Für die Entwicklung von MCP-Servern |
-| **Python** | 3.10+ | Optional für Python MCP-Server |
+| **Python** | 3.10+ | Optional für Python-MCP-Server |
 | **Speicher** | Mindestens 8GB RAM | 16GB empfohlen für lokale Modelle |
 
 ### 🔧 Entwicklungsumgebung
@@ -183,18 +187,18 @@ Durch den Abschluss dieses Workshops erreichen Sie Meisterschaft in:
 
 #### 🎯 Kernkompetenzen
 
-- [ ] **MCP-Protokollbeherrschung**: Tiefes Verständnis der Architektur und Implementierungsmuster
+- [ ] **MCP-Protokollbeherrschung**: Tiefes Verständnis von Architektur und Implementierungsmustern
 - [ ] **AITK-Fähigkeiten**: Expertenniveau in der Nutzung des AI Toolkits für schnelle Entwicklung
-- [ ] **Entwicklung benutzerdefinierter Server**: Aufbau, Bereitstellung und Wartung von produktionsreifen MCP-Servern
+- [ ] **Entwicklung benutzerdefinierter Server**: Erstellung, Bereitstellung und Wartung von produktionsreifen MCP-Servern
 - [ ] **Exzellente Tool-Integration**: Nahtlose Verbindung von KI mit bestehenden Entwicklungs-Workflows
-- [ ] **Anwendung von Problemlösungen**: Anwendung der erlernten Fähigkeiten auf reale geschäftliche Herausforderungen
+- [ ] **Problemlösungsanwendung**: Anwendung der erlernten Fähigkeiten auf reale geschäftliche Herausforderungen
 
 #### 🔧 Technische Fähigkeiten
 
 - [ ] Einrichtung und Konfiguration des AI Toolkits in VS Code
 - [ ] Design und Implementierung benutzerdefinierter MCP-Server
 - [ ] Integration von GitHub-Modellen mit MCP-Architektur
-- [ ] Aufbau automatisierter Test-Workflows mit Playwright
+- [ ] Erstellung automatisierter Test-Workflows mit Playwright
 - [ ] Bereitstellung von KI-Agenten für den Produktionseinsatz
 - [ ] Debugging und Optimierung der MCP-Serverleistung
 
@@ -210,7 +214,7 @@ Durch den Abschluss dieses Workshops erreichen Sie Meisterschaft in:
 
 - [MCP-Spezifikation](https://modelcontextprotocol.io/docs)
 - [AI Toolkit GitHub Repository](https://github.com/microsoft/vscode-ai-toolkit)
-- [Sammlung von MCP-Servern](https://github.com/modelcontextprotocol/servers)
+- [Sammlung von Beispiel-MCP-Servern](https://github.com/modelcontextprotocol/servers)
 - [Best-Practices-Leitfaden](https://modelcontextprotocol.io/docs/best-practices)
 
 ---

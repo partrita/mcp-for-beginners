@@ -1,198 +1,219 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "787440926586cd064b0899fd1c514f52",
-  "translation_date": "2025-07-14T07:06:14+00:00",
+  "original_hash": "1b000fd6e1b04c047578bfc5d07d54eb",
+  "translation_date": "2025-08-18T17:39:29+00:00",
   "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md",
   "language_code": "it"
 }
 -->
-# Snellire i Flussi di Lavoro AI: Costruire un Server MCP con AI Toolkit
-
-[![MCP Version](https://img.shields.io/badge/MCP-1.9.3-blue.svg)](https://modelcontextprotocol.io/)
-[![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)
-[![VS Code](https://img.shields.io/badge/VS%20Code-Latest-orange.svg)](https://code.visualstudio.com/)
-
-![logo](../../../translated_images/logo.ec93918ec338dadde1715c8aaf118079e0ed0502e9efdfcc84d6a0f4a9a70ae8.it.png)
+# Ottimizzazione dei flussi di lavoro AI: Creare un server MCP con AI Toolkit
 
 ## 🎯 Panoramica
 
-Benvenuti al **Workshop sul Model Context Protocol (MCP)**! Questo workshop pratico e completo unisce due tecnologie all’avanguardia per rivoluzionare lo sviluppo di applicazioni AI:
+_(Clicca sull'immagine sopra per vedere il video di questa lezione)_
 
-- **🔗 Model Context Protocol (MCP)**: uno standard aperto per un’integrazione fluida degli strumenti AI
-- **🛠️ AI Toolkit per Visual Studio Code (AITK)**: la potente estensione di Microsoft per lo sviluppo AI
+Benvenuto al **Workshop sul Model Context Protocol (MCP)**! Questo workshop pratico e completo combina due tecnologie all'avanguardia per rivoluzionare lo sviluppo di applicazioni AI:
+
+- **🔗 Model Context Protocol (MCP)**: Uno standard aperto per l'integrazione fluida degli strumenti AI
+- **🛠️ AI Toolkit per Visual Studio Code (AITK)**: La potente estensione di sviluppo AI di Microsoft
 
 ### 🎓 Cosa Imparerai
 
-Al termine di questo workshop, sarai in grado di costruire applicazioni intelligenti che collegano modelli AI con strumenti e servizi reali. Dai test automatizzati alle integrazioni API personalizzate, acquisirai competenze pratiche per risolvere sfide aziendali complesse.
+Alla fine di questo workshop, padroneggerai l'arte di costruire applicazioni intelligenti che collegano modelli AI con strumenti e servizi del mondo reale. Dall'automazione dei test alle integrazioni API personalizzate, acquisirai competenze pratiche per risolvere sfide aziendali complesse.
 
 ## 🏗️ Stack Tecnologico
 
 ### 🔌 Model Context Protocol (MCP)
 
-MCP è il **“USB-C per l’AI”** – uno standard universale che connette modelli AI a strumenti esterni e fonti di dati.
+MCP è il **"USB-C per l'AI"** - uno standard universale che collega modelli AI a strumenti e fonti di dati esterni.
 
 **✨ Caratteristiche principali:**
-- 🔄 **Integrazione Standardizzata**: interfaccia universale per collegare strumenti AI
-- 🏛️ **Architettura Flessibile**: server locali e remoti tramite trasporto stdio/SSE
-- 🧰 **Ecosistema Completo**: strumenti, prompt e risorse in un unico protocollo
-- 🔒 **Pronto per l’Impresa**: sicurezza e affidabilità integrate
 
-**🎯 Perché MCP è Importante:**
-Proprio come USB-C ha eliminato il caos dei cavi, MCP semplifica le integrazioni AI. Un protocollo, infinite possibilità.
+- 🔄 **Integrazione standardizzata**: Interfaccia universale per connessioni AI-strumenti
+- 🏛️ **Architettura flessibile**: Server locali e remoti tramite trasporto stdio/SSE
+- 🧰 **Ecosistema ricco**: Strumenti, prompt e risorse in un unico protocollo
+- 🔒 **Pronto per l'impresa**: Sicurezza e affidabilità integrate
+
+**🎯 Perché MCP è importante:**
+Proprio come USB-C ha eliminato il caos dei cavi, MCP elimina la complessità delle integrazioni AI. Un protocollo, infinite possibilità.
 
 ### 🤖 AI Toolkit per Visual Studio Code (AITK)
 
-L’estensione di punta di Microsoft per lo sviluppo AI che trasforma VS Code in una centrale AI.
+L'estensione di sviluppo AI di punta di Microsoft che trasforma VS Code in una piattaforma AI potente.
 
-**🚀 Funzionalità principali:**
-- 📦 **Catalogo Modelli**: accesso a modelli da Azure AI, GitHub, Hugging Face, Ollama
-- ⚡ **Inferenza Locale**: esecuzione ottimizzata ONNX su CPU/GPU/NPU
-- 🏗️ **Agent Builder**: sviluppo visuale di agenti AI con integrazione MCP
-- 🎭 **Multi-Modale**: supporto per testo, visione e output strutturati
+**🚀 Capacità principali:**
 
-**💡 Vantaggi per lo Sviluppo:**
-- Deploy di modelli senza configurazioni complesse
-- Ingegneria visuale dei prompt
-- Playground per test in tempo reale
-- Integrazione fluida con server MCP
+- 📦 **Catalogo modelli**: Accesso a modelli da Azure AI, GitHub, Hugging Face, Ollama
+- ⚡ **Inferenza locale**: Esecuzione ottimizzata per CPU/GPU/NPU con ONNX
+- 🏗️ **Costruttore di agenti**: Sviluppo visivo di agenti AI con integrazione MCP
+- 🎭 **Multi-modale**: Supporto per testo, visione e output strutturati
 
-## 📚 Percorso di Apprendimento
+**💡 Vantaggi dello sviluppo:**
+
+- Distribuzione di modelli senza configurazione
+- Progettazione visiva di prompt
+- Ambiente di test in tempo reale
+- Integrazione fluida del server MCP
+
+## 📚 Percorso di apprendimento
 
 ### [🚀 Modulo 1: Fondamenti di AI Toolkit](./lab1/README.md)
+
 **Durata**: 15 minuti
-- 🛠️ Installare e configurare AI Toolkit per VS Code
-- 🗂️ Esplorare il Catalogo Modelli (oltre 100 modelli da GitHub, ONNX, OpenAI, Anthropic, Google)
-- 🎮 Padroneggiare l’Interactive Playground per testare modelli in tempo reale
-- 🤖 Costruire il primo agente AI con Agent Builder
-- 📊 Valutare le prestazioni del modello con metriche integrate (F1, rilevanza, similarità, coerenza)
-- ⚡ Imparare l’elaborazione batch e il supporto multi-modale
 
-**🎯 Obiettivo di Apprendimento**: Creare un agente AI funzionante con una comprensione completa delle capacità di AITK
+- 🛠️ Installa e configura AI Toolkit per VS Code
+- 🗂️ Esplora il Catalogo Modelli (100+ modelli da GitHub, ONNX, OpenAI, Anthropic, Google)
+- 🎮 Padroneggia il Playground Interattivo per testare i modelli in tempo reale
+- 🤖 Crea il tuo primo agente AI con il Costruttore di Agenti
+- 📊 Valuta le prestazioni dei modelli con metriche integrate (F1, rilevanza, somiglianza, coerenza)
+- ⚡ Scopri le capacità di elaborazione batch e supporto multi-modale
 
-### [🌐 Modulo 2: MCP con Fondamenti di AI Toolkit](./lab2/README.md)
+**🎯 Risultato dell'apprendimento**: Crea un agente AI funzionale con una comprensione completa delle capacità di AITK
+
+### [🌐 Modulo 2: Fondamenti di MCP con AI Toolkit](./lab2/README.md)
+
 **Durata**: 20 minuti
-- 🧠 Approfondire architettura e concetti del Model Context Protocol (MCP)
-- 🌐 Esplorare l’ecosistema dei server MCP di Microsoft
-- 🤖 Costruire un agente di automazione browser usando Playwright MCP server
-- 🔧 Integrare server MCP con AI Toolkit Agent Builder
-- 📊 Configurare e testare strumenti MCP all’interno degli agenti
-- 🚀 Esportare e distribuire agenti potenziati da MCP per l’uso in produzione
 
-**🎯 Obiettivo di Apprendimento**: Distribuire un agente AI potenziato con strumenti esterni tramite MCP
+- 🧠 Padroneggia l'architettura e i concetti del Model Context Protocol (MCP)
+- 🌐 Esplora l'ecosistema dei server MCP di Microsoft
+- 🤖 Crea un agente di automazione del browser utilizzando il server MCP Playwright
+- 🔧 Integra i server MCP con il Costruttore di Agenti di AI Toolkit
+- 📊 Configura e testa gli strumenti MCP all'interno dei tuoi agenti
+- 🚀 Esporta e distribuisci agenti potenziati da MCP per l'uso in produzione
 
-### [🔧 Modulo 3: Sviluppo Avanzato MCP con AI Toolkit](./lab3/README.md)
+**🎯 Risultato dell'apprendimento**: Distribuisci un agente AI potenziato con strumenti esterni tramite MCP
+
+### [🔧 Modulo 3: Sviluppo avanzato di MCP con AI Toolkit](./lab3/README.md)
+
 **Durata**: 20 minuti
-- 💻 Creare server MCP personalizzati usando AI Toolkit
-- 🐍 Configurare e utilizzare l’ultima versione del MCP Python SDK (v1.9.3)
-- 🔍 Impostare e usare MCP Inspector per il debugging
-- 🛠️ Costruire un Weather MCP Server con flussi di lavoro di debug professionali
-- 🧪 Debuggare server MCP sia in Agent Builder che in Inspector
 
-**🎯 Obiettivo di Apprendimento**: Sviluppare e debugare server MCP personalizzati con strumenti moderni
+- 💻 Crea server MCP personalizzati utilizzando AI Toolkit
+- 🐍 Configura e utilizza l'ultimo SDK Python MCP (v1.9.3)
+- 🔍 Configura e utilizza MCP Inspector per il debugging
+- 🛠️ Crea un server MCP Meteo con flussi di lavoro di debugging professionali
+- 🧪 Debugga i server MCP sia nell'ambiente del Costruttore di Agenti che in quello di Inspector
 
-### [🐙 Modulo 4: Sviluppo Pratico MCP - Server GitHub Clone Personalizzato](./lab4/README.md)
+**🎯 Risultato dell'apprendimento**: Sviluppa e debugga server MCP personalizzati con strumenti moderni
+
+### [🐙 Modulo 4: Sviluppo pratico di MCP - Server personalizzato per clonazione GitHub](./lab4/README.md)
+
 **Durata**: 30 minuti
-- 🏗️ Costruire un server MCP GitHub Clone reale per flussi di lavoro di sviluppo
-- 🔄 Implementare clonazione intelligente di repository con validazione e gestione errori
-- 📁 Creare gestione intelligente delle directory e integrazione con VS Code
-- 🤖 Usare GitHub Copilot Agent Mode con strumenti MCP personalizzati
-- 🛡️ Applicare affidabilità pronta per la produzione e compatibilità cross-platform
 
-**🎯 Obiettivo di Apprendimento**: Distribuire un server MCP pronto per la produzione che semplifica flussi di lavoro reali
+- 🏗️ Crea un server MCP GitHub Clone per flussi di lavoro di sviluppo reali
+- 🔄 Implementa clonazione intelligente di repository con validazione e gestione degli errori
+- 📁 Crea gestione intelligente delle directory e integrazione con VS Code
+- 🤖 Utilizza la modalità Agente GitHub Copilot con strumenti MCP personalizzati
+- 🛡️ Applica affidabilità pronta per la produzione e compatibilità cross-platform
 
-## 💡 Applicazioni e Impatti nel Mondo Reale
+**🎯 Risultato dell'apprendimento**: Distribuisci un server MCP pronto per la produzione che ottimizza i flussi di lavoro di sviluppo reali
 
-### 🏢 Casi d’Uso Aziendali
+## 💡 Applicazioni reali e impatto
+
+### 🏢 Casi d'uso aziendali
 
 #### 🔄 Automazione DevOps
+
 Trasforma il tuo flusso di lavoro di sviluppo con automazione intelligente:
-- **Gestione Intelligente dei Repository**: revisione codice e decisioni di merge guidate dall’AI
-- **CI/CD Intelligente**: ottimizzazione automatica delle pipeline basata sui cambiamenti di codice
-- **Triage delle Issue**: classificazione e assegnazione automatica dei bug
 
-#### 🧪 Rivoluzione del Quality Assurance
-Migliora i test con automazione AI-powered:
-- **Generazione Intelligente di Test**: creazione automatica di suite di test complete
-- **Test di Regressione Visiva**: rilevamento AI dei cambiamenti UI
-- **Monitoraggio delle Prestazioni**: identificazione e risoluzione proattiva dei problemi
+- **Gestione intelligente dei repository**: Revisione del codice e decisioni di merge guidate dall'AI
+- **CI/CD intelligente**: Ottimizzazione automatica delle pipeline basata su modifiche al codice
+- **Classificazione dei problemi**: Assegnazione automatica dei bug
 
-#### 📊 Intelligenza nei Data Pipeline
-Costruisci flussi di lavoro di elaborazione dati più intelligenti:
-- **Processi ETL Adattivi**: trasformazioni dati auto-ottimizzanti
-- **Rilevamento Anomalie**: monitoraggio qualità dati in tempo reale
-- **Instradamento Intelligente**: gestione smart del flusso dati
+#### 🧪 Rivoluzione della garanzia di qualità
 
-#### 🎧 Miglioramento dell’Esperienza Cliente
-Crea interazioni cliente eccezionali:
-- **Supporto Contestuale**: agenti AI con accesso alla storia cliente
-- **Risoluzione Proattiva dei Problemi**: assistenza predittiva
-- **Integrazione Multi-Canale**: esperienza AI unificata su più piattaforme
+Migliora i test con automazione guidata dall'AI:
 
-## 🛠️ Prerequisiti e Configurazione
+- **Generazione intelligente di test**: Creazione automatica di suite di test complete
+- **Test di regressione visiva**: Rilevamento di modifiche UI guidato dall'AI
+- **Monitoraggio delle prestazioni**: Identificazione e risoluzione proattiva dei problemi
 
-### 💻 Requisiti di Sistema
+#### 📊 Intelligenza nei flussi di dati
+
+Costruisci flussi di elaborazione dati più intelligenti:
+
+- **Processi ETL adattivi**: Trasformazioni dati auto-ottimizzanti
+- **Rilevamento anomalie**: Monitoraggio della qualità dei dati in tempo reale
+- **Routing intelligente**: Gestione intelligente del flusso di dati
+
+#### 🎧 Miglioramento dell'esperienza cliente
+
+Crea interazioni eccezionali con i clienti:
+
+- **Supporto contestuale**: Agenti AI con accesso alla cronologia del cliente
+- **Risoluzione proattiva dei problemi**: Servizio clienti predittivo
+- **Integrazione multi-canale**: Esperienza AI unificata su più piattaforme
+
+## 🛠️ Prerequisiti e configurazione
+
+### 💻 Requisiti di sistema
 
 | Componente | Requisito | Note |
 |------------|-----------|------|
-| **Sistema Operativo** | Windows 10+, macOS 10.15+, Linux | Qualsiasi OS moderno |
+| **Sistema operativo** | Windows 10+, macOS 10.15+, Linux | Qualsiasi sistema operativo moderno |
 | **Visual Studio Code** | Ultima versione stabile | Necessario per AITK |
-| **Node.js** | v18.0+ e npm | Per sviluppo server MCP |
-| **Python** | 3.10+ | Opzionale per server MCP in Python |
-| **Memoria** | Minimo 8GB RAM | Consigliati 16GB per modelli locali |
+| **Node.js** | v18.0+ e npm | Per lo sviluppo di server MCP |
+| **Python** | 3.10+ | Opzionale per server MCP Python |
+| **Memoria** | Minimo 8GB RAM | 16GB raccomandati per modelli locali |
 
-### 🔧 Ambiente di Sviluppo
+### 🔧 Ambiente di sviluppo
 
-#### Estensioni VS Code Consigliate
+#### Estensioni consigliate per VS Code
+
 - **AI Toolkit** (ms-windows-ai-studio.windows-ai-studio)
 - **Python** (ms-python.python)
 - **Python Debugger** (ms-python.debugpy)
-- **GitHub Copilot** (GitHub.copilot) - opzionale ma utile
+- **GitHub Copilot** (GitHub.copilot) - Opzionale ma utile
 
-#### Strumenti Opzionali
-- **uv**: moderno package manager Python
-- **MCP Inspector**: strumento visuale per il debug di server MCP
-- **Playwright**: per esempi di automazione web
+#### Strumenti opzionali
 
-## 🎖️ Risultati di Apprendimento e Percorso di Certificazione
+- **uv**: Gestore di pacchetti Python moderno
+- **MCP Inspector**: Strumento di debugging visivo per server MCP
+- **Playwright**: Per esempi di automazione web
 
-### 🏆 Checklist di Competenze
+## 🎖️ Risultati dell'apprendimento e percorso di certificazione
+
+### 🏆 Checklist di competenze
 
 Completando questo workshop, raggiungerai la padronanza in:
 
-#### 🎯 Competenze Chiave
-- [ ] **Padronanza del Protocollo MCP**: comprensione approfondita di architettura e pattern di implementazione
-- [ ] **Competenza AITK**: uso esperto di AI Toolkit per sviluppo rapido
-- [ ] **Sviluppo Server Personalizzati**: costruzione, deploy e manutenzione di server MCP in produzione
-- [ ] **Eccellenza nell’Integrazione Strumenti**: collegamento fluido dell’AI con flussi di lavoro esistenti
-- [ ] **Applicazione alla Risoluzione di Problemi**: utilizzo delle competenze per sfide aziendali reali
+#### 🎯 Competenze principali
 
-#### 🔧 Competenze Tecniche
-- [ ] Configurare e impostare AI Toolkit in VS Code
-- [ ] Progettare e implementare server MCP personalizzati
-- [ ] Integrare modelli GitHub con architettura MCP
-- [ ] Costruire flussi di lavoro di test automatizzati con Playwright
-- [ ] Distribuire agenti AI per uso in produzione
-- [ ] Debuggare e ottimizzare le prestazioni dei server MCP
+- [ ] **Padronanza del protocollo MCP**: Comprensione approfondita dell'architettura e dei modelli di implementazione
+- [ ] **Competenza in AITK**: Utilizzo esperto di AI Toolkit per sviluppo rapido
+- [ ] **Sviluppo di server personalizzati**: Creazione, distribuzione e manutenzione di server MCP per la produzione
+- [ ] **Eccellenza nell'integrazione degli strumenti**: Collegamento fluido dell'AI con flussi di lavoro di sviluppo esistenti
+- [ ] **Applicazione alla risoluzione dei problemi**: Applicazione delle competenze acquisite a sfide aziendali reali
 
-#### 🚀 Capacità Avanzate
-- [ ] Progettare integrazioni AI su scala enterprise
-- [ ] Implementare best practice di sicurezza per applicazioni AI
-- [ ] Progettare architetture scalabili per server MCP
-- [ ] Creare catene di strumenti personalizzati per domini specifici
-- [ ] Fare da mentore nello sviluppo AI-native
+#### 🔧 Competenze tecniche
 
-## 📖 Risorse Aggiuntive
-- [MCP Specification](https://modelcontextprotocol.io/docs)
-- [AI Toolkit GitHub Repository](https://github.com/microsoft/vscode-ai-toolkit)
-- [Sample MCP Servers Collection](https://github.com/modelcontextprotocol/servers)
-- [Best Practices Guide](https://modelcontextprotocol.io/docs/best-practices)
+- [ ] Configurazione e utilizzo di AI Toolkit in VS Code
+- [ ] Progettazione e implementazione di server MCP personalizzati
+- [ ] Integrazione di modelli GitHub con architettura MCP
+- [ ] Creazione di flussi di lavoro di test automatizzati con Playwright
+- [ ] Distribuzione di agenti AI per uso in produzione
+- [ ] Debug e ottimizzazione delle prestazioni dei server MCP
+
+#### 🚀 Capacità avanzate
+
+- [ ] Progettazione di integrazioni AI su scala aziendale
+- [ ] Implementazione delle migliori pratiche di sicurezza per applicazioni AI
+- [ ] Progettazione di architetture scalabili per server MCP
+- [ ] Creazione di catene di strumenti personalizzate per domini specifici
+- [ ] Mentoring su sviluppo nativo AI
+
+## 📖 Risorse aggiuntive
+
+- [Specifica MCP](https://modelcontextprotocol.io/docs)
+- [Repository GitHub di AI Toolkit](https://github.com/microsoft/vscode-ai-toolkit)
+- [Collezione di server MCP di esempio](https://github.com/modelcontextprotocol/servers)
+- [Guida alle migliori pratiche](https://modelcontextprotocol.io/docs/best-practices)
 
 ---
 
-**🚀 Pronto a rivoluzionare il tuo flusso di lavoro nello sviluppo AI?**
+**🚀 Pronto a rivoluzionare il tuo flusso di lavoro di sviluppo AI?**
 
 Costruiamo insieme il futuro delle applicazioni intelligenti con MCP e AI Toolkit!
 
 **Disclaimer**:  
-Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Pur impegnandoci per garantire l’accuratezza, si prega di notare che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa deve essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale effettuata da un umano. Non ci assumiamo alcuna responsabilità per eventuali malintesi o interpretazioni errate derivanti dall’uso di questa traduzione.
+Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Sebbene ci impegniamo per garantire l'accuratezza, si prega di notare che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa deve essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale eseguita da un traduttore umano. Non siamo responsabili per eventuali fraintendimenti o interpretazioni errate derivanti dall'uso di questa traduzione.

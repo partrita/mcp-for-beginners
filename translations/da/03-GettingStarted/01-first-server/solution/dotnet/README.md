@@ -1,13 +1,13 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "07863f50601f395c3bdfce30f555f11a",
-  "translation_date": "2025-07-13T17:49:23+00:00",
+  "original_hash": "92af35e8c34923031f3d228dffad9ebb",
+  "translation_date": "2025-09-03T16:10:19+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
   "language_code": "da"
 }
 -->
-# Kørsel af dette eksempel
+# Kør denne prøve
 
 ## -1- Installer afhængighederne
 
@@ -15,37 +15,36 @@ CO_OP_TRANSLATOR_METADATA:
 dotnet restore
 ```
 
-## -3- Kør eksemplet
-
+## -3- Kør prøven
 
 ```bash
 dotnet run
 ```
 
-## -4- Test eksemplet
+## -4- Test prøven
 
-Med serveren kørende i et terminalvindue, åbn et andet terminalvindue og kør følgende kommando:
+Med serveren kørende i én terminal, åbne en anden terminal og kør følgende kommando:
 
 ```bash
 npx @modelcontextprotocol/inspector dotnet run
 ```
 
-Dette skulle starte en webserver med en visuel grænseflade, der giver dig mulighed for at teste eksemplet.
+Dette bør starte en webserver med en visuel grænseflade, der giver dig mulighed for at teste prøven.
 
-Når serveren er tilsluttet:
+Når serveren er forbundet:
 
-- prøv at liste værktøjer og kør `add` med argumenterne 2 og 4, du skulle se 6 som resultat.
-- gå til resources og resource template og kald "greeting", indtast et navn, og du skulle se en hilsen med det navn, du har angivet.
+- prøv at liste værktøjer og kør `add` med argumenterne 2 og 4, du bør se 6 som resultat.
+- gå til ressourcer og ressource-skabelon og kald "greeting", indtast et navn, og du bør se en hilsen med det navn, du har angivet.
 
 ### Test i CLI-tilstand
 
-Du kan starte det direkte i CLI-tilstand ved at køre følgende kommando:
+Du kan starte den direkte i CLI-tilstand ved at køre følgende kommando:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/list
 ```
 
-Dette vil liste alle tilgængelige værktøjer på serveren. Du skulle se følgende output:
+Dette vil liste alle de værktøjer, der er tilgængelige på serveren. Du bør se følgende output:
 
 ```text
 {
@@ -75,13 +74,13 @@ Dette vil liste alle tilgængelige værktøjer på serveren. Du skulle se følge
 }
 ```
 
-For at kalde et værktøj, skriv:
+For at kalde et værktøj skal du skrive:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/call --tool-name Add --tool-arg a=1 --tool-arg b=2
 ```
 
-Du skulle se følgende output:
+Du bør se følgende output:
 
 ```text
 {
@@ -95,9 +94,11 @@ Du skulle se følgende output:
 }
 ```
 
-> ![!TIP]
-> Det er som regel meget hurtigere at køre inspektøren i CLI-tilstand end i browseren.
+> [!TIP]
+> Det er normalt meget hurtigere at køre inspektøren i CLI-tilstand end i browseren.
 > Læs mere om inspektøren [her](https://github.com/modelcontextprotocol/inspector).
 
+---
+
 **Ansvarsfraskrivelse**:  
-Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, bedes du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det oprindelige dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os intet ansvar for misforståelser eller fejltolkninger, der opstår som følge af brugen af denne oversættelse.
+Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på at sikre nøjagtighed, skal du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det originale dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os intet ansvar for misforståelser eller fejltolkninger, der måtte opstå som følge af brugen af denne oversættelse.

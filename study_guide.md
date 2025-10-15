@@ -40,6 +40,8 @@ mindmap
       (HTTP Streaming)
       (AI Toolkit Integration)
       (Testing Frameworks)
+      (Advanced Server Usage)
+      (Simple Auth)
       (Deployment Strategies)
     04. Practical Implementation
       ::icon(fa fa-code)
@@ -91,6 +93,8 @@ mindmap
       (AI Travel Agent)
       (Azure DevOps Integration)
       (Documentation MCP)
+      (GitHub MCP Registry)
+      (VS Code Integration)
       (Real-world Implementations)
     10. Hands-on Workshop
       ::icon(fa fa-laptop)
@@ -99,11 +103,20 @@ mindmap
       (AI Toolkit Integration)
       (Production Deployment)
       (4-Lab Structure)
+    11. Database Integration Labs
+      ::icon(fa fa-database)
+      (PostgreSQL Integration)
+      (Retail Analytics Use Case)
+      (Row Level Security)
+      (Semantic Search)
+      (Production Deployment)
+      (13-Lab Structure)
+      (Hands-on Learning)
 ```
 
 ## Repository Structure
 
-The repository is organized into ten main sections, each focusing on different aspects of MCP:
+The repository is organized into eleven main sections, each focusing on different aspects of MCP:
 
 1. **Introduction (00-Introduction/)**
    - Overview of the Model Context Protocol
@@ -142,6 +155,7 @@ The repository is organized into ten main sections, each focusing on different a
      - LLM client integration
      - VS Code integration
      - Server-Sent Events (SSE) server
+     - Advanced server usage
      - HTTP streaming
      - AI Toolkit integration
      - Testing strategies
@@ -197,11 +211,15 @@ The repository is organized into ten main sections, each focusing on different a
    - Testing and resilience strategies
 
 10. **Case Studies (09-CaseStudy/)**
-    - Azure API Management integration sample
-    - Travel agent implementation sample
-    - Azure DevOps integration with YouTube updates
-    - Documentation MCP implementation examples
-    - Implementation examples with detailed documentation
+    - **Seven comprehensive case studies** demonstrating MCP versatility across diverse scenarios:
+    - **Azure AI Travel Agents**: Multi-agent orchestration with Azure OpenAI and AI Search
+    - **Azure DevOps Integration**: Automating workflow processes with YouTube data updates
+    - **Real-Time Documentation Retrieval**: Python console client with streaming HTTP
+    - **Interactive Study Plan Generator**: Chainlit web app with conversational AI
+    - **In-Editor Documentation**: VS Code integration with GitHub Copilot workflows
+    - **Azure API Management**: Enterprise API integration with MCP server creation
+    - **GitHub MCP Registry**: Ecosystem development and agentic integration platform
+    - Implementation examples spanning enterprise integration, developer productivity, and ecosystem development
 
 11. **Hands-on Workshop (10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/)**
     - Comprehensive hands-on workshop combining MCP with AI Toolkit
@@ -213,6 +231,18 @@ The repository is organized into ten main sections, each focusing on different a
       - Lab 3: AI Toolkit Integration
       - Lab 4: Production Deployment and Scaling
     - Lab-based learning approach with step-by-step instructions
+
+12. **MCP Server Database Integration Labs (11-MCPServerHandsOnLabs/)**
+    - **Comprehensive 13-lab learning path** for building production-ready MCP servers with PostgreSQL integration
+    - **Real-world retail analytics implementation** using the Zava Retail use case
+    - **Enterprise-grade patterns** including Row Level Security (RLS), semantic search, and multi-tenant data access
+    - **Complete Lab Structure**:
+      - **Labs 00-03: Foundations** - Introduction, Architecture, Security, Environment Setup
+      - **Labs 04-06: Building the MCP Server** - Database Design, MCP Server Implementation, Tool Development
+      - **Labs 07-09: Advanced Features** - Semantic Search, Testing & Debugging, VS Code Integration
+      - **Labs 10-12: Production & Best Practices** - Deployment, Monitoring, Optimization
+    - **Technologies Covered**: FastMCP framework, PostgreSQL, Azure OpenAI, Azure Container Apps, Application Insights
+    - **Learning Outcomes**: Production-ready MCP servers, database integration patterns, AI-powered analytics, enterprise security
 
 ## Additional Resources
 
@@ -227,7 +257,7 @@ The repository includes supporting resources:
 
 ## How to Use This Repository
 
-1. **Sequential Learning**: Follow the chapters in order (00 through 10) for a structured learning experience.
+1. **Sequential Learning**: Follow the chapters in order (00 through 11) for a structured learning experience.
 2. **Language-Specific Focus**: If you're interested in a particular programming language, explore the samples directories for implementations in your preferred language.
 3. **Practical Implementation**: Start with the "Getting Started" section to set up your environment and create your first MCP server and client.
 4. **Advanced Exploration**: Once comfortable with the basics, dive into the advanced topics to expand your knowledge.
@@ -297,14 +327,6 @@ The repository introduces various MCP servers, including:
 
 This repository welcomes contributions from the community. See the Community Contributions section for guidance on how to contribute effectively to the MCP ecosystem.
 
-## Changelog
+----
 
-| Date | Changes |
-|------|---------|
-| July 18, 2025 | - Updated repository structure to include Microsoft MCP Servers Guide<br>- Added comprehensive list of 10 production-ready Microsoft MCP servers<br>- Enhanced Popular MCP Servers section with Official Microsoft MCP Servers<br>- Updated Case Studies section with actual file examples<br>- Added Lab Structure details for Hands-on Workshop |
-| July 16, 2025 | - Updated repository structure to reflect current content<br>- Added MCP Clients and Tools section<br>- Added Popular MCP Servers section<br>- Updated Visual Curriculum Map with all current topics<br>- Enhanced Advanced Topics section with all specialized areas<br>- Updated Case Studies to reflect actual examples<br>- Clarified MCP origin as created by Anthropic |
-| June 11, 2025 | - Initial creation of the study guide<br>- Added Visual Curriculum Map<br>- Outlined repository structure<br>- Included sample projects and additional resources |
-
----
-
-*This study guide was updated on July 18, 2025, and provides an overview of the repository as of that date. Repository content may be updated after this date.*
+*This study guide was updated on October 6th, 2025, and provides an overview of the repository as of that date. Repository content may be updated after this date.*

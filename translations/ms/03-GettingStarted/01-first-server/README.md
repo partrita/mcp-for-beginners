@@ -1,109 +1,150 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "fa635ae747c9b4d5c2f61c6c46cb695f",
-  "translation_date": "2025-07-17T19:04:55+00:00",
+  "original_hash": "ec11ee93f31fdadd94facd3e3d22f9e6",
+  "translation_date": "2025-09-09T22:04:56+00:00",
   "source_file": "03-GettingStarted/01-first-server/README.md",
   "language_code": "ms"
 }
 -->
 # Memulakan dengan MCP
 
-Selamat datang ke langkah pertama anda dengan Model Context Protocol (MCP)! Sama ada anda baru dengan MCP atau ingin mendalami pemahaman anda, panduan ini akan membawa anda melalui proses penyediaan dan pembangunan yang penting. Anda akan mengetahui bagaimana MCP membolehkan integrasi lancar antara model AI dan aplikasi, serta belajar cara menyediakan persekitaran anda dengan cepat untuk membina dan menguji penyelesaian berasaskan MCP.
+Selamat datang ke langkah pertama anda dengan Model Context Protocol (MCP)! Sama ada anda baru mengenali MCP atau ingin mendalami pemahaman anda, panduan ini akan membawa anda melalui proses persediaan dan pembangunan yang penting. Anda akan mengetahui bagaimana MCP membolehkan integrasi lancar antara model AI dan aplikasi, serta belajar cara menyediakan persekitaran anda dengan cepat untuk membina dan menguji penyelesaian berkuasa MCP.
 
-> TLDR; Jika anda membina aplikasi AI, anda tahu bahawa anda boleh menambah alat dan sumber lain ke LLM (model bahasa besar) anda, untuk menjadikan LLM lebih berpengetahuan. Namun jika anda meletakkan alat dan sumber tersebut pada pelayan, aplikasi dan keupayaan pelayan boleh digunakan oleh mana-mana klien dengan/atau tanpa LLM.
+> TLDR; Jika anda membina aplikasi AI, anda tahu bahawa anda boleh menambah alat dan sumber lain kepada LLM (model bahasa besar) anda untuk menjadikannya lebih berpengetahuan. Namun, jika anda meletakkan alat dan sumber tersebut di pelayan, aplikasi dan keupayaan pelayan boleh digunakan oleh mana-mana klien dengan/atau tanpa LLM.
 
 ## Gambaran Keseluruhan
 
-Pelajaran ini menyediakan panduan praktikal tentang penyediaan persekitaran MCP dan membina aplikasi MCP pertama anda. Anda akan belajar cara menyediakan alat dan rangka kerja yang diperlukan, membina pelayan MCP asas, mencipta aplikasi hos, dan menguji pelaksanaan anda.
+Pelajaran ini menyediakan panduan praktikal untuk menyediakan persekitaran MCP dan membina aplikasi MCP pertama anda. Anda akan belajar cara menyediakan alat dan rangka kerja yang diperlukan, membina pelayan MCP asas, mencipta aplikasi hos, dan menguji pelaksanaan anda.
 
-Model Context Protocol (MCP) adalah protokol terbuka yang menstandardkan cara aplikasi menyediakan konteks kepada LLM. Fikirkan MCP seperti port USB-C untuk aplikasi AI - ia menyediakan cara standard untuk menyambungkan model AI kepada pelbagai sumber data dan alat.
+Model Context Protocol (MCP) adalah protokol terbuka yang menyeragamkan cara aplikasi menyediakan konteks kepada LLM. Fikirkan MCP seperti port USB-C untuk aplikasi AI - ia menyediakan cara standard untuk menyambungkan model AI kepada pelbagai sumber data dan alat.
 
 ## Objektif Pembelajaran
 
-Menjelang akhir pelajaran ini, anda akan dapat:
+Pada akhir pelajaran ini, anda akan dapat:
 
-- Menyediakan persekitaran pembangunan untuk MCP dalam C#, Java, Python, TypeScript, dan JavaScript
-- Membina dan melancarkan pelayan MCP asas dengan ciri tersuai (sumber, prompt, dan alat)
-- Mencipta aplikasi hos yang menyambung ke pelayan MCP
+- Menyediakan persekitaran pembangunan untuk MCP dalam C#, Java, Python, TypeScript, dan Rust
+- Membina dan melancarkan pelayan MCP asas dengan ciri tersuai (sumber, arahan, dan alat)
+- Mencipta aplikasi hos yang menyambung kepada pelayan MCP
 - Menguji dan menyahpepijat pelaksanaan MCP
 
 ## Menyediakan Persekitaran MCP Anda
 
-Sebelum anda mula bekerja dengan MCP, penting untuk menyediakan persekitaran pembangunan anda dan memahami aliran kerja asas. Bahagian ini akan membimbing anda melalui langkah-langkah penyediaan awal untuk memastikan permulaan yang lancar dengan MCP.
+Sebelum anda mula bekerja dengan MCP, adalah penting untuk menyediakan persekitaran pembangunan anda dan memahami aliran kerja asas. Bahagian ini akan membimbing anda melalui langkah persediaan awal untuk memastikan permulaan yang lancar dengan MCP.
 
 ### Prasyarat
 
-Sebelum menyelami pembangunan MCP, pastikan anda mempunyai:
+Sebelum mendalami pembangunan MCP, pastikan anda mempunyai:
 
-- **Persekitaran Pembangunan**: Untuk bahasa pilihan anda (C#, Java, Python, TypeScript, atau JavaScript)
-- **IDE/Penyunting**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm, atau mana-mana penyunting kod moden
-- **Pengurus Pakej**: NuGet, Maven/Gradle, pip, atau npm/yarn
-- **Kunci API**: Untuk mana-mana perkhidmatan AI yang anda rancangkan untuk digunakan dalam aplikasi hos anda
+- **Persekitaran Pembangunan**: Untuk bahasa pilihan anda (C#, Java, Python, TypeScript, atau Rust)
+- **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm, atau editor kod moden lain
+- **Pengurus Pakej**: NuGet, Maven/Gradle, pip, npm/yarn, atau Cargo
+- **Kunci API**: Untuk sebarang perkhidmatan AI yang anda rancang untuk digunakan dalam aplikasi hos anda
 
-## Struktur Asas Pelayan MCP
+## Struktur Pelayan MCP Asas
 
 Pelayan MCP biasanya merangkumi:
 
 - **Konfigurasi Pelayan**: Menyediakan port, pengesahan, dan tetapan lain
-- **Sumber**: Data dan konteks yang disediakan kepada LLM
+- **Sumber**: Data dan konteks yang tersedia untuk LLM
 - **Alat**: Fungsi yang boleh dipanggil oleh model
-- **Prompt**: Templat untuk menjana atau menyusun teks
+- **Arahan**: Templat untuk menjana atau menyusun teks
 
 Berikut adalah contoh ringkas dalam TypeScript:
 
 ```typescript
-import { Server, Tool, Resource } from "@modelcontextprotocol/typescript-server-sdk";
+import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
 
-// Create a new MCP server
-const server = new Server({
-  port: 3000,
-  name: "Example MCP Server",
+// Create an MCP server
+const server = new McpServer({
+  name: "Demo",
   version: "1.0.0"
 });
 
-// Register a tool
-server.registerTool({
-  name: "calculator",
-  description: "Performs basic calculations",
-  parameters: {
-    expression: {
-      type: "string",
-      description: "The math expression to evaluate"
-    }
-  },
-  handler: async (params) => {
-    const result = eval(params.expression);
-    return { result };
-  }
-});
+// Add an addition tool
+server.tool("add",
+  { a: z.number(), b: z.number() },
+  async ({ a, b }) => ({
+    content: [{ type: "text", text: String(a + b) }]
+  })
+);
 
-// Start the server
-server.start();
+// Add a dynamic greeting resource
+server.resource(
+  "file",
+  // The 'list' parameter controls how the resource lists available files. Setting it to undefined disables listing for this resource.
+  new ResourceTemplate("file://{path}", { list: undefined }),
+  async (uri, { path }) => ({
+    contents: [{
+      uri: uri.href,
+      text: `File, ${path}!`
+    }]
+  })
+);
+
+// Add a file resource that reads the file contents
+server.resource(
+  "file",
+  new ResourceTemplate("file://{path}", { list: undefined }),
+  async (uri, { path }) => {
+    let text;
+    try {
+      text = await fs.readFile(path, "utf8");
+    } catch (err) {
+      text = `Error reading file: ${err.message}`;
+    }
+    return {
+      contents: [{
+        uri: uri.href,
+        text
+      }]
+    };
+  }
+);
+
+server.prompt(
+  "review-code",
+  { code: z.string() },
+  ({ code }) => ({
+    messages: [{
+      role: "user",
+      content: {
+        type: "text",
+        text: `Please review this code:\n\n${code}`
+      }
+    }]
+  })
+);
+
+// Start receiving messages on stdin and sending messages on stdout
+const transport = new StdioServerTransport();
+await server.connect(transport);
 ```
 
-Dalam kod di atas kami:
+Dalam kod di atas kita:
 
-- Mengimport kelas yang diperlukan dari MCP TypeScript SDK.
-- Mencipta dan mengkonfigurasi satu instans pelayan MCP baru.
-- Mendaftar alat tersuai (`calculator`) dengan fungsi pengendali.
+- Mengimport kelas yang diperlukan daripada SDK MCP TypeScript.
+- Mencipta dan mengkonfigurasi contoh pelayan MCP baharu.
+- Mendaftarkan alat tersuai (`calculator`) dengan fungsi pengendali.
 - Memulakan pelayan untuk mendengar permintaan MCP yang masuk.
 
 ## Ujian dan Penyahpepijatan
 
-Sebelum anda mula menguji pelayan MCP anda, penting untuk memahami alat yang tersedia dan amalan terbaik untuk penyahpepijatan. Ujian yang berkesan memastikan pelayan anda berfungsi seperti yang dijangka dan membantu anda mengenal pasti serta menyelesaikan isu dengan cepat. Bahagian berikut menggariskan pendekatan yang disyorkan untuk mengesahkan pelaksanaan MCP anda.
+Sebelum anda mula menguji pelayan MCP anda, adalah penting untuk memahami alat yang tersedia dan amalan terbaik untuk penyahpepijatan. Ujian yang berkesan memastikan pelayan anda berfungsi seperti yang diharapkan dan membantu anda mengenal pasti serta menyelesaikan isu dengan cepat. Bahagian berikut menggariskan pendekatan yang disyorkan untuk mengesahkan pelaksanaan MCP anda.
 
 MCP menyediakan alat untuk membantu anda menguji dan menyahpepijat pelayan anda:
 
-- **Alat Inspector**, antara muka grafik ini membolehkan anda menyambung ke pelayan dan menguji alat, prompt dan sumber anda.
-- **curl**, anda juga boleh menyambung ke pelayan menggunakan alat baris perintah seperti curl atau klien lain yang boleh mencipta dan menjalankan arahan HTTP.
+- **Alat Inspector**, antara muka grafik ini membolehkan anda menyambung ke pelayan anda dan menguji alat, arahan, dan sumber anda.
+- **curl**, anda juga boleh menyambung ke pelayan anda menggunakan alat baris arahan seperti curl atau klien lain yang boleh mencipta dan menjalankan arahan HTTP.
 
 ### Menggunakan MCP Inspector
 
 [MCP Inspector](https://github.com/modelcontextprotocol/inspector) adalah alat ujian visual yang membantu anda:
 
-1. **Mengesan Keupayaan Pelayan**: Mengesan secara automatik sumber, alat, dan prompt yang tersedia
-2. **Menguji Pelaksanaan Alat**: Cuba parameter berbeza dan lihat respons secara masa nyata
+1. **Menemui Keupayaan Pelayan**: Mengesan sumber, alat, dan arahan yang tersedia secara automatik
+2. **Ujian Pelaksanaan Alat**: Mencuba parameter yang berbeza dan melihat respons secara langsung
 3. **Melihat Metadata Pelayan**: Memeriksa maklumat pelayan, skema, dan konfigurasi
 
 ```bash
@@ -111,30 +152,30 @@ MCP menyediakan alat untuk membantu anda menguji dan menyahpepijat pelayan anda:
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Apabila anda menjalankan arahan di atas, MCP Inspector akan melancarkan antara muka web tempatan dalam pelayar anda. Anda boleh menjangkakan untuk melihat papan pemuka yang memaparkan pelayan MCP yang didaftarkan, alat, sumber, dan prompt yang tersedia. Antara muka ini membolehkan anda menguji pelaksanaan alat secara interaktif, memeriksa metadata pelayan, dan melihat respons masa nyata, memudahkan pengesahan dan penyahpepijatan pelaksanaan pelayan MCP anda.
+Apabila anda menjalankan arahan di atas, MCP Inspector akan melancarkan antara muka web tempatan dalam pelayar anda. Anda boleh menjangkakan untuk melihat papan pemuka yang memaparkan pelayan MCP yang didaftarkan, alat, sumber, dan arahan yang tersedia. Antara muka ini membolehkan anda menguji pelaksanaan alat secara interaktif, memeriksa metadata pelayan, dan melihat respons masa nyata, menjadikannya lebih mudah untuk mengesahkan dan menyahpepijat pelaksanaan pelayan MCP anda.
 
-Berikut adalah tangkapan skrin bagaimana ia kelihatan:
+Berikut adalah tangkapan skrin tentang bagaimana ia boleh kelihatan:
 
-![](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ms.png)
+![Sambungan pelayan MCP Inspector](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ms.png)
 
-## Isu dan Penyelesaian Penyediaan Biasa
+## Masalah Persediaan Biasa dan Penyelesaian
 
-| Isu | Penyelesaian Mungkin |
-|-------|-------------------|
-| Sambungan ditolak | Semak sama ada pelayan berjalan dan port betul |
+| Masalah | Penyelesaian Kemungkinan |
+|---------|--------------------------|
+| Sambungan ditolak | Periksa sama ada pelayan sedang berjalan dan port adalah betul |
 | Ralat pelaksanaan alat | Semak pengesahan parameter dan pengendalian ralat |
 | Kegagalan pengesahan | Sahkan kunci API dan kebenaran |
-| Ralat pengesahan skema | Pastikan parameter sepadan dengan skema yang ditetapkan |
-| Pelayan tidak bermula | Semak konflik port atau kebergantungan yang hilang |
-| Ralat CORS | Konfigurasikan header CORS yang betul untuk permintaan silang asal |
-| Isu pengesahan | Sahkan kesahihan token dan kebenaran |
+| Ralat pengesahan skema | Pastikan parameter sepadan dengan skema yang ditentukan |
+| Pelayan tidak bermula | Periksa konflik port atau kebergantungan yang hilang |
+| Ralat CORS | Konfigurasi tajuk CORS yang betul untuk permintaan asal silang |
+| Masalah pengesahan | Sahkan kesahihan token dan kebenaran |
 
 ## Pembangunan Tempatan
 
 Untuk pembangunan dan ujian tempatan, anda boleh menjalankan pelayan MCP terus pada mesin anda:
 
 1. **Mulakan proses pelayan**: Jalankan aplikasi pelayan MCP anda
-2. **Konfigurasikan rangkaian**: Pastikan pelayan boleh diakses pada port yang dijangka
+2. **Konfigurasi rangkaian**: Pastikan pelayan boleh diakses pada port yang dijangkakan
 3. **Sambungkan klien**: Gunakan URL sambungan tempatan seperti `http://localhost:3000`
 
 ```bash
@@ -145,46 +186,43 @@ npm run start
 
 ## Membina Pelayan MCP Pertama Anda
 
-Kita telah membincangkan [Konsep Teras](/01-CoreConcepts/README.md) dalam pelajaran sebelum ini, kini tiba masanya untuk mengaplikasikan pengetahuan tersebut.
+Kami telah membincangkan [Konsep Teras](/01-CoreConcepts/README.md) dalam pelajaran sebelumnya, kini tiba masanya untuk menggunakan pengetahuan tersebut.
 
-### Apa yang boleh dilakukan oleh pelayan
+### Apa yang pelayan boleh lakukan
 
-Sebelum kita mula menulis kod, mari kita ingatkan apa yang boleh dilakukan oleh pelayan:
+Sebelum kita mula menulis kod, mari kita ingatkan diri kita apa yang pelayan boleh lakukan:
 
-Pelayan MCP boleh contohnya:
+Pelayan MCP boleh, sebagai contoh:
 
 - Mengakses fail dan pangkalan data tempatan
 - Menyambung ke API jauh
 - Melakukan pengiraan
-- Berintegrasi dengan alat dan perkhidmatan lain
+- Mengintegrasikan dengan alat dan perkhidmatan lain
 - Menyediakan antara muka pengguna untuk interaksi
 
-Bagus, sekarang kita tahu apa yang boleh dilakukan, mari kita mula menulis kod.
+Bagus, sekarang kita tahu apa yang boleh kita lakukan dengannya, mari kita mula menulis kod.
 
 ## Latihan: Mencipta pelayan
 
-Untuk mencipta pelayan, anda perlu mengikuti langkah-langkah berikut:
+Untuk mencipta pelayan, anda perlu mengikuti langkah-langkah ini:
 
-- Pasang MCP SDK.
+- Pasang SDK MCP.
 - Cipta projek dan sediakan struktur projek.
 - Tulis kod pelayan.
 - Uji pelayan.
 
-### -1- Pasang SDK
+### -1- Cipta projek
 
-Ini sedikit berbeza bergantung pada runtime pilihan anda, jadi pilih salah satu runtime di bawah:
-
-> [!NOTE]
-> Untuk Python, kita akan mula dengan mencipta struktur projek dahulu kemudian memasang kebergantungan.
-
-### TypeScript
+#### TypeScript
 
 ```sh
-npm install @modelcontextprotocol/sdk zod
-npm install -D @types/node typescript
+# Create project directory and initialize npm project
+mkdir calculator-server
+cd calculator-server
+npm init -y
 ```
 
-### Python
+#### Python
 
 ```sh
 # Create project dir
@@ -194,14 +232,14 @@ cd calculator-server
 code .
 ```
 
-### .NET
+#### .NET
 
 ```sh
 dotnet new console -n McpCalculatorServer
 cd McpCalculatorServer
 ```
 
-### Java
+#### Java
 
 Untuk Java, cipta projek Spring Boot:
 
@@ -226,7 +264,7 @@ cd calculator-server
 rm -rf src/test/java
 ```
 
-Tambah konfigurasi lengkap berikut ke fail *pom.xml* anda:
+Tambahkan konfigurasi lengkap berikut ke fail *pom.xml* anda:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -326,18 +364,30 @@ Tambah konfigurasi lengkap berikut ke fail *pom.xml* anda:
 </project>
 ```
 
-### -2- Cipta projek
-
-Sekarang anda telah memasang SDK, mari cipta projek seterusnya:
-
-### TypeScript
+#### Rust
 
 ```sh
-mkdir src
-npm install -y
+mkdir calculator-server
+cd calculator-server
+cargo init
 ```
 
-### Python
+### -2- Tambah kebergantungan
+
+Sekarang projek anda telah dicipta, mari tambahkan kebergantungan seterusnya:
+
+#### TypeScript
+
+```sh
+# If not already installed, install TypeScript globally
+npm install typescript -g
+
+# Install the MCP SDK and Zod for schema validation
+npm install @modelcontextprotocol/sdk zod
+npm install -D @types/node typescript
+```
+
+#### Python
 
 ```sh
 # Create a virtual env and install dependencies
@@ -346,34 +396,53 @@ venv\Scripts\activate
 pip install "mcp[cli]"
 ```
 
-### Java
+#### Java
 
 ```bash
 cd calculator-server
 ./mvnw clean install -DskipTests
 ```
 
-### -3- Cipta fail projek  
-### TypeScript
+#### Rust
 
-Cipta *package.json* dengan kandungan berikut:
+```sh
+cargo add rmcp --features server,transport-io
+cargo add serde
+cargo add tokio --features rt-multi-thread
+```
+
+### -3- Cipta fail projek
+
+#### TypeScript
+
+Buka fail *package.json* dan gantikan kandungan dengan yang berikut untuk memastikan anda boleh membina dan menjalankan pelayan:
 
 ```json
 {
-   "type": "module",
-   "bin": {
-     "weather": "./build/index.js"
-   },
-   "scripts": {
-     "build": "tsc && node build/index.js"
-   },
-   "files": [
-     "build"
-   ]
+  "name": "calculator-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "tsc && node ./build/index.js",
+    "build": "tsc && node ./build/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "A simple calculator server using Model Context Protocol",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.16.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.14",
+    "typescript": "^5.8.3"
+  }
 }
 ```
 
-Cipta *tsconfig.json* dengan kandungan berikut:
+Cipta fail *tsconfig.json* dengan kandungan berikut:
 
 ```json
 {
@@ -393,14 +462,22 @@ Cipta *tsconfig.json* dengan kandungan berikut:
 }
 ```
 
-### Python
+Cipta direktori untuk kod sumber anda:
 
-Cipta fail *server.py*  
+```sh
+mkdir src
+touch src/index.ts
+```
+
+#### Python
+
+Cipta fail *server.py*
+
 ```sh
 touch server.py
 ```
 
-### .NET
+#### .NET
 
 Pasang pakej NuGet yang diperlukan:
 
@@ -409,15 +486,19 @@ dotnet add package ModelContextProtocol --prerelease
 dotnet add package Microsoft.Extensions.Hosting
 ```
 
-### Java
+#### Java
 
 Untuk projek Java Spring Boot, struktur projek dicipta secara automatik.
 
-### -4- Tulis kod pelayan
+#### Rust
 
-### TypeScript
+Untuk Rust, fail *src/main.rs* dicipta secara lalai apabila anda menjalankan `cargo init`. Buka fail tersebut dan padamkan kod lalai.
 
-Cipta fail *index.ts* dan tambah kod berikut:
+### -4- Cipta kod pelayan
+
+#### TypeScript
+
+Cipta fail *index.ts* dan tambahkan kod berikut:
 
 ```typescript
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -426,14 +507,14 @@ import { z } from "zod";
  
 // Create an MCP server
 const server = new McpServer({
-  name: "Demo",
+  name: "Calculator MCP Server",
   version: "1.0.0"
 });
 ```
 
-Sekarang anda mempunyai pelayan, tetapi ia tidak melakukan banyak perkara, mari kita perbaiki itu.
+Sekarang anda mempunyai pelayan, tetapi ia tidak melakukan banyak perkara, mari perbaiki itu.
 
-### Python
+#### Python
 
 ```python
 # server.py
@@ -443,7 +524,7 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP("Demo")
 ```
 
-### .NET
+#### .NET
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -468,7 +549,7 @@ await builder.Build().RunAsync();
 // add features
 ```
 
-### Java
+#### Java
 
 Untuk Java, cipta komponen pelayan teras. Pertama, ubah kelas aplikasi utama:
 
@@ -498,7 +579,7 @@ public class McpServerApplication {
 }
 ```
 
-Cipta servis kalkulator *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
+Cipta perkhidmatan kalkulator *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.service;
@@ -644,7 +725,7 @@ public class CalculatorService {
 }
 ```
 
-**Komponen pilihan untuk servis sedia produksi:**
+**Komponen pilihan untuk perkhidmatan sedia pengeluaran:**
 
 Cipta konfigurasi permulaan *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
 
@@ -748,16 +829,86 @@ Calculator MCP Server v1.0
 Spring Boot MCP Application
 ```
 
-</details>
+#### Rust
+
+Tambahkan kod berikut ke bahagian atas fail *src/main.rs*. Ini mengimport pustaka dan modul yang diperlukan untuk pelayan MCP anda.
+
+```rust
+use rmcp::{
+    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    model::{ServerCapabilities, ServerInfo},
+    schemars, tool, tool_handler, tool_router,
+    transport::stdio,
+    ServerHandler, ServiceExt,
+};
+use std::error::Error;
+```
+
+Pelayan kalkulator akan menjadi pelayan mudah yang boleh menambah dua nombor bersama. Mari kita cipta struktur untuk mewakili permintaan kalkulator.
+
+```rust
+#[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
+pub struct CalculatorRequest {
+    pub a: f64,
+    pub b: f64,
+}
+```
+
+Seterusnya, cipta struktur untuk mewakili pelayan kalkulator. Struktur ini akan memegang penghala alat, yang digunakan untuk mendaftarkan alat.
+
+```rust
+#[derive(Debug, Clone)]
+pub struct Calculator {
+    tool_router: ToolRouter<Self>,
+}
+```
+
+Sekarang, kita boleh melaksanakan struktur `Calculator` untuk mencipta contoh baharu pelayan dan melaksanakan pengendali pelayan untuk menyediakan maklumat pelayan.
+
+```rust
+#[tool_router]
+impl Calculator {
+    pub fn new() -> Self {
+        Self {
+            tool_router: Self::tool_router(),
+        }
+    }
+}
+
+#[tool_handler]
+impl ServerHandler for Calculator {
+    fn get_info(&self) -> ServerInfo {
+        ServerInfo {
+            instructions: Some("A simple calculator tool".into()),
+            capabilities: ServerCapabilities::builder().enable_tools().build(),
+            ..Default::default()
+        }
+    }
+}
+```
+
+Akhirnya, kita perlu melaksanakan fungsi utama untuk memulakan pelayan. Fungsi ini akan mencipta contoh struktur `Calculator` dan melayaninya melalui input/output standard.
+
+```rust
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let service = Calculator::new().serve(stdio()).await?;
+    service.waiting().await?;
+    Ok(())
+}
+```
+
+Pelayan kini disediakan untuk menyediakan maklumat asas tentang dirinya. Seterusnya, kita akan menambah alat untuk melakukan penambahan.
 
 ### -5- Menambah alat dan sumber
 
-Tambah alat dan sumber dengan menambah kod berikut:
+Tambahkan alat dan sumber dengan menambahkan kod berikut:
 
-### TypeScript
+#### TypeScript
 
 ```typescript
-  server.tool("add",
+server.tool(
+  "add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
     content: [{ type: "text", text: String(a + b) }]
@@ -786,7 +937,7 @@ Alat anda mengambil parameter `a` dan `b` dan menjalankan fungsi yang menghasilk
 }
 ```
 
-Sumber anda diakses melalui string "greeting" dan mengambil parameter `name` serta menghasilkan respons yang serupa dengan alat:
+Sumber anda diakses melalui string "greeting" dan mengambil parameter `name` serta menghasilkan respons serupa dengan alat:
 
 ```typescript
 {
@@ -795,7 +946,7 @@ Sumber anda diakses melalui string "greeting" dan mengambil parameter `name` ser
 }
 ```
 
-### Python
+#### Python
 
 ```python
 # Add an addition tool
@@ -812,14 +963,14 @@ def get_greeting(name: str) -> str:
     return f"Hello, {name}!"
 ```
 
-Dalam kod di atas kami telah:
+Dalam kod di atas kita telah:
 
 - Mendefinisikan alat `add` yang mengambil parameter `a` dan `p`, kedua-duanya integer.
 - Mencipta sumber bernama `greeting` yang mengambil parameter `name`.
 
-### .NET
+#### .NET
 
-Tambah ini ke fail Program.cs anda:
+Tambahkan ini ke fail Program.cs anda:
 
 ```csharp
 [McpServerToolType]
@@ -830,15 +981,29 @@ public static class CalculatorTool
 }
 ```
 
-### Java
+#### Java
 
-Alat telah pun dicipta dalam langkah sebelumnya.
+Alat telah dicipta dalam langkah sebelumnya.
+
+#### Rust
+
+Tambahkan alat baharu di dalam blok `impl Calculator`:
+
+```rust
+#[tool(description = "Adds a and b")]
+async fn add(
+    &self,
+    Parameters(CalculatorRequest { a, b }): Parameters<CalculatorRequest>,
+) -> String {
+    (a + b).to_string()
+}
+```
 
 ### -6- Kod akhir
 
-Mari kita tambah kod terakhir yang diperlukan supaya pelayan boleh bermula:
+Mari tambahkan kod terakhir yang kita perlukan supaya pelayan boleh bermula:
 
-### TypeScript
+#### TypeScript
 
 ```typescript
 // Start receiving messages on stdin and sending messages on stdout
@@ -856,12 +1021,13 @@ import { z } from "zod";
 
 // Create an MCP server
 const server = new McpServer({
-  name: "Demo",
+  name: "Calculator MCP Server",
   version: "1.0.0"
 });
 
 // Add an addition tool
-server.tool("add",
+server.tool(
+  "add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
     content: [{ type: "text", text: String(a + b) }]
@@ -882,10 +1048,10 @@ server.resource(
 
 // Start receiving messages on stdin and sending messages on stdout
 const transport = new StdioServerTransport();
-await server.connect(transport);
+server.connect(transport);
 ```
 
-### Python
+#### Python
 
 ```python
 # server.py
@@ -913,7 +1079,7 @@ if __name__ == "__main__":
     mcp.run()
 ```
 
-### .NET
+#### .NET
 
 Cipta fail Program.cs dengan kandungan berikut:
 
@@ -945,7 +1111,7 @@ public static class CalculatorTool
 }
 ```
 
-### Java
+#### Java
 
 Kelas aplikasi utama lengkap anda harus kelihatan seperti ini:
 
@@ -974,25 +1140,86 @@ public class McpServerApplication {
 }
 ```
 
+#### Rust
+
+Kod akhir untuk pelayan Rust harus kelihatan seperti ini:
+
+```rust
+use rmcp::{
+    ServerHandler, ServiceExt,
+    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    model::{ServerCapabilities, ServerInfo},
+    schemars, tool, tool_handler, tool_router,
+    transport::stdio,
+};
+use std::error::Error;
+
+#[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
+pub struct CalculatorRequest {
+    pub a: f64,
+    pub b: f64,
+}
+
+#[derive(Debug, Clone)]
+pub struct Calculator {
+    tool_router: ToolRouter<Self>,
+}
+
+#[tool_router]
+impl Calculator {
+    pub fn new() -> Self {
+        Self {
+            tool_router: Self::tool_router(),
+        }
+    }
+    
+    #[tool(description = "Adds a and b")]
+    async fn add(
+        &self,
+        Parameters(CalculatorRequest { a, b }): Parameters<CalculatorRequest>,
+    ) -> String {
+        (a + b).to_string()
+    }
+}
+
+#[tool_handler]
+impl ServerHandler for Calculator {
+    fn get_info(&self) -> ServerInfo {
+        ServerInfo {
+            instructions: Some("A simple calculator tool".into()),
+            capabilities: ServerCapabilities::builder().enable_tools().build(),
+            ..Default::default()
+        }
+    }
+}
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let service = Calculator::new().serve(stdio()).await?;
+    service.waiting().await?;
+    Ok(())
+}
+```
+
 ### -7- Uji pelayan
 
 Mulakan pelayan dengan arahan berikut:
 
-### TypeScript
+#### TypeScript
 
 ```sh
 npm run build
 ```
 
-### Python
+#### Python
 
 ```sh
 mcp run server.py
 ```
 
-> Untuk menggunakan MCP Inspector, gunakan `mcp dev server.py` yang secara automatik melancarkan Inspector dan menyediakan token sesi proksi yang diperlukan. Jika menggunakan `mcp run server.py`, anda perlu memulakan Inspector secara manual dan mengkonfigurasi sambungan.
+> Untuk menggunakan MCP Inspector, gunakan `mcp dev server.py` yang secara automatik melancarkan Inspector dan menyediakan token sesi proksi yang diperlukan. Jika menggunakan `mcp run server.py`, anda perlu melancarkan Inspector secara manual dan mengkonfigurasi sambungan.
 
-### .NET
+#### .NET
 
 Pastikan anda berada dalam direktori projek anda:
 
@@ -1001,43 +1228,52 @@ cd McpCalculatorServer
 dotnet run
 ```
 
-### Java
+#### Java
 
 ```bash
 ./mvnw clean install -DskipTests
 java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 ```
 
+#### Rust
+
+Jalankan arahan berikut untuk memformat dan menjalankan pelayan:
+
+```sh
+cargo fmt
+cargo run
+```
+
 ### -8- Jalankan menggunakan inspector
 
-Inspector adalah alat hebat yang boleh memulakan pelayan anda dan membolehkan anda berinteraksi dengannya supaya anda boleh menguji bahawa ia berfungsi. Mari mulakan:
+Inspector adalah alat hebat yang boleh memulakan pelayan anda dan membolehkan anda berinteraksi dengannya supaya anda boleh menguji bahawa ia berfungsi. Mari kita mulakan:
 
 > [!NOTE]
-> ia mungkin kelihatan berbeza dalam medan "command" kerana ia mengandungi arahan untuk menjalankan pelayan dengan runtime khusus anda.
+> Ia mungkin kelihatan berbeza dalam medan "command" kerana ia mengandungi arahan untuk menjalankan pelayan dengan runtime khusus anda.
 
-### TypeScript
+#### TypeScript
 
 ```sh
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-atau tambahkannya ke *package.json* anda seperti ini: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` dan kemudian jalankan `npm run inspect`
+atau tambahkan ke *package.json* anda seperti berikut: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` dan kemudian jalankan `npm run inspector`
 
-Python membalut alat Node.js yang dipanggil inspector. Adalah mungkin untuk memanggil alat tersebut seperti berikut:
+Python membungkus alat Node.js yang dipanggil inspector. Adalah mungkin untuk memanggil alat tersebut seperti berikut:
 
 ```sh
 mcp dev server.py
 ```
 
-Walau bagaimanapun, ia tidak melaksanakan semua kaedah yang tersedia pada alat itu jadi anda disarankan untuk menjalankan alat Node.js secara langsung seperti di bawah:
+Namun, ia tidak melaksanakan semua kaedah yang tersedia pada alat tersebut jadi anda disarankan untuk menjalankan alat Node.js secara langsung seperti di bawah:
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
-```  
-Jika anda menggunakan alat atau IDE yang membolehkan anda mengkonfigurasi arahan dan argumen untuk menjalankan skrip,  
-pastikan untuk menetapkan `python` dalam medan `Command` dan `server.py` sebagai `Arguments`. Ini memastikan skrip berjalan dengan betul.
+```
 
-### .NET
+Jika anda menggunakan alat atau IDE yang membolehkan anda mengkonfigurasi arahan dan argumen untuk menjalankan skrip, pastikan untuk menetapkan `python` dalam medan `Command` dan `server.py` sebagai `Arguments`. Ini memastikan skrip berjalan dengan betul.
+
+#### .NET
 
 Pastikan anda berada dalam direktori projek anda:
 
@@ -1046,9 +1282,9 @@ cd McpCalculatorServer
 npx @modelcontextprotocol/inspector dotnet run
 ```
 
-### Java
+#### Java
 
-Pastikan pelayan kalkulator anda berjalan  
+Pastikan pelayan kalkulator anda sedang berjalan
 Kemudian jalankan inspector:
 
 ```cmd
@@ -1057,33 +1293,40 @@ npx @modelcontextprotocol/inspector
 
 Dalam antara muka web inspector:
 
-1. Pilih "SSE" sebagai jenis pengangkutan  
-2. Tetapkan URL kepada: `http://localhost:8080/sse`  
+1. Pilih "SSE" sebagai jenis pengangkutan
+2. Tetapkan URL kepada: `http://localhost:8080/sse`
 3. Klik "Connect"
+![Sambung](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.ms.png)
 
-![Connect](../../../../translated_images/tool.163d33e3ee307e209ef146d8f85060d2f7e83e9f59b3b1699a77204ae0454ad2.ms.png)
-
-**Anda kini bersambung ke pelayan**  
+**Anda kini disambungkan ke pelayan**
 **Bahagian ujian pelayan Java kini selesai**
 
-Bahagian seterusnya adalah tentang berinteraksi dengan pelayan.
+Bahagian seterusnya adalah mengenai berinteraksi dengan pelayan.
 
 Anda sepatutnya melihat antara muka pengguna berikut:
 
-![Connect](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ms.png)
+![Sambung](../../../../translated_images/connect.141db0b2bd05f096fb1dd91273771fd8b2469d6507656c3b0c9df4b3c5473929.ms.png)
 
-1. Sambung ke pelayan dengan memilih butang Connect  
-   Setelah anda bersambung ke pelayan, anda sepatutnya melihat yang berikut:
+1. Sambungkan ke pelayan dengan memilih butang Sambung  
+   Setelah anda disambungkan ke pelayan, anda sepatutnya melihat perkara berikut:
 
-   ![Connected](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ms.png)
+   ![Disambungkan](../../../../translated_images/connected.73d1e042c24075d386cacdd4ee7cd748c16364c277d814e646ff2f7b5eefde85.ms.png)
 
-1. Pilih "Tools" dan "listTools", anda sepatutnya melihat "Add" muncul, pilih "Add" dan isi nilai parameter.
+1. Pilih "Tools" dan "listTools", anda sepatutnya melihat "Add" muncul, pilih "Add" dan isikan nilai parameter.
 
    Anda sepatutnya melihat respons berikut, iaitu hasil daripada alat "add":
 
-   ![Result of running add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.ms.png)
+   ![Hasil menjalankan add](../../../../translated_images/ran-tool.a5a6ee878c1369ec1e379b81053395252a441799dbf23416c36ddf288faf8249.ms.png)
 
 Tahniah, anda telah berjaya mencipta dan menjalankan pelayan pertama anda!
+
+#### Rust
+
+Untuk menjalankan pelayan Rust dengan MCP Inspector CLI, gunakan arahan berikut:
+
+```sh
+npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-name add --tool-arg a=1 b=2
+```
 
 ### SDK Rasmi
 
@@ -1092,47 +1335,50 @@ MCP menyediakan SDK rasmi untuk pelbagai bahasa:
 - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Diselenggara bersama Microsoft  
 - [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Diselenggara bersama Spring AI  
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Implementasi rasmi TypeScript  
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Implementasi rasmi Python
-- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Pelaksanaan rasmi Kotlin  
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Implementasi rasmi Python  
+- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Implementasi rasmi Kotlin  
 - [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Diselenggara bersama Loopwork AI  
-- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Pelaksanaan rasmi Rust  
+- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Implementasi rasmi Rust  
 
 ## Perkara Penting
 
 - Menyediakan persekitaran pembangunan MCP adalah mudah dengan SDK khusus bahasa  
 - Membina pelayan MCP melibatkan penciptaan dan pendaftaran alat dengan skema yang jelas  
-- Ujian dan penyahpepijatan penting untuk pelaksanaan MCP yang boleh dipercayai  
+- Ujian dan penyahpepijatan adalah penting untuk implementasi MCP yang boleh dipercayai  
 
 ## Contoh
 
-- [Kalkulator Java](../samples/java/calculator/README.md)  
-- [Kalkulator .Net](../../../../03-GettingStarted/samples/csharp)  
-- [Kalkulator JavaScript](../samples/javascript/README.md)  
-- [Kalkulator TypeScript](../samples/typescript/README.md)  
-- [Kalkulator Python](../../../../03-GettingStarted/samples/python)  
+- [Java Calculator](../samples/java/calculator/README.md)  
+- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)  
+- [JavaScript Calculator](../samples/javascript/README.md)  
+- [TypeScript Calculator](../samples/typescript/README.md)  
+- [Python Calculator](../../../../03-GettingStarted/samples/python)  
+- [Rust Calculator](../../../../03-GettingStarted/samples/rust)  
 
 ## Tugasan
 
 Cipta pelayan MCP ringkas dengan alat pilihan anda:
 
-1. Laksanakan alat tersebut dalam bahasa pilihan anda (.NET, Java, Python, atau JavaScript).  
+1. Laksanakan alat dalam bahasa pilihan anda (.NET, Java, Python, TypeScript, atau Rust).  
 2. Tentukan parameter input dan nilai pulangan.  
-3. Jalankan alat pemeriksa untuk memastikan pelayan berfungsi seperti yang diharapkan.  
-4. Uji pelaksanaan dengan pelbagai input.  
+3. Jalankan alat pemeriksa untuk memastikan pelayan berfungsi seperti yang diinginkan.  
+4. Uji implementasi dengan pelbagai input.  
 
 ## Penyelesaian
 
-[Penyelesaian](./solution/README.md)  
+[Penyelesaian](./solution/README.md)
 
 ## Sumber Tambahan
 
-- [Membina Ejen menggunakan Model Context Protocol di Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
-- [MCP Jauh dengan Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)  
-- [Ejen MCP OpenAI .NET](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)  
+- [Bina Ejen menggunakan Model Context Protocol di Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)  
+- [MCP Jarak Jauh dengan Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)  
+- [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)  
 
-## Apa seterusnya
+## Apa Seterusnya
 
-Seterusnya: [Memulakan dengan Klien MCP](../02-client/README.md)
+Seterusnya: [Memulakan dengan MCP Clients](../02-client/README.md)  
+
+---
 
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

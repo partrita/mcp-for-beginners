@@ -1,63 +1,63 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "343235ad6c122033c549a677913443f9",
-  "translation_date": "2025-07-17T18:09:33+00:00",
+  "original_hash": "4d846ebb88fbb0f00549e2ff8cc3f746",
+  "translation_date": "2025-10-06T13:55:11+00:00",
   "source_file": "03-GettingStarted/03-llm-client/README.md",
   "language_code": "bn"
 }
 -->
-# LLM দিয়ে ক্লায়েন্ট তৈরি করা
+# ক্লায়েন্ট তৈরি করা LLM সহ
 
-এখন পর্যন্ত, আপনি দেখেছেন কীভাবে একটি সার্ভার এবং ক্লায়েন্ট তৈরি করা যায়। ক্লায়েন্ট সরাসরি সার্ভারকে কল করে তার টুলস, রিসোর্স এবং প্রম্পটগুলো তালিকাভুক্ত করতে পেরেছে। তবে, এটি খুবই ব্যবহারিক পদ্ধতি নয়। আপনার ব্যবহারকারী এখন এজেন্টিক যুগে বাস করছে এবং প্রম্পট ব্যবহার করে LLM-এর সাথে যোগাযোগ করতে চায়। আপনার ব্যবহারকারী MCP ব্যবহার করছেন কিনা তা নিয়ে তেমন চিন্তা করে না, তবে তারা আশা করে যে তারা প্রাকৃতিক ভাষায় ইন্টারঅ্যাক্ট করতে পারবে। তাহলে আমরা কীভাবে এটি সমাধান করব? সমাধান হলো ক্লায়েন্টে একটি LLM যোগ করা।
+এখন পর্যন্ত, আপনি কীভাবে একটি সার্ভার এবং একটি ক্লায়েন্ট তৈরি করতে হয় তা দেখেছেন। ক্লায়েন্টটি সার্ভারকে স্পষ্টভাবে কল করে তার টুল, রিসোর্স এবং প্রম্পটগুলি তালিকাভুক্ত করতে সক্ষম হয়েছে। তবে এটি খুব ব্যবহারিক পদ্ধতি নয়। আপনার ব্যবহারকারী এজেন্টিক যুগে বাস করে এবং প্রম্পট ব্যবহার করতে এবং একটি LLM এর সাথে যোগাযোগ করতে চায়। আপনার ব্যবহারকারী MCP ব্যবহার করছেন কিনা তা নিয়ে চিন্তা করে না, তবে তারা প্রাকৃতিক ভাষা ব্যবহার করে যোগাযোগের প্রত্যাশা করে। তাহলে আমরা কীভাবে এটি সমাধান করব? সমাধানটি হল ক্লায়েন্টে একটি LLM যোগ করা।
 
 ## ওভারভিউ
 
-এই পাঠে আমরা ক্লায়েন্টে একটি LLM যোগ করার ওপর ফোকাস করব এবং দেখাবো কীভাবে এটি ব্যবহারকারীর জন্য অনেক ভালো অভিজ্ঞতা প্রদান করে।
+এই পাঠে আমরা একটি LLM যোগ করার উপর ফোকাস করব এবং দেখাব কীভাবে এটি আপনার ব্যবহারকারীর জন্য একটি অনেক ভালো অভিজ্ঞতা প্রদান করে।
 
-## শেখার উদ্দেশ্য
+## শেখার লক্ষ্য
 
-এই পাঠ শেষ করার পর, আপনি সক্ষম হবেন:
+এই পাঠ শেষে, আপনি সক্ষম হবেন:
 
-- একটি LLM সহ ক্লায়েন্ট তৈরি করতে।
-- LLM ব্যবহার করে MCP সার্ভারের সাথে নির্বিঘ্নে যোগাযোগ করতে।
-- ক্লায়েন্ট সাইডে ব্যবহারকারীর জন্য উন্নত অভিজ্ঞতা প্রদান করতে।
+- একটি LLM সহ একটি ক্লায়েন্ট তৈরি করতে।
+- একটি MCP সার্ভারের সাথে LLM ব্যবহার করে নির্বিঘ্নে যোগাযোগ করতে।
+- ক্লায়েন্ট সাইডে ব্যবহারকারীর জন্য একটি উন্নত অভিজ্ঞতা প্রদান করতে।
 
 ## পদ্ধতি
 
-চলুন বুঝে নিই আমাদের কী পদ্ধতি নিতে হবে। LLM যোগ করা সহজ শোনালেও, আমরা কি সত্যিই এটি করব?
+চলুন আমরা যে পদ্ধতি গ্রহণ করতে হবে তা বুঝি। একটি LLM যোগ করা সহজ শোনায়, তবে আমরা কি আসলে এটি করব?
 
-ক্লায়েন্ট সার্ভারের সাথে কীভাবে ইন্টারঅ্যাক্ট করবে:
+ক্লায়েন্টটি সার্ভারের সাথে এভাবে যোগাযোগ করবে:
 
-1. সার্ভারের সাথে সংযোগ স্থাপন করা।
+1. সার্ভারের সাথে সংযোগ স্থাপন করুন।
 
-1. ক্ষমতা, প্রম্পট, রিসোর্স এবং টুলস তালিকাভুক্ত করা এবং তাদের স্কিমা সংরক্ষণ করা।
+1. সক্ষমতা, প্রম্পট, রিসোর্স এবং টুল তালিকাভুক্ত করুন এবং তাদের স্কিমা সংরক্ষণ করুন।
 
-1. একটি LLM যোগ করা এবং সংরক্ষিত ক্ষমতা ও তাদের স্কিমা এমন ফরম্যাটে LLM-কে দেওয়া যা সে বুঝতে পারে।
+1. একটি LLM যোগ করুন এবং সংরক্ষিত সক্ষমতা এবং তাদের স্কিমা এমন একটি ফরম্যাটে পাস করুন যা LLM বুঝতে পারে।
 
-1. ব্যবহারকারীর প্রম্পট হ্যান্ডেল করা, সেটি LLM-কে পাঠানো এবং ক্লায়েন্টের তালিকাভুক্ত টুলসের সাথে ব্যবহার করা।
+1. একটি ব্যবহারকারীর প্রম্পট পরিচালনা করুন এবং এটি LLM-এ পাস করুন ক্লায়েন্ট দ্বারা তালিকাভুক্ত টুলগুলির সাথে।
 
-দারুণ, এখন আমরা উচ্চ স্তরে বুঝে গেছি কীভাবে এটি করা যায়, নিচের অনুশীলনে এটি চেষ্টা করি।
+দারুণ, এখন আমরা উচ্চ স্তরে এটি কীভাবে করতে পারি তা বুঝতে পেরেছি, নিচের অনুশীলনে এটি চেষ্টা করি।
 
-## অনুশীলন: LLM সহ ক্লায়েন্ট তৈরি করা
+## অনুশীলন: একটি LLM সহ ক্লায়েন্ট তৈরি করা
 
-এই অনুশীলনে, আমরা শিখব কীভাবে আমাদের ক্লায়েন্টে একটি LLM যোগ করতে হয়।
+এই অনুশীলনে, আমরা আমাদের ক্লায়েন্টে একটি LLM যোগ করতে শিখব।
 
-## GitHub Personal Access Token দিয়ে প্রমাণীকরণ
+### GitHub Personal Access Token ব্যবহার করে প্রমাণীকরণ
 
-GitHub টোকেন তৈরি করা সহজ একটি প্রক্রিয়া। এভাবে করতে পারেন:
+GitHub টোকেন তৈরি করা একটি সহজ প্রক্রিয়া। এটি কীভাবে করবেন:
 
-- GitHub Settings-এ যান – উপরের ডান কোণে আপনার প্রোফাইল ছবি ক্লিক করে Settings নির্বাচন করুন।
-- Developer Settings-এ যান – নিচে স্ক্রল করে Developer Settings ক্লিক করুন।
-- Personal Access Tokens নির্বাচন করুন – Personal access tokens ক্লিক করে Generate new token নির্বাচন করুন।
-- আপনার টোকেন কনফিগার করুন – রেফারেন্সের জন্য একটি নোট যোগ করুন, মেয়াদ নির্ধারণ করুন এবং প্রয়োজনীয় স্কোপ (অনুমতি) নির্বাচন করুন।
-- টোকেন তৈরি করুন এবং কপি করুন – Generate token ক্লিক করুন এবং তাৎক্ষণিক কপি করে রাখুন, কারণ পরে আর দেখতে পারবেন না।
+- GitHub সেটিংসে যান – উপরের ডান কোণে আপনার প্রোফাইল ছবিতে ক্লিক করুন এবং সেটিংস নির্বাচন করুন।
+- Developer Settings-এ যান – স্ক্রল করুন এবং Developer Settings-এ ক্লিক করুন।
+- Personal Access Tokens নির্বাচন করুন – Fine-grained tokens-এ ক্লিক করুন এবং নতুন টোকেন তৈরি করুন।
+- আপনার টোকেন কনফিগার করুন – রেফারেন্সের জন্য একটি নোট যোগ করুন, একটি মেয়াদ শেষ হওয়ার তারিখ সেট করুন এবং প্রয়োজনীয় স্কোপ (অনুমতি) নির্বাচন করুন। এই ক্ষেত্রে নিশ্চিত করুন যে আপনি Models অনুমতি যোগ করেছেন।
+- টোকেন তৈরি করুন এবং কপি করুন – Generate token-এ ক্লিক করুন এবং এটি অবিলম্বে কপি করুন, কারণ আপনি এটি আবার দেখতে পারবেন না।
 
-### -1- সার্ভারের সাথে সংযোগ স্থাপন
+### -1- সার্ভারের সাথে সংযোগ স্থাপন করুন
 
-প্রথমে আমাদের ক্লায়েন্ট তৈরি করি:
+চলুন প্রথমে আমাদের ক্লায়েন্ট তৈরি করি:
 
-### TypeScript
+#### TypeScript
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -94,11 +94,11 @@ class MCPClient {
 
 উপরের কোডে আমরা:
 
-- প্রয়োজনীয় লাইব্রেরি ইমপোর্ট করেছি
-- একটি ক্লাস তৈরি করেছি যার দুটি সদস্য `client` এবং `openai` আছে, যা আমাদের ক্লায়েন্ট পরিচালনা এবং LLM-এর সাথে ইন্টারঅ্যাক্ট করতে সাহায্য করবে।
-- আমাদের LLM ইনস্ট্যান্স GitHub Models ব্যবহার করার জন্য কনফিগার করেছি, যেখানে `baseUrl` ইনফারেন্স API নির্দেশ করে।
+- প্রয়োজনীয় লাইব্রেরি আমদানি করেছি।
+- দুটি সদস্য `client` এবং `openai` সহ একটি ক্লাস তৈরি করেছি যা আমাদের ক্লায়েন্ট পরিচালনা করতে এবং একটি LLM-এর সাথে যোগাযোগ করতে সাহায্য করবে।
+- আমাদের LLM ইনস্ট্যান্স কনফিগার করেছি যাতে GitHub Models ব্যবহার করা যায় `baseUrl` সেট করে ইনফারেন্স API-তে নির্দেশ করার জন্য।
 
-### Python
+#### Python
 
 ```python
 from mcp import ClientSession, StdioServerParameters, types
@@ -130,10 +130,10 @@ if __name__ == "__main__":
 
 উপরের কোডে আমরা:
 
-- MCP এর জন্য প্রয়োজনীয় লাইব্রেরি ইমপোর্ট করেছি
-- একটি ক্লায়েন্ট তৈরি করেছি
+- MCP-এর জন্য প্রয়োজনীয় লাইব্রেরি আমদানি করেছি।
+- একটি ক্লায়েন্ট তৈরি করেছি।
 
-### .NET
+#### .NET
 
 ```csharp
 using Azure;
@@ -154,9 +154,9 @@ var clientTransport = new StdioClientTransport(new()
 await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
 ```
 
-### Java
+#### Java
 
-প্রথমে, আপনার `pom.xml` ফাইলে LangChain4j ডিপেন্ডেন্সি যোগ করতে হবে। MCP ইন্টিগ্রেশন এবং GitHub Models সাপোর্টের জন্য নিচের ডিপেন্ডেন্সিগুলো যোগ করুন:
+প্রথমে, আপনাকে আপনার `pom.xml` ফাইলে LangChain4j ডিপেনডেন্সি যোগ করতে হবে। MCP ইন্টিগ্রেশন এবং GitHub Models সমর্থন সক্ষম করতে এই ডিপেনডেন্সি যোগ করুন:
 
 ```xml
 <properties>
@@ -193,7 +193,7 @@ await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
 </dependencies>
 ```
 
-তারপর আপনার Java ক্লায়েন্ট ক্লাস তৈরি করুন:
+তারপর আপনার Java ক্লায়েন্ট ক্লাস তৈরি করুন:
 
 ```java
 import dev.langchain4j.mcp.McpToolProvider;
@@ -237,22 +237,102 @@ public class LangChain4jClient {
 
 উপরের কোডে আমরা:
 
-- **LangChain4j ডিপেন্ডেন্সি যোগ করেছি**: MCP ইন্টিগ্রেশন, OpenAI অফিসিয়াল ক্লায়েন্ট এবং GitHub Models সাপোর্টের জন্য
-- **LangChain4j লাইব্রেরি ইমপোর্ট করেছি**: MCP ইন্টিগ্রেশন এবং OpenAI চ্যাট মডেল ফাংশনালিটির জন্য
-- **`ChatLanguageModel` তৈরি করেছি**: GitHub Models ব্যবহার করার জন্য আপনার GitHub টোকেন দিয়ে কনফিগার করা
-- **HTTP ট্রান্সপোর্ট সেটআপ করেছি**: Server-Sent Events (SSE) ব্যবহার করে MCP সার্ভারের সাথে সংযোগের জন্য
-- **MCP ক্লায়েন্ট তৈরি করেছি**: যা সার্ভারের সাথে যোগাযোগ পরিচালনা করবে
-- **LangChain4j এর বিল্ট-ইন MCP সাপোর্ট ব্যবহার করেছি**: যা LLM এবং MCP সার্ভারের মধ্যে ইন্টিগ্রেশন সহজ করে
+- **LangChain4j ডিপেনডেন্সি যোগ করেছি**: MCP ইন্টিগ্রেশন, OpenAI অফিসিয়াল ক্লায়েন্ট এবং GitHub Models সমর্থনের জন্য প্রয়োজনীয়।
+- **LangChain4j লাইব্রেরি আমদানি করেছি**: MCP ইন্টিগ্রেশন এবং OpenAI চ্যাট মডেল কার্যকারিতার জন্য।
+- **একটি `ChatLanguageModel` তৈরি করেছি**: GitHub টোকেন ব্যবহার করে GitHub Models কনফিগার করেছি।
+- **HTTP ট্রান্সপোর্ট সেট আপ করেছি**: Server-Sent Events (SSE) ব্যবহার করে MCP সার্ভারের সাথে সংযোগ স্থাপন করেছি।
+- **একটি MCP ক্লায়েন্ট তৈরি করেছি**: যা সার্ভারের সাথে যোগাযোগ পরিচালনা করবে।
+- **LangChain4j-এর বিল্ট-ইন MCP সমর্থন ব্যবহার করেছি**: যা LLM এবং MCP সার্ভারের মধ্যে ইন্টিগ্রেশন সহজ করে।
 
-দারুণ, পরবর্তী ধাপে চলুন সার্ভারের ক্ষমতাগুলো তালিকাভুক্ত করি।
+#### Rust
 
-### -2- সার্ভারের ক্ষমতাগুলো তালিকাভুক্ত করা
+এই উদাহরণটি ধরে নিচ্ছে যে আপনার একটি Rust ভিত্তিক MCP সার্ভার চলছে। যদি আপনার কাছে এটি না থাকে, তাহলে [01-first-server](../01-first-server/README.md) পাঠে ফিরে যান এবং সার্ভার তৈরি করুন।
 
-এখন আমরা সার্ভারের সাথে সংযোগ করব এবং তার ক্ষমতাগুলো জানতে চাইব:
+আপনার Rust MCP সার্ভার তৈরি করার পরে, একটি টার্মিনাল খুলুন এবং সার্ভারের মতো ডিরেক্টরিতে যান। তারপর একটি নতুন LLM ক্লায়েন্ট প্রকল্প তৈরি করতে নিম্নলিখিত কমান্ড চালান:
 
-### TypeScript
+```bash
+mkdir calculator-llmclient
+cd calculator-llmclient
+cargo init
+```
 
-একই ক্লাসে নিচের মেথডগুলো যোগ করুন:
+আপনার `Cargo.toml` ফাইলে নিম্নলিখিত ডিপেনডেন্সি যোগ করুন:
+
+```toml
+[dependencies]
+async-openai = { version = "0.29.0", features = ["byot"] }
+rmcp = { version = "0.5.0", features = ["client", "transport-child-process"] }
+serde_json = "1.0.141"
+tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
+```
+
+> [!NOTE]
+> OpenAI-এর জন্য কোনও অফিসিয়াল Rust লাইব্রেরি নেই, তবে `async-openai` ক্রেট একটি [কমিউনিটি দ্বারা রক্ষণাবেক্ষিত লাইব্রেরি](https://platform.openai.com/docs/libraries/rust#rust) যা সাধারণত ব্যবহৃত হয়।
+
+`src/main.rs` ফাইলটি খুলুন এবং এর বিষয়বস্তু নিম্নলিখিত কোড দিয়ে প্রতিস্থাপন করুন:
+
+```rust
+use async_openai::{Client, config::OpenAIConfig};
+use rmcp::{
+    RmcpError,
+    model::{CallToolRequestParam, ListToolsResult},
+    service::{RoleClient, RunningService, ServiceExt},
+    transport::{ConfigureCommandExt, TokioChildProcess},
+};
+use serde_json::{Value, json};
+use std::error::Error;
+use tokio::process::Command;
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    // Initial message
+    let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
+
+    // Setup OpenAI client
+    let api_key = std::env::var("OPENAI_API_KEY")?;
+    let openai_client = Client::with_config(
+        OpenAIConfig::new()
+            .with_api_base("https://models.github.ai/inference/chat")
+            .with_api_key(api_key),
+    );
+
+    // Setup MCP client
+    let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .unwrap()
+        .join("calculator-server");
+
+    let mcp_client = ()
+        .serve(
+            TokioChildProcess::new(Command::new("cargo").configure(|cmd| {
+                cmd.arg("run").current_dir(server_dir);
+            }))
+            .map_err(RmcpError::transport_creation::<TokioChildProcess>)?,
+        )
+        .await?;
+
+    // TODO: Get MCP tool listing 
+
+    // TODO: LLM conversation with tool calls
+
+    Ok(())
+}
+```
+
+এই কোডটি একটি বেসিক Rust অ্যাপ্লিকেশন সেট আপ করে যা MCP সার্ভার এবং GitHub Models-এর সাথে LLM ইন্টারঅ্যাকশনের জন্য সংযোগ স্থাপন করবে।
+
+> [!IMPORTANT]
+> অ্যাপ্লিকেশন চালানোর আগে আপনার GitHub টোকেন দিয়ে `OPENAI_API_KEY` পরিবেশ ভেরিয়েবল সেট করতে ভুলবেন না।
+
+দারুণ, আমাদের পরবর্তী ধাপে, চলুন সার্ভারে সক্ষমতা তালিকাভুক্ত করি।
+
+### -2- সার্ভারের সক্ষমতা তালিকাভুক্ত করুন
+
+এখন আমরা সার্ভারের সাথে সংযোগ করব এবং তার সক্ষমতা জিজ্ঞাসা করব:
+
+#### TypeScript
+
+একই ক্লাসে, নিম্নলিখিত পদ্ধতিগুলি যোগ করুন:
 
 ```typescript
 async connectToServer(transport: Transport) {
@@ -271,10 +351,10 @@ async run() {
 
 উপরের কোডে আমরা:
 
-- সার্ভারের সাথে সংযোগ করার জন্য `connectToServer` কোড যোগ করেছি।
-- একটি `run` মেথড তৈরি করেছি যা আমাদের অ্যাপ ফ্লো পরিচালনা করবে। এখন পর্যন্ত এটি শুধু টুলস তালিকাভুক্ত করে, তবে আমরা শীঘ্রই আরও যোগ করব।
+- সার্ভারের সাথে সংযোগ স্থাপন করার জন্য কোড যোগ করেছি, `connectToServer`।
+- একটি `run` পদ্ধতি তৈরি করেছি যা আমাদের অ্যাপের প্রবাহ পরিচালনার জন্য দায়ী। এখন পর্যন্ত এটি শুধুমাত্র টুল তালিকাভুক্ত করে, তবে আমরা শীঘ্রই আরও যোগ করব।
 
-### Python
+#### Python
 
 ```python
 # List available resources
@@ -291,11 +371,11 @@ for tool in tools.tools:
     print("Tool", tool.inputSchema["properties"])
 ```
 
-আমরা যা যোগ করেছি:
+এখানে আমরা যোগ করেছি:
 
-- রিসোর্স এবং টুলস তালিকাভুক্ত করেছি এবং প্রিন্ট করেছি। টুলসের জন্য আমরা `inputSchema` ও তালিকাভুক্ত করেছি যা পরে ব্যবহার করব।
+- রিসোর্স এবং টুল তালিকাভুক্ত করেছি এবং সেগুলি প্রিন্ট করেছি। টুলগুলির জন্য আমরা `inputSchema` তালিকাভুক্ত করেছি যা আমরা পরে ব্যবহার করব।
 
-### .NET
+#### .NET
 
 ```csharp
 async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -311,7 +391,7 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
         Console.WriteLine($"Tool description: {tool.Description}");
         Console.WriteLine($"Tool parameters: {tool.JsonSchema}");
 
-        // TODO: convert tool defintion from MCP tool to LLm tool     
+        // TODO: convert tool definition from MCP tool to LLm tool     
     }
 
     return toolDefinitions;
@@ -320,10 +400,10 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 
 উপরের কোডে আমরা:
 
-- MCP সার্ভারে উপলব্ধ টুলস তালিকাভুক্ত করেছি
-- প্রতিটি টুলের নাম, বর্ণনা এবং তার স্কিমা তালিকাভুক্ত করেছি। স্কিমাটি আমরা শীঘ্রই টুল কল করার জন্য ব্যবহার করব।
+- MCP সার্ভারে উপলব্ধ টুলগুলি তালিকাভুক্ত করেছি।
+- প্রতিটি টুলের জন্য নাম, বিবরণ এবং এর স্কিমা তালিকাভুক্ত করেছি। পরবর্তীটি আমরা শীঘ্রই টুলগুলি কল করতে ব্যবহার করব।
 
-### Java
+#### Java
 
 ```java
 // Create a tool provider that automatically discovers MCP tools
@@ -339,17 +419,26 @@ ToolProvider toolProvider = McpToolProvider.builder()
 
 উপরের কোডে আমরা:
 
-- একটি `McpToolProvider` তৈরি করেছি যা স্বয়ংক্রিয়ভাবে MCP সার্ভার থেকে সব টুল আবিষ্কার ও রেজিস্টার করে
-- টুল প্রোভাইডার MCP টুল স্কিমা এবং LangChain4j এর টুল ফরম্যাটের মধ্যে রূপান্তর নিজেই পরিচালনা করে
-- এই পদ্ধতি ম্যানুয়াল টুল তালিকা ও রূপান্তর প্রক্রিয়া থেকে মুক্তি দেয়
+- একটি `McpToolProvider` তৈরি করেছি যা MCP সার্ভার থেকে সমস্ত টুল স্বয়ংক্রিয়ভাবে আবিষ্কার এবং নিবন্ধন করে।
+- টুল প্রদানকারী অভ্যন্তরীণভাবে MCP টুল স্কিমা এবং LangChain4j-এর টুল ফরম্যাটের মধ্যে রূপান্তর পরিচালনা করে।
+- এই পদ্ধতি ম্যানুয়াল টুল তালিকাভুক্তি এবং রূপান্তর প্রক্রিয়াকে সরিয়ে দেয়।
 
-### -3- সার্ভারের ক্ষমতাগুলো LLM টুলসে রূপান্তর করা
+#### Rust
 
-সার্ভারের ক্ষমতাগুলো তালিকাভুক্ত করার পরের ধাপ হলো সেগুলো এমন ফরম্যাটে রূপান্তর করা যা LLM বুঝতে পারে। একবার আমরা এটি করলে, আমরা এই ক্ষমতাগুলো LLM এর টুল হিসেবে দিতে পারব।
+MCP সার্ভার থেকে টুলগুলি পুনরুদ্ধার করা `list_tools` পদ্ধতি ব্যবহার করে করা হয়। আপনার `main` ফাংশনে, MCP ক্লায়েন্ট সেট আপ করার পরে, নিম্নলিখিত কোড যোগ করুন:
 
-### TypeScript
+```rust
+// Get MCP tool listing 
+let tools = mcp_client.list_tools(Default::default()).await?;
+```
 
-1. MCP সার্ভারের রেসপন্সকে LLM ব্যবহারযোগ্য টুল ফরম্যাটে রূপান্তর করার জন্য নিচের কোড যোগ করুন:
+### -3- সার্ভারের সক্ষমতাগুলিকে LLM টুলে রূপান্তর করুন
+
+সার্ভারের সক্ষমতাগুলি তালিকাভুক্ত করার পরের ধাপটি হল সেগুলিকে এমন একটি ফরম্যাটে রূপান্তর করা যা LLM বুঝতে পারে। একবার আমরা এটি করলে, আমরা এই সক্ষমতাগুলি LLM-এ টুল হিসাবে প্রদান করতে পারি।
+
+#### TypeScript
+
+1. MCP সার্ভার থেকে প্রাপ্ত প্রতিক্রিয়াকে LLM-এর জন্য টুল সংজ্ঞা ফরম্যাটে রূপান্তর করতে নিম্নলিখিত কোড যোগ করুন:
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -376,9 +465,9 @@ ToolProvider toolProvider = McpToolProvider.builder()
 
     ```
 
-    উপরের কোড MCP সার্ভারের রেসপন্স নিয়ে সেটিকে LLM বুঝতে পারার মতো টুল ডেফিনিশনে রূপান্তর করে।
+    উপরের কোডটি MCP সার্ভার থেকে একটি প্রতিক্রিয়া গ্রহণ করে এবং এটি একটি টুল সংজ্ঞা ফরম্যাটে রূপান্তর করে যা LLM বুঝতে পারে।
 
-1. এরপর `run` মেথড আপডেট করুন সার্ভারের ক্ষমতাগুলো তালিকাভুক্ত করার জন্য:
+1. পরবর্তী ধাপে, `run` পদ্ধতিটি আপডেট করুন যাতে সার্ভারের সক্ষমতাগুলি তালিকাভুক্ত করা যায়:
 
     ```typescript
     async run() {
@@ -394,11 +483,11 @@ ToolProvider toolProvider = McpToolProvider.builder()
     }
     ```
 
-    উপরের কোডে, আমরা `run` মেথড আপডেট করেছি যাতে রেজাল্টের প্রতিটি এন্ট্রির জন্য `openAiToolAdapter` কল করা হয়।
+    উপরের কোডে, আমরা `run` পদ্ধতিটি আপডেট করেছি যাতে ফলাফলের মাধ্যমে ম্যাপ করা যায় এবং প্রতিটি এন্ট্রির জন্য `openAiToolAdapter` কল করা যায়।
 
-### Python
+#### Python
 
-1. প্রথমে, নিচের কনভার্টার ফাংশন তৈরি করি:
+1. প্রথমে, নিম্নলিখিত রূপান্তরকারী ফাংশন তৈরি করুন:
 
     ```python
     def convert_to_llm_tool(tool):
@@ -418,9 +507,9 @@ ToolProvider toolProvider = McpToolProvider.builder()
         return tool_schema
     ```
 
-    `convert_to_llm_tools` ফাংশনে MCP টুল রেসপন্স নিয়ে সেটিকে LLM বুঝতে পারার ফরম্যাটে রূপান্তর করা হয়।
+    উপরের ফাংশনে `convert_to_llm_tools` আমরা MCP টুল প্রতিক্রিয়া গ্রহণ করি এবং এটি এমন একটি ফরম্যাটে রূপান্তর করি যা LLM বুঝতে পারে।
 
-1. এরপর আমাদের ক্লায়েন্ট কোড আপডেট করি এই ফাংশন ব্যবহার করার জন্য:
+1. পরবর্তী ধাপে, আমাদের ক্লায়েন্ট কোড আপডেট করুন যাতে এই ফাংশনটি ব্যবহার করা যায়:
 
     ```python
     for tool in tools.tools:
@@ -429,11 +518,11 @@ ToolProvider toolProvider = McpToolProvider.builder()
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    এখানে আমরা MCP টুল রেসপন্সকে LLM-এ ফিড করার জন্য `convert_to_llm_tool` কল যোগ করেছি।
+    এখানে, আমরা MCP টুল প্রতিক্রিয়াকে `convert_to_llm_tool` কল করে রূপান্তর করছি যাতে আমরা পরে LLM-এ এটি ফিড করতে পারি।
 
-### .NET
+#### .NET
 
-1. MCP টুল রেসপন্সকে LLM বুঝতে পারার ফরম্যাটে রূপান্তর করার কোড যোগ করি:
+1. MCP টুল প্রতিক্রিয়াকে এমন কিছুতে রূপান্তর করতে কোড যোগ করুন যা LLM বুঝতে পারে:
 
 ```csharp
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
@@ -458,10 +547,10 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 
 উপরের কোডে আমরা:
 
-- `ConvertFrom` ফাংশন তৈরি করেছি যা নাম, বর্ণনা এবং ইনপুট স্কিমা নেয়।
-- একটি ফাংশনালিটি ডিফাইন করেছি যা `FunctionDefinition` তৈরি করে এবং সেটি `ChatCompletionsDefinition` এ পাস করে। পরেরটি LLM বুঝতে পারে।
+- একটি `ConvertFrom` ফাংশন তৈরি করেছি যা নাম, বিবরণ এবং ইনপুট স্কিমা গ্রহণ করে।
+- একটি FunctionDefinition তৈরি করার কার্যকারিতা সংজ্ঞায়িত করেছি যা একটি ChatCompletionsDefinition-এ পাস করা হয়। এটি এমন কিছু যা LLM বুঝতে পারে।
 
-1. এখন দেখি কীভাবে বিদ্যমান কোড আপডেট করে এই ফাংশনের সুবিধা নেওয়া যায়:
+1. উপরের ফাংশনটি ব্যবহার করার জন্য কিছু বিদ্যমান কোড আপডেট করার উপায় দেখুন:
 
     ```csharp
     async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -489,11 +578,9 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 
         return toolDefinitions;
     }
-    ```
+    ```    In the preceding code, we've:
 
-    উপরের কোডে আমরা:
-
-    - MCP টুল রেসপন্সকে LLM টুলে রূপান্তর করার জন্য ফাংশন আপডেট করেছি। নিচে আমরা যোগ করা কোড হাইলাইট করছি:
+    - Update the function to convert the MCP tool response to an LLm tool. Let's highlight the code we added:
 
         ```csharp
         JsonElement propertiesElement;
@@ -504,9 +591,9 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
         toolDefinitions.Add(def);
         ```
 
-        ইনপুট স্কিমা টুল রেসপন্সের অংশ, কিন্তু "properties" অ্যাট্রিবিউটে থাকে, তাই সেটি বের করতে হয়। এরপর আমরা `ConvertFrom` কল করি টুলের বিস্তারিত নিয়ে। এখন আমরা মূল কাজ শেষ করেছি, চলুন দেখি কীভাবে এটি ব্যবহারকারীর প্রম্পট হ্যান্ডেল করার সময় একসাথে কাজ করে।
+        The input schema is part of the tool response but on the "properties" attribute, so we need to extract. Furthermore, we now call `ConvertFrom` with the tool details. Now we've done the heavy lifting, let's see how it call comes together as we handle a user prompt next.
 
-### Java
+#### Java
 
 ```java
 // Create a Bot interface for natural language interaction
@@ -523,20 +610,57 @@ Bot bot = AiServices.builder(Bot.class)
 
 উপরের কোডে আমরা:
 
-- প্রাকৃতিক ভাষায় ইন্টারঅ্যাকশনের জন্য একটি সাধারণ `Bot` ইন্টারফেস ডিফাইন করেছি
-- LangChain4j এর `AiServices` ব্যবহার করেছি যা স্বয়ংক্রিয়ভাবে LLM এবং MCP টুল প্রোভাইডারকে বেঁধে দেয়
-- ফ্রেমওয়ার্ক স্বয়ংক্রিয়ভাবে টুল স্কিমা রূপান্তর এবং ফাংশন কলিং পরিচালনা করে
-- এই পদ্ধতি ম্যানুয়াল টুল রূপান্তর প্রয়োজনীয়তা দূর করে - LangChain4j MCP টুলগুলোকে LLM-সঙ্গত ফরম্যাটে রূপান্তর করার সব জটিলতা সামলায়
+- প্রাকৃতিক ভাষার ইন্টারঅ্যাকশনের জন্য একটি সাধারণ `Bot` ইন্টারফেস সংজ্ঞায়িত করেছি।
+- LangChain4j-এর `AiServices` ব্যবহার করেছি যাতে LLM এবং MCP টুল প্রদানকারী স্বয়ংক্রিয়ভাবে বাঁধা যায়।
+- ফ্রেমওয়ার্কটি অভ্যন্তরীণভাবে টুল স্কিমা রূপান্তর এবং ফাংশন কল পরিচালনা করে।
+- এই পদ্ধতি ম্যানুয়াল টুল রূপান্তর দূর করে - LangChain4j MCP টুলগুলিকে LLM-সামঞ্জস্যপূর্ণ ফরম্যাটে রূপান্তর করার সমস্ত জটিলতা পরিচালনা করে।
 
-দারুণ, এখন আমরা ব্যবহারকারীর অনুরোধ হ্যান্ডেল করার জন্য প্রস্তুত, তাই চলুন সেটি করি।
+#### Rust
 
-### -4- ব্যবহারকারীর প্রম্পট হ্যান্ডেল করা
+MCP টুল প্রতিক্রিয়াকে এমন একটি ফরম্যাটে রূপান্তর করতে যা LLM বুঝতে পারে, আমরা একটি হেল্পার ফাংশন যোগ করব যা টুল তালিকাকে ফরম্যাট করে। আপনার `main.rs` ফাইলে `main` ফাংশনের নিচে নিম্নলিখিত কোড যোগ করুন। এটি LLM-এ অনুরোধ করার সময় ডাকা হবে:
 
-এই অংশে আমরা ব্যবহারকারীর অনুরোধ হ্যান্ডেল করব।
+```rust
+async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
+    let tools_json = serde_json::to_value(tools)?;
+    let Some(tools_array) = tools_json.get("tools").and_then(|t| t.as_array()) else {
+        return Ok(vec![]);
+    };
 
-### TypeScript
+    let formatted_tools = tools_array
+        .iter()
+        .filter_map(|tool| {
+            let name = tool.get("name")?.as_str()?;
+            let description = tool.get("description")?.as_str()?;
+            let schema = tool.get("inputSchema")?;
 
-1. LLM কল করার জন্য একটি মেথড যোগ করুন:
+            Some(json!({
+                "type": "function",
+                "function": {
+                    "name": name,
+                    "description": description,
+                    "parameters": {
+                        "type": "object",
+                        "properties": schema.get("properties").unwrap_or(&json!({})),
+                        "required": schema.get("required").unwrap_or(&json!([]))
+                    }
+                }
+            }))
+        })
+        .collect();
+
+    Ok(formatted_tools)
+}
+```
+
+দারুণ, আমরা এখন কোনও ব্যবহারকারীর অনুরোধ পরিচালনা করতে প্রস্তুত, তাই চলুন এটি পরবর্তী ধাপে মোকাবিলা করি।
+
+### -4- ব্যবহারকারীর প্রম্পট অনুরোধ পরিচালনা করুন
+
+এই অংশে, আমরা ব্যবহারকারীর অনুরোধগুলি পরিচালনা করব।
+
+#### TypeScript
+
+1. একটি পদ্ধতি যোগ করুন যা আমাদের LLM-কে কল করতে ব্যবহার করা হবে:
 
     ```typescript
     async callTools(
@@ -567,8 +691,8 @@ Bot bot = AiServices.builder(Bot.class)
 
     উপরের কোডে আমরা:
 
-    - `callTools` মেথড যোগ করেছি।
-    - মেথডটি LLM রেসপন্স নিয়ে দেখে কোন টুল কল হয়েছে কিনা:
+    - একটি `callTools` পদ্ধতি যোগ করেছি।
+    - পদ্ধতিটি একটি LLM প্রতিক্রিয়া গ্রহণ করে এবং পরীক্ষা করে যে কোনও টুল কল করা হয়েছে কিনা:
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -581,7 +705,7 @@ Bot bot = AiServices.builder(Bot.class)
         }
         ```
 
-    - যদি LLM নির্দেশ দেয়, তাহলে টুল কল করে:
+    - যদি LLM নির্দেশ করে যে এটি কল করা উচিত, তাহলে একটি টুল কল করে:
 
         ```typescript
         // 2. Call the server's tool 
@@ -596,7 +720,7 @@ Bot bot = AiServices.builder(Bot.class)
         // TODO  
         ```
 
-1. `run` মেথড আপডেট করুন যাতে LLM কল এবং `callTools` কল অন্তর্ভুক্ত থাকে:
+1. `run` পদ্ধতিটি আপডেট করুন যাতে LLM-এ কল এবং `callTools` কল অন্তর্ভুক্ত থাকে:
 
     ```typescript
 
@@ -632,7 +756,7 @@ Bot bot = AiServices.builder(Bot.class)
     });
     ```
 
-দারুণ, পুরো কোডটি নিচে দেওয়া হলো:
+দারুণ, পুরো কোডটি তালিকাভুক্ত করি:
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -650,8 +774,6 @@ class MyClient {
             apiKey: process.env.GITHUB_TOKEN,
         });
 
-       
-        
         this.client = new Client(
             {
                 name: "example-client",
@@ -771,9 +893,9 @@ let client = new MyClient();
 client.connectToServer(transport);
 ```
 
-### Python
+#### Python
 
-1. LLM কল করার জন্য প্রয়োজনীয় কিছু ইমপোর্ট যোগ করি:
+1. LLM কল করার জন্য প্রয়োজনীয় কিছু আমদানি যোগ করুন:
 
     ```python
     # llm
@@ -784,7 +906,7 @@ client.connectToServer(transport);
     import json
     ```
 
-1. এরপর LLM কল করার ফাংশন যোগ করি:
+1. পরবর্তী ধাপে, LLM-কে কল করার জন্য একটি ফাংশন যোগ করুন:
 
     ```python
     # llm
@@ -836,12 +958,12 @@ client.connectToServer(transport);
 
     উপরের কোডে আমরা:
 
-    - MCP সার্ভার থেকে পাওয়া এবং রূপান্তরিত ফাংশনগুলো LLM-কে দিয়েছি।
-    - তারপর LLM কল করেছি ঐ ফাংশনগুলো দিয়ে।
-    - ফলাফল দেখে কোন ফাংশন কল করতে হবে তা নির্ধারণ করেছি।
-    - অবশেষে কল করার জন্য ফাংশনের একটি অ্যারে পাস করেছি।
+    - আমাদের ফাংশনগুলি, যা আমরা MCP সার্ভারে খুঁজে পেয়েছি এবং রূপান্তর করেছি, LLM-এ পাস করেছি।
+    - তারপর আমরা উক্ত ফাংশনগুলির সাথে LLM-কে কল করেছি।
+    - তারপর, আমরা ফলাফলটি পরিদর্শন করছি যে কোন ফাংশনগুলি কল করা উচিত কিনা।
+    - অবশেষে, আমরা কল করার জন্য একটি ফাংশনের অ্যারে পাস করছি।
 
-1. শেষ ধাপে আমাদের মূল কোড আপডেট করি:
+1. চূড়ান্ত ধাপ, আমাদের প্রধান কোড আপডেট করুন:
 
     ```python
     prompt = "Add 2 to 20"
@@ -855,14 +977,14 @@ client.connectToServer(transport);
         print("TOOLS result: ", result.content)
     ```
 
-    এখানে আমরা:
+    সেখানে, এটি চূড়ান্ত ধাপ ছিল, উপরের কোডে আমরা:
 
-    - LLM প্রম্পট অনুযায়ী MCP টুল কল করছি `call_tool` ফাংশনের মাধ্যমে।
-    - MCP সার্ভারের টুল কলের ফলাফল প্রিন্ট করছি।
+    - একটি MCP টুল কল করছি `call_tool` ব্যবহার করে একটি ফাংশন যা LLM মনে করে আমাদের প্রম্পটের উপর ভিত্তি করে কল করা উচিত।
+    - MCP সার্ভারে টুল কলের ফলাফল প্রিন্ট করছি।
 
-### .NET
+#### .NET
 
-1. LLM প্রম্পট রিকোয়েস্ট করার কোড দেখাই:
+1. একটি LLM প্রম্পট অনুরোধ করার জন্য কিছু কোড দেখাই:
 
     ```csharp
     var tools = await GetMcpTools();
@@ -898,12 +1020,12 @@ client.connectToServer(transport);
 
     উপরের কোডে আমরা:
 
-    - MCP সার্ভার থেকে টুলস নিয়ে এসেছি, `var tools = await GetMcpTools()`.
-    - একটি ব্যবহারকারীর প্রম্পট `userMessage` ডিফাইন করেছি।
-    - মডেল এবং টুলস নির্দিষ্ট করে অপশন অবজেক্ট তৈরি করেছি।
-    - LLM-এ রিকোয়েস্ট পাঠিয়েছি।
+    - MCP সার্ভার থেকে টুলগুলি পুনরুদ্ধার করেছি, `var tools = await GetMcpTools()`।
+    - একটি ব্যবহারকারীর প্রম্পট `userMessage` সংজ্ঞায়িত করেছি।
+    - একটি অপশন অবজেক্ট তৈরি করেছি যা মডেল এবং টুলগুলি নির্দিষ্ট করে।
+    - LLM-এর দিকে একটি অনুরোধ করেছি।
 
-1. শেষ ধাপে দেখি LLM কি ফাংশন কল করা উচিত মনে করে:
+1. একটি শেষ ধাপ, দেখি LLM মনে করে আমাদের একটি ফাংশন কল করা উচিত কিনা:
 
     ```csharp
     // 4. Check if the response contains a function call
@@ -928,10 +1050,10 @@ client.connectToServer(transport);
 
     উপরের কোডে আমরা:
 
-    - ফাংশন কলের তালিকা লুপ করেছি।
-    - প্রতিটি টুল কলের জন্য নাম ও আর্গুমেন্ট পার্স করে MCP সার্ভারে কল করেছি এবং ফলাফল প্রিন্ট করেছি।
+    - একটি ফাংশন কলের তালিকার মাধ্যমে লুপ করেছি।
+    - প্রতিটি টুল কলের জন্য, নাম এবং আর্গুমেন্টগুলি বের করেছি এবং MCP ক্লায়েন্ট ব্যবহার করে MCP সার্ভারে টুলটি কল করেছি। অবশেষে আমরা ফলাফলগুলি প্রিন্ট করেছি।
 
-পুরো কোড নিচে দেওয়া হলো:
+এখানে পুরো কোড:
 
 ```csharp
 using Azure;
@@ -1058,7 +1180,7 @@ for (int i = 0; i < response.ToolCalls.Count; i++)
 Console.WriteLine($"Assistant response: {content}");
 ```
 
-### Java
+#### Java
 
 ```java
 try {
@@ -1078,13 +1200,13 @@ try {
 
 উপরের কোডে আমরা:
 
-- সহজ প্রাকৃতিক ভাষার প্রম্পট ব্যবহার করে MCP সার্ভারের টুলসের সাথে ইন্টারঅ্যাক্ট করেছি
-- LangChain4j ফ্রেমওয়ার্ক স্বয়ংক্রিয়ভাবে পরিচালনা করে:
-  - প্রয়োজন হলে ব্যবহারকারীর প্রম্পটকে টুল কল এ রূপান্তর করা
-  - LLM এর সিদ্ধান্ত অনুযায়ী MCP টুলস কল করা
-  - LLM এবং MCP সার্ভারের মধ্যে কথোপকথনের প্রবাহ নিয়ন্ত্রণ করা
-- `bot.chat()` মেথড প্রাকৃতিক ভাষায় উত্তর দেয় যা MCP টুল এক্সিকিউশনের ফলাফলও অন্তর্ভুক্ত করতে পারে
-- এই পদ্ধতি ব্যবহারকারীর জন্য নির্বিঘ্ন অভিজ্ঞতা দেয় যেখানে তারা MCP বাস্তবায়নের কথা জানার প্রয়োজন হয় না
+- MCP সার্ভার টুলগুলির সাথে ইন্টারঅ্যাকশনের জন্য সহজ প্রাকৃতিক ভাষার প্রম্পট ব্যবহার করেছি।
+- LangChain4j ফ্রেমওয়ার্ক স্বয়ংক্রিয়ভাবে পরিচালনা করে:
+  - প্রম্পট থেকে টুল কল রূপান্তর যখন প্রয়োজন।
+  - LLM-এর সিদ্ধান্তের উপর ভিত্তি করে প্রাসঙ্গিক MCP টুল কল করা।
+  - LLM এবং MCP সার্ভারের মধ্যে কথোপকথনের প্রবাহ পরিচালনা করা।
+- `bot.chat()` পদ্ধতি প্রাকৃতিক ভাষার প্রতিক্রিয়া প্রদান করে যা MCP টুল এক্সিকিউশন থেকে ফলাফল অন্তর্ভুক্ত করতে পারে।
+- এই পদ্ধতি একটি নির্বিঘ্ন ব্যবহারকারীর অভিজ্ঞতা প্রদান করে যেখানে ব্যবহারকারীদের অন্তর্নিহিত MCP বাস্তবায়ন সম্পর্কে জানতে হয় না।
 
 সম্পূর্ণ কোড উদাহরণ:
 
@@ -1135,20 +1257,151 @@ public class LangChain4jClient {
 }
 ```
 
-দারুণ, আপনি সফল হয়েছেন!
+#### Rust
+
+এখানে বেশিরভাগ কাজ হয়। আমরা ব্যবহারকারীর প্রাথমিক প্রম্পট সহ LLM-কে কল করব, তারপর প্রতিক্রিয়া প্রক্রিয়া করব এবং দেখব কোনও টুল কল করা দরকার কিনা। যদি প্রয়োজন হয়, আমরা সেই টুলগুলি কল করব এবং LLM-এর সাথে কথোপকথন চালিয়ে যাব যতক্ষণ না আর কোনও টুল কল করার প্রয়োজন হয় এবং আমাদের একটি চূড়ান্ত প্রতিক্রিয়া থাকে।
+
+আমরা LLM-এ একাধিক কল করব, তাই চলুন একটি ফাংশন সংজ্ঞায়িত করি যা LLM কল পরিচালনা করবে। আপনার `main.rs` ফাইলে নিম্নলিখিত ফাংশন যোগ করুন:
+
+```rust
+async fn call_llm(
+    client: &Client<OpenAIConfig>,
+    messages: &[Value],
+    tools: &ListToolsResult,
+) -> Result<Value, Box<dyn Error>> {
+    let response = client
+        .completions()
+        .create_byot(json!({
+            "messages": messages,
+            "model": "openai/gpt-4.1",
+            "tools": format_tools(tools).await?,
+        }))
+        .await?;
+    Ok(response)
+}
+```
+
+এই ফাংশনটি LLM ক্লায়েন্ট, বার্তার একটি তালিকা (ব্যবহারকারীর প্রম্পট সহ), MCP সার্ভার থেকে টুলগুলি গ্রহণ করে এবং LLM-এ একটি অনুরোধ পাঠায়, প্রতিক্রিয়া প্রদান করে।
+LLM থেকে প্রাপ্ত প্রতিক্রিয়ায় একটি `choices` অ্যারে থাকবে। আমাদের ফলাফল প্রক্রিয়া করতে হবে এবং দেখতে হবে কোনো `tool_calls` উপস্থিত আছে কিনা। এটি আমাদের জানায় যে LLM একটি নির্দিষ্ট টুলকে আর্গুমেন্ট সহ কল করার অনুরোধ করছে। আপনার `main.rs` ফাইলের নিচে নিম্নলিখিত কোড যোগ করুন একটি ফাংশন সংজ্ঞায়িত করতে যা LLM প্রতিক্রিয়া পরিচালনা করবে:
+
+```rust
+async fn process_llm_response(
+    llm_response: &Value,
+    mcp_client: &RunningService<RoleClient, ()>,
+    openai_client: &Client<OpenAIConfig>,
+    mcp_tools: &ListToolsResult,
+    messages: &mut Vec<Value>,
+) -> Result<(), Box<dyn Error>> {
+    let Some(message) = llm_response
+        .get("choices")
+        .and_then(|c| c.as_array())
+        .and_then(|choices| choices.first())
+        .and_then(|choice| choice.get("message"))
+    else {
+        return Ok(());
+    };
+
+    // Print content if available
+    if let Some(content) = message.get("content").and_then(|c| c.as_str()) {
+        println!("🤖 {}", content);
+    }
+
+    // Handle tool calls
+    if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
+        messages.push(message.clone()); // Add assistant message
+
+        // Execute each tool call
+        for tool_call in tool_calls {
+            let (tool_id, name, args) = extract_tool_call_info(tool_call)?;
+            println!("⚡ Calling tool: {}", name);
+
+            let result = mcp_client
+                .call_tool(CallToolRequestParam {
+                    name: name.into(),
+                    arguments: serde_json::from_str::<Value>(&args)?.as_object().cloned(),
+                })
+                .await?;
+
+            // Add tool result to messages
+            messages.push(json!({
+                "role": "tool",
+                "tool_call_id": tool_id,
+                "content": serde_json::to_string_pretty(&result)?
+            }));
+        }
+
+        // Continue conversation with tool results
+        let response = call_llm(openai_client, messages, mcp_tools).await?;
+        Box::pin(process_llm_response(
+            &response,
+            mcp_client,
+            openai_client,
+            mcp_tools,
+            messages,
+        ))
+        .await?;
+    }
+    Ok(())
+}
+```
+
+যদি `tool_calls` উপস্থিত থাকে, এটি টুলের তথ্য বের করে, টুল অনুরোধ সহ MCP সার্ভারকে কল করে এবং কথোপকথনের বার্তাগুলিতে ফলাফল যোগ করে। এরপর এটি LLM-এর সাথে কথোপকথন চালিয়ে যায় এবং বার্তাগুলি সহকারী প্রতিক্রিয়া এবং টুল কলের ফলাফল দিয়ে আপডেট হয়।
+
+MCP কলের জন্য LLM যে টুল কল তথ্য প্রদান করে তা বের করতে, আমরা একটি সহায়ক ফাংশন যোগ করব যা কল করার জন্য প্রয়োজনীয় সবকিছু বের করবে। আপনার `main.rs` ফাইলের নিচে নিম্নলিখিত কোড যোগ করুন:
+
+```rust
+fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
+    let tool_id = tool_call
+        .get("id")
+        .and_then(|id| id.as_str())
+        .unwrap_or("")
+        .to_string();
+    let function = tool_call.get("function").ok_or("Missing function")?;
+    let name = function
+        .get("name")
+        .and_then(|n| n.as_str())
+        .unwrap_or("")
+        .to_string();
+    let args = function
+        .get("arguments")
+        .and_then(|a| a.as_str())
+        .unwrap_or("{}")
+        .to_string();
+    Ok((tool_id, name, args))
+}
+```
+
+সবকিছু প্রস্তুত হয়ে গেলে, আমরা প্রাথমিক ব্যবহারকারীর প্রম্পট পরিচালনা করতে এবং LLM-কে কল করতে পারি। আপনার `main` ফাংশন আপডেট করুন নিম্নলিখিত কোড যোগ করে:
+
+```rust
+// LLM conversation with tool calls
+let response = call_llm(&openai_client, &messages, &tools).await?;
+process_llm_response(
+    &response,
+    &mcp_client,
+    &openai_client,
+    &tools,
+    &mut messages,
+)
+.await?;
+```
+
+এটি প্রাথমিক ব্যবহারকারীর প্রম্পটের সাথে LLM-কে প্রশ্ন করবে দুটি সংখ্যার যোগফল জানতে এবং প্রতিক্রিয়া প্রক্রিয়া করবে টুল কলগুলি গতিশীলভাবে পরিচালনা করতে।
+
+অসাধারণ, আপনি এটি সম্পন্ন করেছেন!
 
 ## অ্যাসাইনমেন্ট
 
-অনুশীলনের কোড নিয়ে সার্ভারে আরও কিছু টুল যোগ করে তৈরি করুন। তারপর অনুশীলনের মতো একটি LLM সহ ক্লায়েন্ট তৈরি করুন এবং বিভিন্ন প্রম্পট দিয়ে পরীক্ষা করুন যাতে নিশ্চিত হওয়া যায় আপনার সব সার্ভার টুল ডায়নামিকভাবে কল হচ্ছে। এই পদ্ধতিতে ক্লায়েন্ট তৈরি করলে শেষ ব্যবহারকারীর জন্য চমৎকার অভিজ্ঞতা হয় কারণ তারা প্রম্পট ব্যবহার করে কাজ করতে পারে, সঠিক ক্লায়েন্ট কমান্ড না জানলেও, এবং MCP সার্ভার কল হওয়ার বিষয়টি তাদের অজানা থাকে।
+অনুশীলনের কোডটি নিয়ে সার্ভারটি আরও কিছু টুল দিয়ে তৈরি করুন। এরপর একটি ক্লায়েন্ট তৈরি করুন LLM সহ, যেমন অনুশীলনে দেখানো হয়েছে, এবং বিভিন্ন প্রম্পট দিয়ে এটি পরীক্ষা করুন যাতে নিশ্চিত হওয়া যায় যে আপনার সার্ভারের সব টুল গতিশীলভাবে কল হচ্ছে। এই ধরনের ক্লায়েন্ট তৈরি করার ফলে শেষ ব্যবহারকারী একটি চমৎকার অভিজ্ঞতা পাবে কারণ তারা প্রম্পট ব্যবহার করতে পারবে, নির্দিষ্ট ক্লায়েন্ট কমান্ডের পরিবর্তে, এবং MCP সার্ভার কল হওয়ার বিষয়ে সম্পূর্ণ অজ্ঞ থাকবে।
 
 ## সমাধান
 
 [Solution](/03-GettingStarted/03-llm-client/solution/README.md)
 
-## মূল বিষয়সমূহ
+## মূল বিষয়গুলো
 
-- ক্লায়েন্টে একটি LLM যোগ করলে ব্যবহারকারীরা MCP সার্ভারের সাথে আরও ভালোভাবে ইন্টারঅ্যাক্ট করতে পারে।
-- MCP সার্ভারের রেসপন্সকে LLM বুঝতে পারার ফরম্যাটে রূপান্তর করতে হয়।
+- আপনার ক্লায়েন্টে LLM যোগ করলে MCP সার্ভারের সাথে ব্যবহারকারীদের যোগাযোগের একটি উন্নত উপায় প্রদান করে।
+- MCP সার্ভারের প্রতিক্রিয়াকে এমন কিছুতে রূপান্তর করতে হবে যা LLM বুঝতে পারে।
 
 ## নমুনা
 
@@ -1157,12 +1410,15 @@ public class LangChain4jClient {
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../../../../03-GettingStarted/samples/python)
+- [Rust Calculator](../../../../03-GettingStarted/samples/rust)
 
-## অতিরিক্ত রিসোর্স
+## অতিরিক্ত সম্পদ
 
-## পরবর্তী ধাপ
+## পরবর্তী কী
 
-- পরবর্তী: [Visual Studio Code ব্যবহার করে সার্ভার ব্যবহার](../04-vscode/README.md)
+- পরবর্তী: [Visual Studio Code ব্যবহার করে একটি সার্ভার ব্যবহার করা](../04-vscode/README.md)
+
+---
 
 **অস্বীকৃতি**:  
-এই নথিটি AI অনুবাদ সেবা [Co-op Translator](https://github.com/Azure/co-op-translator) ব্যবহার করে অনূদিত হয়েছে। আমরা যথাসাধ্য সঠিকতার চেষ্টা করি, তবে স্বয়ংক্রিয় অনুবাদে ত্রুটি বা অসঙ্গতি থাকতে পারে। মূল নথিটি তার নিজস্ব ভাষায়ই কর্তৃত্বপূর্ণ উৎস হিসেবে বিবেচিত হওয়া উচিত। গুরুত্বপূর্ণ তথ্যের জন্য পেশাদার মানব অনুবাদ গ্রহণ করার পরামর্শ দেওয়া হয়। এই অনুবাদের ব্যবহারে সৃষ্ট কোনো ভুল বোঝাবুঝি বা ভুল ব্যাখ্যার জন্য আমরা দায়ী নই।
+এই নথিটি AI অনুবাদ পরিষেবা [Co-op Translator](https://github.com/Azure/co-op-translator) ব্যবহার করে অনুবাদ করা হয়েছে। আমরা যথাসাধ্য সঠিকতার জন্য চেষ্টা করি, তবে অনুগ্রহ করে মনে রাখবেন যে স্বয়ংক্রিয় অনুবাদে ত্রুটি বা অসঙ্গতি থাকতে পারে। মূল ভাষায় থাকা নথিটিকে প্রামাণিক উৎস হিসেবে বিবেচনা করা উচিত। গুরুত্বপূর্ণ তথ্যের জন্য, পেশাদার মানব অনুবাদ সুপারিশ করা হয়। এই অনুবাদ ব্যবহারের ফলে কোনো ভুল বোঝাবুঝি বা ভুল ব্যাখ্যা হলে আমরা দায়বদ্ধ থাকব না।

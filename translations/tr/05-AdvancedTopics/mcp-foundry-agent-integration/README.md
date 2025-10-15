@@ -60,7 +60,7 @@ Tercih ettiğiniz geliştirme ortamını seçin:
 
 ## Python Uygulaması
 
-***Not*** Bu [notebook’u](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb) çalıştırabilirsiniz
+***Not*** Bu [notebook’u](mcp_support_python.ipynb) çalıştırabilirsiniz
 
 ### 1. Gerekli Paketleri Yükleyin
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET Uygulaması
 
-***Not*** Bu [notebook’u](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb) çalıştırabilirsiniz
+***Not*** Bu [notebook’u](mcp_support_dotnet.ipynb) çalıştırabilirsiniz
 
 ### 1. Gerekli Paketleri Yükleyin
 

@@ -60,7 +60,7 @@ Chọn môi trường phát triển bạn ưa thích:
 
 ## Triển khai Python
 
-***Note*** Bạn có thể chạy [notebook này](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb)
+***Note*** Bạn có thể chạy [notebook này](mcp_support_python.ipynb)
 
 ### 1. Cài đặt các gói cần thiết
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## Triển khai .NET
 
-***Note*** Bạn có thể chạy [notebook này](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb)
+***Note*** Bạn có thể chạy [notebook này](mcp_support_dotnet.ipynb)
 
 ### 1. Cài đặt các gói cần thiết
 

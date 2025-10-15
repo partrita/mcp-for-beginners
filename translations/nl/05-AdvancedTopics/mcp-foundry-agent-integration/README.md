@@ -60,7 +60,7 @@ Kies je favoriete ontwikkelomgeving:
 
 ## Python Implementatie
 
-***Note*** Je kunt deze [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb) uitvoeren
+***Note*** Je kunt deze [notebook](mcp_support_python.ipynb) uitvoeren
 
 ### 1. Vereiste pakketten installeren
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET Implementatie
 
-***Note*** Je kunt deze [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb) uitvoeren
+***Note*** Je kunt deze [notebook](mcp_support_dotnet.ipynb) uitvoeren
 
 ### 1. Vereiste pakketten installeren
 

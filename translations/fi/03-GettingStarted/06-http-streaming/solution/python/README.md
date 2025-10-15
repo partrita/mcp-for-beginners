@@ -1,30 +1,30 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4c4da5949611d91b06d8a5d450aae8d6",
-  "translation_date": "2025-07-13T21:20:39+00:00",
+  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
+  "translation_date": "2025-08-18T16:18:31+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
   "language_code": "fi"
 }
 -->
 # Tämän esimerkin suorittaminen
 
-Tässä ohjeessa kerrotaan, miten ajetaan klassinen HTTP-streamauspalvelin ja -asiakas sekä MCP-streamauspalvelin ja -asiakas Pythonilla.
+Näin suoritat klassisen HTTP-suoratoistopalvelimen ja -asiakkaan sekä MCP-suoratoistopalvelimen ja -asiakkaan Pythonilla.
 
 ### Yleiskatsaus
 
-- Määrität MCP-palvelimen, joka lähettää etenemisilmoituksia asiakkaalle prosessoidessaan kohteita.
+- Asetat MCP-palvelimen, joka lähettää etenemisilmoituksia asiakkaalle käsitellessään kohteita.
 - Asiakas näyttää jokaisen ilmoituksen reaaliajassa.
-- Tämä opas kattaa vaatimukset, asennuksen, ajon ja vianmäärityksen.
+- Tämä opas kattaa vaatimukset, asennuksen, suorittamisen ja vianmäärityksen.
 
 ### Vaatimukset
 
 - Python 3.9 tai uudempi
-- `mcp`-Python-paketti (asennus komennolla `pip install mcp`)
+- `mcp` Python-paketti (asenna komennolla `pip install mcp`)
 
 ### Asennus ja käyttöönotto
 
-1. Kloonaa repositorio tai lataa ratkaisun tiedostot.
+1. Kloonaa arkisto tai lataa ratkaisun tiedostot.
 
    ```pwsh
    git clone https://github.com/microsoft/mcp-for-beginners
@@ -42,7 +42,7 @@ Tässä ohjeessa kerrotaan, miten ajetaan klassinen HTTP-streamauspalvelin ja -a
 1. **Asenna tarvittavat riippuvuudet:**
 
    ```pwsh
-   pip install "mcp[cli]"
+   pip install "mcp[cli]" fastapi requests
    ```
 
 ### Tiedostot
@@ -50,7 +50,7 @@ Tässä ohjeessa kerrotaan, miten ajetaan klassinen HTTP-streamauspalvelin ja -a
 - **Palvelin:** [server.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/server.py)
 - **Asiakas:** [client.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/client.py)
 
-### Klassisen HTTP-streamauspalvelimen ajaminen
+### Klassisen HTTP-suoratoistopalvelimen suorittaminen
 
 1. Siirry ratkaisun hakemistoon:
 
@@ -58,7 +58,7 @@ Tässä ohjeessa kerrotaan, miten ajetaan klassinen HTTP-streamauspalvelin ja -a
    cd 03-GettingStarted/06-http-streaming/solution
    ```
 
-2. Käynnistä klassinen HTTP-streamauspalvelin:
+2. Käynnistä klassinen HTTP-suoratoistopalvelin:
 
    ```pwsh
    python server.py
@@ -71,16 +71,16 @@ Tässä ohjeessa kerrotaan, miten ajetaan klassinen HTTP-streamauspalvelin ja -a
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### Klassisen HTTP-streamausasiakkaan ajaminen
+### Klassisen HTTP-suoratoistoasiakkaan suorittaminen
 
-1. Avaa uusi terminaali (aktivoi sama virtuaaliympäristö ja hakemisto):
+1. Avaa uusi pääte (aktivoi sama virtuaaliympäristö ja hakemisto):
 
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py
    ```
 
-2. Näet striimattuja viestejä tulostettuna peräkkäin:
+2. Näet suoratoistetut viestit tulostettuna peräkkäin:
 
    ```text
    Running classic HTTP streaming client...
@@ -93,13 +93,13 @@ Tässä ohjeessa kerrotaan, miten ajetaan klassinen HTTP-streamauspalvelin ja -a
    --- Stream Ended ---
    ```
 
-### MCP-streamauspalvelimen ajaminen
+### MCP-suoratoistopalvelimen suorittaminen
 
 1. Siirry ratkaisun hakemistoon:
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    ```
-2. Käynnistä MCP-palvelin käyttäen streamable-http-siirtoa:
+2. Käynnistä MCP-palvelin streamable-http-kuljetuksella:
    ```pwsh
    python server.py mcp
    ```
@@ -109,9 +109,9 @@ Tässä ohjeessa kerrotaan, miten ajetaan klassinen HTTP-streamauspalvelin ja -a
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### MCP-streamausasiakkaan ajaminen
+### MCP-suoratoistoasiakkaan suorittaminen
 
-1. Avaa uusi terminaali (aktivoi sama virtuaaliympäristö ja hakemisto):
+1. Avaa uusi pääte (aktivoi sama virtuaaliympäristö ja hakemisto):
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py mcp
@@ -131,21 +131,21 @@ Tässä ohjeessa kerrotaan, miten ajetaan klassinen HTTP-streamauspalvelin ja -a
 
 ### Keskeiset toteutusvaiheet
 
-1. **Luo MCP-palvelin käyttäen FastMCP:ta.**
-2. **Määrittele työkalu, joka käsittelee listan ja lähettää ilmoituksia `ctx.info()` tai `ctx.log()` avulla.**
-3. **Aja palvelin asetuksella `transport="streamable-http"`.**
-4. **Toteuta asiakas, jolla on viestinkäsittelijä ilmoitusten näyttämiseen saapuessaan.**
+1. **Luo MCP-palvelin FastMCP:llä.**
+2. **Määritä työkalu, joka käsittelee listan ja lähettää ilmoituksia käyttämällä `ctx.info()` tai `ctx.log()`.**
+3. **Suorita palvelin komennolla `transport="streamable-http"`.**
+4. **Toteuta asiakas, jossa on viestinkäsittelijä ilmoitusten näyttämiseksi niiden saapuessa.**
 
 ### Koodin läpikäynti
 - Palvelin käyttää asynkronisia funktioita ja MCP-kontekstia etenemispäivitysten lähettämiseen.
 - Asiakas toteuttaa asynkronisen viestinkäsittelijän ilmoitusten ja lopputuloksen tulostamiseen.
 
-### Vinkkejä ja vianmääritystä
+### Vinkkejä ja vianmääritys
 
-- Käytä `async/await` ei-estävissä toiminnoissa.
-- Käsittele aina poikkeukset sekä palvelimella että asiakkaalla luotettavuuden varmistamiseksi.
+- Käytä `async/await` ei-estävissä operaatioissa.
+- Käsittele aina poikkeukset sekä palvelimessa että asiakkaassa varmistaaksesi luotettavuuden.
 - Testaa useilla asiakkailla nähdäksesi reaaliaikaiset päivitykset.
 - Jos kohtaat virheitä, tarkista Python-versiosi ja varmista, että kaikki riippuvuudet on asennettu.
 
 **Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset voivat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäisellä kielellä tulisi pitää ensisijaisena lähteenä. Kriittisen tiedon osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa väärinkäsityksistä tai virhetulkinnoista, jotka johtuvat tämän käännöksen käytöstä.

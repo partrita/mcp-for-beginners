@@ -1,19 +1,19 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "73240f845b99df9401fffd21c09a5f7b",
-  "translation_date": "2025-07-17T10:43:04+00:00",
+  "original_hash": "f84eaea79c8fa9ab318a494f40891814",
+  "translation_date": "2025-08-19T15:34:35+00:00",
   "source_file": "05-AdvancedTopics/mcp-integration/README.md",
   "language_code": "cs"
 }
 -->
 # Podniková integrace
 
-Při vytváření MCP serverů v podnikové sféře často potřebujete integrovat stávající AI platformy a služby. Tato sekce popisuje, jak integrovat MCP s podnikových systémů jako Azure OpenAI a Microsoft AI Foundry, což umožňuje pokročilé AI funkce a orchestraci nástrojů.
+Při vytváření MCP serverů v podnikových prostředích je často potřeba integrovat je s existujícími AI platformami a službami. Tato sekce se zabývá tím, jak integrovat MCP s podnikovými systémy, jako jsou Azure OpenAI a Microsoft AI Foundry, a umožnit tak pokročilé AI schopnosti a orchestraci nástrojů.
 
 ## Úvod
 
-V této lekci se naučíte, jak integrovat Model Context Protocol (MCP) s podnikových AI systémy, se zaměřením na Azure OpenAI a Microsoft AI Foundry. Tyto integrace vám umožní využívat výkonné AI modely a nástroje při zachování flexibility a rozšiřitelnosti MCP.
+V této lekci se naučíte, jak integrovat Model Context Protocol (MCP) s podnikovými AI systémy, se zaměřením na Azure OpenAI a Microsoft AI Foundry. Tyto integrace vám umožní využívat výkonné AI modely a nástroje, přičemž si zachováte flexibilitu a rozšiřitelnost MCP.
 
 ## Cíle učení
 
@@ -22,11 +22,11 @@ Na konci této lekce budete schopni:
 - Integrovat MCP s Azure OpenAI a využívat jeho AI schopnosti.
 - Implementovat orchestraci nástrojů MCP s Azure OpenAI.
 - Kombinovat MCP s Microsoft AI Foundry pro pokročilé schopnosti AI agentů.
-- Využívat Azure Machine Learning (ML) pro spouštění ML pipeline a registraci modelů jako MCP nástrojů.
+- Využívat Azure Machine Learning (ML) k provádění ML pipeline a registraci modelů jako nástrojů MCP.
 
 ## Integrace Azure OpenAI
 
-Azure OpenAI poskytuje přístup k výkonným AI modelům jako GPT-4 a dalším. Integrace MCP s Azure OpenAI vám umožní využívat tyto modely a zároveň zachovat flexibilitu orchestraci nástrojů MCP.
+Azure OpenAI poskytuje přístup k výkonným AI modelům, jako je GPT-4 a další. Integrace MCP s Azure OpenAI vám umožní využívat tyto modely a zároveň si zachovat flexibilitu orchestrací nástrojů MCP.
 
 ### Implementace v C#
 
@@ -97,16 +97,16 @@ namespace EnterpriseIntegration
 V předchozím kódu jsme:
 
 - Nakonfigurovali klienta Azure OpenAI s endpointem, názvem nasazení a API klíčem.
-- Vytvořili metodu `GetCompletionWithToolsAsync` pro získání dokončení s podporou nástrojů.
+- Vytvořili metodu `GetCompletionWithToolsAsync` pro získání odpovědí s podporou nástrojů.
 - Zpracovali volání nástrojů v odpovědi.
 
-Doporučujeme implementovat skutečnou logiku zpracování nástrojů podle konkrétního nastavení vašeho MCP serveru.
+Doporučujeme implementovat vlastní logiku pro zpracování nástrojů na základě specifického nastavení vašeho MCP serveru.
 
 ## Integrace Microsoft AI Foundry
 
-Azure AI Foundry poskytuje platformu pro vytváření a nasazení AI agentů. Integrace MCP s AI Foundry vám umožní využít jeho schopnosti a zároveň zachovat flexibilitu MCP.
+Azure AI Foundry poskytuje platformu pro vytváření a nasazování AI agentů. Integrace MCP s AI Foundry vám umožní využívat jeho schopnosti a zároveň si zachovat flexibilitu MCP.
 
-V níže uvedeném kódu vyvíjíme integraci agenta, která zpracovává požadavky a volání nástrojů pomocí MCP.
+V níže uvedeném kódu vyvíjíme integraci agenta, který zpracovává požadavky a volání nástrojů pomocí MCP.
 
 ### Implementace v Javě
 
@@ -168,13 +168,13 @@ public class AIFoundryMcpBridge {
 
 V předchozím kódu jsme:
 
-- Vytvořili třídu `AIFoundryMcpBridge`, která integruje AI Foundry i MCP.
-- Implementovali metodu `processAgentRequest`, která zpracovává požadavky AI Foundry agenta.
-- Zpracovali volání nástrojů jejich vykonáním přes MCP klienta a odesláním výsledků zpět AI Foundry agentovi.
+- Vytvořili třídu `AIFoundryMcpBridge`, která integruje AI Foundry a MCP.
+- Implementovali metodu `processAgentRequest`, která zpracovává požadavky agenta AI Foundry.
+- Zpracovali volání nástrojů jejich provedením prostřednictvím klienta MCP a odesláním výsledků zpět agentovi AI Foundry.
 
 ## Integrace MCP s Azure ML
 
-Integrace MCP s Azure Machine Learning (ML) vám umožní využít výkonné ML schopnosti Azure a zároveň zachovat flexibilitu MCP. Tato integrace může být použita ke spouštění ML pipeline, registraci modelů jako nástrojů a správě výpočetních zdrojů.
+Integrace MCP s Azure Machine Learning (ML) vám umožní využívat výkonné ML schopnosti Azure a zároveň si zachovat flexibilitu MCP. Tato integrace může být použita k provádění ML pipeline, registraci modelů jako nástrojů a správě výpočetních zdrojů.
 
 ### Implementace v Pythonu
 
@@ -303,14 +303,14 @@ class EnterpriseAiIntegration:
 V předchozím kódu jsme:
 
 - Vytvořili třídu `EnterpriseAiIntegration`, která integruje MCP s Azure ML.
-- Implementovali metodu `execute_ml_pipeline`, která zpracovává vstupní data pomocí MCP nástrojů a spouští ML pipeline v Azure ML.
-- Implementovali metodu `register_ml_model_as_tool`, která registruje Azure ML model jako MCP nástroj, včetně vytvoření potřebného nasazovacího prostředí a výpočetních zdrojů.
-- Namapovali datové typy Azure ML na JSON schéma pro registraci nástrojů.
-- Použili asynchronní programování pro zpracování potenciálně dlouhotrvajících operací, jako je spouštění ML pipeline a registrace modelů.
+- Implementovali metodu `execute_ml_pipeline`, která zpracovává vstupní data pomocí nástrojů MCP a odesílá ML pipeline do Azure ML.
+- Implementovali metodu `register_ml_model_as_tool`, která registruje model Azure ML jako nástroj MCP, včetně vytvoření potřebného prostředí pro nasazení a výpočetních zdrojů.
+- Mapovali datové typy Azure ML na typy JSON schématu pro registraci nástrojů.
+- Použili asynchronní programování pro zpracování potenciálně dlouhotrvajících operací, jako je provádění ML pipeline a registrace modelů.
 
 ## Co dál
 
 - [5.2 Multi modality](../mcp-multi-modality/README.md)
 
-**Prohlášení o vyloučení odpovědnosti**:  
-Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). I když usilujeme o přesnost, mějte prosím na paměti, že automatické překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro důležité informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoliv nedorozumění nebo nesprávné výklady vyplývající z použití tohoto překladu.
+**Prohlášení:**  
+Tento dokument byl přeložen pomocí služby pro automatický překlad [Co-op Translator](https://github.com/Azure/co-op-translator). Ačkoli se snažíme o přesnost, mějte prosím na paměti, že automatické překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v jeho původním jazyce by měl být považován za autoritativní zdroj. Pro důležité informace doporučujeme profesionální lidský překlad. Neodpovídáme za žádná nedorozumění nebo nesprávné interpretace vyplývající z použití tohoto překladu.

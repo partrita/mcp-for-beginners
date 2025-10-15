@@ -1,13 +1,13 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4eb6a48c54555c64b33c763fba3f2842",
-  "translation_date": "2025-07-13T21:05:35+00:00",
+  "original_hash": "dde4e32e4b55ef4962c411b39d2340a7",
+  "translation_date": "2025-09-03T16:13:44+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/dotnet/README.md",
   "language_code": "ms"
 }
 -->
-# Menjalankan contoh ini
+# Menjalankan sampel ini
 
 ## -1- Pasang kebergantungan
 
@@ -15,40 +15,40 @@ CO_OP_TRANSLATOR_METADATA:
 dotnet restore
 ```
 
-## -2- Jalankan contoh
+## -2- Jalankan sampel
 
 ```bash
 dotnet run
 ```
 
-## -3- Uji contoh
+## -3- Uji sampel
 
-Mulakan terminal berasingan sebelum anda jalankan arahan di bawah (pastikan server masih berjalan).
+Buka terminal berasingan sebelum menjalankan arahan di bawah (pastikan pelayan masih berjalan).
 
-Dengan server berjalan di satu terminal, buka terminal lain dan jalankan arahan berikut:
+Dengan pelayan berjalan di satu terminal, buka terminal lain dan jalankan arahan berikut:
 
 ```bash
 npx @modelcontextprotocol/inspector http://localhost:3001
 ```
 
-Ini akan memulakan server web dengan antara muka visual yang membolehkan anda menguji contoh.
+Ini akan memulakan pelayan web dengan antara muka visual yang membolehkan anda menguji sampel.
 
 > Pastikan **Streamable HTTP** dipilih sebagai jenis pengangkutan, dan URL adalah `http://localhost:3001/mcp`.
 
-Setelah server disambungkan:
+Setelah pelayan disambungkan:
 
-- cuba senaraikan alat dan jalankan `add`, dengan argumen 2 dan 4, anda sepatutnya melihat hasil 6.
-- pergi ke resources dan resource template dan panggil "greeting", taipkan nama dan anda akan melihat ucapan dengan nama yang anda berikan.
+- cuba senaraikan alat dan jalankan `add`, dengan argumen 2 dan 4, anda sepatutnya melihat 6 dalam hasilnya.
+- pergi ke sumber dan templat sumber dan panggil "greeting", taipkan nama dan anda sepatutnya melihat ucapan dengan nama yang anda berikan.
 
 ### Ujian dalam mod CLI
 
-Anda boleh lancarkan terus dalam mod CLI dengan menjalankan arahan berikut:
+Anda boleh melancarkannya secara langsung dalam mod CLI dengan menjalankan arahan berikut:
 
 ```bash 
 npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/list
 ```
 
-Ini akan menyenaraikan semua alat yang tersedia di server. Anda sepatutnya melihat output berikut:
+Ini akan menyenaraikan semua alat yang tersedia di pelayan. Anda sepatutnya melihat output berikut:
 
 ```text
 {
@@ -80,7 +80,7 @@ Ini akan menyenaraikan semua alat yang tersedia di server. Anda sepatutnya melih
 }
 ```
 
-Untuk memanggil alat taip:
+Untuk memanggil alat, taipkan:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/call --tool-name AddNumbers --tool-arg a=1 --tool-arg b=2
@@ -100,9 +100,11 @@ Anda sepatutnya melihat output berikut:
 }
 ```
 
-> ![!TIP]
+> [!TIP]
 > Biasanya lebih pantas menjalankan inspector dalam mod CLI berbanding di pelayar.
 > Baca lebih lanjut tentang inspector [di sini](https://github.com/modelcontextprotocol/inspector).
 
+---
+
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

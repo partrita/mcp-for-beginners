@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "5762e8e74dd99d8b7dbb31e69a82561e",
-  "translation_date": "2025-07-17T08:43:35+00:00",
+  "original_hash": "fd169ca3071b81b5ee282e194bc823df",
+  "translation_date": "2025-09-15T20:53:39+00:00",
   "source_file": "05-AdvancedTopics/mcp-contextengineering/README.md",
   "language_code": "tl"
 }
@@ -11,39 +11,39 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## Pangkalahatang-ideya
 
-Ang context engineering ay isang umuusbong na konsepto sa larangan ng AI na sumusuri kung paano inaayos, ipinapadala, at pinananatili ang impormasyon sa mga interaksyon sa pagitan ng mga kliyente at AI services. Habang umuunlad ang Model Context Protocol (MCP) ecosystem, nagiging mas mahalaga ang pag-unawa kung paano epektibong pamahalaan ang konteksto. Ipinapakilala ng modyul na ito ang konsepto ng context engineering at tinatalakay ang mga posibleng aplikasyon nito sa mga implementasyon ng MCP.
+Ang context engineering ay isang umuusbong na konsepto sa larangan ng AI na tumutukoy kung paano istruktura, ihatid, at panatilihin ang impormasyon sa mga interaksyon sa pagitan ng mga kliyente at AI services. Habang patuloy na umuunlad ang Model Context Protocol (MCP) ecosystem, nagiging mas mahalaga ang pag-unawa sa epektibong pamamahala ng konteksto. Ang module na ito ay nagpapakilala sa konsepto ng context engineering at sinisiyasat ang mga potensyal na aplikasyon nito sa mga implementasyon ng MCP.
 
-## Mga Layunin sa Pagkatuto
+## Mga Layunin sa Pag-aaral
 
-Sa pagtatapos ng modyul na ito, magagawa mong:
+Sa pagtatapos ng module na ito, magagawa mong:
 
-- Maunawaan ang umuusbong na konsepto ng context engineering at ang posibleng papel nito sa mga aplikasyon ng MCP
+- Maunawaan ang umuusbong na konsepto ng context engineering at ang potensyal na papel nito sa mga aplikasyon ng MCP
 - Tukuyin ang mga pangunahing hamon sa pamamahala ng konteksto na tinutugunan ng disenyo ng MCP protocol
-- Suriin ang mga teknik para mapabuti ang performance ng modelo sa pamamagitan ng mas mahusay na paghawak ng konteksto
-- Isaalang-alang ang mga pamamaraan para sukatin at suriin ang bisa ng konteksto
-- Ipatupad ang mga umuusbong na konseptong ito upang mapabuti ang karanasan sa AI gamit ang MCP framework
+- Siyasatin ang mga teknik para mapabuti ang performance ng modelo sa pamamagitan ng mas mahusay na pamamahala ng konteksto
+- Isaalang-alang ang mga paraan upang sukatin at suriin ang pagiging epektibo ng konteksto
+- I-apply ang mga umuusbong na konsepto upang mapabuti ang karanasan sa AI sa pamamagitan ng MCP framework
 
 ## Panimula sa Context Engineering
 
-Ang context engineering ay isang umuusbong na konsepto na nakatuon sa sinadyang disenyo at pamamahala ng daloy ng impormasyon sa pagitan ng mga gumagamit, aplikasyon, at mga AI model. Hindi tulad ng mga naitatag na larangan tulad ng prompt engineering, ang context engineering ay patuloy pang binubuo ng mga practitioner habang nilulutas nila ang mga natatanging hamon ng pagbibigay sa mga AI model ng tamang impormasyon sa tamang oras.
+Ang context engineering ay nakatuon sa sinadyang disenyo at pamamahala ng daloy ng impormasyon sa pagitan ng mga user, aplikasyon, at AI models. Hindi tulad ng mga kilalang larangan tulad ng prompt engineering, ang context engineering ay kasalukuyang binubuo ng mga practitioner habang nilulutas nila ang mga natatanging hamon ng pagbibigay sa AI models ng tamang impormasyon sa tamang oras.
 
-Habang umuunlad ang mga malalaking language model (LLMs), lalong naging malinaw ang kahalagahan ng konteksto. Ang kalidad, kaugnayan, at estruktura ng konteksto na ibinibigay natin ay direktang nakakaapekto sa output ng modelo. Sinusuri ng context engineering ang ugnayang ito at naghahanap ng mga prinsipyo para sa epektibong pamamahala ng konteksto.
+Habang umuunlad ang mga large language models (LLMs), nagiging mas malinaw ang kahalagahan ng konteksto. Ang kalidad, kaugnayan, at istruktura ng konteksto na ibinibigay natin ay direktang nakakaapekto sa mga output ng modelo. Ang context engineering ay nagsisiyasat sa relasyong ito at naghahanap ng mga prinsipyo para sa epektibong pamamahala ng konteksto.
 
-> "Sa 2025, napakatalino na ng mga modelo. Ngunit kahit ang pinakamatalinong tao ay hindi magagawa nang epektibo ang kanilang trabaho nang walang konteksto ng kung ano ang hinihiling sa kanila... Ang 'context engineering' ang susunod na antas ng prompt engineering. Ito ay tungkol sa paggawa nito nang awtomatiko sa isang dinamikong sistema." — Walden Yan, Cognition AI
+> "Sa 2025, ang mga modelo ay sobrang matalino. Ngunit kahit ang pinakamatalinong tao ay hindi magagawang gawin ang kanilang trabaho nang epektibo nang walang konteksto ng kung ano ang hinihingi sa kanila... Ang 'context engineering' ang susunod na antas ng prompt engineering. Ito ay tungkol sa paggawa nito nang awtomatiko sa isang dynamic na sistema." — Walden Yan, Cognition AI
 
-Maaaring saklawin ng context engineering ang mga sumusunod:
+Ang context engineering ay maaaring sumaklaw sa:
 
-1. **Pagpili ng Konteksto**: Pagtukoy kung anong impormasyon ang mahalaga para sa isang gawain
-2. **Pag-aayos ng Konteksto**: Pag-oorganisa ng impormasyon upang mapataas ang pagkaunawa ng modelo
+1. **Pagpili ng Konteksto**: Pagpapasya kung anong impormasyon ang may kaugnayan para sa isang partikular na gawain
+2. **Pag-istruktura ng Konteksto**: Pag-aayos ng impormasyon upang ma-maximize ang pag-unawa ng modelo
 3. **Paghahatid ng Konteksto**: Pag-optimize kung paano at kailan ipinapadala ang impormasyon sa mga modelo
-4. **Pagpapanatili ng Konteksto**: Pamamahala sa estado at pagbabago ng konteksto sa paglipas ng panahon
-5. **Pagsusuri ng Konteksto**: Pagsukat at pagpapabuti ng bisa ng konteksto
+4. **Pagpapanatili ng Konteksto**: Pamamahala sa estado at ebolusyon ng konteksto sa paglipas ng panahon
+5. **Pagsusuri ng Konteksto**: Pagsukat at pagpapabuti ng pagiging epektibo ng konteksto
 
-Ang mga larangang ito ay partikular na mahalaga sa MCP ecosystem, na nagbibigay ng isang standard na paraan para sa mga aplikasyon na magbigay ng konteksto sa mga LLM.
+Ang mga larangang ito ay partikular na mahalaga sa MCP ecosystem, na nagbibigay ng standardized na paraan para sa mga aplikasyon na magbigay ng konteksto sa LLMs.
 
-## Ang Perspektibo ng Paglalakbay ng Konteksto
+## Ang Perspektibo ng Context Journey
 
-Isang paraan upang mailarawan ang context engineering ay ang pagsubaybay sa paglalakbay ng impormasyon sa loob ng isang MCP system:
+Isang paraan upang mailarawan ang context engineering ay ang pagsubaybay sa paglalakbay ng impormasyon sa isang MCP system:
 
 ```mermaid
 graph LR
@@ -60,23 +60,23 @@ graph LR
     style E fill:#F9E79F,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-### Mga Pangunahing Yugto sa Paglalakbay ng Konteksto:
+### Mga Pangunahing Yugto sa Context Journey:
 
-1. **Input ng Gumagamit**: Raw na impormasyon mula sa gumagamit (teksto, larawan, dokumento)
-2. **Pagsasama-sama ng Konteksto**: Pagsasama ng input ng gumagamit sa konteksto ng sistema, kasaysayan ng pag-uusap, at iba pang nakuha na impormasyon
-3. **Pagproseso ng Modelo**: Pinoproseso ng AI model ang pinagsamang konteksto
-4. **Pagbuo ng Tugon**: Gumagawa ang modelo ng output base sa ibinigay na konteksto
-5. **Pamamahala ng Estado**: Ina-update ng sistema ang internal na estado base sa interaksyon
+1. **Input ng User**: Raw na impormasyon mula sa user (text, images, documents)
+2. **Pagbuo ng Konteksto**: Pagsasama ng input ng user sa konteksto ng sistema, kasaysayan ng pag-uusap, at iba pang nakuha na impormasyon
+3. **Pagproseso ng Modelo**: Pinoproseso ng AI model ang nabuo na konteksto
+4. **Pagbuo ng Tugon**: Gumagawa ang modelo ng mga output batay sa ibinigay na konteksto
+5. **Pamamahala ng Estado**: Ina-update ng sistema ang internal na estado nito batay sa interaksyon
 
-Ipinapakita ng perspektibong ito ang dinamiko ng konteksto sa mga AI system at nagtataas ng mahahalagang tanong kung paano pinakamahusay na pamahalaan ang impormasyon sa bawat yugto.
+Ang perspektibong ito ay nagha-highlight sa dynamic na kalikasan ng konteksto sa mga AI system at nagbubukas ng mahahalagang tanong tungkol sa kung paano pinakamahusay na pamahalaan ang impormasyon sa bawat yugto.
 
-## Mga Umuusbong na Prinsipyo sa Context Engineering
+## Umuusbong na Prinsipyo sa Context Engineering
 
-Habang nabubuo ang larangan ng context engineering, may ilang paunang prinsipyo na lumilitaw mula sa mga practitioner. Ang mga prinsipyong ito ay maaaring makatulong sa pagpili ng mga implementasyon sa MCP:
+Habang nabubuo ang larangan ng context engineering, may ilang maagang prinsipyo na lumilitaw mula sa mga practitioner. Ang mga prinsipyong ito ay maaaring makatulong sa paghubog ng mga pagpipilian sa implementasyon ng MCP:
 
 ### Prinsipyo 1: Ibahagi ang Konteksto nang Buo
 
-Dapat ibahagi nang buo ang konteksto sa lahat ng bahagi ng sistema sa halip na hatiin ito sa iba't ibang ahente o proseso. Kapag nahahati ang konteksto, maaaring magka-konflik ang mga desisyon sa iba't ibang bahagi ng sistema.
+Ang konteksto ay dapat ibahagi nang buo sa pagitan ng lahat ng bahagi ng sistema sa halip na hatiin sa iba't ibang ahente o proseso. Kapag ang konteksto ay fragmented, ang mga desisyon na ginawa sa isang bahagi ng sistema ay maaaring sumalungat sa mga desisyon sa ibang bahagi.
 
 ```mermaid
 graph TD
@@ -100,79 +100,74 @@ graph TD
     style D1 fill:#D7BDE2,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-Sa mga aplikasyon ng MCP, ito ay nagmumungkahi ng pagdisenyo ng mga sistema kung saan dumadaloy nang tuloy-tuloy ang konteksto sa buong pipeline sa halip na hatiin.
+Sa mga aplikasyon ng MCP, ito ay nagmumungkahi ng disenyo ng mga sistema kung saan ang konteksto ay dumadaloy nang seamless sa buong pipeline sa halip na compartmentalized.
 
-### Prinsipyo 2: Kilalanin na ang mga Aksyon ay Nagdadala ng Implicit na Desisyon
+### Prinsipyo 2: Kilalanin na Ang Mga Aksyon ay May Kasamang Implicit na Desisyon
 
-Bawat aksyon na ginagawa ng modelo ay naglalaman ng implicit na mga desisyon kung paano i-interpret ang konteksto. Kapag maraming bahagi ang kumikilos sa magkakaibang konteksto, maaaring magka-konflik ang mga implicit na desisyong ito, na nagreresulta sa hindi magkakatugmang kinalabasan.
+Ang bawat aksyon na ginagawa ng modelo ay naglalaman ng implicit na desisyon tungkol sa kung paano i-interpret ang konteksto. Kapag ang maraming bahagi ay kumikilos sa iba't ibang konteksto, ang mga implicit na desisyon na ito ay maaaring magkasalungat, na nagreresulta sa hindi pare-parehong mga resulta.
 
-Mahalaga ang prinsipyong ito para sa mga aplikasyon ng MCP:
-- Mas mainam ang linear na pagproseso ng mga komplikadong gawain kaysa sa parallel na pagpapatupad na may hati-hating konteksto
-- Siguraduhing lahat ng punto ng desisyon ay may access sa parehong impormasyon ng konteksto
-- Disenyuhin ang mga sistema kung saan nakikita ng mga susunod na hakbang ang buong konteksto ng mga naunang desisyon
+Ang prinsipyong ito ay may mahalagang implikasyon para sa mga aplikasyon ng MCP:
+- Mas paboran ang linear na pagproseso ng mga kumplikadong gawain kaysa parallel execution na may fragmented na konteksto
+- Siguraduhin na ang lahat ng mga decision point ay may access sa parehong impormasyon ng konteksto
+- Magdisenyo ng mga sistema kung saan ang mga susunod na hakbang ay maaaring makita ang buong konteksto ng mga naunang desisyon
 
-### Prinsipyo 3: Timbangin ang Lalim ng Konteksto at ang Limitasyon ng Window
+### Prinsipyo 3: Balansehin ang Lalim ng Konteksto sa Mga Limitasyon ng Window
 
-Habang humahaba ang mga pag-uusap at proseso, napupuno ang context window. Sinusuri ng epektibong context engineering ang mga paraan upang pamahalaan ang tensyon sa pagitan ng kumpletong konteksto at mga teknikal na limitasyon.
+Habang tumatagal ang mga pag-uusap at proseso, ang mga context window ay sa huli ay umaapaw. Ang epektibong context engineering ay nagsisiyasat ng mga paraan upang pamahalaan ang tensyon sa pagitan ng komprehensibong konteksto at mga teknikal na limitasyon.
 
-Ilan sa mga posibleng paraan na sinusubukan ay:
-- Pag-compress ng konteksto na pinananatili ang mahalagang impormasyon habang binabawasan ang paggamit ng token
-- Progressive loading ng konteksto base sa kaugnayan sa kasalukuyang pangangailangan
-- Pagbubuod ng mga naunang interaksyon habang pinapanatili ang mga mahahalagang desisyon at katotohanan
+Mga potensyal na paraan na sinisiyasat ay kinabibilangan ng:
+- Context compression na pinapanatili ang mahalagang impormasyon habang binabawasan ang paggamit ng token
+- Progressive loading ng konteksto batay sa kaugnayan sa kasalukuyang pangangailangan
+- Pagbubuod ng mga nakaraang interaksyon habang pinapanatili ang mahahalagang desisyon at katotohanan
 
 ## Mga Hamon sa Konteksto at Disenyo ng MCP Protocol
 
-Dinisenyo ang Model Context Protocol (MCP) na may kamalayan sa mga natatanging hamon ng pamamahala ng konteksto. Ang pag-unawa sa mga hamong ito ay nakakatulong ipaliwanag ang mga pangunahing aspeto ng disenyo ng MCP protocol:
+Ang Model Context Protocol (MCP) ay idinisenyo na may kamalayan sa mga natatanging hamon ng pamamahala ng konteksto. Ang pag-unawa sa mga hamon na ito ay tumutulong sa pagpapaliwanag ng mga pangunahing aspeto ng disenyo ng MCP protocol:
 
-### Hamon 1: Limitasyon ng Context Window
+### Hamon 1: Mga Limitasyon ng Context Window
+Ang karamihan sa mga AI model ay may fixed na laki ng context window, na nililimitahan kung gaano karaming impormasyon ang kaya nilang iproseso nang sabay-sabay.
 
-Karamihan sa mga AI model ay may fixed na laki ng context window, na naglilimita kung gaano karaming impormasyon ang kanilang mapoproseso nang sabay-sabay.
+**Tugon ng Disenyo ng MCP:** 
+- Sinusuportahan ng protocol ang structured, resource-based na konteksto na maaaring i-refer nang epektibo
+- Ang mga resource ay maaaring i-paginate at i-load nang progresibo
 
-**Tugon ng MCP Design:**  
-- Sinusuportahan ng protocol ang istrukturadong, resource-based na konteksto na maaaring epektibong i-refer  
-- Maaaring i-paginate at i-load nang paunti-unti ang mga resources
+### Hamon 2: Pagpapasya sa Kaugnayan
+Ang pagpapasya kung aling impormasyon ang pinaka-kaugnayan na isama sa konteksto ay mahirap.
 
-### Hamon 2: Pagtukoy ng Kaugnayan
-
-Mahirap tukuyin kung aling impormasyon ang pinaka-kaugnay na isasama sa konteksto.
-
-**Tugon ng MCP Design:**  
-- May flexible na mga tool para sa dynamic na pagkuha ng impormasyon base sa pangangailangan  
-- Ang mga structured prompt ay nagpapahintulot ng consistent na organisasyon ng konteksto
+**Tugon ng Disenyo ng MCP:**
+- Flexible na tooling na nagpapahintulot sa dynamic na retrieval ng impormasyon batay sa pangangailangan
+- Structured prompts na nagbibigay-daan sa consistent na organisasyon ng konteksto
 
 ### Hamon 3: Pagpapanatili ng Konteksto
-
 Ang pamamahala ng estado sa mga interaksyon ay nangangailangan ng maingat na pagsubaybay sa konteksto.
 
-**Tugon ng MCP Design:**  
-- Standardisadong session management  
+**Tugon ng Disenyo ng MCP:**
+- Standardized na session management
 - Malinaw na tinukoy na mga pattern ng interaksyon para sa ebolusyon ng konteksto
 
 ### Hamon 4: Multi-Modal na Konteksto
+Ang iba't ibang uri ng data (text, images, structured data) ay nangangailangan ng iba't ibang paraan ng paghawak.
 
-Iba't ibang uri ng data (teksto, larawan, istrukturadong data) ay nangangailangan ng iba't ibang paghawak.
-
-**Tugon ng MCP Design:**  
-- Dinisenyo ang protocol para tanggapin ang iba't ibang uri ng nilalaman  
-- Standardisadong representasyon ng multi-modal na impormasyon
+**Tugon ng Disenyo ng MCP:**
+- Ang disenyo ng protocol ay tumatanggap ng iba't ibang uri ng content
+- Standardized na representasyon ng multi-modal na impormasyon
 
 ### Hamon 5: Seguridad at Privacy
+Ang konteksto ay madalas na naglalaman ng sensitibong impormasyon na kailangang protektahan.
 
-Madalas naglalaman ang konteksto ng sensitibong impormasyon na kailangang protektahan.
+**Tugon ng Disenyo ng MCP:**
+- Malinaw na hangganan sa pagitan ng mga responsibilidad ng client at server
+- Mga opsyon para sa lokal na pagproseso upang mabawasan ang exposure ng data
 
-**Tugon ng MCP Design:**  
-- Malinaw na hangganan sa pagitan ng responsibilidad ng kliyente at server  
-- Mga opsyon sa lokal na pagproseso upang mabawasan ang exposure ng data
+Ang pag-unawa sa mga hamon na ito at kung paano tinutugunan ng MCP ang mga ito ay nagbibigay ng pundasyon para sa pagsisiyasat ng mas advanced na teknik sa context engineering.
 
-Ang pag-unawa sa mga hamong ito at kung paano ito tinutugunan ng MCP ay nagbibigay ng pundasyon para sa pag-explore ng mas advanced na mga teknik sa context engineering.
+## Umuusbong na Mga Paraan sa Context Engineering
 
-## Mga Umuusbong na Paraan sa Context Engineering
-
-Habang umuunlad ang larangan ng context engineering, may ilang promising na paraan na lumilitaw. Ito ay mga kasalukuyang ideya at hindi pa ganap na best practices, at malamang na magbabago habang nadaragdagan ang karanasan sa mga implementasyon ng MCP.
+Habang nabubuo ang larangan ng context engineering, may ilang promising na paraan na lumilitaw. Ang mga ito ay kumakatawan sa kasalukuyang pag-iisip sa halip na mga itinatag na pinakamahusay na kasanayan, at malamang na mag-evolve habang nakakakuha tayo ng mas maraming karanasan sa mga implementasyon ng MCP.
 
 ### 1. Single-Threaded Linear Processing
 
-Kabaligtaran ng multi-agent architectures na naghahati ng konteksto, natuklasan ng ilang practitioner na mas consistent ang resulta ng single-threaded linear processing. Ito ay tumutugma sa prinsipyo ng pagpapanatili ng iisang konteksto.
+Sa halip na multi-agent architectures na nagdi-distribute ng konteksto, natuklasan ng ilang practitioner na ang single-threaded linear processing ay nagbubunga ng mas consistent na resulta. Ito ay naaayon sa prinsipyo ng pagpapanatili ng unified na konteksto.
 
 ```mermaid
 graph TD
@@ -188,11 +183,11 @@ graph TD
     style E fill:#D2B4DE,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-Bagamat maaaring mukhang hindi kasing epektibo ng parallel processing, madalas itong nagreresulta sa mas coherent at maaasahang output dahil bawat hakbang ay nakabatay sa kumpletong pagkaunawa ng mga naunang desisyon.
+Bagama't ang approach na ito ay maaaring mukhang mas mabagal kaysa sa parallel processing, madalas itong nagbubunga ng mas coherent at maaasahang resulta dahil ang bawat hakbang ay nakabatay sa kumpletong pag-unawa sa mga naunang desisyon.
 
-### 2. Paghiwa-hiwalay at Pag-prioritize ng Konteksto
+### 2. Context Chunking at Prioritization
 
-Paghahati ng malalaking konteksto sa mga piraso na madaling pamahalaan at pagpili ng pinakamahalaga.
+Pagbabahagi ng malalaking konteksto sa mas maliit na bahagi at pag-prioritize kung ano ang pinaka-mahalaga.
 
 ```python
 # Conceptual Example: Context Chunking and Prioritization
@@ -213,11 +208,11 @@ def process_with_chunked_context(documents, query):
     return generate_response(context, query)
 ```
 
-Ipinapakita ng konseptong ito kung paano natin maaaring hatiin ang malalaking dokumento sa mga piraso at piliin lamang ang pinaka-kaugnay para sa konteksto. Nakakatulong ito upang makapasok sa limitasyon ng context window habang nagagamit ang malalaking knowledge base.
+Ang konsepto sa itaas ay naglalarawan kung paano natin maaaring hatiin ang malalaking dokumento sa mas maliit na bahagi at piliin lamang ang pinaka-kaugnayan na bahagi para sa konteksto. Ang approach na ito ay makakatulong sa pagtrabaho sa mga limitasyon ng context window habang ginagamit pa rin ang malalaking knowledge bases.
 
 ### 3. Progressive Context Loading
 
-Pag-load ng konteksto nang paunti-unti ayon sa pangangailangan sa halip na sabay-sabay.
+Pag-load ng konteksto nang progresibo ayon sa pangangailangan sa halip na sabay-sabay.
 
 ```mermaid
 sequenceDiagram
@@ -242,11 +237,11 @@ sequenceDiagram
     App->>User: Answer
 ```
 
-Nagsisimula ang progressive context loading sa minimal na konteksto at lumalawak lamang kapag kinakailangan. Malaki ang naitutulong nito sa pagbabawas ng token usage para sa mga simpleng tanong habang nananatili ang kakayahang sagutin ang mga komplikadong tanong.
+Ang progressive context loading ay nagsisimula sa minimal na konteksto at lumalawak lamang kapag kinakailangan. Ito ay maaaring makabuluhang bawasan ang paggamit ng token para sa mga simpleng query habang pinapanatili ang kakayahang hawakan ang mga kumplikadong tanong.
 
-### 4. Pag-compress at Pagbubuod ng Konteksto
+### 4. Context Compression at Summarization
 
-Pagbawas ng laki ng konteksto habang pinapanatili ang mahalagang impormasyon.
+Pagbabawas ng laki ng konteksto habang pinapanatili ang mahalagang impormasyon.
 
 ```mermaid
 graph TD
@@ -262,99 +257,100 @@ graph TD
     style E fill:#F9E79F,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-Nakatuon ang context compression sa:  
-- Pagtanggal ng mga redundant na impormasyon  
-- Pagbubuod ng mahahabang nilalaman  
-- Pagkuha ng mga pangunahing katotohanan at detalye  
-- Pagpapanatili ng kritikal na elemento ng konteksto  
+Ang context compression ay nakatuon sa:
+- Pag-aalis ng redundant na impormasyon
+- Pagbubuod ng mahahabang content
+- Pagkuha ng mahahalagang katotohanan at detalye
+- Pagpapanatili ng mahahalagang elemento ng konteksto
 - Pag-optimize para sa token efficiency
 
-Mahalaga ito lalo na sa pagpapanatili ng mahahabang pag-uusap sa loob ng context window o sa epektibong pagproseso ng malalaking dokumento. May ilang practitioner na gumagamit ng espesyal na mga modelo para sa context compression at pagbubuod ng kasaysayan ng pag-uusap.
+Ang approach na ito ay partikular na mahalaga para sa pagpapanatili ng mahabang pag-uusap sa loob ng context windows o para sa epektibong pagproseso ng malalaking dokumento. Ang ilang practitioner ay gumagamit ng mga specialized na modelo partikular para sa context compression at summarization ng kasaysayan ng pag-uusap.
 
-## Mga Isinasaalang-alang sa Exploratory Context Engineering
+## Mga Pagsasaalang-alang sa Exploratory Context Engineering
 
-Habang ini-explore ang umuusbong na larangan ng context engineering, may ilang bagay na dapat tandaan kapag nagtatrabaho sa mga implementasyon ng MCP. Hindi ito mga preskriptibong best practice kundi mga lugar ng paggalugad na maaaring magdala ng pagbuti sa iyong partikular na kaso.
+Habang sinisiyasat ang umuusbong na larangan ng context engineering, may ilang mga pagsasaalang-alang na mahalaga sa pag-iimplementa ng MCP. Ang mga ito ay hindi prescriptive na pinakamahusay na kasanayan ngunit mga lugar ng pagsisiyasat na maaaring magbunga ng mga pagpapabuti sa iyong partikular na use case.
 
 ### Isaalang-alang ang Iyong Mga Layunin sa Konteksto
 
-Bago magpatupad ng komplikadong solusyon sa pamamahala ng konteksto, malinaw na tukuyin kung ano ang nais mong makamit:  
-- Anong partikular na impormasyon ang kailangan ng modelo para magtagumpay?  
-- Aling impormasyon ang mahalaga at alin ang pangsuporta?  
-- Ano ang mga limitasyon mo sa performance (latency, token limits, gastos)?
+Bago magpatupad ng mga kumplikadong solusyon sa pamamahala ng konteksto, malinaw na tukuyin kung ano ang nais mong makamit:
+- Anong partikular na impormasyon ang kailangan ng modelo upang magtagumpay?
+- Aling impormasyon ang mahalaga kumpara sa supplementary?
+- Ano ang iyong mga performance constraints (latency, token limits, gastos)?
 
-### Suriin ang Mga Layered na Paraan ng Konteksto
+### Siyasatin ang Layered Context Approaches
 
-May ilang practitioner na nagtatagumpay sa pag-aayos ng konteksto sa mga konseptwal na layer:  
-- **Core Layer**: Mahahalagang impormasyon na palaging kailangan ng modelo  
-- **Situational Layer**: Konteksto na partikular sa kasalukuyang interaksyon  
-- **Supporting Layer**: Karagdagang impormasyon na maaaring makatulong  
-- **Fallback Layer**: Impormasyon na ginagamit lamang kapag kinakailangan
+Ang ilang practitioner ay nakakakita ng tagumpay sa konteksto na inayos sa conceptual layers:
+- **Core Layer**: Mahalagang impormasyon na palaging kailangan ng modelo
+- **Situational Layer**: Konteksto na partikular sa kasalukuyang interaksyon
+- **Supporting Layer**: Karagdagang impormasyon na maaaring makatulong
+- **Fallback Layer**: Impormasyon na ina-access lamang kapag kinakailangan
 
-### Siyasatin ang Mga Estratehiya sa Pagkuha
+### Imbestigahan ang Mga Retrieval Strategies
 
-Ang bisa ng iyong konteksto ay madalas nakadepende sa paraan ng pagkuha ng impormasyon:  
-- Semantic search at embeddings para sa paghahanap ng konseptwal na kaugnayan  
-- Keyword-based search para sa tiyak na mga detalye  
-- Hybrid na paraan na pinagsasama ang iba't ibang retrieval methods  
-- Metadata filtering para paliitin ang saklaw base sa kategorya, petsa, o pinagmulan
+Ang pagiging epektibo ng iyong konteksto ay madalas na nakasalalay sa kung paano mo kinukuha ang impormasyon:
+- Semantic search at embeddings para sa paghahanap ng conceptually relevant na impormasyon
+- Keyword-based search para sa partikular na factual na detalye
+- Hybrid approaches na pinagsasama ang maraming retrieval methods
+- Metadata filtering upang paliitin ang saklaw batay sa mga kategorya, petsa, o pinagmulan
 
-### Subukan ang Coherence ng Konteksto
+### Mag-eksperimento sa Context Coherence
 
-Maaaring makaapekto sa pagkaunawa ng modelo ang estruktura at daloy ng iyong konteksto:  
-- Pagsasama-sama ng magkakaugnay na impormasyon  
-- Paggamit ng consistent na format at organisasyon  
-- Pagpapanatili ng lohikal o kronolohikal na pagkakasunod-sunod kung angkop  
+Ang istruktura at daloy ng iyong konteksto ay maaaring makaapekto sa pag-unawa ng modelo:
+- Pag-group ng magkakaugnay na impormasyon
+- Paggamit ng consistent na formatting at organisasyon
+- Pagpapanatili ng logical o chronological na pagkakasunod-sunod kung naaangkop
 - Pag-iwas sa magkasalungat na impormasyon
 
-### Timbangin ang Mga Tradeoff ng Multi-Agent Architectures
+### Timbangin ang Tradeoffs ng Multi-Agent Architectures
 
-Bagamat popular ang multi-agent architectures sa maraming AI framework, may mga mahahalagang hamon ito sa pamamahala ng konteksto:  
-- Ang pagkakahati-hati ng konteksto ay maaaring magdulot ng hindi magkakatugmang desisyon sa mga ahente  
-- Ang parallel processing ay maaaring magpasok ng mga conflict na mahirap ayusin  
-- Ang overhead sa komunikasyon sa pagitan ng mga ahente ay maaaring pumigil sa pagbuti ng performance  
-- Kailangan ng komplikadong pamamahala ng estado para mapanatili ang coherence
+Bagama't ang multi-agent architectures ay popular sa maraming AI frameworks, may mga makabuluhang hamon ito para sa pamamahala ng konteksto:
+- Ang fragmentation ng konteksto ay maaaring magresulta sa hindi pare-parehong desisyon sa pagitan ng mga ahente
+- Ang parallel processing ay maaaring magpakilala ng mga salungatan na mahirap i-reconcile
+- Ang communication overhead sa pagitan ng mga ahente ay maaaring mag-offset ng performance gains
+- Ang complex na pamamahala ng estado ay kinakailangan upang mapanatili ang coherence
 
-Sa maraming kaso, ang single-agent na pamamaraan na may komprehensibong pamamahala ng konteksto ay maaaring maghatid ng mas maaasahang resulta kaysa sa maraming specialized agents na may hati-hating konteksto.
+Sa maraming kaso, ang single-agent approach na may komprehensibong pamamahala ng konteksto ay maaaring magbunga ng mas maaasahang resulta kaysa sa maraming specialized na ahente na may fragmented na konteksto.
 
-### Bumuo ng Mga Pamamaraan sa Pagsusuri
+### Bumuo ng Mga Paraan ng Pagsusuri
 
-Para mapabuti ang context engineering sa paglipas ng panahon, isaalang-alang kung paano mo susukatin ang tagumpay:  
-- A/B testing ng iba't ibang estruktura ng konteksto  
-- Pagsubaybay sa paggamit ng token at oras ng tugon  
-- Pagtatala ng kasiyahan ng gumagamit at rate ng pagkumpleto ng gawain  
-- Pagsusuri kung kailan at bakit nabibigo ang mga estratehiya sa konteksto
+Upang mapabuti ang context engineering sa paglipas ng panahon, isaalang-alang kung paano mo susukatin ang tagumpay:
+- A/B testing ng iba't ibang istruktura ng konteksto
+- Pagsubaybay sa paggamit ng token at response times
+- Pagsubaybay sa kasiyahan ng user at task completion rates
+- Pagsusuri kung kailan at bakit nabigo ang mga estratehiya sa konteksto
 
-Ang mga isinasaalang-alang na ito ay mga aktibong larangan ng paggalugad sa context engineering. Habang lumalago ang larangan, malamang na lilitaw ang mas tiyak na mga pattern at praktis.
+Ang mga pagsasaalang-alang na ito ay kumakatawan sa mga aktibong lugar ng pagsisiyasat sa larangan ng context engineering. Habang nag-mature ang larangan, mas tiyak na mga pattern at kasanayan ang malamang na lilitaw.
 
-## Pagsusukat ng Bisa ng Konteksto: Isang Nagbabagong Balangkas
+## Pagsukat ng Pagiging Epektibo ng Konteksto: Isang Umuusbong na Framework
 
-Habang lumilitaw ang context engineering bilang isang konsepto, nagsisimula nang tuklasin ng mga practitioner kung paano natin masusukat ang bisa nito. Wala pang ganap na balangkas, ngunit may iba't ibang metric na isinasaalang-alang na maaaring gabayan ang mga susunod na gawain.
+Habang umuusbong ang context engineering bilang isang konsepto, sinisimulan ng mga practitioner na siyasatin kung paano natin maaaring sukatin ang pagiging epektibo nito. Walang itinatag na framework ang umiiral pa, ngunit iba't ibang mga sukatan ang isinasaalang-alang na maaaring makatulong sa paggabay sa hinaharap na gawain.
 
-### Mga Posibleng Dimensyon ng Pagsusukat
+### Mga Potensyal na Dimensyon ng Pagsukat
 
 #### 1. Mga Pagsasaalang-alang sa Input Efficiency
 
-- **Ratio ng Konteksto sa Tugon**: Gaano karaming konteksto ang kailangan kumpara sa laki ng tugon?  
-- **Paggamit ng Token**: Anong porsyento ng mga token sa konteksto ang tila nakaapekto sa tugon?  
-- **Pagbawas ng Konteksto**: Gaano kaepektibo ang pag-compress ng raw na impormasyon?
+- **Context-to-Response Ratio**: Gaano karaming konteksto ang kailangan kumpara sa laki ng tugon?
+- **Token Utilization**: Anong porsyento ng ibinigay na mga token ng konteksto ang tila nakakaapekto sa tugon?
+- **Context Reduction**: Gaano kabisa ang pag-compress ng raw na impormasyon?
 
 #### 2. Mga Pagsasaalang-alang sa Performance
 
-- **Epekto sa Latency**: Paano naaapektuhan ng pamamahala ng konteksto ang oras ng tugon?  
-- **Token Economy**: Na-o-optimize ba natin nang maayos ang paggamit ng token?  
-- **Precision ng Retrieval**: Gaano kaugnay ang nakuha na impormasyon?  
-- **Paggamit ng Resources**: Anong mga computational resources ang kailangan?
+- **Latency Impact**: Paano nakakaapekto ang pamamahala ng konteksto sa response time?
+- **Token Economy**: Na-optimize ba natin ang paggamit ng token nang epektibo?
+- **Retrieval Precision**: Gaano kaugnayan ang nakuha na impormasyon?
+- **Resource Utilization**: Anong computational resources ang kinakailangan?
 
 #### 3. Mga Pagsasaalang-alang sa Kalidad
 
-- **Kaugnayan ng Tugon**: Gaano kahusay na tinutugunan ng tugon ang tanong?  
-- **Katumpakan ng Katotohanan**: Pinapabuti ba ng pamamahala ng konteksto ang factual accuracy?  
-- **Konsistensi**: Pare-pareho ba ang mga tugon sa magkakatulad na tanong?  
-- **Rate ng Hallucination**: Nababawasan ba ng mas mahusay na konteksto ang mga hallucination ng modelo?
+- **Response Relevance**: Gaano kahusay ang tugon sa query?
+- **Factual Accuracy**: Pinapabuti ba ng pamamahala ng konteksto ang factual correctness?
+- **Consistency**: Pare-pareho ba ang mga tugon sa magkatulad na query?
+- **Hallucination Rate**: Nabawasan ba ang hallucinations ng modelo sa mas mahusay na konteksto?
 
-#### 4. Mga Pagsasaalang-alang sa Karanasan ng Gumagamit
+#### 4. Mga Pagsasaalang-alang sa Karanasan ng User
 
-- **Rate ng Follow-up**: Gaano kadalas kailangan ng mga gumagamit ng paglilinaw
+- **Follow-up Rate**: Gaano kadalas kailangan ng user ng karagdagang paglilinaw?
+- **
 - [Model Context Protocol Website](https://modelcontextprotocol.io/)
 - [Model Context Protocol Specification](https://github.com/modelcontextprotocol/modelcontextprotocol)
 - [MCP Documentation](https://modelcontextprotocol.io/docs)
@@ -363,26 +359,29 @@ Habang lumilitaw ang context engineering bilang isang konsepto, nagsisimula nang
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
 - [MCP Inspector](https://github.com/modelcontextprotocol/inspector) - Visual na tool para sa pagsusuri ng MCP servers
 
-### Mga Artikulo sa Context Engineering
-- [Don't Build Multi-Agents: Principles of Context Engineering](https://cognition.ai/blog/dont-build-multi-agents) - Mga pananaw ni Walden Yan tungkol sa mga prinsipyo ng context engineering
-- [A Practical Guide to Building Agents](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) - Gabay ng OpenAI sa epektibong disenyo ng mga agent
-- [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) - Paraan ng Anthropic sa pagbuo ng mga agent
+### Mga Artikulo Tungkol sa Context Engineering
+- [Huwag Gumawa ng Multi-Agents: Mga Prinsipyo ng Context Engineering](https://cognition.ai/blog/dont-build-multi-agents) - Mga pananaw ni Walden Yan sa mga prinsipyo ng context engineering
+- [Praktikal na Gabay sa Paggawa ng Agents](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) - Gabay ng OpenAI sa epektibong disenyo ng agents
+- [Paggawa ng Epektibong Agents](https://www.anthropic.com/engineering/building-effective-agents) - Diskarte ng Anthropic sa pag-develop ng agents
 
 ### Kaugnay na Pananaliksik
-- [Dynamic Retrieval Augmentation for Large Language Models](https://arxiv.org/abs/2310.01487) - Pananaliksik tungkol sa mga dynamic retrieval na pamamaraan
-- [Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172) - Mahalaga na pananaliksik tungkol sa mga pattern ng pagproseso ng konteksto
-- [Hierarchical Text-Conditioned Image Generation with CLIP Latents](https://arxiv.org/abs/2204.06125) - Papel ng DALL-E 2 na may mga pananaw sa pag-aayos ng konteksto
-- [Exploring the Role of Context in Large Language Model Architectures](https://aclanthology.org/2023.findings-emnlp.124/) - Pinakabagong pananaliksik tungkol sa paghawak ng konteksto
-- [Multi-Agent Collaboration: A Survey](https://arxiv.org/abs/2304.03442) - Pananaliksik tungkol sa mga multi-agent system at ang kanilang mga hamon
+- [Dynamic Retrieval Augmentation para sa Malalaking Language Models](https://arxiv.org/abs/2310.01487) - Pananaliksik tungkol sa mga dynamic retrieval na pamamaraan
+- [Lost in the Middle: Paano Ginagamit ng Language Models ang Mahahabang Contexts](https://arxiv.org/abs/2307.03172) - Mahalagang pananaliksik tungkol sa mga pattern ng pagproseso ng context
+- [Hierarchical Text-Conditioned Image Generation gamit ang CLIP Latents](https://arxiv.org/abs/2204.06125) - Papel ng DALL-E 2 na may mga pananaw sa pag-istruktura ng context
+- [Paggalugad sa Papel ng Context sa Arkitektura ng Malalaking Language Models](https://aclanthology.org/2023.findings-emnlp.124/) - Kamakailang pananaliksik tungkol sa paghawak ng context
+- [Multi-Agent Collaboration: Isang Survey](https://arxiv.org/abs/2304.03442) - Pananaliksik tungkol sa mga sistema ng multi-agent at ang kanilang mga hamon
 
 ### Karagdagang Mga Mapagkukunan
-- [Context Window Optimization Techniques](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/context-window)
+- [Mga Teknik sa Pag-optimize ng Context Window](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/context-window)
 - [Advanced RAG Techniques](https://www.microsoft.com/en-us/research/blog/retrieval-augmented-generation-rag-and-frontier-models/)
 - [Semantic Kernel Documentation](https://github.com/microsoft/semantic-kernel)
-- [AI Toolkit for Context Management](https://github.com/microsoft/aitoolkit)
+- [AI Toolkit para sa Context Management](https://github.com/microsoft/aitoolkit)
 
-## Ano ang Susunod
-- [6. Community Contributions](../../06-CommunityContributions/README.md)
+## Ano ang susunod 
 
-**Paalala**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagamat nagsusumikap kami para sa katumpakan, pakatandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o di-tumpak na impormasyon. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.
+- [5.15 MCP Custom Transport](../mcp-transport/README.md)
+
+---
+
+**Paunawa**:  
+Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, tandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang katutubong wika ang dapat ituring na opisyal na sanggunian. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.

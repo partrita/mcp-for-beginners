@@ -60,7 +60,7 @@ Chagua mazingira unayopendelea ya maendeleo:
 
 ## Utekelezaji wa Python
 
-***Note*** Unaweza kuendesha [daftari hili](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb)
+***Note*** Unaweza kuendesha [daftari hili](mcp_support_python.ipynb)
 
 ### 1. Sakinisha Pakiti Zinazohitajika
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## Utekelezaji wa .NET
 
-***Note*** Unaweza kuendesha [daftari hili](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb)
+***Note*** Unaweza kuendesha [daftari hili](mcp_support_dotnet.ipynb)
 
 ### 1. Sakinisha Pakiti Zinazohitajika
 

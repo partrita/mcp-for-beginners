@@ -1,23 +1,23 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a05fb941810e539147fec53aaadbb6fd",
-  "translation_date": "2025-07-14T06:43:17+00:00",
+  "original_hash": "6ef6015d29b95f1cab97fb88a045a991",
+  "translation_date": "2025-09-05T11:24:26+00:00",
   "source_file": "09-CaseStudy/docs-mcp/solution/python/README.md",
   "language_code": "hu"
 }
 -->
-# Tanulási Terv Generátor Chainlit és Microsoft Learn Docs MCP segítségével
+# Tanulási terv generátor Chainlit és Microsoft Learn Docs MCP segítségével
 
 ## Előfeltételek
 
 - Python 3.8 vagy újabb
 - pip (Python csomagkezelő)
-- Internetkapcsolat a Microsoft Learn Docs MCP szerver eléréséhez
+- Internetkapcsolat a Microsoft Learn Docs MCP szerverhez való csatlakozáshoz
 
 ## Telepítés
 
-1. Klónozd ezt a tárolót vagy töltsd le a projekt fájljait.
+1. Klónozd ezt a repót vagy töltsd le a projekt fájlokat.
 2. Telepítsd a szükséges függőségeket:
 
    ```bash
@@ -27,28 +27,28 @@ CO_OP_TRANSLATOR_METADATA:
 ## Használat
 
 ### 1. Forgatókönyv: Egyszerű lekérdezés a Docs MCP-hez
-Egy parancssori kliens, amely kapcsolódik a Docs MCP szerverhez, elküldi a lekérdezést, és kiírja az eredményt.
+Egy parancssoros kliens, amely csatlakozik a Docs MCP szerverhez, elküldi a lekérdezést, és megjeleníti az eredményt.
 
 1. Futtasd a szkriptet:
    ```bash
    python scenario1.py
    ```
-2. Írd be a dokumentációs kérdésed a promptnál.
+2. Írd be a dokumentációval kapcsolatos kérdésedet a promptba.
 
 ### 2. Forgatókönyv: Tanulási terv generátor (Chainlit webalkalmazás)
-Egy webes felület (Chainlit használatával), amely lehetővé teszi, hogy személyre szabott, heti bontású tanulási tervet készíts bármilyen technikai témához.
+Egy webes felület (Chainlit segítségével), amely lehetővé teszi a felhasználók számára, hogy személyre szabott, heti bontású tanulási tervet készítsenek bármely technikai témához.
 
 1. Indítsd el a Chainlit alkalmazást:
    ```bash
    chainlit run scenario2.py
    ```
-2. Nyisd meg a terminálban megjelenő helyi URL-t (pl. http://localhost:8000) a böngésződben.
-3. A csevegőablakba írd be a tanulási témádat és a tanulni kívánt hetek számát (pl. „AI-900 tanúsítvány, 8 hét”).
-4. Az alkalmazás válaszként egy heti bontású tanulási tervet ad, beleértve a kapcsolódó Microsoft Learn dokumentációs linkeket.
+2. Nyisd meg a terminálban megadott helyi URL-t (pl. http://localhost:8000) a böngésződben.
+3. A chat ablakban írd be a tanulási témát és a tanulás időtartamát (pl. "AI-900 vizsga, 8 hét").
+4. Az alkalmazás válaszol egy heti bontású tanulási tervvel, amely tartalmazza a releváns Microsoft Learn dokumentáció linkjeit.
 
 **Szükséges környezeti változók:**
 
-A 2. forgatókönyv (Chainlit webalkalmazás Azure OpenAI-val) használatához a `python` könyvtárban létre kell hoznod egy `.env` fájlt, és be kell állítanod az alábbi környezeti változókat:
+A 2. forgatókönyv (Chainlit webalkalmazás Azure OpenAI-val) használatához a következő környezeti változókat kell beállítanod egy `.env` fájlban a `python` könyvtárban:
 
 ```
 AZURE_OPENAI_CHAT_DEPLOYMENT_NAME=
@@ -57,52 +57,55 @@ AZURE_OPENAI_ENDPOINT=
 AZURE_OPENAI_API_VERSION=
 ```
 
-Töltsd ki ezeket az értékeket az Azure OpenAI erőforrásod adataival, mielőtt elindítod az alkalmazást.
+Töltsd ki ezeket az értékeket az Azure OpenAI erőforrás részleteivel, mielőtt futtatnád az alkalmazást.
 
-> **Tip:** Saját modellek egyszerű telepítéséhez használd az [Azure AI Foundry](https://ai.azure.com/) szolgáltatást.
+> [!TIP]
+> Könnyen telepítheted saját modelljeidet az [Azure AI Foundry](https://ai.azure.com/) segítségével.
 
-### 3. Forgatókönyv: Dokumentáció szerkesztőben MCP szerverrel VS Code-ban
+### 3. Forgatókönyv: Dokumentáció a szerkesztőben MCP szerverrel VS Code-ban
 
-Ahelyett, hogy böngészőfüleket váltogatnál a dokumentáció kereséséhez, behozhatod a Microsoft Learn Docs-ot közvetlenül a VS Code szerkesztődbe az MCP szerver segítségével. Ez lehetővé teszi, hogy:
-- Keresd és olvasd a dokumentációt a VS Code-ban anélkül, hogy elhagynád a fejlesztői környezetet.
-- Hivatkozásokat illessz be közvetlenül a README vagy tananyag fájljaidba.
-- Használd együtt a GitHub Copilotot és az MCP-t egy zökkenőmentes, AI-alapú dokumentációs munkafolyamathoz.
+Ahelyett, hogy böngészőfülek között váltanál a dokumentáció kereséséhez, közvetlenül a Microsoft Learn Docs-t hozhatod be a VS Code-ba az MCP szerver segítségével. Ez lehetővé teszi, hogy:
+- Dokumentációt keress és olvass közvetlenül a VS Code-ban anélkül, hogy elhagynád a kódolási környezetet.
+- Dokumentációs hivatkozásokat adj hozzá, és linkeket illessz be közvetlenül a README vagy kurzus fájlokba.
+- GitHub Copilotot és MCP-t együtt használj egy zökkenőmentes, AI-alapú dokumentációs munkafolyamathoz.
 
-**Példák a használatra:**
-- Gyorsan adj hozzá hivatkozásokat egy README-hez tananyag vagy projekt dokumentáció írása közben.
-- Használd a Copilotot kód generálásra, és az MCP-t a releváns dokumentáció azonnali megtalálására és idézésére.
-- Maradj fókuszban a szerkesztődben, és növeld a hatékonyságod.
+**Példa felhasználási esetek:**
+- Gyorsan adj hozzá hivatkozásokat egy README-hez, miközben kurzus- vagy projekt-dokumentációt írsz.
+- Használd a Copilotot kód generálására, és az MCP-t releváns dokumentáció keresésére és idézésére.
+- Maradj fókuszált a szerkesztőben, és növeld a produktivitást.
 
 > [!IMPORTANT]
-> Győződj meg róla, hogy érvényes [`mcp.json`](../../../../../../09-CaseStudy/docs-mcp/solution/scenario3/mcp.json) konfiguráció van a munkaterületedben (helye: `.vscode/mcp.json`).
+> Győződj meg róla, hogy érvényes [`mcp.json`](../../../../../../09-CaseStudy/docs-mcp/solution/scenario3/mcp.json) konfigurációval rendelkezel a munkaterületedben (helye: `.vscode/mcp.json`).
 
 ## Miért Chainlit a 2. forgatókönyvhöz?
 
-A Chainlit egy modern, nyílt forráskódú keretrendszer beszélgetés-alapú webalkalmazások készítéséhez. Megkönnyíti chat alapú felhasználói felületek létrehozását, amelyek kapcsolódnak backend szolgáltatásokhoz, például a Microsoft Learn Docs MCP szerverhez. Ez a projekt a Chainlit-et használja, hogy egyszerű, interaktív módon generáljon személyre szabott tanulási terveket valós időben. A Chainlit segítségével gyorsan építhetsz és telepíthetsz chat alapú eszközöket, amelyek növelik a hatékonyságot és a tanulást.
+A Chainlit egy modern, nyílt forráskódú keretrendszer beszélgetés-alapú webalkalmazások építéséhez. Egyszerűvé teszi chat-alapú felhasználói felületek létrehozását, amelyek backend szolgáltatásokhoz, például a Microsoft Learn Docs MCP szerverhez csatlakoznak. Ez a projekt a Chainlit segítségével egy egyszerű, interaktív módot kínál személyre szabott tanulási tervek valós idejű generálására. A Chainlit használatával gyorsan építhetsz és telepíthetsz chat-alapú eszközöket, amelyek növelik a produktivitást és a tanulást.
 
 ## Mit csinál ez az alkalmazás?
 
-Ez az alkalmazás lehetővé teszi, hogy a felhasználók egyszerűen megadják a témát és az időtartamot, majd személyre szabott tanulási tervet készítsenek. Az alkalmazás feldolgozza a bemenetet, lekérdezi a Microsoft Learn Docs MCP szervert a releváns tartalomért, és strukturált, heti bontású tervbe rendezi az eredményeket. Minden hét ajánlásai megjelennek a csevegésben, így könnyen követhető és nyomon követhető a haladás. Az integráció biztosítja, hogy mindig a legfrissebb és legrelevánsabb tanulási forrásokat kapd.
+Ez az alkalmazás lehetővé teszi a felhasználók számára, hogy személyre szabott tanulási tervet készítsenek egyszerűen egy téma és egy időtartam megadásával. Az alkalmazás elemzi a bevitt adatokat, lekérdezéseket küld a Microsoft Learn Docs MCP szervernek releváns tartalomért, és az eredményeket strukturált, heti bontású tervvé szervezi. Minden hét ajánlásai megjelennek a chatben, így könnyen követheted és nyomon követheted a haladásodat. Az integráció biztosítja, hogy mindig a legfrissebb, legrelevánsabb tanulási forrásokat kapd.
 
-## Minta lekérdezések
+## Példa lekérdezések
 
-Próbáld ki ezeket a lekérdezéseket a csevegőablakban, hogy lásd, hogyan válaszol az alkalmazás:
+Próbáld ki ezeket a lekérdezéseket a chat ablakban, hogy lásd, hogyan reagál az alkalmazás:
 
-- `AI-900 tanúsítvány, 8 hét`
+- `AI-900 vizsga, 8 hét`
 - `Azure Functions tanulása, 4 hét`
 - `Azure DevOps, 6 hét`
-- `Adatmérnökség Azure-on, 10 hét`
+- `Adatmérnökség az Azure-on, 10 hét`
 - `Microsoft biztonsági alapok, 5 hét`
 - `Power Platform, 7 hét`
 - `Azure AI szolgáltatások, 12 hét`
 - `Felhőarchitektúra, 9 hét`
 
-Ezek a példák bemutatják az alkalmazás rugalmasságát különböző tanulási célokhoz és időkeretekhez.
+Ezek a példák bemutatják az alkalmazás rugalmasságát különböző tanulási célok és időkeretek esetén.
 
 ## Hivatkozások
 
 - [Chainlit dokumentáció](https://docs.chainlit.io/)
 - [MCP dokumentáció](https://github.com/MicrosoftDocs/mcp)
 
-**Jogi nyilatkozat**:  
-Ez a dokumentum az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Kritikus információk esetén professzionális emberi fordítást javaslunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+---
+
+**Felelősségkizárás**:  
+Ez a dokumentum az [Co-op Translator](https://github.com/Azure/co-op-translator) AI fordítási szolgáltatás segítségével készült. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Kritikus információk esetén javasolt professzionális, emberi fordítást igénybe venni. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.

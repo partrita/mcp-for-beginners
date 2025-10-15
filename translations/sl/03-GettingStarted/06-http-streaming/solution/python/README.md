@@ -1,21 +1,21 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4c4da5949611d91b06d8a5d450aae8d6",
-  "translation_date": "2025-07-13T21:23:00+00:00",
+  "original_hash": "67ecbca6a060477ded3e13ddbeba64f7",
+  "translation_date": "2025-08-19T18:23:32+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/python/README.md",
   "language_code": "sl"
 }
 -->
 # Zagon tega primera
 
-Tukaj je opisano, kako zagnati klasični HTTP streaming strežnik in odjemalca ter MCP streaming strežnik in odjemalca z uporabo Pythona.
+Tukaj je opis, kako zagnati klasični HTTP strežniški in odjemalski tok ter MCP strežniški in odjemalski tok z uporabo Pythona.
 
 ### Pregled
 
-- Nastavili boste MCP strežnik, ki stranki pošilja obvestila o napredku med obdelavo elementov.
-- Odjemalec bo v realnem času prikazoval vsako obvestilo.
-- Ta vodič zajema predpogoje, namestitev, zagon in odpravljanje težav.
+- Nastavili boste MCP strežnik, ki med obdelavo elementov pošilja obvestila o napredku odjemalcu.
+- Odjemalec bo prikazoval vsako obvestilo v realnem času.
+- Ta vodič zajema predpogoje, nastavitev, zagon in odpravljanje težav.
 
 ### Predpogoji
 
@@ -42,7 +42,7 @@ Tukaj je opisano, kako zagnati klasični HTTP streaming strežnik in odjemalca t
 1. **Namestite potrebne odvisnosti:**
 
    ```pwsh
-   pip install "mcp[cli]"
+   pip install "mcp[cli]" fastapi requests
    ```
 
 ### Datoteke
@@ -50,15 +50,15 @@ Tukaj je opisano, kako zagnati klasični HTTP streaming strežnik in odjemalca t
 - **Strežnik:** [server.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/server.py)
 - **Odjemalec:** [client.py](../../../../../../03-GettingStarted/06-http-streaming/solution/python/client.py)
 
-### Zagon klasičnega HTTP streaming strežnika
+### Zagon klasičnega HTTP strežniškega toka
 
-1. Pomaknite se v imenik rešitve:
+1. Pomaknite se v mapo z rešitvijo:
 
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    ```
 
-2. Zaženite klasični HTTP streaming strežnik:
+2. Zaženite klasični HTTP strežniški tok:
 
    ```pwsh
    python server.py
@@ -71,16 +71,16 @@ Tukaj je opisano, kako zagnati klasični HTTP streaming strežnik in odjemalca t
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### Zagon klasičnega HTTP streaming odjemalca
+### Zagon klasičnega HTTP odjemalskega toka
 
-1. Odprite nov terminal (aktivirajte isto virtualno okolje in imenik):
+1. Odprite nov terminal (aktivirajte isto virtualno okolje in mapo):
 
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py
    ```
 
-2. Videli boste zaporedno izpisana sporočila:
+2. Videti bi morali zaporedno natisnjena sporočila toka:
 
    ```text
    Running classic HTTP streaming client...
@@ -93,13 +93,13 @@ Tukaj je opisano, kako zagnati klasični HTTP streaming strežnik in odjemalca t
    --- Stream Ended ---
    ```
 
-### Zagon MCP streaming strežnika
+### Zagon MCP strežniškega toka
 
-1. Pomaknite se v imenik rešitve:
+1. Pomaknite se v mapo z rešitvijo:
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    ```
-2. Zaženite MCP strežnik s transportom streamable-http:
+2. Zaženite MCP strežnik z uporabo transporta streamable-http:
    ```pwsh
    python server.py mcp
    ```
@@ -109,14 +109,14 @@ Tukaj je opisano, kako zagnati klasični HTTP streaming strežnik in odjemalca t
    INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
    ```
 
-### Zagon MCP streaming odjemalca
+### Zagon MCP odjemalskega toka
 
-1. Odprite nov terminal (aktivirajte isto virtualno okolje in imenik):
+1. Odprite nov terminal (aktivirajte isto virtualno okolje in mapo):
    ```pwsh
    cd 03-GettingStarted/06-http-streaming/solution
    python client.py mcp
    ```
-2. V realnem času boste videli obvestila, ko strežnik obdela vsak element:
+2. Videti bi morali obvestila, natisnjena v realnem času, ko strežnik obdeluje vsak element:
    ```
    Running MCP client...
    Starting client...
@@ -132,20 +132,20 @@ Tukaj je opisano, kako zagnati klasični HTTP streaming strežnik in odjemalca t
 ### Ključni koraki implementacije
 
 1. **Ustvarite MCP strežnik z uporabo FastMCP.**
-2. **Določite orodje, ki obdela seznam in pošilja obvestila z `ctx.info()` ali `ctx.log()`.**
+2. **Definirajte orodje, ki obdeluje seznam in pošilja obvestila z uporabo `ctx.info()` ali `ctx.log()`.**
 3. **Zaženite strežnik z `transport="streamable-http"`.**
-4. **Implementirajte odjemalca z upravljalcem sporočil, ki prikazuje obvestila takoj, ko prispejo.**
+4. **Implementirajte odjemalca z obdelovalcem sporočil za prikaz obvestil ob njihovem prihodu.**
 
 ### Pregled kode
-- Strežnik uporablja asinhrone funkcije in MCP kontekst za pošiljanje posodobitev napredka.
-- Odjemalec implementira asinhroni upravljalec sporočil za izpis obvestil in končnega rezultata.
+- Strežnik uporablja asinhrone funkcije in MCP kontekst za pošiljanje posodobitev o napredku.
+- Odjemalec implementira asinhroni obdelovalec sporočil za tiskanje obvestil in končnega rezultata.
 
 ### Nasveti in odpravljanje težav
 
-- Uporabljajte `async/await` za neblokirajoče operacije.
+- Uporabite `async/await` za neblokirajoče operacije.
 - Vedno obravnavajte izjeme tako na strežniku kot na odjemalcu za večjo zanesljivost.
-- Preizkusite z več odjemalci, da opazujete posodobitve v realnem času.
-- Če naletite na napake, preverite različico Pythona in zagotovite, da so vse odvisnosti nameščene.
+- Testirajte z več odjemalci, da opazujete posodobitve v realnem času.
+- Če naletite na napake, preverite svojo različico Pythona in zagotovite, da so vse odvisnosti nameščene.
 
 **Omejitev odgovornosti**:  
-Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas opozarjamo, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku velja za avtoritativni vir. Za ključne informacije priporočamo strokovni človeški prevod. Za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda, ne odgovarjamo.
+Ta dokument je bil preveden z uporabo storitve za prevajanje z umetno inteligenco [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da lahko avtomatizirani prevodi vsebujejo napake ali netočnosti. Izvirni dokument v njegovem maternem jeziku je treba obravnavati kot avtoritativni vir. Za ključne informacije priporočamo profesionalni človeški prevod. Ne prevzemamo odgovornosti za morebitna nesporazumevanja ali napačne razlage, ki izhajajo iz uporabe tega prevoda.

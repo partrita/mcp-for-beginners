@@ -60,7 +60,7 @@ Model Context Protocol 是 AI 應用連接外部資料來源和工具的標準�
 
 ## Python 實作
 
-***Note*** 您可以執行此 [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb)
+***Note*** 您可以執行此 [notebook](mcp_support_python.ipynb)
 
 ### 1. 安裝所需套件
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET 實作
 
-***Note*** 您可以執行此 [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb)
+***Note*** 您可以執行此 [notebook](mcp_support_dotnet.ipynb)
 
 ### 1. 安裝所需套件
 

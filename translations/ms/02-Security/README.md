@@ -1,264 +1,444 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "382fddb4ee4d9c1bdc806e2ee99b70c8",
-  "translation_date": "2025-07-17T08:10:28+00:00",
+  "original_hash": "1c767a35642f753127dc08545c25a290",
+  "translation_date": "2025-08-18T17:56:31+00:00",
   "source_file": "02-Security/README.md",
   "language_code": "ms"
 }
 -->
-# Amalan Terbaik Keselamatan
+# MCP Keselamatan: Perlindungan Komprehensif untuk Sistem AI
 
-Menggunakan Model Context Protocol (MCP) membawa keupayaan baru yang hebat kepada aplikasi berasaskan AI, tetapi juga memperkenalkan cabaran keselamatan unik yang melangkaui risiko perisian tradisional. Selain kebimbangan yang sudah ada seperti pengekodan selamat, prinsip keistimewaan minimum, dan keselamatan rantaian bekalan, MCP dan beban kerja AI menghadapi ancaman baru seperti suntikan arahan (prompt injection), pencemaran alat (tool poisoning), pengubahsuaian alat dinamik, pembajakan sesi, serangan confused deputy, dan kelemahan token passthrough. Risiko-risiko ini boleh menyebabkan pendedahan data, pelanggaran privasi, dan tingkah laku sistem yang tidak diingini jika tidak diurus dengan betul.
+[![Amalan Terbaik Keselamatan MCP](../../../translated_images/03.175aed6dedae133f9d41e49cefd0f0a9a39c3317e1eaa7ef7182696af7534308.ms.png)](https://youtu.be/88No8pw706o)
 
-Pelajaran ini meneroka risiko keselamatan yang paling relevan berkaitan dengan MCP—termasuk pengesahan, kebenaran, kebenaran berlebihan, suntikan arahan tidak langsung, keselamatan sesi, masalah confused deputy, kelemahan token passthrough, dan kelemahan rantaian bekalan—serta menyediakan kawalan dan amalan terbaik yang boleh diambil tindakan untuk mengurangkannya. Anda juga akan belajar bagaimana menggunakan penyelesaian Microsoft seperti Prompt Shields, Azure Content Safety, dan GitHub Advanced Security untuk mengukuhkan pelaksanaan MCP anda. Dengan memahami dan mengaplikasikan kawalan ini, anda boleh mengurangkan kemungkinan berlakunya pelanggaran keselamatan dan memastikan sistem AI anda kekal kukuh dan boleh dipercayai.
+_(Klik imej di atas untuk menonton video pelajaran ini)_
 
-# Objektif Pembelajaran
+Keselamatan adalah asas dalam reka bentuk sistem AI, sebab itulah kami mengutamakannya sebagai bahagian kedua. Ini sejajar dengan prinsip **Secure by Design** Microsoft daripada [Secure Future Initiative](https://www.microsoft.com/security/blog/2025/04/17/microsofts-secure-by-design-journey-one-year-of-success/).
+
+Model Context Protocol (MCP) membawa keupayaan baharu yang kuat kepada aplikasi berasaskan AI sambil memperkenalkan cabaran keselamatan unik yang melangkaui risiko perisian tradisional. Sistem MCP menghadapi kebimbangan keselamatan yang telah lama wujud (pengkodan selamat, keistimewaan minimum, keselamatan rantaian bekalan) dan ancaman khusus AI baharu termasuk suntikan prompt, keracunan alat, rampasan sesi, serangan timbal balik keliru, kelemahan token passthrough, dan pengubahsuaian keupayaan dinamik.
+
+Pelajaran ini meneroka risiko keselamatan paling kritikal dalam pelaksanaan MCP—meliputi pengesahan, kebenaran, keistimewaan berlebihan, suntikan prompt tidak langsung, keselamatan sesi, masalah timbal balik keliru, pengurusan token, dan kelemahan rantaian bekalan. Anda akan mempelajari kawalan yang boleh diambil tindakan dan amalan terbaik untuk mengurangkan risiko ini sambil memanfaatkan penyelesaian Microsoft seperti Prompt Shields, Azure Content Safety, dan GitHub Advanced Security untuk memperkukuh pelaksanaan MCP anda.
+
+## Objektif Pembelajaran
 
 Menjelang akhir pelajaran ini, anda akan dapat:
 
-- Mengenal pasti dan menerangkan risiko keselamatan unik yang diperkenalkan oleh Model Context Protocol (MCP), termasuk suntikan arahan, pencemaran alat, kebenaran berlebihan, pembajakan sesi, masalah confused deputy, kelemahan token passthrough, dan kelemahan rantaian bekalan.
-- Menerangkan dan menggunakan kawalan mitigasi yang berkesan untuk risiko keselamatan MCP, seperti pengesahan yang kukuh, prinsip keistimewaan minimum, pengurusan token yang selamat, kawalan keselamatan sesi, dan pengesahan rantaian bekalan.
-- Memahami dan menggunakan penyelesaian Microsoft seperti Prompt Shields, Azure Content Safety, dan GitHub Advanced Security untuk melindungi MCP dan beban kerja AI.
-- Mengiktiraf kepentingan mengesahkan metadata alat, memantau perubahan dinamik, mempertahankan serangan suntikan arahan tidak langsung, dan mencegah pembajakan sesi.
-- Mengintegrasikan amalan keselamatan terbaik yang telah ditetapkan—seperti pengekodan selamat, pengukuhan pelayan, dan seni bina zero trust—ke dalam pelaksanaan MCP anda untuk mengurangkan kemungkinan dan impak pelanggaran keselamatan.
+- **Kenal Pasti Ancaman Khusus MCP**: Mengenal pasti risiko keselamatan unik dalam sistem MCP termasuk suntikan prompt, keracunan alat, keistimewaan berlebihan, rampasan sesi, masalah timbal balik keliru, kelemahan token passthrough, dan risiko rantaian bekalan
+- **Terapkan Kawalan Keselamatan**: Melaksanakan mitigasi berkesan termasuk pengesahan yang kukuh, akses keistimewaan minimum, pengurusan token yang selamat, kawalan keselamatan sesi, dan pengesahan rantaian bekalan
+- **Manfaatkan Penyelesaian Keselamatan Microsoft**: Memahami dan menggunakan Microsoft Prompt Shields, Azure Content Safety, dan GitHub Advanced Security untuk perlindungan beban kerja MCP
+- **Sahkan Keselamatan Alat**: Mengiktiraf kepentingan pengesahan metadata alat, pemantauan perubahan dinamik, dan mempertahankan daripada serangan suntikan prompt tidak langsung
+- **Gabungkan Amalan Terbaik**: Menggabungkan asas keselamatan yang telah ditetapkan (pengkodan selamat, pengerasan pelayan, zero trust) dengan kawalan khusus MCP untuk perlindungan menyeluruh
 
-# Kawalan keselamatan MCP
+# Seni Bina & Kawalan Keselamatan MCP
 
-Mana-mana sistem yang mempunyai akses kepada sumber penting mempunyai cabaran keselamatan tersirat. Cabaran keselamatan biasanya boleh diatasi melalui aplikasi yang betul bagi kawalan dan konsep keselamatan asas. Oleh kerana MCP baru sahaja ditakrifkan, spesifikasi sedang berubah dengan sangat pantas dan protokol ini terus berkembang. Akhirnya, kawalan keselamatan di dalamnya akan matang, membolehkan integrasi yang lebih baik dengan seni bina keselamatan perusahaan dan amalan terbaik yang telah ditetapkan.
+Pelaksanaan MCP moden memerlukan pendekatan keselamatan berlapis yang menangani kedua-dua keselamatan perisian tradisional dan ancaman khusus AI. Spesifikasi MCP yang berkembang pesat terus mematangkan kawalan keselamatannya, membolehkan integrasi yang lebih baik dengan seni bina keselamatan perusahaan dan amalan terbaik yang telah ditetapkan.
 
-Penyelidikan yang diterbitkan dalam [Microsoft Digital Defense Report](https://aka.ms/mddr) menyatakan bahawa 98% pelanggaran yang dilaporkan boleh dicegah dengan amalan kebersihan keselamatan yang kukuh dan perlindungan terbaik terhadap sebarang jenis pelanggaran adalah dengan memastikan kebersihan keselamatan asas, amalan pengekodan selamat dan keselamatan rantaian bekalan dilakukan dengan betul — amalan yang telah diuji dan terbukti ini masih memberi impak paling besar dalam mengurangkan risiko keselamatan.
+Penyelidikan daripada [Microsoft Digital Defense Report](https://aka.ms/mddr) menunjukkan bahawa **98% pelanggaran yang dilaporkan dapat dicegah dengan kebersihan keselamatan yang kukuh**. Strategi perlindungan paling berkesan menggabungkan amalan keselamatan asas dengan kawalan khusus MCP—langkah keselamatan asas yang terbukti kekal paling berkesan dalam mengurangkan risiko keselamatan keseluruhan.
 
-Mari kita lihat beberapa cara yang boleh anda mulakan untuk menangani risiko keselamatan apabila menggunakan MCP.
+## Lanskap Keselamatan Semasa
 
-> **Note:** Maklumat berikut adalah betul sehingga **29 Mei 2025**. Protokol MCP sentiasa berkembang, dan pelaksanaan masa depan mungkin memperkenalkan corak pengesahan dan kawalan baru. Untuk kemas kini dan panduan terkini, sentiasa rujuk [Spesifikasi MCP](https://spec.modelcontextprotocol.io/) dan repositori rasmi [MCP GitHub](https://github.com/modelcontextprotocol) serta [halaman amalan terbaik keselamatan](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices).
+> **Nota:** Maklumat ini mencerminkan piawaian keselamatan MCP setakat **18 Ogos 2025**. Protokol MCP terus berkembang dengan pesat, dan pelaksanaan masa depan mungkin memperkenalkan corak pengesahan baharu dan kawalan yang dipertingkatkan. Sentiasa rujuk [Spesifikasi MCP](https://spec.modelcontextprotocol.io/), [repositori GitHub MCP](https://github.com/modelcontextprotocol), dan [dokumentasi amalan terbaik keselamatan](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) terkini untuk panduan terkini.
 
-### Pernyataan masalah  
-Spesifikasi asal MCP menganggap pembangun akan menulis pelayan pengesahan mereka sendiri. Ini memerlukan pengetahuan tentang OAuth dan kekangan keselamatan berkaitan. Pelayan MCP bertindak sebagai Pelayan Kebenaran OAuth 2.0, mengurus pengesahan pengguna yang diperlukan secara langsung dan bukannya mendelegasikannya kepada perkhidmatan luaran seperti Microsoft Entra ID. Sejak **26 April 2025**, kemas kini kepada spesifikasi MCP membenarkan pelayan MCP mendelegasikan pengesahan pengguna kepada perkhidmatan luaran.
+### Evolusi Pengesahan MCP
 
-### Risiko
-- Logik kebenaran yang salah konfigurasi dalam pelayan MCP boleh menyebabkan pendedahan data sensitif dan kawalan akses yang tidak betul.
-- Kecurian token OAuth pada pelayan MCP tempatan. Jika dicuri, token tersebut boleh digunakan untuk menyamar sebagai pelayan MCP dan mengakses sumber serta data dari perkhidmatan yang token OAuth itu untuknya.
+Spesifikasi MCP telah berkembang dengan ketara dalam pendekatannya terhadap pengesahan dan kebenaran:
 
-#### Token Passthrough
-Token passthrough secara jelas dilarang dalam spesifikasi kebenaran kerana ia memperkenalkan beberapa risiko keselamatan, termasuk:
+- **Pendekatan Asal**: Spesifikasi awal memerlukan pembangun untuk melaksanakan pelayan pengesahan tersuai, dengan pelayan MCP bertindak sebagai Pelayan Kebenaran OAuth 2.0 yang mengurus pengesahan pengguna secara langsung
+- **Piawaian Semasa (2025-06-18)**: Spesifikasi yang dikemas kini membolehkan pelayan MCP mendelegasikan pengesahan kepada penyedia identiti luaran (seperti Microsoft Entra ID), meningkatkan postur keselamatan dan mengurangkan kerumitan pelaksanaan
+- **Keselamatan Lapisan Pengangkutan**: Sokongan yang dipertingkatkan untuk mekanisme pengangkutan selamat dengan corak pengesahan yang betul untuk sambungan tempatan (STDIO) dan jauh (Streamable HTTP)
 
-#### Pengelakan Kawalan Keselamatan
-Pelayan MCP atau API hiliran mungkin melaksanakan kawalan keselamatan penting seperti had kadar, pengesahan permintaan, atau pemantauan trafik, yang bergantung pada audiens token atau kekangan kelayakan lain. Jika klien boleh mendapatkan dan menggunakan token terus dengan API hiliran tanpa pelayan MCP mengesahkannya dengan betul atau memastikan token dikeluarkan untuk perkhidmatan yang betul, mereka akan memintas kawalan ini.
+## Keselamatan Pengesahan & Kebenaran
 
-#### Isu Akauntabiliti dan Jejak Audit
-Pelayan MCP tidak dapat mengenal pasti atau membezakan antara Klien MCP apabila klien memanggil dengan token akses yang dikeluarkan oleh hulu yang mungkin tidak jelas kepada pelayan MCP.  
-Log pelayan Sumber hiliran mungkin menunjukkan permintaan yang kelihatan datang dari sumber yang berbeza dengan identiti yang berbeza, bukan pelayan MCP yang sebenarnya meneruskan token tersebut.  
-Kedua-dua faktor ini menyukarkan penyiasatan insiden, kawalan, dan audit.  
-Jika pelayan MCP meneruskan token tanpa mengesahkan tuntutan mereka (contohnya, peranan, keistimewaan, atau audiens) atau metadata lain, pelaku berniat jahat yang memiliki token curi boleh menggunakan pelayan sebagai proksi untuk pengeluaran data.
+### Cabaran Keselamatan Semasa
 
-#### Isu Sempadan Kepercayaan
-Pelayan Sumber hiliran memberi kepercayaan kepada entiti tertentu. Kepercayaan ini mungkin termasuk andaian tentang asal atau corak tingkah laku klien. Memecahkan sempadan kepercayaan ini boleh menyebabkan isu yang tidak dijangka.  
-Jika token diterima oleh pelbagai perkhidmatan tanpa pengesahan yang betul, penyerang yang menembusi satu perkhidmatan boleh menggunakan token itu untuk mengakses perkhidmatan lain yang bersambung.
+Pelaksanaan MCP moden menghadapi beberapa cabaran pengesahan dan kebenaran:
 
-#### Risiko Keserasian Masa Depan
-Walaupun pelayan MCP bermula sebagai "proksi tulen" hari ini, ia mungkin perlu menambah kawalan keselamatan kemudian. Memulakan dengan pemisahan audiens token yang betul memudahkan evolusi model keselamatan.
+### Risiko & Vektor Ancaman
 
-### Kawalan mitigasi
+- **Logik Kebenaran yang Salah Konfigurasi**: Pelaksanaan kebenaran yang cacat dalam pelayan MCP boleh mendedahkan data sensitif dan menerapkan kawalan akses dengan salah
+- **Kompromi Token OAuth**: Kecurian token pelayan MCP tempatan membolehkan penyerang menyamar sebagai pelayan dan mengakses perkhidmatan hiliran
+- **Kelemahan Token Passthrough**: Pengendalian token yang tidak betul mencipta pintasan kawalan keselamatan dan jurang akauntabiliti
+- **Keistimewaan Berlebihan**: Pelayan MCP yang terlalu berkeistimewaan melanggar prinsip keistimewaan minimum dan memperluas permukaan serangan
 
-**Pelayan MCP TIDAK BOLEH menerima sebarang token yang tidak dikeluarkan secara eksplisit untuk pelayan MCP**
+#### Token Passthrough: Corak Anti Kritikal
 
-- **Semak dan Kukuhkan Logik Kebenaran:** Audit dengan teliti pelaksanaan kebenaran pelayan MCP anda untuk memastikan hanya pengguna dan klien yang dimaksudkan boleh mengakses sumber sensitif. Untuk panduan praktikal, lihat [Azure API Management Your Auth Gateway For MCP Servers | Microsoft Community Hub](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) dan [Using Microsoft Entra ID To Authenticate With MCP Servers Via Sessions - Den Delimarsky](https://den.dev/blog/mcp-server-auth-entra-id-session/).
-- **Laksanakan Amalan Token Selamat:** Ikuti [amalan terbaik Microsoft untuk pengesahan token dan jangka hayat](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens) untuk mengelakkan penyalahgunaan token akses dan mengurangkan risiko pengulangan atau kecurian token.
-- **Lindungi Penyimpanan Token:** Sentiasa simpan token dengan selamat dan gunakan penyulitan untuk melindungi token semasa disimpan dan dalam transit. Untuk petua pelaksanaan, lihat [Use secure token storage and encrypt tokens](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2).
+**Token passthrough secara eksplisit dilarang** dalam spesifikasi kebenaran MCP semasa kerana implikasi keselamatan yang serius:
 
-# Kebenaran berlebihan untuk pelayan MCP
+##### Pencabulan Kawalan Keselamatan
+- Pelayan MCP dan API hiliran melaksanakan kawalan keselamatan kritikal (had kadar, pengesahan permintaan, pemantauan trafik) yang bergantung pada pengesahan token yang betul
+- Penggunaan token langsung oleh klien kepada API memintas perlindungan penting ini, merosakkan seni bina keselamatan
 
-### Pernyataan masalah
-Pelayan MCP mungkin telah diberikan kebenaran berlebihan ke atas perkhidmatan/sumber yang diaksesnya. Contohnya, pelayan MCP yang merupakan sebahagian daripada aplikasi jualan AI yang menyambung ke stor data perusahaan harus mempunyai akses yang terhad kepada data jualan sahaja dan tidak dibenarkan mengakses semua fail dalam stor tersebut. Merujuk kembali kepada prinsip keistimewaan minimum (salah satu prinsip keselamatan tertua), tiada sumber harus mempunyai kebenaran melebihi apa yang diperlukan untuk melaksanakan tugas yang dimaksudkan. AI menghadirkan cabaran yang lebih besar dalam ruang ini kerana untuk membolehkan fleksibiliti, sukar untuk menentukan kebenaran tepat yang diperlukan.
+##### Cabaran Akauntabiliti & Audit  
+- Pelayan MCP tidak dapat membezakan antara klien yang menggunakan token yang dikeluarkan oleh pihak hulu, memecahkan jejak audit
+- Log pelayan sumber hiliran menunjukkan asal permintaan yang mengelirukan dan bukannya perantara pelayan MCP sebenar
+- Penyiasatan insiden dan audit pematuhan menjadi jauh lebih sukar
 
-### Risiko  
-- Memberi kebenaran berlebihan boleh membenarkan pengeluaran atau pengubahsuaian data yang tidak sepatutnya diakses oleh pelayan MCP. Ini juga boleh menjadi isu privasi jika data tersebut adalah maklumat peribadi yang boleh dikenal pasti (PII).
+##### Risiko Eksfiltrasi Data
+- Tuntutan token yang tidak disahkan membolehkan pelaku jahat dengan token yang dicuri menggunakan pelayan MCP sebagai proksi untuk eksfiltrasi data
+- Pelanggaran sempadan kepercayaan membolehkan corak akses tanpa kebenaran yang memintas kawalan keselamatan yang dimaksudkan
 
-### Kawalan mitigasi
-- **Gunakan Prinsip Keistimewaan Minimum:** Berikan pelayan MCP hanya kebenaran minimum yang diperlukan untuk melaksanakan tugasnya. Semak dan kemas kini kebenaran ini secara berkala untuk memastikan ia tidak melebihi keperluan. Untuk panduan terperinci, lihat [Secure least-privileged access](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access).
-- **Gunakan Kawalan Akses Berasaskan Peranan (RBAC):** Tetapkan peranan kepada pelayan MCP yang terhad kepada sumber dan tindakan tertentu, mengelakkan kebenaran yang luas atau tidak perlu.
-- **Pantau dan Audit Kebenaran:** Pantau penggunaan kebenaran secara berterusan dan audit log akses untuk mengesan dan membetulkan keistimewaan berlebihan atau tidak digunakan dengan segera.
+##### Vektor Serangan Pelbagai Perkhidmatan
+- Token yang dikompromi diterima oleh pelbagai perkhidmatan membolehkan pergerakan lateral merentasi sistem yang disambungkan
+- Andaian kepercayaan antara perkhidmatan boleh dilanggar apabila asal token tidak dapat disahkan
 
-# Serangan suntikan arahan tidak langsung
+### Kawalan Keselamatan & Mitigasi
 
-### Pernyataan masalah
+**Keperluan Keselamatan Kritikal:**
 
-Pelayan MCP yang berniat jahat atau telah dikompromi boleh memperkenalkan risiko besar dengan mendedahkan data pelanggan atau membolehkan tindakan yang tidak diingini. Risiko ini sangat relevan dalam beban kerja AI dan berasaskan MCP, di mana:
+> **WAJIB**: Pelayan MCP **TIDAK BOLEH** menerima sebarang token yang tidak dikeluarkan secara eksplisit untuk pelayan MCP
 
-- **Serangan Suntikan Arahan (Prompt Injection):** Penyerang menyisipkan arahan berniat jahat dalam arahan atau kandungan luaran, menyebabkan sistem AI melakukan tindakan yang tidak diingini atau mendedahkan data sensitif. Ketahui lebih lanjut: [Prompt Injection](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)
-- **Pencemaran Alat (Tool Poisoning):** Penyerang memanipulasi metadata alat (seperti deskripsi atau parameter) untuk mempengaruhi tingkah laku AI, berpotensi memintas kawalan keselamatan atau mengeluarkan data. Maklumat lanjut: [Tool Poisoning](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
-- **Suntikan Arahan Rentas Domain:** Arahan berniat jahat disisipkan dalam dokumen, halaman web, atau emel, yang kemudian diproses oleh AI, menyebabkan kebocoran atau manipulasi data.
-- **Pengubahsuaian Alat Dinamik (Rug Pulls):** Definisi alat boleh diubah selepas kelulusan pengguna, memperkenalkan tingkah laku berniat jahat baru tanpa pengetahuan pengguna.
+#### Kawalan Pengesahan & Kebenaran
 
-Kelemahan ini menekankan keperluan untuk pengesahan yang kukuh, pemantauan, dan kawalan keselamatan apabila mengintegrasikan pelayan MCP dan alat ke dalam persekitaran anda. Untuk penerangan lebih mendalam, lihat rujukan yang disertakan di atas.
+- **Semakan Kebenaran yang Ketat**: Lakukan audit menyeluruh terhadap logik kebenaran pelayan MCP untuk memastikan hanya pengguna dan klien yang dimaksudkan boleh mengakses sumber sensitif
+  - **Panduan Pelaksanaan**: [Azure API Management sebagai Gateway Pengesahan untuk Pelayan MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+  - **Integrasi Identiti**: [Menggunakan Microsoft Entra ID untuk Pengesahan Pelayan MCP](https://den.dev/blog/mcp-server-auth-entra-id-session/)
 
-![prompt-injection-lg-2048x1034](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.ms.png)
+- **Pengurusan Token Selamat**: Laksanakan [amalan terbaik pengesahan dan kitaran hayat token Microsoft](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens)
+  - Sahkan tuntutan penonton token sepadan dengan identiti pelayan MCP
+  - Laksanakan dasar putaran dan tamat tempoh token yang betul
+  - Cegah serangan ulangan token dan penggunaan tanpa kebenaran
 
-**Suntikan Arahan Tidak Langsung** (juga dikenali sebagai suntikan arahan rentas domain atau XPIA) adalah kelemahan kritikal dalam sistem AI generatif, termasuk yang menggunakan Model Context Protocol (MCP). Dalam serangan ini, arahan berniat jahat disembunyikan dalam kandungan luaran—seperti dokumen, halaman web, atau emel. Apabila sistem AI memproses kandungan ini, ia mungkin mentafsir arahan yang disisipkan sebagai arahan pengguna yang sah, mengakibatkan tindakan tidak diingini seperti kebocoran data, penghasilan kandungan berbahaya, atau manipulasi interaksi pengguna. Untuk penjelasan terperinci dan contoh dunia sebenar, lihat [Prompt Injection](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
+- **Penyimpanan Token Dilindungi**: Simpan token dengan selamat menggunakan penyulitan semasa rehat dan dalam transit
+  - **Amalan Terbaik**: [Garis Panduan Penyimpanan dan Penyulitan Token Selamat](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
 
-Bentuk serangan yang sangat berbahaya adalah **Pencemaran Alat**. Di sini, penyerang menyuntik arahan berniat jahat ke dalam metadata alat MCP (seperti deskripsi alat atau parameter). Oleh kerana model bahasa besar (LLM) bergantung pada metadata ini untuk memutuskan alat mana yang akan digunakan, deskripsi yang dikompromi boleh memperdaya model untuk melaksanakan panggilan alat yang tidak dibenarkan atau memintas kawalan keselamatan. Manipulasi ini sering tidak kelihatan oleh pengguna akhir tetapi boleh ditafsir dan dilaksanakan oleh sistem AI. Risiko ini lebih tinggi dalam persekitaran pelayan MCP yang dihoskan, di mana definisi alat boleh dikemas kini selepas kelulusan pengguna—senario yang kadang-kadang dirujuk sebagai "[rug pull](https://www.wiz.io/blog/mcp-security-research-briefing#remote-servers-22)". Dalam kes sedemikian, alat yang sebelum ini selamat mungkin diubah kemudian untuk melakukan tindakan berniat jahat, seperti mengeluarkan data atau mengubah tingkah laku sistem, tanpa pengetahuan pengguna. Untuk maklumat lanjut mengenai vektor serangan ini, lihat [Tool Poisoning](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
+#### Pelaksanaan Kawalan Akses
 
-![tool-injection-lg-2048x1239 (1)](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.ms.png)
+- **Prinsip Keistimewaan Minimum**: Berikan pelayan MCP hanya keistimewaan minimum yang diperlukan untuk fungsi yang dimaksudkan
+  - Semakan dan kemas kini keistimewaan secara berkala untuk mencegah peningkatan keistimewaan
+  - **Dokumentasi Microsoft**: [Akses Keistimewaan Minimum yang Selamat](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
 
-## Risiko
-Tindakan AI yang tidak diingini membawa pelbagai risiko keselamatan termasuk pengeluaran data dan pelanggaran privasi.
+- **Kawalan Akses Berasaskan Peranan (RBAC)**: Laksanakan tugasan peranan yang terperinci
+  - Skopkan peranan dengan ketat kepada sumber dan tindakan tertentu
+  - Elakkan keistimewaan yang luas atau tidak perlu yang memperluas permukaan serangan
 
-### Kawalan mitigasi
-### Menggunakan prompt shields untuk melindungi daripada serangan Suntikan Arahan Tidak Langsung
------------------------------------------------------------------------------
+- **Pemantauan Keistimewaan Berterusan**: Laksanakan audit dan pemantauan akses yang berterusan
+  - Pantau corak penggunaan keistimewaan untuk anomali
+  - Segera atasi keistimewaan yang berlebihan atau tidak digunakan
 
-**AI Prompt Shields** adalah penyelesaian yang dibangunkan oleh Microsoft untuk mempertahankan daripada serangan suntikan arahan langsung dan tidak langsung. Ia membantu melalui:
+## Ancaman Keselamatan Khusus AI
 
-1.  **Pengesanan dan Penapisan:** Prompt Shields menggunakan algoritma pembelajaran mesin canggih dan pemprosesan bahasa semula jadi untuk mengesan dan menapis arahan berniat jahat yang disisipkan dalam kandungan luaran, seperti dokumen, halaman web, atau emel.
-    
-2.  **Spotlighting:** Teknik ini membantu sistem AI membezakan antara arahan sistem yang sah dan input luaran yang berpotensi tidak boleh dipercayai. Dengan mengubah teks input supaya lebih relevan kepada model, Spotlighting memastikan AI dapat mengenal pasti dan mengabaikan arahan berniat jahat dengan lebih baik.
-    
-3.  **Delimiter dan Datamarking:** Menyertakan delimiter dalam mesej sistem secara jelas menunjukkan lokasi teks input, membantu sistem AI mengenal pasti dan memisahkan input pengguna daripada kandungan luaran yang berpotensi berbahaya. Datamarking melanjutkan konsep ini dengan menggunakan penanda khas untuk menyerlahkan sempadan data yang dipercayai dan tidak dipercayai.
-    
-4.  **Pemantauan dan Kemas Kini Berterusan:** Microsoft sentiasa memantau dan mengemas kini Prompt Shields untuk menangani ancaman baru dan yang sedang berkembang. Pendekatan proaktif ini memastikan pertahanan kekal berkesan terhadap teknik serangan terkini.
-    
-5. **Integrasi dengan Azure Content Safety:** Prompt Shields adalah sebahagian daripada suite Azure AI Content Safety yang lebih luas, yang menyediakan alat tambahan untuk mengesan cubaan jailbreak, kandungan berbahaya, dan risiko keselamatan lain dalam aplikasi AI.
+### Serangan Suntikan Prompt & Manipulasi Alat
 
-Anda boleh membaca lebih lanjut mengenai AI prompt shields dalam [dokumentasi Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection).
+Pelaksanaan MCP moden menghadapi vektor serangan khusus AI yang canggih yang tidak dapat ditangani sepenuhnya oleh langkah keselamatan tradisional:
 
-![prompt-shield-lg-2048x1328](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.ms.png)
+#### **Suntikan Prompt Tidak Langsung (Suntikan Prompt Rentas Domain)**
 
-# Masalah Confused Deputy
+**Suntikan Prompt Tidak Langsung** mewakili salah satu kelemahan paling kritikal dalam sistem AI yang didayakan MCP. Penyerang menyisipkan arahan berniat jahat dalam kandungan luaran—dokumen, laman web, e-mel, atau sumber data—yang kemudiannya diproses oleh sistem AI sebagai arahan yang sah.
 
-### Pernyataan masalah
-Masalah confused deputy adalah kelemahan keselamatan yang berlaku apabila pelayan MCP bertindak sebagai proksi antara klien MCP dan API pihak ketiga. Kelemahan ini boleh dieksploitasi apabila pelayan MCP menggunakan ID klien statik untuk mengesahkan dengan pelayan kebenaran pihak ketiga yang tidak menyokong pendaftaran klien dinamik.
+**Senario Serangan:**
+- **Suntikan Berasaskan Dokumen**: Arahan berniat jahat tersembunyi dalam dokumen yang diproses yang mencetuskan tindakan AI yang tidak diingini
+- **Eksploitasi Kandungan Web**: Laman web yang dikompromi mengandungi prompt tertanam yang memanipulasi tingkah laku AI apabila diimbas
+- **Serangan Berasaskan E-mel**: Prompt berniat jahat dalam e-mel yang menyebabkan pembantu AI membocorkan maklumat atau melakukan tindakan tanpa kebenaran
+- **Pencemaran Sumber Data**: Pangkalan data atau API yang dikompromi menyajikan kandungan tercemar kepada sistem AI
 
-### Risiko
+**Kesan Dunia Sebenar**: Serangan ini boleh mengakibatkan eksfiltrasi data, pelanggaran privasi, penjanaan kandungan berbahaya, dan manipulasi interaksi pengguna. Untuk analisis terperinci, lihat [Prompt Injection dalam MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
-- **Bypass persetujuan berasaskan kuki**: Jika pengguna telah mengesahkan melalui pelayan proksi MCP sebelum ini, pelayan kebenaran pihak ketiga mungkin menetapkan kuki persetujuan dalam pelayar pengguna. Penyerang boleh mengeksploitasi ini dengan menghantar pautan berniat jahat yang mengandungi permintaan kebenaran dengan URI pengalihan berniat jahat.
-- **Kecurian kod kebenaran**: Apabila pengguna mengklik pautan berniat jahat, pelayan kebenaran pihak ketiga mungkin melangkau skrin persetujuan kerana kuki yang sedia ada, dan kod kebenaran boleh dialihkan ke pelayan penyerang.
-- **Akses API tanpa kebenaran**: Penyerang boleh menukar kod kebenaran yang dicuri kepada token akses dan menyamar sebagai pengguna untuk mengakses API pihak ketiga tanpa kelulusan jelas.
+![Rajah Serangan Suntikan Prompt](../../../translated_images/prompt-injection.ed9fbfde297ca877c15bc6daa808681cd3c3dc7bf27bbbda342ef1ba5fc4f52d.ms.png)
 
-### Kawalan mitigasi
+#### **Serangan Keracunan Alat**
 
-- **Keperluan persetujuan jelas**: Pelayan proksi MCP yang menggunakan ID klien statik **MESTI** mendapatkan persetujuan pengguna untuk setiap klien yang didaftarkan secara dinamik sebelum meneruskan ke pelayan kebenaran pihak ketiga.
-- **Pelaksanaan OAuth yang betul**: Ikuti amalan keselamatan terbaik OAuth 2.1, termasuk menggunakan cabaran kod (PKCE) untuk permintaan kebenaran bagi mengelakkan serangan pemintasan.
-- **Pengesahan klien**: Laksanakan pengesahan ketat terhadap URI pengalihan dan pengecam klien untuk mengelakkan eksploitasi oleh pihak berniat jahat.
+**Keracunan Alat** menyasarkan metadata yang mentakrifkan alat MCP, mengeksploitasi cara LLM mentafsirkan penerangan alat dan parameter untuk membuat keputusan pelaksanaan.
 
+**Mekanisme Serangan:**
+- **Manipulasi Metadata**: Penyerang menyisipkan arahan berniat jahat ke dalam penerangan alat, definisi parameter, atau contoh penggunaan
+- **Arahan Tidak Kelihatan**: Prompt tersembunyi dalam metadata alat yang diproses oleh model AI tetapi tidak kelihatan kepada pengguna manusia
+- **Pengubahsuaian Alat Dinamik ("Rug Pulls")**: Alat yang diluluskan oleh pengguna kemudiannya diubah untuk melakukan tindakan berniat jahat tanpa pengetahuan pengguna
+- **Suntikan Parameter**: Kandungan berniat jahat yang tertanam dalam skema parameter alat yang mempengaruhi tingkah laku model
 
-# Kelemahan Token Passthrough
+**Risiko Pelayan Dihoskan**: Pelayan MCP jauh menghadirkan risiko yang lebih tinggi kerana definisi alat boleh dikemas kini selepas kelulusan awal pengguna, mencipta senario di mana alat yang sebelum ini selamat menjadi berniat jahat. Untuk analisis menyeluruh, lihat [Serangan Keracunan Alat (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-### Pernyataan masalah
+![Rajah Suntikan Alat](../../../translated_images/tool-injection.3b0b4a6b24de6befe7d3afdeae44138ef005881aebcfc84c6f61369ce31e3640.ms.png)
 
-"Token passthrough" adalah anti-pola di mana pelayan MCP menerima token dari klien MCP tanpa mengesahkan bahawa token tersebut dikeluarkan dengan betul untuk pelayan MCP itu sendiri, dan kemudian "meneruskannya" ke API hiliran. Amalan ini jelas melanggar spesifikasi kebenaran MCP dan memperkenalkan risiko keselamatan yang serius.
+#### **Vektor Serangan AI Tambahan**
 
-### Risiko
+- **Suntikan Prompt Rentas Domain (XPIA)**: Serangan canggih yang memanfaatkan kandungan daripada pelbagai domain untuk memintas kawalan keselamatan
+- **Pengubahsuaian Keupayaan Dinamik**: Perubahan masa nyata kepada keupayaan alat yang melarikan diri daripada penilaian keselamatan awal
+- **Pencemaran Tetingkap Konteks**: Serangan yang memanipulasi tetingkap konteks besar untuk menyembunyikan arahan berniat jahat
+- **Serangan Kekeliruan Model**: Mengeksploitasi batasan model untuk mencipta tingkah laku yang tidak dapat diramalkan atau tidak selamat
 
-- **Pengelakan Kawalan Keselamatan**: Klien boleh memintas kawalan keselamatan penting seperti had kadar, pengesahan permintaan, atau pemantauan trafik jika mereka boleh menggunakan token terus dengan API hiliran tanpa pengesahan yang betul.
-- **Isu Akauntabiliti dan Jejak Audit**: Pelayan MCP tidak dapat mengenal pasti atau membezakan antara klien MCP apabila klien menggunakan token akses yang dikeluarkan oleh hulu, menjadikan penyiasatan insiden dan audit lebih sukar.
-- **Eksfiltrasi Data**: Jika token diteruskan tanpa pengesahan tuntutan yang betul, pihak berniat jahat dengan token yang dicuri boleh menggunakan pelayan sebagai proksi untuk eksfiltrasi data.
-- **Pelanggaran Sempadan Kepercayaan**: Pelayan sumber hiliran mungkin memberi kepercayaan kepada entiti tertentu dengan andaian tentang asal atau corak tingkah laku. Memecahkan sempadan kepercayaan ini boleh menyebabkan isu keselamatan yang tidak dijangka.
-- **Penyalahgunaan Token Pelbagai Perkhidmatan**: Jika token diterima oleh pelbagai perkhidmatan tanpa pengesahan yang betul, penyerang yang menjejaskan satu perkhidmatan boleh menggunakan token tersebut untuk mengakses perkhidmatan lain yang bersambung.
+### Kesan Risiko Keselamatan AI
 
-### Kawalan mitigasi
+**Akibat Berimpak Tinggi:**
+- **Eksfiltrasi Data**: Akses tanpa kebenaran dan kecurian data perusahaan atau peribadi yang sensitif
+- **Pelanggaran Privasi**: Pendedahan maklumat peribadi yang boleh dikenal pasti (PII) dan data perniagaan sulit  
+- **Manipulasi Sistem**: Pengubahsuaian yang tidak diingini kepada sistem dan aliran kerja kritikal
+- **Kecurian Kredensial**: Kompromi token pengesahan dan kelayakan perkhidmatan
+- **Pergerakan Lateral**: Penggunaan sistem AI yang dikompromi sebagai titik tumpuan untuk serangan rangkaian yang lebih luas
 
-- **Pengesahan token**: Pelayan MCP **TIDAK BOLEH** menerima sebarang token yang tidak secara jelas dikeluarkan untuk pelayan MCP itu sendiri.
-- **Pengesahan audiens**: Sentiasa sahkan bahawa token mempunyai tuntutan audiens yang betul yang sepadan dengan identiti pelayan MCP.
-- **Pengurusan kitar hayat token yang betul**: Laksanakan token akses jangka pendek dan amalan putaran token yang betul untuk mengurangkan risiko kecurian dan penyalahgunaan token.
+### Penyelesaian Keselamatan AI Microsoft
 
+#### **AI Prompt Shields: Perlindungan Lanjutan Terhadap Serangan Suntikan**
 
-# Pengambilalihan Sesi
+Microsoft **AI Prompt Shields** menyediakan pertahanan menyeluruh terhadap kedua-dua serangan suntikan prompt langsung dan tidak langsung melalui pelbagai lapisan keselamatan:
 
-### Pernyataan masalah
+##### **Mekanisme Perlindungan Teras:**
 
-Pengambilalihan sesi adalah vektor serangan di mana klien diberikan ID sesi oleh pelayan, dan pihak yang tidak dibenarkan memperoleh dan menggunakan ID sesi yang sama untuk menyamar sebagai klien asal dan melakukan tindakan tanpa kebenaran bagi pihak mereka. Ini amat membimbangkan dalam pelayan HTTP berstatus yang mengendalikan permintaan MCP.
+1. **Pengesanan & Penapisan Lanjutan**
+   - Algoritma pembelajaran mesin dan teknik NLP mengesan arahan berniat jahat dalam kandungan luaran
+   - Analisis masa nyata dokumen, laman web, e-mel, dan sumber data untuk ancaman tertanam
+   - Pemahaman kontekstual tentang corak prompt yang sah vs. berniat jahat
 
-### Risiko
+2. **Teknik Spotlighting**  
+   - Membezakan antara arahan sistem yang dipercayai dan input luaran yang berpotensi dikompromi
+   - Kaedah transformasi teks yang meningkatkan kaitan model sambil mengasingkan kandungan berniat jahat
+   - Membantu sistem AI mengekalkan hierarki arahan yang betul dan mengabaikan arahan yang disuntik
 
-- **Suntikan Prompt Pengambilalihan Sesi**: Penyerang yang memperoleh ID sesi boleh menghantar acara berniat jahat ke pelayan yang berkongsi keadaan sesi dengan pelayan yang disambungkan oleh klien, berpotensi mencetuskan tindakan berbahaya atau mengakses data sensitif.
-- **Penyamaran Pengambilalihan Sesi**: Penyerang dengan ID sesi yang dicuri boleh membuat panggilan terus ke pelayan MCP, memintas pengesahan dan dilayan sebagai pengguna sah.
-- **Aliran Boleh Disambung Semula yang Kompromi**: Apabila pelayan menyokong penghantaran semula/aliran boleh disambung semula, penyerang boleh menamatkan permintaan lebih awal, menyebabkan ia disambung semula kemudian oleh klien asal dengan kandungan yang berpotensi berniat jahat.
+3. **Sistem Delimiter & Datamarking**
+   - Takrifan sempadan eksplisit antara mesej sistem yang dipercayai dan teks input luaran
+   - Penanda khas menyerlahkan sempadan antara sumber data yang dipercayai dan tidak dipercayai
+   - Pemisahan yang jelas mencegah kekeliruan arahan dan pelaksanaan arahan tanpa kebenaran
 
-### Kawalan mitigasi
+4. **Perisikan Ancaman Berterusan**
+   - Microsoft sentiasa memantau corak serangan yang muncul dan mengemas kini pertahanan
+   - Pemburuan ancaman proaktif untuk teknik suntikan baharu dan vektor serangan
+   - Kemas kini model keselamatan secara berkala untuk mengekalkan keberkesanan terhadap ancaman yang berkembang
 
-- **Pengesahan kebenaran**: Pelayan MCP yang melaksanakan kebenaran **MESTI** mengesahkan semua permintaan masuk dan **TIDAK BOLEH** menggunakan sesi untuk pengesahan.
-- **ID sesi yang selamat**: Pelayan MCP **MESTI** menggunakan ID sesi yang selamat dan tidak deterministik yang dijana dengan penjana nombor rawak yang selamat. Elakkan pengecam yang boleh diramal atau berurutan.
-- **Pengikatan sesi khusus pengguna**: Pelayan MCP **SEBAIKNYA** mengikat ID sesi kepada maklumat khusus pengguna, menggabungkan ID sesi dengan maklumat unik pengguna yang dibenarkan (seperti ID pengguna dalaman mereka) menggunakan format seperti `
-<user_id>:<session_id>`.
-- **Tamat tempoh sesi**: Laksanakan tamat tempoh sesi dan putaran sesi yang betul untuk mengehadkan tempoh kerentanan jika ID sesi dikompromi.
-- **Keselamatan pengangkutan**: Sentiasa gunakan HTTPS untuk semua komunikasi bagi mengelakkan pemintasan ID sesi.
+5. **Integrasi Azure Content Safety**
+   - Sebahagian daripada suite keselamatan kandungan Azure AI yang komprehensif
+   - Pengesanan tambahan untuk percubaan jailbreak, kandungan berbahaya, dan pelanggaran dasar keselamatan
+   - Kawalan keselamatan bersatu merentasi komponen aplikasi AI
 
+**Sumber Pelaksanaan**: [Dokumentasi Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-# Keselamatan Rantaian Bekalan
+![Perlindungan Microsoft Prompt Shields](../../../translated_images/prompt-shield.ff5b95be76e9c78c6ec0888206a4a6a0a5ab4bb787832a9eceef7a62fe0138d1.ms.png)
 
-Keselamatan rantaian bekalan kekal asas dalam era AI, tetapi skop apa yang dianggap sebagai rantaian bekalan anda telah berkembang. Selain pakej kod tradisional, anda kini mesti mengesahkan dan memantau dengan teliti semua komponen berkaitan AI, termasuk model asas, perkhidmatan embeddings, penyedia konteks, dan API pihak ketiga. Setiap satu boleh memperkenalkan kelemahan atau risiko jika tidak diurus dengan betul.
 
-**Amalan keselamatan rantaian bekalan utama untuk AI dan MCP:**
-- **Sahkan semua komponen sebelum integrasi:** Ini termasuk bukan sahaja perpustakaan sumber terbuka, tetapi juga model AI, sumber data, dan API luaran. Sentiasa periksa asal usul, lesen, dan kelemahan yang diketahui.
-- **Kekalkan saluran penghantaran yang selamat:** Gunakan saluran CI/CD automatik dengan imbasan keselamatan terintegrasi untuk mengesan isu awal. Pastikan hanya artifak yang dipercayai dihantar ke produksi.
-- **Pantau dan audit secara berterusan:** Laksanakan pemantauan berterusan untuk semua kebergantungan, termasuk model dan perkhidmatan data, untuk mengesan kelemahan baru atau serangan rantaian bekalan.
-- **Gunakan prinsip keistimewaan minimum dan kawalan akses:** Hadkan akses kepada model, data, dan perkhidmatan hanya kepada apa yang diperlukan untuk pelayan MCP anda berfungsi.
-- **Bertindak cepat terhadap ancaman:** Ada proses untuk menampal atau menggantikan komponen yang dikompromi, dan untuk memutar rahsia atau kelayakan jika berlaku pelanggaran.
+## Ancaman Keselamatan MCP Lanjutan
 
-[GitHub Advanced Security](https://github.com/security/advanced-security) menyediakan ciri seperti imbasan rahsia, imbasan kebergantungan, dan analisis CodeQL. Alat ini berintegrasi dengan [Azure DevOps](https://azure.microsoft.com/en-us/products/devops) dan [Azure Repos](https://azure.microsoft.com/en-us/products/devops/repos/) untuk membantu pasukan mengenal pasti dan mengurangkan kelemahan merentasi kod dan komponen rantaian bekalan AI.
+### Kelemahan Rampasan Sesi
 
-Microsoft juga melaksanakan amalan keselamatan rantaian bekalan yang meluas secara dalaman untuk semua produk. Ketahui lebih lanjut dalam [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/).
+**Rampasan sesi** mewakili vektor serangan kritikal dalam pelaksanaan MCP berkeadaan di mana pihak yang tidak dibenarkan memperoleh dan menyalahgunakan pengecam sesi yang sah untuk menyamar sebagai klien dan melakukan tindakan tanpa kebenaran.
 
+#### **Senario Serangan & Risiko**
 
-# Amalan keselamatan terbaik yang telah ditetapkan untuk meningkatkan kedudukan keselamatan pelaksanaan MCP anda
+- **Suntikan Prompt Rampasan Sesi**: Penyerang dengan ID sesi yang dicuri menyuntik peristiwa berniat jahat ke dalam pelayan yang berkongsi keadaan sesi, berpotensi mencetuskan tindakan berbahaya atau mengakses data sensitif
+- **
+- **Penciptaan Sesi Selamat**: Gunakan ID sesi yang selamat secara kriptografi dan tidak deterministik yang dihasilkan dengan penjana nombor rawak yang selamat  
+- **Pengikatan Khusus Pengguna**: Ikat ID sesi kepada maklumat khusus pengguna menggunakan format seperti `<user_id>:<session_id>` untuk mencegah penyalahgunaan sesi antara pengguna  
+- **Pengurusan Kitaran Hayat Sesi**: Laksanakan tamat tempoh, putaran, dan pembatalan yang betul untuk mengehadkan tingkap kerentanan  
+- **Keselamatan Pengangkutan**: HTTPS wajib untuk semua komunikasi bagi mencegah pemintasan ID sesi  
 
-Mana-mana pelaksanaan MCP mewarisi kedudukan keselamatan sedia ada persekitaran organisasi anda yang menjadi asasnya, jadi apabila mempertimbangkan keselamatan MCP sebagai komponen sistem AI keseluruhan anda, disyorkan untuk meningkatkan kedudukan keselamatan sedia ada anda secara menyeluruh. Kawalan keselamatan yang telah ditetapkan berikut amat relevan:
+### Masalah Timbalan Keliru  
 
--   Amalan pengekodan selamat dalam aplikasi AI anda - lindungi daripada [OWASP Top 10](https://owasp.org/www-project-top-ten/), [OWASP Top 10 untuk LLM](https://genai.owasp.org/download/43299/?tmstv=1731900559), penggunaan peti keselamatan untuk rahsia dan token, melaksanakan komunikasi selamat hujung ke hujung antara semua komponen aplikasi, dan lain-lain.
--   Pengukuhan pelayan -- gunakan MFA jika boleh, sentiasa kemas kini tampalan, integrasikan pelayan dengan penyedia identiti pihak ketiga untuk akses, dan sebagainya.
--   Pastikan peranti, infrastruktur dan aplikasi sentiasa dikemas kini dengan tampalan
--   Pemantauan keselamatan -- melaksanakan pencatatan dan pemantauan aplikasi AI (termasuk klien/pelayan MCP) dan menghantar log tersebut ke SIEM pusat untuk mengesan aktiviti luar biasa
--   Seni bina zero trust -- mengasingkan komponen melalui kawalan rangkaian dan identiti secara logik untuk meminimumkan pergerakan sisi jika aplikasi AI dikompromi.
+**Masalah timbalan keliru** berlaku apabila pelayan MCP bertindak sebagai proksi pengesahan antara klien dan perkhidmatan pihak ketiga, mewujudkan peluang untuk pintasan kebenaran melalui eksploitasi ID klien statik.  
 
-# Perkara Penting
+#### **Mekanisme Serangan & Risiko**  
 
-- Asas keselamatan kekal kritikal: Pengekodan selamat, keistimewaan minimum, pengesahan rantaian bekalan, dan pemantauan berterusan adalah penting untuk beban kerja MCP dan AI.
-- MCP memperkenalkan risiko baru—seperti suntikan prompt, keracunan alat, pengambilalihan sesi, masalah confused deputy, kelemahan token passthrough, dan kebenaran berlebihan—yang memerlukan kawalan tradisional dan khusus AI.
-- Gunakan amalan pengesahan, kebenaran, dan pengurusan token yang kukuh, memanfaatkan penyedia identiti luaran seperti Microsoft Entra ID jika boleh.
-- Lindungi daripada suntikan prompt tidak langsung dan keracunan alat dengan mengesahkan metadata alat, memantau perubahan dinamik, dan menggunakan penyelesaian seperti Microsoft Prompt Shields.
-- Laksanakan pengurusan sesi yang selamat dengan menggunakan ID sesi tidak deterministik, mengikat sesi kepada identiti pengguna, dan tidak pernah menggunakan sesi untuk pengesahan.
-- Cegah serangan confused deputy dengan memerlukan persetujuan pengguna yang jelas untuk setiap klien yang didaftarkan secara dinamik dan melaksanakan amalan keselamatan OAuth yang betul.
-- Elakkan kelemahan token passthrough dengan memastikan pelayan MCP hanya menerima token yang secara jelas dikeluarkan untuk mereka dan mengesahkan tuntutan token dengan sewajarnya.
-- Perlakukan semua komponen dalam rantaian bekalan AI anda—termasuk model, embeddings, dan penyedia konteks—dengan ketelitian yang sama seperti kebergantungan kod.
-- Sentiasa kemas kini dengan spesifikasi MCP yang berkembang dan sumbang kepada komuniti untuk membantu membentuk piawaian yang selamat.
+- **Pintasan Persetujuan Berasaskan Kuki**: Pengesahan pengguna sebelumnya mencipta kuki persetujuan yang dieksploitasi oleh penyerang melalui permintaan kebenaran berniat jahat dengan URI pengalihan yang direka  
+- **Kecurian Kod Kebenaran**: Kuki persetujuan sedia ada boleh menyebabkan pelayan kebenaran melangkau skrin persetujuan, mengalihkan kod ke titik akhir yang dikawal penyerang  
+- **Akses API Tanpa Kebenaran**: Kod kebenaran yang dicuri membolehkan pertukaran token dan penyamaran pengguna tanpa kelulusan eksplisit  
 
-# Sumber Tambahan
+#### **Strategi Mitigasi**  
 
-## Sumber Luaran
-- [Microsoft Digital Defense Report](https://aka.ms/mddr)
-- [MCP Specification](https://spec.modelcontextprotocol.io/)
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
-- [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)
-- [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
-- [Rug Pulls in MCP (Wiz Security)](https://www.wiz.io/blog/mcp-security-research-briefing#remote-servers-22)
-- [Prompt Shields Documentation (Microsoft)](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
-- [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559)
-- [GitHub Advanced Security](https://github.com/security/advanced-security)
-- [Azure DevOps](https://azure.microsoft.com/products/devops)
-- [Azure Repos](https://azure.microsoft.com/products/devops/repos/)
-- [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/)
-- [Secure Least-Privileged Access (Microsoft)](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
-- [Best Practices for Token Validation and Lifetime](https://learn.microsoft.com/entra/identity-platform/access-tokens)
-- [Use Secure Token Storage and Encrypt Tokens (YouTube)](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
-- [Azure API Management as Auth Gateway for MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
-- [Using Microsoft Entra ID to Authenticate with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/)
+**Kawalan Wajib:**  
+- **Keperluan Persetujuan Eksplisit**: Pelayan proksi MCP yang menggunakan ID klien statik **MESTI** mendapatkan persetujuan pengguna untuk setiap klien yang didaftarkan secara dinamik  
+- **Pelaksanaan Keselamatan OAuth 2.1**: Ikuti amalan terbaik keselamatan OAuth semasa termasuk PKCE (Proof Key for Code Exchange) untuk semua permintaan kebenaran  
+- **Pengesahan Klien Ketat**: Laksanakan pengesahan ketat terhadap URI pengalihan dan pengecam klien untuk mencegah eksploitasi  
 
-## Dokumen Keselamatan Tambahan
+### Kerentanan Passthrough Token  
 
-Untuk panduan keselamatan yang lebih terperinci, sila rujuk dokumen berikut:
+**Passthrough token** mewakili corak anti eksplisit di mana pelayan MCP menerima token klien tanpa pengesahan yang betul dan meneruskannya ke API hiliran, melanggar spesifikasi kebenaran MCP.  
 
-- [MCP Security Best Practices 2025](./mcp-security-best-practices-2025.md) - Senarai komprehensif amalan keselamatan terbaik untuk pelaksanaan MCP
-- [Azure Content Safety Implementation](./azure-content-safety-implementation.md) - Contoh pelaksanaan untuk mengintegrasikan Azure Content Safety dengan pelayan MCP
-- [MCP Security Controls 2025](./mcp-security-controls-2025.md) - Kawalan dan teknik keselamatan terkini untuk melindungi pelaksanaan MCP
-- [MCP Best Practices](./mcp-best-practices.md) - Panduan rujukan pantas untuk keselamatan MCP
+#### **Implikasi Keselamatan**  
 
-### Seterusnya
+- **Pintasan Kawalan**: Penggunaan token klien-ke-API secara langsung memintas kawalan penting seperti had kadar, pengesahan, dan pemantauan  
+- **Pencemaran Jejak Audit**: Token yang dikeluarkan oleh hulu menjadikan pengenalan klien mustahil, merosakkan keupayaan penyiasatan insiden  
+- **Eksfiltrasi Data Berasaskan Proksi**: Token yang tidak disahkan membolehkan pelaku berniat jahat menggunakan pelayan sebagai proksi untuk akses data tanpa kebenaran  
+- **Pelanggaran Sempadan Kepercayaan**: Andaian kepercayaan perkhidmatan hiliran mungkin dilanggar apabila asal token tidak dapat disahkan  
+- **Pengembangan Serangan Multi-Perkhidmatan**: Token yang dikompromi diterima di pelbagai perkhidmatan membolehkan pergerakan lateral  
+
+#### **Kawalan Keselamatan Diperlukan**  
+
+**Keperluan Tidak Boleh Ditawar:**  
+- **Pengesahan Token**: Pelayan MCP **MESTI TIDAK** menerima token yang tidak dikeluarkan secara eksplisit untuk pelayan MCP  
+- **Pengesahan Penonton**: Sentiasa sahkan tuntutan penonton token sepadan dengan identiti pelayan MCP  
+- **Kitaran Hayat Token yang Betul**: Laksanakan token akses jangka pendek dengan amalan putaran yang selamat  
+
+## Keselamatan Rantaian Bekalan untuk Sistem AI  
+
+Keselamatan rantaian bekalan telah berkembang melangkaui pergantungan perisian tradisional untuk merangkumi keseluruhan ekosistem AI. Pelaksanaan MCP moden mesti mengesahkan dan memantau semua komponen berkaitan AI dengan teliti, kerana setiap satu memperkenalkan potensi kerentanan yang boleh menjejaskan integriti sistem.  
+
+### Komponen Rantaian Bekalan AI yang Diperluas  
+
+**Pergantungan Perisian Tradisional:**  
+- Perpustakaan dan rangka kerja sumber terbuka  
+- Imej kontena dan sistem asas  
+- Alat pembangunan dan saluran binaan  
+- Komponen dan perkhidmatan infrastruktur  
+
+**Elemen Rantaian Bekalan Khusus AI:**  
+- **Model Asas**: Model pra-latih daripada pelbagai penyedia yang memerlukan pengesahan asal usul  
+- **Perkhidmatan Penyisipan**: Perkhidmatan vektorisasi dan carian semantik luaran  
+- **Penyedia Konteks**: Sumber data, pangkalan pengetahuan, dan repositori dokumen  
+- **API Pihak Ketiga**: Perkhidmatan AI luaran, saluran ML, dan titik akhir pemprosesan data  
+- **Artifak Model**: Berat, konfigurasi, dan varian model yang disesuaikan  
+- **Sumber Data Latihan**: Set data yang digunakan untuk latihan dan penyesuaian model  
+
+### Strategi Keselamatan Rantaian Bekalan Komprehensif  
+
+#### **Pengesahan Komponen & Kepercayaan**  
+- **Pengesahan Asal Usul**: Sahkan asal, pelesenan, dan integriti semua komponen AI sebelum integrasi  
+- **Penilaian Keselamatan**: Lakukan imbasan kerentanan dan ulasan keselamatan untuk model, sumber data, dan perkhidmatan AI  
+- **Analisis Reputasi**: Nilai rekod jejak keselamatan dan amalan penyedia perkhidmatan AI  
+- **Pengesahan Pematuhan**: Pastikan semua komponen memenuhi keperluan keselamatan dan peraturan organisasi  
+
+#### **Saluran Penerapan Selamat**  
+- **Keselamatan CI/CD Automatik**: Integrasikan imbasan keselamatan sepanjang saluran penerapan automatik  
+- **Integriti Artifak**: Laksanakan pengesahan kriptografi untuk semua artifak yang diterapkan (kod, model, konfigurasi)  
+- **Penerapan Berperingkat**: Gunakan strategi penerapan progresif dengan pengesahan keselamatan di setiap peringkat  
+- **Repositori Artifak Terpercaya**: Terapkan hanya dari registri dan repositori artifak yang disahkan dan selamat  
+
+#### **Pemantauan & Tindak Balas Berterusan**  
+- **Imbasan Pergantungan**: Pemantauan kerentanan berterusan untuk semua pergantungan perisian dan komponen AI  
+- **Pemantauan Model**: Penilaian berterusan terhadap tingkah laku model, penyimpangan prestasi, dan anomali keselamatan  
+- **Penjejakan Kesihatan Perkhidmatan**: Pantau perkhidmatan AI luaran untuk ketersediaan, insiden keselamatan, dan perubahan polisi  
+- **Integrasi Perisikan Ancaman**: Gabungkan suapan ancaman khusus untuk risiko keselamatan AI dan ML  
+
+#### **Kawalan Akses & Keistimewaan Minimum**  
+- **Kebenaran Tahap Komponen**: Hadkan akses kepada model, data, dan perkhidmatan berdasarkan keperluan perniagaan  
+- **Pengurusan Akaun Perkhidmatan**: Laksanakan akaun perkhidmatan khusus dengan keistimewaan minimum yang diperlukan  
+- **Segmentasi Rangkaian**: Isolasi komponen AI dan hadkan akses rangkaian antara perkhidmatan  
+- **Kawalan Gerbang API**: Gunakan gerbang API berpusat untuk mengawal dan memantau akses kepada perkhidmatan AI luaran  
+
+#### **Tindak Balas Insiden & Pemulihan**  
+- **Prosedur Tindak Balas Pantas**: Proses yang ditetapkan untuk menampal atau menggantikan komponen AI yang dikompromi  
+- **Putaran Kredensial**: Sistem automatik untuk memutar rahsia, kunci API, dan kredensial perkhidmatan  
+- **Keupayaan Rollback**: Keupayaan untuk segera kembali ke versi komponen AI yang diketahui baik sebelumnya  
+- **Pemulihan Pelanggaran Rantaian Bekalan**: Prosedur khusus untuk bertindak balas terhadap kompromi perkhidmatan AI hulu  
+
+### Alat Keselamatan Microsoft & Integrasi  
+
+**GitHub Advanced Security** menyediakan perlindungan rantaian bekalan yang komprehensif termasuk:  
+- **Imbasan Rahsia**: Pengesanan automatik kredensial, kunci API, dan token dalam repositori  
+- **Imbasan Pergantungan**: Penilaian kerentanan untuk pergantungan dan perpustakaan sumber terbuka  
+- **Analisis CodeQL**: Analisis kod statik untuk kerentanan keselamatan dan isu pengkodan  
+- **Wawasan Rantaian Bekalan**: Penglihatan ke dalam kesihatan dan status keselamatan pergantungan  
+
+**Integrasi Azure DevOps & Azure Repos:**  
+- Integrasi imbasan keselamatan yang lancar di seluruh platform pembangunan Microsoft  
+- Pemeriksaan keselamatan automatik dalam Azure Pipelines untuk beban kerja AI  
+- Penguatkuasaan polisi untuk penerapan komponen AI yang selamat  
+
+**Amalan Dalaman Microsoft:**  
+Microsoft melaksanakan amalan keselamatan rantaian bekalan yang luas di seluruh produk. Ketahui pendekatan yang terbukti dalam [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/).  
+
+## Amalan Terbaik Keselamatan Asas  
+
+Pelaksanaan MCP mewarisi dan membina di atas postur keselamatan organisasi anda yang sedia ada. Mengukuhkan amalan keselamatan asas secara signifikan meningkatkan keselamatan keseluruhan sistem AI dan penerapan MCP.  
+
+### Asas Keselamatan Teras  
+
+#### **Amalan Pembangunan Selamat**  
+- **Pematuhan OWASP**: Lindungi daripada kerentanan aplikasi web [OWASP Top 10](https://owasp.org/www-project-top-ten/)  
+- **Perlindungan Khusus AI**: Laksanakan kawalan untuk [OWASP Top 10 untuk LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559)  
+- **Pengurusan Rahsia Selamat**: Gunakan peti besi khusus untuk token, kunci API, dan data konfigurasi sensitif  
+- **Penyulitan Hujung-ke-Hujung**: Laksanakan komunikasi selamat di seluruh komponen aplikasi dan aliran data  
+- **Pengesahan Input**: Pengesahan ketat terhadap semua input pengguna, parameter API, dan sumber data  
+
+#### **Pengerasan Infrastruktur**  
+- **Pengesahan Multi-Faktor**: MFA wajib untuk semua akaun pentadbiran dan perkhidmatan  
+- **Pengurusan Tampalan**: Penampalan automatik dan tepat waktu untuk sistem operasi, rangka kerja, dan pergantungan  
+- **Integrasi Penyedia Identiti**: Pengurusan identiti berpusat melalui penyedia identiti perusahaan (Microsoft Entra ID, Active Directory)  
+- **Segmentasi Rangkaian**: Pengasingan logik komponen MCP untuk mengehadkan potensi pergerakan lateral  
+- **Prinsip Keistimewaan Minimum**: Keistimewaan minimum yang diperlukan untuk semua komponen sistem dan akaun  
+
+#### **Pemantauan & Pengesanan Keselamatan**  
+- **Pembalakan Komprehensif**: Pembalakan terperinci aktiviti aplikasi AI, termasuk interaksi klien-pelayan MCP  
+- **Integrasi SIEM**: Pengurusan maklumat keselamatan dan acara berpusat untuk pengesanan anomali  
+- **Analitik Tingkah Laku**: Pemantauan berkuasa AI untuk mengesan corak luar biasa dalam tingkah laku sistem dan pengguna  
+- **Perisikan Ancaman**: Integrasi suapan ancaman luaran dan indikator kompromi (IOCs)  
+- **Tindak Balas Insiden**: Prosedur yang ditetapkan untuk pengesanan, tindak balas, dan pemulihan insiden keselamatan  
+
+#### **Seni Bina Zero Trust**  
+- **Jangan Percaya, Sentiasa Sahkan**: Pengesahan berterusan pengguna, peranti, dan sambungan rangkaian  
+- **Mikro-Segmentasi**: Kawalan rangkaian granular yang mengasingkan beban kerja dan perkhidmatan individu  
+- **Keselamatan Berpusatkan Identiti**: Polisi keselamatan berdasarkan identiti yang disahkan dan bukannya lokasi rangkaian  
+- **Penilaian Risiko Berterusan**: Penilaian postur keselamatan dinamik berdasarkan konteks dan tingkah laku semasa  
+- **Akses Bersyarat**: Kawalan akses yang menyesuaikan berdasarkan faktor risiko, lokasi, dan kepercayaan peranti  
+
+### Corak Integrasi Perusahaan  
+
+#### **Integrasi Ekosistem Keselamatan Microsoft**  
+- **Microsoft Defender for Cloud**: Pengurusan postur keselamatan awan yang komprehensif  
+- **Azure Sentinel**: Keupayaan SIEM dan SOAR asli awan untuk perlindungan beban kerja AI  
+- **Microsoft Entra ID**: Pengurusan identiti dan akses perusahaan dengan polisi akses bersyarat  
+- **Azure Key Vault**: Pengurusan rahsia berpusat dengan sokongan modul keselamatan perkakasan (HSM)  
+- **Microsoft Purview**: Tadbir urus data dan pematuhan untuk sumber data AI dan aliran kerja  
+
+#### **Pematuhan & Tadbir Urus**  
+- **Penyelarasan Peraturan**: Pastikan pelaksanaan MCP memenuhi keperluan pematuhan industri tertentu (GDPR, HIPAA, SOC 2)  
+- **Pengelasan Data**: Kategorisasi dan pengendalian yang betul terhadap data sensitif yang diproses oleh sistem AI  
+- **Jejak Audit**: Pembalakan komprehensif untuk pematuhan peraturan dan penyiasatan forensik  
+- **Kawalan Privasi**: Pelaksanaan prinsip privasi-dalam-reka bentuk dalam seni bina sistem AI  
+- **Pengurusan Perubahan**: Proses formal untuk ulasan keselamatan terhadap pengubahsuaian sistem AI  
+
+Amalan asas ini mencipta asas keselamatan yang kukuh yang meningkatkan keberkesanan kawalan keselamatan khusus MCP dan menyediakan perlindungan komprehensif untuk aplikasi yang didorong oleh AI.  
+
+## Pengambilan Keselamatan Utama  
+
+- **Pendekatan Keselamatan Berlapis**: Gabungkan amalan keselamatan asas (pengkodan selamat, keistimewaan minimum, pengesahan rantaian bekalan, pemantauan berterusan) dengan kawalan khusus AI untuk perlindungan komprehensif  
+
+- **Landskap Ancaman Khusus AI**: Sistem MCP menghadapi risiko unik termasuk suntikan prompt, keracunan alat, pembajakan sesi, masalah timbalan keliru, kerentanan passthrough token, dan keistimewaan berlebihan yang memerlukan mitigasi khusus  
+
+- **Kecemerlangan Pengesahan & Kebenaran**: Laksanakan pengesahan yang kukuh menggunakan penyedia identiti luaran (Microsoft Entra ID), kuatkuasakan pengesahan token yang betul, dan jangan sekali-kali menerima token yang tidak dikeluarkan secara eksplisit untuk pelayan MCP anda  
+
+- **Pencegahan Serangan AI**: Terapkan Microsoft Prompt Shields dan Azure Content Safety untuk mempertahankan daripada suntikan prompt tidak langsung dan serangan keracunan alat, sambil mengesahkan metadata alat dan memantau perubahan dinamik  
+
+- **Keselamatan Sesi & Pengangkutan**: Gunakan ID sesi yang selamat secara kriptografi dan tidak deterministik yang diikat kepada identiti pengguna, laksanakan pengurusan kitaran hayat sesi yang betul, dan jangan sekali-kali menggunakan sesi untuk pengesahan  
+
+- **Amalan Terbaik Keselamatan OAuth**: Cegah serangan timbalan keliru melalui persetujuan pengguna eksplisit untuk klien yang didaftarkan secara dinamik, pelaksanaan OAuth 2.1 yang betul dengan PKCE, dan pengesahan URI pengalihan yang ketat  
+
+- **Prinsip Keselamatan Token**: Elakkan corak anti passthrough token, sahkan tuntutan penonton token, laksanakan token jangka pendek dengan putaran yang selamat, dan kekalkan sempadan kepercayaan yang jelas  
+
+- **Keselamatan Rantaian Bekalan Komprehensif**: Perlakukan semua komponen ekosistem AI (model, penyisipan, penyedia konteks, API luaran) dengan ketegasan keselamatan yang sama seperti pergantungan perisian tradisional  
+
+- **Evolusi Berterusan**: Kekal terkini dengan spesifikasi MCP yang berkembang pesat, sumbangkan kepada standard komuniti keselamatan, dan kekalkan postur keselamatan adaptif apabila protokol matang  
+
+- **Integrasi Keselamatan Microsoft**: Manfaatkan ekosistem keselamatan komprehensif Microsoft (Prompt Shields, Azure Content Safety, GitHub Advanced Security, Entra ID) untuk perlindungan penerapan MCP yang dipertingkatkan  
+
+## Sumber Komprehensif  
+
+### **Dokumentasi Keselamatan MCP Rasmi**  
+- [Spesifikasi MCP (Semasa: 2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)  
+- [Amalan Terbaik Keselamatan MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)  
+- [Spesifikasi Kebenaran MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)  
+- [Repositori GitHub MCP](https://github.com/modelcontextprotocol)  
+
+### **Standard Keselamatan & Amalan Terbaik**  
+- [Amalan Terbaik Keselamatan OAuth 2.0 (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
+- [OWASP Top 10 Keselamatan Aplikasi Web](https://owasp.org/www-project-top-ten/)  
+- [
+### **Penyelesaian Keselamatan Microsoft**
+- [Dokumentasi Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Perkhidmatan Keselamatan Kandungan Azure](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [Keselamatan Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
+- [Amalan Terbaik Pengurusan Token Azure](https://learn.microsoft.com/entra/identity-platform/access-tokens)
+- [Keselamatan Lanjutan GitHub](https://github.com/security/advanced-security)
+
+### **Panduan Pelaksanaan & Tutorial**
+- [Pengurusan API Azure sebagai Gerbang Pengesahan MCP](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+- [Pengesahan Microsoft Entra ID dengan Pelayan MCP](https://den.dev/blog/mcp-server-auth-entra-id-session/)
+- [Penyimpanan dan Penyulitan Token yang Selamat (Video)](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
+
+### **DevOps & Keselamatan Rantaian Bekalan**
+- [Keselamatan Azure DevOps](https://azure.microsoft.com/products/devops)
+- [Keselamatan Azure Repos](https://azure.microsoft.com/products/devops/repos/)
+- [Perjalanan Keselamatan Rantaian Bekalan Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/)
+
+## **Dokumentasi Keselamatan Tambahan**
+
+Untuk panduan keselamatan yang menyeluruh, rujuk dokumen khusus dalam bahagian ini:
+
+- **[Amalan Terbaik Keselamatan MCP 2025](./mcp-security-best-practices-2025.md)** - Amalan terbaik keselamatan lengkap untuk pelaksanaan MCP
+- **[Pelaksanaan Keselamatan Kandungan Azure](./azure-content-safety-implementation.md)** - Contoh pelaksanaan praktikal untuk integrasi Keselamatan Kandungan Azure  
+- **[Kawalan Keselamatan MCP 2025](./mcp-security-controls-2025.md)** - Kawalan keselamatan dan teknik terkini untuk pelaksanaan MCP
+- **[Rujukan Pantas Amalan Terbaik MCP](./mcp-best-practices.md)** - Panduan rujukan pantas untuk amalan keselamatan MCP yang penting
+
+---
+
+## Apa Seterusnya
 
 Seterusnya: [Bab 3: Memulakan](../03-GettingStarted/README.md)
 
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat penting, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

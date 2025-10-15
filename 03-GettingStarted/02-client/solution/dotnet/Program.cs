@@ -1,10 +1,15 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
+using Microsoft.Extensions.Logging;
+using ModelContextProtocol.Protocol;
+using System.Diagnostics;
+using System.Net;
+using System.Text;
 
 var builder = Host.CreateApplicationBuilder(args);
 
-builder.Configuration
+builder.Configuration 
     .AddEnvironmentVariables()
     .AddUserSecrets<Program>();
 
@@ -29,11 +34,11 @@ foreach (var tool in tools)
 }
 
 var result = await mcpClient.CallToolAsync(
-    "Add",
+    "add",
     new Dictionary<string, object?>() { ["a"] = 1, ["b"] = 3  },
     cancellationToken:CancellationToken.None);
 
-Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
+Console.WriteLine("Result: " + ((TextContentBlock)result.Content[0]).Text);
 
 
 

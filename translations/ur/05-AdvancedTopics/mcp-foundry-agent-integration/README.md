@@ -60,7 +60,7 @@ Model Context Protocol AI ایپلیکیشنز کے لیے ایک معیاری �
 
 ## Python Implementation
 
-***Note*** آپ یہ [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb) چلا سکتے ہیں
+***Note*** آپ یہ [notebook](mcp_support_python.ipynb) چلا سکتے ہیں
 
 ### 1. مطلوبہ پیکجز انسٹال کریں
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET Implementation
 
-***Note*** آپ یہ [notebook](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb) چلا سکتے ہیں
+***Note*** آپ یہ [notebook](mcp_support_dotnet.ipynb) چلا سکتے ہیں
 
 ### 1. مطلوبہ پیکجز انسٹال کریں
 

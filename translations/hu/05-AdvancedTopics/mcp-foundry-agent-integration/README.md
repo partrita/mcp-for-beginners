@@ -60,7 +60,7 @@ Válaszd ki a számodra megfelelő fejlesztői környezetet:
 
 ## Python megvalósítás
 
-***Megjegyzés*** Ezt a [notebookot](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb) is futtathatod
+***Megjegyzés*** Ezt a [notebookot](mcp_support_python.ipynb) is futtathatod
 
 ### 1. Szükséges csomagok telepítése
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## .NET megvalósítás
 
-***Megjegyzés*** Ezt a [notebookot](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb) is futtathatod
+***Megjegyzés*** Ezt a [notebookot](mcp_support_dotnet.ipynb) is futtathatod
 
 ### 1. Szükséges csomagok telepítése
 

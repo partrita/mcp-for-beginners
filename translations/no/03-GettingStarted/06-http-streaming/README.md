@@ -1,75 +1,73 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "40b1bbffdb8ce6812bf6e701cad876b6",
-  "translation_date": "2025-07-17T18:49:53+00:00",
+  "original_hash": "5f1383103523fa822e1fec7ef81904d5",
+  "translation_date": "2025-08-18T15:48:55+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/README.md",
   "language_code": "no"
 }
 -->
 # HTTPS-strømming med Model Context Protocol (MCP)
 
-Dette kapitlet gir en grundig veiledning for å implementere sikker, skalerbar og sanntidsstrømming med Model Context Protocol (MCP) ved bruk av HTTPS. Det dekker motivasjonen for strømming, tilgjengelige transportmekanismer, hvordan man implementerer strømmbar HTTP i MCP, sikkerhetsanbefalinger, migrering fra SSE, og praktiske råd for å bygge egne strømmende MCP-applikasjoner.
+Dette kapittelet gir en omfattende veiledning i hvordan man implementerer sikker, skalerbar og sanntidsstrømming med Model Context Protocol (MCP) ved bruk av HTTPS. Det dekker motivasjonen for strømming, tilgjengelige transportmekanismer, hvordan man implementerer strømbar HTTP i MCP, sikkerhetspraksis, migrasjon fra SSE og praktiske råd for å bygge dine egne MCP-strømmingsapplikasjoner.
 
 ## Transportmekanismer og strømming i MCP
 
-Denne seksjonen utforsker de ulike transportmekanismene som er tilgjengelige i MCP og deres rolle i å muliggjøre strømming for sanntidskommunikasjon mellom klienter og servere.
+Denne delen utforsker de ulike transportmekanismene som er tilgjengelige i MCP og deres rolle i å muliggjøre strømming for sanntidskommunikasjon mellom klienter og servere.
 
 ### Hva er en transportmekanisme?
 
-En transportmekanisme definerer hvordan data utveksles mellom klient og server. MCP støtter flere transporttyper for å passe ulike miljøer og behov:
+En transportmekanisme definerer hvordan data utveksles mellom klient og server. MCP støtter flere transporttyper for å passe til ulike miljøer og krav:
 
 - **stdio**: Standard input/output, egnet for lokale og CLI-baserte verktøy. Enkelt, men ikke egnet for web eller sky.
 - **SSE (Server-Sent Events)**: Lar servere sende sanntidsoppdateringer til klienter over HTTP. Bra for webgrensesnitt, men begrenset i skalerbarhet og fleksibilitet.
-- **Strømmbar HTTP**: Moderne HTTP-basert strømming, støtter varsler og bedre skalerbarhet. Anbefales for de fleste produksjons- og sky-scenarier.
+- **Strømbar HTTP**: Moderne HTTP-basert strømmingstransport som støtter varsler og bedre skalerbarhet. Anbefales for de fleste produksjons- og skyløsninger.
 
 ### Sammenligningstabell
 
-Se på sammenligningstabellen nedenfor for å forstå forskjellene mellom disse transportmekanismene:
+Se sammenligningstabellen nedenfor for å forstå forskjellene mellom disse transportmekanismene:
 
-| Transport         | Sanntidsoppdateringer | Strømming | Skalerbarhet | Bruksområde             |
-|-------------------|-----------------------|-----------|--------------|------------------------|
-| stdio             | Nei                   | Nei       | Lav          | Lokale CLI-verktøy     |
-| SSE               | Ja                    | Ja        | Middels      | Web, sanntidsoppdateringer |
-| Strømmbar HTTP    | Ja                    | Ja        | Høy          | Sky, flere klienter    |
+| Transport         | Sanntidsoppdateringer | Strømming | Skalerbarhet | Bruksområde              |
+|-------------------|-----------------------|-----------|--------------|--------------------------|
+| stdio             | Nei                  | Nei        | Lav          | Lokale CLI-verktøy       |
+| SSE               | Ja                   | Ja         | Middels      | Web, sanntidsoppdateringer |
+| Strømbar HTTP     | Ja                   | Ja         | Høy          | Sky, flere klienter      |
 
-> **Tip:** Valg av riktig transport påvirker ytelse, skalerbarhet og brukeropplevelse. **Strømmbar HTTP** anbefales for moderne, skalerbare og sky-klare applikasjoner.
+> **Tips:** Valg av riktig transport påvirker ytelse, skalerbarhet og brukeropplevelse. **Strømbar HTTP** anbefales for moderne, skalerbare og skyklare applikasjoner.
 
-Merk transportene stdio og SSE som ble vist i tidligere kapitler, og hvordan strømmbar HTTP er transporten som dekkes i dette kapitlet.
+Merk transportene stdio og SSE som ble vist i tidligere kapitler, og hvordan strømbar HTTP er transporten som dekkes i dette kapittelet.
 
 ## Strømming: Konsepter og motivasjon
 
-Å forstå grunnleggende konsepter og motivasjonen bak strømming er viktig for å implementere effektive sanntidskommunikasjonssystemer.
+Å forstå de grunnleggende konseptene og motivasjonen bak strømming er essensielt for å implementere effektive sanntidskommunikasjonssystemer.
 
-**Strømming** er en teknikk i nettverksprogrammering som gjør det mulig å sende og motta data i små, håndterbare biter eller som en sekvens av hendelser, i stedet for å vente på at hele svaret skal være klart. Dette er spesielt nyttig for:
+**Strømming** er en teknikk innen nettverksprogrammering som lar data sendes og mottas i små, håndterbare biter eller som en sekvens av hendelser, i stedet for å vente på at hele svaret skal være klart. Dette er spesielt nyttig for:
 
 - Store filer eller datasett.
 - Sanntidsoppdateringer (f.eks. chat, fremdriftsindikatorer).
-- Langvarige beregninger hvor man ønsker å holde brukeren oppdatert.
+- Langvarige beregninger der man ønsker å holde brukeren informert.
 
-Her er det viktigste å vite om strømming på et overordnet nivå:
+Her er det du trenger å vite om strømming på et overordnet nivå:
 
-- Data leveres gradvis, ikke alt på en gang.
-- Klienten kan behandle data etter hvert som det kommer.
+- Data leveres progressivt, ikke alt på en gang.
+- Klienten kan behandle data etter hvert som det ankommer.
 - Reduserer opplevd ventetid og forbedrer brukeropplevelsen.
 
 ### Hvorfor bruke strømming?
 
 Årsakene til å bruke strømming er følgende:
 
-- Brukere får umiddelbar tilbakemelding, ikke bare til slutt.
+- Brukere får umiddelbar tilbakemelding, ikke bare på slutten.
 - Muliggjør sanntidsapplikasjoner og responsive brukergrensesnitt.
-- Mer effektiv bruk av nettverks- og datakraftressurser.
+- Mer effektiv bruk av nettverks- og databehandlingsressurser.
 
-### Enkelt eksempel: HTTP-strømmingsserver og klient
+### Enkelt eksempel: HTTP-strømming server og klient
 
 Her er et enkelt eksempel på hvordan strømming kan implementeres:
 
-## Python
+#### Python
 
-**Server (Python, bruker FastAPI og StreamingResponse):**
-
-### Python
+**Server (Python, ved bruk av FastAPI og StreamingResponse):**
 
 ```python
 from fastapi import FastAPI
@@ -88,10 +86,7 @@ def stream():
     return StreamingResponse(event_stream(), media_type="text/event-stream")
 ```
 
-
-**Klient (Python, bruker requests):**
-
-### Python
+**Klient (Python, ved bruk av requests):**
 
 ```python
 import requests
@@ -102,21 +97,22 @@ with requests.get("http://localhost:8000/stream", stream=True) as r:
             print(line.decode())
 ```
 
+Dette eksempelet viser en server som sender en serie meldinger til klienten etter hvert som de blir tilgjengelige, i stedet for å vente til alle meldingene er klare.
 
-Dette eksempelet viser en server som sender en serie meldinger til klienten etter hvert som de blir tilgjengelige, i stedet for å vente på at alle meldinger skal være klare.
+**Hvordan det fungerer:**
 
-**Slik fungerer det:**
 - Serveren sender hver melding etter hvert som den er klar.
-- Klienten mottar og skriver ut hver del så snart den kommer.
+- Klienten mottar og skriver ut hver bit etter hvert som den ankommer.
 
 **Krav:**
-- Serveren må bruke en strømmende respons (f.eks. `StreamingResponse` i FastAPI).
+
+- Serveren må bruke et strømmerespons (f.eks. `StreamingResponse` i FastAPI).
 - Klienten må behandle responsen som en strøm (`stream=True` i requests).
 - Content-Type er vanligvis `text/event-stream` eller `application/octet-stream`.
 
-## Java
+#### Java
 
-**Server (Java, bruker Spring Boot og Server-Sent Events):**
+**Server (Java, ved bruk av Spring Boot og Server-Sent Events):**
 
 ```java
 @RestController
@@ -151,7 +147,7 @@ public class CalculatorController {
 }
 ```
 
-**Klient (Java, bruker Spring WebFlux WebClient):**
+**Klient (Java, ved bruk av Spring WebFlux WebClient):**
 
 ```java
 @SpringBootApplication
@@ -179,73 +175,72 @@ public class CalculatorClientApplication implements CommandLineRunner {
 }
 ```
 
-**Notater om Java-implementasjon:**
-- Bruker Spring Boots reaktive stack med `Flux` for strømming
-- `ServerSentEvent` gir strukturert hendelsesstrømming med hendelsestyper
-- `WebClient` med `bodyToFlux()` muliggjør reaktiv strømmingskonsumering
-- `delayElements()` simulerer behandlingstid mellom hendelser
-- Hendelser kan ha typer (`info`, `result`) for bedre klienthåndtering
+**Notater om Java-implementering:**
+
+- Bruker Spring Boots reaktive stack med `Flux` for strømming.
+- `ServerSentEvent` gir strukturert hendelsesstrømming med hendelsestyper.
+- `WebClient` med `bodyToFlux()` muliggjør reaktiv strømmekonsumering.
+- `delayElements()` simulerer behandlingstid mellom hendelser.
+- Hendelser kan ha typer (`info`, `result`) for bedre klienthåndtering.
 
 ### Sammenligning: Klassisk strømming vs MCP-strømming
 
-Forskjellene mellom hvordan strømming fungerer på en "klassisk" måte versus i MCP kan illustreres slik:
+Forskjellene mellom hvordan strømming fungerer på en "klassisk" måte kontra hvordan det fungerer i MCP kan beskrives slik:
 
-| Funksjon               | Klassisk HTTP-strømming       | MCP-strømming (Varsler)          |
-|-----------------------|-------------------------------|---------------------------------|
-| Hovedrespons           | Delt opp i biter              | Enkelt, sendt til slutt          |
-| Fremdriftsoppdateringer| Sendt som databit             | Sendt som varsler                |
-| Klientkrav             | Må behandle strømmen          | Må implementere meldingshåndterer|
-| Bruksområde            | Store filer, AI-tokenstrømmer | Fremdrift, logger, sanntidsfeedback |
+| Funksjon              | Klassisk HTTP-strømming       | MCP-strømming (Varsler)          |
+|-----------------------|-------------------------------|----------------------------------|
+| Hovedrespons          | Oppdelt                      | Enkel, på slutten               |
+| Fremdriftsoppdateringer | Sendt som databiter          | Sendt som varsler               |
+| Klientkrav            | Må behandle strømmen          | Må implementere meldingshåndterer |
+| Bruksområde           | Store filer, AI-tokenstrømmer | Fremdrift, logger, sanntidsfeedback |
 
-### Viktige observerte forskjeller
+### Observerte nøkkelforskjeller
 
 I tillegg er det noen nøkkelforskjeller:
 
 - **Kommunikasjonsmønster:**
-   - Klassisk HTTP-strømming: Bruker enkel chunked transfer encoding for å sende data i biter
-   - MCP-strømming: Bruker et strukturert varslingssystem med JSON-RPC-protokoll
+  - Klassisk HTTP-strømming: Bruker enkel oppdelt overføring for å sende data i biter.
+  - MCP-strømming: Bruker et strukturert varslingssystem med JSON-RPC-protokoll.
 
 - **Meldingsformat:**
-   - Klassisk HTTP: Ren tekst med linjeskift
-   - MCP: Strukturerte LoggingMessageNotification-objekter med metadata
+  - Klassisk HTTP: Ren tekst i biter med linjeskift.
+  - MCP: Strukturerte `LoggingMessageNotification`-objekter med metadata.
 
-- **Klientimplementasjon:**
-   - Klassisk HTTP: Enkel klient som behandler strømmende responser
-   - MCP: Mer avansert klient med meldingshåndterer for å behandle ulike meldingstyper
+- **Klientimplementering:**
+  - Klassisk HTTP: Enkel klient som behandler strømmeresponser.
+  - MCP: Mer sofistikert klient med en meldingshåndterer for å behandle ulike typer meldinger.
 
 - **Fremdriftsoppdateringer:**
-   - Klassisk HTTP: Fremdrift er en del av hovedresponsstrømmen
-   - MCP: Fremdrift sendes via separate varslingsmeldinger mens hovedresponsen kommer til slutt
+  - Klassisk HTTP: Fremdriften er en del av hovedstrømmen.
+  - MCP: Fremdrift sendes via separate varslingsmeldinger mens hovedresponsen kommer til slutt.
 
 ### Anbefalinger
 
-Vi anbefaler følgende når det gjelder valg mellom klassisk strømming (som endepunktet vi viste med `/stream`) og strømming via MCP:
+Her er noen anbefalinger når det gjelder å velge mellom å implementere klassisk strømming (som en endpoint vi viste deg ovenfor ved bruk av `/stream`) kontra å velge strømming via MCP.
 
-- **For enkle strømmingsbehov:** Klassisk HTTP-strømming er enklere å implementere og tilstrekkelig for grunnleggende behov.
-
+- **For enkle strømmingsbehov:** Klassisk HTTP-strømming er enklere å implementere og tilstrekkelig for grunnleggende strømmingsbehov.
 - **For komplekse, interaktive applikasjoner:** MCP-strømming gir en mer strukturert tilnærming med rikere metadata og separasjon mellom varsler og endelige resultater.
-
-- **For AI-applikasjoner:** MCPs varslingssystem er spesielt nyttig for langvarige AI-oppgaver hvor man ønsker å holde brukerne oppdatert om fremdrift.
+- **For AI-applikasjoner:** MCPs varslingssystem er spesielt nyttig for langvarige AI-oppgaver der du vil holde brukerne informert om fremdriften.
 
 ## Strømming i MCP
 
-Ok, så du har sett noen anbefalinger og sammenligninger så langt om forskjellen mellom klassisk strømming og strømming i MCP. La oss gå i detalj på hvordan du kan utnytte strømming i MCP.
+Ok, så du har sett noen anbefalinger og sammenligninger så langt om forskjellen mellom klassisk strømming og strømming i MCP. La oss gå i detalj om hvordan du kan utnytte strømming i MCP.
 
 Å forstå hvordan strømming fungerer innenfor MCP-rammeverket er essensielt for å bygge responsive applikasjoner som gir sanntidsfeedback til brukere under langvarige operasjoner.
 
-I MCP handler ikke strømming om å sende hovedresponsen i biter, men om å sende **varsler** til klienten mens et verktøy behandler en forespørsel. Disse varslene kan inkludere fremdriftsoppdateringer, logger eller andre hendelser.
+I MCP handler strømming ikke om å sende hovedresponsen i biter, men om å sende **varsler** til klienten mens et verktøy behandler en forespørsel. Disse varslene kan inkludere fremdriftsoppdateringer, logger eller andre hendelser.
 
-### Slik fungerer det
+### Hvordan det fungerer
 
-Hovedresultatet sendes fortsatt som en enkelt respons. Varsler kan imidlertid sendes som separate meldinger under behandlingen og dermed oppdatere klienten i sanntid. Klienten må kunne håndtere og vise disse varslene.
+Hovedresultatet sendes fortsatt som en enkelt respons. Imidlertid kan varsler sendes som separate meldinger under behandlingen og dermed oppdatere klienten i sanntid. Klienten må kunne håndtere og vise disse varslene.
 
 ## Hva er et varsel?
 
 Vi nevnte "varsel", hva betyr det i MCP-sammenheng?
 
-Et varsel er en melding sendt fra server til klient for å informere om fremdrift, status eller andre hendelser under en langvarig operasjon. Varsler øker åpenhet og forbedrer brukeropplevelsen.
+Et varsel er en melding sendt fra serveren til klienten for å informere om fremdrift, status eller andre hendelser under en langvarig operasjon. Varsler forbedrer transparens og brukeropplevelse.
 
-For eksempel skal en klient sende et varsel når den innledende håndtrykkingen med serveren er fullført.
+For eksempel skal en klient sende et varsel når den første håndtrykkingen med serveren er fullført.
 
 Et varsel ser slik ut som en JSON-melding:
 
@@ -259,7 +254,7 @@ Et varsel ser slik ut som en JSON-melding:
 }
 ```
 
-Varsler tilhører et tema i MCP kalt ["Logging"](https://modelcontextprotocol.io/specification/draft/server/utilities/logging).
+Varsler tilhører et emne i MCP referert til som ["Logging"](https://modelcontextprotocol.io/specification/draft/server/utilities/logging).
 
 For å få logging til å fungere, må serveren aktivere det som en funksjon/kapasitet slik:
 
@@ -276,26 +271,26 @@ For å få logging til å fungere, må serveren aktivere det som en funksjon/kap
 
 Det finnes ulike typer varsler:
 
-| Nivå      | Beskrivelse                   | Eksempel på bruk               |
-|-----------|------------------------------|-------------------------------|
-| debug     | Detaljert feilsøkingsinformasjon | Funksjonsinngang/-utgang      |
-| info      | Generelle informasjonsmeldinger | Oppdateringer om fremdrift    |
-| notice    | Normale, men viktige hendelser | Konfigurasjonsendringer       |
-| warning   | Advarsler                    | Bruk av utgåtte funksjoner    |
-| error     | Feil                        | Operasjonsfeil                |
-| critical  | Kritiske feil                | Systemkomponentfeil           |
-| alert     | Umiddelbar handling kreves  | Oppdaget datakorrupsjon       |
-| emergency | Systemet er ubrukelig       | Fullstendig systemsvikt       |
+| Nivå       | Beskrivelse                   | Eksempel på brukstilfelle       |
+|------------|-------------------------------|----------------------------------|
+| debug      | Detaljert feilsøkingsinformasjon | Funksjonsinngang/-utgang        |
+| info       | Generelle informasjonsmeldinger | Oppdateringer om fremdrift      |
+| notice     | Normale, men viktige hendelser | Endringer i konfigurasjon       |
+| warning    | Advarselsforhold              | Bruk av utgåtte funksjoner      |
+| error      | Feilforhold                   | Operasjonsfeil                  |
+| critical   | Kritiske forhold              | Feil i systemkomponenter        |
+| alert      | Umiddelbar handling nødvendig | Oppdaget datakorrupsjon         |
+| emergency  | Systemet er ubrukelig         | Fullstendig systemsvikt         |
 
 ## Implementering av varsler i MCP
 
-For å implementere varsler i MCP må du sette opp både server- og klientsiden for å håndtere sanntidsoppdateringer. Dette gjør at applikasjonen din kan gi umiddelbar tilbakemelding til brukere under langvarige operasjoner.
+For å implementere varsler i MCP må du sette opp både server- og klientsiden for å håndtere sanntidsoppdateringer. Dette lar applikasjonen din gi umiddelbar tilbakemelding til brukere under langvarige operasjoner.
 
 ### Serverside: Sende varsler
 
-La oss starte med serversiden. I MCP definerer du verktøy som kan sende varsler mens de behandler forespørsler. Serveren bruker kontekstobjektet (vanligvis `ctx`) for å sende meldinger til klienten.
+La oss starte med serversiden. I MCP definerer du verktøy som kan sende varsler mens de behandler forespørsler. Serveren bruker kontektsobjektet (vanligvis `ctx`) for å sende meldinger til klienten.
 
-### Python
+#### Python
 
 ```python
 @mcp.tool(description="A tool that sends progress notifications")
@@ -306,15 +301,15 @@ async def process_files(message: str, ctx: Context) -> TextContent:
     return TextContent(type="text", text=f"Done: {message}")
 ```
 
-I eksemplet over sender `process_files`-verktøyet tre varsler til klienten mens det behandler hver fil. Metoden `ctx.info()` brukes for å sende informasjonsmeldinger.
+I eksempelet ovenfor sender `process_files`-verktøyet tre varsler til klienten mens det behandler hver fil. Metoden `ctx.info()` brukes til å sende informasjonsmeldinger.
 
-I tillegg, for å aktivere varsler, må serveren bruke en strømmende transport (som `streamable-http`) og klienten må implementere en meldingshåndterer for å behandle varsler. Slik kan du sette opp serveren til å bruke `streamable-http`-transporten:
+I tillegg, for å aktivere varsler, må du sørge for at serveren din bruker en strømmetransport (som `streamable-http`) og at klienten din implementerer en meldingshåndterer for å behandle varsler. Slik kan du sette opp serveren til å bruke `streamable-http`-transport:
 
 ```python
 mcp.run(transport="streamable-http")
 ```
 
-### .NET
+#### .NET
 
 ```csharp
 [Tool("A tool that sends progress notifications")]
@@ -331,9 +326,9 @@ public async Task<TextContent> ProcessFiles(string message, ToolContext ctx)
 }
 ```
 
-I dette .NET-eksemplet er `ProcessFiles`-verktøyet dekorert med `Tool`-attributtet og sender tre varsler til klienten mens det behandler hver fil. Metoden `ctx.Info()` brukes for å sende informasjonsmeldinger.
+I dette .NET-eksempelet er `ProcessFiles`-verktøyet dekorert med `Tool`-attributtet og sender tre varsler til klienten mens det behandler hver fil. Metoden `ctx.Info()` brukes til å sende informasjonsmeldinger.
 
-For å aktivere varsler i din .NET MCP-server, sørg for at du bruker en strømmende transport:
+For å aktivere varsler i din .NET MCP-server, sørg for at du bruker en strømmetransport:
 
 ```csharp
 var builder = McpBuilder.Create();
@@ -345,9 +340,9 @@ await builder
 
 ### Klientside: Motta varsler
 
-Klienten må implementere en meldingshåndterer for å behandle og vise varsler etter hvert som de kommer.
+Klienten må implementere en meldingshåndterer for å behandle og vise varsler etter hvert som de ankommer.
 
-### Python
+#### Python
 
 ```python
 async def message_handler(message):
@@ -364,9 +359,9 @@ async with ClientSession(
 ) as session:
 ```
 
-I koden over sjekker funksjonen `message_handler` om den innkommende meldingen er et varsel. Hvis det er det, skrives varselet ut; ellers behandles det som en vanlig servermelding. Merk også hvordan `ClientSession` initialiseres med `message_handler` for å håndtere innkommende varsler.
+I koden ovenfor sjekker funksjonen `message_handler` om den innkommende meldingen er et varsel. Hvis det er et varsel, skriver den ut varselet; ellers behandler den det som en vanlig servermelding. Merk også hvordan `ClientSession` initialiseres med `message_handler` for å håndtere innkommende varsler.
 
-### .NET
+#### .NET
 
 ```csharp
 // Define a message handler
@@ -395,15 +390,15 @@ await client.InitializeAsync();
 // Now the client will process notifications through the MessageHandler
 ```
 
-I dette .NET-eksemplet sjekker funksjonen `MessageHandler` om den innkommende meldingen er et varsel. Hvis det er det, skrives varselet ut; ellers behandles det som en vanlig servermelding. `ClientSession` initialiseres med meldingshåndtereren via `ClientSessionOptions`.
+I dette .NET-eksempelet sjekker funksjonen `MessageHandler` om den innkommende meldingen er et varsel. Hvis det er et varsel, skriver den ut varselet; ellers behandler den det som en vanlig servermelding. `ClientSession` initialiseres med meldingshåndtereren via `ClientSessionOptions`.
 
-For å aktivere varsler, sørg for at serveren bruker en strømmende transport (som `streamable-http`) og at klienten implementerer en meldingshåndterer for å behandle varsler.
+For å aktivere varsler, sørg for at serveren din bruker en strømmetransport (som `streamable-http`) og at klienten din implementerer en meldingshåndterer for å behandle varsler.
 
 ## Fremdriftsvarsler og scenarier
 
-Denne seksjonen forklarer konseptet med fremdriftsvarsler i MCP, hvorfor de er viktige, og hvordan du kan implementere dem med Strømmbar HTTP. Du finner også en praktisk oppgave for å styrke forståelsen.
+Denne delen forklarer konseptet med fremdriftsvarsler i MCP, hvorfor de er viktige, og hvordan du implementerer dem ved hjelp av strømbar HTTP. Du finner også en praktisk oppgave for å styrke forståelsen din.
 
-Fremdriftsvarsler er sanntidsmeldinger sendt fra server til klient under langvarige operasjoner. I stedet for å vente på at hele prosessen skal fullføres, holder serveren klienten oppdatert om gjeldende status. Dette øker åpenhet, forbedrer brukeropplevelsen og gjør feilsøking enklere.
+Fremdriftsvarsler er sanntidsmeldinger sendt fra serveren til klienten under langvarige operasjoner. I stedet for å vente til hele prosessen er ferdig, holder serveren klienten oppdatert om gjeldende status. Dette forbedrer transparens, brukeropplevelse og gjør feilsøking enklere.
 
 **Eksempel:**
 
@@ -418,22 +413,22 @@ Fremdriftsvarsler er sanntidsmeldinger sendt fra server til klient under langvar
 
 ### Hvorfor bruke fremdriftsvarsler?
 
-Fremdriftsvarsler er viktige av flere grunner:
+Fremdriftsvarsler er essensielle av flere grunner:
 
-- **Bedre brukeropplevelse:** Brukere ser oppdateringer mens arbeidet pågår, ikke bare til slutt.
+- **Bedre brukeropplevelse:** Brukere ser oppdateringer mens arbeidet pågår, ikke bare på slutten.
 - **Sanntidsfeedback:** Klienter kan vise fremdriftsindikatorer eller logger, noe som gjør appen mer responsiv.
-- **Enklere feilsøking og overvåking:** Utviklere og brukere kan se hvor en prosess eventuelt er treg eller står fast.
+- **Enklere feilsøking og overvåking:** Utviklere og brukere kan se hvor en prosess kan være treg eller fastlåst.
 
 ### Hvordan implementere fremdriftsvarsler
 
-Slik kan du implementere fremdriftsvarsler i MCP:
+Slik implementerer du fremdriftsvarsler i MCP:
 
 - **På serveren:** Bruk `ctx.info()` eller `ctx.log()` for å sende varsler etter hvert som hvert element behandles. Dette sender en melding til klienten før hovedresultatet er klart.
-- **På klienten:** Implementer en meldingshåndterer som lytter etter og viser varsler etter hvert som de kommer. Denne skiller mellom varsler og det endelige resultatet.
+- **På klienten:** Implementer en meldingshåndterer som lytter etter og viser varsler etter hvert som de ankommer. Denne håndtereren skiller mellom varsler og det endelige resultatet.
 
 **Servereksempel:**
 
-## Python
+#### Python
 
 ```python
 @mcp.tool(description="A tool that sends progress notifications")
@@ -444,10 +439,9 @@ async def process_files(message: str, ctx: Context) -> TextContent:
     return TextContent(type="text", text=f"Done: {message}")
 ```
 
-
 **Klienteksempel:**
 
-### Python
+#### Python
 
 ```python
 async def message_handler(message):
@@ -457,39 +451,41 @@ async def message_handler(message):
         print("SERVER MESSAGE:", message)
 ```
 
-
 ## Sikkerhetshensyn
 
-Når du implementerer MCP-servere med HTTP-baserte transporter, blir sikkerhet en avgjørende faktor som krever nøye oppmerksomhet mot flere angrepsvektorer og beskyttelsesmekanismer.
+Når du implementerer MCP-servere med HTTP-baserte transporter, blir sikkerhet en kritisk bekymring som krever nøye oppmerksomhet til flere angrepsflater og beskyttelsesmekanismer.
 
 ### Oversikt
 
-Sikkerhet er kritisk når MCP-servere eksponeres over HTTP. Strømmbar HTTP introduserer nye angrepsflater og krever nøye konfigurasjon.
+Sikkerhet er avgjørende når MCP-servere eksponeres over HTTP. Strømbar HTTP introduserer nye angrepsflater og krever nøye konfigurasjon.
 
 ### Viktige punkter
-- **Validering av Origin-header:** Alltid valider `Origin`-headeren for å forhindre DNS-rebinding-angrep.
-- **Binding til localhost:** For lokal utvikling, bind servere til `localhost` for å unngå eksponering mot det offentlige nettet.
+
+- **Validering av Origin-header:** Valider alltid `Origin`-headeren for å forhindre DNS-rebinding-angrep.
+- **Binding til localhost:** For lokal utvikling, bind servere til `localhost` for å unngå eksponering på det offentlige internettet.
 - **Autentisering:** Implementer autentisering (f.eks. API-nøkler, OAuth) for produksjonsdistribusjoner.
 - **CORS:** Konfigurer Cross-Origin Resource Sharing (CORS)-policyer for å begrense tilgang.
-- **HTTPS:** Bruk HTTPS i produksjon for å kryptere trafikken.
+- **HTTPS:** Bruk HTTPS i produksjon for å kryptere trafikk.
 
 ### Beste praksis
+
 - Stol aldri på innkommende forespørsler uten validering.
 - Logg og overvåk all tilgang og feil.
-- Oppdater avhengigheter jevnlig for å tette sikkerhetshull.
+- Oppdater regelmessig avhengigheter for å tette sikkerhetssårbarheter.
 
 ### Utfordringer
-- Balansering mellom sikkerhet og enkel utvikling
-- Sikre kompatibilitet med ulike klientmiljøer
 
-## Oppgradering fra SSE til Strømmbar HTTP
+- Balansering av sikkerhet med enkel utvikling.
+- Sikre kompatibilitet med ulike klientmiljøer.
 
-For applikasjoner som i dag bruker Server-Sent Events (SSE), gir migrering til Strømmbar HTTP forbedrede muligheter og bedre langsiktig bærekraft for dine MCP-implementasjoner.
+## Oppgradering fra SSE til strømbar HTTP
+
+For applikasjoner som for øyeblikket bruker Server-Sent Events (SSE), gir migrering til strømbar HTTP forbedrede muligheter og bedre langsiktig bærekraft for MCP-implementeringene dine.
+
 ### Hvorfor oppgradere?
+Det er to overbevisende grunner til å oppgradere fra SSE til Streamable HTTP:
 
-Det er to gode grunner til å oppgradere fra SSE til Streamable HTTP:
-
-- Streamable HTTP gir bedre skalerbarhet, kompatibilitet og rikere støtte for varslinger enn SSE.
+- Streamable HTTP tilbyr bedre skalerbarhet, kompatibilitet og rikere støtte for varsler enn SSE.
 - Det er den anbefalte transporten for nye MCP-applikasjoner.
 
 ### Migreringstrinn
@@ -498,7 +494,7 @@ Slik kan du migrere fra SSE til Streamable HTTP i dine MCP-applikasjoner:
 
 - **Oppdater serverkoden** til å bruke `transport="streamable-http"` i `mcp.run()`.
 - **Oppdater klientkoden** til å bruke `streamablehttp_client` i stedet for SSE-klienten.
-- **Implementer en meldingsbehandler** i klienten for å håndtere varslinger.
+- **Implementer en meldingshåndterer** i klienten for å behandle varsler.
 - **Test for kompatibilitet** med eksisterende verktøy og arbeidsflyter.
 
 ### Opprettholde kompatibilitet
@@ -506,77 +502,77 @@ Slik kan du migrere fra SSE til Streamable HTTP i dine MCP-applikasjoner:
 Det anbefales å opprettholde kompatibilitet med eksisterende SSE-klienter under migreringsprosessen. Her er noen strategier:
 
 - Du kan støtte både SSE og Streamable HTTP ved å kjøre begge transportene på forskjellige endepunkter.
-- Migrer klienter gradvis til den nye transporten.
+- Gradvis migrere klienter til den nye transporten.
 
 ### Utfordringer
 
 Sørg for å håndtere følgende utfordringer under migreringen:
 
-- At alle klienter blir oppdatert
-- Håndtering av forskjeller i leveringen av varslinger
+- Sikre at alle klienter blir oppdatert
+- Håndtere forskjeller i leveranse av varsler
 
-## Sikkerhetshensyn
+## Sikkerhetsbetraktninger
 
 Sikkerhet bør være en topp prioritet når du implementerer en server, spesielt når du bruker HTTP-baserte transporter som Streamable HTTP i MCP.
 
-Når du implementerer MCP-servere med HTTP-baserte transporter, blir sikkerhet en avgjørende faktor som krever nøye oppmerksomhet på flere angrepsvektorer og beskyttelsesmekanismer.
+Når du implementerer MCP-servere med HTTP-baserte transporter, blir sikkerhet en avgjørende bekymring som krever nøye oppmerksomhet til flere angrepsvektorer og beskyttelsesmekanismer.
 
 ### Oversikt
 
 Sikkerhet er kritisk når MCP-servere eksponeres over HTTP. Streamable HTTP introduserer nye angrepsflater og krever nøye konfigurasjon.
 
-Her er noen viktige sikkerhetshensyn:
+Her er noen viktige sikkerhetsbetraktninger:
 
-- **Validering av Origin-header**: Alltid valider `Origin`-headeren for å forhindre DNS-rebinding-angrep.
-- **Binding til localhost**: For lokal utvikling, bind servere til `localhost` for å unngå eksponering mot det offentlige nettet.
-- **Autentisering**: Implementer autentisering (f.eks. API-nøkler, OAuth) for produksjonsdistribusjoner.
+- **Validering av Origin-header**: Valider alltid `Origin`-headeren for å forhindre DNS-rebinding-angrep.
+- **Binding til localhost**: For lokal utvikling, bind servere til `localhost` for å unngå eksponering mot det offentlige internett.
+- **Autentisering**: Implementer autentisering (f.eks. API-nøkler, OAuth) for produksjonsmiljøer.
 - **CORS**: Konfigurer Cross-Origin Resource Sharing (CORS)-policyer for å begrense tilgang.
-- **HTTPS**: Bruk HTTPS i produksjon for å kryptere trafikken.
+- **HTTPS**: Bruk HTTPS i produksjon for å kryptere trafikk.
 
 ### Beste praksis
 
-I tillegg er det noen beste praksiser å følge når du implementerer sikkerhet i din MCP streaming-server:
+I tillegg er her noen beste praksiser å følge når du implementerer sikkerhet i din MCP-strømmeserver:
 
 - Stol aldri på innkommende forespørsler uten validering.
-- Logg og overvåk all tilgang og feil.
-- Oppdater avhengigheter jevnlig for å tette sikkerhetshull.
+- Loggfør og overvåk all tilgang og feil.
+- Oppdater regelmessig avhengigheter for å tette sikkerhetssårbarheter.
 
 ### Utfordringer
 
-Du vil møte noen utfordringer når du implementerer sikkerhet i MCP streaming-servere:
+Du vil møte noen utfordringer når du implementerer sikkerhet i MCP-strømmeservere:
 
-- Å balansere sikkerhet med enkel utvikling
-- Å sikre kompatibilitet med ulike klientmiljøer
+- Balansering av sikkerhet med enkel utvikling
+- Sikre kompatibilitet med ulike klientmiljøer
 
-### Oppgave: Bygg din egen streaming MCP-app
+### Oppgave: Bygg din egen strømmende MCP-app
 
-**Scenario:**  
-Bygg en MCP-server og klient der serveren behandler en liste med elementer (f.eks. filer eller dokumenter) og sender en varsling for hvert element som behandles. Klienten skal vise hver varsling etter hvert som den kommer.
+**Scenario:**
+Bygg en MCP-server og -klient der serveren behandler en liste over elementer (f.eks. filer eller dokumenter) og sender et varsel for hvert element som behandles. Klienten skal vise hvert varsel etter hvert som det ankommer.
 
 **Trinn:**
 
-1. Implementer et serververktøy som behandler en liste og sender varslinger for hvert element.
-2. Implementer en klient med en meldingsbehandler som viser varslinger i sanntid.
-3. Test implementeringen ved å kjøre både server og klient, og observer varslingene.
+1. Implementer et serververktøy som behandler en liste og sender varsler for hvert element.
+2. Implementer en klient med en meldingshåndterer for å vise varsler i sanntid.
+3. Test implementasjonen din ved å kjøre både server og klient, og observer varslene.
 
 [Solution](./solution/README.md)
 
-## Videre lesning og hva nå?
+## Videre lesing og hva nå?
 
-For å fortsette reisen med MCP streaming og utvide kunnskapen din, gir denne seksjonen flere ressurser og forslag til neste steg for å bygge mer avanserte applikasjoner.
+For å fortsette reisen din med MCP-strømming og utvide kunnskapen din, gir denne seksjonen ekstra ressurser og foreslåtte neste trinn for å bygge mer avanserte applikasjoner.
 
-### Videre lesning
+### Videre lesing
 
-- [Microsoft: Introduction to HTTP Streaming](https://learn.microsoft.com/aspnet/core/fundamentals/http-requests?view=aspnetcore-8.0&WT.mc_id=%3Fwt.mc_id%3DMVP_452430#streaming)
+- [Microsoft: Introduksjon til HTTP-strømming](https://learn.microsoft.com/aspnet/core/fundamentals/http-requests?view=aspnetcore-8.0&WT.mc_id=%3Fwt.mc_id%3DMVP_452430#streaming)
 - [Microsoft: Server-Sent Events (SSE)](https://learn.microsoft.com/azure/application-gateway/for-containers/server-sent-events?tabs=server-sent-events-gateway-api&WT.mc_id=%3Fwt.mc_id%3DMVP_452430)
-- [Microsoft: CORS in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-8.0&WT.mc_id=%3Fwt.mc_id%3DMVP_452430)
-- [Python requests: Streaming Requests](https://requests.readthedocs.io/en/latest/user/advanced/#streaming-requests)
+- [Microsoft: CORS i ASP.NET Core](https://learn.microsoft.com/aspnet/core/security/cors?view=aspnetcore-8.0&WT.mc_id=%3Fwt.mc_id%3DMVP_452430)
+- [Python requests: Strømmende forespørsler](https://requests.readthedocs.io/en/latest/user/advanced/#streaming-requests)
 
 ### Hva nå?
 
-- Prøv å bygge mer avanserte MCP-verktøy som bruker streaming for sanntidsanalyse, chat eller samarbeidende redigering.
-- Utforsk integrasjon av MCP streaming med frontend-rammeverk (React, Vue, osv.) for live UI-oppdateringer.
-- Neste: [Utilising AI Toolkit for VSCode](../07-aitk/README.md)
+- Prøv å bygge mer avanserte MCP-verktøy som bruker strømming for sanntidsanalyse, chat eller samarbeidende redigering.
+- Utforsk integrering av MCP-strømming med frontend-rammeverk (React, Vue, etc.) for live UI-oppdateringer.
+- Neste: [Bruke AI Toolkit for VSCode](../07-aitk/README.md)
 
 **Ansvarsfraskrivelse**:  
-Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vennligst vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på originalspråket skal anses som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
+Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi tilstreber nøyaktighet, vennligst vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det originale dokumentet på sitt opprinnelige språk bør anses som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.

@@ -96,11 +96,60 @@ This case study provides a step-by-step guide on how to create an MCP server usi
 
 This example illustrates how to leverage Azure's capabilities to create a robust MCP server that can be used in various applications, enhancing the integration of AI systems with enterprise APIs.
 
+### 7. [GitHub MCP Registry — Accelerating Agentic Integration](https://github.com/mcp)
+
+This case study examines how GitHub's MCP Registry, launched in September 2025, addresses a critical challenge in the AI ecosystem: the fragmented discovery and deployment of Model Context Protocol (MCP) servers.
+
+#### Overview
+The **MCP Registry** solves the growing pain of scattered MCP servers across repositories and registries, which previously made integration slow and error-prone. These servers enable AI agents to interact with external systems like APIs, databases, and documentation sources.
+
+#### Problem Statement
+Developers building agentic workflows faced several challenges:
+- **Poor discoverability** of MCP servers across different platforms
+- **Redundant setup questions** scattered across forums and documentation
+- **Security risks** from unverified and untrusted sources
+- **Lack of standardization** in server quality and compatibility
+
+#### Solution Architecture
+GitHub's MCP Registry centralizes trusted MCP servers with key features:
+- **One-click install** integration via VS Code for streamlined setup
+- **Signal-over-noise sorting** by stars, activity, and community validation
+- **Direct integration** with GitHub Copilot and other MCP-compatible tools
+- **Open contribution model** enabling both community and enterprise partners to contribute
+
+#### Business Impact
+The registry has delivered measurable improvements:
+- **Faster onboarding** for developers using tools like the Microsoft Learn MCP Server, which streams official documentation directly into agents
+- **Improved productivity** via specialized servers like `github-mcp-server`, enabling natural language GitHub automation (PR creation, CI reruns, code scanning)
+- **Stronger ecosystem trust** through curated listings and transparent configuration standards
+
+#### Strategic Value
+For practitioners specializing in agent lifecycle management and reproducible workflows, the MCP Registry provides:
+- **Modular agent deployment** capabilities with standardized components
+- **Registry-backed evaluation pipelines** for consistent testing and validation
+- **Cross-tool interoperability** enabling seamless integration across different AI platforms
+
+This case study demonstrates that the MCP Registry is more than just a directory—it's a foundational platform for scalable, real-world model integration and agentic system deployment.
+
 ## Conclusion
 
-These case studies highlight the versatility and practical applications of the Model Context Protocol in real-world scenarios. From complex multi-agent systems to targeted automation workflows, MCP provides a standardized way to connect AI systems with the tools and data they need to deliver value.
+These seven comprehensive case studies demonstrate the remarkable versatility and practical applications of the Model Context Protocol across diverse real-world scenarios. From complex multi-agent travel planning systems and enterprise API management to streamlined documentation workflows and the revolutionary GitHub MCP Registry, these examples showcase how MCP provides a standardized, scalable way to connect AI systems with the tools, data, and services they need to deliver exceptional value.
 
-By studying these implementations, you can gain insights into architectural patterns, implementation strategies, and best practices that can be applied to your own MCP projects. The examples demonstrate that MCP is not just a theoretical framework but a practical solution to real business challenges.
+The case studies span multiple dimensions of MCP implementation:
+- **Enterprise Integration**: Azure API Management and Azure DevOps automation
+- **Multi-Agent Orchestration**: Travel planning with coordinated AI agents
+- **Developer Productivity**: VS Code integration and real-time documentation access
+- **Ecosystem Development**: GitHub's MCP Registry as a foundational platform
+- **Educational Applications**: Interactive study plan generators and conversational interfaces
+
+By studying these implementations, you gain critical insights into:
+- **Architectural patterns** for different scales and use cases
+- **Implementation strategies** that balance functionality with maintainability
+- **Security and scalability** considerations for production deployments
+- **Best practices** for MCP server development and client integration
+- **Ecosystem thinking** for building interconnected AI-powered solutions
+
+These examples collectively demonstrate that MCP is not merely a theoretical framework but a mature, production-ready protocol enabling practical solutions to complex business challenges. Whether you're building simple automation tools or sophisticated multi-agent systems, the patterns and approaches illustrated here provide a solid foundation for your own MCP projects.
 
 ## Additional Resources
 
@@ -108,6 +157,7 @@ By studying these implementations, you can gain insights into architectural patt
 - [Azure DevOps MCP Tool](https://github.com/microsoft/azure-devops-mcp)
 - [Playwright MCP Tool](https://github.com/microsoft/playwright-mcp)
 - [Microsoft Docs MCP Server](https://github.com/MicrosoftDocs/mcp)
+- [GitHub MCP Registry — Accelerating Agentic Integration](https://github.com/mcp)
 - [MCP Community Examples](https://github.com/microsoft/mcp)
 
 Next: Hands on Lab [Streamlining AI Workflows: Building an MCP Server with AI Toolkit](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)

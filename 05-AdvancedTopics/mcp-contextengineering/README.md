@@ -423,5 +423,6 @@ graph TD
 - [Semantic Kernel Documentation](https://github.com/microsoft/semantic-kernel)
 - [AI Toolkit for Context Management](https://github.com/microsoft/aitoolkit)
 
-## What's Next
-- [6. Community Contributions](../../06-CommunityContributions/README.md)
+## What's next 
+
+- [5.15 MCP Custom Transport](../mcp-transport/README.md)

@@ -1,39 +1,44 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "7b4b9bfacd2926725e6f1cda82bc8ff5",
-  "translation_date": "2025-07-16T23:53:42+00:00",
+  "original_hash": "fcf1e12b62102bf7d16b78deb2b163b7",
+  "translation_date": "2025-08-18T14:46:22+00:00",
   "source_file": "06-CommunityContributions/README.md",
   "language_code": "mo"
 }
 -->
 # 社群與貢獻
 
+[![如何貢獻給 MCP：工具、文件、程式碼及更多](../../../translated_images/07.1179f6de46ff196eb3cc13c3510e01c37807a13f3bb9be3c779105ce26737c67.mo.png)](https://youtu.be/v1pvCYAWpRE)
+
+_（點擊上方圖片觀看本課程的影片）_
+
 ## 概述
 
-本課程著重於如何參與 MCP 社群、為 MCP 生態系統做出貢獻，以及遵循協作開發的最佳實踐。了解如何參與開源 MCP 專案，對於希望塑造這項技術未來的人來說至關重要。
+本課程著重於如何參與 MCP 社群、為 MCP 生態系統做出貢獻，以及遵循協作開發的最佳實踐。了解如何參與開源 MCP 專案，對於希望塑造此技術未來的人至關重要。
 
 ## 學習目標
 
-完成本課程後，你將能夠：
+完成本課程後，您將能夠：
+
 - 了解 MCP 社群與生態系統的結構
 - 有效參與 MCP 社群論壇與討論
 - 為 MCP 開源倉庫做出貢獻
-- 創建並分享自訂的 MCP 工具與伺服器
+- 創建並分享自定義 MCP 工具與伺服器
 - 遵循 MCP 開發與協作的最佳實踐
 - 探索 MCP 開發的社群資源與框架
 
 ## MCP 社群生態系統
 
-MCP 生態系統由多個組成部分與參與者共同推動協議的發展。
+MCP 生態系統由多個組成部分與參與者共同合作推進協議的發展。
 
-### 主要社群組成
+### 主要社群組成部分
 
-1. **核心協議維護者**：官方 [Model Context Protocol GitHub 組織](https://github.com/modelcontextprotocol) 負責維護核心 MCP 規範與參考實作
-2. **工具開發者**：個人與團隊負責開發 MCP 工具與伺服器
+1. **核心協議維護者**：官方 [Model Context Protocol GitHub 組織](https://github.com/modelcontextprotocol) 負責維護 MCP 核心規範與參考實現
+2. **工具開發者**：創建 MCP 工具與伺服器的個人或團隊
 3. **整合提供者**：將 MCP 整合到其產品與服務中的公司
-4. **終端使用者**：在應用程式中使用 MCP 的開發者與組織
-5. **貢獻者**：為程式碼、文件或其他資源做出貢獻的社群成員
+4. **終端使用者**：在其應用中使用 MCP 的開發者與組織
+5. **貢獻者**：為社群提供程式碼、文件或其他資源的成員
 
 ### 社群資源
 
@@ -42,17 +47,17 @@ MCP 生態系統由多個組成部分與參與者共同推動協議的發展。
 - [MCP GitHub 組織](https://github.com/modelcontextprotocol)
 - [MCP 文件](https://modelcontextprotocol.io/)
 - [MCP 規範](https://modelcontextprotocol.io/docs/specification)
-- [GitHub 討論區](https://github.com/orgs/modelcontextprotocol/discussions)
+- [GitHub 討論](https://github.com/orgs/modelcontextprotocol/discussions)
 - [MCP 範例與伺服器倉庫](https://github.com/modelcontextprotocol/servers)
 
 #### 社群驅動資源
 
 - [MCP 客戶端](https://modelcontextprotocol.io/clients) - 支援 MCP 整合的客戶端列表
-- [社群 MCP 伺服器](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - 持續成長的社群開發 MCP 伺服器列表
-- [Awesome MCP Servers](https://github.com/wong2/awesome-mcp-servers) - 精選 MCP 伺服器清單
-- [PulseMCP](https://www.pulsemcp.com/) - 社群中心與電子報，發掘 MCP 資源
-- [Discord 伺服器](https://discord.gg/jHEGxQu2a5) - 與 MCP 開發者連結
-- 各語言的 SDK 實作
+- [社群 MCP 伺服器](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - 不斷增長的社群開發 MCP 伺服器列表
+- [Awesome MCP Servers](https://github.com/wong2/awesome-mcp-servers) - 精選 MCP 伺服器列表
+- [PulseMCP](https://www.pulsemcp.com/) - 用於探索 MCP 資源的社群中心與電子報
+- [Discord 伺服器](https://discord.gg/jHEGxQu2a5) - 與 MCP 開發者交流
+- 特定語言的 SDK 實現
 - 部落格文章與教學
 
 ## 為 MCP 做出貢獻
@@ -63,34 +68,34 @@ MCP 生態系統歡迎各種形式的貢獻：
 
 1. **程式碼貢獻**：
    - 核心協議增強
-   - 錯誤修正
-   - 工具與伺服器實作
-   - 不同語言的客戶端/伺服器函式庫
+   - 錯誤修復
+   - 工具與伺服器實現
+   - 不同語言的客戶端/伺服器庫
 
 2. **文件**：
    - 改善現有文件
-   - 撰寫教學與指南
-   - 文件翻譯
-   - 創建範例與示範應用
+   - 創建教學與指南
+   - 翻譯文件
+   - 創建範例與示例應用
 
-3. **社群支援**：
-   - 回答論壇與討論區問題
-   - 測試並回報問題
+3. **社群支持**：
+   - 在論壇與討論中回答問題
+   - 測試與報告問題
    - 組織社群活動
    - 指導新貢獻者
 
-### 貢獻流程：核心協議
+### 核心協議的貢獻流程
 
-若要為核心 MCP 協議或官方實作做出貢獻，請遵循[官方貢獻指南](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md)中的原則：
+要為核心 MCP 協議或官方實現做出貢獻，請遵循 [官方貢獻指南](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md) 中的原則：
 
-1. **簡潔與極簡主義**：MCP 規範對新增概念設有高標準，新增比刪除更容易。
-2. **具體實務**：規範變更應基於具體實作挑戰，而非推測性想法。
+1. **簡單與極簡主義**：MCP 規範對新增概念設有高標準。新增規範內容比移除更容易。
+2. **具體方法**：規範變更應基於具體的實現挑戰，而非推測性想法。
 3. **提案階段**：
-   - 定義：探索問題範圍，確認其他 MCP 使用者也面臨相似問題
-   - 原型：建立範例解決方案並展示其實際應用
-   - 撰寫：根據原型撰寫規範提案
+   - 定義：探索問題範疇，驗證其他 MCP 使用者是否面臨類似問題
+   - 原型：構建範例解決方案並展示其實際應用
+   - 撰寫：基於原型撰寫規範提案
 
-### 開發環境設定
+### 開發環境設置
 
 ```bash
 # Fork the repository
@@ -112,7 +117,7 @@ npm run format
 npm run serve:docs
 ```
 
-### 範例：貢獻錯誤修正
+### 範例：貢獻錯誤修復
 
 ```javascript
 // Original code with bug in the typescript-sdk
@@ -144,7 +149,7 @@ export function validateResource(resource: unknown): resource is MCPResource {
 }
 ```
 
-### 範例：為標準函式庫貢獻新工具
+### 範例：向標準庫貢獻新工具
 
 ```python
 # Example contribution: A CSV data processing tool for the MCP standard library
@@ -306,14 +311,14 @@ class CsvProcessingTool(Tool):
 
 ### 貢獻指南
 
-成功為 MCP 專案做出貢獻的建議：
+要成功為 MCP 專案做出貢獻：
 
-1. **從小處著手**：先從文件、錯誤修正或小幅增強開始
+1. **從小開始**：從文件、錯誤修復或小型增強開始
 2. **遵循風格指南**：遵守專案的程式碼風格與慣例
-3. **撰寫測試**：為程式碼貢獻包含單元測試
-4. **文件說明**：為新功能或變更撰寫清楚的文件
-5. **提交針對性 PR**：保持拉取請求聚焦於單一問題或功能
-6. **積極回應回饋**：對貢獻的回饋保持回應
+3. **撰寫測試**：為您的程式碼貢獻包含單元測試
+4. **記錄您的工作**：為新功能或更改添加清晰的文件
+5. **提交有針對性的 PR**：保持拉取請求專注於單一問題或功能
+6. **回應反饋**：積極回應對您貢獻的反饋
 
 ### 範例貢獻工作流程
 
@@ -343,11 +348,11 @@ git push origin feature/my-contribution
 
 ## 創建與分享 MCP 伺服器
 
-為 MCP 生態系統做出最有價值的貢獻之一，是創建並分享自訂 MCP 伺服器。社群已經開發出數百個針對各種服務與使用情境的伺服器。
+創建並分享自定義 MCP 伺服器是為 MCP 生態系統做出貢獻的最有價值方式之一。社群已經開發了數百個伺服器，涵蓋各種服務與使用案例。
 
 ### MCP 伺服器開發框架
 
-有多個框架可簡化 MCP 伺服器的開發：
+以下框架可簡化 MCP 伺服器的開發：
 
 1. **官方 SDK**：
    - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
@@ -358,14 +363,14 @@ git push origin feature/my-contribution
    - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk)
 
 2. **社群框架**：
-   - [MCP-Framework](https://mcp-framework.com/) - 使用 TypeScript 優雅且快速地構建 MCP 伺服器
-   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - Java 的註解驅動 MCP 伺服器
-   - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - MCP 伺服器的 Java 框架
-   - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - MCP 伺服器的 Next.js 起始專案
+   - [MCP-Framework](https://mcp-framework.com/) - 使用 TypeScript 優雅快速地構建 MCP 伺服器
+   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - 使用 Java 的註解驅動 MCP 伺服器
+   - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - Java 框架的 MCP 伺服器
+   - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - 用於 MCP 伺服器的 Next.js 起始專案
 
 ### 開發可分享的工具
 
-#### .NET 範例：建立可分享的工具套件
+#### .NET 範例：創建可分享的工具包
 
 ```csharp
 // Create a new .NET library project
@@ -471,7 +476,7 @@ namespace McpFinanceTools
 // dotnet nuget push bin/Release/McpFinanceTools.1.0.0.nupkg -s https://api.nuget.org/v3/index.json -k YOUR_API_KEY
 ```
 
-#### Java 範例：建立 Maven 工具套件
+#### Java 範例：創建 Maven 工具包
 
 ```java
 // pom.xml configuration for a shareable MCP tool package
@@ -572,7 +577,7 @@ public class WeatherForecastTool implements Tool {
 // mvn deploy
 ```
 
-#### Python 範例：發佈 PyPI 套件
+#### Python 範例：發布 PyPI 工具包
 
 ```python
 # Directory structure for a PyPI package:
@@ -682,63 +687,63 @@ class SentimentAnalysisTool(Tool):
 與社群分享 MCP 工具時：
 
 1. **完整文件**：
-   - 說明用途、使用方式與範例
-   - 解釋參數與回傳值
-   - 註明任何外部依賴
+   - 記錄目的、使用方法與範例
+   - 解釋參數與返回值
+   - 記錄任何外部依賴
 
 2. **錯誤處理**：
-   - 實作健全的錯誤處理
+   - 實現穩健的錯誤處理
    - 提供有用的錯誤訊息
-   - 優雅處理邊界情況
+   - 優雅地處理邊界情況
 
-3. **效能考量**：
+3. **性能考量**：
    - 優化速度與資源使用
-   - 適當時實作快取
+   - 適當時實現快取
    - 考慮可擴展性
 
 4. **安全性**：
-   - 使用安全的 API 金鑰與認證
-   - 驗證並清理輸入
-   - 對外部 API 呼叫實施速率限制
+   - 使用安全的 API 金鑰與身份驗證
+   - 驗證與清理輸入
+   - 為外部 API 調用實施速率限制
 
 5. **測試**：
    - 包含全面的測試覆蓋
-   - 測試不同輸入類型與邊界情況
-   - 文件化測試程序
+   - 使用不同輸入類型與邊界情況進行測試
+   - 記錄測試程序
 
 ## 社群協作與最佳實踐
 
 有效的協作是 MCP 生態系統蓬勃發展的關鍵。
 
-### 溝通管道
+### 通訊管道
 
-- GitHub Issues 與 Discussions
+- GitHub 問題與討論
 - Microsoft Tech Community
 - Discord 與 Slack 頻道
 - Stack Overflow（標籤：`model-context-protocol` 或 `mcp`）
 
 ### 程式碼審查
 
-審查 MCP 貢獻時，請注意：
+審查 MCP 貢獻時：
 
-1. **清晰度**：程式碼是否清楚且有良好文件？
-2. **正確性**：功能是否如預期運作？
+1. **清晰性**：程式碼是否清晰且有良好文件？
+2. **正確性**：是否按預期運作？
 3. **一致性**：是否遵循專案慣例？
 4. **完整性**：是否包含測試與文件？
-5. **安全性**：是否存在安全疑慮？
+5. **安全性**：是否存在安全問題？
 
 ### 版本相容性
 
 開發 MCP 時：
 
-1. **協議版本**：遵守工具支援的 MCP 協議版本
+1. **協議版本控制**：遵守工具支援的 MCP 協議版本
 2. **客戶端相容性**：考慮向後相容性
-3. **伺服器相容性**：遵循伺服器實作指南
-4. **重大變更**：清楚文件化任何破壞性變更
+3. **伺服器相容性**：遵循伺服器實現指南
+4. **重大變更**：清楚記錄任何重大變更
 
 ## 社群專案範例：MCP 工具註冊表
 
-一項重要的社群貢獻是開發 MCP 工具的公開註冊表。
+一個重要的社群貢獻可以是開發一個公共 MCP 工具註冊表。
 
 ```python
 # Example schema for a community tool registry API
@@ -817,30 +822,29 @@ async def delete_tool(tool_name: str):
     return {"message": f"Tool '{tool_name}' deleted"}
 ```
 
-## 重要重點
+## 關鍵要點
 
-- MCP 社群多元且歡迎各種貢獻形式
-- 貢獻範圍從核心協議增強到自訂工具皆有
-- 遵循貢獻指南能提升 PR 被接受的機率
-- 創建並分享 MCP 工具是強化生態系統的寶貴方式
+- MCP 社群多元化，歡迎各種形式的貢獻
+- 為 MCP 做出貢獻可以涵蓋核心協議增強到自定義工具
+- 遵循貢獻指南可提高 PR 被接受的機率
+- 創建並分享 MCP 工具是增強生態系統的寶貴方式
 - 社群協作對 MCP 的成長與改進至關重要
 
 ## 練習
 
-1. 根據你的技能與興趣，找出 MCP 生態系統中可貢獻的領域
+1. 根據您的技能與興趣，識別 MCP 生態系統中您可以貢獻的領域
 2. Fork MCP 倉庫並設置本地開發環境
-3. 創建一個小型增強、錯誤修正或工具，造福社群
-4. 以適當的測試與文件記錄你的貢獻
-5. 向相應倉庫提交拉取請求
+3. 創建一個小型增強、錯誤修復或工具，造福社群
+4. 使用適當的測試與文件記錄您的貢獻
+5. 向相關倉庫提交拉取請求
 
-## 額外資源
+## 附加資源
 
 - [MCP 社群專案](https://github.com/topics/model-context-protocol)
 
-
 ---
 
-下一課： [早期採用的經驗教訓](../07-LessonsfromEarlyAdoption/README.md)
+下一步：[早期採用的教訓](../07-LessonsfromEarlyAdoption/README.md)
 
 **免責聲明**：  
-本文件係使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於確保準確性，但請注意，自動翻譯可能包含錯誤或不準確之處。原始文件之母語版本應視為權威來源。對於重要資訊，建議採用專業人工翻譯。我們不對因使用本翻譯而產生之任何誤解或誤釋負責。
+本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對於因使用此翻譯而引起的任何誤解或錯誤解讀概不負責。

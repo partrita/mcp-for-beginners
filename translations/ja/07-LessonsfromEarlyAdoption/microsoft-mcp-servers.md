@@ -99,22 +99,22 @@ MCPサーバーを使えば、VS CodeやVisual Studioなどの開発環境に留
 
 **従来の方法：**
 ```
-1. Code a feature
-2. Open browser → Navigate to GitHub
-3. Create an issue for testing
-4. Open another tab → Check Azure docs for deployment
-5. Open third tab → Look up database connection examples
-6. Return to VS Code
-7. Try to remember what you were doing
+1. 機能をコーディングする
+2. ブラウザを開く → GitHub へ移動
+3. テスト用の Issue を作成
+4. 別のタブを開く → Azure のドキュメントでデプロイメントを確認する
+5. 3 つ目のタブを開く → データベース接続の例を調べる
+6. VS Code に戻る
+7. 何をしていたか思い出してみる
 ```
 
 **MCPサーバーを使うと：**
 ```
-1. Code a feature
-2. Ask AI: "Create a GitHub issue for testing this login feature"
-3. Ask AI: "How do I deploy this to Azure according to the docs?"
-4. Ask AI: "Show me the best way to connect to my database"
-5. Continue coding with all the information you need
+1. 機能をコーディングする
+2. AIに質問する：「このログイン機能をテストするためのGitHub Issueを作成してください」
+3. AIに質問する：「ドキュメントに従って、これをAzureにデプロイするにはどうすればよいですか？」
+4. AIに質問する：「データベースに接続する最適な方法を教えてください」
+5. 必要な情報をすべて入力してコーディングを続ける
 ```
 
 ### エンタープライズ標準としての利点
@@ -431,7 +431,7 @@ MCPエコシステムが進化し続ける中、コミュニティとの交流�
 4. **パフォーマンス分析**: MCPサーバーを使った場合と従来の方法での開発作業効率を比較する。
 5. **セキュリティ評価**: 開発環境でMCPサーバーを使用する際のセキュリティ上の影響を評価し、ベストプラクティスを提案する。
 
-Next:[Best Practices](../08-BestPractices/README.md)
+次へ: [MCP開発のベストプラクティス](../08-BestPractices/README.md)
 
 **免責事項**：  
 本書類はAI翻訳サービス「[Co-op Translator](https://github.com/Azure/co-op-translator)」を使用して翻訳されました。正確性には努めておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。原文の言語によるオリジナル文書が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じたいかなる誤解や誤訳についても、当方は責任を負いかねます。

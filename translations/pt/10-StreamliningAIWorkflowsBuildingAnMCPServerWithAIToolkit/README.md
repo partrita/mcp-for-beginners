@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "9c61ceb0227f07a85c9e809d3914f965",
-  "translation_date": "2025-07-22T08:13:54+00:00",
+  "original_hash": "1b000fd6e1b04c047578bfc5d07d54eb",
+  "translation_date": "2025-07-29T00:42:59+00:00",
   "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md",
   "language_code": "pt"
 }
@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## 🎯 Visão Geral
 
-Bem-vindo ao **Workshop do Model Context Protocol (MCP)**! Este workshop prático e abrangente combina duas tecnologias de ponta para revolucionar o desenvolvimento de aplicações de IA:
+Bem-vindo ao **Workshop Model Context Protocol (MCP)**! Este workshop prático combina duas tecnologias de ponta para revolucionar o desenvolvimento de aplicações de IA:
 
 - **🔗 Model Context Protocol (MCP)**: Um padrão aberto para integração perfeita de ferramentas de IA
 - **🛠️ AI Toolkit para Visual Studio Code (AITK)**: A poderosa extensão de desenvolvimento de IA da Microsoft
@@ -24,7 +24,7 @@ Ao final deste workshop, dominará a arte de construir aplicações inteligentes
 
 ### 🔌 Model Context Protocol (MCP)
 
-O MCP é o **"USB-C para IA"** - um padrão universal que conecta modelos de IA a ferramentas e fontes de dados externas.
+MCP é o **"USB-C para IA"** - um padrão universal que conecta modelos de IA a ferramentas e fontes de dados externas.
 
 **✨ Principais Funcionalidades:**
 
@@ -38,7 +38,7 @@ Assim como o USB-C eliminou o caos dos cabos, o MCP elimina a complexidade das i
 
 ### 🤖 AI Toolkit para Visual Studio Code (AITK)
 
-A extensão de desenvolvimento de IA da Microsoft que transforma o VS Code em uma plataforma poderosa de IA.
+A extensão de desenvolvimento de IA da Microsoft que transforma o VS Code em uma plataforma poderosa para IA.
 
 **🚀 Capacidades Principais:**
 
@@ -63,8 +63,8 @@ A extensão de desenvolvimento de IA da Microsoft que transforma o VS Code em um
 - 🛠️ Instalar e configurar o AI Toolkit para VS Code
 - 🗂️ Explorar o Catálogo de Modelos (100+ modelos do GitHub, ONNX, OpenAI, Anthropic, Google)
 - 🎮 Dominar o Playground Interativo para testes de modelos em tempo real
-- 🤖 Construir seu primeiro agente de IA com o Construtor de Agentes
-- 📊 Avaliar o desempenho de modelos com métricas integradas (F1, relevância, similaridade, coerência)
+- 🤖 Construir o seu primeiro agente de IA com o Construtor de Agentes
+- 📊 Avaliar o desempenho do modelo com métricas integradas (F1, relevância, similaridade, coerência)
 - ⚡ Aprender capacidades de processamento em lote e suporte multi-modal
 
 **🎯 Resultado de Aprendizagem**: Criar um agente de IA funcional com compreensão abrangente das capacidades do AITK
@@ -78,9 +78,9 @@ A extensão de desenvolvimento de IA da Microsoft que transforma o VS Code em um
 - 🤖 Construir um agente de automação de navegador usando o servidor MCP Playwright
 - 🔧 Integrar servidores MCP com o Construtor de Agentes do AI Toolkit
 - 📊 Configurar e testar ferramentas MCP dentro dos seus agentes
-- 🚀 Exportar e implantar agentes com suporte MCP para uso em produção
+- 🚀 Exportar e implantar agentes potenciados por MCP para uso em produção
 
-**🎯 Resultado de Aprendizagem**: Implantar um agente de IA potencializado com ferramentas externas através do MCP
+**🎯 Resultado de Aprendizagem**: Implantar um agente de IA superpotenciado com ferramentas externas através do MCP
 
 ### [🔧 Módulo 3: Desenvolvimento Avançado de MCP com AI Toolkit](./lab3/README.md)
 
@@ -89,8 +89,8 @@ A extensão de desenvolvimento de IA da Microsoft que transforma o VS Code em um
 - 💻 Criar servidores MCP personalizados usando o AI Toolkit
 - 🐍 Configurar e usar o mais recente SDK Python MCP (v1.9.3)
 - 🔍 Configurar e utilizar o MCP Inspector para depuração
-- 🛠️ Construir um Servidor MCP de Clima com fluxos de trabalho de depuração profissionais
-- 🧪 Depurar servidores MCP nos ambientes do Construtor de Agentes e do Inspector
+- 🛠️ Construir um Servidor MCP de Meteorologia com fluxos de trabalho de depuração profissionais
+- 🧪 Depurar servidores MCP em ambientes do Construtor de Agentes e do Inspector
 
 **🎯 Resultado de Aprendizagem**: Desenvolver e depurar servidores MCP personalizados com ferramentas modernas
 
@@ -112,23 +112,23 @@ A extensão de desenvolvimento de IA da Microsoft que transforma o VS Code em um
 
 #### 🔄 Automação DevOps
 
-Transforme seu fluxo de trabalho de desenvolvimento com automação inteligente:
+Transforme o seu fluxo de trabalho de desenvolvimento com automação inteligente:
 
 - **Gestão Inteligente de Repositórios**: Revisão de código e decisões de merge orientadas por IA
 - **CI/CD Inteligente**: Otimização automática de pipelines com base em alterações de código
-- **Triagem de Problemas**: Classificação e atribuição automática de bugs
+- **Triagem de Problemas**: Classificação automática de bugs e atribuição
 
 #### 🧪 Revolução na Garantia de Qualidade
 
 Eleve os testes com automação orientada por IA:
 
-- **Geração Inteligente de Testes**: Criação automática de suítes de teste abrangentes
-- **Testes de Regressão Visual**: Detecção de alterações de UI com IA
+- **Geração Inteligente de Testes**: Criação automática de suites de teste abrangentes
+- **Testes de Regressão Visual**: Detecção de alterações de UI orientada por IA
 - **Monitoramento de Desempenho**: Identificação e resolução proativa de problemas
 
-#### 📊 Inteligência em Fluxos de Dados
+#### 📊 Inteligência em Pipeline de Dados
 
-Construa fluxos de processamento de dados mais inteligentes:
+Construa fluxos de trabalho de processamento de dados mais inteligentes:
 
 - **Processos ETL Adaptativos**: Transformações de dados auto-otimizadas
 - **Detecção de Anomalias**: Monitoramento de qualidade de dados em tempo real
@@ -148,7 +148,7 @@ Crie interações excepcionais com clientes:
 
 | Componente | Requisito | Notas |
 |------------|-----------|-------|
-| **Sistema Operacional** | Windows 10+, macOS 10.15+, Linux | Qualquer SO moderno |
+| **Sistema Operativo** | Windows 10+, macOS 10.15+, Linux | Qualquer SO moderno |
 | **Visual Studio Code** | Última versão estável | Necessário para AITK |
 | **Node.js** | v18.0+ e npm | Para desenvolvimento de servidores MCP |
 | **Python** | 3.10+ | Opcional para servidores MCP em Python |
@@ -173,22 +173,22 @@ Crie interações excepcionais com clientes:
 
 ### 🏆 Lista de Verificação de Competências
 
-Ao concluir este workshop, alcançará domínio em:
+Ao completar este workshop, alcançará domínio em:
 
 #### 🎯 Competências Centrais
 
 - [ ] **Domínio do Protocolo MCP**: Compreensão profunda da arquitetura e padrões de implementação
 - [ ] **Proficiência em AITK**: Uso avançado do AI Toolkit para desenvolvimento rápido
 - [ ] **Desenvolvimento de Servidores Personalizados**: Construção, implantação e manutenção de servidores MCP para produção
-- [ ] **Excelência em Integração de Ferramentas**: Conexão perfeita de IA com fluxos de trabalho existentes
+- [ ] **Excelência em Integração de Ferramentas**: Conexão perfeita de IA com fluxos de trabalho de desenvolvimento existentes
 - [ ] **Aplicação na Resolução de Problemas**: Aplicação das habilidades aprendidas em desafios empresariais reais
 
 #### 🔧 Habilidades Técnicas
 
-- [ ] Configurar e usar o AI Toolkit no VS Code
+- [ ] Configurar e instalar o AI Toolkit no VS Code
 - [ ] Projetar e implementar servidores MCP personalizados
 - [ ] Integrar Modelos do GitHub com a arquitetura MCP
-- [ ] Construir fluxos de trabalho de testes automatizados com Playwright
+- [ ] Construir fluxos de trabalho de teste automatizados com Playwright
 - [ ] Implantar agentes de IA para uso em produção
 - [ ] Depurar e otimizar o desempenho de servidores MCP
 
@@ -209,9 +209,9 @@ Ao concluir este workshop, alcançará domínio em:
 
 ---
 
-**🚀 Pronto para revolucionar seu fluxo de trabalho de desenvolvimento de IA?**
+**🚀 Pronto para revolucionar o seu fluxo de trabalho de desenvolvimento de IA?**
 
 Vamos construir juntos o futuro das aplicações inteligentes com MCP e AI Toolkit!
 
 **Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, é importante notar que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.

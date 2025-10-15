@@ -1,29 +1,29 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "07863f50601f395c3bdfce30f555f11a",
-  "translation_date": "2025-07-13T17:47:44+00:00",
+  "original_hash": "92af35e8c34923031f3d228dffad9ebb",
+  "translation_date": "2025-09-03T16:01:16+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
   "language_code": "ja"
 }
 -->
-# このサンプルの実行
+# このサンプルを実行する
 
-## -1- 依存関係のインストール
+## -1- 依存関係をインストールする
 
 ```bash
 dotnet restore
 ```
 
-## -3- サンプルの実行
+## -3- サンプルを実行する
 
 ```bash
 dotnet run
 ```
 
-## -4- サンプルのテスト
+## -4- サンプルをテストする
 
-サーバーが一つのターミナルで動作している状態で、別のターミナルを開き、以下のコマンドを実行してください：
+サーバーを1つのターミナルで実行している状態で、別のターミナルを開き、以下のコマンドを実行してください:
 
 ```bash
 npx @modelcontextprotocol/inspector dotnet run
@@ -31,20 +31,20 @@ npx @modelcontextprotocol/inspector dotnet run
 
 これにより、サンプルをテストできるビジュアルインターフェース付きのウェブサーバーが起動します。
 
-サーバーが接続されたら：
+サーバーが接続されたら以下を試してください:
 
-- ツールの一覧を試し、`add` を引数 2 と 4 で実行すると、結果に 6 が表示されるはずです。
-- resources と resource template に移動し、「greeting」を呼び出して名前を入力すると、入力した名前を使った挨拶が表示されます。
+- ツールをリストし、`add`を実行して、引数に2と4を渡してください。結果に6が表示されるはずです。
+- リソースとリソーステンプレートに移動し、「greeting」を呼び出して名前を入力してください。入力した名前を使った挨拶が表示されるはずです。
 
 ### CLIモードでのテスト
 
-以下のコマンドを実行すると、直接CLIモードで起動できます：
+以下のコマンドを実行することで、直接CLIモードで起動できます:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/list
 ```
 
-これにより、サーバーで利用可能なすべてのツールが一覧表示されます。以下のような出力が表示されるはずです：
+これにより、サーバーで利用可能なすべてのツールがリストされます。以下のような出力が表示されるはずです:
 
 ```text
 {
@@ -74,13 +74,13 @@ npx @modelcontextprotocol/inspector --cli dotnet run --method tools/list
 }
 ```
 
-ツールを呼び出すには、以下のように入力します：
+ツールを呼び出すには以下を入力してください:
 
 ```bash
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/call --tool-name Add --tool-arg a=1 --tool-arg b=2
 ```
 
-以下のような出力が表示されるはずです：
+以下のような出力が表示されるはずです:
 
 ```text
 {
@@ -94,9 +94,11 @@ npx @modelcontextprotocol/inspector --cli dotnet run --method tools/call --tool-
 }
 ```
 
-> ![!TIP]
-> インスペクターをブラウザよりCLIモードで実行するほうが通常はずっと速いです。
-> インスペクターの詳細は[こちら](https://github.com/modelcontextprotocol/inspector)をご覧ください。
+> [!TIP]
+> 通常、CLIモードでインスペクターを実行する方がブラウザで実行するよりもはるかに高速です。
+> インスペクターについての詳細は[こちら](https://github.com/modelcontextprotocol/inspector)をご覧ください。
 
-**免責事項**：  
-本書類はAI翻訳サービス「[Co-op Translator](https://github.com/Azure/co-op-translator)」を使用して翻訳されました。正確性の向上に努めておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。原文の言語による文書が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じたいかなる誤解や誤訳についても、当方は責任を負いかねます。
+---
+
+**免責事項**:  
+この文書は、AI翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を追求しておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があることをご承知ください。元の言語で記載された文書が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。この翻訳の使用に起因する誤解や誤った解釈について、当方は責任を負いません。

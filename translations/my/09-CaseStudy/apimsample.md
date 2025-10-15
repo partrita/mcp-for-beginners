@@ -1,75 +1,75 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "36de9fae488d6de554d969fe8e0801a8",
-  "translation_date": "2025-07-14T05:38:58+00:00",
+  "original_hash": "2228721599c0c8673de83496b4d7d7a9",
+  "translation_date": "2025-08-19T18:30:02+00:00",
   "source_file": "09-CaseStudy/apimsample.md",
   "language_code": "my"
 }
 -->
-# Case Study: Expose REST API in API Management as an MCP server
+# ကိစ္စလေ့လာမှု - API Management တွင် REST API ကို MCP Server အဖြစ် ဖော်ထုတ်ခြင်း
 
-Azure API Management သည် သင့် API Endpoints များအပေါ်တွင် Gateway တစ်ခုကို ပေးဆောင်သည့် ဝန်ဆောင်မှုဖြစ်သည်။ ၎င်း၏ လုပ်ဆောင်ပုံမှာ Azure API Management သည် သင့် API များရှေ့တွင် proxy အဖြစ် လုပ်ဆောင်ပြီး ဝင်ရောက်လာသော တောင်းဆိုမှုများကို ဘာလုပ်ဆောင်မည်ကို ဆုံးဖြတ်ပေးသည်။
+Azure API Management သည် သင့် API Endpoints အပေါ်တွင် Gateway တစ်ခုကို ပေးသော ဝန်ဆောင်မှုဖြစ်သည်။ ၎င်း၏ လုပ်ဆောင်ပုံမှာ Azure API Management သည် သင့် API များ၏ ရှေ့တွင် proxy အဖြစ် လုပ်ဆောင်ပြီး ဝင်ရောက်လာသော တောင်းဆိုမှုများကို ဘာလုပ်မည်ကို ဆုံးဖြတ်နိုင်သည်။
 
-ဒါကို အသုံးပြုခြင်းဖြင့် အောက်ပါ အင်္ဂါရပ်များစွာကို ထည့်သွင်းနိုင်သည်-
+၎င်းကို အသုံးပြုခြင်းဖြင့် အောက်ပါ အကျိုးကျေးဇူးများစွာ ရရှိနိုင်သည်-
 
-- **လုံခြုံရေး** - API keys, JWT မှ managed identity အထိ အားလုံးကို အသုံးပြုနိုင်သည်။
-- **Rate limiting** - တစ်ချိန်တည်းတွင် ခေါ်ဆိုမှုများ ဘယ်လောက်ခွင့်ပြုမည်ကို ဆုံးဖြတ်နိုင်ခြင်းသည် အသုံးပြုသူအားလုံးအတွက် ကောင်းမွန်သော အတွေ့အကြုံရရှိစေပြီး သင့်ဝန်ဆောင်မှုကို တောင်းဆိုမှုများကြောင့် မလွန်ကဲစေပါ။
-- **Scaling & Load balancing** - အများအပြား endpoint များကို တင်ပို့မှုကို ချိန်ညှိနိုင်ပြီး "load balance" မည်သို့လုပ်မည်ကိုလည်း ဆုံးဖြတ်နိုင်သည်။
-- **AI အင်္ဂါရပ်များ** - semantic caching, token limit, token monitoring စသည့် အင်္ဂါရပ်များဖြင့် တုံ့ပြန်မှုမြန်ဆန်စေပြီး token အသုံးစရိတ်ကို ထိန်းချုပ်နိုင်သည်။ [ဒီမှာပိုမိုဖတ်ရှုပါ](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities)။
+- **လုံခြုံရေး** - API keys, JWT မှ Managed Identity အထိ အားလုံးကို အသုံးပြုနိုင်သည်။
+- **Rate Limiting** - တစ်ခုချိန်ကာလအတွင်း ဘယ်လောက်အရေအတွက် တောင်းဆိုမှုများကို ခွင့်ပြုမည်ကို ဆုံးဖြတ်နိုင်သည်။ ၎င်းသည် အသုံးပြုသူများအားလုံးအတွက် အတွေ့အကြုံကောင်းများ ရရှိစေပြီး သင့်ဝန်ဆောင်မှုကို တောင်းဆိုမှုများကြောင့် များလွန်းခြင်းမှ ကာကွယ်ပေးသည်။
+- **အတိုင်းအတာချိန်ညှိခြင်းနှင့် Load Balancing** - Load ကို ချိန်ညှိရန် Endpoint အရေအတွက်များကို သတ်မှတ်နိုင်ပြီး "load balance" လုပ်ပုံကိုလည်း ဆုံးဖြတ်နိုင်သည်။
+- **AI Features** - Semantic caching, token limit နှင့် token monitoring စသည်တို့က Responsive ဖြစ်စေပြီး သင့် token အသုံးပြုမှုကို ထိန်းချုပ်နိုင်စေသည်။ [ပိုမိုသိရှိရန်](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities)။
 
-## Why MCP + Azure API Management?
+## MCP + Azure API Management ကို ဘာကြောင့် အသုံးပြုသင့်သလဲ?
 
-Model Context Protocol သည် agentic AI apps များအတွက် စံချိန်စံညွှန်းတစ်ခုအဖြစ် မြန်မြန်ဆန်ဆန် ဖြစ်လာပြီး tools နှင့် data များကို တစ်သွေ့တည်း ပြသပေးနိုင်ရန် ဖြစ်သည်။ Azure API Management သည် API များကို "စီမံခန့်ခွဲ" ရန် လိုအပ်သောအခါ သဘာဝကျသော ရွေးချယ်မှုဖြစ်သည်။ MCP Servers များသည် တောင်းဆိုမှုများကို tool တစ်ခုသို့ ဖြေရှင်းရန် အခြား API များနှင့် ပေါင်းစပ်အသုံးပြုလေ့ရှိသည်။ ထို့ကြောင့် Azure API Management နှင့် MCP ကို ပေါင်းစပ်အသုံးပြုခြင်းမှာ အဓိပ္ပါယ်ရှိသည်။
+Model Context Protocol သည် Agentic AI Apps များအတွက် standard အဖြစ် မြန်ဆန်စွာ ဖြစ်လာနေပြီး Tools နှင့် Data များကို တစ်စည်းတစ်လုံးအဖြစ် ဖော်ထုတ်ရန် အသုံးပြုသည်။ Azure API Management သည် API များကို "manage" လုပ်ရန် လိုအပ်သောအခါ သဘာဝကျသော ရွေးချယ်မှုဖြစ်သည်။ MCP Servers များသည် Tools တစ်ခုကို ဖြေရှင်းရန် အခြား API များနှင့် အတူတကွ ပေါင်းစည်းလေ့ရှိသည်။ ထို့ကြောင့် Azure API Management နှင့် MCP ကို ပေါင်းစည်းခြင်းသည် အကျိုးရှိစေသည်။
 
-## Overview
+## အကျဉ်းချုပ်
 
-ဒီအထူးသဖြင့် ကျွန်ုပ်တို့သည် API endpoints များကို MCP Server အဖြစ် ပြသပေးခြင်းကို သင်ယူမည်။ ၎င်းဖြင့် ဒီ endpoints များကို agentic app တစ်ခု၏ အစိတ်အပိုင်းအဖြစ် လွယ်ကူစွာ ထည့်သွင်းနိုင်ပြီး Azure API Management ၏ အင်္ဂါရပ်များကိုလည်း အသုံးချနိုင်မည်ဖြစ်သည်။
+ဤအသုံးပြုမှုအတွက် API Endpoints များကို MCP Server အဖြစ် ဖော်ထုတ်ပုံကို လေ့လာမည်။ ၎င်းအားဖြင့် Endpoints များကို Agentic App တစ်ခု၏ အစိတ်အပိုင်းအဖြစ် လွယ်ကူစွာ ဖော်ထုတ်နိုင်ပြီး Azure API Management မှ အကျိုးကျေးဇူးများကိုလည်း ရယူနိုင်သည်။
 
-## Key Features
+## အဓိက အင်္ဂါရပ်များ
 
-- သင်လိုချင်သည့် endpoint method များကို tools အဖြစ် ရွေးချယ်နိုင်သည်။
-- သင်ရရှိမည့် အပိုအင်္ဂါရပ်များမှာ သင့် API အတွက် policy အပိုင်းတွင် သတ်မှတ်ထားသည့် အတိုင်း ဖြစ်သည်။ ဒီမှာတော့ rate limiting ကို ထည့်သွင်းပုံကို ပြသမည်။
+- Tools အဖြစ် ဖော်ထုတ်လိုသော Endpoint Methods များကို ရွေးချယ်နိုင်သည်။
+- သင်ရရှိမည့် အပိုအင်္ဂါရပ်များသည် သင့် API အတွက် Policy Section တွင် သတ်မှတ်ထားသော configuration အပေါ် မူတည်သည်။ ဤနေရာတွင် Rate Limiting ကို ထည့်သွင်းပုံကို ပြသမည်။
 
-## Pre-step: import an API
+## Pre-step: API တစ်ခုကို Import လုပ်ခြင်း
 
-Azure API Management တွင် API ရှိပြီးသားဖြစ်ပါက ဒီအဆင့်ကို ကျော်လွှားနိုင်သည်။ မရှိပါက ဒီလင့်ခ်ကို ကြည့်ပါ၊ [importing an API to Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api)။
+Azure API Management တွင် API တစ်ခုရှိပြီးသားဖြစ်ပါက ဤအဆင့်ကို ကျော်သွားနိုင်သည်။ မရှိသေးပါက [Azure API Management တွင် API တစ်ခုကို Import လုပ်ခြင်း](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api) ကို ကြည့်ပါ။
 
-## Expose API as MCP Server
+## API ကို MCP Server အဖြစ် ဖော်ထုတ်ခြင်း
 
-API endpoints များကို ပြသရန် အောက်ပါအဆင့်များကို လိုက်နာပါ-
+API Endpoints များကို ဖော်ထုတ်ရန် အောက်ပါအဆင့်များကို လိုက်နာပါ-
 
-1. Azure Portal သို့ ဝင်ပြီး <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp> သို့ သွားပါ။ သင့် API Management instance ကို ရွေးချယ်ပါ။
+1. Azure Portal သို့ သွားပြီး <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp> သို့ ဝင်ပါ။ သင့် API Management instance သို့ သွားပါ။
 
-1. ဘယ်ဘက် menu တွင် APIs > MCP Servers > + Create new MCP Server ကို ရွေးချယ်ပါ။
+1. ဘယ်ဘက် menu တွင် APIs > MCP Servers > + Create new MCP Server ကို ရွေးပါ။
 
-1. API တွင် MCP server အဖြစ် ပြသလိုသော REST API ကို ရွေးချယ်ပါ။
+1. API တွင် MCP Server အဖြစ် ဖော်ထုတ်လိုသော REST API ကို ရွေးပါ။
 
-1. Tools အဖြစ် ပြသလိုသော API Operations တစ်ခု သို့မဟုတ် အများကို ရွေးချယ်ပါ။ အားလုံးကို သို့မဟုတ် တစ်ချို့ကိုသာ ရွေးချယ်နိုင်သည်။
+1. Tools အဖြစ် ဖော်ထုတ်လိုသော API Operations တစ်ခု သို့မဟုတ် အများအပြားကို ရွေးပါ။ အားလုံးကို ရွေးနိုင်သလို သီးခြား operation များကိုသာ ရွေးနိုင်သည်။
 
-    ![Select methods to expose](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
+    ![ဖော်ထုတ်လိုသော methods ရွေးချယ်ခြင်း](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
 
-1. **Create** ကို ရွေးချယ်ပါ။
+1. **Create** ကို ရွေးပါ။
 
-1. **APIs** နှင့် **MCP Servers** menu ကို သွားပါ၊ အောက်ပါအတိုင်း မြင်ရမည်-
+1. Menu option **APIs** နှင့် **MCP Servers** သို့ သွားပါ။ အောက်ပါအတိုင်း မြင်ရမည်-
 
-    ![See the MCP Server in the main pane](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
+    ![Main pane တွင် MCP Server ကို ကြည့်ရန်](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
 
-    MCP server ကို ဖန်တီးပြီး API operations များကို tools အဖြစ် ပြသထားသည်။ MCP server သည် MCP Servers pane တွင် စာရင်းပြထားသည်။ URL ကော်လံတွင် MCP server ၏ endpoint ကို ပြသထားပြီး စမ်းသပ်ရန် သို့မဟုတ် client application အတွင်း ခေါ်ဆိုနိုင်သည်။
+    MCP Server ကို ဖန်တီးပြီး API Operations များကို Tools အဖြစ် ဖော်ထုတ်ထားသည်။ MCP Servers pane တွင် MCP Server ကို တွေ့ရမည်။ URL column တွင် MCP Server ကို စမ်းသပ်ရန် သို့မဟုတ် Client Application တွင် အသုံးပြုရန် Endpoint ကို ပြထားသည်။
 
-## Optional: Configure policies
+## Optional: Policies ကို Configure လုပ်ခြင်း
 
-Azure API Management တွင် policy များကို သတ်မှတ်နိုင်ပြီး endpoint များအတွက် rate limiting သို့ semantic caching ကဲ့သို့သော စည်းမျဉ်းများကို သတ်မှတ်နိုင်သည်။ ၎င်း policy များကို XML ဖြင့်ရေးသားသည်။
+Azure API Management တွင် Policies ဆိုသော အဓိကအကြောင်းအရာရှိပြီး Endpoint များအတွက် Rate Limiting သို့မဟုတ် Semantic Caching စသည်တို့ကို သတ်မှတ်နိုင်သည်။ Policies များကို XML ဖြင့် ရေးသားသည်။
 
-MCP Server အတွက် rate limiting policy ကို သတ်မှတ်ပုံမှာ-
+MCP Server အတွက် Rate Limiting ကို သတ်မှတ်ပုံ-
 
-1. Portal တွင် APIs အောက်မှ **MCP Servers** ကို ရွေးချယ်ပါ။
+1. Portal တွင် APIs အောက်ရှိ **MCP Servers** ကို ရွေးပါ။
 
-1. ဖန်တီးထားသော MCP server ကို ရွေးချယ်ပါ။
+1. ဖန်တီးထားသော MCP Server ကို ရွေးပါ။
 
-1. ဘယ်ဘက် menu တွင် MCP အောက်မှ **Policies** ကို ရွေးချယ်ပါ။
+1. ဘယ်ဘက် menu တွင် MCP အောက်ရှိ **Policies** ကို ရွေးပါ။
 
-1. Policy editor တွင် MCP server ၏ tools များအတွက် သတ်မှတ်လိုသော policy များကို ထည့်သွင်း သို့မဟုတ် ပြင်ဆင်ပါ။ Policy များကို XML ပုံစံဖြင့် သတ်မှတ်သည်။ ဥပမာအားဖြင့် MCP server ၏ tools များကို ခေါ်ဆိုမှုများကို ကန့်သတ်ရန် policy တစ်ခု ထည့်သွင်းနိုင်သည် (ဥပမာ - client IP တစ်ခုလျှင် ၃၀ စက္ကန့်အတွင်း ၅ ခေါ်ဆိုမှု)။ အောက်ပါ XML က rate limiting ဖြစ်စေမည်-
+1. Policy editor တွင် MCP Server ရဲ့ Tools များအတွက် အသုံးပြုလိုသော Policies များကို ထည့်သွင်း သို့မဟုတ် ပြင်ဆင်ပါ။ Policies များကို XML format ဖြင့် သတ်မှတ်သည်။ ဥပမာအားဖြင့် MCP Server ရဲ့ Tools များကို Client IP Address တစ်ခုလျှင် 30 စက္ကန့်အတွင်း 5 calls အထိသာ ခွင့်ပြုမည့် Policy ကို ထည့်သွင်းနိုင်သည်။
 
     ```xml
      <rate-limit-by-key calls="5" 
@@ -79,29 +79,29 @@ MCP Server အတွက် rate limiting policy ကို သတ်မှတ်�
     />
     ```
 
-    Policy editor ၏ ပုံရိပ်-
+    Policy editor ရဲ့ ပုံရိပ်-
 
     ![Policy editor](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
- 
-## Try it out
 
-MCP Server သည် ရည်ရွယ်ချက်အတိုင်း လုပ်ဆောင်နေကြောင်း သေချာစေရန်။
+## စမ်းသပ်ခြင်း
 
-ဒါအတွက် Visual Studio Code နှင့် GitHub Copilot ၏ Agent mode ကို အသုံးပြုမည်။ MCP server ကို *mcp.json* ထဲသို့ ထည့်သွင်းမည်ဖြစ်သည်။ ၎င်းဖြင့် Visual Studio Code သည် agentic လုပ်ဆောင်နိုင်သော client အဖြစ် လုပ်ဆောင်ပြီး အသုံးပြုသူများသည် prompt ရိုက်ထည့်ကာ server နှင့် ဆက်သွယ်နိုင်မည်ဖြစ်သည်။
+MCP Server သည် ရည်ရွယ်ထားသည့်အတိုင်း လုပ်ဆောင်နေသည်ကို စစ်ဆေးပါ။
 
-Visual Studio Code တွင် MCP server ထည့်သွင်းပုံ-
+ဤအတွက် Visual Studio Code နှင့် GitHub Copilot ၏ Agent mode ကို အသုံးပြုမည်။ MCP Server ကို *mcp.json* ဖိုင်တွင် ထည့်သွင်းမည်။ ၎င်းအားဖြင့် Visual Studio Code သည် Agentic capabilities ရှိသော Client အဖြစ် လုပ်ဆောင်ပြီး End Users များသည် Prompt ရိုက်ထည့်ကာ Server နှင့် အပြန်အလှန် ဆက်သွယ်နိုင်မည်။
+
+Visual Studio Code တွင် MCP Server ကို ထည့်သွင်းပုံ-
 
 1. Command Palette မှ MCP: **Add Server command** ကို အသုံးပြုပါ။
 
-1. Prompt ပေါ်လာသည့်အခါ server အမျိုးအစားကို ရွေးချယ်ပါ- **HTTP (HTTP or Server Sent Events)**။
+1. Server type ကို ရွေးပါ: **HTTP (HTTP or Server Sent Events)**.
 
-1. API Management တွင် MCP server ၏ URL ကို ထည့်ပါ။ ဥပမာ- **https://<apim-service-name>.azure-api.net/<api-name>-mcp/sse** (SSE endpoint အတွက်) သို့မဟုတ် **https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp** (MCP endpoint အတွက်)၊ transport မတူညီမှုမှာ `/sse` သို့မဟုတ် `/mcp` ဖြစ်သည်။
+1. API Management တွင် MCP Server ရဲ့ URL ကို ထည့်သွင်းပါ။ ဥပမာ- **https://<apim-service-name>.azure-api.net/<api-name>-mcp/sse** (SSE endpoint အတွက်) သို့မဟုတ် **https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp** (MCP endpoint အတွက်)၊ transport အတွက် `/sse` သို့မဟုတ် `/mcp` ကွာခြားမှုကို သတိပြုပါ။
 
-1. သင်နှစ်သက်သည့် server ID ကို ထည့်ပါ။ ဤတန်ဖိုးသည် အရေးကြီးမဟုတ်ပေမယ့် server instance ကို မှတ်မိရန် အကူအညီဖြစ်သည်။
+1. Server ID ကို သင်ရွေးချယ်ပါ။ ၎င်းသည် အရေးကြီးသောတန်ဖိုးမဟုတ်သော်လည်း Server instance ကို မှတ်မိရန် အထောက်အကူပြုမည်။
 
-1. configuration ကို workspace settings သို့မဟုတ် user settings တွင် သိမ်းမည်ကို ရွေးချယ်ပါ။
+1. Configuration ကို workspace settings သို့မဟုတ် user settings တွင် သိမ်းဆည်းမည်ကို ရွေးပါ။
 
-  - **Workspace settings** - server configuration ကို .vscode/mcp.json ဖိုင်တွင်သာ သိမ်းဆည်းပြီး လက်ရှိ workspace တွင်သာ အသုံးပြုနိုင်သည်။
+  - **Workspace settings** - Server configuration ကို .vscode/mcp.json ဖိုင်တွင် သိမ်းဆည်းပြီး လက်ရှိ workspace တွင်သာ ရရှိနိုင်သည်။
 
     *mcp.json*
 
@@ -114,7 +114,7 @@ Visual Studio Code တွင် MCP server ထည့်သွင်းပုံ-
     }
     ```
 
-    streaming HTTP ကို transport အဖြစ် ရွေးချယ်ပါက အနည်းငယ်ကွာခြားသည်-
+    Streaming HTTP ကို transport အဖြစ် ရွေးပါက အနည်းငယ် ကွာခြားမည်-
 
     ```json
     "servers": {
@@ -125,15 +125,15 @@ Visual Studio Code တွင် MCP server ထည့်သွင်းပုံ-
     }
     ```
 
-  - **User settings** - server configuration ကို global *settings.json* ဖိုင်တွင် ထည့်သွင်းပြီး workspace အားလုံးတွင် အသုံးပြုနိုင်သည်။ configuration သည် အောက်ပါအတိုင်း ဖြစ်သည်-
+  - **User settings** - Server configuration ကို Global *settings.json* ဖိုင်တွင် ထည့်သွင်းပြီး အားလုံး workspace များတွင် ရရှိနိုင်သည်။ Configuration သည် အောက်ပါအတိုင်း ဖြစ်မည်-
 
     ![User setting](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
 
-1. Azure API Management သို့ မှန်ကန်စွာ authentication ပြုလုပ်ရန် header တစ်ခု ထည့်သွင်းရန် လိုအပ်သည်။ အဲဒါက **Ocp-Apim-Subscription-Key** ဟုခေါ်သည်။
+1. Azure API Management သို့ authenticate လုပ်ရန် header တစ်ခုကို ထည့်သွင်းရန် လိုအပ်သည်။ ၎င်းသည် **Ocp-Apim-Subscription-Key** header ကို အသုံးပြုသည်။
 
-    - settings တွင် ထည့်သွင်းပုံ-
+    - Settings တွင် ထည့်သွင်းပုံ-
 
-    ![Adding header for authentication](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png)၊ ၎င်းသည် API key တန်ဖိုးကို မေးမြန်းရန် prompt တစ်ခုကို ဖော်ပြမည်ဖြစ်ပြီး သင်၏ Azure API Management instance အတွက် Azure Portal တွင် ရှာဖွေနိုင်သည်။
+    ![Authentication အတွက် header ထည့်သွင်းခြင်း](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png)၊ API key value ကို Azure Portal တွင် သင့် Azure API Management instance အတွက် ရှာနိုင်သည်။
 
    - *mcp.json* တွင် ထည့်သွင်းရန်-
 
@@ -157,45 +157,45 @@ Visual Studio Code တွင် MCP server ထည့်သွင်းပုံ-
     }
     ```
 
-### Use Agent mode
+### Agent mode ကို အသုံးပြုခြင်း
 
-ယခု settings သို့မဟုတ် *.vscode/mcp.json* တွင် အားလုံး ပြင်ဆင်ပြီးဖြစ်သည်။ စမ်းသပ်ကြည့်ပါ။
+Settings သို့မဟုတ် *.vscode/mcp.json* တွင် အားလုံးကို စနစ်တကျ ပြင်ဆင်ပြီးပါပြီ။ စမ်းသပ်ကြည့်ပါ။
 
-Tools icon တစ်ခုရှိမည်၊ သင့် server မှ ပြသထားသော tools များကို စာရင်းပြထားသည်-
+Tools icon တစ်ခုကို အောက်ပါအတိုင်း မြင်ရမည်၊ exposed tools များကို Server မှာ ပြထားသည်-
 
-![Tools from the server](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
+![Server မှ Tools](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
 
-1. tools icon ကို နှိပ်ပြီး အောက်ပါအတိုင်း tools စာရင်းကို မြင်ရမည်-
+1. Tools icon ကို နှိပ်ပြီး Tools များ၏ စာရင်းကို အောက်ပါအတိုင်း မြင်ရမည်-
 
     ![Tools](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/select-tools-visual-studio-code.png)
 
-1. chat တွင် prompt တစ်ခု ထည့်၍ tool ကို ခေါ်ဆိုပါ။ ဥပမာအားဖြင့် အော်ဒါအကြောင်း သိရှိရန် tool တစ်ခု ရွေးချယ်ထားပါက agent ကို အော်ဒါအကြောင်း မေးနိုင်သည်။ ဥပမာ prompt-
+1. Chat တွင် Prompt တစ်ခုကို ရိုက်ထည့်ကာ Tool ကို invoke လုပ်ပါ။ ဥပမာအားဖြင့် Order အကြောင်းကို သိရန် Tool တစ်ခုကို ရွေးထားပါက Agent ကို Order အကြောင်း မေးနိုင်သည်။ Prompt ဥပမာ-
 
     ```text
     get information from order 2
     ```
 
-    ယခု tools icon တစ်ခု ဖော်ပြမည်ဖြစ်ပြီး tool ကို ဆက်လက်ခေါ်ဆိုရန် မေးမည်။ ဆက်လက်အသုံးပြုရန် ရွေးချယ်ပါ၊ အောက်ပါအတိုင်း output ကို မြင်ရမည်-
+    Tools icon တစ်ခုကို ပြသပြီး Tool ကို run လုပ်ရန် ခွင့်ပြုမည်။ Tool ကို run လုပ်ရန် ရွေးပါ၊ အောက်ပါအတိုင်း output ကို မြင်ရမည်-
 
-    ![Result from prompt](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
+    ![Prompt မှ ရလဒ်](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
 
-    **အထက်ပါ output သည် သင်ပြင်ဆင်ထားသော tools များပေါ် မူတည်သည်၊ သို့သော် အဓိပ္ပါယ်မှာ စာသားဖြင့် တုံ့ပြန်ချက်ရရှိခြင်းဖြစ်သည်။**
+    **အထက်တွင် မြင်ရသည်မှာ သင် setup လုပ်ထားသော Tools များပေါ်မူတည်ပြီး Textual response အဖြစ် ရရှိမည်**
 
 
 ## References
 
-ပိုမိုလေ့လာလိုပါက-
+ပိုမိုသိရှိရန်-
 
-- [Tutorial on Azure API Management and MCP](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server)
-- [Python sample: Secure remote MCP servers using Azure API Management (experimental)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
+- [Azure API Management နှင့် MCP အတွက် Tutorial](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server)
+- [Python sample: Azure API Management ကို အသုံးပြု၍ Remote MCP Servers ကို လုံခြုံစွာ အသုံးပြုခြင်း (experimental)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
 
 - [MCP client authorization lab](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
 
-- [Use the Azure API Management extension for VS Code to import and manage APIs](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
+- [Azure API Management extension ကို Visual Studio Code တွင် အသုံးပြု၍ API များကို Import နှင့် Manage လုပ်ခြင်း](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
 
-- [Register and discover remote MCP servers in Azure API Center](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
-- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Azure API Management နှင့် AI အင်္ဂါရပ်များစွာကို ပြသသည့် repo အကောင်းတစ်ခု
-- [AI Gateway workshops](https://azure-samples.github.io/AI-Gateway/) Azure Portal ကို အသုံးပြု၍ AI အင်္ဂါရပ်များကို စတင်သုံးသပ်ရန် workshop များပါဝင်သည်။
+- [Azure API Center တွင် Remote MCP Servers ကို Register နှင့် Discover လုပ်ခြင်း](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
+- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Azure API Management နှင့် AI capabilities များကို ပြသသော Repo
+- [AI Gateway workshops](https://azure-samples.github.io/AI-Gateway/) Azure Portal ကို အသုံးပြု၍ AI capabilities များကို စမ်းသပ်ရန် Workshop များ ပါဝင်သည်
 
-**အကြောင်းကြားချက်**  
-ဤစာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ဖြင့် ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှန်ကန်မှုအတွက် ကြိုးစားသော်လည်း အလိုအလျောက် ဘာသာပြန်ခြင်းတွင် အမှားများ သို့မဟုတ် မှားယွင်းချက်များ ပါဝင်နိုင်ကြောင်း သတိပြုပါရန် မေတ္တာရပ်ခံအပ်ပါသည်။ မူရင်းစာတမ်းကို မိမိဘာသာစကားဖြင့်သာ တရားဝင်အချက်အလက်အဖြစ် ယူဆသင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူ့ပညာရှင်များ၏ ပရော်ဖက်ရှင်နယ် ဘာသာပြန်ခြင်းကို အကြံပြုပါသည်။ ဤဘာသာပြန်ချက်ကို အသုံးပြုရာမှ ဖြစ်ပေါ်လာနိုင်သည့် နားလည်မှုမှားယွင်းမှုများအတွက် ကျွန်ုပ်တို့သည် တာဝန်မခံပါ။
+**ဝက်ဘ်ဆိုက်မှတ်ချက်**:  
+ဤစာရွက်စာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ကို အသုံးပြု၍ ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှန်ကန်မှုအတွက် ကြိုးစားနေပါသော်လည်း၊ အလိုအလျောက်ဘာသာပြန်ဆိုမှုများတွင် အမှားများ သို့မဟုတ် မတိကျမှုများ ပါဝင်နိုင်သည်ကို သတိပြုပါ။ မူရင်းစာရွက်စာတမ်းကို ၎င်း၏ မူလဘာသာစကားဖြင့် အာဏာတည်သောရင်းမြစ်အဖြစ် သတ်မှတ်သင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူ့ဘာသာပြန်ပညာရှင်များမှ အတည်ပြုထားသော ဘာသာပြန်ဆိုမှုကို အသုံးပြုရန် အကြံပြုပါသည်။ ဤဘာသာပြန်ဆိုမှုကို အသုံးပြုခြင်းမှ ဖြစ်ပေါ်လာသော နားလည်မှုမှားများ သို့မဟုတ် အဓိပ္ပာယ်မှားများအတွက် ကျွန်ုပ်တို့သည် တာဝန်မယူပါ။

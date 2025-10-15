@@ -1,13 +1,13 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4eb6a48c54555c64b33c763fba3f2842",
-  "translation_date": "2025-07-13T21:02:08+00:00",
+  "original_hash": "dde4e32e4b55ef4962c411b39d2340a7",
+  "translation_date": "2025-09-03T15:54:56+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/dotnet/README.md",
   "language_code": "es"
 }
 -->
-# Ejecutando este ejemplo
+# Ejecutar este ejemplo
 
 ## -1- Instalar las dependencias
 
@@ -23,9 +23,9 @@ dotnet run
 
 ## -3- Probar el ejemplo
 
-Abre una terminal aparte antes de ejecutar lo siguiente (asegúrate de que el servidor siga en ejecución).
+Abre un terminal separado antes de ejecutar lo siguiente (asegúrate de que el servidor siga en ejecución).
 
-Con el servidor corriendo en una terminal, abre otra y ejecuta el siguiente comando:
+Con el servidor ejecutándose en un terminal, abre otro terminal y ejecuta el siguiente comando:
 
 ```bash
 npx @modelcontextprotocol/inspector http://localhost:3001
@@ -33,22 +33,22 @@ npx @modelcontextprotocol/inspector http://localhost:3001
 
 Esto debería iniciar un servidor web con una interfaz visual que te permitirá probar el ejemplo.
 
-> Asegúrate de que **Streamable HTTP** esté seleccionado como tipo de transporte, y que la URL sea `http://localhost:3001/mcp`.
+> Asegúrate de que el **HTTP Streamable** esté seleccionado como el tipo de transporte, y que la URL sea `http://localhost:3001/mcp`.
 
 Una vez que el servidor esté conectado:
 
-- intenta listar las herramientas y ejecutar `add` con los argumentos 2 y 4, deberías ver 6 como resultado.
-- ve a resources y resource template y llama a "greeting", escribe un nombre y deberías ver un saludo con el nombre que proporcionaste.
+- Intenta listar herramientas y ejecutar `add`, con los argumentos 2 y 4, deberías ver 6 en el resultado.
+- Ve a recursos y plantillas de recursos y llama a "greeting", escribe un nombre y deberías ver un saludo con el nombre que proporcionaste.
 
 ### Pruebas en modo CLI
 
-Puedes iniciarlo directamente en modo CLI ejecutando el siguiente comando:
+Puedes lanzarlo directamente en modo CLI ejecutando el siguiente comando:
 
 ```bash 
 npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/list
 ```
 
-Esto listará todas las herramientas disponibles en el servidor. Deberías ver la siguiente salida:
+Esto listará todas las herramientas disponibles en el servidor. Deberías ver el siguiente resultado:
 
 ```text
 {
@@ -86,7 +86,7 @@ Para invocar una herramienta escribe:
 npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/call --tool-name AddNumbers --tool-arg a=1 --tool-arg b=2
 ```
 
-Deberías ver la siguiente salida:
+Deberías ver el siguiente resultado:
 
 ```text
 {
@@ -100,9 +100,11 @@ Deberías ver la siguiente salida:
 }
 ```
 
-> ![!TIP]
-> Usualmente es mucho más rápido ejecutar el inspector en modo CLI que en el navegador.
+> [!TIP]
+> Generalmente es mucho más rápido ejecutar el inspector en modo CLI que en el navegador.
 > Lee más sobre el inspector [aquí](https://github.com/modelcontextprotocol/inspector).
 
-**Aviso legal**:  
-Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Aunque nos esforzamos por la precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o inexactitudes. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda la traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas derivadas del uso de esta traducción.
+---
+
+**Descargo de responsabilidad**:  
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por garantizar la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.

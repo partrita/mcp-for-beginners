@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "4eb6a48c54555c64b33c763fba3f2842",
-  "translation_date": "2025-07-13T21:04:24+00:00",
+  "original_hash": "dde4e32e4b55ef4962c411b39d2340a7",
+  "translation_date": "2025-09-03T16:07:31+00:00",
   "source_file": "03-GettingStarted/06-http-streaming/solution/dotnet/README.md",
   "language_code": "tr"
 }
@@ -25,20 +25,20 @@ dotnet run
 
 Aşağıdaki komutu çalıştırmadan önce ayrı bir terminal açın (sunucunun hala çalıştığından emin olun).
 
-Sunucu bir terminalde çalışırken, başka bir terminal açın ve aşağıdaki komutu çalıştırın:
+Sunucu bir terminalde çalışırken, başka bir terminal açın ve şu komutu çalıştırın:
 
 ```bash
 npx @modelcontextprotocol/inspector http://localhost:3001
 ```
 
-Bu, örneği test etmenize olanak tanıyan görsel arayüze sahip bir web sunucusu başlatmalıdır.
+Bu, örneği test etmenizi sağlayan görsel bir arayüze sahip bir web sunucusunu başlatmalıdır.
 
-> **Streamable HTTP**'nin taşıma türü olarak seçili olduğundan ve URL'nin `http://localhost:3001/mcp` olduğundan emin olun.
+> **Streamable HTTP**'nin taşıma türü olarak seçildiğinden ve URL'nin `http://localhost:3001/mcp` olduğundan emin olun.
 
 Sunucu bağlandıktan sonra:
 
-- araçları listelemeyi deneyin ve `add` komutunu, argümanlar olarak 2 ve 4 ile çalıştırın, sonuçta 6 görmelisiniz.
-- resources ve resource template bölümüne gidin, "greeting"i çağırın, bir isim yazın ve verdiğiniz isimle bir selamlama görmelisiniz.
+- Araçları listelemeyi deneyin ve `add` komutunu 2 ve 4 argümanlarıyla çalıştırın, sonuçta 6'yı görmelisiniz.
+- Kaynaklara ve kaynak şablonuna gidin, "greeting" çağırın, bir isim yazın ve sağladığınız isimle bir selamlama görmelisiniz.
 
 ### CLI modunda test etme
 
@@ -48,7 +48,7 @@ Aşağıdaki komutu çalıştırarak doğrudan CLI modunda başlatabilirsiniz:
 npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/list
 ```
 
-Bu, sunucuda mevcut olan tüm araçları listeleyecektir. Aşağıdaki çıktıyı görmelisiniz:
+Bu, sunucuda mevcut olan tüm araçları listeleyecektir. Şu çıktıyı görmelisiniz:
 
 ```text
 {
@@ -86,7 +86,7 @@ Bir aracı çağırmak için şunu yazın:
 npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/call --tool-name AddNumbers --tool-arg a=1 --tool-arg b=2
 ```
 
-Aşağıdaki çıktıyı görmelisiniz:
+Şu çıktıyı görmelisiniz:
 
 ```text
 {
@@ -100,9 +100,11 @@ Aşağıdaki çıktıyı görmelisiniz:
 }
 ```
 
-> ![!TIP]
-> Inspector'ı tarayıcıda çalıştırmaktansa CLI modunda çalıştırmak genellikle çok daha hızlıdır.
-> Inspector hakkında daha fazla bilgi için [buraya](https://github.com/modelcontextprotocol/inspector) bakabilirsiniz.
+> [!TIP]
+> Genellikle denetleyiciyi tarayıcıda çalıştırmaktan çok daha hızlı bir şekilde CLI modunda çalıştırmak mümkündür.
+> Denetleyici hakkında daha fazla bilgi edinin [buradan](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Feragatname**:  
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayın. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalar veya yorum hatalarından sorumlu değiliz.
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalardan sorumlu değiliz.

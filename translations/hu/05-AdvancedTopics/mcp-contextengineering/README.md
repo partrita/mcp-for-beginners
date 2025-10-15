@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "5762e8e74dd99d8b7dbb31e69a82561e",
-  "translation_date": "2025-07-17T13:14:20+00:00",
+  "original_hash": "fd169ca3071b81b5ee282e194bc823df",
+  "translation_date": "2025-09-15T20:59:02+00:00",
   "source_file": "05-AdvancedTopics/mcp-contextengineering/README.md",
   "language_code": "hu"
 }
@@ -11,39 +11,39 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## Áttekintés
 
-A kontextusmérnökség egy újonnan kialakuló fogalom az MI területén, amely azt vizsgálja, hogyan strukturálódik, kerül átadásra és tartósan kezelhető az információ a kliens és az MI szolgáltatások közötti interakciók során. Ahogy a Model Context Protocol (MCP) ökoszisztéma fejlődik, egyre fontosabbá válik a kontextus hatékony kezelése. Ez a modul bevezeti a kontextusmérnökség fogalmát, és feltérképezi annak lehetséges alkalmazásait az MCP megvalósításokban.
+A kontextusmérnökség egy új fogalom az AI területén, amely azt vizsgálja, hogyan strukturáljuk, továbbítjuk és tartjuk fenn az információt az ügyfelek és AI szolgáltatások közötti interakciók során. Ahogy a Model Context Protocol (MCP) ökoszisztéma fejlődik, egyre fontosabbá válik a kontextus hatékony kezelése. Ez a modul bemutatja a kontextusmérnökség fogalmát, és feltárja annak lehetséges alkalmazásait az MCP implementációkban.
 
 ## Tanulási célok
 
 A modul végére képes leszel:
 
-- Megérteni a kontextusmérnökség kialakuló fogalmát és annak potenciális szerepét az MCP alkalmazásokban
+- Megérteni a kontextusmérnökség feltörekvő fogalmát és annak lehetséges szerepét az MCP alkalmazásokban
 - Azonosítani a kontextuskezelés kulcsfontosságú kihívásait, amelyeket az MCP protokoll tervezése kezel
-- Felfedezni technikákat a modell teljesítményének javítására jobb kontextuskezeléssel
+- Felfedezni technikákat a modell teljesítményének javítására a kontextuskezelés révén
 - Megfontolni megközelítéseket a kontextus hatékonyságának mérésére és értékelésére
-- Alkalmazni ezeket az új fogalmakat az MI élmények fejlesztésére az MCP keretrendszeren keresztül
+- Alkalmazni ezeket a feltörekvő fogalmakat az AI élmények javítására az MCP keretrendszer segítségével
 
 ## Bevezetés a kontextusmérnökségbe
 
-A kontextusmérnökség egy újonnan kialakuló terület, amely az információáramlás szándékos tervezésére és kezelésére fókuszál a felhasználók, alkalmazások és MI modellek között. Ellentétben a már jól ismert promptmérnökséggel, a kontextusmérnökség még formálódik a szakemberek munkája során, akik az MI modellek számára a megfelelő információt a megfelelő időben biztosítják.
+A kontextusmérnökség egy új fogalom, amely az információáramlás tudatos tervezésére és kezelésére összpontosít a felhasználók, alkalmazások és AI modellek között. Ellentétben az olyan megalapozott területekkel, mint a prompt mérnökség, a kontextusmérnökséget még mindig a gyakorlati szakemberek határozzák meg, miközben azon dolgoznak, hogy megoldják az AI modellek számára megfelelő információ biztosításának egyedi kihívásait.
 
-Ahogy a nagy nyelvi modellek (LLM-ek) fejlődtek, a kontextus jelentősége egyre nyilvánvalóbbá vált. A kontextus minősége, relevanciája és szerkezete közvetlenül befolyásolja a modell kimeneteit. A kontextusmérnökség ezt a kapcsolatot vizsgálja, és hatékony kontextuskezelési elveket kíván kidolgozni.
+Ahogy a nagy nyelvi modellek (LLM-ek) fejlődtek, a kontextus fontossága egyre nyilvánvalóbbá vált. Az általunk biztosított kontextus minősége, relevanciája és struktúrája közvetlen hatással van a modell kimeneteire. A kontextusmérnökség ezt a kapcsolatot vizsgálja, és elveket keres a hatékony kontextuskezeléshez.
 
-> „2025-ben a modellek rendkívül intelligensek lesznek. De még a legokosabb ember sem tudja hatékonyan végezni a munkáját a feladat kontextusa nélkül... A 'kontextusmérnökség' a promptmérnökség következő szintje. Arról szól, hogy ezt automatikusan, dinamikus rendszerben végezzük.” — Walden Yan, Cognition AI
+> "2025-ben a modellek rendkívül intelligensek. De még a legokosabb ember sem tudja hatékonyan elvégezni a munkáját anélkül, hogy tisztában lenne azzal, mit kérnek tőle... A 'kontextusmérnökség' a prompt mérnökség következő szintje. Arról szól, hogy ezt automatikusan végezzük egy dinamikus rendszerben." — Walden Yan, Cognition AI
 
 A kontextusmérnökség magában foglalhatja:
 
-1. **Kontextus kiválasztása**: Meghatározni, mely információk relevánsak egy adott feladathoz
-2. **Kontextus szervezése**: Az információk rendszerezése a modell jobb megértése érdekében
-3. **Kontextus átadása**: Optimalizálni, hogyan és mikor kerül az információ a modellekhez
-4. **Kontextus fenntartása**: A kontextus állapotának és fejlődésének kezelése időben
+1. **Kontextus kiválasztása**: Annak meghatározása, hogy mely információ releváns egy adott feladathoz
+2. **Kontextus strukturálása**: Az információ szervezése a modell megértésének maximalizálása érdekében
+3. **Kontextus továbbítása**: Az információ küldésének optimalizálása, hogy mikor és hogyan érkezzen a modellekhez
+4. **Kontextus fenntartása**: A kontextus állapotának és fejlődésének kezelése idővel
 5. **Kontextus értékelése**: A kontextus hatékonyságának mérése és javítása
 
-Ezek a fókuszterületek különösen relevánsak az MCP ökoszisztéma számára, amely szabványosított módot kínál az alkalmazásoknak a kontextus LLM-ekhez történő biztosítására.
+Ezek a fókuszterületek különösen relevánsak az MCP ökoszisztéma számára, amely szabványosított módot kínál az alkalmazások számára, hogy kontextust biztosítsanak az LLM-eknek.
 
-## A kontextus útjának nézőpontja
+## A kontextus útja perspektíva
 
-A kontextusmérnökség egyik szemléltető módja, ha nyomon követjük az információ útját egy MCP rendszerben:
+A kontextusmérnökséget úgy is elképzelhetjük, hogy nyomon követjük az információ útját egy MCP rendszeren keresztül:
 
 ```mermaid
 graph LR
@@ -63,20 +63,20 @@ graph LR
 ### A kontextus útjának kulcsfontosságú szakaszai:
 
 1. **Felhasználói bemenet**: Nyers információ a felhasználótól (szöveg, képek, dokumentumok)
-2. **Kontextus összeállítása**: A felhasználói bemenet, a rendszer kontextusa, a beszélgetési előzmények és egyéb lekért információk egyesítése
-3. **Modell feldolgozás**: Az MI modell feldolgozza az összeállított kontextust
-4. **Válaszgenerálás**: A modell a megadott kontextus alapján hoz létre kimeneteket
+2. **Kontextus összeállítása**: A felhasználói bemenet kombinálása a rendszer kontextusával, beszélgetési előzményekkel és más visszakeresett információkkal
+3. **Modell feldolgozása**: Az AI modell feldolgozza az összeállított kontextust
+4. **Válasz generálása**: A modell kimenetet hoz létre a biztosított kontextus alapján
 5. **Állapotkezelés**: A rendszer frissíti belső állapotát az interakció alapján
 
-Ez a nézőpont kiemeli a kontextus dinamikus természetét az MI rendszerekben, és fontos kérdéseket vet fel az információ kezelésének legjobb módjáról minden szakaszban.
+Ez a perspektíva kiemeli a kontextus dinamikus természetét az AI rendszerekben, és fontos kérdéseket vet fel arról, hogyan lehet a legjobban kezelni az információt minden szakaszban.
 
-## A kontextusmérnökség kialakuló elvei
+## Feltörekvő elvek a kontextusmérnökségben
 
-Ahogy a kontextusmérnökség formálódik, néhány korai elv kezd kirajzolódni a szakemberek munkája alapján. Ezek az elvek segíthetnek az MCP megvalósítási döntések irányításában:
+Ahogy a kontextusmérnökség területe formálódik, néhány korai elv kezd körvonalazódni a gyakorlati szakemberek körében. Ezek az elvek segíthetnek az MCP implementációs döntések informálásában:
 
-### Elv 1: A kontextust teljes egészében osszuk meg
+### Elv 1: Ossza meg a kontextust teljesen
 
-A kontextust a rendszer összes komponense között teljes egészében kell megosztani, nem szabad töredezetten több ügynök vagy folyamat között szétosztani. Ha a kontextus széttöredezik, az egyik rendszerrészben hozott döntések ellentmondásba kerülhetnek a másikban hozottakkal.
+A kontextust teljesen meg kell osztani a rendszer minden komponense között, nem pedig szétaprózva több ügynök vagy folyamat között. Ha a kontextus szétosztott, a rendszer egyik részében hozott döntések ütközhetnek a máshol hozott döntésekkel.
 
 ```mermaid
 graph TD
@@ -100,74 +100,74 @@ graph TD
     style D1 fill:#D7BDE2,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-Az MCP alkalmazásokban ez azt jelenti, hogy olyan rendszereket kell tervezni, ahol a kontextus zökkenőmentesen áramlik az egész folyamaton keresztül, nem pedig elkülönítve.
+Az MCP alkalmazásokban ez azt sugallja, hogy olyan rendszereket kell tervezni, ahol a kontextus zökkenőmentesen áramlik az egész folyamaton keresztül, nem pedig szétaprózva.
 
-### Elv 2: Ismerjük fel, hogy a műveletek implicit döntéseket hordoznak
+### Elv 2: Ismerje fel, hogy a cselekvések implicit döntéseket hordoznak
 
-Minden modell által végrehajtott művelet implicit döntéseket tartalmaz arról, hogyan értelmezi a kontextust. Ha több komponens különböző kontextusokon dolgozik, ezek az implicit döntések ellentmondásokat okozhatnak, ami következetlen eredményekhez vezet.
+Minden modell által végrehajtott cselekvés magában foglalja az implicit döntéseket arról, hogyan értelmezi a kontextust. Ha több komponens különböző kontextusokon cselekszik, ezek az implicit döntések ütközhetnek, ami következetlen eredményekhez vezethet.
 
-Ennek az elvnek fontos következményei vannak az MCP alkalmazásokra:
-- Előnyben részesíteni a komplex feladatok lineáris feldolgozását a párhuzamos végrehajtással szemben, ahol a kontextus töredezett
-- Biztosítani, hogy minden döntési pont hozzáférjen ugyanahhoz a kontextuális információhoz
-- Olyan rendszereket tervezni, ahol a későbbi lépések látják az előző döntések teljes kontextusát
+Ez az elv fontos következményekkel jár az MCP alkalmazásokra nézve:
+- Részesítse előnyben a komplex feladatok lineáris feldolgozását a párhuzamos végrehajtással szemben, amely szétaprózott kontextust használ
+- Biztosítsa, hogy minden döntési pont hozzáférjen ugyanahhoz a kontextuális információhoz
+- Tervezzen olyan rendszereket, ahol a későbbi lépések láthatják a korábbi döntések teljes kontextusát
 
-### Elv 3: Egyensúlyozzuk a kontextus mélységét az ablak korlátokkal
+### Elv 3: Egyensúlyozza a kontextus mélységét az ablakkorlátokkal
 
-Ahogy a beszélgetések és folyamatok hosszabbá válnak, a kontextusablakok előbb-utóbb megtelnek. A hatékony kontextusmérnökség olyan megközelítéseket keres, amelyek kezelik ezt a feszültséget a teljes körű kontextus és a technikai korlátok között.
+Ahogy a beszélgetések és folyamatok hosszabbá válnak, a kontextusablakok végül túlcsordulnak. A hatékony kontextusmérnökség olyan megközelítéseket vizsgál, amelyek kezelik ezt a feszültséget a teljes kontextus és a technikai korlátok között.
 
-Feltérképezett megközelítések lehetnek:
-- Kontextus tömörítés, amely megőrzi a lényeges információkat, miközben csökkenti a tokenhasználatot
-- Kontextus progresszív betöltése a relevancia alapján
-- Korábbi interakciók összefoglalása, miközben megőrzik a kulcsfontosságú döntéseket és tényeket
+Lehetséges megközelítések, amelyeket vizsgálnak:
+- Kontextus tömörítése, amely megőrzi a lényeges információkat, miközben csökkenti a tokenhasználatot
+- Kontextus progresszív betöltése az aktuális igények relevanciája alapján
+- Korábbi interakciók összefoglalása, miközben megőrzi a kulcsfontosságú döntéseket és tényeket
 
-## Kontextus kihívások és az MCP protokoll tervezése
+## Kontextus kihívások és MCP protokoll tervezés
 
-A Model Context Protocol (MCP) úgy lett megtervezve, hogy figyelembe vegye a kontextuskezelés egyedi kihívásait. Ezek megértése segít megvilágítani az MCP protokoll tervezésének kulcsfontosságú aspektusait:
+A Model Context Protocol (MCP) tervezésekor figyelembe vették a kontextuskezelés egyedi kihívásait. Ezeknek a kihívásoknak a megértése segít megmagyarázni az MCP protokoll tervezésének kulcsfontosságú aspektusait:
 
-### Kihívás 1: Kontextusablak korlátok  
-A legtöbb MI modellnek fix méretű kontextusablaka van, ami korlátozza, mennyi információt képes egyszerre feldolgozni.
+### Kihívás 1: Kontextusablak korlátai
+A legtöbb AI modellnek fix kontextusablak mérete van, amely korlátozza, hogy egyszerre mennyi információt tud feldolgozni.
 
-**MCP tervezési válasz:**  
-- A protokoll támogatja a strukturált, erőforrás-alapú kontextust, amely hatékonyan hivatkozható  
-- Az erőforrások lapozhatók és progresszíven tölthetők be
+**MCP tervezési válasz:**
+- A protokoll támogatja a strukturált, erőforrás-alapú kontextust, amely hatékonyan hivatkozható
+- Az erőforrások lapozhatók és progresszíven betölthetők
 
-### Kihívás 2: Relevancia meghatározása  
-Nehéz eldönteni, mely információk a legrelevánsabbak a kontextusba való bevonáshoz.
+### Kihívás 2: Relevancia meghatározása
+Nehéz meghatározni, hogy mely információk a legrelevánsabbak a kontextusba való beillesztéshez.
 
-**MCP tervezési válasz:**  
-- Rugalmas eszközök dinamikus információlekéréshez szükség szerint  
-- Strukturált promptok a konzisztens kontextus szervezéshez
+**MCP tervezési válasz:**
+- Rugalmas eszközök lehetővé teszik az információ dinamikus visszakeresését az igények alapján
+- Strukturált promptok biztosítják a kontextus következetes szervezését
 
-### Kihívás 3: Kontextus állandósága  
-Az interakciók közötti állapotkezelés gondos nyomon követést igényel.
+### Kihívás 3: Kontextus tartóssága
+Az interakciók közötti állapotkezelés gondos kontextuskövetést igényel.
 
-**MCP tervezési válasz:**  
-- Szabványosított munkamenet-kezelés  
-- Egyértelműen definiált interakciós minták a kontextus fejlődéséhez
+**MCP tervezési válasz:**
+- Szabványosított munkamenet-kezelés
+- Egyértelműen meghatározott interakciós minták a kontextus fejlődéséhez
 
-### Kihívás 4: Többmodalitású kontextus  
-Különböző adatfajták (szöveg, képek, strukturált adatok) eltérő kezelést igényelnek.
+### Kihívás 4: Többmódú kontextus
+A különböző típusú adatok (szöveg, képek, strukturált adatok) eltérő kezelést igényelnek.
 
-**MCP tervezési válasz:**  
-- A protokoll támogatja a különféle tartalomtípusokat  
-- Többmodalitású információk szabványosított ábrázolása
+**MCP tervezési válasz:**
+- A protokoll tervezése különböző tartalomtípusokat támogat
+- Többmódú információ szabványosított reprezentációja
 
-### Kihívás 5: Biztonság és adatvédelem  
+### Kihívás 5: Biztonság és adatvédelem
 A kontextus gyakran érzékeny információkat tartalmaz, amelyeket védeni kell.
 
-**MCP tervezési válasz:**  
-- Egyértelmű határok a kliens és a szerver felelősségei között  
-- Helyi feldolgozási lehetőségek az adatvédelmi kockázatok minimalizálására
+**MCP tervezési válasz:**
+- Egyértelmű határok az ügyfél és a szerver felelősségei között
+- Helyi feldolgozási lehetőségek az adatok kitettségének minimalizálása érdekében
 
-E kihívások megértése és az MCP válaszai alapot nyújtanak a fejlettebb kontextusmérnökségi technikák feltérképezéséhez.
+Ezeknek a kihívásoknak a megértése és az MCP által kínált megoldások alapot nyújtanak a fejlettebb kontextusmérnökségi technikák felfedezéséhez.
 
 ## Feltörekvő kontextusmérnökségi megközelítések
 
-Ahogy a kontextusmérnökség fejlődik, több ígéretes megközelítés is megjelenik. Ezek a jelenlegi gondolkodást tükrözik, nem pedig bevett gyakorlatokat, és valószínűleg tovább fejlődnek az MCP megvalósítások tapasztalatai alapján.
+Ahogy a kontextusmérnökség területe fejlődik, számos ígéretes megközelítés jelenik meg. Ezek a jelenlegi gondolkodást képviselik, nem pedig megalapozott legjobb gyakorlatokat, és valószínűleg tovább fejlődnek, ahogy több tapasztalatot szerzünk az MCP implementációkkal.
 
 ### 1. Egyszálú lineáris feldolgozás
 
-A kontextus szétosztását alkalmazó többügynökös architektúrákkal szemben egyes szakemberek azt tapasztalják, hogy az egyszálú lineáris feldolgozás következetesebb eredményeket hoz. Ez összhangban áll az egységes kontextus fenntartásának elvével.
+A kontextust szétosztó többügynökös architektúrákkal szemben néhány szakember azt tapasztalja, hogy az egyszálú lineáris feldolgozás következetesebb eredményeket hoz. Ez összhangban áll az egységes kontextus fenntartásának elvével.
 
 ```mermaid
 graph TD
@@ -183,11 +183,11 @@ graph TD
     style E fill:#D2B4DE,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-Bár ez a megközelítés kevésbé tűnhet hatékonynak a párhuzamos feldolgozáshoz képest, gyakran koherensebb és megbízhatóbb eredményeket produkál, mert minden lépés a korábbi döntések teljes megértésére épül.
+Bár ez a megközelítés kevésbé hatékonynak tűnhet, mint a párhuzamos feldolgozás, gyakran koherensebb és megbízhatóbb eredményeket hoz, mivel minden lépés a korábbi döntések teljes megértésére épül.
 
-### 2. Kontextus darabolása és priorizálása
+### 2. Kontextus darabolása és prioritás meghatározása
 
-Nagy kontextusok kisebb, kezelhető darabokra bontása és a legfontosabb részek kiválasztása.
+Nagy kontextusok kezelhető darabokra bontása és a legfontosabb elemek kiválasztása.
 
 ```python
 # Conceptual Example: Context Chunking and Prioritization
@@ -208,11 +208,11 @@ def process_with_chunked_context(documents, query):
     return generate_response(context, query)
 ```
 
-A fenti példa azt szemlélteti, hogyan bonthatunk nagy dokumentumokat kezelhető részekre, és választhatjuk ki csak a legrelevánsabbakat a kontextushoz. Ez segíthet a kontextusablak korlátain belül maradni, miközben nagy tudásbázisokat használunk.
+A fenti koncepció bemutatja, hogyan lehet nagy dokumentumokat kezelhető darabokra bontani, és csak a legrelevánsabb részeket kiválasztani a kontextushoz. Ez a megközelítés segíthet a kontextusablak korlátain belül maradni, miközben nagy tudásbázisokat használunk.
 
 ### 3. Progresszív kontextus betöltés
 
-A kontextus szükség szerinti, fokozatos betöltése, nem egyszerre.
+A kontextus fokozatos betöltése szükség szerint, nem pedig egyszerre.
 
 ```mermaid
 sequenceDiagram
@@ -237,11 +237,11 @@ sequenceDiagram
     App->>User: Answer
 ```
 
-A progresszív betöltés minimális kontextussal indul, és csak akkor bővül, ha szükséges. Ez jelentősen csökkentheti a tokenhasználatot egyszerű lekérdezések esetén, miközben megőrzi a komplex kérdések kezelésének képességét.
+A progresszív kontextus betöltés minimális kontextussal kezdődik, és csak akkor bővül, ha szükséges. Ez jelentősen csökkentheti a tokenhasználatot egyszerű lekérdezések esetén, miközben megőrzi a képességet komplex kérdések kezelésére.
 
 ### 4. Kontextus tömörítés és összefoglalás
 
-A kontextus méretének csökkentése a lényeges információk megőrzése mellett.
+A kontextus méretének csökkentése, miközben megőrzi a lényeges információkat.
 
 ```mermaid
 graph TD
@@ -257,63 +257,59 @@ graph TD
     style E fill:#F9E79F,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-A kontextus tömörítés fókuszpontjai:  
-- Ismétlődő információk eltávolítása  
-- Hosszú tartalmak összefoglalása  
-- Kulcsfontosságú tények és részletek kivonása  
-- Kritikus kontextuselemek megőrzése  
+A kontextus tömörítés az alábbiakra összpontosít:
+- Redundáns információk eltávolítása
+- Hosszú tartalom összefoglalása
+- Kulcsfontosságú tények és részletek kiemelése
+- Kritikus kontextuselemek megőrzése
 - Tokenhatékonyság optimalizálása
 
-Ez a megközelítés különösen értékes lehet hosszú beszélgetések fenntartásához a kontextusablakokon belül vagy nagy dokumentumok hatékony feldolgozásához. Egyes szakemberek speciális modelleket használnak kifejezetten a kontextus tömörítésére és a beszélgetési előzmények összefoglalására.
+Ez a megközelítés különösen értékes lehet hosszú beszélgetések kontextusablakon belüli fenntartásához vagy nagy dokumentumok hatékony feldolgozásához. Néhány szakember speciális modelleket használ kifejezetten a kontextus tömörítésére és a beszélgetési előzmények összefoglalására.
 
-## Feltáró kontextusmérnökségi megfontolások
+## Felfedező kontextusmérnökségi megfontolások
 
-Ahogy felfedezzük a kontextusmérnökség kialakuló területét, több megfontolandó szempont is felmerül az MCP megvalósítások során. Ezek nem előíró jellegű legjobb gyakorlatok, hanem inkább olyan területek, amelyek felfedezése javulást hozhat az adott felhasználási esetben.
+Ahogy a kontextusmérnökség feltörekvő területét vizsgáljuk, számos megfontolás érdemes figyelembe venni az MCP implementációkkal való munka során. Ezek nem előíró legjobb gyakorlatok, hanem olyan területek, amelyek javulást hozhatnak az adott felhasználási esetben.
 
-### Gondold át a kontextus céljait
+### Határozza meg kontextus céljait
 
-Mielőtt bonyolult kontextuskezelési megoldásokat vezetnél be, világosan fogalmazd meg, mit szeretnél elérni:  
-- Milyen konkrét információkra van szüksége a modellnek a sikerhez?  
-- Mely információk elengedhetetlenek, és melyek kiegészítő jellegűek?  
-- Milyen teljesítménykorlátokkal dolgozol (késleltetés, tokenlimit, költségek)?
+Mielőtt bonyolult kontextuskezelési megoldásokat valósítana meg, világosan fogalmazza meg, mit szeretne elérni:
+- Milyen konkrét információkra van szüksége a modellnek a sikerhez?
+- Mely információk lényegesek, és melyek kiegészítő jellegűek?
+- Milyen teljesítménykorlátai vannak (késleltetés, tokenkorlátok, költségek)?
 
-### Fedezd fel a rétegzett kontextus megközelítéseket
+### Rétegezett kontextus megközelítések vizsgálata
 
-Egyes szakemberek sikeresnek találják a kontextus fogalmi rétegekbe rendezését:  
-- **Alapréteg**: Az alapvető információk, amelyekre a modellnek mindig szüksége van  
-- **Helyzeti réteg**: A jelenlegi interakcióhoz kapcsolódó kontextus  
-- **Támogató réteg**: További információk, amelyek hasznosak lehetnek  
-- **Tartalék réteg**: Csak szükség esetén elérhető információk
+Néhány szakember sikerrel alkalmaz kontextust, amelyet fogalmi rétegekbe rendeznek:
+- **Alapréteg**: Lényeges információ, amelyre a modellnek mindig szüksége van
+- **Helyzeti réteg**: Az aktuális interakcióhoz kapcsolódó kontextus
+- **Támogató réteg**: További információ, amely hasznos lehet
+- **Tartalék réteg**: Csak szükség esetén elérhető információ
 
-### Vizsgáld meg a lekérdezési stratégiákat
+### Visszakeresési stratégiák vizsgálata
 
-A kontextus hatékonysága gyakran attól függ, hogyan szerzed be az információt:  
-- Szemantikus keresés és beágyazások a fogalmilag releváns információk megtalálásához  
-- Kulcsszavas keresés konkrét tényekhez  
-- Hibrid megközelítések, amelyek több lekérdezési módszert kombinálnak  
-- Metaadat szűrés kategóriák, dátumok vagy források alapján a keresési terület szűkítéséhez
+A kontextus hatékonysága gyakran attól függ, hogyan keresünk információt:
+- Szemantikai keresés és beágyazások a fogalmilag releváns információk megtalálásához
+- Kulcsszó-alapú keresés konkrét tények részleteihez
+- Hibrid megközelítések, amelyek több visszakeresési módszert kombinálnak
+- Metaadat-szűrés a hatókör szűkítéséhez kategóriák, dátumok vagy források alapján
 
-### Kísérletezz a kontextus koherenciájával
+### Kontextus koherencia kísérletezése
 
-A kontextus szerkezete és áramlása befolyásolhatja a modell megértését:  
-- Kapcsolódó információk csoportosítása  
-- Következetes formázás és szervezés alkalmazása  
-- Logikus vagy időrendi sorrend fenntartása, ahol indokolt  
-- Ellentmondó információk kerülése
+A kontextus struktúrája és áramlása befolyásolhatja a modell megértését:
+- Kapcsolódó információk csoportosítása
+- Következetes formázás és szervezés használata
+- Logikai vagy időrendi sorrend fenntartása, ahol megfelelő
+- Ellentmondásos információk elkerülése
 
-### Mérlegeld a többügynökös architektúrák kompromisszumait
+### Többügynökös architektúrák kompromisszumainak mérlegelése
 
-Bár a többügynökös architektúrák népszerűek sok MI keretrendszerben, jelentős kihívásokat jelentenek a kontextuskezelésben:  
-- A kontextus töredezettsége következetlen döntésekhez vezethet az ügynökök között  
-- A párhuzamos feldolgozás konfliktusokat okozhat, amelyeket nehéz összeegyeztetni  
-- Az ügynökök közötti kommunikációs többletterhelés ellensúlyozhatja a teljesítményjavulást  
+Bár a többügynökös architektúrák népszerűek sok AI keretrendszerben, jelentős kihívásokat jelentenek a kontextuskezelés szempontjából:
+- A kontextus szétaprózódása következetlen döntésekhez vezethet az ügynökök között
+- A párhuzamos feldolgozás konfliktusokat idézhet elő, amelyeket nehéz összehangolni
+- Az ügynökök közötti kommunikációs többlet ellensúlyozhatja a teljesítményjavulást
 - Összetett állapotkezelés szükséges a koherencia fenntartásához
 
-Sok esetben egyetlen ügynök átfogó kontextuskezeléssel megbízhatóbb eredményeket hozhat, mint több specializált ügynök töredezett kontextussal.
-
-### Fejlessz ki értékelési módszereket
-
-A kontextusmérnökség folyamatos fejleszt
+Sok esetben egy együgynökös megközelítés átfog
 - [Model Context Protocol Weboldal](https://modelcontextprotocol.io/)
 - [Model Context Protocol Specifikáció](https://github.com/modelcontextprotocol/modelcontextprotocol)
 - [MCP Dokumentáció](https://modelcontextprotocol.io/docs)
@@ -322,26 +318,29 @@ A kontextusmérnökség folyamatos fejleszt
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
 - [MCP Inspector](https://github.com/modelcontextprotocol/inspector) - Vizualizációs tesztelő eszköz MCP szerverekhez
 
-### Kontextus Mérnöki Cikkek
-- [Ne építs többügynökös rendszert: A kontextus mérnökség alapelvei](https://cognition.ai/blog/dont-build-multi-agents) - Walden Yan gondolatai a kontextus mérnökség alapelveiről
-- [Gyakorlati útmutató ügynökök építéséhez](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) - Az OpenAI útmutatója hatékony ügynöktervezéshez
-- [Hatékony ügynökök fejlesztése](https://www.anthropic.com/engineering/building-effective-agents) - Az Anthropic megközelítése az ügynökfejlesztésben
+### Kontextusmérnöki cikkek
+- [Ne építs többügynökös rendszert: Kontextusmérnöki alapelvek](https://cognition.ai/blog/dont-build-multi-agents) - Walden Yan gondolatai a kontextusmérnöki alapelvekről
+- [Gyakorlati útmutató ügynökök építéséhez](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) - OpenAI útmutatója hatékony ügynöktervezéshez
+- [Hatékony ügynökök építése](https://www.anthropic.com/engineering/building-effective-agents) - Anthropic megközelítése az ügynökfejlesztéshez
 
-### Kapcsolódó Kutatások
-- [Dinamikus lekérdezés-alapú kiegészítés nagy nyelvi modellekhez](https://arxiv.org/abs/2310.01487) - Kutatás a dinamikus lekérdezési módszerekről
+### Kapcsolódó kutatások
+- [Dinamikus visszakeresés bővítése nagy nyelvi modellekhez](https://arxiv.org/abs/2310.01487) - Kutatás a dinamikus visszakeresési megközelítésekről
 - [Elveszve a közepén: Hogyan használják a nyelvi modellek a hosszú kontextusokat](https://arxiv.org/abs/2307.03172) - Fontos kutatás a kontextusfeldolgozási mintákról
-- [Hierarchikus, szöveg által vezérelt képgenerálás CLIP latensekkel](https://arxiv.org/abs/2204.06125) - DALL-E 2 tanulmány a kontextus struktúrálásáról
-- [A kontextus szerepének vizsgálata nagy nyelvi modellek architektúrájában](https://aclanthology.org/2023.findings-emnlp.124/) - Friss kutatás a kontextus kezeléséről
-- [Többügynökös együttműködés: Áttekintés](https://arxiv.org/abs/2304.03442) - Kutatás a többügynökös rendszerekről és kihívásaikról
+- [Hierarchikus szöveg-alapú képgenerálás CLIP latensekkel](https://arxiv.org/abs/2204.06125) - DALL-E 2 tanulmány kontextusstruktúrázási betekintésekkel
+- [A kontextus szerepének vizsgálata nagy nyelvi modellek architektúráiban](https://aclanthology.org/2023.findings-emnlp.124/) - Friss kutatás a kontextuskezelésről
+- [Többügynökös együttműködés: Áttekintés](https://arxiv.org/abs/2304.03442) - Kutatás többügynökös rendszerekről és kihívásaikról
 
-### További Források
+### További források
 - [Kontextusablak optimalizálási technikák](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/context-window)
-- [Fejlett RAG technikák](https://www.microsoft.com/en-us/research/blog/retrieval-augmented-generation-rag-and-frontier-models/)
-- [Semantic Kernel dokumentáció](https://github.com/microsoft/semantic-kernel)
-- [AI eszköztár kontextuskezeléshez](https://github.com/microsoft/aitoolkit)
+- [Haladó RAG technikák](https://www.microsoft.com/en-us/research/blog/retrieval-augmented-generation-rag-and-frontier-models/)
+- [Semantic Kernel Dokumentáció](https://github.com/microsoft/semantic-kernel)
+- [AI Eszköztár kontextuskezeléshez](https://github.com/microsoft/aitoolkit)
 
-## Mi következik
-- [6. Közösségi hozzájárulások](../../06-CommunityContributions/README.md)
+## Mi következik 
 
-**Jogi nyilatkozat**:  
-Ez a dokumentum az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Kritikus információk esetén professzionális emberi fordítást javaslunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+- [5.15 MCP Egyedi Transport](../mcp-transport/README.md)
+
+---
+
+**Felelősség kizárása**:  
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével lett lefordítva. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Fontos információk esetén javasolt professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely a fordítás használatából eredhet.

@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "07863f50601f395c3bdfce30f555f11a",
-  "translation_date": "2025-07-13T17:48:50+00:00",
+  "original_hash": "92af35e8c34923031f3d228dffad9ebb",
+  "translation_date": "2025-09-03T16:07:22+00:00",
   "source_file": "03-GettingStarted/01-first-server/solution/dotnet/README.md",
   "language_code": "pl"
 }
@@ -23,18 +23,18 @@ dotnet run
 
 ## -4- Przetestuj przykład
 
-Gdy serwer działa w jednym terminalu, otwórz inny terminal i uruchom następujące polecenie:
+Gdy serwer działa w jednym terminalu, otwórz drugi terminal i uruchom następujące polecenie:
 
 ```bash
 npx @modelcontextprotocol/inspector dotnet run
 ```
 
-To powinno uruchomić serwer WWW z interfejsem wizualnym, który pozwoli Ci przetestować przykład.
+Powinno to uruchomić serwer WWW z interfejsem wizualnym, który umożliwia testowanie przykładu.
 
-Po połączeniu z serwerem:
+Gdy serwer jest połączony:
 
-- spróbuj wyświetlić listę narzędzi i uruchomić `add` z argumentami 2 i 4, w wyniku powinno pojawić się 6.
-- przejdź do zasobów i szablonu zasobu, wywołaj "greeting", wpisz imię i powinieneś zobaczyć powitanie z podanym imieniem.
+- spróbuj wyświetlić listę narzędzi i uruchom `add` z argumentami 2 i 4, powinieneś zobaczyć wynik 6.
+- przejdź do zasobów i szablonu zasobów, wywołaj "greeting", wpisz imię, a powinieneś zobaczyć powitanie z podanym imieniem.
 
 ### Testowanie w trybie CLI
 
@@ -44,7 +44,7 @@ Możesz uruchomić go bezpośrednio w trybie CLI, wykonując następujące polec
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/list
 ```
 
-To wyświetli listę wszystkich narzędzi dostępnych na serwerze. Powinieneś zobaczyć następujący wynik:
+To wyświetli listę wszystkich dostępnych narzędzi na serwerze. Powinieneś zobaczyć następujący wynik:
 
 ```text
 {
@@ -94,9 +94,11 @@ Powinieneś zobaczyć następujący wynik:
 }
 ```
 
-> ![!TIP]
-> Zazwyczaj znacznie szybciej jest uruchomić inspector w trybie CLI niż w przeglądarce.
-> Więcej informacji o inspectorze znajdziesz [tutaj](https://github.com/modelcontextprotocol/inspector).
+> [!TIP]
+> Zazwyczaj uruchamianie inspektora w trybie CLI jest znacznie szybsze niż w przeglądarce.
+> Przeczytaj więcej o inspektorze [tutaj](https://github.com/modelcontextprotocol/inspector).
+
+---
 
 **Zastrzeżenie**:  
-Niniejszy dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mimo że dążymy do jak największej dokładności, prosimy mieć na uwadze, że tłumaczenia automatyczne mogą zawierać błędy lub nieścisłości. Oryginalny dokument w języku źródłowym powinien być uznawany za źródło autorytatywne. W przypadku informacji o kluczowym znaczeniu zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za źródło autorytatywne. W przypadku informacji krytycznych zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.

@@ -60,7 +60,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## پیاده‌سازی Python
 
-***توجه*** می‌توانید این [دفترچه یادداشت](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_python.ipynb) را اجرا کنید
+***توجه*** می‌توانید این [دفترچه یادداشت](mcp_support_python.ipynb) را اجرا کنید
 
 ### ۱. نصب بسته‌های مورد نیاز
 
@@ -189,7 +189,7 @@ with project_client:
 
 ## پیاده‌سازی .NET
 
-***توجه*** می‌توانید این [دفترچه یادداشت](../../../../05-AdvancedTopics/mcp-foundry-agent-integration/mcp_support_dotnet.ipynb) را اجرا کنید
+***توجه*** می‌توانید این [دفترچه یادداشت](mcp_support_dotnet.ipynb) را اجرا کنید
 
 ### ۱. نصب بسته‌های مورد نیاز
 

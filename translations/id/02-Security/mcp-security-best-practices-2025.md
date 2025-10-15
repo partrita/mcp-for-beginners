@@ -1,92 +1,207 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "c3f4ea5732d64bf965e8aa2907759709",
-  "translation_date": "2025-07-17T08:54:19+00:00",
+  "original_hash": "057dd5cc6bea6434fdb788e6c93f3f3d",
+  "translation_date": "2025-08-18T17:34:39+00:00",
   "source_file": "02-Security/mcp-security-best-practices-2025.md",
   "language_code": "id"
 }
 -->
-# MCP Security Best Practices - Pembaruan Juli 2025
+# Praktik Keamanan MCP Terbaik - Pembaruan Agustus 2025
 
-## Praktik Keamanan Komprehensif untuk Implementasi MCP
+> **Penting**: Dokumen ini mencerminkan persyaratan keamanan terbaru berdasarkan [Spesifikasi MCP 2025-06-18](https://spec.modelcontextprotocol.io/specification/2025-06-18/) dan [Praktik Keamanan MCP Terbaik](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) resmi. Selalu rujuk spesifikasi terkini untuk panduan yang paling mutakhir.
 
-Saat bekerja dengan server MCP, ikuti praktik keamanan berikut untuk melindungi data, infrastruktur, dan pengguna Anda:
+## Praktik Keamanan Esensial untuk Implementasi MCP
 
-1. **Validasi Input**: Selalu validasi dan bersihkan input untuk mencegah serangan injeksi dan masalah confused deputy.
-   - Terapkan validasi ketat untuk semua parameter alat
-   - Gunakan validasi skema untuk memastikan permintaan sesuai format yang diharapkan
-   - Saring konten yang berpotensi berbahaya sebelum diproses
+Model Context Protocol memperkenalkan tantangan keamanan unik yang melampaui keamanan perangkat lunak tradisional. Praktik ini mencakup persyaratan keamanan dasar serta ancaman spesifik MCP seperti injeksi prompt, peracunan alat, pembajakan sesi, masalah deputi yang bingung, dan kerentanan token passthrough.
 
-2. **Kontrol Akses**: Terapkan autentikasi dan otorisasi yang tepat untuk server MCP Anda dengan izin yang terperinci.
-   - Gunakan OAuth 2.0 dengan penyedia identitas yang sudah mapan seperti Microsoft Entra ID
-   - Terapkan kontrol akses berbasis peran (RBAC) untuk alat MCP
-   - Jangan pernah membuat autentikasi kustom jika solusi yang sudah ada tersedia
+### **Persyaratan Keamanan WAJIB**
 
-3. **Komunikasi Aman**: Gunakan HTTPS/TLS untuk semua komunikasi dengan server MCP dan pertimbangkan enkripsi tambahan untuk data sensitif.
-   - Konfigurasikan TLS 1.3 jika memungkinkan
-   - Terapkan certificate pinning untuk koneksi penting
-   - Rotasi sertifikat secara berkala dan verifikasi keabsahannya
+**Persyaratan Kritis dari Spesifikasi MCP:**
 
-4. **Pembatasan Laju**: Terapkan pembatasan laju untuk mencegah penyalahgunaan, serangan DoS, dan mengelola konsumsi sumber daya.
-   - Tetapkan batas permintaan yang sesuai berdasarkan pola penggunaan yang diharapkan
-   - Terapkan respons bertingkat untuk permintaan berlebihan
-   - Pertimbangkan batas laju spesifik pengguna berdasarkan status autentikasi
+> **MUST NOT**: Server MCP **MUST NOT** menerima token yang tidak secara eksplisit diterbitkan untuk server MCP  
+> 
+> **MUST**: Server MCP yang menerapkan otorisasi **MUST** memverifikasi SEMUA permintaan masuk  
+>  
+> **MUST NOT**: Server MCP **MUST NOT** menggunakan sesi untuk autentikasi  
+>
+> **MUST**: Server proxy MCP yang menggunakan ID klien statis **MUST** mendapatkan persetujuan pengguna untuk setiap klien yang terdaftar secara dinamis  
 
-5. **Logging dan Monitoring**: Pantau server MCP Anda untuk aktivitas mencurigakan dan terapkan jejak audit yang komprehensif.
-   - Catat semua upaya autentikasi dan pemanggilan alat
-   - Terapkan peringatan real-time untuk pola mencurigakan
-   - Pastikan log disimpan dengan aman dan tidak dapat diubah
+---
 
-6. **Penyimpanan Aman**: Lindungi data sensitif dan kredensial dengan enkripsi yang tepat saat disimpan.
-   - Gunakan key vault atau penyimpanan kredensial aman untuk semua rahasia
-   - Terapkan enkripsi tingkat field untuk data sensitif
-   - Rotasi kunci enkripsi dan kredensial secara berkala
+## 1. **Keamanan Token & Autentikasi**
 
-7. **Manajemen Token**: Cegah kerentanan token passthrough dengan memvalidasi dan membersihkan semua input dan output model.
-   - Terapkan validasi token berdasarkan klaim audiens
-   - Jangan terima token yang tidak secara eksplisit diterbitkan untuk server MCP Anda
-   - Kelola masa berlaku token dan rotasi dengan benar
+**Kontrol Autentikasi & Otorisasi:**
+   - **Tinjauan Otorisasi yang Ketat**: Lakukan audit menyeluruh terhadap logika otorisasi server MCP untuk memastikan hanya pengguna dan klien yang dimaksud dapat mengakses sumber daya  
+   - **Integrasi Penyedia Identitas Eksternal**: Gunakan penyedia identitas yang sudah mapan seperti Microsoft Entra ID daripada membuat autentikasi khusus  
+   - **Validasi Audiens Token**: Selalu validasi bahwa token diterbitkan secara eksplisit untuk server MCP Anda - jangan pernah menerima token upstream  
+   - **Siklus Hidup Token yang Tepat**: Terapkan rotasi token yang aman, kebijakan kedaluwarsa, dan cegah serangan replay token  
 
-8. **Manajemen Sesi**: Terapkan penanganan sesi yang aman untuk mencegah pembajakan dan serangan session fixation.
-   - Gunakan ID sesi yang aman dan tidak deterministik
-   - Kaitkan sesi dengan informasi spesifik pengguna
-   - Terapkan masa berlaku dan rotasi sesi yang tepat
+**Penyimpanan Token yang Dilindungi:**
+   - Gunakan Azure Key Vault atau penyimpanan kredensial aman serupa untuk semua rahasia  
+   - Terapkan enkripsi untuk token baik saat disimpan maupun saat ditransmisikan  
+   - Rotasi kredensial secara teratur dan pantau akses yang tidak sah  
 
-9. **Sandboxing Eksekusi Alat**: Jalankan eksekusi alat di lingkungan terisolasi untuk mencegah pergerakan lateral jika terjadi kompromi.
-   - Terapkan isolasi container untuk eksekusi alat
-   - Terapkan batas sumber daya untuk mencegah serangan kelelahan sumber daya
-   - Gunakan konteks eksekusi terpisah untuk domain keamanan yang berbeda
+## 2. **Manajemen Sesi & Keamanan Transportasi**
 
-10. **Audit Keamanan Berkala**: Lakukan tinjauan keamanan secara berkala pada implementasi dan dependensi MCP Anda.
-    - Jadwalkan pengujian penetrasi secara rutin
-    - Gunakan alat pemindaian otomatis untuk mendeteksi kerentanan
-    - Perbarui dependensi untuk mengatasi masalah keamanan yang diketahui
+**Praktik Sesi yang Aman:**
+   - **ID Sesi yang Aman Secara Kriptografi**: Gunakan ID sesi yang aman dan tidak deterministik yang dihasilkan dengan generator angka acak yang aman  
+   - **Pengikatan Spesifik Pengguna**: Ikat ID sesi ke identitas pengguna menggunakan format seperti `<user_id>:<session_id>` untuk mencegah penyalahgunaan sesi lintas pengguna  
+   - **Manajemen Siklus Hidup Sesi**: Terapkan kedaluwarsa, rotasi, dan pembatalan yang tepat untuk membatasi jendela kerentanan  
+   - **Penegakan HTTPS/TLS**: HTTPS wajib untuk semua komunikasi guna mencegah penyadapan ID sesi  
 
-11. **Penyaringan Keamanan Konten**: Terapkan filter keamanan konten untuk input dan output.
-    - Gunakan Azure Content Safety atau layanan serupa untuk mendeteksi konten berbahaya
-    - Terapkan teknik prompt shield untuk mencegah prompt injection
-    - Pindai konten yang dihasilkan untuk potensi kebocoran data sensitif
+**Keamanan Lapisan Transportasi:**
+   - Konfigurasikan TLS 1.3 jika memungkinkan dengan manajemen sertifikat yang tepat  
+   - Terapkan pinning sertifikat untuk koneksi penting  
+   - Rotasi sertifikat secara teratur dan verifikasi validitasnya  
 
-12. **Keamanan Rantai Pasokan**: Verifikasi integritas dan keaslian semua komponen dalam rantai pasokan AI Anda.
-    - Gunakan paket yang ditandatangani dan verifikasi tanda tangan
-    - Terapkan analisis software bill of materials (SBOM)
-    - Pantau pembaruan dependensi yang berpotensi berbahaya
+## 3. **Perlindungan Ancaman Spesifik AI** 🤖
 
-13. **Perlindungan Definisi Alat**: Cegah keracunan alat dengan mengamankan definisi dan metadata alat.
-    - Validasi definisi alat sebelum digunakan
-    - Pantau perubahan tak terduga pada metadata alat
-    - Terapkan pemeriksaan integritas untuk definisi alat
+**Pertahanan Injeksi Prompt:**
+   - **Microsoft Prompt Shields**: Gunakan AI Prompt Shields untuk deteksi dan penyaringan instruksi berbahaya yang canggih  
+   - **Sanitasi Input**: Validasi dan sanitasi semua input untuk mencegah serangan injeksi dan masalah deputi yang bingung  
+   - **Batasan Konten**: Gunakan sistem pembatas dan penandaan data untuk membedakan antara instruksi yang dipercaya dan konten eksternal  
 
-14. **Monitoring Eksekusi Dinamis**: Pantau perilaku runtime server MCP dan alat.
-    - Terapkan analisis perilaku untuk mendeteksi anomali
-    - Siapkan peringatan untuk pola eksekusi yang tidak terduga
-    - Gunakan teknik runtime application self-protection (RASP)
+**Pencegahan Peracunan Alat:**
+   - **Validasi Metadata Alat**: Terapkan pemeriksaan integritas untuk definisi alat dan pantau perubahan yang tidak terduga  
+   - **Pemantauan Alat Dinamis**: Pantau perilaku runtime dan siapkan peringatan untuk pola eksekusi yang tidak terduga  
+   - **Alur Kerja Persetujuan**: Wajibkan persetujuan eksplisit pengguna untuk modifikasi alat dan perubahan kemampuan  
 
-15. **Prinsip Hak Istimewa Minimum**: Pastikan server MCP dan alat beroperasi dengan izin seminimal mungkin.
-    - Berikan hanya izin spesifik yang dibutuhkan untuk setiap operasi
-    - Tinjau dan audit penggunaan izin secara rutin
-    - Terapkan akses just-in-time untuk fungsi administratif
+## 4. **Kontrol Akses & Izin**
+
+**Prinsip Hak Istimewa Minimum:**
+   - Berikan server MCP hanya izin minimum yang diperlukan untuk fungsionalitas yang dimaksud  
+   - Terapkan kontrol akses berbasis peran (RBAC) dengan izin yang terperinci  
+   - Tinjauan izin secara teratur dan pemantauan berkelanjutan untuk eskalasi hak istimewa  
+
+**Kontrol Izin Runtime:**
+   - Terapkan batasan sumber daya untuk mencegah serangan kelelahan sumber daya  
+   - Gunakan isolasi kontainer untuk lingkungan eksekusi alat  
+   - Terapkan akses just-in-time untuk fungsi administratif  
+
+## 5. **Keamanan Konten & Pemantauan**
+
+**Implementasi Keamanan Konten:**
+   - **Integrasi Azure Content Safety**: Gunakan Azure Content Safety untuk mendeteksi konten berbahaya, upaya jailbreak, dan pelanggaran kebijakan  
+   - **Analisis Perilaku**: Terapkan pemantauan perilaku runtime untuk mendeteksi anomali dalam eksekusi server MCP dan alat  
+   - **Pencatatan Komprehensif**: Catat semua upaya autentikasi, pemanggilan alat, dan peristiwa keamanan dengan penyimpanan yang aman dan tahan manipulasi  
+
+**Pemantauan Berkelanjutan:**
+   - Peringatan waktu nyata untuk pola mencurigakan dan upaya akses tidak sah  
+   - Integrasi dengan sistem SIEM untuk manajemen peristiwa keamanan terpusat  
+   - Audit keamanan dan pengujian penetrasi reguler untuk implementasi MCP  
+
+## 6. **Keamanan Rantai Pasokan**
+
+**Verifikasi Komponen:**
+   - **Pemindaian Ketergantungan**: Gunakan pemindaian kerentanan otomatis untuk semua ketergantungan perangkat lunak dan komponen AI  
+   - **Validasi Asal**: Verifikasi asal, lisensi, dan integritas model, sumber data, dan layanan eksternal  
+   - **Paket yang Ditandatangani**: Gunakan paket yang ditandatangani secara kriptografi dan verifikasi tanda tangan sebelum penerapan  
+
+**Pipeline Pengembangan yang Aman:**
+   - **Keamanan Lanjutan GitHub**: Terapkan pemindaian rahasia, analisis ketergantungan, dan analisis statis CodeQL  
+   - **Keamanan CI/CD**: Integrasikan validasi keamanan di seluruh pipeline penerapan otomatis  
+   - **Integritas Artefak**: Terapkan verifikasi kriptografi untuk artefak dan konfigurasi yang diterapkan  
+
+## 7. **Keamanan OAuth & Pencegahan Deputi yang Bingung**
+
+**Implementasi OAuth 2.1:**
+   - **Implementasi PKCE**: Gunakan Proof Key for Code Exchange (PKCE) untuk semua permintaan otorisasi  
+   - **Persetujuan Eksplisit**: Dapatkan persetujuan pengguna untuk setiap klien yang terdaftar secara dinamis untuk mencegah serangan deputi yang bingung  
+   - **Validasi URI Pengalihan**: Terapkan validasi ketat terhadap URI pengalihan dan pengidentifikasi klien  
+
+**Keamanan Proxy:**
+   - Cegah bypass otorisasi melalui eksploitasi ID klien statis  
+   - Terapkan alur kerja persetujuan yang tepat untuk akses API pihak ketiga  
+   - Pantau pencurian kode otorisasi dan akses API yang tidak sah  
+
+## 8. **Respons & Pemulihan Insiden**
+
+**Kemampuan Respons Cepat:**
+   - **Respons Otomatis**: Terapkan sistem otomatis untuk rotasi kredensial dan penanganan ancaman  
+   - **Prosedur Rollback**: Kemampuan untuk segera kembali ke konfigurasi dan komponen yang diketahui aman  
+   - **Kemampuan Forensik**: Jejak audit dan pencatatan terperinci untuk investigasi insiden  
+
+**Komunikasi & Koordinasi:**
+   - Prosedur eskalasi yang jelas untuk insiden keamanan  
+   - Integrasi dengan tim respons insiden organisasi  
+   - Simulasi insiden keamanan dan latihan tabletop secara teratur  
+
+## 9. **Kepatuhan & Tata Kelola**
+
+**Kepatuhan Regulasi:**
+   - Pastikan implementasi MCP memenuhi persyaratan industri tertentu (GDPR, HIPAA, SOC 2)  
+   - Terapkan klasifikasi data dan kontrol privasi untuk pemrosesan data AI  
+   - Pertahankan dokumentasi komprehensif untuk audit kepatuhan  
+
+**Manajemen Perubahan:**
+   - Proses tinjauan keamanan formal untuk semua modifikasi sistem MCP  
+   - Kontrol versi dan alur kerja persetujuan untuk perubahan konfigurasi  
+   - Penilaian kepatuhan reguler dan analisis kesenjangan  
+
+## 10. **Kontrol Keamanan Lanjutan**
+
+**Arsitektur Zero Trust:**
+   - **Jangan Pernah Percaya, Selalu Verifikasi**: Verifikasi terus-menerus terhadap pengguna, perangkat, dan koneksi  
+   - **Mikro-segmentasi**: Kontrol jaringan granular yang mengisolasi komponen MCP individu  
+   - **Akses Bersyarat**: Kontrol akses berbasis risiko yang beradaptasi dengan konteks dan perilaku saat ini  
+
+**Perlindungan Aplikasi Runtime:**
+   - **Runtime Application Self-Protection (RASP)**: Terapkan teknik RASP untuk deteksi ancaman waktu nyata  
+   - **Pemantauan Kinerja Aplikasi**: Pantau anomali kinerja yang mungkin menunjukkan serangan  
+   - **Kebijakan Keamanan Dinamis**: Terapkan kebijakan keamanan yang beradaptasi berdasarkan lanskap ancaman saat ini  
+
+## 11. **Integrasi Ekosistem Keamanan Microsoft**
+
+**Keamanan Microsoft yang Komprehensif:**
+   - **Microsoft Defender for Cloud**: Manajemen postur keamanan cloud untuk beban kerja MCP  
+   - **Azure Sentinel**: Kemampuan SIEM dan SOAR berbasis cloud untuk deteksi ancaman lanjutan  
+   - **Microsoft Purview**: Tata kelola data dan kepatuhan untuk alur kerja AI dan sumber data  
+
+**Manajemen Identitas & Akses:**
+   - **Microsoft Entra ID**: Manajemen identitas perusahaan dengan kebijakan akses bersyarat  
+   - **Privileged Identity Management (PIM)**: Akses just-in-time dan alur kerja persetujuan untuk fungsi administratif  
+   - **Perlindungan Identitas**: Akses bersyarat berbasis risiko dan respons ancaman otomatis  
+
+## 12. **Evolusi Keamanan Berkelanjutan**
+
+**Tetap Terkini:**
+   - **Pemantauan Spesifikasi**: Tinjauan reguler terhadap pembaruan spesifikasi MCP dan perubahan panduan keamanan  
+   - **Intelijen Ancaman**: Integrasi umpan ancaman spesifik AI dan indikator kompromi  
+   - **Keterlibatan Komunitas Keamanan**: Partisipasi aktif dalam komunitas keamanan MCP dan program pengungkapan kerentanan  
+
+**Keamanan Adaptif:**
+   - **Keamanan Pembelajaran Mesin**: Gunakan deteksi anomali berbasis ML untuk mengidentifikasi pola serangan baru  
+   - **Analitik Keamanan Prediktif**: Terapkan model prediktif untuk identifikasi ancaman secara proaktif  
+   - **Otomasi Keamanan**: Pembaruan kebijakan keamanan otomatis berdasarkan intelijen ancaman dan perubahan spesifikasi  
+
+---
+
+## **Sumber Daya Keamanan Penting**
+
+### **Dokumentasi Resmi MCP**
+- [Spesifikasi MCP (2025-06-18)](https://spec.modelcontextprotocol.io/specification/2025-06-18/)  
+- [Praktik Keamanan MCP Terbaik](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)  
+- [Spesifikasi Otorisasi MCP](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)  
+
+### **Solusi Keamanan Microsoft**
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)  
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)  
+- [Keamanan Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)  
+- [Keamanan Lanjutan GitHub](https://github.com/security/advanced-security)  
+
+### **Standar Keamanan**
+- [Praktik Keamanan OAuth 2.0 (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)  
+- [OWASP Top 10 untuk Model Bahasa Besar](https://genai.owasp.org/)  
+- [Kerangka Manajemen Risiko AI NIST](https://www.nist.gov/itl/ai-risk-management-framework)  
+
+### **Panduan Implementasi**
+- [Gateway Autentikasi MCP API Management Azure](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)  
+- [Microsoft Entra ID dengan Server MCP](https://den.dev/blog/mcp-server-auth-entra-id-session/)  
+
+---
+
+> **Pemberitahuan Keamanan**: Praktik keamanan MCP berkembang dengan cepat. Selalu verifikasi terhadap [spesifikasi MCP](https://spec.modelcontextprotocol.io/) terkini dan [dokumentasi keamanan resmi](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices) sebelum implementasi.
 
 **Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk mencapai akurasi, harap diperhatikan bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sahih. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk memberikan hasil yang akurat, harap diperhatikan bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang berwenang. Untuk informasi yang bersifat kritis, disarankan menggunakan jasa terjemahan manusia profesional. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.

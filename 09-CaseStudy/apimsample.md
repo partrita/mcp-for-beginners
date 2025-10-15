@@ -154,7 +154,7 @@ Let's see how, to add the MCP server in Visual Studio Code:
 
 Now we're all set up in either settings or in *.vscode/mcp.json*. Let's try it out. 
 
-Theres should be a Tools icon like so, where the exposed tools from your server are listed:
+There should be a Tools icon like so, where the exposed tools from your server are listed:
 
 ![Tools from the server](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
 
